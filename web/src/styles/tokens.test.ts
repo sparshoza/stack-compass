@@ -40,6 +40,22 @@ describe('design tokens', () => {
     })
   }
 
+  // Map edges at rest: visible as thin grey lines, still well under the
+  // focused-edge colour and the text.
+  for (const [name, selector, min] of [
+    ['dark', ':root', 1.6],
+    ['light', ":root[data-theme='light']", 1.35],
+  ] as const) {
+    it(`map edges read at rest but stay quiet in the ${name} theme`, () => {
+      const t = theme(selector)
+      const edge = ratio(t.edge, t.bg)
+      expect(edge).toBeGreaterThanOrEqual(min)
+      expect(edge).toBeLessThan(2.2)
+      expect(ratio(t['edge-strong'], t.bg)).toBeGreaterThan(edge * 1.5)
+      expect(ratio(t['text-faint'], t.bg)).toBeGreaterThan(edge * 2)
+    })
+  }
+
   it('every text field uses the field border', () => {
     const files = [
       '../components/map/SearchBox.tsx',

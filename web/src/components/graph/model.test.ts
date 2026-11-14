@@ -16,6 +16,7 @@ import {
   mix,
   labelBoxes,
   labelOrigin,
+  drawName,
   mapStretch,
   STAGE_PADDING,
   type Box,
@@ -225,6 +226,11 @@ describe('focus neighbourhood', () => {
     expect(node('mysql', v).color).toBe(mix(palette.families.data, palette.background, DIM_NODE_MIX))
   })
 
+  it('draws every edge at least 0.6px wide so it renders as a whole line', () => {
+    const v = makeView({})
+    for (const key of g.edges()) expect(edgeStyle(g.getEdgeAttributes(key), v, palette).size).toBeGreaterThanOrEqual(0.6)
+  })
+
   it('draws pairings and alternatives thinner than structural edges at rest', () => {
     const v = makeView({})
     expect(edge('react', 'fastapi', v).size).toBeLessThan(1)
@@ -270,6 +276,12 @@ describe('LabelPlacer', () => {
     expect(placer.place(box(-5, 10, 40, 24))).toBe(false)
   })
 
+  it('keeps labels out from under the top bar', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300, top: 68 })
+    expect(placer.place(box(10, 60, 80, 72))).toBe(false)
+    expect(placer.place(box(10, 70, 80, 82))).toBe(true)
+  })
+
   it('reserved labels always win and clear on reset', () => {
     const placer = new LabelPlacer({ width: 400, height: 300 })
     placer.reserve(box(10, 10, 80, 24))
@@ -288,6 +300,17 @@ describe('labelOrigin and labelBoxes', () => {
     expect((below.x0 + below.x1) / 2).toBe(100)
     expect(below.y0).toBeGreaterThanOrEqual(50 + 3)
     expect(below.y1 - below.y0).toBeLessThanOrEqual(14)
+  })
+
+  it('puts the name right of the dot, vertically centred, as a last resort', () => {
+    const at = labelOrigin(100, 50, 3, 40, 10, 'right')
+    expect(at.x).toBeGreaterThan(100 + 3)
+    expect(at.y).toBeGreaterThan(50)
+    expect(at.y).toBeLessThan(50 + 10 * 0.6)
+    const { right } = labelBoxes(100, 50, 3, 40, 10)
+    expect(right.x0).toBeGreaterThanOrEqual(100 + 3)
+    expect(right.y0).toBeLessThan(50)
+    expect(right.y1).toBeGreaterThan(50)
   })
 
   it('puts the name centred over the dot when it goes above', () => {
@@ -341,6 +364,18 @@ describe('placeLabels', () => {
     expect(sides.has('dim-below')).toBe(false)
   })
 
+  it('a pick whose name fits neither under nor over its dot goes right of it', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    // Two other picks sit just under and just over this one.
+    placer.reset([dot('p', 200), dot('under', 200, 114), dot('over', 200, 86)])
+    const sides = placeLabels(placer, [
+      { id: 'under', rank: 0, size: 5, ...at(200, 114) },
+      { id: 'over', rank: 0, size: 5, ...at(200, 86) },
+      { id: 'p', rank: 0, size: 5, ...at(200) },
+    ])
+    expect(sides.get('p')).toBe('right')
+  })
+
   it('in browse mode labels still avoid every dot', () => {
     const placer = new LabelPlacer({ width: 400, height: 300 })
     placer.reset([dot('a', 200), dot('b', 200, 112), dot('c', 200, 88)])
@@ -391,10 +426,10 @@ function atRest(viewport: { width: number; height: number }, free = { top: 124, 
   }))
 }
 
-/** How many names the label pass draws at rest; names are 10px JetBrains Mono, 0.6em per character. */
-function labelsAtRest(viewport: { width: number; height: number }): number {
+/** How many names the label pass draws at rest below a top bar `top` pixels tall; names are 10px JetBrains Mono, 0.6em per character. */
+function labelsAtRest(viewport: { width: number; height: number }, top: number): number {
   const nodes = atRest(viewport)
-  const placer = new LabelPlacer(viewport)
+  const placer = new LabelPlacer({ ...viewport, top })
   placer.reset(
     nodes.map((n) => ({ id: n.id, box: { x0: n.x - n.size, y0: n.y - n.size, x1: n.x + n.size, y1: n.y + n.size } })),
   )
@@ -407,13 +442,40 @@ function labelsAtRest(viewport: { width: number; height: number }): number {
   return placeLabels(placer, candidates).size
 }
 
+describe('drawName', () => {
+  function recorder() {
+    const calls: string[] = []
+    const context = {
+      lineWidth: 0,
+      lineJoin: '',
+      strokeStyle: '',
+      fillStyle: '#111',
+      strokeText: (text: string) => calls.push(`stroke ${text} ${context.strokeStyle} ${context.lineWidth}`),
+      fillText: (text: string) => calls.push(`fill ${text} ${context.fillStyle}`),
+    }
+    return { calls, context: context as unknown as CanvasRenderingContext2D }
+  }
+
+  it('draws a solid halo in the map colour behind a lit name, then the name', () => {
+    const { calls, context } = recorder()
+    drawName(context, 'Clerk', { x: 10, y: 20 }, '#0d0f12')
+    expect(calls).toEqual(['stroke Clerk #0d0f12 4', 'fill Clerk #111'])
+  })
+
+  it('draws a resting name with no halo', () => {
+    const { calls, context } = recorder()
+    drawName(context, 'Clerk', { x: 10, y: 20 }, null)
+    expect(calls).toEqual(['fill Clerk #111'])
+  })
+})
+
 describe('labels at rest', () => {
   it('names nearly every tool on a 1440x900 screen', () => {
-    expect(labelsAtRest({ width: 1440, height: 900 }) / kb.tools.length).toBeGreaterThanOrEqual(0.9)
+    expect(labelsAtRest({ width: 1440, height: 900 }, 68) / kb.tools.length).toBeGreaterThanOrEqual(0.9)
   })
 
   it('names a good share of tools on a 390x844 phone', () => {
-    expect(labelsAtRest({ width: 390, height: 844 })).toBeGreaterThanOrEqual(60)
+    expect(labelsAtRest({ width: 390, height: 844 }, 124)).toBeGreaterThanOrEqual(60)
   })
 })
 
@@ -513,7 +575,7 @@ describe('dimming', () => {
     text: '#111418',
     textMuted: '#4f5661',
     textFaint: '#646b76',
-    edge: '#d9dde2',
+    edge: '#cfd4da',
     edgeStrong: '#8a919b',
     background: '#f6f7f9',
   }

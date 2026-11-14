@@ -7,6 +7,7 @@ import { kb, type EdgeType, type Layer } from '@/lib/kb'
 import {
   areaFit,
   buildGraph,
+  drawName,
   edgeStyle,
   labelBoxes,
   labelOrigin,
@@ -58,25 +59,18 @@ function setKey(set: ReadonlySet<string> | undefined): string {
 
 type LabelData = PartialButFor<NodeDisplayData, 'x' | 'y' | 'size' | 'label' | 'color'>
 
-/** The hovered name in the text colour, centred under the dot: no box, no shadow. */
-function drawLabelOnly(context: CanvasRenderingContext2D, data: LabelData, settings: Settings<NodeAttrs, EdgeAttrs>) {
-  if (!data.label) return
-  context.fillStyle = settings.labelColor.color ?? '#000'
-  context.font = `${settings.labelWeight} ${settings.labelSize}px ${settings.labelFont}`
-  const width = context.measureText(data.label).width
-  const at = labelOrigin(data.x, data.y, data.size, width, settings.labelSize, 'below')
-  context.fillText(data.label, at.x, at.y)
-}
-
 /**
  * Picks which labels to draw, once per frame, so none touches another label
  * or another tool's dot or runs off the map. The focused tool and any picks
  * are reserved first, then its neighbours claim space, then the
  * best-connected tools claim space before the rest. Each name is centred
- * under its dot, else over it. Sigma offers every node as a candidate (tiny
+ * under its dot, else over it (a lit name may also go right of it). Labels
+ * keep out from under the top bar (`area().top`). Lit names (focus, picks,
+ * neighbours, hover) get a solid halo in the map colour (`area().halo`) so
+ * accent edges do not cut them. Sigma offers every node as a candidate (tiny
  * label grid) and this decides.
  */
-function makeLabelDrawer() {
+function makeLabelDrawer(area: () => { top: number; halo: string }) {
   const placer = new LabelPlacer({ width: 0, height: 0 })
   const widths = new Map<string, number>()
   let allowed = new Map<string, Side>()
@@ -108,7 +102,7 @@ function makeLabelDrawer() {
     context: CanvasRenderingContext2D,
     settings: Settings<NodeAttrs, EdgeAttrs>,
   ) {
-    placer.resize(sigma.getDimensions())
+    placer.resize({ ...sigma.getDimensions(), top: area().top })
     context.font = font(settings)
     const dots: { id: string; box: Box }[] = []
     const candidates: LabelCandidate[] = []
@@ -144,10 +138,24 @@ function makeLabelDrawer() {
     context.font = font(settings)
     context.fillStyle = data.labelColor ?? settings.labelColor.color ?? '#000'
     const at = labelOrigin(data.x, data.y, data.size, widthOf(context, data.label), settings.labelSize, side)
-    context.fillText(data.label, at.x, at.y)
+    drawName(context, data.label, at, data.forceLabel ? area().halo : null)
   }
 
-  return { attach, draw }
+  /** The hovered name in the text colour, where the label pass put it (under the dot when it had no place). */
+  function drawHover(
+    context: CanvasRenderingContext2D,
+    data: LabelData & { key?: string },
+    settings: Settings<NodeAttrs, EdgeAttrs>,
+  ) {
+    if (!data.label) return
+    context.font = font(settings)
+    context.fillStyle = settings.labelColor.color ?? '#000'
+    const side = (data.key ? allowed.get(data.key) : undefined) ?? 'below'
+    const at = labelOrigin(data.x, data.y, data.size, widthOf(context, data.label), settings.labelSize, side)
+    drawName(context, data.label, at, area().halo)
+  }
+
+  return { attach, draw, drawHover }
 }
 
 /**
@@ -250,6 +258,7 @@ export function StackGraph({
   const onSelectRef = useRef(onSelect)
   const onContextLostRef = useRef(onContextLost)
   const palette = usePalette()
+  const paletteRef = useRef(palette)
 
   const focusInsetRef = useRef(focusInset)
   const frameInsetRef = useRef(frameInset)
@@ -302,7 +311,10 @@ export function StackGraph({
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
-    const labels = makeLabelDrawer()
+    const labels = makeLabelDrawer(() => ({
+      top: frameInsetRef.current?.top ?? 0,
+      halo: paletteRef.current.background,
+    }))
     const sigma = new Sigma<NodeAttrs, EdgeAttrs>(graph, container, {
       allowInvalidContainer: true,
       renderEdgeLabels: false,
@@ -317,7 +329,7 @@ export function StackGraph({
       labelGridCellSize: 10,
       labelRenderedSizeThreshold: 0,
       defaultDrawNodeLabel: labels.draw,
-      defaultDrawNodeHover: drawLabelOnly,
+      defaultDrawNodeHover: labels.drawHover,
       // No motion in phase 1: every camera move is instant.
       zoomDuration: 0,
       inertiaDuration: 0,
@@ -364,6 +376,7 @@ export function StackGraph({
   useEffect(() => {
     const sigma = sigmaRef.current
     if (!sigma) return
+    paletteRef.current = palette
     sigma.setSetting('labelColor', { attribute: 'labelColor', color: palette.text })
     sigma.setSetting('nodeReducer', (node, data) => ({ ...data, ...nodeStyle(node, data, view, palette) }))
     sigma.setSetting('edgeReducer', (_edge, data) => ({ ...data, ...edgeStyle(data, view, palette) }))

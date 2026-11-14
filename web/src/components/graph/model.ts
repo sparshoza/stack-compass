@@ -57,7 +57,7 @@ export const FALLBACK_PALETTE: Palette = {
   text: '#e8eaed',
   textMuted: '#a4abb4',
   textFaint: '#8b929b',
-  edge: '#2b3037',
+  edge: '#3a4048',
   edgeStrong: '#59616c',
   background: '#0d0f12',
 }
@@ -303,16 +303,23 @@ const overlaps = (a: Box, b: Box) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 &
  * being cut off at the edge of the map. Sigma picks which labels to try; this
  * says no to the ones that would collide. Reset once per frame.
  */
+/** The map area labels may use; `top` is the height of the bar floating over it. */
+export interface PlacerArea {
+  width: number
+  height: number
+  top?: number
+}
+
 export class LabelPlacer {
   private placed: Box[] = []
   private dots: { id: string; box: Box }[] = []
-  private size: { width: number; height: number }
+  private size: PlacerArea
 
-  constructor(size: { width: number; height: number }) {
+  constructor(size: PlacerArea) {
     this.size = size
   }
 
-  resize(size: { width: number; height: number }) {
+  resize(size: PlacerArea) {
     this.size = size
   }
 
@@ -328,8 +335,8 @@ export class LabelPlacer {
 
   /** `among`, when given, limits the dots a label must avoid to those tools (the lit ones). */
   place(box: Box, ownDot?: string, among?: ReadonlySet<string>): boolean {
-    const { width, height } = this.size
-    if (box.x0 < 0 || box.y0 < 0 || box.x1 > width || box.y1 > height) return false
+    const { width, height, top = 0 } = this.size
+    if (box.x0 < 0 || box.y0 < top || box.x1 > width || box.y1 > height) return false
     if (this.placed.some((other) => overlaps(box, other))) return false
     if (this.dots.some((dot) => dot.id !== ownDot && (!among || among.has(dot.id)) && overlaps(box, dot.box))) return false
     this.placed.push(box)
@@ -337,7 +344,7 @@ export class LabelPlacer {
   }
 }
 
-export type Side = 'below' | 'above'
+export type Side = 'below' | 'above' | 'right'
 
 /** Pixels between a dot's edge and its name. */
 const LABEL_GAP = 2
@@ -345,9 +352,13 @@ const LABEL_GAP = 2
 const ASCENT = 0.78
 const DESCENT = 0.22
 
+/** Share of the font size that puts the baseline of a name beside the dot level with its centre. */
+const MIDLINE = 0.35
+
 /**
  * Where the text of a name starts (left end, alphabetic baseline): centred
- * under the dot, or centred over it when the space below is taken.
+ * under the dot, centred over it when the space below is taken, or right of
+ * it, level with its centre, as a last resort for lit names.
  */
 export function labelOrigin(
   x: number,
@@ -357,25 +368,51 @@ export function labelOrigin(
   labelSize: number,
   side: Side,
 ): { x: number; y: number } {
+  if (side === 'right') return { x: x + size + LABEL_GAP + 1, y: y + labelSize * MIDLINE }
   const baseline =
     side === 'below' ? y + size + LABEL_GAP + labelSize * ASCENT : y - size - LABEL_GAP - labelSize * DESCENT
   return { x: x - width / 2, y: baseline }
 }
 
-/** The boxes a name takes under and over its dot, a pixel wider than the text. */
+/** The boxes a name takes under, over and right of its dot, a pixel wider than the text. */
 export function labelBoxes(
   x: number,
   y: number,
   size: number,
   width: number,
   labelSize: number,
-): { below: Box; above: Box } {
+): { below: Box; above: Box; right: Box } {
   const x0 = x - width / 2 - 1
   const x1 = x + width / 2 + 1
+  const side = x + size + LABEL_GAP
   return {
     below: { x0, y0: y + size + LABEL_GAP - 1, x1, y1: y + size + LABEL_GAP + labelSize },
     above: { x0, y0: y - size - LABEL_GAP - labelSize, x1, y1: y - size - LABEL_GAP + 1 },
+    right: { x0: side, y0: y - labelSize * 0.55, x1: side + width + 2, y1: y + labelSize * 0.55 },
   }
+}
+
+/** Width of the solid halo stroke behind a lit name, in pixels (about 2px each side of the glyphs). */
+const HALO_WIDTH = 4
+
+/**
+ * Draws a name at `at` in the current fill colour. A lit name first gets a
+ * solid stroke in the map colour (`halo`), so accent edges never cut its
+ * glyphs; it is an opaque outline, not a blur.
+ */
+export function drawName(
+  context: CanvasRenderingContext2D,
+  text: string,
+  at: { x: number; y: number },
+  halo: string | null,
+) {
+  if (halo) {
+    context.lineWidth = HALO_WIDTH
+    context.lineJoin = 'round'
+    context.strokeStyle = halo
+    context.strokeText(text, at.x, at.y)
+  }
+  context.fillText(text, at.x, at.y)
 }
 
 /**
@@ -388,13 +425,14 @@ export interface LabelCandidate {
   size: number
   below: Box
   above: Box
+  right: Box
 }
 
 /**
  * Decides which labels to draw and where. Every name is centred under its
  * dot, else over it, and is dropped only when both places collide. Lit labels
- * (rank 0) are placed first and only dodge each other; when both places are
- * taken they go under the dot regardless. Neighbours of a focused tool
+ * (rank 0) are placed first and only dodge each other and the lit dots; when
+ * both places are taken they try right of the dot, then go under it regardless. Neighbours of a focused tool
  * (rank 1) then avoid only lit dots, so the dimmed dots around them never
  * hide a related tool's name. Everything else avoids every dot, bigger dots
  * (better-connected tools) first.
@@ -407,6 +445,7 @@ export function placeLabels(placer: LabelPlacer, candidates: readonly LabelCandi
     if (c.rank !== 0) continue
     if (placer.place(c.below, c.id, lit)) allowed.set(c.id, 'below')
     else if (placer.place(c.above, c.id, lit)) allowed.set(c.id, 'above')
+    else if (placer.place(c.right, c.id, lit)) allowed.set(c.id, 'right')
     else {
       placer.reserve(c.below)
       allowed.set(c.id, 'below')

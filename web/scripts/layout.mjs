@@ -10,11 +10,13 @@
 // 2. ForceAtlas2 settles them with strong gravity, which holds the whole graph
 //    in one disc. Edges between families pull hardest and edges inside a
 //    family barely pull, so a family never gathers into its own sector.
-// 3. Distances from the centre are evened out by rank, so the disc is filled
-//    from a slightly denser core to its rim with no empty ring or stray leaf.
+// 3. Each distance from the centre is blended halfway toward a target set by
+//    its rank that favours the centre, so the core is crowded (the hubs sit there),
+//    the rim is sparser and no leaf strays outside the disc.
 // 4. Tools whose names would overlap, each name centred under its dot as the
-//    map draws it at rest on a desktop screen, are nudged apart, then any two
-//    dots closer than MIN_GAP of the map's width are pushed apart.
+//    map draws it at rest on a desktop screen, are nudged apart for a few
+//    rounds (not to the end, so crowds survive), then any two dots closer
+//    than MIN_GAP of the map's width are pushed apart.
 //
 // Everything is deterministic, so the same catalog always gives the same file.
 
@@ -34,7 +36,7 @@ const EDGE_WEIGHT = { 'built-on': 0.15, extends: 0.15, 'pairs-with': 0.1, 'alter
 /** Edges inside one family pull this much as hard as edges between families. */
 const SAME_FAMILY = 0.05
 const FA2_SETTINGS = {
-  scalingRatio: 10,
+  scalingRatio: 3,
   gravity: 1,
   strongGravityMode: true,
   slowDown: 5,
@@ -44,13 +46,18 @@ const FA2_SETTINGS = {
   barnesHutOptimize: false,
   adjustSizes: false,
 }
-/** Share of tools within a distance r of the centre grows as r^(1 / RADIAL_POWER); 0.5 is an even disc. */
-const RADIAL_POWER = 0.6
+/**
+ * How far each tool's distance from the centre moves from where ForceAtlas2
+ * left it toward its rank target (0 keeps ForceAtlas2, 1 is the rank target).
+ */
+const RADIAL_BLEND = 0.5
+/** Rank targets: the share of tools within r of the centre grows as (r / RADIUS)^(1 / RADIAL_POWER); 0.5 is an even disc, higher crowds the core. */
+const RADIAL_POWER = 0.85
 /** Label boxes are sized for a map this many pixels across with names in a 10px monospace face. */
 const LABEL_MAP_PX = 700
 const LABEL_CHAR_PX = 6
 const LABEL_BOX_PX = 17 // dot, gap and one line of text
-const LABEL_ROUNDS = 60
+const LABEL_ROUNDS = 20 // a few rounds, not to the end, so hubs keep a crowd round them
 const MIN_GAP = 0.03 // of the map's larger side
 const SPREAD_ROUNDS = 80
 
@@ -168,7 +175,9 @@ export function spreadApart(points, ids) {
 
 /**
  * Keeps each tool's direction from the centre and its rank by distance, and
- * sets the distance to RADIUS * ((rank + 0.5) / n) ^ RADIAL_POWER. Mutates `points`.
+ * moves its distance RADIAL_BLEND of the way from where it is (scaled so the
+ * farthest tool is at RADIUS) to RADIUS * ((rank + 0.5) / n)^RADIAL_POWER.
+ * Mutates `points`.
  */
 export function evenRadii(points) {
   const n = points.length
@@ -177,10 +186,11 @@ export function evenRadii(points) {
   const order = points
     .map((p, i) => ({ i, r: Math.hypot(p.x - cx, p.y - cy) }))
     .sort((a, b) => a.r - b.r || a.i - b.i)
+  const outer = order[n - 1].r || 1
   order.forEach(({ i, r }, rank) => {
-    // exp and log rather than **, which V8 has not always computed the same way on every platform.
     const target = RADIUS * Math.exp(RADIAL_POWER * Math.log((rank + 0.5) / n))
-    const k = r === 0 ? 0 : target / r
+    const blended = RADIAL_BLEND * target + (1 - RADIAL_BLEND) * RADIUS * (r / outer)
+    const k = r === 0 ? 0 : blended / r
     points[i].x = cx + (points[i].x - cx) * k
     points[i].y = cy + (points[i].y - cy) * k
   })

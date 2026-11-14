@@ -34,7 +34,7 @@
   --family-ops: #e286c0;
 
   /* Map */
-  --edge: #2b3037;
+  --edge: #3a4048;
   --edge-strong: #59616c;
 
   /* Type: one monospace family, always mixed case */
@@ -92,7 +92,7 @@
   --family-services: #bd4527;
   --family-ops: #a8357a;
 
-  --edge: #d9dde2;
+  --edge: #cfd4da;
   --edge-strong: #8a919b;
 
   --shadow-float: 0 8px 24px rgb(17 20 24 / 0.12);

@@ -4,7 +4,8 @@ aliases:
 - redux
 - reduxjs-toolkit
 layer: state
-summary: The official, opinionated toolset for efficient Redux development, with RTK Query for data fetching.
+summary: The official, opinionated toolset for efficient Redux development, with RTK
+  Query for data fetching.
 url: https://redux-toolkit.js.org
 repo: https://github.com/reduxjs/redux-toolkit
 license: MIT
@@ -28,11 +29,7 @@ edges:
 - type: alternative-to
   target: mobx
 - type: alternative-to
-  target: ngrx
-- type: alternative-to
   target: effector
-- type: alternative-to
-  target: xstate
 - type: pairs-with
   target: react
 verified: '2026-11-14'

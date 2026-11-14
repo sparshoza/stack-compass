@@ -3,7 +3,8 @@ name: Babel
 aliases:
 - babeljs
 layer: build-tool
-summary: A JavaScript compiler that converts modern syntax into backward-compatible code.
+summary: A JavaScript compiler that converts modern syntax into backward-compatible
+  code.
 url: https://babeljs.io
 repo: https://github.com/babel/babel
 license: MIT
@@ -23,6 +24,8 @@ avoid_when:
 edges:
 - type: alternative-to
   target: swc
+- type: pairs-with
+  target: gulp
 verified: '2026-11-14'
 sources:
 - https://babeljs.io

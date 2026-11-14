@@ -21,9 +21,10 @@ good_for:
 avoid_when:
 - You want built-in module bundling, since gulp is a task runner
 edges:
-- type: alternative-to
-  target: webpack
+- type: pairs-with
+  target: babel
 verified: '2026-11-14'
 sources:
 - https://gulpjs.com
 - https://github.com/gulpjs/gulp
+- https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/

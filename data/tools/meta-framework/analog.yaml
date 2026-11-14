@@ -4,7 +4,8 @@ aliases:
 - analogjs
 match_name: false
 layer: meta-framework
-summary: A full-stack meta-framework for Angular with file routing, API routes and server rendering.
+summary: A full-stack meta-framework for Angular with file routing, API routes and
+  server rendering.
 url: https://analogjs.org
 repo: https://github.com/analogjs/analog
 license: MIT
@@ -24,8 +25,6 @@ good_for:
 avoid_when:
 - You want a first-party Angular tool only
 edges:
-- type: alternative-to
-  target: nuxt
 - type: built-on
   target: angular
 verified: '2026-11-14'

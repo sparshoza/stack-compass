@@ -2,7 +2,8 @@ id: rolldown
 name: Rolldown
 aliases: []
 layer: build-tool
-summary: A Rust-based JavaScript bundler with a Rollup-compatible API, the bundler powering Vite 8 and later.
+summary: A Rust-based JavaScript bundler with a Rollup-compatible API, the bundler
+  powering Vite 8 and later.
 url: https://rolldown.rs
 repo: https://github.com/rolldown/rolldown
 license: MIT
@@ -24,8 +25,6 @@ edges:
   target: rollup
 - type: alternative-to
   target: esbuild
-- type: pairs-with
-  target: vite
 verified: '2026-11-14'
 sources:
 - https://rolldown.rs

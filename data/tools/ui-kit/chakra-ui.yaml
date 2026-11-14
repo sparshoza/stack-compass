@@ -3,7 +3,8 @@ name: Chakra UI
 aliases:
 - chakraui
 layer: ui-kit
-summary: A React component library with accessible, composable components and style props.
+summary: A React component library with accessible, composable components and style
+  props.
 url: https://chakra-ui.com
 repo: https://github.com/chakra-ui/chakra-ui
 license: MIT
@@ -29,8 +30,6 @@ edges:
   target: shadcn-ui
 - type: alternative-to
   target: heroui
-- type: alternative-to
-  target: tailwindcss
 - type: built-on
   target: react
 verified: '2026-11-14'

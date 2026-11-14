@@ -11,7 +11,9 @@ license: MIT
 languages:
 - javascript
 - typescript
-tags: []
+tags:
+- ssr-seo
+- type-safety
 hosting:
 - self-hosted
 pricing:
@@ -50,3 +52,4 @@ sources:
 - https://svelte.dev
 - https://github.com/sveltejs/svelte
 - https://svelte.dev/docs/svelte/typescript
+- https://svelte.dev/docs/svelte/svelte-server

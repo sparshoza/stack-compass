@@ -29,8 +29,6 @@ edges:
 - type: alternative-to
   target: parcel
 - type: alternative-to
-  target: gulp
-- type: alternative-to
   target: turbopack
 verified: '2026-11-14'
 sources:

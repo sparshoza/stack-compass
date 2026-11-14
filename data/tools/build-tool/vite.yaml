@@ -3,7 +3,8 @@ name: Vite
 aliases:
 - vitejs
 layer: build-tool
-summary: A frontend build tool with a fast dev server and a production build that bundles with Rolldown.
+summary: A frontend build tool with a fast dev server and a production build that
+  bundles with Rolldown.
 url: https://vite.dev
 repo: https://github.com/vitejs/vite
 license: MIT
@@ -31,10 +32,6 @@ edges:
 - type: alternative-to
   target: turbopack
 - type: built-on
-  target: rollup
-- type: built-on
-  target: esbuild
-- type: pairs-with
   target: rolldown
 - type: pairs-with
   target: vitepress

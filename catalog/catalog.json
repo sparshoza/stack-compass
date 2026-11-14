@@ -1046,18 +1046,6 @@
     },
     {
       "phrases": [
-        "type checking"
-      ],
-      "sets": {
-        "capabilities": [
-          "type-safety"
-        ],
-        "languages": [],
-        "project_type": null
-      }
-    },
-    {
-      "phrases": [
         "internal dashboard"
       ],
       "sets": {
@@ -1098,55 +1086,6 @@
         "capabilities": [],
         "languages": [],
         "project_type": "web-app"
-      }
-    },
-    {
-      "phrases": [
-        "component library",
-        "design system",
-        "ui components",
-        "ui library"
-      ],
-      "sets": {
-        "capabilities": [],
-        "languages": [],
-        "project_type": "web-app"
-      }
-    },
-    {
-      "phrases": [
-        "state management",
-        "global state"
-      ],
-      "sets": {
-        "capabilities": [],
-        "languages": [],
-        "project_type": "web-app"
-      }
-    },
-    {
-      "phrases": [
-        "data fetching",
-        "server state",
-        "client cache"
-      ],
-      "sets": {
-        "capabilities": [],
-        "languages": [],
-        "project_type": "web-app"
-      }
-    },
-    {
-      "phrases": [
-        "desktop app",
-        "desktop application"
-      ],
-      "sets": {
-        "capabilities": [
-          "native-mobile"
-        ],
-        "languages": [],
-        "project_type": null
       }
     },
     {
@@ -1260,8 +1199,7 @@
     },
     {
       "phrases": [
-        "realtime ui",
-        "live ui"
+        "realtime ui"
       ],
       "sets": {
         "capabilities": [
@@ -1449,10 +1387,6 @@
         "You want a first-party Angular tool only"
       ],
       "edges": [
-        {
-          "target": "nuxt",
-          "type": "alternative-to"
-        },
         {
           "target": "angular",
           "type": "built-on"
@@ -2002,6 +1936,10 @@
         {
           "target": "swc",
           "type": "alternative-to"
+        },
+        {
+          "target": "gulp",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -2356,10 +2294,6 @@
         },
         {
           "target": "heroui",
-          "type": "alternative-to"
-        },
-        {
-          "target": "tailwindcss",
           "type": "alternative-to"
         },
         {
@@ -4229,8 +4163,8 @@
       ],
       "edges": [
         {
-          "target": "webpack",
-          "type": "alternative-to"
+          "target": "babel",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -4255,7 +4189,8 @@
       "repo": "https://github.com/gulpjs/gulp",
       "sources": [
         "https://gulpjs.com",
-        "https://github.com/gulpjs/gulp"
+        "https://github.com/gulpjs/gulp",
+        "https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/"
       ],
       "summary": "A toolkit for automating slow, repetitive tasks in a development workflow.",
       "tags": [],
@@ -5929,10 +5864,6 @@
       ],
       "edges": [
         {
-          "target": "redux-toolkit",
-          "type": "alternative-to"
-        },
-        {
           "target": "angular",
           "type": "pairs-with"
         }
@@ -5983,10 +5914,6 @@
         },
         {
           "target": "sveltekit",
-          "type": "alternative-to"
-        },
-        {
-          "target": "analog",
           "type": "alternative-to"
         },
         {
@@ -7263,10 +7190,13 @@
       "repo": "https://github.com/facebook/react",
       "sources": [
         "https://react.dev",
-        "https://github.com/facebook/react"
+        "https://github.com/facebook/react",
+        "https://react.dev/reference/react-dom/server"
       ],
       "summary": "A JavaScript library for building user interfaces from components.",
-      "tags": [],
+      "tags": [
+        "ssr-seo"
+      ],
       "url": "https://react.dev",
       "verified": "2026-11-14"
     },
@@ -7499,15 +7429,7 @@
           "type": "alternative-to"
         },
         {
-          "target": "ngrx",
-          "type": "alternative-to"
-        },
-        {
           "target": "effector",
-          "type": "alternative-to"
-        },
-        {
-          "target": "xstate",
           "type": "alternative-to"
         },
         {
@@ -7618,10 +7540,6 @@
         {
           "target": "esbuild",
           "type": "alternative-to"
-        },
-        {
-          "target": "vite",
-          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -8685,10 +8603,14 @@
       "sources": [
         "https://svelte.dev",
         "https://github.com/sveltejs/svelte",
-        "https://svelte.dev/docs/svelte/typescript"
+        "https://svelte.dev/docs/svelte/typescript",
+        "https://svelte.dev/docs/svelte/svelte-server"
       ],
       "summary": "A compiler-based UI framework that turns components into small, fast JavaScript.",
-      "tags": [],
+      "tags": [
+        "ssr-seo",
+        "type-safety"
+      ],
       "url": "https://svelte.dev",
       "verified": "2026-11-14"
     },
@@ -8861,10 +8783,6 @@
         "You want ready-made components out of the box"
       ],
       "edges": [
-        {
-          "target": "chakra-ui",
-          "type": "alternative-to"
-        },
         {
           "target": "react",
           "type": "pairs-with"
@@ -9714,16 +9632,8 @@
           "type": "alternative-to"
         },
         {
-          "target": "rollup",
-          "type": "built-on"
-        },
-        {
-          "target": "esbuild",
-          "type": "built-on"
-        },
-        {
           "target": "rolldown",
-          "type": "pairs-with"
+          "type": "built-on"
         },
         {
           "target": "vitepress",
@@ -10063,10 +9973,6 @@
           "type": "alternative-to"
         },
         {
-          "target": "gulp",
-          "type": "alternative-to"
-        },
-        {
           "target": "turbopack",
           "type": "alternative-to"
         }
@@ -10153,10 +10059,6 @@
         "Simple state that a plain store handles well"
       ],
       "edges": [
-        {
-          "target": "redux-toolkit",
-          "type": "alternative-to"
-        },
         {
           "target": "react",
           "type": "pairs-with"

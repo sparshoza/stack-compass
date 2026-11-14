@@ -22,8 +22,6 @@ good_for:
 avoid_when:
 - You want ready-made components out of the box
 edges:
-- type: alternative-to
-  target: chakra-ui
 - type: pairs-with
   target: react
 - type: pairs-with

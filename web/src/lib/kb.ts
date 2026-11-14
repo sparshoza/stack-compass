@@ -29,6 +29,8 @@ export type EdgeType = 'alternative-to' | 'pairs-with' | 'built-on' | 'extends' 
 export type Hosting = 'managed' | 'self-hosted'
 export type Pricing = 'oss' | 'free-tier' | 'paid'
 export type Maturity = 'emerging' | 'established' | 'legacy'
+/** How big a tool grows: one server, many machines, or both. */
+export type Scale = 'single' | 'scale-out' | 'both'
 
 export interface Edge {
   type: EdgeType
@@ -57,6 +59,10 @@ export interface Tool {
   good_for: string[]
   avoid_when: string[]
   edges: Edge[]
+  /** Option ids of this layer's own facet groups (not scale, not shared facets). */
+  uses?: string[]
+  /** Set only on layers with a scale facet group. */
+  scale?: Scale | null
   verified: string
   sources: string[]
 }
@@ -73,12 +79,40 @@ export interface ProjectType {
   core_layers: Layer[]
 }
 
+export interface FacetOption {
+  id: string
+  label: string
+  hint: string
+}
+
+/** One question of the One piece chooser, such as "What do you need it for?". */
+export interface FacetGroup {
+  id: string
+  question: string
+  /** Several options may be chosen; a tool matches when it has any of them. */
+  multi: boolean
+  options: FacetOption[]
+}
+
+/**
+ * A facet read from fields every tool already has. run: in-app = runs_in_app,
+ * self-hosted = hosting has self-hosted and not runs_in_app, managed = hosting
+ * has managed. license: oss = pricing has oss, any = every tool.
+ */
+export interface SharedFacet extends FacetGroup {
+  id: 'run' | 'license'
+  layers: Layer[]
+}
+
 export interface Vocab {
   languages: string[]
   capabilities: Capability[]
   project_types: ProjectType[]
   capability_layers: Record<string, Layer[]>
   tooling_layers: Layer[]
+  shared_facets?: SharedFacet[]
+  /** Facet groups per layer; the first is always "What do you need it for?". */
+  facets?: Partial<Record<Layer, FacetGroup[]>>
 }
 
 export interface KeywordEntry {

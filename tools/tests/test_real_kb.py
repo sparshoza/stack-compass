@@ -301,3 +301,28 @@ def test_swift_testing_tool():
     )
     assert "swift-testing" in _pairs(tools, "vapor")
     assert "https://docs.vapor.codes/advanced/testing/" in t.sources
+
+
+def test_every_layer_has_facets_led_by_a_need_group():
+    facets = load_kb(DATA).vocab.facets
+    assert set(facets) == set(LAYERS)
+    for layer, groups in facets.items():
+        assert 1 <= len(groups) <= 3, layer
+        assert groups[0].id == "need", layer
+        assert groups[0].question == "What do you need it for?", layer
+
+
+def test_scale_groups_only_where_size_splits_the_layer():
+    facets = load_kb(DATA).vocab.facets
+    with_scale = {layer for layer, gs in facets.items() if any(g.id == "scale" for g in gs)}
+    assert with_scale == {"database", "cache", "search"}
+
+
+def test_shared_facets_cover_the_service_layers():
+    shared = {s.id: s for s in load_kb(DATA).vocab.shared_facets}
+    service = {
+        "database", "cache", "jobs-queue", "search", "storage", "auth", "payments",
+        "email", "cms", "hosting", "ci-cd", "observability",
+    }
+    assert set(shared["run"].layers) == service
+    assert set(shared["license"].layers) == service - {"jobs-queue"}

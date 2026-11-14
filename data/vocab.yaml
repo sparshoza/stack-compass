@@ -107,3 +107,276 @@ capability_layers:
   vector-search: [database]
   rest-api: [api-style]
 tooling_layers: [state, build-tool, ci-cd, observability, testing]
+# Use-case facets for the One piece chooser. Within a group a tool matches when it
+# has any chosen option (multi: true lets people pick several); across groups every
+# answered group must match. Tools list their options in `uses`. The scale group is
+# answered by the tool field `scale` (single, scale-out or both; both matches either
+# answer). How to tag: facet-tagging-guide.md next to the phase 3 plan.
+#
+# Shared facets come from fields every tool already has, so tools never list them:
+#   run: in-app = runs_in_app; self-hosted = hosting has self-hosted and the tool
+#        does not run in the app; managed = hosting has managed.
+#   license: oss = pricing has oss; any = every tool.
+shared_facets:
+  - id: run
+    question: Where should it run?
+    multi: true
+    options:
+      - {id: in-app, label: Inside my app, hint: A library or a local file with no server of its own}
+      - {id: self-hosted, label: My own servers, hint: You install it and keep it running}
+      - {id: managed, label: Managed for me, hint: A cloud service runs it for you}
+    layers: [database, cache, jobs-queue, search, storage, auth, payments, email, cms, hosting, ci-cd, observability]
+  - id: license
+    question: License
+    multi: false
+    options:
+      - {id: oss, label: Open source only, hint: Code you can read and run yourself for free}
+      - {id: any, label: Anything, hint: Paid and closed source tools too}
+    layers: [database, cache, search, storage, auth, payments, email, cms, hosting, ci-cd, observability]
+facets:
+  backend:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: all-in-one, label: All in one, hint: "Database, logins and an admin screen included"}
+        - {id: apis, label: APIs, hint: Data for a website or a phone app}
+        - {id: lightweight, label: Small and simple, hint: A small core you add pieces to as you go}
+        - {id: live, label: Live features, hint: "Chat, notifications and live updates"}
+        - {id: edge, label: Runs anywhere, hint: Also runs on serverless and edge platforms}
+  frontend:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: interactive, label: Interactive apps, hint: Many screens that react to every click}
+        - {id: sprinkles, label: A bit of interactivity, hint: Small touches on pages the server builds}
+        - {id: small-fast, label: Small and fast, hint: A tiny download that starts quickly on any phone}
+        - {id: widgets, label: Reusable widgets, hint: Pieces you can drop into any website}
+        - {id: large-teams, label: Large teams, hint: Firm structure and everything included for big codebases}
+  meta-framework:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: web-apps, label: Full web apps, hint: "Pages, logins and server code in one project"}
+        - {id: content, label: Content sites, hint: "Blogs, marketing pages and portfolios"}
+        - {id: docs, label: Documentation, hint: Docs sites with navigation and search}
+        - {id: static-export, label: Plain files, hint: Builds a site you can host anywhere as plain files}
+  mobile:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: ios-android, label: iPhone and Android, hint: Both phone stores from one codebase}
+        - {id: apple-only, label: Apple only, hint: "Native apps for iPhone, iPad and Mac"}
+        - {id: web-skills, label: Use my web skills, hint: "Build with HTML, CSS and JavaScript"}
+        - {id: desktop, label: Desktop apps too, hint: "Windows, macOS or Linux from the same code"}
+        - {id: web-too, label: Website too, hint: The same code also runs in the browser}
+  database:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: app-data, label: App data, hint: "Users, orders and other records"}
+        - {id: flexible-data, label: Flexible records, hint: Data without a fixed shape such as JSON documents}
+        - {id: analytics, label: Analytics, hint: Reports and dashboards over many rows}
+        - {id: text-search, label: Text search, hint: Find records by the words inside them}
+        - {id: vectors, label: AI and vectors, hint: Embeddings for similarity search and RAG}
+        - {id: time-series, label: Metrics and events, hint: "Time series, logs and sensor readings"}
+    - id: scale
+      question: How big will it get?
+      multi: false
+      options:
+        - {id: single, label: Fits on one server, hint: One machine holds all the data}
+        - {id: scale-out, label: Needs to scale out, hint: Data spread over many machines}
+  orm:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: objects, label: Objects instead of SQL, hint: Save and load records as objects in your code}
+        - {id: close-to-sql, label: Close to SQL, hint: Write queries that read like SQL}
+        - {id: typed, label: Typed queries, hint: Mistakes in queries caught before the code runs}
+        - {id: framework-built-in, label: Part of my framework, hint: Comes with the web framework you use}
+  api-style:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: public-api, label: An API for others, hint: Documented endpoints partners and apps can call}
+        - {id: typed-calls, label: Typed calls from my frontend, hint: Shared types between your web app and server}
+        - {id: flexible-queries, label: Flexible queries, hint: Clients ask for exactly the data they need}
+        - {id: service-calls, label: Calls between services, hint: Fast calls from one server to another}
+        - {id: events, label: Events and messages, hint: Describe messages sent through a broker}
+        - {id: from-database, label: API from my database, hint: An instant API made from your tables}
+  auth:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: login, label: Sign up and log in, hint: Email and password or magic links}
+        - {id: social, label: Social login, hint: "Sign in with Google, GitHub and similar"}
+        - {id: company-sso, label: Company sign in, hint: SAML or OIDC single sign on for business customers}
+        - {id: second-factor, label: Extra security, hint: Passkeys or a second step such as a code}
+        - {id: teams, label: Teams and organisations, hint: Users grouped into companies with roles}
+        - {id: ready-screens, label: Ready made screens, hint: Login and profile pages you do not have to build}
+  cache:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: speed-up, label: Speed up my app, hint: Keep results of slow work in fast memory}
+        - {id: sessions, label: Sessions, hint: Remember logged in users between requests}
+        - {id: counters, label: Counters and limits, hint: "Rate limits, likes and view counts"}
+        - {id: live-updates, label: Live updates, hint: Push messages to connected users}
+        - {id: messaging, label: Messages between services, hint: Pass messages between parts of your system}
+    - id: scale
+      question: How big will it get?
+      multi: false
+      options:
+        - {id: single, label: Fits on one server, hint: One machine or one app process is enough}
+        - {id: scale-out, label: Needs to scale out, hint: Data spread over many machines}
+  jobs-queue:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: background, label: Background jobs, hint: Run slow work such as emails after the page loads}
+        - {id: scheduled, label: Scheduled jobs, hint: Run tasks on a timer such as nightly reports}
+        - {id: workflows, label: Long workflows, hint: Many step processes that survive crashes and restarts}
+    - id: store
+      question: Where should it keep jobs?
+      multi: true
+      options:
+        - {id: my-database, label: My existing database, hint: "Postgres, MySQL or SQLite, no extra server"}
+        - {id: redis, label: Redis, hint: A fast in memory store you run next to the app}
+        - {id: own-service, label: Its own service, hint: A message broker or a server made for jobs}
+  search:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: site-search, label: Search my site or docs, hint: Find pages on a website or docs site}
+        - {id: app-search, label: Search products or records, hint: Fast search with typo tolerance and filters}
+        - {id: logs, label: Logs and analytics, hint: Search and chart large amounts of logs}
+        - {id: by-meaning, label: Search by meaning, hint: Finds similar items using AI embeddings}
+        - {id: in-browser, label: Search in the browser, hint: Runs on the page with no search server}
+    - id: scale
+      question: How big will it get?
+      multi: false
+      options:
+        - {id: single, label: Fits on one server, hint: One machine holds the whole index}
+        - {id: scale-out, label: Needs to scale out, hint: Index spread over many machines}
+  storage:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: user-uploads, label: User uploads, hint: "Photos, documents and files from your users"}
+        - {id: media, label: Images and video, hint: "Resize, crop and stream media on the fly"}
+        - {id: site-files, label: Website files, hint: "Serve images, scripts and downloads to visitors"}
+        - {id: backups, label: Backups and archives, hint: Cheap space for large files you rarely open}
+        - {id: upload-widget, label: Upload button, hint: A ready made upload screen for your app}
+  payments:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: one-time, label: One time payments, hint: Checkout for products or orders}
+        - {id: subscriptions, label: Subscriptions, hint: Monthly or yearly plans billed automatically}
+        - {id: usage-billing, label: Usage based billing, hint: Charge for what each customer uses}
+        - {id: tax-handled, label: Taxes handled for me, hint: They sell for you and pay sales tax and VAT}
+        - {id: in-person, label: In person payments, hint: Card readers and point of sale}
+        - {id: bank-payments, label: Bank payments, hint: Direct debit and bank transfers}
+        - {id: payouts, label: Marketplace payouts, hint: Pay sellers or creators on your platform}
+  email:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: app-emails, label: App emails, hint: "Receipts, password resets and notifications"}
+        - {id: newsletters, label: Newsletters and campaigns, hint: Send to a mailing list}
+        - {id: design, label: Email design, hint: Build good looking emails with code}
+        - {id: dev-testing, label: Test emails safely, hint: Catch emails while you build so none go out}
+        - {id: inbound, label: Receive emails, hint: Read replies and incoming mail in your app}
+  cms:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: blog, label: Blog and articles, hint: Posts your team writes and publishes}
+        - {id: pages, label: Marketing pages, hint: Landing pages your team can change without a developer}
+        - {id: visual-editing, label: Visual editing, hint: Edit right on the page and see changes live}
+        - {id: many-channels, label: Content for many apps, hint: "One place for web, mobile and more"}
+        - {id: languages, label: Many languages, hint: Translate content into several languages}
+        - {id: git-files, label: Content in my code repo, hint: Saves content as files in Git}
+  state:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: server-data, label: Data from my server, hint: "Fetch, cache and refresh data from an API"}
+        - {id: shared-state, label: Shared app state, hint: Values many screens use such as a cart or the user}
+        - {id: flows, label: Step by step flows, hint: Wizards and processes with clear states}
+        - {id: tiny, label: Tiny and simple, hint: A small library with little setup}
+  ui-kit:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: ready-components, label: Ready made components, hint: "Buttons, forms and menus that look good at once"}
+        - {id: own-look, label: Bring my own look, hint: Accessible parts with no styles of their own}
+        - {id: own-code, label: Code I own, hint: Components copied into your project to edit freely}
+        - {id: utility-css, label: Style with classes, hint: Small CSS classes you combine in your markup}
+        - {id: data-screens, label: Admin and data screens, hint: "Rich tables, date pickers and charts"}
+  build-tool:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: dev-server, label: Fast dev server, hint: Changes show up instantly while you code}
+        - {id: bundle, label: Bundle for production, hint: Packs your code into small files for browsers}
+        - {id: compile, label: Compile modern code, hint: Turns TypeScript and new JavaScript into code browsers run}
+        - {id: monorepo, label: Many packages in one repo, hint: Runs tasks across projects and skips work already done}
+        - {id: tasks, label: Task automation, hint: Runs repeated steps such as copying and minifying files}
+  hosting:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: static-sites, label: Static sites, hint: "Blogs, docs and landing pages"}
+        - {id: web-apps, label: Full web apps, hint: Sites with server rendering such as Next.js or Nuxt}
+        - {id: backends, label: Backends and APIs, hint: Long running servers in any language}
+        - {id: containers, label: Containers, hint: Runs any app packaged as a container image}
+        - {id: databases, label: Databases included, hint: Postgres or Redis next to your app}
+        - {id: near-users, label: Close to users, hint: Runs code in many regions near your visitors}
+  ci-cd:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: test-build, label: Test and build, hint: Runs your tests and builds on every push}
+        - {id: deploy, label: Deploy automatically, hint: Ships to servers or the cloud after a merge}
+        - {id: kubernetes, label: Kubernetes deploys, hint: Keeps a cluster in sync with your Git repo}
+        - {id: git-host, label: Built into my Git host, hint: "Runs next to your code on GitHub, GitLab or Bitbucket"}
+  observability:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: errors, label: Errors and crashes, hint: Get told when the app breaks and see why}
+        - {id: logs, label: Logs, hint: Collect and search what your app writes out}
+        - {id: metrics, label: Metrics and dashboards, hint: "Charts of traffic, speed and business numbers"}
+        - {id: tracing, label: Tracing, hint: Follow one request across all your services}
+        - {id: uptime, label: Uptime checks, hint: Alerts when your site goes down}
+  testing:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: unit, label: Unit tests, hint: Check small pieces of code on their own}
+        - {id: browser, label: Browser tests, hint: Click through the app in a real browser}
+        - {id: components, label: Component tests, hint: Test screens the way a user sees them}
+        - {id: api, label: API tests, hint: Send requests and check the answers}
+        - {id: load, label: Load tests, hint: See how the app holds up under heavy traffic}

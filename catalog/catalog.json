@@ -2566,6 +2566,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://guides.rubyonrails.org/active_record_basics.html",
         "https://rubyonrails.org"
@@ -2573,6 +2574,7 @@
       "summary": "The ORM of Ruby on Rails, mapping tables to Ruby classes with migrations.",
       "tags": [],
       "url": "https://guides.rubyonrails.org/active_record_basics.html",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -2638,6 +2640,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.adyen.com",
         "https://www.adyen.com/pricing",
@@ -2648,6 +2651,7 @@
         "payments"
       ],
       "url": "https://www.adyen.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -2716,6 +2720,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.algolia.com",
         "https://www.algolia.com/pricing/",
@@ -2727,6 +2732,7 @@
         "full-text-search"
       ],
       "url": "https://www.algolia.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -2772,6 +2778,7 @@
       ],
       "repo": "https://github.com/alpinejs/alpine",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://alpinejs.dev",
         "https://github.com/alpinejs/alpine",
@@ -2780,6 +2787,7 @@
       "summary": "A lightweight JavaScript framework for adding behavior directly in HTML markup.",
       "tags": [],
       "url": "https://alpinejs.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -2868,6 +2876,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://aws.amazon.com/s3/",
         "https://github.com/aws/aws-sdk-go-v2"
@@ -2877,6 +2886,7 @@
         "file-uploads"
       ],
       "url": "https://aws.amazon.com/s3/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -2951,6 +2961,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://aws.amazon.com/ses/",
         "https://aws.amazon.com/ses/pricing/",
@@ -2961,6 +2972,7 @@
         "transactional-email"
       ],
       "url": "https://aws.amazon.com/ses/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3002,6 +3014,7 @@
       ],
       "repo": "https://github.com/analogjs/analog",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://analogjs.org",
         "https://github.com/analogjs/analog",
@@ -3015,6 +3028,7 @@
         "static-content"
       ],
       "url": "https://analogjs.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3098,6 +3112,7 @@
       ],
       "repo": "https://github.com/angular/angular",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://angular.dev",
         "https://github.com/angular/angular",
@@ -3110,6 +3125,7 @@
         "type-safety"
       ],
       "url": "https://angular.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3151,6 +3167,7 @@
       ],
       "repo": "https://github.com/angular/components",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://material.angular.dev",
         "https://github.com/angular/components"
@@ -3158,6 +3175,7 @@
       "summary": "The official Material Design component library for Angular.",
       "tags": [],
       "url": "https://material.angular.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3205,6 +3223,7 @@
       ],
       "repo": "https://github.com/ant-design/ant-design",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://ant.design",
         "https://github.com/ant-design/ant-design",
@@ -3215,6 +3234,7 @@
         "type-safety"
       ],
       "url": "https://ant.design",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3275,6 +3295,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://solr.apache.org"
       ],
@@ -3284,6 +3305,7 @@
         "vector-search"
       ],
       "url": "https://solr.apache.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3338,6 +3360,7 @@
       ],
       "repo": "https://github.com/apollographql/apollo-server",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.apollographql.com/docs/apollo-server",
         "https://github.com/apollographql/apollo-server"
@@ -3345,6 +3368,7 @@
       "summary": "A spec-compliant GraphQL server for Node.js that works with Express, Fastify and others.",
       "tags": [],
       "url": "https://www.apollographql.com/docs/apollo-server",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3381,6 +3405,7 @@
       ],
       "repo": "https://github.com/argoproj/argo-cd",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://argo-cd.readthedocs.io",
         "https://github.com/argoproj/argo-cd"
@@ -3388,6 +3413,7 @@
       "summary": "Declarative GitOps continuous delivery tool for Kubernetes.",
       "tags": [],
       "url": "https://argo-cd.readthedocs.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3442,6 +3468,7 @@
       ],
       "repo": "https://github.com/dotnet/aspnetcore",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://dotnet.microsoft.com/apps/aspnet",
         "https://learn.microsoft.com/aspnet/core/data/ef-rp/intro",
@@ -3454,6 +3481,7 @@
         "realtime"
       ],
       "url": "https://dotnet.microsoft.com/apps/aspnet",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3588,6 +3616,7 @@
       ],
       "repo": "https://github.com/withastro/astro",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://astro.build",
         "https://github.com/withastro/astro",
@@ -3608,6 +3637,7 @@
         "type-safety"
       ],
       "url": "https://astro.build",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3642,6 +3672,7 @@
       ],
       "repo": "https://github.com/asyncapi/spec",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.asyncapi.com",
         "https://github.com/asyncapi/spec"
@@ -3649,6 +3680,7 @@
       "summary": "An open community and specification for describing event-driven APIs.",
       "tags": [],
       "url": "https://www.asyncapi.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3687,6 +3719,7 @@
       ],
       "repo": "https://github.com/hibiken/asynq",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://github.com/hibiken/asynq"
       ],
@@ -3696,6 +3729,7 @@
         "scheduled-jobs"
       ],
       "url": "https://github.com/hibiken/asynq",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3790,6 +3824,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://auth0.com",
         "https://auth0.com/docs/libraries",
@@ -3802,6 +3837,7 @@
         "enterprise-sso"
       ],
       "url": "https://auth0.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3847,6 +3883,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://goauthentik.io",
         "https://github.com/goauthentik/authentik"
@@ -3856,6 +3893,7 @@
         "enterprise-sso"
       ],
       "url": "https://goauthentik.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3921,6 +3959,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://authjs.dev",
         "https://github.com/nextauthjs/next-auth",
@@ -3932,6 +3971,7 @@
         "social-login"
       ],
       "url": "https://authjs.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -3972,6 +4012,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://aws.amazon.com/amplify/hosting/",
         "https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html",
@@ -3983,6 +4024,7 @@
         "ssr-seo"
       ],
       "url": "https://aws.amazon.com/amplify/hosting/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4035,6 +4077,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://aws.amazon.com/cognito/",
         "https://aws.amazon.com/cognito/pricing/",
@@ -4046,6 +4089,7 @@
         "enterprise-sso"
       ],
       "url": "https://aws.amazon.com/cognito/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4081,12 +4125,14 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://docs.rs/axum"
       ],
       "summary": "A Rust web framework focused on ergonomics and modularity, built on Tokio and Tower.",
       "tags": [],
       "url": "https://docs.rs/axum",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4145,6 +4191,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://azure.microsoft.com/products/storage/blobs",
         "https://github.com/Azure/azure-sdk-for-go"
@@ -4154,6 +4201,7 @@
         "file-uploads"
       ],
       "url": "https://azure.microsoft.com/products/storage/blobs",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4203,6 +4251,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines",
         "https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/"
@@ -4210,6 +4259,7 @@
       "summary": "CI/CD service in Azure DevOps that builds, tests and deploys many languages on Microsoft-hosted or self-hosted agents.",
       "tags": [],
       "url": "https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4255,6 +4305,7 @@
       ],
       "repo": "https://github.com/babel/babel",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://babeljs.io",
         "https://github.com/babel/babel",
@@ -4263,6 +4314,7 @@
       "summary": "A JavaScript compiler that converts modern syntax into backward-compatible code.",
       "tags": [],
       "url": "https://babeljs.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4317,6 +4369,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.backblaze.com/cloud-storage",
         "https://github.com/Backblaze/b2-sdk-python",
@@ -4327,6 +4380,7 @@
         "file-uploads"
       ],
       "url": "https://www.backblaze.com/cloud-storage",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4416,6 +4470,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://www.better-auth.com",
         "https://github.com/better-auth/better-auth",
@@ -4437,6 +4492,7 @@
         "enterprise-sso"
       ],
       "url": "https://www.better-auth.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4481,6 +4537,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://bitbucket.org/product/features/pipelines",
         "https://www.atlassian.com/software/bitbucket/features/pipelines",
@@ -4489,6 +4546,7 @@
       "summary": "CI/CD built into Bitbucket Cloud for automating builds, tests and deployments.",
       "tags": [],
       "url": "https://bitbucket.org/product/features/pipelines",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4540,6 +4598,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://developer.paypal.com/braintree/docs",
         "https://developer.paypal.com/braintree/docs/start/hello-server",
@@ -4550,6 +4609,7 @@
         "payments"
       ],
       "url": "https://developer.paypal.com/braintree/docs",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4614,6 +4674,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.brevo.com",
         "https://www.brevo.com/pricing/",
@@ -4625,6 +4686,7 @@
         "transactional-email"
       ],
       "url": "https://www.brevo.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4662,6 +4724,7 @@
       ],
       "repo": "https://github.com/usebruno/bruno",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.usebruno.com",
         "https://github.com/usebruno/bruno",
@@ -4670,6 +4733,7 @@
       "summary": "Open-source, offline-only API client that stores collections as plain-text Bru files you can version in Git.",
       "tags": [],
       "url": "https://www.usebruno.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4726,6 +4790,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.bugsnag.com",
         "https://www.bugsnag.com/pricing/",
@@ -4734,6 +4799,7 @@
       "summary": "Error monitoring for web and mobile apps from SmartBear, with SDKs for many platforms.",
       "tags": [],
       "url": "https://www.bugsnag.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4771,6 +4837,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://buildkite.com",
         "https://buildkite.com/pricing",
@@ -4779,6 +4846,7 @@
       "summary": "CI/CD platform that runs builds on Buildkite hosted agents or on self-hosted agents in your own infrastructure.",
       "tags": [],
       "url": "https://buildkite.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4828,6 +4896,7 @@
       ],
       "repo": "https://github.com/taskforcesh/bullmq",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://bullmq.io",
         "https://github.com/taskforcesh/bullmq"
@@ -4838,6 +4907,7 @@
         "scheduled-jobs"
       ],
       "url": "https://bullmq.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4878,12 +4948,14 @@
       ],
       "repo": "https://github.com/ben-manes/caffeine",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://github.com/ben-manes/caffeine"
       ],
       "summary": "A high-performance, near-optimal in-memory caching library for Java.",
       "tags": [],
       "url": "https://github.com/ben-manes/caffeine",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -4949,6 +5021,7 @@
       ],
       "repo": "https://github.com/ionic-team/capacitor",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://capacitorjs.com",
         "https://github.com/ionic-team/capacitor",
@@ -4959,6 +5032,7 @@
         "native-mobile"
       ],
       "url": "https://capacitorjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5001,6 +5075,7 @@
       ],
       "repo": "https://github.com/apache/cassandra",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://cassandra.apache.org",
         "https://github.com/apache/cassandra",
@@ -5012,6 +5087,7 @@
         "vector-search"
       ],
       "url": "https://cassandra.apache.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5065,6 +5141,7 @@
       ],
       "repo": "https://github.com/celery/celery",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://docs.celeryq.dev",
         "https://github.com/celery/celery",
@@ -5076,6 +5153,7 @@
         "scheduled-jobs"
       ],
       "url": "https://docs.celeryq.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5113,6 +5191,7 @@
       ],
       "repo": "https://github.com/centrifugal/centrifugo",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://centrifugal.dev",
         "https://github.com/centrifugal/centrifugo"
@@ -5122,6 +5201,7 @@
         "realtime"
       ],
       "url": "https://centrifugal.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5175,6 +5255,7 @@
       ],
       "repo": "https://github.com/chakra-ui/chakra-ui",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://chakra-ui.com",
         "https://github.com/chakra-ui/chakra-ui",
@@ -5183,6 +5264,7 @@
       "summary": "A React component library with accessible, composable components and style props.",
       "tags": [],
       "url": "https://chakra-ui.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5228,6 +5310,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.chargebee.com",
         "https://www.chargebee.com/pricing/"
@@ -5237,6 +5320,7 @@
         "payments"
       ],
       "url": "https://www.chargebee.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5286,6 +5370,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://circleci.com",
         "https://circleci.com/pricing/"
@@ -5293,6 +5378,7 @@
       "summary": "Hosted CI/CD service with a free plan, usage-based credits and self-hosted runners on every plan.",
       "tags": [],
       "url": "https://circleci.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5412,6 +5498,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://clerk.com",
         "https://clerk.com/docs/references/overview",
@@ -5435,6 +5522,7 @@
         "enterprise-sso"
       ],
       "url": "https://clerk.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5473,6 +5561,7 @@
       ],
       "repo": "https://github.com/ClickHouse/ClickHouse",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://clickhouse.com",
         "https://github.com/ClickHouse/ClickHouse",
@@ -5484,6 +5573,7 @@
         "vector-search"
       ],
       "url": "https://clickhouse.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5544,6 +5634,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://pages.cloudflare.com",
         "https://developers.cloudflare.com/pages/",
@@ -5557,6 +5648,7 @@
         "static-content"
       ],
       "url": "https://pages.cloudflare.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5617,6 +5709,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://developers.cloudflare.com/r2/",
         "https://developers.cloudflare.com/r2/pricing/"
@@ -5626,6 +5719,7 @@
         "file-uploads"
       ],
       "url": "https://developers.cloudflare.com/r2/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5669,6 +5763,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://cloudinary.com",
         "https://github.com/cloudinary",
@@ -5679,6 +5774,7 @@
         "file-uploads"
       ],
       "url": "https://cloudinary.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5719,6 +5815,7 @@
       ],
       "repo": "https://github.com/JetBrains/compose-multiplatform",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.jetbrains.com/compose-multiplatform/",
         "https://github.com/JetBrains/compose-multiplatform"
@@ -5728,6 +5825,7 @@
         "native-mobile"
       ],
       "url": "https://www.jetbrains.com/compose-multiplatform/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5765,6 +5863,7 @@
       ],
       "repo": "https://github.com/concourse/concourse",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://concourse-ci.org",
         "https://github.com/concourse/concourse"
@@ -5772,6 +5871,7 @@
       "summary": "Open-source, container-based automation system for CI/CD, built around pipelines, jobs, resources and tasks.",
       "tags": [],
       "url": "https://concourse-ci.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5820,6 +5920,7 @@
       ],
       "repo": "https://github.com/connectrpc/connect-es",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://connectrpc.com",
         "https://github.com/connectrpc/connect-es"
@@ -5827,6 +5928,7 @@
       "summary": "Protobuf RPC that works over plain HTTP, so browsers and gRPC clients can both call it.",
       "tags": [],
       "url": "https://connectrpc.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5881,6 +5983,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.contentful.com",
         "https://www.contentful.com/pricing/",
@@ -5892,6 +5995,7 @@
         "content-editing"
       ],
       "url": "https://www.contentful.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -5933,6 +6037,7 @@
       ],
       "repo": "https://github.com/coollabsio/coolify",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://coolify.io",
         "https://coolify.io/docs/",
@@ -5941,6 +6046,7 @@
       "summary": "Open-source tool for managing servers, apps and databases on your own hardware, with a hosted Coolify Cloud option.",
       "tags": [],
       "url": "https://coolify.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6003,6 +6109,7 @@
       ],
       "repo": "https://github.com/cypress-io/cypress",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.cypress.io",
         "https://docs.cypress.io/app/get-started/why-cypress",
@@ -6013,6 +6120,7 @@
       "summary": "Quality platform for web apps covering end-to-end and component testing in a real browser, with a paid Cypress Cloud.",
       "tags": [],
       "url": "https://www.cypress.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6048,6 +6156,7 @@
       ],
       "repo": "https://github.com/dagger/dagger",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://dagger.io",
         "https://docs.dagger.io",
@@ -6056,6 +6165,7 @@
       "summary": "Software delivery automation tool that defines builds, tests and deployments in code and runs them anywhere.",
       "tags": [],
       "url": "https://dagger.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6114,6 +6224,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.datadoghq.com",
         "https://www.datadoghq.com/pricing/",
@@ -6122,6 +6233,7 @@
       "summary": "SaaS monitoring platform covering infrastructure, APM, logs and real user monitoring.",
       "tags": [],
       "url": "https://www.datadoghq.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6177,6 +6289,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://decapcms.org",
         "https://github.com/decaporg/decap-cms",
@@ -6187,6 +6300,7 @@
         "content-editing"
       ],
       "url": "https://decapcms.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6235,6 +6349,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://github.com/heartcombo/devise"
       ],
@@ -6243,6 +6358,7 @@
         "social-login"
       ],
       "url": "https://github.com/heartcombo/devise",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6292,6 +6408,7 @@
       ],
       "repo": "https://github.com/diesel-rs/diesel",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://diesel.rs",
         "https://github.com/diesel-rs/diesel"
@@ -6301,6 +6418,7 @@
         "type-safety"
       ],
       "url": "https://diesel.rs",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6348,6 +6466,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.digitalocean.com/products/app-platform",
         "https://docs.digitalocean.com/products/app-platform/",
@@ -6360,6 +6479,7 @@
         "scheduled-jobs"
       ],
       "url": "https://www.digitalocean.com/products/app-platform",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6457,6 +6577,7 @@
       ],
       "repo": "https://github.com/django/django",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.djangoproject.com",
         "https://github.com/django/django",
@@ -6468,6 +6589,7 @@
         "admin-ui"
       ],
       "url": "https://www.djangoproject.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6529,6 +6651,7 @@
       ],
       "repo": "https://github.com/django/django",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://docs.djangoproject.com/en/stable/topics/db/models/",
         "https://docs.djangoproject.com/en/stable/topics/db/",
@@ -6538,6 +6661,7 @@
       "summary": "Django's built-in object-relational mapper that maps models to tables, with a query API.",
       "tags": [],
       "url": "https://docs.djangoproject.com/en/stable/topics/db/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6588,6 +6712,7 @@
       ],
       "repo": "https://github.com/doctrine/orm",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.doctrine-project.org",
         "https://www.doctrine-project.org/projects/orm.html",
@@ -6597,6 +6722,7 @@
       "summary": "A PHP object-relational mapper built on DBAL, with integrations for Symfony and Laminas.",
       "tags": [],
       "url": "https://www.doctrine-project.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6651,6 +6777,7 @@
       ],
       "repo": "https://github.com/facebook/docusaurus",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://docusaurus.io",
         "https://github.com/facebook/docusaurus",
@@ -6665,6 +6792,7 @@
         "type-safety"
       ],
       "url": "https://docusaurus.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6707,6 +6835,7 @@
       ],
       "repo": "https://github.com/dokku/dokku",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://dokku.com",
         "https://dokku.com/docs/getting-started/installation/",
@@ -6715,6 +6844,7 @@
       "summary": "Self-hosted platform as a service that runs on a single server and builds apps from a git push.",
       "tags": [],
       "url": "https://dokku.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6772,6 +6902,7 @@
       ],
       "repo": "https://github.com/dotnet/maui",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://dotnet.microsoft.com/apps/maui",
         "https://github.com/dotnet/maui"
@@ -6781,6 +6912,7 @@
         "native-mobile"
       ],
       "url": "https://dotnet.microsoft.com/apps/maui",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6825,6 +6957,7 @@
       ],
       "repo": "https://github.com/dragonflydb/dragonfly",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.dragonflydb.io",
         "https://github.com/dragonflydb/dragonfly/blob/main/LICENSE.md",
@@ -6836,6 +6969,7 @@
         "realtime"
       ],
       "url": "https://www.dragonflydb.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6930,6 +7064,7 @@
       ],
       "repo": "https://github.com/drizzle-team/drizzle-orm",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://orm.drizzle.team",
         "https://github.com/drizzle-team/drizzle-orm",
@@ -6940,6 +7075,7 @@
         "edge-runtime"
       ],
       "url": "https://orm.drizzle.team",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -6981,12 +7117,14 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://aws.amazon.com/dynamodb"
       ],
       "summary": "A fully managed serverless NoSQL key-value and document database from AWS.",
       "tags": [],
       "url": "https://aws.amazon.com/dynamodb",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7037,6 +7175,7 @@
       ],
       "repo": "https://github.com/elixir-ecto/ecto",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://ecto.hexdocs.pm/",
         "https://phoenix.hexdocs.pm/ecto.html",
@@ -7046,6 +7185,7 @@
       "summary": "A library for mapping data to Elixir structs and writing queries from Elixir code.",
       "tags": [],
       "url": "https://ecto.hexdocs.pm/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7089,6 +7229,7 @@
       ],
       "repo": "https://github.com/effector/effector",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://effector.dev",
         "https://github.com/effector/effector"
@@ -7098,6 +7239,7 @@
         "type-safety"
       ],
       "url": "https://effector.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7136,6 +7278,7 @@
       ],
       "repo": "https://github.com/ehcache/ehcache3",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://www.ehcache.org",
         "https://github.com/ehcache/ehcache3"
@@ -7143,6 +7286,7 @@
       "summary": "A standards-based Java cache with in-heap, off-heap and disk tiers.",
       "tags": [],
       "url": "https://www.ehcache.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7185,6 +7329,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://aws.amazon.com/elasticache",
         "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html"
@@ -7194,6 +7339,7 @@
         "realtime"
       ],
       "url": "https://aws.amazon.com/elasticache",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7274,6 +7420,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.elastic.co/elasticsearch",
         "https://www.elastic.co/blog/elasticsearch-is-open-source-again",
@@ -7287,6 +7434,7 @@
         "analytics"
       ],
       "url": "https://www.elastic.co/elasticsearch",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7332,6 +7480,7 @@
       ],
       "repo": "https://github.com/element-plus/element-plus",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://element-plus.org",
         "https://github.com/element-plus/element-plus"
@@ -7341,6 +7490,7 @@
         "type-safety"
       ],
       "url": "https://element-plus.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7401,6 +7551,7 @@
       ],
       "repo": "https://github.com/laravel/framework",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://laravel.com/docs/eloquent",
         "https://laravel.com/docs/database",
@@ -7409,6 +7560,7 @@
       "summary": "Laravel's Active Record ORM for working with databases using PHP models.",
       "tags": [],
       "url": "https://laravel.com/docs/eloquent",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7455,6 +7607,7 @@
       ],
       "repo": "https://github.com/emberjs/ember.js",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://emberjs.com",
         "https://github.com/emberjs/ember.js",
@@ -7463,6 +7616,7 @@
       "summary": "An opinionated JavaScript framework for ambitious web applications.",
       "tags": [],
       "url": "https://emberjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7513,6 +7667,7 @@
       ],
       "repo": "https://github.com/dotnet/efcore",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://learn.microsoft.com/ef/core",
         "https://learn.microsoft.com/aspnet/core/data/ef-rp/intro",
@@ -7522,6 +7677,7 @@
       "summary": "Microsoft's object-database mapper for .NET, with LINQ queries and migrations.",
       "tags": [],
       "url": "https://learn.microsoft.com/ef/core",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7565,6 +7721,7 @@
       ],
       "repo": "https://github.com/evanw/esbuild",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://esbuild.github.io",
         "https://github.com/evanw/esbuild",
@@ -7573,6 +7730,7 @@
       "summary": "An extremely fast JavaScript and TypeScript bundler and minifier written in Go.",
       "tags": [],
       "url": "https://esbuild.github.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7647,6 +7805,7 @@
       ],
       "repo": "https://github.com/expo/expo",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://expo.dev",
         "https://github.com/expo/expo",
@@ -7662,6 +7821,7 @@
         "native-mobile"
       ],
       "url": "https://expo.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7703,6 +7863,7 @@
       ],
       "repo": "https://github.com/JetBrains/Exposed",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.jetbrains.com/help/exposed",
         "https://ktor.io/docs/server-integrate-database.html",
@@ -7713,6 +7874,7 @@
         "type-safety"
       ],
       "url": "https://www.jetbrains.com/help/exposed",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7843,6 +8005,7 @@
       ],
       "repo": "https://github.com/expressjs/express",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://expressjs.com",
         "https://github.com/expressjs/express",
@@ -7852,6 +8015,7 @@
       "summary": "A fast, unopinionated, minimalist web framework for Node.js.",
       "tags": [],
       "url": "https://expressjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7894,6 +8058,7 @@
       ],
       "repo": "https://github.com/elixir-lang/elixir",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://hexdocs.pm/ex_unit/ExUnit.html",
         "https://ex-unit.hexdocs.pm/ExUnit.html",
@@ -7902,6 +8067,7 @@
       "summary": "Unit testing framework for Elixir, run with mix test, where test modules can run concurrently with async: true.",
       "tags": [],
       "url": "https://hexdocs.pm/ex_unit/ExUnit.html",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -7975,6 +8141,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://fastapi.tiangolo.com",
         "https://fastapi.tiangolo.com/tutorial/sql-databases/",
@@ -7987,6 +8154,7 @@
         "realtime"
       ],
       "url": "https://fastapi.tiangolo.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8059,6 +8227,7 @@
       ],
       "repo": "https://github.com/fastify/fastify",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://fastify.dev",
         "https://github.com/fastify/fastify",
@@ -8067,6 +8236,7 @@
       "summary": "A fast, low-overhead Node.js web framework with a plugin system and schema validation.",
       "tags": [],
       "url": "https://fastify.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8124,6 +8294,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://firebase.google.com/docs/auth",
         "https://firebase.google.com/docs/admin/setup",
@@ -8134,6 +8305,7 @@
         "social-login"
       ],
       "url": "https://firebase.google.com/docs/auth",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8172,6 +8344,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://firebase.google.com/products/hosting",
         "https://firebase.google.com/docs/hosting",
@@ -8182,6 +8355,7 @@
         "static-content"
       ],
       "url": "https://firebase.google.com/products/hosting",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8231,6 +8405,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://firebase.google.com/docs/storage",
         "https://firebase.google.com/docs/storage/admin/start",
@@ -8241,6 +8416,7 @@
         "file-uploads"
       ],
       "url": "https://firebase.google.com/docs/storage",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8314,6 +8490,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://flask.palletsprojects.com",
         "https://flask.palletsprojects.com/en/stable/license/",
@@ -8324,6 +8501,7 @@
       "summary": "A lightweight Python web framework you extend with the libraries you choose.",
       "tags": [],
       "url": "https://flask.palletsprojects.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8366,6 +8544,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://github.com/nextapps-de/flexsearch",
         "https://github.com/nextapps-de/flexsearch"
@@ -8375,6 +8554,7 @@
         "full-text-search"
       ],
       "url": "https://github.com/nextapps-de/flexsearch",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8432,6 +8612,7 @@
       ],
       "repo": "https://github.com/vapor/fluent",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://github.com/vapor/fluent/blob/main/Package.swift",
         "https://docs.vapor.codes/fluent/overview/",
@@ -8440,6 +8621,7 @@
       "summary": "Vapor's ORM for Swift, with model types for creating, reading, updating and deleting rows.",
       "tags": [],
       "url": "https://docs.vapor.codes/fluent/overview/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8509,6 +8691,7 @@
       ],
       "repo": "https://github.com/flutter/flutter",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://flutter.dev",
         "https://github.com/flutter/flutter",
@@ -8520,6 +8703,7 @@
         "native-mobile"
       ],
       "url": "https://flutter.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8559,6 +8743,7 @@
       ],
       "repo": "https://github.com/fluxcd/flux2",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://fluxcd.io",
         "https://github.com/fluxcd/flux2",
@@ -8567,6 +8752,7 @@
       "summary": "Open and extensible continuous delivery solution for Kubernetes, powered by the GitOps Toolkit.",
       "tags": [],
       "url": "https://fluxcd.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8629,6 +8815,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://fly.io",
         "https://docs.fly.io/",
@@ -8639,6 +8826,7 @@
       "summary": "Platform to build, deploy and run apps and AI agents on Fly Machines, billed pay as you go.",
       "tags": [],
       "url": "https://fly.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8682,6 +8870,7 @@
       ],
       "repo": "https://github.com/denoland/fresh",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://fresh.deno.dev",
         "https://github.com/denoland/fresh",
@@ -8694,6 +8883,7 @@
         "type-safety"
       ],
       "url": "https://fresh.deno.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8736,6 +8926,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://www.fusejs.io",
         "https://github.com/krisk/Fuse"
@@ -8745,6 +8936,7 @@
         "full-text-search"
       ],
       "url": "https://www.fusejs.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8787,6 +8979,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://garagehq.deuxfleurs.fr",
         "https://github.com/deuxfleurs-org/garage"
@@ -8796,6 +8989,7 @@
         "file-uploads"
       ],
       "url": "https://garagehq.deuxfleurs.fr",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8839,6 +9033,7 @@
       ],
       "repo": "https://github.com/microsoft/garnet",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://microsoft.github.io/garnet",
         "https://github.com/microsoft/garnet",
@@ -8849,6 +9044,7 @@
         "realtime"
       ],
       "url": "https://microsoft.github.io/garnet",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8898,6 +9094,7 @@
       ],
       "repo": "https://github.com/gatsbyjs/gatsby",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.gatsbyjs.com",
         "https://github.com/gatsbyjs/gatsby",
@@ -8909,6 +9106,7 @@
         "ssr-seo"
       ],
       "url": "https://www.gatsbyjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -8947,6 +9145,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://ghost.org",
         "https://github.com/TryGhost/Ghost",
@@ -8957,6 +9156,7 @@
         "content-editing"
       ],
       "url": "https://ghost.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9007,6 +9207,7 @@
       ],
       "repo": "https://github.com/gin-gonic/gin",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://gin-gonic.com",
         "https://gqlgen.com/recipes/gin/",
@@ -9016,6 +9217,7 @@
       "summary": "A high-performance Go web framework with radix tree routing and middleware.",
       "tags": [],
       "url": "https://gin-gonic.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9112,6 +9314,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://github.com/features/actions",
         "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions",
@@ -9125,6 +9328,7 @@
         "scheduled-jobs"
       ],
       "url": "https://github.com/features/actions",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9171,6 +9375,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://pages.github.com",
         "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages",
@@ -9182,6 +9387,7 @@
         "static-content"
       ],
       "url": "https://pages.github.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9233,6 +9439,7 @@
       ],
       "repo": "https://gitlab.com/gitlab-org/gitlab",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://docs.gitlab.com/ee/ci/",
         "https://docs.gitlab.com/ci/",
@@ -9245,6 +9452,7 @@
         "scheduled-jobs"
       ],
       "url": "https://docs.gitlab.com/ee/ci/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9291,6 +9499,7 @@
       ],
       "repo": "https://gitlab.com/glitchtip/glitchtip-backend",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://glitchtip.com",
         "https://glitchtip.com/documentation",
@@ -9300,6 +9509,7 @@
       "summary": "Open-source error tracking, performance and uptime monitoring, compatible with Sentry client SDKs.",
       "tags": [],
       "url": "https://glitchtip.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9353,6 +9563,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://gocardless.com",
         "https://gocardless.com/pricing/",
@@ -9363,6 +9574,7 @@
         "payments"
       ],
       "url": "https://gocardless.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9402,6 +9614,7 @@
       ],
       "repo": "https://github.com/gocd/gocd",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.gocd.org",
         "https://github.com/gocd/gocd"
@@ -9409,6 +9622,7 @@
       "summary": "Free, open-source CI/CD server for modelling complex delivery workflows, with a built-in value stream map.",
       "tags": [],
       "url": "https://www.gocd.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9457,6 +9671,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://cloud.google.com/run",
         "https://docs.cloud.google.com/run/docs/overview/what-is-cloud-run",
@@ -9467,6 +9682,7 @@
         "scheduled-jobs"
       ],
       "url": "https://cloud.google.com/run",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9526,6 +9742,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://cloud.google.com/storage",
         "https://docs.cloud.google.com/storage/docs/reference/libraries",
@@ -9536,6 +9753,7 @@
         "file-uploads"
       ],
       "url": "https://cloud.google.com/storage",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9588,6 +9806,7 @@
       ],
       "repo": "https://github.com/go-gorm/gorm",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://gorm.io",
         "https://gorm.io/docs/connecting_to_the_database.html",
@@ -9596,6 +9815,7 @@
       "summary": "A full-featured ORM library for Go.",
       "tags": [],
       "url": "https://gorm.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9630,6 +9850,7 @@
       ],
       "repo": "https://github.com/99designs/gqlgen",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://gqlgen.com",
         "https://gqlgen.com/recipes/gin/",
@@ -9640,6 +9861,7 @@
         "type-safety"
       ],
       "url": "https://gqlgen.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9691,6 +9913,7 @@
       ],
       "repo": "https://github.com/grafana/grafana",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://grafana.com/oss/grafana/",
         "https://github.com/grafana/grafana",
@@ -9699,6 +9922,7 @@
       "summary": "Open-source platform for monitoring, observability and data visualization, also offered as Grafana Cloud.",
       "tags": [],
       "url": "https://grafana.com/oss/grafana/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9751,6 +9975,7 @@
       ],
       "repo": "https://github.com/graphql-hive/graphql-yoga",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://the-guild.dev/graphql/yoga-server",
         "https://github.com/graphql-hive/graphql-yoga"
@@ -9758,6 +9983,7 @@
       "summary": "A GraphQL server built on Web Standards for Node.js, Deno, Bun, Cloudflare Workers and more.",
       "tags": [],
       "url": "https://the-guild.dev/graphql/yoga-server",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9803,6 +10029,7 @@
       ],
       "repo": "https://github.com/grpc/grpc",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://grpc.io",
         "https://grpc.io/docs/languages/",
@@ -9811,6 +10038,7 @@
       "summary": "A high-performance RPC framework using Protocol Buffers, with clients in many languages.",
       "tags": [],
       "url": "https://grpc.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9848,6 +10076,7 @@
       ],
       "repo": "https://github.com/gulpjs/gulp",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://gulpjs.com",
         "https://github.com/gulpjs/gulp",
@@ -9856,6 +10085,7 @@
       "summary": "A toolkit for automating slow, repetitive tasks in a development workflow.",
       "tags": [],
       "url": "https://gulpjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9905,6 +10135,7 @@
       ],
       "repo": "https://github.com/tailwindlabs/headlessui",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://headlessui.com",
         "https://github.com/tailwindlabs/headlessui"
@@ -9912,6 +10143,7 @@
       "summary": "Unstyled, accessible UI components designed to work with Tailwind CSS, for React and Vue.",
       "tags": [],
       "url": "https://headlessui.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -9982,6 +10214,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.heroku.com",
         "https://devcenter.heroku.com/categories/language-support",
@@ -9996,6 +10229,7 @@
         "background-jobs"
       ],
       "url": "https://www.heroku.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10046,6 +10280,7 @@
       ],
       "repo": "https://github.com/heroui-inc/heroui",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.heroui.com",
         "https://github.com/heroui-inc/heroui"
@@ -10053,6 +10288,7 @@
       "summary": "A React component library built on Tailwind CSS and React Aria (formerly NextUI).",
       "tags": [],
       "url": "https://www.heroui.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10103,6 +10339,7 @@
       ],
       "repo": "https://github.com/hibernate/hibernate-orm",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://hibernate.org/orm",
         "https://github.com/hibernate/hibernate-orm"
@@ -10110,6 +10347,7 @@
       "summary": "The standard Java and Jakarta Persistence ORM, widely used with Spring.",
       "tags": [],
       "url": "https://hibernate.org/orm",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10157,6 +10395,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.honeycomb.io",
         "https://www.honeycomb.io/pricing",
@@ -10165,6 +10404,7 @@
       "summary": "Observability service that receives traces, metrics and logs through OpenTelemetry, with a free plan.",
       "tags": [],
       "url": "https://www.honeycomb.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10239,6 +10479,7 @@
       ],
       "repo": "https://github.com/honojs/hono",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://hono.dev",
         "https://github.com/honojs/hono",
@@ -10252,6 +10493,7 @@
         "edge-runtime"
       ],
       "url": "https://hono.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10289,6 +10531,7 @@
       ],
       "repo": "https://github.com/ChilliCream/graphql-platform",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://chillicream.com/docs/hotchocolate",
         "https://github.com/ChilliCream/graphql-platform"
@@ -10296,6 +10539,7 @@
       "summary": "A GraphQL server for .NET on ASP.NET Core, serving HTTP, WebSocket and SSE.",
       "tags": [],
       "url": "https://chillicream.com/docs/hotchocolate",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10338,6 +10582,7 @@
       ],
       "repo": "https://github.com/bigskysoftware/htmx",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://htmx.org",
         "https://github.com/bigskysoftware/htmx",
@@ -10346,6 +10591,7 @@
       "summary": "A library that gives HTML attributes access to AJAX, WebSockets and server-sent events.",
       "tags": [],
       "url": "https://htmx.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10396,6 +10642,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://hygraph.com",
         "https://hygraph.com/pricing",
@@ -10407,6 +10654,7 @@
         "content-editing"
       ],
       "url": "https://hygraph.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10465,6 +10713,7 @@
       ],
       "repo": "https://github.com/ionic-team/ionic-framework",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://ionicframework.com",
         "https://github.com/ionic-team/ionic-framework",
@@ -10475,6 +10724,7 @@
         "native-mobile"
       ],
       "url": "https://ionicframework.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10514,6 +10764,7 @@
       ],
       "repo": "https://github.com/jaegertracing/jaeger",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.jaegertracing.io",
         "https://www.jaegertracing.io/docs/latest/",
@@ -10522,6 +10773,7 @@
       "summary": "Open-source distributed tracing platform, a CNCF project originally created at Uber.",
       "tags": [],
       "url": "https://www.jaegertracing.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10567,6 +10819,7 @@
       ],
       "repo": "https://github.com/jenkinsci/jenkins",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.jenkins.io",
         "https://www.jenkins.io/doc/",
@@ -10575,6 +10828,7 @@
       "summary": "Self-contained, open-source automation server for building, testing and deploying software, extended with plugins.",
       "tags": [],
       "url": "https://www.jenkins.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10645,6 +10899,7 @@
       ],
       "repo": "https://github.com/jestjs/jest",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://jestjs.io",
         "https://jestjs.io/docs/getting-started",
@@ -10654,6 +10909,7 @@
       "summary": "JavaScript testing framework with a global test API, mock functions, snapshot testing and a CLI.",
       "tags": [],
       "url": "https://jestjs.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10704,6 +10960,7 @@
       ],
       "repo": "https://github.com/jobrunr/jobrunr",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://www.jobrunr.io",
         "https://github.com/jobrunr/jobrunr"
@@ -10714,6 +10971,7 @@
         "scheduled-jobs"
       ],
       "url": "https://www.jobrunr.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10751,6 +11009,7 @@
       ],
       "repo": "https://github.com/jquery/jquery",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://jquery.com",
         "https://github.com/jquery/jquery",
@@ -10759,6 +11018,7 @@
       "summary": "A lightweight, cross-browser JavaScript library for DOM handling, events and Ajax.",
       "tags": [],
       "url": "https://jquery.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10802,6 +11062,7 @@
       ],
       "repo": "https://github.com/junit-team/junit5",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://junit.org/junit5/",
         "https://github.com/junit-team/junit5"
@@ -10809,6 +11070,7 @@
       "summary": "The programmer-friendly testing framework for Java and the JVM.",
       "tags": [],
       "url": "https://junit.org/junit5/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10847,6 +11109,7 @@
       ],
       "repo": "https://github.com/grafana/k6",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://k6.io",
         "https://grafana.com/docs/k6/latest/",
@@ -10855,6 +11118,7 @@
       "summary": "Open-source, developer-friendly performance testing tool from Grafana, also offered as Grafana Cloud k6.",
       "tags": [],
       "url": "https://k6.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10894,6 +11158,7 @@
       ],
       "repo": "https://github.com/basecamp/kamal",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://kamal-deploy.org",
         "https://github.com/basecamp/kamal"
@@ -10901,6 +11166,7 @@
       "summary": "Tool that deploys containerized web apps to bare metal or cloud VMs with zero downtime.",
       "tags": [],
       "url": "https://kamal-deploy.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -10956,6 +11222,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.keycloak.org",
         "https://github.com/keycloak/keycloak",
@@ -10968,6 +11235,7 @@
         "enterprise-sso"
       ],
       "url": "https://www.keycloak.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11017,6 +11285,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://keystonejs.com",
         "https://github.com/keystonejs/keystone"
@@ -11028,6 +11297,7 @@
         "type-safety"
       ],
       "url": "https://keystonejs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11074,6 +11344,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://killbill.io",
         "https://github.com/killbill/killbill",
@@ -11084,6 +11355,7 @@
         "payments"
       ],
       "url": "https://killbill.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11133,6 +11405,7 @@
       ],
       "repo": "https://github.com/JetBrains/kotlin",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://kotlinlang.org/docs/multiplatform.html",
         "https://github.com/JetBrains/kotlin"
@@ -11142,6 +11415,7 @@
         "native-mobile"
       ],
       "url": "https://kotlinlang.org/docs/multiplatform.html",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11189,6 +11463,7 @@
       ],
       "repo": "https://github.com/ktorio/ktor",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://ktor.io",
         "https://ktor.io/docs/server-websockets.html",
@@ -11201,6 +11476,7 @@
         "realtime"
       ],
       "url": "https://ktor.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11263,6 +11539,7 @@
       ],
       "repo": "https://github.com/kysely-org/kysely",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://kysely.dev",
         "https://github.com/kysely-org/kysely"
@@ -11272,6 +11549,7 @@
         "type-safety"
       ],
       "url": "https://kysely.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11319,6 +11597,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.getlago.com",
         "https://github.com/getlago/lago",
@@ -11330,6 +11609,7 @@
         "payments"
       ],
       "url": "https://www.getlago.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11433,6 +11713,7 @@
       ],
       "repo": "https://github.com/laravel/laravel",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://laravel.com",
         "https://laravel.com/docs/queues",
@@ -11458,6 +11739,7 @@
         "transactional-email"
       ],
       "url": "https://laravel.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11498,6 +11780,7 @@
       ],
       "repo": "https://github.com/laravel/framework",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://laravel.com/docs/queues",
         "https://laravel.com/docs/scheduling",
@@ -11509,6 +11792,7 @@
         "scheduled-jobs"
       ],
       "url": "https://laravel.com/docs/queues",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11550,6 +11834,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.lemonsqueezy.com",
         "https://www.lemonsqueezy.com/pricing",
@@ -11560,6 +11845,7 @@
         "payments"
       ],
       "url": "https://www.lemonsqueezy.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11592,6 +11878,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://listmonk.app",
         "https://github.com/knadh/listmonk",
@@ -11603,6 +11890,7 @@
         "transactional-email"
       ],
       "url": "https://listmonk.app",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11642,6 +11930,7 @@
       ],
       "repo": "https://github.com/lit/lit",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://lit.dev",
         "https://github.com/lit/lit",
@@ -11650,6 +11939,7 @@
       "summary": "A small library for building fast, framework-agnostic web components.",
       "tags": [],
       "url": "https://lit.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11691,6 +11981,7 @@
       ],
       "repo": "https://github.com/grafana/loki",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://grafana.com/oss/loki/",
         "https://github.com/grafana/loki",
@@ -11699,6 +11990,7 @@
       "summary": "Open-source, horizontally scalable, multi-tenant log aggregation system that indexes labels, not log contents.",
       "tags": [],
       "url": "https://grafana.com/oss/loki/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11763,6 +12055,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.mailersend.com",
         "https://www.mailersend.com/pricing"
@@ -11772,6 +12065,7 @@
         "transactional-email"
       ],
       "url": "https://www.mailersend.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11836,6 +12130,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.mailgun.com",
         "https://github.com/mailgun"
@@ -11845,6 +12140,7 @@
         "transactional-email"
       ],
       "url": "https://www.mailgun.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11877,12 +12173,14 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://github.com/mailhog/MailHog"
       ],
       "summary": "A local email testing tool that catches SMTP traffic and shows it in a web UI.",
       "tags": [],
       "url": "https://github.com/mailhog/MailHog",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11915,6 +12213,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://mailpit.axllent.org",
         "https://github.com/axllent/mailpit"
@@ -11922,6 +12221,7 @@
       "summary": "A local SMTP server and web UI for catching and inspecting email during development.",
       "tags": [],
       "url": "https://mailpit.axllent.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -11994,6 +12294,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://manticoresearch.com",
         "https://github.com/manticoresoftware/manticoresearch"
@@ -12004,6 +12305,7 @@
         "vector-search"
       ],
       "url": "https://manticoresearch.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12053,6 +12355,7 @@
       ],
       "repo": "https://github.com/mantinedev/mantine",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://mantine.dev",
         "https://github.com/mantinedev/mantine",
@@ -12063,6 +12366,7 @@
         "type-safety"
       ],
       "url": "https://mantine.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12145,6 +12449,7 @@
       ],
       "repo": "https://github.com/MariaDB/server",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://mariadb.org",
         "https://github.com/MariaDB/server",
@@ -12155,6 +12460,7 @@
         "vector-search"
       ],
       "url": "https://mariadb.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12208,6 +12514,7 @@
       ],
       "repo": "https://github.com/mui/material-ui",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://mui.com/material-ui/",
         "https://github.com/mui/material-ui",
@@ -12219,6 +12526,7 @@
         "type-safety"
       ],
       "url": "https://mui.com/material-ui/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12295,6 +12603,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.meilisearch.com",
         "https://github.com/meilisearch/meilisearch",
@@ -12306,6 +12615,7 @@
         "vector-search"
       ],
       "url": "https://www.meilisearch.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12354,6 +12664,7 @@
       ],
       "repo": "https://github.com/memcached/memcached",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://memcached.org",
         "https://github.com/memcached/memcached"
@@ -12361,6 +12672,7 @@
       "summary": "A free and open source distributed in-memory caching system.",
       "tags": [],
       "url": "https://memcached.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12435,6 +12747,7 @@
       ],
       "repo": "https://github.com/mikro-orm/mikro-orm",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://mikro-orm.io",
         "https://github.com/mikro-orm/mikro-orm"
@@ -12442,6 +12755,7 @@
       "summary": "A TypeScript ORM based on Data Mapper, Unit of Work and Identity Map patterns.",
       "tags": [],
       "url": "https://mikro-orm.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12484,6 +12798,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://lucaong.github.io/minisearch/",
         "https://github.com/lucaong/minisearch"
@@ -12493,6 +12808,7 @@
         "full-text-search"
       ],
       "url": "https://lucaong.github.io/minisearch/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12527,6 +12843,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://mjml.io",
         "https://github.com/mjmlio/mjml"
@@ -12534,6 +12851,7 @@
       "summary": "A markup language that compiles responsive email layouts to HTML.",
       "tags": [],
       "url": "https://mjml.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12580,6 +12898,7 @@
       ],
       "repo": "https://github.com/mobxjs/mobx",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://mobx.js.org",
         "https://github.com/mobxjs/mobx",
@@ -12588,6 +12907,7 @@
       "summary": "A library that makes state management simple through transparent reactive programming.",
       "tags": [],
       "url": "https://mobx.js.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12643,6 +12963,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.mollie.com",
         "https://github.com/mollie"
@@ -12652,6 +12973,7 @@
         "payments"
       ],
       "url": "https://www.mollie.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12738,6 +13060,7 @@
       ],
       "repo": "https://github.com/mongodb/mongo",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.mongodb.com",
         "https://www.mongodb.com/docs/manual/geospatial-queries/",
@@ -12749,6 +13072,7 @@
         "vector-search"
       ],
       "url": "https://www.mongodb.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12908,6 +13232,7 @@
       ],
       "repo": "https://github.com/mysql/mysql-server",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.mysql.com",
         "https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html",
@@ -12920,6 +13245,7 @@
         "geospatial"
       ],
       "url": "https://www.mysql.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -12970,6 +13296,7 @@
       ],
       "repo": "https://github.com/nanostores/nanostores",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://github.com/nanostores/nanostores"
       ],
@@ -12978,6 +13305,7 @@
         "type-safety"
       ],
       "url": "https://github.com/nanostores/nanostores",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13031,6 +13359,7 @@
       ],
       "repo": "https://github.com/NativeScript/NativeScript",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://nativescript.org",
         "https://github.com/NativeScript/NativeScript"
@@ -13040,6 +13369,7 @@
         "native-mobile"
       ],
       "url": "https://nativescript.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13076,6 +13406,7 @@
       ],
       "repo": "https://github.com/nats-io/nats-server",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://nats.io",
         "https://github.com/nats-io/nats-server"
@@ -13085,6 +13416,7 @@
         "realtime"
       ],
       "url": "https://nats.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13134,6 +13466,7 @@
       ],
       "repo": "https://github.com/neondatabase/neon",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://neon.com",
         "https://neon.com/docs/extensions/pgvector",
@@ -13147,6 +13480,7 @@
         "edge-runtime"
       ],
       "url": "https://neon.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13254,6 +13588,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://nestjs.com",
         "https://docs.nestjs.com/websockets/gateways",
@@ -13272,6 +13607,7 @@
         "realtime"
       ],
       "url": "https://nestjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13361,6 +13697,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.netlify.com",
         "https://www.netlify.com/pricing/",
@@ -13376,6 +13713,7 @@
         "scheduled-jobs"
       ],
       "url": "https://www.netlify.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13425,6 +13763,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://newrelic.com",
         "https://newrelic.com/pricing",
@@ -13433,6 +13772,7 @@
       "summary": "Observability platform with APM agents and a perpetual free tier that includes 100 GB a month of data ingest.",
       "tags": [],
       "url": "https://newrelic.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13593,6 +13933,7 @@
       ],
       "repo": "https://github.com/vercel/next.js",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://nextjs.org",
         "https://github.com/vercel/next.js",
@@ -13615,6 +13956,7 @@
         "type-safety"
       ],
       "url": "https://nextjs.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13652,6 +13994,7 @@
       ],
       "repo": "https://github.com/ngrx/platform",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://ngrx.io",
         "https://github.com/ngrx/platform",
@@ -13660,6 +14003,7 @@
       "summary": "Reactive state management for Angular, with a global Store and a signals-based SignalStore.",
       "tags": [],
       "url": "https://ngrx.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13694,6 +14038,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://nodemailer.com",
         "https://github.com/nodemailer/nodemailer"
@@ -13703,6 +14048,7 @@
         "transactional-email"
       ],
       "url": "https://nodemailer.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13795,6 +14141,7 @@
       ],
       "repo": "https://github.com/nuxt/nuxt",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://nuxt.com",
         "https://github.com/nuxt/nuxt",
@@ -13813,6 +14160,7 @@
         "type-safety"
       ],
       "url": "https://nuxt.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13854,6 +14202,7 @@
       ],
       "repo": "https://github.com/nrwl/nx",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://nx.dev",
         "https://github.com/nrwl/nx",
@@ -13862,6 +14211,7 @@
       "summary": "A build system and monorepo toolkit with task caching and project graph analysis.",
       "tags": [],
       "url": "https://nx.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13909,6 +14259,7 @@
       ],
       "repo": "https://github.com/oban-bg/oban",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://oban.pro",
         "https://github.com/oban-bg/oban",
@@ -13920,6 +14271,7 @@
         "scheduled-jobs"
       ],
       "url": "https://oban.pro",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -13960,6 +14312,7 @@
       ],
       "repo": "https://github.com/OAI/OpenAPI-Specification",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.openapis.org",
         "https://spec.openapis.org/oas/latest.html",
@@ -13970,6 +14323,7 @@
         "rest-api"
       ],
       "url": "https://www.openapis.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14039,6 +14393,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://opensearch.org",
         "https://opensearch.org/docs/latest/clients/"
@@ -14049,6 +14404,7 @@
         "vector-search"
       ],
       "url": "https://opensearch.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14109,6 +14465,7 @@
       ],
       "repo": "https://github.com/open-telemetry",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://opentelemetry.io",
         "https://opentelemetry.io/docs/languages/",
@@ -14117,6 +14474,7 @@
       "summary": "Open-source observability framework with APIs and SDKs in many languages for sending telemetry to backends.",
       "tags": [],
       "url": "https://opentelemetry.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14155,6 +14513,7 @@
       ],
       "repo": "https://github.com/unnoq/orpc",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://orpc.dev/",
         "https://github.com/unnoq/orpc"
@@ -14164,6 +14523,7 @@
         "type-safety"
       ],
       "url": "https://orpc.dev/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14208,6 +14568,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.paddle.com",
         "https://github.com/PaddleHQ"
@@ -14217,6 +14578,7 @@
         "payments"
       ],
       "url": "https://www.paddle.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14260,6 +14622,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://pagefind.app",
         "https://github.com/CloudCannon/pagefind"
@@ -14270,6 +14633,7 @@
         "static-content"
       ],
       "url": "https://pagefind.app",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14315,6 +14679,7 @@
       ],
       "repo": "https://github.com/parcel-bundler/parcel",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://parceljs.org",
         "https://github.com/parcel-bundler/parcel"
@@ -14322,6 +14687,7 @@
       "summary": "A zero-configuration web application bundler.",
       "tags": [],
       "url": "https://parceljs.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14370,6 +14736,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://www.passportjs.org",
         "https://github.com/jaredhanson/passport"
@@ -14379,6 +14746,7 @@
         "social-login"
       ],
       "url": "https://www.passportjs.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14440,6 +14808,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://payloadcms.com",
         "https://github.com/payloadcms/payload",
@@ -14453,6 +14822,7 @@
         "type-safety"
       ],
       "url": "https://payloadcms.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14509,6 +14879,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://developer.paypal.com",
         "https://github.com/paypal/PayPal-Server-SDKs",
@@ -14519,6 +14890,7 @@
         "payments"
       ],
       "url": "https://developer.paypal.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14559,6 +14931,7 @@
       ],
       "repo": "https://github.com/timgit/pg-boss",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://github.com/timgit/pg-boss"
       ],
@@ -14568,6 +14941,7 @@
         "scheduled-jobs"
       ],
       "url": "https://github.com/timgit/pg-boss",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14612,6 +14986,7 @@
       ],
       "repo": "https://github.com/pgvector/pgvector",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://github.com/pgvector/pgvector",
         "https://raw.githubusercontent.com/pgvector/pgvector/master/LICENSE"
@@ -14621,6 +14996,7 @@
         "vector-search"
       ],
       "url": "https://github.com/pgvector/pgvector",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14680,6 +15056,7 @@
       ],
       "repo": "https://github.com/phoenixframework/phoenix",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.phoenixframework.org",
         "https://phoenix.hexdocs.pm/ecto.html",
@@ -14692,6 +15069,7 @@
         "realtime"
       ],
       "url": "https://www.phoenixframework.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14730,6 +15108,7 @@
       ],
       "repo": "https://github.com/sebastianbergmann/phpunit",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://phpunit.de",
         "https://github.com/sebastianbergmann/phpunit"
@@ -14737,6 +15116,7 @@
       "summary": "The testing framework for PHP, a programmer-oriented unit testing tool.",
       "tags": [],
       "url": "https://phpunit.de",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14782,6 +15162,7 @@
       ],
       "repo": "https://github.com/vuejs/pinia",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://pinia.vuejs.org",
         "https://github.com/vuejs/pinia",
@@ -14792,6 +15173,7 @@
         "type-safety"
       ],
       "url": "https://pinia.vuejs.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14877,6 +15259,7 @@
       ],
       "repo": "https://github.com/microsoft/playwright",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://playwright.dev",
         "https://playwright.dev/docs/intro",
@@ -14890,6 +15273,7 @@
       "summary": "Framework for web testing and automation that drives Chromium, Firefox and WebKit, with Node.js, Python, Java and .NET bindings.",
       "tags": [],
       "url": "https://playwright.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -14940,6 +15324,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://polar.sh",
         "https://github.com/polarsource/polar",
@@ -14952,6 +15337,7 @@
         "payments"
       ],
       "url": "https://polar.sh",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15006,6 +15392,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://docs.postalserver.io",
         "https://github.com/postalserver/postal"
@@ -15015,6 +15402,7 @@
         "transactional-email"
       ],
       "url": "https://docs.postalserver.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15058,6 +15446,7 @@
       ],
       "repo": "https://github.com/graphile/crystal",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://postgraphile.org",
         "https://github.com/graphile/crystal"
@@ -15065,6 +15454,7 @@
       "summary": "Generates an extensible GraphQL API from your PostgreSQL schema.",
       "tags": [],
       "url": "https://postgraphile.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15257,6 +15647,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.postgresql.org",
         "https://www.postgresql.org/about/license/",
@@ -15267,6 +15658,7 @@
         "full-text-search"
       ],
       "url": "https://www.postgresql.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15303,6 +15695,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.postman.com",
         "https://www.postman.com/pricing/"
@@ -15310,6 +15703,7 @@
       "summary": "API platform with an API client, mock servers, a collection runner and performance testing for building and testing APIs.",
       "tags": [],
       "url": "https://www.postman.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15373,6 +15767,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://postmarkapp.com",
         "https://postmarkapp.com/pricing"
@@ -15382,6 +15777,7 @@
         "transactional-email"
       ],
       "url": "https://postmarkapp.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15424,6 +15820,7 @@
       ],
       "repo": "https://github.com/preactjs/preact",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://preactjs.com",
         "https://github.com/preactjs/preact",
@@ -15434,6 +15831,7 @@
         "ssr-seo"
       ],
       "url": "https://preactjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15476,6 +15874,7 @@
       ],
       "repo": "https://github.com/primefaces/primeng",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://primeng.org",
         "https://github.com/primefaces/primeng"
@@ -15485,6 +15884,7 @@
         "type-safety"
       ],
       "url": "https://primeng.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15531,6 +15931,7 @@
       ],
       "repo": "https://github.com/primefaces/primevue",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://primevue.dev",
         "https://github.com/primefaces/primevue"
@@ -15540,6 +15941,7 @@
         "type-safety"
       ],
       "url": "https://primevue.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15653,6 +16055,7 @@
       ],
       "repo": "https://github.com/prisma/prisma",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.prisma.io",
         "https://github.com/prisma/prisma",
@@ -15671,6 +16074,7 @@
         "type-safety"
       ],
       "url": "https://www.prisma.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15727,6 +16131,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://prismic.io",
         "https://prismic.io/pricing",
@@ -15738,6 +16143,7 @@
         "content-editing"
       ],
       "url": "https://prismic.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15790,6 +16196,7 @@
       ],
       "repo": "https://github.com/prometheus/prometheus",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://prometheus.io",
         "https://prometheus.io/docs/introduction/overview/",
@@ -15799,6 +16206,7 @@
       "summary": "Open-source monitoring and alerting toolkit that stores metrics as time series and queries them with PromQL.",
       "tags": [],
       "url": "https://prometheus.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15856,6 +16264,7 @@
       ],
       "repo": "https://github.com/pytest-dev/pytest",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://docs.pytest.org",
         "https://docs.pytest.org/en/stable/",
@@ -15865,6 +16274,7 @@
       "summary": "Testing framework that makes it easy to write small, readable tests, with fixtures and a large plugin ecosystem.",
       "tags": [],
       "url": "https://docs.pytest.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15899,6 +16309,7 @@
       ],
       "repo": "https://github.com/qdrant/qdrant",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://qdrant.tech",
         "https://github.com/qdrant/qdrant"
@@ -15908,6 +16319,7 @@
         "vector-search"
       ],
       "url": "https://qdrant.tech",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -15946,6 +16358,7 @@
       ],
       "repo": "https://github.com/quartz-scheduler/quartz",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://www.quartz-scheduler.org",
         "https://github.com/quartz-scheduler/quartz"
@@ -15955,6 +16368,7 @@
         "scheduled-jobs"
       ],
       "url": "https://www.quartz-scheduler.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16001,6 +16415,7 @@
       ],
       "repo": "https://github.com/QwikDev/qwik",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://qwik.dev",
         "https://github.com/QwikDev/qwik",
@@ -16011,6 +16426,7 @@
         "ssr-seo"
       ],
       "url": "https://qwik.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16057,6 +16473,7 @@
       ],
       "repo": "https://github.com/QwikDev/qwik",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://qwik.dev/docs/qwikcity/",
         "https://github.com/QwikDev/qwik",
@@ -16068,6 +16485,7 @@
         "edge-runtime"
       ],
       "url": "https://qwik.dev/docs/qwikcity/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16113,6 +16531,7 @@
       ],
       "repo": "https://github.com/radix-ui/primitives",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.radix-ui.com",
         "https://github.com/radix-ui/primitives",
@@ -16121,6 +16540,7 @@
       "summary": "Unstyled, accessible React primitives for building design systems.",
       "tags": [],
       "url": "https://www.radix-ui.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16223,6 +16643,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://rubyonrails.org",
         "https://guides.rubyonrails.org/configuring.html",
@@ -16238,6 +16659,7 @@
         "transactional-email"
       ],
       "url": "https://rubyonrails.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16283,6 +16705,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://railway.com",
         "https://docs.railway.com/overview/about-railway",
@@ -16295,6 +16718,7 @@
         "scheduled-jobs"
       ],
       "url": "https://railway.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16346,6 +16770,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://razorpay.com",
         "https://razorpay.com/pricing/",
@@ -16356,6 +16781,7 @@
         "payments"
       ],
       "url": "https://razorpay.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16508,6 +16934,7 @@
       ],
       "repo": "https://github.com/facebook/react",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://react.dev",
         "https://github.com/facebook/react",
@@ -16518,6 +16945,7 @@
         "ssr-seo"
       ],
       "url": "https://react.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16558,6 +16986,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://react.email",
         "https://github.com/resend/react-email"
@@ -16565,6 +16994,7 @@
       "summary": "A collection of React components for building and rendering HTML emails.",
       "tags": [],
       "url": "https://react.email",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16643,6 +17073,7 @@
       ],
       "repo": "https://github.com/facebook/react-native",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://reactnative.dev",
         "https://github.com/facebook/react-native"
@@ -16652,6 +17083,7 @@
         "native-mobile"
       ],
       "url": "https://reactnative.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16711,6 +17143,7 @@
       ],
       "repo": "https://github.com/remix-run/react-router",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://reactrouter.com",
         "https://github.com/remix-run/react-router",
@@ -16726,6 +17159,7 @@
         "type-safety"
       ],
       "url": "https://reactrouter.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16826,6 +17260,7 @@
       ],
       "repo": "https://github.com/redis/redis",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://redis.io",
         "https://github.com/redis/redis"
@@ -16835,6 +17270,7 @@
         "realtime"
       ],
       "url": "https://redis.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16885,6 +17321,7 @@
       ],
       "repo": "https://github.com/reduxjs/redux-toolkit",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://redux-toolkit.js.org",
         "https://github.com/reduxjs/redux-toolkit",
@@ -16895,6 +17332,7 @@
         "type-safety"
       ],
       "url": "https://redux-toolkit.js.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -16976,6 +17414,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://render.com",
         "https://render.com/docs",
@@ -16995,6 +17434,7 @@
         "scheduled-jobs"
       ],
       "url": "https://render.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17107,6 +17547,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://resend.com",
         "https://resend.com/pricing",
@@ -17125,6 +17566,7 @@
         "transactional-email"
       ],
       "url": "https://resend.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17175,6 +17617,7 @@
       ],
       "repo": "https://github.com/riverqueue/river",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://riverqueue.com",
         "https://github.com/riverqueue/river"
@@ -17185,6 +17628,7 @@
         "scheduled-jobs"
       ],
       "url": "https://riverqueue.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17239,6 +17683,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://rollbar.com",
         "https://rollbar.com/pricing/",
@@ -17247,6 +17692,7 @@
       "summary": "Error monitoring service with a free plan, error grouping, deploy tracking and SDKs for several languages.",
       "tags": [],
       "url": "https://rollbar.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17286,6 +17732,7 @@
       ],
       "repo": "https://github.com/rolldown/rolldown",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://rolldown.rs",
         "https://github.com/rolldown/rolldown"
@@ -17293,6 +17740,7 @@
       "summary": "A Rust-based JavaScript bundler with a Rollup-compatible API, the bundler powering Vite 8 and later.",
       "tags": [],
       "url": "https://rolldown.rs",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17334,6 +17782,7 @@
       ],
       "repo": "https://github.com/rollup/rollup",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://rollupjs.org",
         "https://github.com/rollup/rollup",
@@ -17342,6 +17791,7 @@
       "summary": "A module bundler for JavaScript that compiles small pieces into larger libraries.",
       "tags": [],
       "url": "https://rollupjs.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17387,6 +17837,7 @@
       ],
       "repo": "https://github.com/rq/rq",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://python-rq.org",
         "https://raw.githubusercontent.com/rq/rq/master/LICENSE",
@@ -17399,6 +17850,7 @@
         "scheduled-jobs"
       ],
       "url": "https://python-rq.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17448,6 +17900,7 @@
       ],
       "repo": "https://github.com/web-infra-dev/rspack",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://rspack.dev",
         "https://github.com/web-infra-dev/rspack",
@@ -17456,6 +17909,7 @@
       "summary": "A fast Rust-based JavaScript bundler that is compatible with the webpack ecosystem.",
       "tags": [],
       "url": "https://rspack.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17490,6 +17944,7 @@
       ],
       "repo": "https://github.com/rspec/rspec",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://rspec.info",
         "https://github.com/rspec/rspec",
@@ -17498,6 +17953,7 @@
       "summary": "Behaviour-driven development tool for Ruby, built from core, expectations and mocks gems.",
       "tags": [],
       "url": "https://rspec.info",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17560,6 +18016,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.sanity.io",
         "https://www.sanity.io/pricing",
@@ -17572,6 +18029,7 @@
         "realtime"
       ],
       "url": "https://www.sanity.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17622,6 +18080,7 @@
       ],
       "repo": "https://github.com/SeaQL/sea-orm",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.sea-ql.org/SeaORM/",
         "https://github.com/SeaQL/sea-orm/tree/master/examples/axum_example",
@@ -17630,6 +18089,7 @@
       "summary": "An async, dynamic ORM for Rust for building web services, with relations and migrations.",
       "tags": [],
       "url": "https://www.sea-ql.org/SeaORM/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17670,6 +18130,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://github.com/seaweedfs/seaweedfs"
       ],
@@ -17678,6 +18139,7 @@
         "file-uploads"
       ],
       "url": "https://github.com/seaweedfs/seaweedfs",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17725,6 +18187,7 @@
       ],
       "repo": "https://github.com/SeleniumHQ/selenium",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.selenium.dev",
         "https://www.selenium.dev/documentation/",
@@ -17733,6 +18196,7 @@
       "summary": "Open-source umbrella project for browser automation, with WebDriver, Selenium Grid and language bindings.",
       "tags": [],
       "url": "https://www.selenium.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17795,6 +18259,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://sendgrid.com",
         "https://www.twilio.com/docs/sendgrid/for-developers/sending-email/libraries",
@@ -17806,6 +18271,7 @@
         "transactional-email"
       ],
       "url": "https://sendgrid.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -17973,6 +18439,7 @@
       ],
       "repo": "https://github.com/getsentry/sentry",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://sentry.io",
         "https://docs.sentry.io/platforms/",
@@ -18007,6 +18474,7 @@
       "summary": "Application monitoring with error tracking and tracing, with SDKs for many platforms, hosted or self-hosted.",
       "tags": [],
       "url": "https://sentry.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18074,6 +18542,7 @@
       ],
       "repo": "https://github.com/sequelize/sequelize",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://sequelize.org",
         "https://github.com/sequelize/sequelize"
@@ -18081,6 +18550,7 @@
       "summary": "A promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and SQL Server.",
       "tags": [],
       "url": "https://sequelize.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18152,6 +18622,7 @@
       ],
       "repo": "https://github.com/shadcn-ui/ui",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://ui.shadcn.com",
         "https://github.com/shadcn-ui/ui",
@@ -18162,6 +18633,7 @@
       "summary": "A set of accessible, customizable components you copy into your project, built on Radix UI and Tailwind.",
       "tags": [],
       "url": "https://ui.shadcn.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18201,6 +18673,7 @@
       ],
       "repo": "https://github.com/sidekiq/sidekiq",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://sidekiq.org",
         "https://github.com/sidekiq/sidekiq/blob/main/LICENSE.txt",
@@ -18214,6 +18687,7 @@
         "scheduled-jobs"
       ],
       "url": "https://sidekiq.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18263,6 +18737,7 @@
       ],
       "repo": "https://github.com/SigNoz/signoz",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://signoz.io",
         "https://github.com/SigNoz/signoz",
@@ -18272,6 +18747,7 @@
       "summary": "Open-source, OpenTelemetry-native observability platform with logs, metrics, traces, alerts and dashboards.",
       "tags": [],
       "url": "https://signoz.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18322,6 +18798,7 @@
       ],
       "repo": "https://github.com/rails/solid_queue",
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://github.com/rails/solid_queue"
       ],
@@ -18331,6 +18808,7 @@
         "scheduled-jobs"
       ],
       "url": "https://github.com/rails/solid_queue",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18393,6 +18871,7 @@
       ],
       "repo": "https://github.com/solidjs/solid",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.solidjs.com",
         "https://github.com/solidjs/solid"
@@ -18402,6 +18881,7 @@
         "ssr-seo"
       ],
       "url": "https://www.solidjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18456,6 +18936,7 @@
       ],
       "repo": "https://github.com/solidjs/solid-start",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://start.solidjs.com",
         "https://github.com/solidjs/solid-start",
@@ -18469,6 +18950,7 @@
         "static-content"
       ],
       "url": "https://start.solidjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18575,6 +19057,7 @@
       ],
       "repo": "https://github.com/spring-projects/spring-boot",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://spring.io/projects/spring-boot",
         "https://docs.spring.io/spring-boot/reference/features/kotlin.html",
@@ -18589,6 +19072,7 @@
       "summary": "A Java and Kotlin framework for production-grade Spring applications with minimal setup.",
       "tags": [],
       "url": "https://spring.io/projects/spring-boot",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18636,6 +19120,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://spring.io/projects/spring-security",
         "https://docs.spring.io/spring-security/reference/index.html",
@@ -18647,6 +19132,7 @@
         "enterprise-sso"
       ],
       "url": "https://spring.io/projects/spring-security",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18708,6 +19194,7 @@
       ],
       "repo": "https://github.com/sqlalchemy/sqlalchemy",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.sqlalchemy.org",
         "https://github.com/sqlalchemy/sqlalchemy",
@@ -18716,6 +19203,7 @@
       "summary": "The Python SQL toolkit and ORM, with a Core query layer and a high-level ORM.",
       "tags": [],
       "url": "https://www.sqlalchemy.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18867,12 +19355,14 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.sqlite.org"
       ],
       "summary": "A small, fast, self-contained SQL database engine that lives in a single file.",
       "tags": [],
       "url": "https://www.sqlite.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18915,6 +19405,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://sqlmodel.tiangolo.com",
         "https://sqlmodel.tiangolo.com/"
@@ -18924,6 +19415,7 @@
         "type-safety"
       ],
       "url": "https://sqlmodel.tiangolo.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -18979,6 +19471,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://developer.squareup.com",
         "https://developer.squareup.com/docs/sdks",
@@ -18990,6 +19483,7 @@
         "payments"
       ],
       "url": "https://developer.squareup.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19037,6 +19531,7 @@
       ],
       "repo": "https://github.com/hotwired/stimulus",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://stimulus.hotwired.dev",
         "https://github.com/hotwired/stimulus",
@@ -19047,6 +19542,7 @@
         "type-safety"
       ],
       "url": "https://stimulus.hotwired.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19098,6 +19594,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.storyblok.com",
         "https://www.storyblok.com/docs/packages",
@@ -19108,6 +19605,7 @@
         "content-editing"
       ],
       "url": "https://www.storyblok.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19162,6 +19660,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://strapi.io",
         "https://github.com/strapi/strapi",
@@ -19173,6 +19672,7 @@
         "admin-ui"
       ],
       "url": "https://strapi.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19215,6 +19715,7 @@
       ],
       "repo": "https://github.com/strawberry-graphql/strawberry",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://strawberry.rocks",
         "https://github.com/strawberry-graphql/strawberry"
@@ -19222,6 +19723,7 @@
       "summary": "A Python GraphQL library that uses type hints to build schemas.",
       "tags": [],
       "url": "https://strawberry.rocks",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19306,6 +19808,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://stripe.com",
         "https://docs.stripe.com/sdks",
@@ -19316,6 +19819,7 @@
         "payments"
       ],
       "url": "https://stripe.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19395,6 +19899,7 @@
       ],
       "repo": "https://github.com/supabase/supabase",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://supabase.com",
         "https://github.com/supabase/supabase",
@@ -19413,6 +19918,7 @@
         "vector-search"
       ],
       "url": "https://supabase.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19469,6 +19975,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://supabase.com/docs/guides/auth",
         "https://github.com/supabase/auth",
@@ -19480,6 +19987,7 @@
         "enterprise-sso"
       ],
       "url": "https://supabase.com/docs/guides/auth",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19536,6 +20044,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://supabase.com/docs/guides/storage",
         "https://github.com/supabase/storage"
@@ -19545,6 +20054,7 @@
         "file-uploads"
       ],
       "url": "https://supabase.com/docs/guides/storage",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19601,6 +20111,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://supertokens.com",
         "https://supertokens.com/pricing",
@@ -19615,6 +20126,7 @@
         "multi-tenant"
       ],
       "url": "https://supertokens.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19702,6 +20214,7 @@
       ],
       "repo": "https://github.com/sveltejs/svelte",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://svelte.dev",
         "https://github.com/sveltejs/svelte",
@@ -19715,6 +20228,7 @@
         "type-safety"
       ],
       "url": "https://svelte.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19817,6 +20331,7 @@
       ],
       "repo": "https://github.com/sveltejs/kit",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://svelte.dev/docs/kit",
         "https://github.com/sveltejs/kit",
@@ -19836,6 +20351,7 @@
         "type-safety"
       ],
       "url": "https://svelte.dev/docs/kit",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19881,6 +20397,7 @@
       ],
       "repo": "https://github.com/swc-project/swc",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://swc.rs",
         "https://github.com/swc-project/swc"
@@ -19888,6 +20405,7 @@
       "summary": "A Rust-based platform for fast compiling, minifying and bundling JavaScript and TypeScript.",
       "tags": [],
       "url": "https://swc.rs",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19926,6 +20444,7 @@
       ],
       "repo": "https://github.com/swiftlang/swift-testing",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://developer.apple.com/documentation/testing",
         "https://github.com/swiftlang/swift-testing",
@@ -19935,6 +20454,7 @@
       "summary": "Apple's open source library for writing and running tests in Swift, in Xcode projects and Swift packages.",
       "tags": [],
       "url": "https://developer.apple.com/documentation/testing",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -19977,6 +20497,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://developer.apple.com/swiftui/",
         "https://apps.apple.com/us/app/xcode/id497799835",
@@ -19987,6 +20508,7 @@
         "native-mobile"
       ],
       "url": "https://developer.apple.com/swiftui/",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20028,6 +20550,7 @@
       ],
       "repo": "https://github.com/vercel/swr",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://swr.vercel.app",
         "https://github.com/vercel/swr"
@@ -20037,6 +20560,7 @@
         "type-safety"
       ],
       "url": "https://swr.vercel.app",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20131,6 +20655,7 @@
       ],
       "repo": "https://github.com/tailwindlabs/tailwindcss",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://tailwindcss.com",
         "https://github.com/tailwindlabs/tailwindcss",
@@ -20140,6 +20665,7 @@
       "summary": "A utility-first CSS framework for building custom designs directly in markup.",
       "tags": [],
       "url": "https://tailwindcss.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20204,6 +20730,7 @@
       ],
       "repo": "https://github.com/TanStack/query",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://tanstack.com/query",
         "https://github.com/TanStack/query",
@@ -20215,6 +20742,7 @@
         "type-safety"
       ],
       "url": "https://tanstack.com/query",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20273,6 +20801,7 @@
       ],
       "repo": "https://github.com/TanStack/router",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://tanstack.com/start",
         "https://github.com/TanStack/router",
@@ -20285,6 +20814,7 @@
         "type-safety"
       ],
       "url": "https://tanstack.com/start",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20344,6 +20874,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://github.com/quickwit-oss/tantivy",
         "https://github.com/quickwit-oss/tantivy-py"
@@ -20353,6 +20884,7 @@
         "full-text-search"
       ],
       "url": "https://github.com/quickwit-oss/tantivy",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20424,6 +20956,7 @@
       ],
       "repo": "https://github.com/tauri-apps/tauri",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://tauri.app",
         "https://github.com/tauri-apps/tauri",
@@ -20438,6 +20971,7 @@
         "native-mobile"
       ],
       "url": "https://tauri.app",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20484,6 +21018,7 @@
       ],
       "repo": "https://github.com/temporalio/temporal",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://temporal.io",
         "https://docs.temporal.io/develop",
@@ -20495,6 +21030,7 @@
         "scheduled-jobs"
       ],
       "url": "https://temporal.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20534,12 +21070,14 @@
       ],
       "repo": "https://github.com/stretchr/testify",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://github.com/stretchr/testify"
       ],
       "summary": "Go toolkit with assertions, mocks and test suites that works with the standard library's testing package.",
       "tags": [],
       "url": "https://github.com/stretchr/testify",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20582,6 +21120,7 @@
       ],
       "repo": "https://github.com/testing-library/dom-testing-library",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://testing-library.com",
         "https://testing-library.com/docs/",
@@ -20590,6 +21129,7 @@
       "summary": "Family of packages for testing UI components the way users use them, with DOM Testing Library at its core.",
       "tags": [],
       "url": "https://testing-library.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20645,6 +21185,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://tina.io",
         "https://github.com/TinaCMS/tinacms",
@@ -20655,6 +21196,7 @@
         "content-editing"
       ],
       "url": "https://tina.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20700,6 +21242,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://www.travis-ci.com",
         "https://www.travis-ci.com/pricing/",
@@ -20708,6 +21251,7 @@
       "summary": "Hosted CI/CD service with usage-based and unlimited paid plans and an on-premise Server plan.",
       "tags": [],
       "url": "https://www.travis-ci.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20751,6 +21295,7 @@
       ],
       "repo": "https://github.com/triggerdotdev/trigger.dev",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://trigger.dev",
         "https://github.com/triggerdotdev/trigger.dev"
@@ -20761,6 +21306,7 @@
         "scheduled-jobs"
       ],
       "url": "https://trigger.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20812,6 +21358,7 @@
       ],
       "repo": "https://github.com/trpc/trpc",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://trpc.io",
         "https://github.com/trpc/trpc",
@@ -20822,6 +21369,7 @@
         "type-safety"
       ],
       "url": "https://trpc.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20869,6 +21417,7 @@
       ],
       "repo": "https://github.com/vercel/next.js",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://nextjs.org/docs/app/api-reference/turbopack",
         "https://github.com/vercel/next.js"
@@ -20876,6 +21425,7 @@
       "summary": "A Rust-based incremental bundler for JavaScript and TypeScript, built into Next.js as its default bundler.",
       "tags": [],
       "url": "https://nextjs.org/docs/app/api-reference/turbopack",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20915,6 +21465,7 @@
       ],
       "repo": "https://github.com/vercel/turborepo",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://turborepo.com",
         "https://github.com/vercel/turborepo",
@@ -20923,6 +21474,7 @@
       "summary": "A high-performance build system for JavaScript and TypeScript monorepos with caching.",
       "tags": [],
       "url": "https://turborepo.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -20973,6 +21525,7 @@
       ],
       "repo": "https://github.com/tursodatabase/libsql",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://turso.tech",
         "https://turso.tech/pricing",
@@ -20983,6 +21536,7 @@
         "vector-search"
       ],
       "url": "https://turso.tech",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21063,6 +21617,7 @@
       ],
       "repo": "https://github.com/typeorm/typeorm",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://typeorm.io",
         "https://github.com/typeorm/typeorm"
@@ -21070,6 +21625,7 @@
       "summary": "A TypeScript and JavaScript ORM supporting Active Record and Data Mapper patterns.",
       "tags": [],
       "url": "https://typeorm.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21143,6 +21699,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://typesense.org",
         "https://github.com/typesense/typesense",
@@ -21155,6 +21712,7 @@
         "vector-search"
       ],
       "url": "https://typesense.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21192,6 +21750,7 @@
       ],
       "repo": "https://github.com/unoplatform/uno",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://platform.uno",
         "https://github.com/unoplatform/uno",
@@ -21202,6 +21761,7 @@
         "native-mobile"
       ],
       "url": "https://platform.uno",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21249,6 +21809,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://uploadthing.com",
         "https://github.com/pingdotgg/uploadthing",
@@ -21260,6 +21821,7 @@
         "file-uploads"
       ],
       "url": "https://uploadthing.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21298,6 +21860,7 @@
       ],
       "repo": null,
       "runs_in_app": true,
+      "scale": null,
       "sources": [
         "https://uppy.io",
         "https://github.com/transloadit/uppy"
@@ -21307,6 +21870,7 @@
         "file-uploads"
       ],
       "url": "https://uppy.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21342,6 +21906,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://upstash.com/docs/redis/overall/getstarted",
         "https://upstash.com/docs/redis/features/restapi"
@@ -21352,6 +21917,7 @@
         "realtime"
       ],
       "url": "https://upstash.com/docs/redis/overall/getstarted",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21387,6 +21953,7 @@
       ],
       "repo": "https://github.com/louislam/uptime-kuma",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://uptime.kuma.pet",
         "https://github.com/louislam/uptime-kuma",
@@ -21395,6 +21962,7 @@
       "summary": "Self-hosted monitoring tool with HTTP, TCP, ping and DNS monitors and mappable status pages.",
       "tags": [],
       "url": "https://uptime.kuma.pet",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21443,6 +22011,7 @@
       ],
       "repo": "https://github.com/valkey-io/valkey",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://valkey.io",
         "https://github.com/valkey-io/valkey",
@@ -21453,6 +22022,7 @@
         "realtime"
       ],
       "url": "https://valkey.io",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21496,6 +22066,7 @@
       ],
       "repo": "https://github.com/pmndrs/valtio",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://valtio.dev",
         "https://github.com/pmndrs/valtio"
@@ -21503,6 +22074,7 @@
       "summary": "A proxy-based state library that makes mutable state work with React rendering.",
       "tags": [],
       "url": "https://valtio.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21558,6 +22130,7 @@
       ],
       "repo": "https://github.com/vapor/vapor",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vapor.codes",
         "https://docs.vapor.codes/",
@@ -21567,6 +22140,7 @@
       "summary": "A Swift web framework for writing backends, web apps, APIs and HTTP servers, built on SwiftNIO.",
       "tags": [],
       "url": "https://vapor.codes",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21679,6 +22253,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vercel.com",
         "https://vercel.com/docs/functions/runtimes",
@@ -21700,6 +22275,7 @@
         "analytics"
       ],
       "url": "https://vercel.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21746,6 +22322,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vercel.com/docs/storage/vercel-blob",
         "https://vercel.com/docs/vercel-blob/using-blob-sdk"
@@ -21755,6 +22332,7 @@
         "file-uploads"
       ],
       "url": "https://vercel.com/docs/storage/vercel-blob",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21818,6 +22396,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vespa.ai",
         "https://github.com/vespa-engine/vespa",
@@ -21829,6 +22408,7 @@
         "vector-search"
       ],
       "url": "https://vespa.ai",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21915,6 +22495,7 @@
       ],
       "repo": "https://github.com/vitejs/vite",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vite.dev",
         "https://github.com/vitejs/vite",
@@ -21924,6 +22505,7 @@
       "summary": "A frontend build tool with a fast dev server and a production build that bundles with Rolldown.",
       "tags": [],
       "url": "https://vite.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -21982,6 +22564,7 @@
       ],
       "repo": "https://github.com/vuejs/vitepress",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vitepress.dev",
         "https://github.com/vuejs/vitepress",
@@ -21994,6 +22577,7 @@
         "ssr-seo"
       ],
       "url": "https://vitepress.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22090,6 +22674,7 @@
       ],
       "repo": "https://github.com/vitest-dev/vitest",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vitest.dev",
         "https://vitest.dev/guide/",
@@ -22101,6 +22686,7 @@
       "summary": "Next generation testing framework powered by Vite, reading your existing Vite config.",
       "tags": [],
       "url": "https://vitest.dev",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22213,6 +22799,7 @@
       ],
       "repo": "https://github.com/vuejs/core",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vuejs.org",
         "https://github.com/vuejs/core",
@@ -22225,6 +22812,7 @@
         "ssr-seo"
       ],
       "url": "https://vuejs.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22270,6 +22858,7 @@
       ],
       "repo": "https://github.com/vuetifyjs/vuetify",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vuetifyjs.com",
         "https://github.com/vuetifyjs/vuetify"
@@ -22277,6 +22866,7 @@
       "summary": "A Vue component framework implementing Material Design.",
       "tags": [],
       "url": "https://vuetifyjs.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22316,6 +22906,7 @@
       ],
       "repo": "https://github.com/vuejs/vuex",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://vuex.vuejs.org",
         "https://github.com/vuejs/vuex",
@@ -22324,6 +22915,7 @@
       "summary": "The previous official state management pattern and library for Vue, now in maintenance.",
       "tags": [],
       "url": "https://vuex.vuejs.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22362,6 +22954,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://wagtail.org",
         "https://github.com/wagtail/wagtail"
@@ -22371,6 +22964,7 @@
         "content-editing"
       ],
       "url": "https://wagtail.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22421,6 +23015,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://wasabi.com"
       ],
@@ -22429,6 +23024,7 @@
         "file-uploads"
       ],
       "url": "https://wasabi.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22479,6 +23075,7 @@
       ],
       "repo": "https://github.com/webpack/webpack",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://webpack.js.org",
         "https://github.com/webpack/webpack",
@@ -22487,6 +23084,7 @@
       "summary": "A static module bundler for JavaScript applications.",
       "tags": [],
       "url": "https://webpack.js.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22524,6 +23122,7 @@
       ],
       "repo": "https://github.com/woodpecker-ci/woodpecker",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://woodpecker-ci.org",
         "https://woodpecker-ci.org/docs/intro",
@@ -22532,6 +23131,7 @@
       "summary": "Lightweight, simple and fast CI/CD tool with plugins that you deploy yourself, even on a Raspberry Pi.",
       "tags": [],
       "url": "https://woodpecker-ci.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22574,6 +23174,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://wordpress.org",
         "https://wordpress.org/about/license/",
@@ -22585,6 +23186,7 @@
         "content-editing"
       ],
       "url": "https://wordpress.org",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22646,6 +23248,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://workos.com",
         "https://workos.com/docs",
@@ -22659,6 +23262,7 @@
         "enterprise-sso"
       ],
       "url": "https://workos.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22695,6 +23299,7 @@
       ],
       "repo": "https://github.com/xamarin/xamarin-android",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://dotnet.microsoft.com/apps/xamarin",
         "https://github.com/xamarin/xamarin-android"
@@ -22704,6 +23309,7 @@
         "native-mobile"
       ],
       "url": "https://dotnet.microsoft.com/apps/xamarin",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22750,6 +23356,7 @@
       ],
       "repo": "https://github.com/statelyai/xstate",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://stately.ai/docs/xstate",
         "https://github.com/statelyai/xstate"
@@ -22759,6 +23366,7 @@
         "type-safety"
       ],
       "url": "https://stately.ai/docs/xstate",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22799,12 +23407,14 @@
       ],
       "repo": "https://github.com/xunit/xunit",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://xunit.net"
       ],
       "summary": "Free, open-source, community-focused unit testing tool for C#, F# and Visual Basic, part of the .NET Foundation.",
       "tags": [],
       "url": "https://xunit.net",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22864,6 +23474,7 @@
       ],
       "repo": null,
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://zitadel.com",
         "https://github.com/zitadel/zitadel",
@@ -22877,6 +23488,7 @@
         "multi-tenant"
       ],
       "url": "https://zitadel.com",
+      "uses": [],
       "verified": "2026-11-14"
     },
     {
@@ -22924,6 +23536,7 @@
       ],
       "repo": "https://github.com/pmndrs/zustand",
       "runs_in_app": false,
+      "scale": null,
       "sources": [
         "https://zustand.docs.pmnd.rs",
         "https://github.com/pmndrs/zustand"
@@ -22933,6 +23546,7 @@
         "type-safety"
       ],
       "url": "https://zustand.docs.pmnd.rs",
+      "uses": [],
       "verified": "2026-11-14"
     }
   ],
@@ -23089,6 +23703,834 @@
         "database"
       ]
     },
+    "facets": {
+      "api-style": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Documented endpoints partners and apps can call",
+              "id": "public-api",
+              "label": "An API for others"
+            },
+            {
+              "hint": "Shared types between your web app and server",
+              "id": "typed-calls",
+              "label": "Typed calls from my frontend"
+            },
+            {
+              "hint": "Clients ask for exactly the data they need",
+              "id": "flexible-queries",
+              "label": "Flexible queries"
+            },
+            {
+              "hint": "Fast calls from one server to another",
+              "id": "service-calls",
+              "label": "Calls between services"
+            },
+            {
+              "hint": "Describe messages sent through a broker",
+              "id": "events",
+              "label": "Events and messages"
+            },
+            {
+              "hint": "An instant API made from your tables",
+              "id": "from-database",
+              "label": "API from my database"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "auth": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Email and password or magic links",
+              "id": "login",
+              "label": "Sign up and log in"
+            },
+            {
+              "hint": "Sign in with Google, GitHub and similar",
+              "id": "social",
+              "label": "Social login"
+            },
+            {
+              "hint": "SAML or OIDC single sign on for business customers",
+              "id": "company-sso",
+              "label": "Company sign in"
+            },
+            {
+              "hint": "Passkeys or a second step such as a code",
+              "id": "second-factor",
+              "label": "Extra security"
+            },
+            {
+              "hint": "Users grouped into companies with roles",
+              "id": "teams",
+              "label": "Teams and organisations"
+            },
+            {
+              "hint": "Login and profile pages you do not have to build",
+              "id": "ready-screens",
+              "label": "Ready made screens"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "backend": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Database, logins and an admin screen included",
+              "id": "all-in-one",
+              "label": "All in one"
+            },
+            {
+              "hint": "Data for a website or a phone app",
+              "id": "apis",
+              "label": "APIs"
+            },
+            {
+              "hint": "A small core you add pieces to as you go",
+              "id": "lightweight",
+              "label": "Small and simple"
+            },
+            {
+              "hint": "Chat, notifications and live updates",
+              "id": "live",
+              "label": "Live features"
+            },
+            {
+              "hint": "Also runs on serverless and edge platforms",
+              "id": "edge",
+              "label": "Runs anywhere"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "build-tool": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Changes show up instantly while you code",
+              "id": "dev-server",
+              "label": "Fast dev server"
+            },
+            {
+              "hint": "Packs your code into small files for browsers",
+              "id": "bundle",
+              "label": "Bundle for production"
+            },
+            {
+              "hint": "Turns TypeScript and new JavaScript into code browsers run",
+              "id": "compile",
+              "label": "Compile modern code"
+            },
+            {
+              "hint": "Runs tasks across projects and skips work already done",
+              "id": "monorepo",
+              "label": "Many packages in one repo"
+            },
+            {
+              "hint": "Runs repeated steps such as copying and minifying files",
+              "id": "tasks",
+              "label": "Task automation"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "cache": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Keep results of slow work in fast memory",
+              "id": "speed-up",
+              "label": "Speed up my app"
+            },
+            {
+              "hint": "Remember logged in users between requests",
+              "id": "sessions",
+              "label": "Sessions"
+            },
+            {
+              "hint": "Rate limits, likes and view counts",
+              "id": "counters",
+              "label": "Counters and limits"
+            },
+            {
+              "hint": "Push messages to connected users",
+              "id": "live-updates",
+              "label": "Live updates"
+            },
+            {
+              "hint": "Pass messages between parts of your system",
+              "id": "messaging",
+              "label": "Messages between services"
+            }
+          ],
+          "question": "What do you need it for?"
+        },
+        {
+          "id": "scale",
+          "multi": false,
+          "options": [
+            {
+              "hint": "One machine or one app process is enough",
+              "id": "single",
+              "label": "Fits on one server"
+            },
+            {
+              "hint": "Data spread over many machines",
+              "id": "scale-out",
+              "label": "Needs to scale out"
+            }
+          ],
+          "question": "How big will it get?"
+        }
+      ],
+      "ci-cd": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Runs your tests and builds on every push",
+              "id": "test-build",
+              "label": "Test and build"
+            },
+            {
+              "hint": "Ships to servers or the cloud after a merge",
+              "id": "deploy",
+              "label": "Deploy automatically"
+            },
+            {
+              "hint": "Keeps a cluster in sync with your Git repo",
+              "id": "kubernetes",
+              "label": "Kubernetes deploys"
+            },
+            {
+              "hint": "Runs next to your code on GitHub, GitLab or Bitbucket",
+              "id": "git-host",
+              "label": "Built into my Git host"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "cms": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Posts your team writes and publishes",
+              "id": "blog",
+              "label": "Blog and articles"
+            },
+            {
+              "hint": "Landing pages your team can change without a developer",
+              "id": "pages",
+              "label": "Marketing pages"
+            },
+            {
+              "hint": "Edit right on the page and see changes live",
+              "id": "visual-editing",
+              "label": "Visual editing"
+            },
+            {
+              "hint": "One place for web, mobile and more",
+              "id": "many-channels",
+              "label": "Content for many apps"
+            },
+            {
+              "hint": "Translate content into several languages",
+              "id": "languages",
+              "label": "Many languages"
+            },
+            {
+              "hint": "Saves content as files in Git",
+              "id": "git-files",
+              "label": "Content in my code repo"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "database": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Users, orders and other records",
+              "id": "app-data",
+              "label": "App data"
+            },
+            {
+              "hint": "Data without a fixed shape such as JSON documents",
+              "id": "flexible-data",
+              "label": "Flexible records"
+            },
+            {
+              "hint": "Reports and dashboards over many rows",
+              "id": "analytics",
+              "label": "Analytics"
+            },
+            {
+              "hint": "Find records by the words inside them",
+              "id": "text-search",
+              "label": "Text search"
+            },
+            {
+              "hint": "Embeddings for similarity search and RAG",
+              "id": "vectors",
+              "label": "AI and vectors"
+            },
+            {
+              "hint": "Time series, logs and sensor readings",
+              "id": "time-series",
+              "label": "Metrics and events"
+            }
+          ],
+          "question": "What do you need it for?"
+        },
+        {
+          "id": "scale",
+          "multi": false,
+          "options": [
+            {
+              "hint": "One machine holds all the data",
+              "id": "single",
+              "label": "Fits on one server"
+            },
+            {
+              "hint": "Data spread over many machines",
+              "id": "scale-out",
+              "label": "Needs to scale out"
+            }
+          ],
+          "question": "How big will it get?"
+        }
+      ],
+      "email": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Receipts, password resets and notifications",
+              "id": "app-emails",
+              "label": "App emails"
+            },
+            {
+              "hint": "Send to a mailing list",
+              "id": "newsletters",
+              "label": "Newsletters and campaigns"
+            },
+            {
+              "hint": "Build good looking emails with code",
+              "id": "design",
+              "label": "Email design"
+            },
+            {
+              "hint": "Catch emails while you build so none go out",
+              "id": "dev-testing",
+              "label": "Test emails safely"
+            },
+            {
+              "hint": "Read replies and incoming mail in your app",
+              "id": "inbound",
+              "label": "Receive emails"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "frontend": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Many screens that react to every click",
+              "id": "interactive",
+              "label": "Interactive apps"
+            },
+            {
+              "hint": "Small touches on pages the server builds",
+              "id": "sprinkles",
+              "label": "A bit of interactivity"
+            },
+            {
+              "hint": "A tiny download that starts quickly on any phone",
+              "id": "small-fast",
+              "label": "Small and fast"
+            },
+            {
+              "hint": "Pieces you can drop into any website",
+              "id": "widgets",
+              "label": "Reusable widgets"
+            },
+            {
+              "hint": "Firm structure and everything included for big codebases",
+              "id": "large-teams",
+              "label": "Large teams"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "hosting": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Blogs, docs and landing pages",
+              "id": "static-sites",
+              "label": "Static sites"
+            },
+            {
+              "hint": "Sites with server rendering such as Next.js or Nuxt",
+              "id": "web-apps",
+              "label": "Full web apps"
+            },
+            {
+              "hint": "Long running servers in any language",
+              "id": "backends",
+              "label": "Backends and APIs"
+            },
+            {
+              "hint": "Runs any app packaged as a container image",
+              "id": "containers",
+              "label": "Containers"
+            },
+            {
+              "hint": "Postgres or Redis next to your app",
+              "id": "databases",
+              "label": "Databases included"
+            },
+            {
+              "hint": "Runs code in many regions near your visitors",
+              "id": "near-users",
+              "label": "Close to users"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "jobs-queue": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Run slow work such as emails after the page loads",
+              "id": "background",
+              "label": "Background jobs"
+            },
+            {
+              "hint": "Run tasks on a timer such as nightly reports",
+              "id": "scheduled",
+              "label": "Scheduled jobs"
+            },
+            {
+              "hint": "Many step processes that survive crashes and restarts",
+              "id": "workflows",
+              "label": "Long workflows"
+            }
+          ],
+          "question": "What do you need it for?"
+        },
+        {
+          "id": "store",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Postgres, MySQL or SQLite, no extra server",
+              "id": "my-database",
+              "label": "My existing database"
+            },
+            {
+              "hint": "A fast in memory store you run next to the app",
+              "id": "redis",
+              "label": "Redis"
+            },
+            {
+              "hint": "A message broker or a server made for jobs",
+              "id": "own-service",
+              "label": "Its own service"
+            }
+          ],
+          "question": "Where should it keep jobs?"
+        }
+      ],
+      "meta-framework": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Pages, logins and server code in one project",
+              "id": "web-apps",
+              "label": "Full web apps"
+            },
+            {
+              "hint": "Blogs, marketing pages and portfolios",
+              "id": "content",
+              "label": "Content sites"
+            },
+            {
+              "hint": "Docs sites with navigation and search",
+              "id": "docs",
+              "label": "Documentation"
+            },
+            {
+              "hint": "Builds a site you can host anywhere as plain files",
+              "id": "static-export",
+              "label": "Plain files"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "mobile": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Both phone stores from one codebase",
+              "id": "ios-android",
+              "label": "iPhone and Android"
+            },
+            {
+              "hint": "Native apps for iPhone, iPad and Mac",
+              "id": "apple-only",
+              "label": "Apple only"
+            },
+            {
+              "hint": "Build with HTML, CSS and JavaScript",
+              "id": "web-skills",
+              "label": "Use my web skills"
+            },
+            {
+              "hint": "Windows, macOS or Linux from the same code",
+              "id": "desktop",
+              "label": "Desktop apps too"
+            },
+            {
+              "hint": "The same code also runs in the browser",
+              "id": "web-too",
+              "label": "Website too"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "observability": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Get told when the app breaks and see why",
+              "id": "errors",
+              "label": "Errors and crashes"
+            },
+            {
+              "hint": "Collect and search what your app writes out",
+              "id": "logs",
+              "label": "Logs"
+            },
+            {
+              "hint": "Charts of traffic, speed and business numbers",
+              "id": "metrics",
+              "label": "Metrics and dashboards"
+            },
+            {
+              "hint": "Follow one request across all your services",
+              "id": "tracing",
+              "label": "Tracing"
+            },
+            {
+              "hint": "Alerts when your site goes down",
+              "id": "uptime",
+              "label": "Uptime checks"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "orm": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Save and load records as objects in your code",
+              "id": "objects",
+              "label": "Objects instead of SQL"
+            },
+            {
+              "hint": "Write queries that read like SQL",
+              "id": "close-to-sql",
+              "label": "Close to SQL"
+            },
+            {
+              "hint": "Mistakes in queries caught before the code runs",
+              "id": "typed",
+              "label": "Typed queries"
+            },
+            {
+              "hint": "Comes with the web framework you use",
+              "id": "framework-built-in",
+              "label": "Part of my framework"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "payments": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Checkout for products or orders",
+              "id": "one-time",
+              "label": "One time payments"
+            },
+            {
+              "hint": "Monthly or yearly plans billed automatically",
+              "id": "subscriptions",
+              "label": "Subscriptions"
+            },
+            {
+              "hint": "Charge for what each customer uses",
+              "id": "usage-billing",
+              "label": "Usage based billing"
+            },
+            {
+              "hint": "They sell for you and pay sales tax and VAT",
+              "id": "tax-handled",
+              "label": "Taxes handled for me"
+            },
+            {
+              "hint": "Card readers and point of sale",
+              "id": "in-person",
+              "label": "In person payments"
+            },
+            {
+              "hint": "Direct debit and bank transfers",
+              "id": "bank-payments",
+              "label": "Bank payments"
+            },
+            {
+              "hint": "Pay sellers or creators on your platform",
+              "id": "payouts",
+              "label": "Marketplace payouts"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "search": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Find pages on a website or docs site",
+              "id": "site-search",
+              "label": "Search my site or docs"
+            },
+            {
+              "hint": "Fast search with typo tolerance and filters",
+              "id": "app-search",
+              "label": "Search products or records"
+            },
+            {
+              "hint": "Search and chart large amounts of logs",
+              "id": "logs",
+              "label": "Logs and analytics"
+            },
+            {
+              "hint": "Finds similar items using AI embeddings",
+              "id": "by-meaning",
+              "label": "Search by meaning"
+            },
+            {
+              "hint": "Runs on the page with no search server",
+              "id": "in-browser",
+              "label": "Search in the browser"
+            }
+          ],
+          "question": "What do you need it for?"
+        },
+        {
+          "id": "scale",
+          "multi": false,
+          "options": [
+            {
+              "hint": "One machine holds the whole index",
+              "id": "single",
+              "label": "Fits on one server"
+            },
+            {
+              "hint": "Index spread over many machines",
+              "id": "scale-out",
+              "label": "Needs to scale out"
+            }
+          ],
+          "question": "How big will it get?"
+        }
+      ],
+      "state": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Fetch, cache and refresh data from an API",
+              "id": "server-data",
+              "label": "Data from my server"
+            },
+            {
+              "hint": "Values many screens use such as a cart or the user",
+              "id": "shared-state",
+              "label": "Shared app state"
+            },
+            {
+              "hint": "Wizards and processes with clear states",
+              "id": "flows",
+              "label": "Step by step flows"
+            },
+            {
+              "hint": "A small library with little setup",
+              "id": "tiny",
+              "label": "Tiny and simple"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "storage": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Photos, documents and files from your users",
+              "id": "user-uploads",
+              "label": "User uploads"
+            },
+            {
+              "hint": "Resize, crop and stream media on the fly",
+              "id": "media",
+              "label": "Images and video"
+            },
+            {
+              "hint": "Serve images, scripts and downloads to visitors",
+              "id": "site-files",
+              "label": "Website files"
+            },
+            {
+              "hint": "Cheap space for large files you rarely open",
+              "id": "backups",
+              "label": "Backups and archives"
+            },
+            {
+              "hint": "A ready made upload screen for your app",
+              "id": "upload-widget",
+              "label": "Upload button"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "testing": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Check small pieces of code on their own",
+              "id": "unit",
+              "label": "Unit tests"
+            },
+            {
+              "hint": "Click through the app in a real browser",
+              "id": "browser",
+              "label": "Browser tests"
+            },
+            {
+              "hint": "Test screens the way a user sees them",
+              "id": "components",
+              "label": "Component tests"
+            },
+            {
+              "hint": "Send requests and check the answers",
+              "id": "api",
+              "label": "API tests"
+            },
+            {
+              "hint": "See how the app holds up under heavy traffic",
+              "id": "load",
+              "label": "Load tests"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ],
+      "ui-kit": [
+        {
+          "id": "need",
+          "multi": true,
+          "options": [
+            {
+              "hint": "Buttons, forms and menus that look good at once",
+              "id": "ready-components",
+              "label": "Ready made components"
+            },
+            {
+              "hint": "Accessible parts with no styles of their own",
+              "id": "own-look",
+              "label": "Bring my own look"
+            },
+            {
+              "hint": "Components copied into your project to edit freely",
+              "id": "own-code",
+              "label": "Code I own"
+            },
+            {
+              "hint": "Small CSS classes you combine in your markup",
+              "id": "utility-css",
+              "label": "Style with classes"
+            },
+            {
+              "hint": "Rich tables, date pickers and charts",
+              "id": "data-screens",
+              "label": "Admin and data screens"
+            }
+          ],
+          "question": "What do you need it for?"
+        }
+      ]
+    },
     "languages": [
       "python",
       "typescript",
@@ -23213,6 +24655,74 @@
         ],
         "id": "saas",
         "label": "SaaS product"
+      }
+    ],
+    "shared_facets": [
+      {
+        "id": "run",
+        "layers": [
+          "database",
+          "cache",
+          "jobs-queue",
+          "search",
+          "storage",
+          "auth",
+          "payments",
+          "email",
+          "cms",
+          "hosting",
+          "ci-cd",
+          "observability"
+        ],
+        "multi": true,
+        "options": [
+          {
+            "hint": "A library or a local file with no server of its own",
+            "id": "in-app",
+            "label": "Inside my app"
+          },
+          {
+            "hint": "You install it and keep it running",
+            "id": "self-hosted",
+            "label": "My own servers"
+          },
+          {
+            "hint": "A cloud service runs it for you",
+            "id": "managed",
+            "label": "Managed for me"
+          }
+        ],
+        "question": "Where should it run?"
+      },
+      {
+        "id": "license",
+        "layers": [
+          "database",
+          "cache",
+          "search",
+          "storage",
+          "auth",
+          "payments",
+          "email",
+          "cms",
+          "hosting",
+          "ci-cd",
+          "observability"
+        ],
+        "multi": false,
+        "options": [
+          {
+            "hint": "Code you can read and run yourself for free",
+            "id": "oss",
+            "label": "Open source only"
+          },
+          {
+            "hint": "Paid and closed source tools too",
+            "id": "any",
+            "label": "Anything"
+          }
+        ],
+        "question": "License"
       }
     ],
     "tooling_layers": [

@@ -11,7 +11,12 @@ from pydantic import TypeAdapter, ValidationError
 
 from .models import (
     LAYERS,
+    NEED_GROUP,
+    SCALE_GROUP,
+    SCALE_OPTIONS,
+    SHARED_FACET_OPTIONS,
     SYMMETRIC_EDGE_TYPES,
+    FacetGroup,
     KeywordEntry,
     KnowledgeBase,
     Tool,
@@ -112,6 +117,96 @@ def _check_vocab(vocab: Vocab, errors: list[str]) -> None:
     for layer in vocab.tooling_layers:
         if layer not in layers:
             errors.append(f"{rel}: tooling_layers has unknown layer '{layer}'")
+    _check_facets(vocab, errors)
+
+
+_DASHES = ("-", chr(0x2013), chr(0x2014))
+
+
+def _check_facet_text(group: FacetGroup, where: str, errors: list[str]) -> None:
+    texts = [("question", group.question)]
+    for opt in group.options:
+        texts += [(f"option '{opt.id}' label", opt.label), (f"option '{opt.id}' hint", opt.hint)]
+    for what, text in texts:
+        if any(d in text for d in _DASHES):
+            errors.append(f"vocab.yaml: {where} {what} '{text}' contains a dash, use plain words")
+
+
+def _check_facets(vocab: Vocab, errors: list[str]) -> None:
+    rel = "vocab.yaml"
+    layers = set(LAYERS)
+    shared_ids = [s.id for s in vocab.shared_facets]
+    if shared_ids != list(SHARED_FACET_OPTIONS):
+        errors.append(
+            f"{rel}: shared_facets must be exactly {list(SHARED_FACET_OPTIONS)}, got {shared_ids}"
+        )
+    for shared in vocab.shared_facets:
+        expected = SHARED_FACET_OPTIONS.get(shared.id)
+        got = [o.id for o in shared.options]
+        if expected is not None and got != expected:
+            errors.append(
+                f"{rel}: shared_facets '{shared.id}' options must be {expected}, got {got}"
+            )
+        _check_facet_text(shared, f"shared_facets '{shared.id}'", errors)
+        for layer in shared.layers:
+            if layer not in layers:
+                errors.append(f"{rel}: shared_facets '{shared.id}' has unknown layer '{layer}'")
+            elif layer not in vocab.facets:
+                errors.append(
+                    f"{rel}: shared_facets '{shared.id}' lists layer '{layer}' "
+                    f"which has no facets"
+                )
+    for layer, groups in vocab.facets.items():
+        where = f"facets '{layer}'"
+        if layer not in layers:
+            errors.append(f"{rel}: facets has unknown layer '{layer}'")
+            continue
+        if not 1 <= len(groups) <= 3:
+            errors.append(f"{rel}: {where} must have 1 to 3 groups, has {len(groups)}")
+        if NEED_GROUP not in [g.id for g in groups]:
+            errors.append(f"{rel}: {where} has no '{NEED_GROUP}' group (What do you need it for?)")
+        group_ids: set[str] = set()
+        option_ids: set[str] = set()
+        for group in groups:
+            gwhere = f"{where} group '{group.id}'"
+            if group.id in group_ids:
+                errors.append(f"{rel}: {where} has duplicate group id '{group.id}'")
+            group_ids.add(group.id)
+            if group.id in SHARED_FACET_OPTIONS:
+                errors.append(
+                    f"{rel}: {where} group id '{group.id}' is reserved for shared_facets"
+                )
+            ids = [o.id for o in group.options]
+            if group.id == SCALE_GROUP:
+                if ids != SCALE_OPTIONS or group.multi:
+                    errors.append(
+                        f"{rel}: {gwhere} must be single choice with options {SCALE_OPTIONS}"
+                    )
+            else:
+                if not 3 <= len(ids) <= 8:
+                    errors.append(f"{rel}: {gwhere} must have 3 to 8 options, has {len(ids)}")
+                for oid in ids:
+                    if oid in option_ids:
+                        errors.append(f"{rel}: {where} has duplicate option id '{oid}'")
+                    option_ids.add(oid)
+            _check_facet_text(group, gwhere, errors)
+
+
+def _check_facet_coverage(
+    vocab: Vocab, tools: dict[str, tuple[Tool, str]], errors: list[str]
+) -> None:
+    for layer in sorted({tool.layer for tool, _ in tools.values()} - set(vocab.facets)):
+        errors.append(f"vocab.yaml: facets has no groups for layer '{layer}', which has tools")
+
+
+def _use_options(vocab: Vocab, layer: str) -> set[str]:
+    """Option ids a tool on this layer may list in `uses`."""
+    return {
+        o.id
+        for g in vocab.facets.get(layer, [])
+        if g.id != SCALE_GROUP
+        for o in g.options
+    }
 
 
 def _check_keywords(keywords: list[KeywordEntry], vocab: Vocab | None, errors: list[str]) -> None:
@@ -161,6 +256,22 @@ def _check_tool(
         for lang in tool.languages:
             if lang not in vocab.languages:
                 errors.append(f"{rel}: language '{lang}' is not in vocab.yaml")
+        allowed = _use_options(vocab, tool.layer)
+        seen_uses: set[str] = set()
+        for use in tool.uses:
+            if use in seen_uses:
+                errors.append(f"{rel}: duplicate use '{use}'")
+            seen_uses.add(use)
+            if use not in allowed:
+                errors.append(
+                    f"{rel}: use '{use}' is not an option of the {tool.layer} facets "
+                    f"in vocab.yaml (scale and shared facets are not uses)"
+                )
+        groups = vocab.facets.get(tool.layer, [])
+        if tool.scale is not None and not any(g.id == SCALE_GROUP for g in groups):
+            errors.append(
+                f"{rel}: scale is set but the {tool.layer} layer has no scale group in vocab.yaml"
+            )
 
 
 def _check_edges(tools: dict[str, tuple[Tool, str]], errors: list[str]) -> None:
@@ -284,6 +395,8 @@ def load_kb(data_dir: Path) -> KnowledgeBase:
         _check_edges(tools, errors)
         _check_exclusive_pair_edges(tools, errors)
         _check_aliases(tools, errors)
+        if vocab is not None:
+            _check_facet_coverage(vocab, tools, errors)
         if keywords is not None:
             _check_keyword_tool_collisions(keywords, tools, errors)
 

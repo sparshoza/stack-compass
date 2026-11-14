@@ -16,3 +16,50 @@ project_types:
 capability_layers:
   full-text-search: [search]
 tooling_layers: [testing]
+shared_facets:
+  - id: run
+    question: Where should it run?
+    multi: true
+    options:
+      - {id: in-app, label: Inside my app, hint: A library or a local file with no server of its own}
+      - {id: self-hosted, label: My own servers, hint: You install it and keep it running}
+      - {id: managed, label: Managed for me, hint: A cloud service runs it for you}
+    layers: [database]
+  - id: license
+    question: License
+    multi: false
+    options:
+      - {id: oss, label: Open source only, hint: Free to use and change the code}
+      - {id: any, label: Anything, hint: Paid and closed source tools too}
+    layers: [database]
+facets:
+  frontend:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: interactive, label: Interactive apps, hint: Many screens that react to every click}
+        - {id: sprinkles, label: A bit of interactivity, hint: Small touches on pages the server builds}
+        - {id: small-fast, label: Small and fast, hint: A tiny download that starts quickly}
+  backend:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: all-in-one, label: All in one, hint: "Database, logins and admin built in"}
+        - {id: apis, label: APIs, hint: Data for a website or phone app}
+        - {id: lightweight, label: Lightweight, hint: A small core you add to as you go}
+  database:
+    - id: need
+      question: What do you need it for?
+      multi: true
+      options:
+        - {id: app-data, label: App data, hint: "Users, orders and other records"}
+        - {id: analytics, label: Analytics, hint: Reports and dashboards over many rows}
+        - {id: vectors, label: AI and vectors, hint: Embeddings for similarity search}
+    - id: scale
+      question: How big will it get?
+      multi: false
+      options:
+        - {id: single, label: Fits on one server, hint: One machine is enough}
+        - {id: scale-out, label: Needs to scale out, hint: Data spread over many machines}

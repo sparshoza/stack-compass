@@ -1,5 +1,4 @@
 .claude/
-.superpowers/
 .impeccable/
 CLAUDE.md
 PRODUCT.md
@@ -12,4 +11,3 @@ __pycache__/
 .ruff_cache/
 *.pyc
 .env
-.taste-skill/

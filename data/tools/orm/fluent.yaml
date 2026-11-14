@@ -17,9 +17,10 @@ good_for: [Vapor apps]
 avoid_when: [Projects not using Vapor]
 edges:
 - {type: pairs-with, target: vapor}
+- {type: built-on, target: vapor}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: sqlite}
 - {type: pairs-with, target: mongodb}
 verified: 2026-11-14
-sources: ['https://docs.vapor.codes/fluent/overview/', 'https://github.com/vapor/fluent']
+sources: ['https://github.com/vapor/fluent/blob/main/Package.swift', 'https://docs.vapor.codes/fluent/overview/', 'https://github.com/vapor/fluent']

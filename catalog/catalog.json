@@ -6367,6 +6367,10 @@
           "type": "pairs-with"
         },
         {
+          "target": "django",
+          "type": "built-on"
+        },
+        {
           "target": "postgresql",
           "type": "pairs-with"
         },
@@ -6405,6 +6409,7 @@
       "repo": "https://github.com/django/django",
       "runs_in_app": true,
       "sources": [
+        "https://docs.djangoproject.com/en/stable/topics/db/models/",
         "https://docs.djangoproject.com/en/stable/topics/db/",
         "https://docs.djangoproject.com/en/stable/ref/databases/",
         "https://github.com/django/django"
@@ -8231,6 +8236,10 @@
           "type": "pairs-with"
         },
         {
+          "target": "vapor",
+          "type": "built-on"
+        },
+        {
           "target": "postgresql",
           "type": "pairs-with"
         },
@@ -8268,6 +8277,7 @@
       "repo": "https://github.com/vapor/fluent",
       "runs_in_app": true,
       "sources": [
+        "https://github.com/vapor/fluent/blob/main/Package.swift",
         "https://docs.vapor.codes/fluent/overview/",
         "https://github.com/vapor/fluent"
       ],

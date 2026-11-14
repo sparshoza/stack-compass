@@ -1,0 +1,105 @@
+languages: [python, typescript, javascript, go, java, kotlin, csharp, ruby, php, rust, elixir, dart, swift]
+capabilities:
+  - id: realtime
+    label: Realtime
+    explain: Pushes changes to users as they happen, such as chat messages or live dashboards.
+  - id: ssr-seo
+    label: Server rendering and SEO
+    explain: Renders pages on the server so search engines and slow devices get full content.
+  - id: static-content
+    label: Static content
+    explain: Serves pages that are built once and cached, such as blogs and docs.
+  - id: offline
+    label: Offline use
+    explain: Keeps the app working without a connection and syncs when it returns.
+  - id: file-uploads
+    label: File uploads
+    explain: Lets users upload images, documents or videos and stores them safely.
+  - id: full-text-search
+    label: Full-text search
+    explain: Searches inside text with ranking and typo tolerance.
+  - id: background-jobs
+    label: Background jobs
+    explain: Runs slow work such as emails or image processing outside the web request.
+  - id: scheduled-jobs
+    label: Scheduled jobs
+    explain: Runs tasks on a timer, such as nightly reports or reminders.
+  - id: payments
+    label: Payments
+    explain: Takes card payments, subscriptions or invoices.
+  - id: transactional-email
+    label: Transactional email
+    explain: Sends account emails such as receipts, password resets and notifications.
+  - id: content-editing
+    label: Content editing
+    explain: Gives non-developers an editor to change pages and posts.
+  - id: multi-tenant
+    label: Multi-tenant
+    explain: Serves many customer organisations from one app with separated data.
+  - id: geospatial
+    label: Maps and location
+    explain: Stores and queries places, distances and areas on a map.
+  - id: analytics
+    label: Analytics
+    explain: Counts and analyses events and usage over large amounts of data.
+  - id: vector-search
+    label: Vector search
+    explain: Finds similar items by meaning using embeddings, for recommendations and semantic search.
+  - id: social-login
+    label: Social login
+    explain: Lets people sign in with Google, GitHub or other accounts.
+  - id: enterprise-sso
+    label: Enterprise single sign-on
+    explain: Lets company staff sign in through their company identity provider (SAML or OIDC).
+  - id: edge-runtime
+    label: Edge runtime
+    explain: Runs code close to users on edge networks with fast cold starts.
+  - id: type-safety
+    label: Type safety
+    explain: Catches type mistakes before the code runs, across client and server.
+  - id: admin-ui
+    label: Admin panel
+    explain: Gives your team a ready-made screen to view and edit data.
+  - id: high-write-throughput
+    label: High write volume
+    explain: Handles very many writes per second, such as events, logs or sensor data.
+  - id: native-mobile
+    label: Native mobile app
+    explain: Ships an app for iOS and Android app stores.
+project_types:
+  - id: web-app
+    label: Web app
+    core_layers: [frontend, meta-framework, ui-kit, backend, database, orm, auth, hosting]
+  - id: content-site
+    label: Content site
+    core_layers: [frontend, meta-framework, ui-kit, cms, hosting]
+  - id: api-only
+    label: API only
+    core_layers: [backend, api-style, database, orm, auth, hosting]
+  - id: mobile-app
+    label: Mobile app
+    core_layers: [mobile, backend, database, orm, auth, hosting]
+  - id: realtime-app
+    label: Realtime app
+    core_layers: [frontend, meta-framework, ui-kit, backend, database, cache, auth, hosting]
+  - id: internal-tool
+    label: Internal tool
+    core_layers: [frontend, ui-kit, backend, database, orm, auth, hosting]
+  - id: ecommerce
+    label: Online store
+    core_layers: [frontend, meta-framework, ui-kit, backend, database, orm, auth, payments, email, hosting]
+  - id: saas
+    label: SaaS product
+    core_layers: [frontend, meta-framework, ui-kit, backend, database, orm, auth, payments, email, jobs-queue, hosting]
+capability_layers:
+  full-text-search: [search]
+  file-uploads: [storage]
+  payments: [payments]
+  transactional-email: [email]
+  background-jobs: [jobs-queue]
+  scheduled-jobs: [jobs-queue]
+  content-editing: [cms]
+  realtime: [cache]
+  native-mobile: [mobile]
+  vector-search: [database]
+tooling_layers: [state, build-tool, ci-cd, observability, testing]

@@ -1,0 +1,21 @@
+id: pgvector
+name: pgvector
+aliases: []
+layer: database
+summary: An open source PostgreSQL extension for vector similarity search.
+url: https://github.com/pgvector/pgvector
+repo: https://github.com/pgvector/pgvector
+license: PostgreSQL
+languages: []
+tags: [vector-search]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Embeddings next to your relational data]
+avoid_when: [Billions of vectors with strict latency targets]
+edges:
+- {type: alternative-to, target: qdrant}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: supabase}
+verified: 2026-11-14
+sources: ['https://github.com/pgvector/pgvector', 'https://raw.githubusercontent.com/pgvector/pgvector/master/LICENSE']

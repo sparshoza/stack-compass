@@ -1,0 +1,21 @@
+id: exposed
+name: Exposed
+aliases: [kotlin exposed]
+layer: orm
+summary: A Kotlin SQL framework from JetBrains with a DSL and a DAO API.
+url: https://www.jetbrains.com/help/exposed
+repo: https://github.com/JetBrains/Exposed
+license: Apache-2.0
+languages: [kotlin]
+tags: [type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Kotlin and Ktor services]
+avoid_when: [Your team uses JPA everywhere]
+edges:
+- {type: alternative-to, target: hibernate}
+- {type: pairs-with, target: ktor}
+- {type: pairs-with, target: postgresql}
+verified: 2026-11-14
+sources: ['https://www.jetbrains.com/help/exposed', 'https://ktor.io/docs/server-integrate-database.html', 'https://github.com/JetBrains/Exposed']

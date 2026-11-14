@@ -1,0 +1,20 @@
+id: gin
+name: Gin
+aliases: [gin-gonic, gin web framework]
+layer: backend
+summary: A high-performance Go web framework with radix tree routing and middleware.
+url: https://gin-gonic.com
+repo: https://github.com/gin-gonic/gin
+license: MIT
+languages: [go]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Fast Go APIs, Simple routing and middleware]
+avoid_when: [You want a full-stack framework]
+edges:
+- {type: pairs-with, target: gorm}
+- {type: pairs-with, target: gqlgen}
+verified: 2026-11-14
+sources: ['https://gin-gonic.com', 'https://gqlgen.com/recipes/gin/', 'https://github.com/gin-gonic/gin']

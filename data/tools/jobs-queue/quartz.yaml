@@ -1,0 +1,19 @@
+id: quartz
+name: Quartz Scheduler
+aliases: [quartz scheduler]
+layer: jobs-queue
+summary: A Java job scheduling library that embeds in nearly any Java application.
+url: https://www.quartz-scheduler.org
+repo: https://github.com/quartz-scheduler/quartz
+license: Apache-2.0
+languages: [java]
+tags: [scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Cron-style scheduling on the JVM]
+avoid_when: [Distributed job queues with a web dashboard]
+edges:
+- {type: alternative-to, target: jobrunr}
+verified: 2026-11-14
+sources: ['https://www.quartz-scheduler.org', 'https://github.com/quartz-scheduler/quartz']

@@ -1,0 +1,24 @@
+id: fastify
+name: Fastify
+aliases: []
+layer: backend
+summary: A fast, low-overhead Node.js web framework with a plugin system and schema validation.
+url: https://fastify.dev
+repo: https://github.com/fastify/fastify
+license: MIT
+languages: [javascript, typescript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [High-throughput Node APIs, Schema-validated routes]
+avoid_when: [You rely on Express-only middleware]
+edges:
+- {type: alternative-to, target: express}
+- {type: alternative-to, target: hono}
+- {type: alternative-to, target: nestjs}
+- {type: pairs-with, target: apollo-server}
+- {type: pairs-with, target: graphql-yoga}
+- {type: pairs-with, target: trpc}
+verified: 2026-11-14
+sources: ['https://fastify.dev', 'https://github.com/fastify/fastify']

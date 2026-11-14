@@ -1,0 +1,20 @@
+id: nats
+name: NATS
+aliases: []
+layer: cache
+summary: A lightweight messaging system with pub/sub, request-reply and JetStream persistence.
+url: https://nats.io
+repo: https://github.com/nats-io/nats-server
+license: Apache-2.0
+languages: []
+tags: [realtime]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Realtime messaging between services]
+avoid_when: [Plain key-value caching]
+edges:
+- {type: alternative-to, target: centrifugo}
+- {type: pairs-with, target: centrifugo}
+verified: 2026-11-14
+sources: ['https://nats.io', 'https://github.com/nats-io/nats-server']

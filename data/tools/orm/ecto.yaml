@@ -1,0 +1,22 @@
+id: ecto
+name: Ecto
+aliases: []
+layer: orm
+summary: A library for mapping data to Elixir structs and writing queries from Elixir code.
+url: https://ecto.hexdocs.pm/
+repo: https://github.com/elixir-ecto/ecto
+license: Apache-2.0
+languages: [elixir]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Phoenix apps]
+avoid_when: [Projects not using Elixir]
+edges:
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: phoenix}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://ecto.hexdocs.pm/', 'https://phoenix.hexdocs.pm/ecto.html', 'https://github.com/elixir-ecto/ecto']

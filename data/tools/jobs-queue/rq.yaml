@@ -1,0 +1,21 @@
+id: rq
+name: RQ
+aliases: [python-rq, redis queue]
+layer: jobs-queue
+summary: A simple Python library for queueing jobs and processing them in the background with Redis.
+url: https://python-rq.org
+repo: https://github.com/rq/rq
+license: BSD-2-Clause
+languages: [python]
+tags: [background-jobs]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Small Python job queues]
+avoid_when: [Complex routing and workflows]
+edges:
+- {type: alternative-to, target: celery}
+- {type: pairs-with, target: redis}
+- {type: pairs-with, target: valkey}
+verified: 2026-11-14
+sources: ['https://python-rq.org', 'https://raw.githubusercontent.com/rq/rq/master/LICENSE', 'https://github.com/rq/rq']

@@ -1,0 +1,39 @@
+id: postgresql
+name: PostgreSQL
+aliases: [postgres, pg]
+layer: database
+summary: An advanced open source relational database with strong SQL support and built-in full-text search.
+url: https://www.postgresql.org
+license: PostgreSQL
+languages: []
+tags: [full-text-search]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [The default relational choice, Complex queries and JSON]
+avoid_when: [Embedded single-file databases]
+edges:
+- {type: alternative-to, target: mariadb}
+- {type: alternative-to, target: mysql}
+- {type: pairs-with, target: active-record}
+- {type: pairs-with, target: diesel}
+- {type: pairs-with, target: drizzle}
+- {type: pairs-with, target: ecto}
+- {type: pairs-with, target: exposed}
+- {type: pairs-with, target: gorm}
+- {type: pairs-with, target: hibernate}
+- {type: pairs-with, target: jobrunr}
+- {type: pairs-with, target: kysely}
+- {type: pairs-with, target: mikro-orm}
+- {type: pairs-with, target: neon}
+- {type: pairs-with, target: oban}
+- {type: pairs-with, target: pg-boss}
+- {type: pairs-with, target: pgvector}
+- {type: pairs-with, target: postgraphile}
+- {type: pairs-with, target: river}
+- {type: pairs-with, target: sequelize}
+- {type: pairs-with, target: solid-queue}
+- {type: pairs-with, target: supabase}
+- {type: pairs-with, target: typeorm}
+verified: 2026-11-14
+sources: ['https://www.postgresql.org', 'https://www.postgresql.org/about/license/', 'https://www.postgresql.org/docs/current/textsearch-intro.html']

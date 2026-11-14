@@ -1,0 +1,21 @@
+id: neon
+name: Neon
+aliases: [neon postgres, neon tech]
+layer: database
+summary: Serverless Postgres that scales to zero, with branches per pull request and an edge-ready driver.
+url: https://neon.com
+repo: https://github.com/neondatabase/neon
+license: Apache-2.0
+languages: []
+tags: [vector-search, edge-runtime]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Serverless apps, Database branches per pull request]
+avoid_when: [You need to run it on your own servers]
+edges:
+- {type: alternative-to, target: supabase}
+- {type: pairs-with, target: drizzle}
+- {type: pairs-with, target: postgresql}
+verified: 2026-11-14
+sources: ['https://neon.com', 'https://neon.com/docs/extensions/pgvector', 'https://neon.com/docs/serverless/serverless-driver', 'https://neon.com/pricing', 'https://github.com/neondatabase/neon']

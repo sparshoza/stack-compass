@@ -1,0 +1,24 @@
+id: express
+name: Express
+aliases: [expressjs, express.js]
+layer: backend
+summary: A fast, unopinionated, minimalist web framework for Node.js.
+url: https://expressjs.com
+repo: https://github.com/expressjs/express
+license: MIT
+languages: [javascript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Simple Node APIs, Huge middleware ecosystem]
+avoid_when: [You want built-in structure and validation]
+edges:
+- {type: alternative-to, target: fastify}
+- {type: alternative-to, target: hono}
+- {type: alternative-to, target: nestjs}
+- {type: pairs-with, target: apollo-server}
+- {type: pairs-with, target: graphql-yoga}
+- {type: pairs-with, target: trpc}
+verified: 2026-11-14
+sources: ['https://expressjs.com', 'https://github.com/expressjs/express']

@@ -1,0 +1,33 @@
+id: mysql
+name: MySQL
+aliases: []
+layer: database
+summary: A widely used open source relational database with spatial and full-text indexes.
+url: https://www.mysql.com
+repo: https://github.com/mysql/mysql-server
+license: GPL-2.0
+languages: []
+tags: [full-text-search, geospatial]
+hosting: [self-hosted, managed]
+pricing: [oss, paid]
+maturity: established
+good_for: [Read-heavy web apps, Broad hosting support]
+avoid_when: [Advanced Postgres-only features]
+edges:
+- {type: alternative-to, target: mariadb}
+- {type: alternative-to, target: postgresql}
+- {type: pairs-with, target: active-record}
+- {type: pairs-with, target: diesel}
+- {type: pairs-with, target: drizzle}
+- {type: pairs-with, target: ecto}
+- {type: pairs-with, target: gorm}
+- {type: pairs-with, target: hibernate}
+- {type: pairs-with, target: jobrunr}
+- {type: pairs-with, target: kysely}
+- {type: pairs-with, target: mikro-orm}
+- {type: pairs-with, target: oban}
+- {type: pairs-with, target: sequelize}
+- {type: pairs-with, target: solid-queue}
+- {type: pairs-with, target: typeorm}
+verified: 2026-11-14
+sources: ['https://www.mysql.com', 'https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html', 'https://dev.mysql.com/doc/refman/8.4/en/spatial-types.html', 'https://github.com/mysql/mysql-server']

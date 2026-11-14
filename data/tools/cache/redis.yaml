@@ -1,0 +1,29 @@
+id: redis
+name: Redis
+aliases: []
+layer: cache
+summary: An in-memory data store for caching, sessions, streaming and search, open source or Redis Enterprise.
+url: https://redis.io
+repo: https://github.com/redis/redis
+license: RSALv2, SSPLv1 or AGPLv3
+languages: []
+tags: [realtime]
+hosting: [self-hosted, managed]
+pricing: [oss, free-tier, paid]
+maturity: established
+good_for: [Caching and sessions, Pub/sub and queues]
+avoid_when: [Your policy requires a permissive licence]
+edges:
+- {type: alternative-to, target: dragonfly}
+- {type: alternative-to, target: garnet}
+- {type: alternative-to, target: memcached}
+- {type: alternative-to, target: upstash-redis}
+- {type: alternative-to, target: valkey}
+- {type: pairs-with, target: asynq}
+- {type: pairs-with, target: bullmq}
+- {type: pairs-with, target: centrifugo}
+- {type: pairs-with, target: elasticache}
+- {type: pairs-with, target: laravel-queues}
+- {type: pairs-with, target: rq}
+verified: 2026-11-14
+sources: ['https://redis.io', 'https://github.com/redis/redis']

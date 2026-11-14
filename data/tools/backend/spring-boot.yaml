@@ -1,0 +1,21 @@
+id: spring-boot
+name: Spring Boot
+aliases: [spring, springboot]
+layer: backend
+summary: A Java and Kotlin framework for production-grade Spring applications with minimal setup.
+url: https://spring.io/projects/spring-boot
+repo: https://github.com/spring-projects/spring-boot
+license: Apache-2.0
+languages: [java, kotlin]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Enterprise services, Large teams and long-lived systems]
+avoid_when: [Tiny services where startup time and memory matter most]
+edges:
+- {type: alternative-to, target: ktor}
+- {type: pairs-with, target: hibernate}
+- {type: pairs-with, target: jobrunr}
+verified: 2026-11-14
+sources: ['https://spring.io/projects/spring-boot', 'https://docs.spring.io/spring-boot/reference/features/kotlin.html', 'https://github.com/spring-projects/spring-boot']

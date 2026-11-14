@@ -1,0 +1,20 @@
+id: entity-framework-core
+name: Entity Framework Core
+aliases: [ef core, efcore, entity framework]
+layer: orm
+summary: Microsoft's object-database mapper for .NET, with LINQ queries and migrations.
+url: https://learn.microsoft.com/ef/core
+repo: https://github.com/dotnet/efcore
+license: MIT
+languages: [csharp]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [ASP.NET Core apps]
+avoid_when: [Raw-performance micro-queries only]
+edges:
+- {type: pairs-with, target: aspnet-core}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://learn.microsoft.com/ef/core', 'https://learn.microsoft.com/aspnet/core/data/ef-rp/intro', 'https://github.com/dotnet/efcore']

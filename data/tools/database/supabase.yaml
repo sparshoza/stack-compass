@@ -1,0 +1,21 @@
+id: supabase
+name: Supabase
+aliases: []
+layer: database
+summary: A Postgres platform with optional auth, realtime, storage and vector search (pgvector).
+url: https://supabase.com
+repo: https://github.com/supabase/supabase
+license: Apache-2.0
+languages: []
+tags: [realtime, file-uploads, vector-search]
+hosting: [managed, self-hosted]
+pricing: [oss, free-tier, paid]
+maturity: established
+good_for: [Prototypes that need auth and realtime fast]
+avoid_when: [You want each piece chosen separately]
+edges:
+- {type: alternative-to, target: neon}
+- {type: pairs-with, target: pgvector}
+- {type: pairs-with, target: postgresql}
+verified: 2026-11-14
+sources: ['https://supabase.com', 'https://github.com/supabase/supabase']

@@ -1,0 +1,21 @@
+id: dragonfly
+name: Dragonfly
+aliases: [dragonflydb]
+layer: cache
+summary: An in-memory data store with Redis, Valkey and Memcached APIs, self-hosted or as Dragonfly Cloud.
+url: https://www.dragonflydb.io
+repo: https://github.com/dragonflydb/dragonfly
+license: Dragonfly Source-Available License
+languages: []
+tags: []
+hosting: [self-hosted, managed]
+pricing: [free-tier, paid]
+maturity: emerging
+good_for: [Redis-compatible with multi-core throughput]
+avoid_when: [Your policy requires an OSI open source licence]
+edges:
+- {type: alternative-to, target: garnet}
+- {type: alternative-to, target: redis}
+- {type: alternative-to, target: valkey}
+verified: 2026-11-14
+sources: ['https://www.dragonflydb.io', 'https://github.com/dragonflydb/dragonfly/blob/main/LICENSE.md', 'https://github.com/dragonflydb/dragonfly']

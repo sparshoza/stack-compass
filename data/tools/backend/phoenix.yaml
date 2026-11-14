@@ -1,0 +1,19 @@
+id: phoenix
+name: Phoenix
+aliases: [phoenix framework, liveview]
+layer: backend
+summary: An Elixir web framework with Channels and LiveView for realtime features.
+url: https://www.phoenixframework.org
+repo: https://github.com/phoenixframework/phoenix
+license: MIT
+languages: [elixir]
+tags: [realtime]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Realtime and chat apps, Many concurrent connections]
+avoid_when: [Your team has no Elixir experience]
+edges:
+- {type: pairs-with, target: ecto}
+verified: 2026-11-14
+sources: ['https://www.phoenixframework.org', 'https://phoenix.hexdocs.pm/ecto.html', 'https://github.com/phoenixframework/phoenix']

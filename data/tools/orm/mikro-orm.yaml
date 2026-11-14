@@ -1,0 +1,29 @@
+id: mikro-orm
+name: MikroORM
+aliases: [mikroorm]
+layer: orm
+summary: A TypeScript ORM based on Data Mapper, Unit of Work and Identity Map patterns.
+url: https://mikro-orm.io
+repo: https://github.com/mikro-orm/mikro-orm
+license: MIT
+languages: [typescript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Domain-driven designs in TypeScript]
+avoid_when: [You want the simplest possible setup]
+edges:
+- {type: alternative-to, target: drizzle}
+- {type: alternative-to, target: kysely}
+- {type: alternative-to, target: prisma}
+- {type: alternative-to, target: sequelize}
+- {type: alternative-to, target: typeorm}
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: turso}
+verified: 2026-11-14
+sources: ['https://mikro-orm.io', 'https://github.com/mikro-orm/mikro-orm']

@@ -1,0 +1,23 @@
+id: prisma
+name: Prisma
+aliases: [prisma orm]
+layer: orm
+summary: A TypeScript ORM with a declarative schema, generated type-safe client and migrations.
+url: https://www.prisma.io
+repo: https://github.com/prisma/prisma
+license: Apache-2.0
+languages: [typescript]
+tags: [type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Typed queries with an approachable API, Schema-driven migrations]
+avoid_when: [Very complex hand-tuned SQL everywhere]
+edges:
+- {type: alternative-to, target: drizzle}
+- {type: alternative-to, target: kysely}
+- {type: alternative-to, target: mikro-orm}
+- {type: alternative-to, target: sequelize}
+- {type: alternative-to, target: typeorm}
+verified: 2026-11-14
+sources: ['https://www.prisma.io', 'https://github.com/prisma/prisma']

@@ -1,0 +1,23 @@
+id: valkey
+name: Valkey
+aliases: []
+layer: cache
+summary: A BSD-licensed key/value store backed by the Linux Foundation, for caching, queues and primary data.
+url: https://valkey.io
+repo: https://github.com/valkey-io/valkey
+license: BSD-3-Clause
+languages: []
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [A permissively licensed Redis replacement]
+avoid_when: [You need Redis-only modules]
+edges:
+- {type: alternative-to, target: dragonfly}
+- {type: alternative-to, target: garnet}
+- {type: alternative-to, target: redis}
+- {type: pairs-with, target: elasticache}
+- {type: pairs-with, target: rq}
+verified: 2026-11-14
+sources: ['https://valkey.io', 'https://github.com/valkey-io/valkey']

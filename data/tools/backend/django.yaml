@@ -1,0 +1,22 @@
+id: django
+name: Django
+aliases: [django framework]
+layer: backend
+summary: A batteries-included Python web framework with an ORM and a built-in admin site.
+url: https://www.djangoproject.com
+repo: https://github.com/django/django
+license: BSD-3-Clause
+languages: [python]
+tags: [admin-ui]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Content and data-heavy sites with an admin, Teams that want one framework for everything]
+avoid_when: [A tiny single-endpoint service]
+edges:
+- {type: alternative-to, target: fastapi}
+- {type: alternative-to, target: flask}
+- {type: pairs-with, target: celery}
+- {type: pairs-with, target: strawberry}
+verified: 2026-11-14
+sources: ['https://www.djangoproject.com', 'https://github.com/django/django']

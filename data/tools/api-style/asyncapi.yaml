@@ -1,0 +1,19 @@
+id: asyncapi
+name: AsyncAPI
+aliases: [async api]
+layer: api-style
+summary: An open community and specification for describing event-driven APIs.
+url: https://www.asyncapi.com
+repo: https://github.com/asyncapi/spec
+license: Apache-2.0
+languages: []
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Documenting websocket and message APIs]
+avoid_when: [A plain request and response API]
+edges:
+- {type: alternative-to, target: openapi}
+verified: 2026-11-14
+sources: ['https://www.asyncapi.com', 'https://github.com/asyncapi/spec']

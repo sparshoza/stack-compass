@@ -1,0 +1,28 @@
+id: drizzle
+name: Drizzle ORM
+aliases: [drizzle]
+layer: orm
+summary: A lightweight TypeScript ORM with a SQL-like API that runs on serverless and edge runtimes.
+url: https://orm.drizzle.team
+repo: https://github.com/drizzle-team/drizzle-orm
+license: Apache-2.0
+languages: [typescript, javascript]
+tags: [edge-runtime]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Serverless and edge apps, Close-to-SQL typed queries]
+avoid_when: [You want a higher-level model API]
+edges:
+- {type: alternative-to, target: kysely}
+- {type: alternative-to, target: mikro-orm}
+- {type: alternative-to, target: prisma}
+- {type: alternative-to, target: sequelize}
+- {type: alternative-to, target: typeorm}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: neon}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: turso}
+verified: 2026-11-14
+sources: ['https://orm.drizzle.team', 'https://github.com/drizzle-team/drizzle-orm']

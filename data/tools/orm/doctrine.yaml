@@ -1,0 +1,20 @@
+id: doctrine
+name: Doctrine ORM
+aliases: [doctrine orm]
+layer: orm
+summary: A PHP object-relational mapper built on DBAL, integrated with Symfony, Laravel and Laminas.
+url: https://www.doctrine-project.org
+repo: https://github.com/doctrine/orm
+license: MIT
+languages: [php]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Symfony and domain-driven PHP]
+avoid_when: [You prefer Active Record style]
+edges:
+- {type: alternative-to, target: eloquent}
+- {type: pairs-with, target: laravel}
+verified: 2026-11-14
+sources: ['https://www.doctrine-project.org', 'https://github.com/doctrine/orm']

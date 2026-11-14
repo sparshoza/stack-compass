@@ -1,0 +1,27 @@
+id: sequelize
+name: Sequelize
+aliases: []
+layer: orm
+summary: A promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and SQL Server.
+url: https://sequelize.org
+repo: https://github.com/sequelize/sequelize
+license: MIT
+languages: [javascript, typescript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Long-running Node projects]
+avoid_when: [You want first-class type inference]
+edges:
+- {type: alternative-to, target: drizzle}
+- {type: alternative-to, target: kysely}
+- {type: alternative-to, target: mikro-orm}
+- {type: alternative-to, target: prisma}
+- {type: alternative-to, target: typeorm}
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://sequelize.org', 'https://github.com/sequelize/sequelize']

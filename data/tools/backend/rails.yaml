@@ -1,0 +1,20 @@
+id: rails
+name: Ruby on Rails
+aliases: [rails, ror]
+layer: backend
+summary: A full-stack Ruby framework with jobs, mailers, file storage and websockets built in.
+url: https://rubyonrails.org
+license: MIT
+languages: [ruby]
+tags: [background-jobs, realtime, file-uploads, transactional-email]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Shipping a full product quickly, Convention over configuration]
+avoid_when: [Heavy CPU workloads in the request path]
+edges:
+- {type: pairs-with, target: active-record}
+- {type: pairs-with, target: sidekiq}
+- {type: pairs-with, target: solid-queue}
+verified: 2026-11-14
+sources: ['https://rubyonrails.org']

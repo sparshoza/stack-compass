@@ -1,0 +1,20 @@
+id: openapi
+name: OpenAPI
+aliases: [swagger, rest api, openapi spec]
+layer: api-style
+summary: A formal standard for describing HTTP APIs, used to understand APIs, generate client code and create tests.
+url: https://www.openapis.org
+repo: https://github.com/OAI/OpenAPI-Specification
+license: Apache-2.0
+languages: []
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Documented REST APIs, Generating client SDKs]
+avoid_when: [You want one typed codebase instead of a separate spec]
+edges:
+- {type: alternative-to, target: asyncapi}
+- {type: alternative-to, target: grpc}
+verified: 2026-11-14
+sources: ['https://www.openapis.org', 'https://github.com/OAI/OpenAPI-Specification']

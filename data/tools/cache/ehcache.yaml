@@ -1,0 +1,19 @@
+id: ehcache
+name: Ehcache
+aliases: []
+layer: cache
+summary: A standards-based Java cache with in-heap, off-heap and disk tiers.
+url: https://www.ehcache.org
+repo: https://github.com/ehcache/ehcache3
+license: Apache-2.0
+languages: [java]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [In-process caching in Java apps]
+avoid_when: [A cache shared between many services]
+edges:
+- {type: alternative-to, target: caffeine}
+verified: 2026-11-14
+sources: ['https://www.ehcache.org', 'https://github.com/ehcache/ehcache3']

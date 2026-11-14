@@ -1,0 +1,26 @@
+id: kysely
+name: Kysely
+aliases: []
+layer: orm
+summary: A type-safe TypeScript SQL query builder.
+url: https://kysely.dev
+repo: https://github.com/kysely-org/kysely
+license: MIT
+languages: [typescript]
+tags: [type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Typed SQL without an ORM layer]
+avoid_when: [You want model classes and relations managed for you]
+edges:
+- {type: alternative-to, target: drizzle}
+- {type: alternative-to, target: mikro-orm}
+- {type: alternative-to, target: prisma}
+- {type: alternative-to, target: sequelize}
+- {type: alternative-to, target: typeorm}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://kysely.dev', 'https://github.com/kysely-org/kysely']

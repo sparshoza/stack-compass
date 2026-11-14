@@ -1,0 +1,24 @@
+id: postgraphile
+name: PostGraphile
+aliases: []
+layer: api-style
+summary: Generates an extensible GraphQL API from your PostgreSQL schema.
+url: https://postgraphile.org
+repo: https://github.com/graphile/crystal
+license: MIT
+languages: [typescript, javascript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Postgres-centric GraphQL APIs]
+avoid_when: [You do not use PostgreSQL]
+edges:
+- {type: alternative-to, target: apollo-server}
+- {type: alternative-to, target: gqlgen}
+- {type: alternative-to, target: graphql-yoga}
+- {type: alternative-to, target: hot-chocolate}
+- {type: alternative-to, target: strawberry}
+- {type: pairs-with, target: postgresql}
+verified: 2026-11-14
+sources: ['https://postgraphile.org', 'https://github.com/graphile/crystal']

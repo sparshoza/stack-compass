@@ -1,0 +1,28 @@
+id: typeorm
+name: TypeORM
+aliases: []
+layer: orm
+summary: A TypeScript and JavaScript ORM supporting Active Record and Data Mapper patterns.
+url: https://typeorm.io
+repo: https://github.com/typeorm/typeorm
+license: MIT
+languages: [typescript, javascript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Decorator-based entities, NestJS projects]
+avoid_when: [You need strict end-to-end query typing]
+edges:
+- {type: alternative-to, target: drizzle}
+- {type: alternative-to, target: kysely}
+- {type: alternative-to, target: mikro-orm}
+- {type: alternative-to, target: prisma}
+- {type: alternative-to, target: sequelize}
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://typeorm.io', 'https://github.com/typeorm/typeorm']

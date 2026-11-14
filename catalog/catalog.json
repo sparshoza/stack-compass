@@ -1,0 +1,5835 @@
+{
+  "edgeTypes": [
+    "alternative-to",
+    "pairs-with",
+    "built-on",
+    "extends",
+    "replaces"
+  ],
+  "keywords": [
+    {
+      "phrases": [
+        "chat",
+        "live updates",
+        "multiplayer",
+        "websocket",
+        "websockets",
+        "live dashboard",
+        "live cursors",
+        "collaborative editing"
+      ],
+      "sets": {
+        "capabilities": [
+          "realtime"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "server side rendering",
+        "ssr",
+        "seo",
+        "search engine optimization",
+        "search engines"
+      ],
+      "sets": {
+        "capabilities": [
+          "ssr-seo"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "static site",
+        "static content",
+        "blog",
+        "marketing site",
+        "docs site",
+        "documentation site",
+        "landing page",
+        "portfolio"
+      ],
+      "sets": {
+        "capabilities": [
+          "static-content"
+        ],
+        "languages": [],
+        "project_type": "content-site"
+      }
+    },
+    {
+      "phrases": [
+        "offline",
+        "works offline",
+        "offline first",
+        "no connection",
+        "sync later"
+      ],
+      "sets": {
+        "capabilities": [
+          "offline"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "file upload",
+        "file uploads",
+        "upload files",
+        "upload images",
+        "image upload",
+        "user uploads",
+        "video upload"
+      ],
+      "sets": {
+        "capabilities": [
+          "file-uploads"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "full text search",
+        "text search",
+        "search bar",
+        "search engine",
+        "typo tolerance",
+        "searchable"
+      ],
+      "sets": {
+        "capabilities": [
+          "full-text-search"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "background jobs",
+        "background tasks",
+        "job queue",
+        "task queue",
+        "worker queue",
+        "async jobs",
+        "long running tasks"
+      ],
+      "sets": {
+        "capabilities": [
+          "background-jobs"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "cron",
+        "scheduled jobs",
+        "scheduled tasks",
+        "recurring jobs",
+        "nightly job",
+        "reminders",
+        "periodic tasks"
+      ],
+      "sets": {
+        "capabilities": [
+          "scheduled-jobs"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "payments",
+        "checkout",
+        "subscriptions",
+        "billing",
+        "credit card",
+        "invoices",
+        "take payments"
+      ],
+      "sets": {
+        "capabilities": [
+          "payments"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "transactional email",
+        "send email",
+        "emails",
+        "password reset email",
+        "receipts",
+        "email notifications",
+        "newsletter"
+      ],
+      "sets": {
+        "capabilities": [
+          "transactional-email"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "cms",
+        "content management",
+        "editors",
+        "content editing",
+        "editorial",
+        "non technical editors"
+      ],
+      "sets": {
+        "capabilities": [
+          "content-editing"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "multi tenant",
+        "multitenant",
+        "multi tenancy",
+        "white label",
+        "organizations and teams",
+        "workspaces"
+      ],
+      "sets": {
+        "capabilities": [
+          "multi-tenant"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "maps",
+        "geospatial",
+        "location",
+        "gps",
+        "nearby",
+        "geolocation",
+        "store locator",
+        "distance search"
+      ],
+      "sets": {
+        "capabilities": [
+          "geospatial"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "analytics",
+        "metrics",
+        "event tracking",
+        "reporting",
+        "data warehouse",
+        "business intelligence",
+        "time series"
+      ],
+      "sets": {
+        "capabilities": [
+          "analytics"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "vector search",
+        "semantic search",
+        "embeddings",
+        "similarity search",
+        "recommendations",
+        "recommendation engine",
+        "rag"
+      ],
+      "sets": {
+        "capabilities": [
+          "vector-search"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "social login",
+        "google login",
+        "github login",
+        "sign in with google",
+        "oauth",
+        "login with facebook"
+      ],
+      "sets": {
+        "capabilities": [
+          "social-login"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "enterprise sso",
+        "single sign on",
+        "sso",
+        "saml",
+        "oidc",
+        "okta",
+        "company login"
+      ],
+      "sets": {
+        "capabilities": [
+          "enterprise-sso"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "edge",
+        "edge runtime",
+        "edge functions",
+        "serverless edge",
+        "low latency worldwide",
+        "cloudflare workers"
+      ],
+      "sets": {
+        "capabilities": [
+          "edge-runtime"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "type safe",
+        "type safety",
+        "typed",
+        "end to end types",
+        "strict types",
+        "typed api"
+      ],
+      "sets": {
+        "capabilities": [
+          "type-safety"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "admin panel",
+        "admin ui",
+        "admin dashboard",
+        "back office",
+        "backoffice",
+        "crud screens"
+      ],
+      "sets": {
+        "capabilities": [
+          "admin-ui"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "high write throughput",
+        "many writes",
+        "write heavy",
+        "logs ingest",
+        "sensor data",
+        "iot",
+        "telemetry",
+        "event stream"
+      ],
+      "sets": {
+        "capabilities": [
+          "high-write-throughput"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "native app",
+        "mobile app",
+        "ios app",
+        "android app",
+        "app store",
+        "play store",
+        "phone app"
+      ],
+      "sets": {
+        "capabilities": [
+          "native-mobile"
+        ],
+        "languages": [],
+        "project_type": "mobile-app"
+      }
+    },
+    {
+      "phrases": [
+        "web app",
+        "web application",
+        "webapp",
+        "dashboard",
+        "portal",
+        "customer portal"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "api only",
+        "rest api",
+        "json api",
+        "backend only",
+        "headless api",
+        "public api",
+        "microservice",
+        "microservices"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "api-only"
+      }
+    },
+    {
+      "phrases": [
+        "realtime app",
+        "live app",
+        "collaboration tool",
+        "live chat app",
+        "multiplayer game",
+        "live feed"
+      ],
+      "sets": {
+        "capabilities": [
+          "realtime"
+        ],
+        "languages": [],
+        "project_type": "realtime-app"
+      }
+    },
+    {
+      "phrases": [
+        "internal tool",
+        "internal app",
+        "admin tool",
+        "ops tool",
+        "employee tool",
+        "staff portal",
+        "back office tool"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "internal-tool"
+      }
+    },
+    {
+      "phrases": [
+        "ecommerce",
+        "e-commerce",
+        "online store",
+        "web shop",
+        "webshop",
+        "shop",
+        "marketplace",
+        "storefront",
+        "cart"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "ecommerce"
+      }
+    },
+    {
+      "phrases": [
+        "saas",
+        "software as a service",
+        "subscription product",
+        "b2b software",
+        "startup product"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "saas"
+      }
+    },
+    {
+      "phrases": [
+        "python",
+        "django developer",
+        "pythonic",
+        "pip"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "python"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "typescript",
+        "ts"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "typescript"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "javascript",
+        "js",
+        "node",
+        "nodejs",
+        "node.js",
+        "npm"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "javascript"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "golang",
+        "go language",
+        "go lang"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "go"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "java",
+        "jvm",
+        "jdk"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "java"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "kotlin",
+        "android kotlin"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "kotlin"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "csharp",
+        "c#",
+        "dotnet",
+        ".net",
+        "c sharp"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "csharp"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "ruby",
+        "gem",
+        "bundler"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "ruby"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "php",
+        "composer"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "php"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "rust",
+        "cargo",
+        "crate"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "rust"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "elixir",
+        "erlang",
+        "beam"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "elixir"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "dart"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "dart"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "swift",
+        "swiftui"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "swift"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "instant messaging",
+        "notifications push",
+        "presence",
+        "who is online",
+        "live comments",
+        "live score"
+      ],
+      "sets": {
+        "capabilities": [
+          "realtime"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "pdf upload",
+        "image gallery",
+        "photo sharing",
+        "media library",
+        "avatars",
+        "document upload"
+      ],
+      "sets": {
+        "capabilities": [
+          "file-uploads"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "product search",
+        "faceted search",
+        "autocomplete",
+        "search as you type"
+      ],
+      "sets": {
+        "capabilities": [
+          "full-text-search"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "video processing",
+        "image resizing",
+        "report generation",
+        "import csv",
+        "bulk import",
+        "data export"
+      ],
+      "sets": {
+        "capabilities": [
+          "background-jobs"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "weekly digest",
+        "daily report",
+        "scheduled email",
+        "expiry reminders",
+        "cleanup job"
+      ],
+      "sets": {
+        "capabilities": [
+          "scheduled-jobs"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "stripe like payments",
+        "recurring billing",
+        "paywall",
+        "pay per use",
+        "tips and donations"
+      ],
+      "sets": {
+        "capabilities": [
+          "payments"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "welcome email",
+        "order confirmation",
+        "magic link",
+        "email verification"
+      ],
+      "sets": {
+        "capabilities": [
+          "transactional-email"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "headless cms",
+        "page builder",
+        "wysiwyg",
+        "marketing pages editable",
+        "article editor"
+      ],
+      "sets": {
+        "capabilities": [
+          "content-editing"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "per customer data",
+        "tenant isolation",
+        "agency clients portal",
+        "shared platform for companies"
+      ],
+      "sets": {
+        "capabilities": [
+          "multi-tenant"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "delivery tracking",
+        "ride sharing",
+        "route planning",
+        "geofencing",
+        "real estate map"
+      ],
+      "sets": {
+        "capabilities": [
+          "geospatial"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "usage statistics",
+        "product analytics",
+        "funnel",
+        "dashboards of events",
+        "clickstream"
+      ],
+      "sets": {
+        "capabilities": [
+          "analytics"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "ai search",
+        "chat with documents",
+        "similar products",
+        "image similarity",
+        "knowledge base search"
+      ],
+      "sets": {
+        "capabilities": [
+          "vector-search"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "passwordless",
+        "sign in with apple",
+        "github sign in",
+        "one click login"
+      ],
+      "sets": {
+        "capabilities": [
+          "social-login"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "saml login",
+        "azure ad",
+        "active directory",
+        "scim",
+        "workforce identity"
+      ],
+      "sets": {
+        "capabilities": [
+          "enterprise-sso"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "cold start",
+        "global low latency",
+        "worker runtime",
+        "deno deploy"
+      ],
+      "sets": {
+        "capabilities": [
+          "edge-runtime"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "shared types",
+        "schema validation",
+        "compile time checks",
+        "no runtime type errors"
+      ],
+      "sets": {
+        "capabilities": [
+          "type-safety"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "data editor",
+        "manage records",
+        "moderation screen",
+        "support dashboard"
+      ],
+      "sets": {
+        "capabilities": [
+          "admin-ui"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "millions of events",
+        "ingest at scale",
+        "metrics pipeline",
+        "audit log volume"
+      ],
+      "sets": {
+        "capabilities": [
+          "high-write-throughput"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "pwa",
+        "progressive web app",
+        "installable app",
+        "cross platform app",
+        "ios and android"
+      ],
+      "sets": {
+        "capabilities": [
+          "native-mobile"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "startup mvp",
+        "side project",
+        "weekend project",
+        "prototype",
+        "hackathon"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "booking system",
+        "reservation",
+        "appointment scheduling",
+        "subscription box",
+        "membership site"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "saas"
+      }
+    }
+  ],
+  "layers": [
+    "backend",
+    "frontend",
+    "meta-framework",
+    "mobile",
+    "database",
+    "orm",
+    "api-style",
+    "auth",
+    "cache",
+    "jobs-queue",
+    "search",
+    "storage",
+    "payments",
+    "email",
+    "cms",
+    "state",
+    "ui-kit",
+    "build-tool",
+    "hosting",
+    "ci-cd",
+    "observability",
+    "testing"
+  ],
+  "tools": [
+    {
+      "aliases": [
+        "activerecord"
+      ],
+      "avoid_when": [
+        "Projects not using Rails"
+      ],
+      "edges": [
+        {
+          "target": "mariadb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "rails",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Rails apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "active-record",
+      "languages": [
+        "ruby"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Active Record",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://guides.rubyonrails.org/active_record_basics.html",
+        "https://rubyonrails.org"
+      ],
+      "summary": "The ORM of Ruby on Rails, mapping tables to Ruby classes with migrations.",
+      "tags": [],
+      "url": "https://guides.rubyonrails.org/active_record_basics.html",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "apollo",
+        "apollo graphql"
+      ],
+      "avoid_when": [
+        "A simple CRUD API"
+      ],
+      "edges": [
+        {
+          "target": "gqlgen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "graphql-yoga",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hot-chocolate",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgraphile",
+          "type": "alternative-to"
+        },
+        {
+          "target": "strawberry",
+          "type": "alternative-to"
+        },
+        {
+          "target": "express",
+          "type": "pairs-with"
+        },
+        {
+          "target": "fastify",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "GraphQL APIs in Node",
+        "Teams already using Apollo clients"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "apollo-server",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "api-style",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Apollo Server",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/apollographql/apollo-server",
+      "sources": [
+        "https://www.apollographql.com/docs/apollo-server",
+        "https://github.com/apollographql/apollo-server"
+      ],
+      "summary": "A spec-compliant GraphQL server for Node.js that works with Express, Fastify and others.",
+      "tags": [],
+      "url": "https://www.apollographql.com/docs/apollo-server",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "asp.net core",
+        "aspnet",
+        ".net web"
+      ],
+      "avoid_when": [
+        "Your team has no .NET experience"
+      ],
+      "edges": [
+        {
+          "target": "entity-framework-core",
+          "type": "pairs-with"
+        },
+        {
+          "target": "hot-chocolate",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "C# teams",
+        "Realtime apps with SignalR"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "aspnet-core",
+      "languages": [
+        "csharp"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "ASP.NET Core",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/dotnet/aspnetcore",
+      "sources": [
+        "https://dotnet.microsoft.com/apps/aspnet",
+        "https://learn.microsoft.com/aspnet/core/data/ef-rp/intro",
+        "https://github.com/dotnet/aspnetcore"
+      ],
+      "summary": "A cross-platform .NET framework for web apps and APIs, including SignalR for realtime.",
+      "tags": [
+        "realtime"
+      ],
+      "url": "https://dotnet.microsoft.com/apps/aspnet",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "async api"
+      ],
+      "avoid_when": [
+        "A plain request and response API"
+      ],
+      "edges": [
+        {
+          "target": "openapi",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Documenting websocket and message APIs"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "asyncapi",
+      "languages": [],
+      "layer": "api-style",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "AsyncAPI",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/asyncapi/spec",
+      "sources": [
+        "https://www.asyncapi.com",
+        "https://github.com/asyncapi/spec"
+      ],
+      "summary": "An open community and specification for describing event-driven APIs.",
+      "tags": [],
+      "url": "https://www.asyncapi.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You do not run Redis"
+      ],
+      "edges": [
+        {
+          "target": "river",
+          "type": "alternative-to"
+        },
+        {
+          "target": "redis",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Go background tasks"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "asynq",
+      "languages": [
+        "go"
+      ],
+      "layer": "jobs-queue",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Asynq",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/hibiken/asynq",
+      "sources": [
+        "https://github.com/hibiken/asynq"
+      ],
+      "summary": "A Go library for queueing tasks and processing them asynchronously with Redis.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://github.com/hibiken/asynq",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Rapid prototyping with a small team new to Rust"
+      ],
+      "edges": [
+        {
+          "target": "sea-orm",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Rust services",
+        "Low memory and high performance"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "axum",
+      "languages": [
+        "rust"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Axum",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://docs.rs/axum"
+      ],
+      "summary": "A Rust web framework focused on ergonomics and modularity, built on Tokio and Tower.",
+      "tags": [],
+      "url": "https://docs.rs/axum",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "bull mq",
+        "bull"
+      ],
+      "avoid_when": [
+        "You do not run Redis"
+      ],
+      "edges": [
+        {
+          "target": "pg-boss",
+          "type": "alternative-to"
+        },
+        {
+          "target": "trigger-dev",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nestjs",
+          "type": "pairs-with"
+        },
+        {
+          "target": "redis",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Background jobs in Node"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "bullmq",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "jobs-queue",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "BullMQ",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/taskforcesh/bullmq",
+      "sources": [
+        "https://bullmq.io",
+        "https://github.com/taskforcesh/bullmq"
+      ],
+      "summary": "A Node.js and Bun job queue built on Redis, with delayed and recurring jobs.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://bullmq.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "A cache shared between many services"
+      ],
+      "edges": [
+        {
+          "target": "ehcache",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Fast in-process caches on the JVM"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "caffeine",
+      "languages": [
+        "java"
+      ],
+      "layer": "cache",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Caffeine",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/ben-manes/caffeine",
+      "sources": [
+        "https://github.com/ben-manes/caffeine"
+      ],
+      "summary": "A high-performance, near-optimal in-memory caching library for Java.",
+      "tags": [],
+      "url": "https://github.com/ben-manes/caffeine",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "cassandra"
+      ],
+      "avoid_when": [
+        "Ad hoc queries and joins"
+      ],
+      "edges": [
+        {
+          "target": "clickhouse",
+          "type": "alternative-to"
+        },
+        {
+          "target": "dynamodb",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Write-heavy, always-on workloads"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "cassandra",
+      "languages": [],
+      "layer": "database",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Apache Cassandra",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/apache/cassandra",
+      "sources": [
+        "https://cassandra.apache.org",
+        "https://github.com/apache/cassandra"
+      ],
+      "summary": "An open source distributed NoSQL database built for scalability and high availability.",
+      "tags": [
+        "high-write-throughput"
+      ],
+      "url": "https://cassandra.apache.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Simple jobs where a lighter queue is enough"
+      ],
+      "edges": [
+        {
+          "target": "rq",
+          "type": "alternative-to"
+        },
+        {
+          "target": "django",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Python background and periodic tasks"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "celery",
+      "languages": [
+        "python"
+      ],
+      "layer": "jobs-queue",
+      "license": "BSD-3-Clause",
+      "maturity": "established",
+      "name": "Celery",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/celery/celery",
+      "sources": [
+        "https://docs.celeryq.dev",
+        "https://github.com/celery/celery"
+      ],
+      "summary": "A distributed task queue with support for task scheduling.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://docs.celeryq.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Key-value caching"
+      ],
+      "edges": [
+        {
+          "target": "nats",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nats",
+          "type": "pairs-with"
+        },
+        {
+          "target": "redis",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Adding realtime push to an existing backend"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "centrifugo",
+      "languages": [],
+      "layer": "cache",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Centrifugo",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/centrifugal/centrifugo",
+      "sources": [
+        "https://centrifugal.dev",
+        "https://github.com/centrifugal/centrifugo"
+      ],
+      "summary": "A scalable realtime messaging server that pushes events to browsers over WebSocket and other transports.",
+      "tags": [
+        "realtime"
+      ],
+      "url": "https://centrifugal.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Row-level transactional workloads"
+      ],
+      "edges": [
+        {
+          "target": "cassandra",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Analytics and event data"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "clickhouse",
+      "languages": [],
+      "layer": "database",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "ClickHouse",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/ClickHouse/ClickHouse",
+      "sources": [
+        "https://clickhouse.com",
+        "https://github.com/ClickHouse/ClickHouse"
+      ],
+      "summary": "A column-oriented database for real-time analytics, open source or as ClickHouse Cloud.",
+      "tags": [
+        "analytics"
+      ],
+      "url": "https://clickhouse.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "workers kv",
+        "cloudflare kv"
+      ],
+      "avoid_when": [
+        "Data that needs strong consistency"
+      ],
+      "edges": [
+        {
+          "target": "upstash-redis",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Read-heavy config and cached data at the edge"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "cloudflare-kv",
+      "languages": [],
+      "layer": "cache",
+      "license": "Proprietary",
+      "maturity": "established",
+      "name": "Cloudflare Workers KV",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://developers.cloudflare.com/kv"
+      ],
+      "summary": "A global, low-latency key-value store for Cloudflare Workers.",
+      "tags": [],
+      "url": "https://developers.cloudflare.com/kv",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "connect rpc",
+        "connect-rpc"
+      ],
+      "avoid_when": [
+        "You only need a simple JSON REST API"
+      ],
+      "edges": [
+        {
+          "target": "grpc",
+          "type": "alternative-to"
+        },
+        {
+          "target": "trpc",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Typed APIs callable from browsers and gRPC clients"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "connectrpc",
+      "languages": [
+        "go",
+        "javascript",
+        "typescript",
+        "python",
+        "rust",
+        "swift",
+        "kotlin",
+        "dart"
+      ],
+      "layer": "api-style",
+      "license": "Apache-2.0",
+      "maturity": "emerging",
+      "name": "Connect",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/connectrpc/connect-es",
+      "sources": [
+        "https://connectrpc.com",
+        "https://github.com/connectrpc/connect-es"
+      ],
+      "summary": "Protobuf RPC that works over plain HTTP, so browsers and gRPC clients can both call it.",
+      "tags": [],
+      "url": "https://connectrpc.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need an async-first API out of the box"
+      ],
+      "edges": [
+        {
+          "target": "sea-orm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Rust services with compile-time checked queries"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "diesel",
+      "languages": [
+        "rust"
+      ],
+      "layer": "orm",
+      "license": "MIT OR Apache-2.0",
+      "maturity": "established",
+      "name": "Diesel",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/diesel-rs/diesel",
+      "sources": [
+        "https://diesel.rs",
+        "https://github.com/diesel-rs/diesel"
+      ],
+      "summary": "A Rust ORM and query builder that checks queries at compile time.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://diesel.rs",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "django framework"
+      ],
+      "avoid_when": [
+        "A tiny single-endpoint service"
+      ],
+      "edges": [
+        {
+          "target": "fastapi",
+          "type": "alternative-to"
+        },
+        {
+          "target": "flask",
+          "type": "alternative-to"
+        },
+        {
+          "target": "celery",
+          "type": "pairs-with"
+        },
+        {
+          "target": "strawberry",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Content and data-heavy sites with an admin",
+        "Teams that want one framework for everything"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "django",
+      "languages": [
+        "python"
+      ],
+      "layer": "backend",
+      "license": "BSD-3-Clause",
+      "maturity": "established",
+      "name": "Django",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/django/django",
+      "sources": [
+        "https://www.djangoproject.com",
+        "https://github.com/django/django"
+      ],
+      "summary": "A batteries-included Python web framework with an ORM and a built-in admin site.",
+      "tags": [
+        "admin-ui"
+      ],
+      "url": "https://www.djangoproject.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "doctrine orm"
+      ],
+      "avoid_when": [
+        "You prefer Active Record style"
+      ],
+      "edges": [
+        {
+          "target": "eloquent",
+          "type": "alternative-to"
+        },
+        {
+          "target": "laravel",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Symfony and domain-driven PHP"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "doctrine",
+      "languages": [
+        "php"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Doctrine ORM",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/doctrine/orm",
+      "sources": [
+        "https://www.doctrine-project.org",
+        "https://github.com/doctrine/orm"
+      ],
+      "summary": "A PHP object-relational mapper built on DBAL, integrated with Symfony, Laravel and Laminas.",
+      "tags": [],
+      "url": "https://www.doctrine-project.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "dragonflydb"
+      ],
+      "avoid_when": [
+        "Your policy requires an OSI open source licence"
+      ],
+      "edges": [
+        {
+          "target": "garnet",
+          "type": "alternative-to"
+        },
+        {
+          "target": "redis",
+          "type": "alternative-to"
+        },
+        {
+          "target": "valkey",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Redis-compatible with multi-core throughput"
+      ],
+      "hosting": [
+        "self-hosted",
+        "managed"
+      ],
+      "id": "dragonfly",
+      "languages": [],
+      "layer": "cache",
+      "license": "Dragonfly Source-Available License",
+      "maturity": "emerging",
+      "name": "Dragonfly",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": "https://github.com/dragonflydb/dragonfly",
+      "sources": [
+        "https://www.dragonflydb.io",
+        "https://github.com/dragonflydb/dragonfly/blob/main/LICENSE.md",
+        "https://github.com/dragonflydb/dragonfly"
+      ],
+      "summary": "An in-memory data store with Redis, Valkey and Memcached APIs, self-hosted or as Dragonfly Cloud.",
+      "tags": [],
+      "url": "https://www.dragonflydb.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "drizzle"
+      ],
+      "avoid_when": [
+        "You want a higher-level model API"
+      ],
+      "edges": [
+        {
+          "target": "kysely",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "prisma",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sequelize",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typeorm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "neon",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        },
+        {
+          "target": "turso",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Serverless and edge apps",
+        "Close-to-SQL typed queries"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "drizzle",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "orm",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Drizzle ORM",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/drizzle-team/drizzle-orm",
+      "sources": [
+        "https://orm.drizzle.team",
+        "https://github.com/drizzle-team/drizzle-orm"
+      ],
+      "summary": "A lightweight TypeScript ORM with a SQL-like API that runs on serverless and edge runtimes.",
+      "tags": [
+        "edge-runtime"
+      ],
+      "url": "https://orm.drizzle.team",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "dynamo db",
+        "dynamo"
+      ],
+      "avoid_when": [
+        "Flexible ad hoc queries"
+      ],
+      "edges": [
+        {
+          "target": "cassandra",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mongodb",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Serverless apps on AWS",
+        "Predictable single-digit-millisecond lookups"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "dynamodb",
+      "languages": [],
+      "layer": "database",
+      "license": "Proprietary",
+      "maturity": "established",
+      "name": "Amazon DynamoDB",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://aws.amazon.com/dynamodb"
+      ],
+      "summary": "A fully managed serverless NoSQL key-value and document database from AWS.",
+      "tags": [],
+      "url": "https://aws.amazon.com/dynamodb",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Projects not using Elixir"
+      ],
+      "edges": [
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "phoenix",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Phoenix apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "ecto",
+      "languages": [
+        "elixir"
+      ],
+      "layer": "orm",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Ecto",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/elixir-ecto/ecto",
+      "sources": [
+        "https://ecto.hexdocs.pm/",
+        "https://phoenix.hexdocs.pm/ecto.html",
+        "https://github.com/elixir-ecto/ecto"
+      ],
+      "summary": "A library for mapping data to Elixir structs and writing queries from Elixir code.",
+      "tags": [],
+      "url": "https://ecto.hexdocs.pm/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "A cache shared between many services"
+      ],
+      "edges": [
+        {
+          "target": "caffeine",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "In-process caching in Java apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "ehcache",
+      "languages": [
+        "java"
+      ],
+      "layer": "cache",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Ehcache",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/ehcache/ehcache3",
+      "sources": [
+        "https://www.ehcache.org",
+        "https://github.com/ehcache/ehcache3"
+      ],
+      "summary": "A standards-based Java cache with in-heap, off-heap and disk tiers.",
+      "tags": [],
+      "url": "https://www.ehcache.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "aws elasticache"
+      ],
+      "avoid_when": [
+        "You are not on AWS"
+      ],
+      "edges": [
+        {
+          "target": "upstash-redis",
+          "type": "alternative-to"
+        },
+        {
+          "target": "memcached",
+          "type": "pairs-with"
+        },
+        {
+          "target": "redis",
+          "type": "pairs-with"
+        },
+        {
+          "target": "valkey",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Caching inside an AWS stack"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "elasticache",
+      "languages": [],
+      "layer": "cache",
+      "license": "Proprietary",
+      "maturity": "established",
+      "name": "Amazon ElastiCache",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://aws.amazon.com/elasticache"
+      ],
+      "summary": "A managed in-memory cache on AWS compatible with Valkey, Redis OSS and Memcached.",
+      "tags": [],
+      "url": "https://aws.amazon.com/elasticache",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "laravel eloquent"
+      ],
+      "avoid_when": [
+        "Projects not using Laravel"
+      ],
+      "edges": [
+        {
+          "target": "doctrine",
+          "type": "alternative-to"
+        },
+        {
+          "target": "laravel",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Laravel apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "eloquent",
+      "languages": [
+        "php"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Eloquent",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/laravel/framework",
+      "sources": [
+        "https://laravel.com/docs/eloquent",
+        "https://github.com/laravel/framework"
+      ],
+      "summary": "Laravel's Active Record ORM for working with databases using PHP models.",
+      "tags": [],
+      "url": "https://laravel.com/docs/eloquent",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "ef core",
+        "efcore",
+        "entity framework"
+      ],
+      "avoid_when": [
+        "Raw-performance micro-queries only"
+      ],
+      "edges": [
+        {
+          "target": "aspnet-core",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "ASP.NET Core apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "entity-framework-core",
+      "languages": [
+        "csharp"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Entity Framework Core",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/dotnet/efcore",
+      "sources": [
+        "https://learn.microsoft.com/ef/core",
+        "https://learn.microsoft.com/aspnet/core/data/ef-rp/intro",
+        "https://github.com/dotnet/efcore"
+      ],
+      "summary": "Microsoft's object-database mapper for .NET, with LINQ queries and migrations.",
+      "tags": [],
+      "url": "https://learn.microsoft.com/ef/core",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "kotlin exposed"
+      ],
+      "avoid_when": [
+        "Your team uses JPA everywhere"
+      ],
+      "edges": [
+        {
+          "target": "hibernate",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ktor",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Kotlin and Ktor services"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "exposed",
+      "languages": [
+        "kotlin"
+      ],
+      "layer": "orm",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Exposed",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/JetBrains/Exposed",
+      "sources": [
+        "https://www.jetbrains.com/help/exposed",
+        "https://ktor.io/docs/server-integrate-database.html",
+        "https://github.com/JetBrains/Exposed"
+      ],
+      "summary": "A Kotlin SQL framework from JetBrains with a DSL and a DAO API.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://www.jetbrains.com/help/exposed",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "expressjs",
+        "express.js"
+      ],
+      "avoid_when": [
+        "You want built-in structure and validation"
+      ],
+      "edges": [
+        {
+          "target": "fastify",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hono",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nestjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "apollo-server",
+          "type": "pairs-with"
+        },
+        {
+          "target": "graphql-yoga",
+          "type": "pairs-with"
+        },
+        {
+          "target": "trpc",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Simple Node APIs",
+        "Huge middleware ecosystem"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "express",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Express",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/expressjs/express",
+      "sources": [
+        "https://expressjs.com",
+        "https://github.com/expressjs/express"
+      ],
+      "summary": "A fast, unopinionated, minimalist web framework for Node.js.",
+      "tags": [],
+      "url": "https://expressjs.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "fast api"
+      ],
+      "avoid_when": [
+        "You want a batteries-included admin and ORM"
+      ],
+      "edges": [
+        {
+          "target": "django",
+          "type": "alternative-to"
+        },
+        {
+          "target": "flask",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sqlmodel",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Typed JSON APIs",
+        "Websocket endpoints"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "fastapi",
+      "languages": [
+        "python"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "FastAPI",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://fastapi.tiangolo.com"
+      ],
+      "summary": "A Python web framework for building typed APIs, with automatic interactive docs.",
+      "tags": [
+        "type-safety",
+        "realtime"
+      ],
+      "url": "https://fastapi.tiangolo.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You rely on Express-only middleware"
+      ],
+      "edges": [
+        {
+          "target": "express",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hono",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nestjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "apollo-server",
+          "type": "pairs-with"
+        },
+        {
+          "target": "graphql-yoga",
+          "type": "pairs-with"
+        },
+        {
+          "target": "trpc",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "High-throughput Node APIs",
+        "Schema-validated routes"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "fastify",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Fastify",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/fastify/fastify",
+      "sources": [
+        "https://fastify.dev",
+        "https://github.com/fastify/fastify"
+      ],
+      "summary": "A fast, low-overhead Node.js web framework with a plugin system and schema validation.",
+      "tags": [],
+      "url": "https://fastify.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You want auth, admin and ORM included"
+      ],
+      "edges": [
+        {
+          "target": "django",
+          "type": "alternative-to"
+        },
+        {
+          "target": "fastapi",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Small services and prototypes"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "flask",
+      "languages": [
+        "python"
+      ],
+      "layer": "backend",
+      "license": "BSD-3-Clause",
+      "maturity": "established",
+      "name": "Flask",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://flask.palletsprojects.com",
+        "https://flask.palletsprojects.com/en/stable/license/"
+      ],
+      "summary": "A lightweight Python web framework you extend with the libraries you choose.",
+      "tags": [],
+      "url": "https://flask.palletsprojects.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need the full Redis module ecosystem"
+      ],
+      "edges": [
+        {
+          "target": "dragonfly",
+          "type": "alternative-to"
+        },
+        {
+          "target": "redis",
+          "type": "alternative-to"
+        },
+        {
+          "target": "valkey",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Redis clients on a .NET-based server"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "garnet",
+      "languages": [],
+      "layer": "cache",
+      "license": "MIT",
+      "maturity": "emerging",
+      "name": "Garnet",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/microsoft/garnet",
+      "sources": [
+        "https://microsoft.github.io/garnet",
+        "https://github.com/microsoft/garnet"
+      ],
+      "summary": "A cache-store from Microsoft Research that speaks the RESP protocol, so Redis clients connect unchanged.",
+      "tags": [],
+      "url": "https://microsoft.github.io/garnet",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "gin-gonic",
+        "gin web framework"
+      ],
+      "avoid_when": [
+        "You want a full-stack framework"
+      ],
+      "edges": [
+        {
+          "target": "gorm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "gqlgen",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Fast Go APIs",
+        "Simple routing and middleware"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "gin",
+      "languages": [
+        "go"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Gin",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/gin-gonic/gin",
+      "sources": [
+        "https://gin-gonic.com",
+        "https://gqlgen.com/recipes/gin/",
+        "https://github.com/gin-gonic/gin"
+      ],
+      "summary": "A high-performance Go web framework with radix tree routing and middleware.",
+      "tags": [],
+      "url": "https://gin-gonic.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "go-gorm"
+      ],
+      "avoid_when": [
+        "You prefer generated typed SQL"
+      ],
+      "edges": [
+        {
+          "target": "gin",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Go CRUD services"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "gorm",
+      "languages": [
+        "go"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "GORM",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/go-gorm/gorm",
+      "sources": [
+        "https://gorm.io",
+        "https://gorm.io/docs/connecting_to_the_database.html",
+        "https://github.com/go-gorm/gorm"
+      ],
+      "summary": "A full-featured ORM library for Go.",
+      "tags": [],
+      "url": "https://gorm.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You prefer code-first schemas"
+      ],
+      "edges": [
+        {
+          "target": "apollo-server",
+          "type": "alternative-to"
+        },
+        {
+          "target": "graphql-yoga",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hot-chocolate",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgraphile",
+          "type": "alternative-to"
+        },
+        {
+          "target": "strawberry",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gin",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Typed GraphQL in Go"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "gqlgen",
+      "languages": [
+        "go"
+      ],
+      "layer": "api-style",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "gqlgen",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/99designs/gqlgen",
+      "sources": [
+        "https://gqlgen.com",
+        "https://gqlgen.com/recipes/gin/",
+        "https://github.com/99designs/gqlgen"
+      ],
+      "summary": "A schema-first Go library that generates type-safe GraphQL servers.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://gqlgen.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "yoga graphql"
+      ],
+      "avoid_when": [
+        "A simple CRUD API"
+      ],
+      "edges": [
+        {
+          "target": "apollo-server",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gqlgen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hot-chocolate",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgraphile",
+          "type": "alternative-to"
+        },
+        {
+          "target": "strawberry",
+          "type": "alternative-to"
+        },
+        {
+          "target": "express",
+          "type": "pairs-with"
+        },
+        {
+          "target": "fastify",
+          "type": "pairs-with"
+        },
+        {
+          "target": "nestjs",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "GraphQL on any JavaScript runtime"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "graphql-yoga",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "api-style",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "GraphQL Yoga",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/graphql-hive/graphql-yoga",
+      "sources": [
+        "https://the-guild.dev/graphql/yoga-server",
+        "https://github.com/graphql-hive/graphql-yoga"
+      ],
+      "summary": "A GraphQL server built on Web Standards for Node.js, Deno, Bun, Cloudflare Workers and more.",
+      "tags": [],
+      "url": "https://the-guild.dev/graphql/yoga-server",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Public APIs called directly from browsers"
+      ],
+      "edges": [
+        {
+          "target": "connectrpc",
+          "type": "alternative-to"
+        },
+        {
+          "target": "openapi",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Service-to-service calls",
+        "Polyglot microservices"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "grpc",
+      "languages": [
+        "csharp",
+        "dart",
+        "go",
+        "java",
+        "kotlin",
+        "javascript",
+        "php",
+        "python",
+        "ruby",
+        "rust",
+        "swift"
+      ],
+      "layer": "api-style",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "gRPC",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/grpc/grpc",
+      "sources": [
+        "https://grpc.io",
+        "https://grpc.io/docs/languages/",
+        "https://github.com/grpc/grpc"
+      ],
+      "summary": "A high-performance RPC framework using Protocol Buffers, with clients in many languages.",
+      "tags": [],
+      "url": "https://grpc.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "hibernate",
+        "jpa"
+      ],
+      "avoid_when": [
+        "You want lightweight SQL control"
+      ],
+      "edges": [
+        {
+          "target": "exposed",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mariadb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "spring-boot",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Java enterprise apps",
+        "Spring Data JPA"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "hibernate",
+      "languages": [
+        "java"
+      ],
+      "layer": "orm",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Hibernate ORM",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/hibernate/hibernate-orm",
+      "sources": [
+        "https://hibernate.org/orm",
+        "https://github.com/hibernate/hibernate-orm"
+      ],
+      "summary": "The standard Java and Jakarta Persistence ORM, widely used with Spring.",
+      "tags": [],
+      "url": "https://hibernate.org/orm",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "hono js"
+      ],
+      "avoid_when": [
+        "You need a large built-in feature set"
+      ],
+      "edges": [
+        {
+          "target": "express",
+          "type": "alternative-to"
+        },
+        {
+          "target": "fastify",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Edge and serverless APIs",
+        "Runtime-portable code"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "hono",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Hono",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/honojs/hono",
+      "sources": [
+        "https://hono.dev",
+        "https://github.com/honojs/hono"
+      ],
+      "summary": "A small web framework built on Web Standards that runs on Cloudflare Workers, Deno, Bun and Node.js.",
+      "tags": [
+        "edge-runtime"
+      ],
+      "url": "https://hono.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "hotchocolate",
+        "chillicream"
+      ],
+      "avoid_when": [
+        "You want a REST-only API"
+      ],
+      "edges": [
+        {
+          "target": "apollo-server",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gqlgen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "graphql-yoga",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgraphile",
+          "type": "alternative-to"
+        },
+        {
+          "target": "strawberry",
+          "type": "alternative-to"
+        },
+        {
+          "target": "aspnet-core",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "GraphQL in .NET"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "hot-chocolate",
+      "languages": [
+        "csharp"
+      ],
+      "layer": "api-style",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Hot Chocolate",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/ChilliCream/graphql-platform",
+      "sources": [
+        "https://chillicream.com/docs/hotchocolate",
+        "https://github.com/ChilliCream/graphql-platform"
+      ],
+      "summary": "A GraphQL server for .NET on ASP.NET Core, serving HTTP, WebSocket and SSE.",
+      "tags": [],
+      "url": "https://chillicream.com/docs/hotchocolate",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Your policy forbids LGPL"
+      ],
+      "edges": [
+        {
+          "target": "quartz",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mongodb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "spring-boot",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Java and Spring background jobs"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "jobrunr",
+      "languages": [
+        "java"
+      ],
+      "layer": "jobs-queue",
+      "license": "LGPL-3.0",
+      "maturity": "established",
+      "name": "JobRunr",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/jobrunr/jobrunr",
+      "sources": [
+        "https://www.jobrunr.io",
+        "https://github.com/jobrunr/jobrunr"
+      ],
+      "summary": "A Java library for fire-and-forget, delayed and recurring background jobs, with a Spring Boot starter.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://www.jobrunr.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You want Spring's wider ecosystem"
+      ],
+      "edges": [
+        {
+          "target": "spring-boot",
+          "type": "alternative-to"
+        },
+        {
+          "target": "exposed",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Kotlin services with coroutines",
+        "Lightweight servers"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "ktor",
+      "languages": [
+        "kotlin"
+      ],
+      "layer": "backend",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Ktor",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/ktorio/ktor",
+      "sources": [
+        "https://ktor.io",
+        "https://ktor.io/docs/server-websockets.html",
+        "https://github.com/ktorio/ktor"
+      ],
+      "summary": "A Kotlin framework for asynchronous servers and clients, with websocket support.",
+      "tags": [
+        "realtime"
+      ],
+      "url": "https://ktor.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You want model classes and relations managed for you"
+      ],
+      "edges": [
+        {
+          "target": "drizzle",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "prisma",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sequelize",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typeorm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Typed SQL without an ORM layer"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "kysely",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Kysely",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/kysely-org/kysely",
+      "sources": [
+        "https://kysely.dev",
+        "https://github.com/kysely-org/kysely"
+      ],
+      "summary": "A type-safe TypeScript SQL query builder.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://kysely.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Your team avoids PHP"
+      ],
+      "edges": [
+        {
+          "target": "doctrine",
+          "type": "pairs-with"
+        },
+        {
+          "target": "eloquent",
+          "type": "pairs-with"
+        },
+        {
+          "target": "laravel-queues",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Full products in PHP",
+        "Built-in queues and scheduling"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "laravel",
+      "languages": [
+        "php"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Laravel",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/laravel/laravel",
+      "sources": [
+        "https://laravel.com",
+        "https://laravel.com/docs/queues",
+        "https://laravel.com/docs/scheduling",
+        "https://laravel.com/docs/mail",
+        "https://github.com/laravel/laravel"
+      ],
+      "summary": "A full-stack PHP framework with queues, scheduling, mail and realtime broadcasting.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs",
+        "realtime",
+        "transactional-email"
+      ],
+      "url": "https://laravel.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "laravel horizon"
+      ],
+      "avoid_when": [
+        "Projects not using Laravel"
+      ],
+      "edges": [
+        {
+          "target": "laravel",
+          "type": "pairs-with"
+        },
+        {
+          "target": "redis",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Background jobs in Laravel"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "laravel-queues",
+      "languages": [
+        "php"
+      ],
+      "layer": "jobs-queue",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Laravel Queues",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/laravel/framework",
+      "sources": [
+        "https://laravel.com/docs/queues",
+        "https://laravel.com/docs/scheduling",
+        "https://github.com/laravel/framework"
+      ],
+      "summary": "Laravel's queue API with database, Redis, SQS and Beanstalkd drivers, plus delayed jobs.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://laravel.com/docs/queues",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need Postgres features"
+      ],
+      "edges": [
+        {
+          "target": "mysql",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgresql",
+          "type": "alternative-to"
+        },
+        {
+          "target": "active-record",
+          "type": "pairs-with"
+        },
+        {
+          "target": "hibernate",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sequelize",
+          "type": "pairs-with"
+        },
+        {
+          "target": "typeorm",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "MySQL-compatible workloads"
+      ],
+      "hosting": [
+        "self-hosted",
+        "managed"
+      ],
+      "id": "mariadb",
+      "languages": [],
+      "layer": "database",
+      "license": "GPL-2.0",
+      "maturity": "established",
+      "name": "MariaDB",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/MariaDB/server",
+      "sources": [
+        "https://mariadb.org",
+        "https://github.com/MariaDB/server"
+      ],
+      "summary": "An open source relational database server developed by the MariaDB Foundation.",
+      "tags": [],
+      "url": "https://mariadb.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Pub/sub, persistence or data structures"
+      ],
+      "edges": [
+        {
+          "target": "redis",
+          "type": "alternative-to"
+        },
+        {
+          "target": "elasticache",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Simple, fast object caching"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "memcached",
+      "languages": [],
+      "layer": "cache",
+      "license": "BSD-3-Clause",
+      "maturity": "established",
+      "name": "Memcached",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/memcached/memcached",
+      "sources": [
+        "https://memcached.org",
+        "https://github.com/memcached/memcached"
+      ],
+      "summary": "A free and open source distributed in-memory caching system.",
+      "tags": [],
+      "url": "https://memcached.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "mikroorm"
+      ],
+      "avoid_when": [
+        "You want the simplest possible setup"
+      ],
+      "edges": [
+        {
+          "target": "drizzle",
+          "type": "alternative-to"
+        },
+        {
+          "target": "kysely",
+          "type": "alternative-to"
+        },
+        {
+          "target": "prisma",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sequelize",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typeorm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mariadb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mongodb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        },
+        {
+          "target": "turso",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Domain-driven designs in TypeScript"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "mikro-orm",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "MikroORM",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/mikro-orm/mikro-orm",
+      "sources": [
+        "https://mikro-orm.io",
+        "https://github.com/mikro-orm/mikro-orm"
+      ],
+      "summary": "A TypeScript ORM based on Data Mapper, Unit of Work and Identity Map patterns.",
+      "tags": [],
+      "url": "https://mikro-orm.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "mongo"
+      ],
+      "avoid_when": [
+        "Heavily relational data with many joins"
+      ],
+      "edges": [
+        {
+          "target": "dynamodb",
+          "type": "alternative-to"
+        },
+        {
+          "target": "jobrunr",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "typeorm",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Flexible document data",
+        "Location queries"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "mongodb",
+      "languages": [],
+      "layer": "database",
+      "license": "SSPL-1.0",
+      "maturity": "established",
+      "name": "MongoDB",
+      "pricing": [
+        "oss",
+        "free-tier",
+        "paid"
+      ],
+      "repo": "https://github.com/mongodb/mongo",
+      "sources": [
+        "https://www.mongodb.com",
+        "https://www.mongodb.com/docs/manual/geospatial-queries/",
+        "https://github.com/mongodb/mongo"
+      ],
+      "summary": "A document database with flexible schemas and built-in geospatial queries.",
+      "tags": [
+        "geospatial",
+        "vector-search"
+      ],
+      "url": "https://www.mongodb.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Advanced Postgres-only features"
+      ],
+      "edges": [
+        {
+          "target": "mariadb",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgresql",
+          "type": "alternative-to"
+        },
+        {
+          "target": "active-record",
+          "type": "pairs-with"
+        },
+        {
+          "target": "diesel",
+          "type": "pairs-with"
+        },
+        {
+          "target": "drizzle",
+          "type": "pairs-with"
+        },
+        {
+          "target": "ecto",
+          "type": "pairs-with"
+        },
+        {
+          "target": "gorm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "hibernate",
+          "type": "pairs-with"
+        },
+        {
+          "target": "jobrunr",
+          "type": "pairs-with"
+        },
+        {
+          "target": "kysely",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "oban",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sequelize",
+          "type": "pairs-with"
+        },
+        {
+          "target": "solid-queue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "typeorm",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Read-heavy web apps",
+        "Broad hosting support"
+      ],
+      "hosting": [
+        "self-hosted",
+        "managed"
+      ],
+      "id": "mysql",
+      "languages": [],
+      "layer": "database",
+      "license": "GPL-2.0",
+      "maturity": "established",
+      "name": "MySQL",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/mysql/mysql-server",
+      "sources": [
+        "https://www.mysql.com",
+        "https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html",
+        "https://dev.mysql.com/doc/refman/8.4/en/spatial-types.html",
+        "https://github.com/mysql/mysql-server"
+      ],
+      "summary": "A widely used open source relational database with spatial and full-text indexes.",
+      "tags": [
+        "full-text-search",
+        "geospatial"
+      ],
+      "url": "https://www.mysql.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Plain key-value caching"
+      ],
+      "edges": [
+        {
+          "target": "centrifugo",
+          "type": "alternative-to"
+        },
+        {
+          "target": "centrifugo",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Realtime messaging between services"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "nats",
+      "languages": [],
+      "layer": "cache",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "NATS",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/nats-io/nats-server",
+      "sources": [
+        "https://nats.io",
+        "https://github.com/nats-io/nats-server"
+      ],
+      "summary": "A lightweight messaging system with pub/sub, request-reply and JetStream persistence.",
+      "tags": [
+        "realtime"
+      ],
+      "url": "https://nats.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "neon postgres",
+        "neon tech"
+      ],
+      "avoid_when": [
+        "You need to run it on your own servers"
+      ],
+      "edges": [
+        {
+          "target": "supabase",
+          "type": "alternative-to"
+        },
+        {
+          "target": "drizzle",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Serverless apps",
+        "Database branches per pull request"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "neon",
+      "languages": [],
+      "layer": "database",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Neon",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": "https://github.com/neondatabase/neon",
+      "sources": [
+        "https://neon.com",
+        "https://neon.com/docs/extensions/pgvector",
+        "https://neon.com/docs/serverless/serverless-driver",
+        "https://neon.com/pricing",
+        "https://github.com/neondatabase/neon"
+      ],
+      "summary": "Serverless Postgres that scales to zero, with branches per pull request and an edge-ready driver.",
+      "tags": [
+        "vector-search",
+        "edge-runtime"
+      ],
+      "url": "https://neon.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "nest.js",
+        "nest js"
+      ],
+      "avoid_when": [
+        "A small script-like API"
+      ],
+      "edges": [
+        {
+          "target": "express",
+          "type": "alternative-to"
+        },
+        {
+          "target": "fastify",
+          "type": "alternative-to"
+        },
+        {
+          "target": "bullmq",
+          "type": "pairs-with"
+        },
+        {
+          "target": "graphql-yoga",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Large TypeScript backends",
+        "Teams used to Angular or Spring structure"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "nestjs",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "NestJS",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://nestjs.com",
+        "https://docs.nestjs.com/websockets/gateways"
+      ],
+      "summary": "A TypeScript-first Node.js framework with modules, dependency injection and websocket gateways.",
+      "tags": [
+        "type-safety",
+        "realtime"
+      ],
+      "url": "https://nestjs.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Projects not using Elixir"
+      ],
+      "edges": [
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Elixir and Phoenix jobs"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "oban",
+      "languages": [
+        "elixir"
+      ],
+      "layer": "jobs-queue",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Oban",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/oban-bg/oban",
+      "sources": [
+        "https://oban.pro",
+        "https://github.com/oban-bg/oban"
+      ],
+      "summary": "Robust job processing for Elixir, stored in PostgreSQL, MySQL or SQLite, with cron-style periodic jobs.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://oban.pro",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "swagger",
+        "rest api",
+        "openapi spec"
+      ],
+      "avoid_when": [
+        "You want one typed codebase instead of a separate spec"
+      ],
+      "edges": [
+        {
+          "target": "asyncapi",
+          "type": "alternative-to"
+        },
+        {
+          "target": "grpc",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Documented REST APIs",
+        "Generating client SDKs"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "openapi",
+      "languages": [],
+      "layer": "api-style",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "OpenAPI",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/OAI/OpenAPI-Specification",
+      "sources": [
+        "https://www.openapis.org",
+        "https://github.com/OAI/OpenAPI-Specification"
+      ],
+      "summary": "A formal standard for describing HTTP APIs, used to understand APIs, generate client code and create tests.",
+      "tags": [],
+      "url": "https://www.openapis.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need a long track record"
+      ],
+      "edges": [
+        {
+          "target": "trpc",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Typed RPC with OpenAPI output"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "orpc",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "api-style",
+      "license": "MIT",
+      "maturity": "emerging",
+      "name": "oRPC",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/unnoq/orpc",
+      "sources": [
+        "https://orpc.dev/",
+        "https://github.com/unnoq/orpc"
+      ],
+      "summary": "Typesafe APIs for TypeScript that also generate OpenAPI specs.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://orpc.dev/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "pgboss"
+      ],
+      "avoid_when": [
+        "Very high job throughput"
+      ],
+      "edges": [
+        {
+          "target": "bullmq",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Node jobs without Redis"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "pg-boss",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "jobs-queue",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "pg-boss",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/timgit/pg-boss",
+      "sources": [
+        "https://github.com/timgit/pg-boss"
+      ],
+      "summary": "A job queue for Node.js built on PostgreSQL, with delayed and cron-scheduled jobs.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://github.com/timgit/pg-boss",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Billions of vectors with strict latency targets"
+      ],
+      "edges": [
+        {
+          "target": "qdrant",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "supabase",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Embeddings next to your relational data"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "pgvector",
+      "languages": [],
+      "layer": "database",
+      "license": "PostgreSQL",
+      "maturity": "established",
+      "name": "pgvector",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/pgvector/pgvector",
+      "sources": [
+        "https://github.com/pgvector/pgvector",
+        "https://raw.githubusercontent.com/pgvector/pgvector/master/LICENSE"
+      ],
+      "summary": "An open source PostgreSQL extension for vector similarity search.",
+      "tags": [
+        "vector-search"
+      ],
+      "url": "https://github.com/pgvector/pgvector",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "phoenix framework",
+        "liveview"
+      ],
+      "avoid_when": [
+        "Your team has no Elixir experience"
+      ],
+      "edges": [
+        {
+          "target": "ecto",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Realtime and chat apps",
+        "Many concurrent connections"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "phoenix",
+      "languages": [
+        "elixir"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Phoenix",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/phoenixframework/phoenix",
+      "sources": [
+        "https://www.phoenixframework.org",
+        "https://phoenix.hexdocs.pm/ecto.html",
+        "https://github.com/phoenixframework/phoenix"
+      ],
+      "summary": "An Elixir web framework with Channels and LiveView for realtime features.",
+      "tags": [
+        "realtime"
+      ],
+      "url": "https://www.phoenixframework.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You do not use PostgreSQL"
+      ],
+      "edges": [
+        {
+          "target": "apollo-server",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gqlgen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "graphql-yoga",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hot-chocolate",
+          "type": "alternative-to"
+        },
+        {
+          "target": "strawberry",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Postgres-centric GraphQL APIs"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "postgraphile",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "api-style",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "PostGraphile",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/graphile/crystal",
+      "sources": [
+        "https://postgraphile.org",
+        "https://github.com/graphile/crystal"
+      ],
+      "summary": "Generates an extensible GraphQL API from your PostgreSQL schema.",
+      "tags": [],
+      "url": "https://postgraphile.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "postgres",
+        "pg"
+      ],
+      "avoid_when": [
+        "Embedded single-file databases"
+      ],
+      "edges": [
+        {
+          "target": "mariadb",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mysql",
+          "type": "alternative-to"
+        },
+        {
+          "target": "active-record",
+          "type": "pairs-with"
+        },
+        {
+          "target": "diesel",
+          "type": "pairs-with"
+        },
+        {
+          "target": "drizzle",
+          "type": "pairs-with"
+        },
+        {
+          "target": "ecto",
+          "type": "pairs-with"
+        },
+        {
+          "target": "exposed",
+          "type": "pairs-with"
+        },
+        {
+          "target": "gorm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "hibernate",
+          "type": "pairs-with"
+        },
+        {
+          "target": "jobrunr",
+          "type": "pairs-with"
+        },
+        {
+          "target": "kysely",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "neon",
+          "type": "pairs-with"
+        },
+        {
+          "target": "oban",
+          "type": "pairs-with"
+        },
+        {
+          "target": "pg-boss",
+          "type": "pairs-with"
+        },
+        {
+          "target": "pgvector",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgraphile",
+          "type": "pairs-with"
+        },
+        {
+          "target": "river",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sequelize",
+          "type": "pairs-with"
+        },
+        {
+          "target": "solid-queue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "supabase",
+          "type": "pairs-with"
+        },
+        {
+          "target": "typeorm",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "The default relational choice",
+        "Complex queries and JSON"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "postgresql",
+      "languages": [],
+      "layer": "database",
+      "license": "PostgreSQL",
+      "maturity": "established",
+      "name": "PostgreSQL",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.postgresql.org",
+        "https://www.postgresql.org/about/license/",
+        "https://www.postgresql.org/docs/current/textsearch-intro.html"
+      ],
+      "summary": "An advanced open source relational database with strong SQL support and built-in full-text search.",
+      "tags": [
+        "full-text-search"
+      ],
+      "url": "https://www.postgresql.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "prisma orm"
+      ],
+      "avoid_when": [
+        "Very complex hand-tuned SQL everywhere"
+      ],
+      "edges": [
+        {
+          "target": "drizzle",
+          "type": "alternative-to"
+        },
+        {
+          "target": "kysely",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sequelize",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typeorm",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Typed queries with an approachable API",
+        "Schema-driven migrations"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "prisma",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "orm",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Prisma",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/prisma/prisma",
+      "sources": [
+        "https://www.prisma.io",
+        "https://github.com/prisma/prisma"
+      ],
+      "summary": "A TypeScript ORM with a declarative schema, generated type-safe client and migrations.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://www.prisma.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "A small app that can use pgvector"
+      ],
+      "edges": [
+        {
+          "target": "pgvector",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Dedicated vector search at scale"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "qdrant",
+      "languages": [],
+      "layer": "database",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Qdrant",
+      "pricing": [
+        "oss",
+        "free-tier"
+      ],
+      "repo": "https://github.com/qdrant/qdrant",
+      "sources": [
+        "https://qdrant.tech",
+        "https://github.com/qdrant/qdrant"
+      ],
+      "summary": "A vector database for similarity search with filtering, available as open source or managed cloud.",
+      "tags": [
+        "vector-search"
+      ],
+      "url": "https://qdrant.tech",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "quartz scheduler"
+      ],
+      "avoid_when": [
+        "Distributed job queues with a web dashboard"
+      ],
+      "edges": [
+        {
+          "target": "jobrunr",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Cron-style scheduling on the JVM"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "quartz",
+      "languages": [
+        "java"
+      ],
+      "layer": "jobs-queue",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Quartz Scheduler",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/quartz-scheduler/quartz",
+      "sources": [
+        "https://www.quartz-scheduler.org",
+        "https://github.com/quartz-scheduler/quartz"
+      ],
+      "summary": "A Java job scheduling library that embeds in nearly any Java application.",
+      "tags": [
+        "scheduled-jobs"
+      ],
+      "url": "https://www.quartz-scheduler.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "rails",
+        "ror"
+      ],
+      "avoid_when": [
+        "Heavy CPU workloads in the request path"
+      ],
+      "edges": [
+        {
+          "target": "active-record",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sidekiq",
+          "type": "pairs-with"
+        },
+        {
+          "target": "solid-queue",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Shipping a full product quickly",
+        "Convention over configuration"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "rails",
+      "languages": [
+        "ruby"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Ruby on Rails",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://rubyonrails.org"
+      ],
+      "summary": "A full-stack Ruby framework with jobs, mailers, file storage and websockets built in.",
+      "tags": [
+        "background-jobs",
+        "realtime",
+        "file-uploads",
+        "transactional-email"
+      ],
+      "url": "https://rubyonrails.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Your policy requires a permissive licence"
+      ],
+      "edges": [
+        {
+          "target": "dragonfly",
+          "type": "alternative-to"
+        },
+        {
+          "target": "garnet",
+          "type": "alternative-to"
+        },
+        {
+          "target": "memcached",
+          "type": "alternative-to"
+        },
+        {
+          "target": "upstash-redis",
+          "type": "alternative-to"
+        },
+        {
+          "target": "valkey",
+          "type": "alternative-to"
+        },
+        {
+          "target": "asynq",
+          "type": "pairs-with"
+        },
+        {
+          "target": "bullmq",
+          "type": "pairs-with"
+        },
+        {
+          "target": "centrifugo",
+          "type": "pairs-with"
+        },
+        {
+          "target": "elasticache",
+          "type": "pairs-with"
+        },
+        {
+          "target": "laravel-queues",
+          "type": "pairs-with"
+        },
+        {
+          "target": "rq",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Caching and sessions",
+        "Pub/sub and queues"
+      ],
+      "hosting": [
+        "self-hosted",
+        "managed"
+      ],
+      "id": "redis",
+      "languages": [],
+      "layer": "cache",
+      "license": "RSALv2, SSPLv1 or AGPLv3",
+      "maturity": "established",
+      "name": "Redis",
+      "pricing": [
+        "oss",
+        "free-tier",
+        "paid"
+      ],
+      "repo": "https://github.com/redis/redis",
+      "sources": [
+        "https://redis.io",
+        "https://github.com/redis/redis"
+      ],
+      "summary": "An in-memory data store for caching, sessions, streaming and search, open source or Redis Enterprise.",
+      "tags": [
+        "realtime"
+      ],
+      "url": "https://redis.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You do not use PostgreSQL"
+      ],
+      "edges": [
+        {
+          "target": "asynq",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Go jobs enqueued in the same transaction as your data"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "river",
+      "languages": [
+        "go",
+        "java",
+        "ruby",
+        "rust",
+        "typescript"
+      ],
+      "layer": "jobs-queue",
+      "license": "MPL-2.0",
+      "maturity": "emerging",
+      "name": "River",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/riverqueue/river",
+      "sources": [
+        "https://riverqueue.com",
+        "https://github.com/riverqueue/river"
+      ],
+      "summary": "A job library that runs on Postgres or SQLite with transactional enqueueing and cron jobs.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://riverqueue.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "python-rq",
+        "redis queue"
+      ],
+      "avoid_when": [
+        "Complex routing and workflows"
+      ],
+      "edges": [
+        {
+          "target": "celery",
+          "type": "alternative-to"
+        },
+        {
+          "target": "redis",
+          "type": "pairs-with"
+        },
+        {
+          "target": "valkey",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Small Python job queues"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "rq",
+      "languages": [
+        "python"
+      ],
+      "layer": "jobs-queue",
+      "license": "BSD-2-Clause",
+      "maturity": "established",
+      "name": "RQ",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/rq/rq",
+      "sources": [
+        "https://python-rq.org",
+        "https://raw.githubusercontent.com/rq/rq/master/LICENSE",
+        "https://github.com/rq/rq"
+      ],
+      "summary": "A simple Python library for queueing jobs and processing them in the background with Redis.",
+      "tags": [
+        "background-jobs"
+      ],
+      "url": "https://python-rq.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "seaorm"
+      ],
+      "avoid_when": [
+        "Projects not using Rust"
+      ],
+      "edges": [
+        {
+          "target": "diesel",
+          "type": "alternative-to"
+        },
+        {
+          "target": "axum",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Async Rust services"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "sea-orm",
+      "languages": [
+        "rust"
+      ],
+      "layer": "orm",
+      "license": "MIT OR Apache-2.0",
+      "maturity": "established",
+      "name": "SeaORM",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/SeaQL/sea-orm",
+      "sources": [
+        "https://www.sea-ql.org/SeaORM/",
+        "https://github.com/SeaQL/sea-orm/tree/master/examples/axum_example",
+        "https://github.com/SeaQL/sea-orm"
+      ],
+      "summary": "An async, dynamic ORM for Rust for building web services, with relations and migrations.",
+      "tags": [],
+      "url": "https://www.sea-ql.org/SeaORM/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You want first-class type inference"
+      ],
+      "edges": [
+        {
+          "target": "drizzle",
+          "type": "alternative-to"
+        },
+        {
+          "target": "kysely",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "prisma",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typeorm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mariadb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Long-running Node projects"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "sequelize",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Sequelize",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/sequelize/sequelize",
+      "sources": [
+        "https://sequelize.org",
+        "https://github.com/sequelize/sequelize"
+      ],
+      "summary": "A promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and SQL Server.",
+      "tags": [],
+      "url": "https://sequelize.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You do not run Redis"
+      ],
+      "edges": [
+        {
+          "target": "solid-queue",
+          "type": "alternative-to"
+        },
+        {
+          "target": "rails",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Background jobs in Rails"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "sidekiq",
+      "languages": [
+        "ruby"
+      ],
+      "layer": "jobs-queue",
+      "license": "LGPL-3.0",
+      "maturity": "established",
+      "name": "Sidekiq",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/sidekiq/sidekiq",
+      "sources": [
+        "https://sidekiq.org",
+        "https://github.com/sidekiq/sidekiq/blob/main/LICENSE.txt",
+        "https://github.com/sidekiq/sidekiq/wiki/Getting-Started",
+        "https://github.com/sidekiq/sidekiq"
+      ],
+      "summary": "Simple, efficient background jobs for Ruby, with a free LGPL edition and paid Pro and Enterprise tiers.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://sidekiq.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Very high job throughput"
+      ],
+      "edges": [
+        {
+          "target": "sidekiq",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "rails",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Rails jobs without Redis"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "solid-queue",
+      "languages": [
+        "ruby"
+      ],
+      "layer": "jobs-queue",
+      "license": "MIT",
+      "maturity": "emerging",
+      "name": "Solid Queue",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/rails/solid_queue",
+      "sources": [
+        "https://github.com/rails/solid_queue"
+      ],
+      "summary": "A database-backed Active Job queue for Rails with delayed and recurring jobs.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://github.com/rails/solid_queue",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "spring",
+        "springboot"
+      ],
+      "avoid_when": [
+        "Tiny services where startup time and memory matter most"
+      ],
+      "edges": [
+        {
+          "target": "ktor",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hibernate",
+          "type": "pairs-with"
+        },
+        {
+          "target": "jobrunr",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Enterprise services",
+        "Large teams and long-lived systems"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "spring-boot",
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "layer": "backend",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Spring Boot",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/spring-projects/spring-boot",
+      "sources": [
+        "https://spring.io/projects/spring-boot",
+        "https://docs.spring.io/spring-boot/reference/features/kotlin.html",
+        "https://github.com/spring-projects/spring-boot"
+      ],
+      "summary": "A Java and Kotlin framework for production-grade Spring applications with minimal setup.",
+      "tags": [],
+      "url": "https://spring.io/projects/spring-boot",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "sql alchemy"
+      ],
+      "avoid_when": [
+        "Django projects (use its built-in ORM)"
+      ],
+      "edges": [
+        {
+          "target": "sqlmodel",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Python services with FastAPI or Flask",
+        "Complex queries"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "sqlalchemy",
+      "languages": [
+        "python"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "SQLAlchemy",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/sqlalchemy/sqlalchemy",
+      "sources": [
+        "https://www.sqlalchemy.org",
+        "https://github.com/sqlalchemy/sqlalchemy"
+      ],
+      "summary": "The Python SQL toolkit and ORM, with a Core query layer and a high-level ORM.",
+      "tags": [],
+      "url": "https://www.sqlalchemy.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "sqlite3"
+      ],
+      "avoid_when": [
+        "Many concurrent writers"
+      ],
+      "edges": [
+        {
+          "target": "turso",
+          "type": "alternative-to"
+        },
+        {
+          "target": "active-record",
+          "type": "pairs-with"
+        },
+        {
+          "target": "diesel",
+          "type": "pairs-with"
+        },
+        {
+          "target": "drizzle",
+          "type": "pairs-with"
+        },
+        {
+          "target": "ecto",
+          "type": "pairs-with"
+        },
+        {
+          "target": "entity-framework-core",
+          "type": "pairs-with"
+        },
+        {
+          "target": "gorm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "kysely",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "oban",
+          "type": "pairs-with"
+        },
+        {
+          "target": "river",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sea-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sequelize",
+          "type": "pairs-with"
+        },
+        {
+          "target": "solid-queue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "typeorm",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Local, embedded and small apps",
+        "Tests and prototypes"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "sqlite",
+      "languages": [],
+      "layer": "database",
+      "license": "Public domain",
+      "maturity": "established",
+      "name": "SQLite",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.sqlite.org"
+      ],
+      "summary": "A small, fast, self-contained SQL database engine that lives in a single file.",
+      "tags": [],
+      "url": "https://www.sqlite.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need every SQLAlchemy feature directly"
+      ],
+      "edges": [
+        {
+          "target": "sqlalchemy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sqlalchemy",
+          "type": "built-on"
+        },
+        {
+          "target": "fastapi",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "FastAPI apps with one model for API and database"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "sqlmodel",
+      "languages": [
+        "python"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "emerging",
+      "name": "SQLModel",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://sqlmodel.tiangolo.com"
+      ],
+      "summary": "A Python library for SQL databases that combines SQLAlchemy and Pydantic models.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://sqlmodel.tiangolo.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "strawberry graphql"
+      ],
+      "avoid_when": [
+        "You want a REST-only API"
+      ],
+      "edges": [
+        {
+          "target": "apollo-server",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gqlgen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "graphql-yoga",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hot-chocolate",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postgraphile",
+          "type": "alternative-to"
+        },
+        {
+          "target": "django",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Typed GraphQL in Python"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "strawberry",
+      "languages": [
+        "python"
+      ],
+      "layer": "api-style",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Strawberry GraphQL",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/strawberry-graphql/strawberry",
+      "sources": [
+        "https://strawberry.rocks",
+        "https://github.com/strawberry-graphql/strawberry"
+      ],
+      "summary": "A Python GraphQL library that uses type hints to build schemas.",
+      "tags": [],
+      "url": "https://strawberry.rocks",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You want each piece chosen separately"
+      ],
+      "edges": [
+        {
+          "target": "neon",
+          "type": "alternative-to"
+        },
+        {
+          "target": "pgvector",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Prototypes that need auth and realtime fast"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "supabase",
+      "languages": [],
+      "layer": "database",
+      "license": "Apache-2.0",
+      "maturity": "established",
+      "name": "Supabase",
+      "pricing": [
+        "oss",
+        "free-tier",
+        "paid"
+      ],
+      "repo": "https://github.com/supabase/supabase",
+      "sources": [
+        "https://supabase.com",
+        "https://github.com/supabase/supabase"
+      ],
+      "summary": "A Postgres platform with optional auth, realtime, storage and vector search (pgvector).",
+      "tags": [
+        "realtime",
+        "file-uploads",
+        "vector-search"
+      ],
+      "url": "https://supabase.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "A simple fire-and-forget queue"
+      ],
+      "edges": [
+        {
+          "target": "trigger-dev",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Long-running, reliable workflows"
+      ],
+      "hosting": [
+        "self-hosted",
+        "managed"
+      ],
+      "id": "temporal",
+      "languages": [
+        "go",
+        "java",
+        "csharp",
+        "php",
+        "python",
+        "ruby",
+        "rust",
+        "typescript"
+      ],
+      "layer": "jobs-queue",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "Temporal",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/temporalio/temporal",
+      "sources": [
+        "https://temporal.io",
+        "https://docs.temporal.io/develop",
+        "https://github.com/temporalio/temporal"
+      ],
+      "summary": "A durable execution platform that resumes workflows after crashes, with SDKs in many languages.",
+      "tags": [],
+      "url": "https://temporal.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "trigger dev"
+      ],
+      "avoid_when": [
+        "You need a very small in-process queue"
+      ],
+      "edges": [
+        {
+          "target": "bullmq",
+          "type": "alternative-to"
+        },
+        {
+          "target": "temporal",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Long-running TypeScript jobs on serverless hosts"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "trigger-dev",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "jobs-queue",
+      "license": "Apache-2.0",
+      "maturity": "emerging",
+      "name": "Trigger.dev",
+      "pricing": [
+        "oss",
+        "free-tier",
+        "paid"
+      ],
+      "repo": "https://github.com/triggerdotdev/trigger.dev",
+      "sources": [
+        "https://trigger.dev",
+        "https://github.com/triggerdotdev/trigger.dev"
+      ],
+      "summary": "A TypeScript toolkit for background jobs and long-running workflows, in the cloud or self-hosted.",
+      "tags": [
+        "background-jobs",
+        "scheduled-jobs"
+      ],
+      "url": "https://trigger.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Clients that are not TypeScript"
+      ],
+      "edges": [
+        {
+          "target": "connectrpc",
+          "type": "alternative-to"
+        },
+        {
+          "target": "orpc",
+          "type": "alternative-to"
+        },
+        {
+          "target": "express",
+          "type": "pairs-with"
+        },
+        {
+          "target": "fastify",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Full-stack TypeScript apps",
+        "Sharing types between client and server"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "trpc",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "api-style",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "tRPC",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/trpc/trpc",
+      "sources": [
+        "https://trpc.io",
+        "https://github.com/trpc/trpc"
+      ],
+      "summary": "End-to-end typesafe APIs for TypeScript, with no schema or code generation.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://trpc.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "libsql"
+      ],
+      "avoid_when": [
+        "Heavy write concurrency"
+      ],
+      "edges": [
+        {
+          "target": "sqlite",
+          "type": "alternative-to"
+        },
+        {
+          "target": "drizzle",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Edge apps",
+        "Many small per-tenant databases"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "turso",
+      "languages": [],
+      "layer": "database",
+      "license": "MIT",
+      "maturity": "emerging",
+      "name": "Turso",
+      "pricing": [
+        "oss",
+        "free-tier",
+        "paid"
+      ],
+      "repo": "https://github.com/tursodatabase/libsql",
+      "sources": [
+        "https://turso.tech",
+        "https://turso.tech/pricing",
+        "https://github.com/tursodatabase/libsql"
+      ],
+      "summary": "A SQLite-compatible database with native vector search, managed or via open source libSQL.",
+      "tags": [
+        "vector-search"
+      ],
+      "url": "https://turso.tech",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need strict end-to-end query typing"
+      ],
+      "edges": [
+        {
+          "target": "drizzle",
+          "type": "alternative-to"
+        },
+        {
+          "target": "kysely",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mikro-orm",
+          "type": "alternative-to"
+        },
+        {
+          "target": "prisma",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sequelize",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mariadb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mongodb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Decorator-based entities",
+        "NestJS projects"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "typeorm",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "maturity": "established",
+      "name": "TypeORM",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/typeorm/typeorm",
+      "sources": [
+        "https://typeorm.io",
+        "https://github.com/typeorm/typeorm"
+      ],
+      "summary": "A TypeScript and JavaScript ORM supporting Active Record and Data Mapper patterns.",
+      "tags": [],
+      "url": "https://typeorm.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "upstash"
+      ],
+      "avoid_when": [
+        "Constant high-volume traffic where per-request pricing hurts"
+      ],
+      "edges": [
+        {
+          "target": "cloudflare-kv",
+          "type": "alternative-to"
+        },
+        {
+          "target": "elasticache",
+          "type": "alternative-to"
+        },
+        {
+          "target": "redis",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Serverless and edge apps"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "upstash-redis",
+      "languages": [],
+      "layer": "cache",
+      "license": "Proprietary",
+      "maturity": "established",
+      "name": "Upstash Redis",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://upstash.com/docs/redis/overall/getstarted"
+      ],
+      "summary": "Serverless Redis with a per-request pricing model and an HTTP API for edge runtimes.",
+      "tags": [
+        "edge-runtime"
+      ],
+      "url": "https://upstash.com/docs/redis/overall/getstarted",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need Redis-only modules"
+      ],
+      "edges": [
+        {
+          "target": "dragonfly",
+          "type": "alternative-to"
+        },
+        {
+          "target": "garnet",
+          "type": "alternative-to"
+        },
+        {
+          "target": "redis",
+          "type": "alternative-to"
+        },
+        {
+          "target": "elasticache",
+          "type": "pairs-with"
+        },
+        {
+          "target": "rq",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "A permissively licensed Redis replacement"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "valkey",
+      "languages": [],
+      "layer": "cache",
+      "license": "BSD-3-Clause",
+      "maturity": "established",
+      "name": "Valkey",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/valkey-io/valkey",
+      "sources": [
+        "https://valkey.io",
+        "https://github.com/valkey-io/valkey"
+      ],
+      "summary": "A BSD-licensed key/value store backed by the Linux Foundation, for caching, queues and primary data.",
+      "tags": [],
+      "url": "https://valkey.io",
+      "verified": "2026-11-14"
+    }
+  ],
+  "vocab": {
+    "capabilities": [
+      {
+        "explain": "Pushes changes to users as they happen, such as chat messages or live dashboards.",
+        "id": "realtime",
+        "label": "Realtime"
+      },
+      {
+        "explain": "Renders pages on the server so search engines and slow devices get full content.",
+        "id": "ssr-seo",
+        "label": "Server rendering and SEO"
+      },
+      {
+        "explain": "Serves pages that are built once and cached, such as blogs and docs.",
+        "id": "static-content",
+        "label": "Static content"
+      },
+      {
+        "explain": "Keeps the app working without a connection and syncs when it returns.",
+        "id": "offline",
+        "label": "Offline use"
+      },
+      {
+        "explain": "Lets users upload images, documents or videos and stores them safely.",
+        "id": "file-uploads",
+        "label": "File uploads"
+      },
+      {
+        "explain": "Searches inside text with ranking and typo tolerance.",
+        "id": "full-text-search",
+        "label": "Full-text search"
+      },
+      {
+        "explain": "Runs slow work such as emails or image processing outside the web request.",
+        "id": "background-jobs",
+        "label": "Background jobs"
+      },
+      {
+        "explain": "Runs tasks on a timer, such as nightly reports or reminders.",
+        "id": "scheduled-jobs",
+        "label": "Scheduled jobs"
+      },
+      {
+        "explain": "Takes card payments, subscriptions or invoices.",
+        "id": "payments",
+        "label": "Payments"
+      },
+      {
+        "explain": "Sends account emails such as receipts, password resets and notifications.",
+        "id": "transactional-email",
+        "label": "Transactional email"
+      },
+      {
+        "explain": "Gives non-developers an editor to change pages and posts.",
+        "id": "content-editing",
+        "label": "Content editing"
+      },
+      {
+        "explain": "Serves many customer organisations from one app with separated data.",
+        "id": "multi-tenant",
+        "label": "Multi-tenant"
+      },
+      {
+        "explain": "Stores and queries places, distances and areas on a map.",
+        "id": "geospatial",
+        "label": "Maps and location"
+      },
+      {
+        "explain": "Counts and analyses events and usage over large amounts of data.",
+        "id": "analytics",
+        "label": "Analytics"
+      },
+      {
+        "explain": "Finds similar items by meaning using embeddings, for recommendations and semantic search.",
+        "id": "vector-search",
+        "label": "Vector search"
+      },
+      {
+        "explain": "Lets people sign in with Google, GitHub or other accounts.",
+        "id": "social-login",
+        "label": "Social login"
+      },
+      {
+        "explain": "Lets company staff sign in through their company identity provider (SAML or OIDC).",
+        "id": "enterprise-sso",
+        "label": "Enterprise single sign-on"
+      },
+      {
+        "explain": "Runs code close to users on edge networks with fast cold starts.",
+        "id": "edge-runtime",
+        "label": "Edge runtime"
+      },
+      {
+        "explain": "Catches type mistakes before the code runs, across client and server.",
+        "id": "type-safety",
+        "label": "Type safety"
+      },
+      {
+        "explain": "Gives your team a ready-made screen to view and edit data.",
+        "id": "admin-ui",
+        "label": "Admin panel"
+      },
+      {
+        "explain": "Handles very many writes per second, such as events, logs or sensor data.",
+        "id": "high-write-throughput",
+        "label": "High write volume"
+      },
+      {
+        "explain": "Ships an app for iOS and Android app stores.",
+        "id": "native-mobile",
+        "label": "Native mobile app"
+      }
+    ],
+    "capability_layers": {
+      "background-jobs": [
+        "jobs-queue"
+      ],
+      "content-editing": [
+        "cms"
+      ],
+      "file-uploads": [
+        "storage"
+      ],
+      "full-text-search": [
+        "search"
+      ],
+      "native-mobile": [
+        "mobile"
+      ],
+      "payments": [
+        "payments"
+      ],
+      "realtime": [
+        "cache"
+      ],
+      "scheduled-jobs": [
+        "jobs-queue"
+      ],
+      "transactional-email": [
+        "email"
+      ],
+      "vector-search": [
+        "database"
+      ]
+    },
+    "languages": [
+      "python",
+      "typescript",
+      "javascript",
+      "go",
+      "java",
+      "kotlin",
+      "csharp",
+      "ruby",
+      "php",
+      "rust",
+      "elixir",
+      "dart",
+      "swift"
+    ],
+    "project_types": [
+      {
+        "core_layers": [
+          "frontend",
+          "meta-framework",
+          "ui-kit",
+          "backend",
+          "database",
+          "orm",
+          "auth",
+          "hosting"
+        ],
+        "id": "web-app",
+        "label": "Web app"
+      },
+      {
+        "core_layers": [
+          "frontend",
+          "meta-framework",
+          "ui-kit",
+          "cms",
+          "hosting"
+        ],
+        "id": "content-site",
+        "label": "Content site"
+      },
+      {
+        "core_layers": [
+          "backend",
+          "api-style",
+          "database",
+          "orm",
+          "auth",
+          "hosting"
+        ],
+        "id": "api-only",
+        "label": "API only"
+      },
+      {
+        "core_layers": [
+          "mobile",
+          "backend",
+          "database",
+          "orm",
+          "auth",
+          "hosting"
+        ],
+        "id": "mobile-app",
+        "label": "Mobile app"
+      },
+      {
+        "core_layers": [
+          "frontend",
+          "meta-framework",
+          "ui-kit",
+          "backend",
+          "database",
+          "cache",
+          "auth",
+          "hosting"
+        ],
+        "id": "realtime-app",
+        "label": "Realtime app"
+      },
+      {
+        "core_layers": [
+          "frontend",
+          "ui-kit",
+          "backend",
+          "database",
+          "orm",
+          "auth",
+          "hosting"
+        ],
+        "id": "internal-tool",
+        "label": "Internal tool"
+      },
+      {
+        "core_layers": [
+          "frontend",
+          "meta-framework",
+          "ui-kit",
+          "backend",
+          "database",
+          "orm",
+          "auth",
+          "payments",
+          "email",
+          "hosting"
+        ],
+        "id": "ecommerce",
+        "label": "Online store"
+      },
+      {
+        "core_layers": [
+          "frontend",
+          "meta-framework",
+          "ui-kit",
+          "backend",
+          "database",
+          "orm",
+          "auth",
+          "payments",
+          "email",
+          "jobs-queue",
+          "hosting"
+        ],
+        "id": "saas",
+        "label": "SaaS product"
+      }
+    ],
+    "tooling_layers": [
+      "state",
+      "build-tool",
+      "ci-cd",
+      "observability",
+      "testing"
+    ]
+  }
+}

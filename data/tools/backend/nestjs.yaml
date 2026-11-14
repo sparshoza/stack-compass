@@ -1,0 +1,21 @@
+id: nestjs
+name: NestJS
+aliases: [nest.js, nest js]
+layer: backend
+summary: A TypeScript-first Node.js framework with modules, dependency injection and websocket gateways.
+url: https://nestjs.com
+license: MIT
+languages: [typescript, javascript]
+tags: [type-safety, realtime]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Large TypeScript backends, Teams used to Angular or Spring structure]
+avoid_when: [A small script-like API]
+edges:
+- {type: alternative-to, target: express}
+- {type: alternative-to, target: fastify}
+- {type: pairs-with, target: bullmq}
+- {type: pairs-with, target: graphql-yoga}
+verified: 2026-11-14
+sources: ['https://nestjs.com', 'https://docs.nestjs.com/websockets/gateways']

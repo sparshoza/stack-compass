@@ -1,0 +1,22 @@
+id: active-record
+name: Active Record
+aliases: [activerecord]
+layer: orm
+summary: The ORM of Ruby on Rails, mapping tables to Ruby classes with migrations.
+url: https://guides.rubyonrails.org/active_record_basics.html
+license: MIT
+languages: [ruby]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Rails apps]
+avoid_when: [Projects not using Rails]
+edges:
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://guides.rubyonrails.org/active_record_basics.html', 'https://rubyonrails.org']

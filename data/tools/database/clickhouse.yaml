@@ -1,0 +1,19 @@
+id: clickhouse
+name: ClickHouse
+aliases: []
+layer: database
+summary: A column-oriented database for real-time analytics, open source or as ClickHouse Cloud.
+url: https://clickhouse.com
+repo: https://github.com/ClickHouse/ClickHouse
+license: Apache-2.0
+languages: []
+tags: [analytics]
+hosting: [managed, self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: [Analytics and event data]
+avoid_when: [Row-level transactional workloads]
+edges:
+- {type: alternative-to, target: cassandra}
+verified: 2026-11-14
+sources: ['https://clickhouse.com', 'https://github.com/ClickHouse/ClickHouse']

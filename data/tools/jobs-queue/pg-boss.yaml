@@ -1,0 +1,20 @@
+id: pg-boss
+name: pg-boss
+aliases: [pgboss]
+layer: jobs-queue
+summary: A job queue for Node.js built on PostgreSQL, with delayed and cron-scheduled jobs.
+url: https://github.com/timgit/pg-boss
+repo: https://github.com/timgit/pg-boss
+license: MIT
+languages: [javascript]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Node jobs without Redis]
+avoid_when: [Very high job throughput]
+edges:
+- {type: alternative-to, target: bullmq}
+- {type: pairs-with, target: postgresql}
+verified: 2026-11-14
+sources: ['https://github.com/timgit/pg-boss']

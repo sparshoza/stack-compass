@@ -1,0 +1,22 @@
+id: mongodb
+name: MongoDB
+aliases: [mongo]
+layer: database
+summary: A document database with flexible schemas and built-in geospatial queries.
+url: https://www.mongodb.com
+repo: https://github.com/mongodb/mongo
+license: SSPL-1.0
+languages: []
+tags: [geospatial, vector-search]
+hosting: [managed, self-hosted]
+pricing: [oss, free-tier, paid]
+maturity: established
+good_for: [Flexible document data, Location queries]
+avoid_when: [Heavily relational data with many joins]
+edges:
+- {type: alternative-to, target: dynamodb}
+- {type: pairs-with, target: jobrunr}
+- {type: pairs-with, target: mikro-orm}
+- {type: pairs-with, target: typeorm}
+verified: 2026-11-14
+sources: ['https://www.mongodb.com', 'https://www.mongodb.com/docs/manual/geospatial-queries/', 'https://github.com/mongodb/mongo']

@@ -1,0 +1,21 @@
+id: oban
+name: Oban
+aliases: []
+layer: jobs-queue
+summary: Robust job processing for Elixir, stored in PostgreSQL, MySQL or SQLite, with cron-style periodic jobs.
+url: https://oban.pro
+repo: https://github.com/oban-bg/oban
+license: Apache-2.0
+languages: [elixir]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: [Elixir and Phoenix jobs]
+avoid_when: [Projects not using Elixir]
+edges:
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://oban.pro', 'https://github.com/oban-bg/oban']

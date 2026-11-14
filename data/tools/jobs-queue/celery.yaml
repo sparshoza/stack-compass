@@ -1,0 +1,20 @@
+id: celery
+name: Celery
+aliases: []
+layer: jobs-queue
+summary: A distributed task queue with support for task scheduling.
+url: https://docs.celeryq.dev
+repo: https://github.com/celery/celery
+license: BSD-3-Clause
+languages: [python]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Python background and periodic tasks]
+avoid_when: [Simple jobs where a lighter queue is enough]
+edges:
+- {type: alternative-to, target: rq}
+- {type: pairs-with, target: django}
+verified: 2026-11-14
+sources: ['https://docs.celeryq.dev', 'https://github.com/celery/celery']

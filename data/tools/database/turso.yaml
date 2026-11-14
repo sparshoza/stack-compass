@@ -1,0 +1,21 @@
+id: turso
+name: Turso
+aliases: [libsql]
+layer: database
+summary: A SQLite-compatible database with native vector search, managed or via open source libSQL.
+url: https://turso.tech
+repo: https://github.com/tursodatabase/libsql
+license: MIT
+languages: []
+tags: [vector-search]
+hosting: [managed, self-hosted]
+pricing: [oss, free-tier, paid]
+maturity: emerging
+good_for: [Edge apps, Many small per-tenant databases]
+avoid_when: [Heavy write concurrency]
+edges:
+- {type: alternative-to, target: sqlite}
+- {type: pairs-with, target: drizzle}
+- {type: pairs-with, target: mikro-orm}
+verified: 2026-11-14
+sources: ['https://turso.tech', 'https://turso.tech/pricing', 'https://github.com/tursodatabase/libsql']

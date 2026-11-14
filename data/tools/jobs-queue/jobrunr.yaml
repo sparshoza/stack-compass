@@ -1,0 +1,23 @@
+id: jobrunr
+name: JobRunr
+aliases: []
+layer: jobs-queue
+summary: A Java library for fire-and-forget, delayed and recurring background jobs, with a Spring Boot starter.
+url: https://www.jobrunr.io
+repo: https://github.com/jobrunr/jobrunr
+license: LGPL-3.0
+languages: [java]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Java and Spring background jobs]
+avoid_when: [Your policy forbids LGPL]
+edges:
+- {type: alternative-to, target: quartz}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: spring-boot}
+verified: 2026-11-14
+sources: ['https://www.jobrunr.io', 'https://github.com/jobrunr/jobrunr']

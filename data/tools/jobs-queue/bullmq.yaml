@@ -1,0 +1,22 @@
+id: bullmq
+name: BullMQ
+aliases: [bull mq, bull]
+layer: jobs-queue
+summary: A Node.js and Bun job queue built on Redis, with delayed and recurring jobs.
+url: https://bullmq.io
+repo: https://github.com/taskforcesh/bullmq
+license: MIT
+languages: [javascript]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Background jobs in Node]
+avoid_when: [You do not run Redis]
+edges:
+- {type: alternative-to, target: pg-boss}
+- {type: alternative-to, target: trigger-dev}
+- {type: pairs-with, target: nestjs}
+- {type: pairs-with, target: redis}
+verified: 2026-11-14
+sources: ['https://bullmq.io', 'https://github.com/taskforcesh/bullmq']

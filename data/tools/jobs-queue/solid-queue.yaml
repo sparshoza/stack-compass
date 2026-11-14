@@ -1,0 +1,23 @@
+id: solid-queue
+name: Solid Queue
+aliases: []
+layer: jobs-queue
+summary: A database-backed Active Job queue for Rails with delayed and recurring jobs.
+url: https://github.com/rails/solid_queue
+repo: https://github.com/rails/solid_queue
+license: MIT
+languages: [ruby]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Rails jobs without Redis]
+avoid_when: [Very high job throughput]
+edges:
+- {type: alternative-to, target: sidekiq}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://github.com/rails/solid_queue']

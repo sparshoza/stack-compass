@@ -1,0 +1,20 @@
+id: laravel-queues
+name: Laravel Queues
+aliases: [laravel horizon]
+layer: jobs-queue
+summary: Laravel's queue API with database, Redis, SQS and Beanstalkd drivers, plus delayed jobs.
+url: https://laravel.com/docs/queues
+repo: https://github.com/laravel/framework
+license: MIT
+languages: [php]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Background jobs in Laravel]
+avoid_when: [Projects not using Laravel]
+edges:
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: redis}
+verified: 2026-11-14
+sources: ['https://laravel.com/docs/queues', 'https://laravel.com/docs/scheduling', 'https://github.com/laravel/framework']

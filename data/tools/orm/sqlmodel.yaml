@@ -1,0 +1,20 @@
+id: sqlmodel
+name: SQLModel
+aliases: []
+layer: orm
+summary: A Python library for SQL databases that combines SQLAlchemy and Pydantic models.
+url: https://sqlmodel.tiangolo.com
+license: MIT
+languages: [python]
+tags: [type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [FastAPI apps with one model for API and database]
+avoid_when: [You need every SQLAlchemy feature directly]
+edges:
+- {type: alternative-to, target: sqlalchemy}
+- {type: built-on, target: sqlalchemy}
+- {type: pairs-with, target: fastapi}
+verified: 2026-11-14
+sources: ['https://sqlmodel.tiangolo.com']

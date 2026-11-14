@@ -1,0 +1,19 @@
+id: dynamodb
+name: Amazon DynamoDB
+aliases: [dynamo db, dynamo]
+layer: database
+summary: A fully managed serverless NoSQL key-value and document database from AWS.
+url: https://aws.amazon.com/dynamodb
+license: Proprietary
+languages: []
+tags: []
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Serverless apps on AWS, Predictable single-digit-millisecond lookups]
+avoid_when: [Flexible ad hoc queries]
+edges:
+- {type: alternative-to, target: cassandra}
+- {type: alternative-to, target: mongodb}
+verified: 2026-11-14
+sources: ['https://aws.amazon.com/dynamodb']

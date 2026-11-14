@@ -1,0 +1,21 @@
+id: elasticache
+name: Amazon ElastiCache
+aliases: [aws elasticache]
+layer: cache
+summary: A managed in-memory cache on AWS compatible with Valkey, Redis OSS and Memcached.
+url: https://aws.amazon.com/elasticache
+license: Proprietary
+languages: []
+tags: []
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Caching inside an AWS stack]
+avoid_when: [You are not on AWS]
+edges:
+- {type: alternative-to, target: upstash-redis}
+- {type: pairs-with, target: memcached}
+- {type: pairs-with, target: redis}
+- {type: pairs-with, target: valkey}
+verified: 2026-11-14
+sources: ['https://aws.amazon.com/elasticache']

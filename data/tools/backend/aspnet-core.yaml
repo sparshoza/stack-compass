@@ -1,0 +1,20 @@
+id: aspnet-core
+name: ASP.NET Core
+aliases: [asp.net core, aspnet, .net web]
+layer: backend
+summary: A cross-platform .NET framework for web apps and APIs, including SignalR for realtime.
+url: https://dotnet.microsoft.com/apps/aspnet
+repo: https://github.com/dotnet/aspnetcore
+license: MIT
+languages: [csharp]
+tags: [realtime]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [C# teams, Realtime apps with SignalR]
+avoid_when: [Your team has no .NET experience]
+edges:
+- {type: pairs-with, target: entity-framework-core}
+- {type: pairs-with, target: hot-chocolate}
+verified: 2026-11-14
+sources: ['https://dotnet.microsoft.com/apps/aspnet', 'https://learn.microsoft.com/aspnet/core/data/ef-rp/intro', 'https://github.com/dotnet/aspnetcore']

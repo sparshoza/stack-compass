@@ -1,0 +1,20 @@
+id: connectrpc
+name: Connect
+aliases: [connect rpc, connect-rpc]
+layer: api-style
+summary: Protobuf RPC that works over plain HTTP, so browsers and gRPC clients can both call it.
+url: https://connectrpc.com
+repo: https://github.com/connectrpc/connect-es
+license: Apache-2.0
+languages: [go, javascript, typescript, python, rust, swift, kotlin, dart]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Typed APIs callable from browsers and gRPC clients]
+avoid_when: [You only need a simple JSON REST API]
+edges:
+- {type: alternative-to, target: grpc}
+- {type: alternative-to, target: trpc}
+verified: 2026-11-14
+sources: ['https://connectrpc.com', 'https://github.com/connectrpc/connect-es']

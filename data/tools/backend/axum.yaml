@@ -1,0 +1,18 @@
+id: axum
+name: Axum
+aliases: []
+layer: backend
+summary: A Rust web framework focused on ergonomics and modularity, built on Tokio and Tower.
+url: https://docs.rs/axum
+license: MIT
+languages: [rust]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Rust services, Low memory and high performance]
+avoid_when: [Rapid prototyping with a small team new to Rust]
+edges:
+- {type: pairs-with, target: sea-orm}
+verified: 2026-11-14
+sources: ['https://docs.rs/axum']

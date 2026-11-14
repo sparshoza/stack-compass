@@ -1,0 +1,20 @@
+id: trigger-dev
+name: Trigger.dev
+aliases: [trigger dev]
+layer: jobs-queue
+summary: A TypeScript toolkit for background jobs and long-running workflows, in the cloud or self-hosted.
+url: https://trigger.dev
+repo: https://github.com/triggerdotdev/trigger.dev
+license: Apache-2.0
+languages: [typescript]
+tags: [background-jobs, scheduled-jobs]
+hosting: [managed, self-hosted]
+pricing: [oss, free-tier, paid]
+maturity: emerging
+good_for: [Long-running TypeScript jobs on serverless hosts]
+avoid_when: [You need a very small in-process queue]
+edges:
+- {type: alternative-to, target: bullmq}
+- {type: alternative-to, target: temporal}
+verified: 2026-11-14
+sources: ['https://trigger.dev', 'https://github.com/triggerdotdev/trigger.dev']

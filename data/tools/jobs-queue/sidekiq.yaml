@@ -1,0 +1,20 @@
+id: sidekiq
+name: Sidekiq
+aliases: []
+layer: jobs-queue
+summary: Simple, efficient background jobs for Ruby, with a free LGPL edition and paid Pro and Enterprise tiers.
+url: https://sidekiq.org
+repo: https://github.com/sidekiq/sidekiq
+license: LGPL-3.0
+languages: [ruby]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: [Background jobs in Rails]
+avoid_when: [You do not run Redis]
+edges:
+- {type: alternative-to, target: solid-queue}
+- {type: pairs-with, target: rails}
+verified: 2026-11-14
+sources: ['https://sidekiq.org', 'https://github.com/sidekiq/sidekiq/blob/main/LICENSE.txt', 'https://github.com/sidekiq/sidekiq/wiki/Getting-Started', 'https://github.com/sidekiq/sidekiq']

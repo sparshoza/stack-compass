@@ -1,0 +1,20 @@
+id: eloquent
+name: Eloquent
+aliases: [laravel eloquent]
+layer: orm
+summary: Laravel's Active Record ORM for working with databases using PHP models.
+url: https://laravel.com/docs/eloquent
+repo: https://github.com/laravel/framework
+license: MIT
+languages: [php]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Laravel apps]
+avoid_when: [Projects not using Laravel]
+edges:
+- {type: alternative-to, target: doctrine}
+- {type: pairs-with, target: laravel}
+verified: 2026-11-14
+sources: ['https://laravel.com/docs/eloquent', 'https://github.com/laravel/framework']

@@ -1,0 +1,21 @@
+id: laravel
+name: Laravel
+aliases: []
+layer: backend
+summary: A full-stack PHP framework with queues, scheduling, mail and realtime broadcasting.
+url: https://laravel.com
+repo: https://github.com/laravel/laravel
+license: MIT
+languages: [php]
+tags: [background-jobs, scheduled-jobs, realtime, transactional-email]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Full products in PHP, Built-in queues and scheduling]
+avoid_when: [Your team avoids PHP]
+edges:
+- {type: pairs-with, target: doctrine}
+- {type: pairs-with, target: eloquent}
+- {type: pairs-with, target: laravel-queues}
+verified: 2026-11-14
+sources: ['https://laravel.com', 'https://laravel.com/docs/queues', 'https://laravel.com/docs/scheduling', 'https://laravel.com/docs/mail', 'https://github.com/laravel/laravel']

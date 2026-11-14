@@ -1,0 +1,22 @@
+id: gorm
+name: GORM
+aliases: [go-gorm]
+layer: orm
+summary: A full-featured ORM library for Go.
+url: https://gorm.io
+repo: https://github.com/go-gorm/gorm
+license: MIT
+languages: [go]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Go CRUD services]
+avoid_when: [You prefer generated typed SQL]
+edges:
+- {type: pairs-with, target: gin}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://gorm.io', 'https://gorm.io/docs/connecting_to_the_database.html', 'https://github.com/go-gorm/gorm']

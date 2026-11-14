@@ -1,0 +1,22 @@
+id: trpc
+name: tRPC
+aliases: []
+layer: api-style
+summary: End-to-end typesafe APIs for TypeScript, with no schema or code generation.
+url: https://trpc.io
+repo: https://github.com/trpc/trpc
+license: MIT
+languages: [typescript]
+tags: [type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Full-stack TypeScript apps, Sharing types between client and server]
+avoid_when: [Clients that are not TypeScript]
+edges:
+- {type: alternative-to, target: connectrpc}
+- {type: alternative-to, target: orpc}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: fastify}
+verified: 2026-11-14
+sources: ['https://trpc.io', 'https://github.com/trpc/trpc']

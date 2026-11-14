@@ -1,0 +1,20 @@
+id: upstash-redis
+name: Upstash Redis
+aliases: [upstash]
+layer: cache
+summary: Serverless Redis with a per-request pricing model and an HTTP API for edge runtimes.
+url: https://upstash.com/docs/redis/overall/getstarted
+license: Proprietary
+languages: []
+tags: [edge-runtime]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Serverless and edge apps]
+avoid_when: [Constant high-volume traffic where per-request pricing hurts]
+edges:
+- {type: alternative-to, target: cloudflare-kv}
+- {type: alternative-to, target: elasticache}
+- {type: alternative-to, target: redis}
+verified: 2026-11-14
+sources: ['https://upstash.com/docs/redis/overall/getstarted']

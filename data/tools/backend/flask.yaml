@@ -1,0 +1,19 @@
+id: flask
+name: Flask
+aliases: []
+layer: backend
+summary: A lightweight Python web framework you extend with the libraries you choose.
+url: https://flask.palletsprojects.com
+license: BSD-3-Clause
+languages: [python]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Small services and prototypes]
+avoid_when: ['You want auth, admin and ORM included']
+edges:
+- {type: alternative-to, target: django}
+- {type: alternative-to, target: fastapi}
+verified: 2026-11-14
+sources: ['https://flask.palletsprojects.com', 'https://flask.palletsprojects.com/en/stable/license/']

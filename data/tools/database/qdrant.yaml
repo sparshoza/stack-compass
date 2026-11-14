@@ -1,0 +1,19 @@
+id: qdrant
+name: Qdrant
+aliases: []
+layer: database
+summary: A vector database for similarity search with filtering, available as open source or managed cloud.
+url: https://qdrant.tech
+repo: https://github.com/qdrant/qdrant
+license: Apache-2.0
+languages: []
+tags: [vector-search]
+hosting: [managed, self-hosted]
+pricing: [oss, free-tier]
+maturity: established
+good_for: [Dedicated vector search at scale]
+avoid_when: [A small app that can use pgvector]
+edges:
+- {type: alternative-to, target: pgvector}
+verified: 2026-11-14
+sources: ['https://qdrant.tech', 'https://github.com/qdrant/qdrant']

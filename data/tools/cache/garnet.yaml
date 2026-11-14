@@ -1,0 +1,21 @@
+id: garnet
+name: Garnet
+aliases: []
+layer: cache
+summary: A cache-store from Microsoft Research that speaks the RESP protocol, so Redis clients connect unchanged.
+url: https://microsoft.github.io/garnet
+repo: https://github.com/microsoft/garnet
+license: MIT
+languages: []
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Redis clients on a .NET-based server]
+avoid_when: [You need the full Redis module ecosystem]
+edges:
+- {type: alternative-to, target: dragonfly}
+- {type: alternative-to, target: redis}
+- {type: alternative-to, target: valkey}
+verified: 2026-11-14
+sources: ['https://microsoft.github.io/garnet', 'https://github.com/microsoft/garnet']

@@ -1,0 +1,22 @@
+id: diesel
+name: Diesel
+aliases: []
+layer: orm
+summary: A Rust ORM and query builder that checks queries at compile time.
+url: https://diesel.rs
+repo: https://github.com/diesel-rs/diesel
+license: MIT OR Apache-2.0
+languages: [rust]
+tags: [type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Rust services with compile-time checked queries]
+avoid_when: [You need an async-first API out of the box]
+edges:
+- {type: alternative-to, target: sea-orm}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://diesel.rs', 'https://github.com/diesel-rs/diesel']

@@ -1,0 +1,26 @@
+id: graphql-yoga
+name: GraphQL Yoga
+aliases: [yoga graphql]
+layer: api-style
+summary: A GraphQL server built on Web Standards for Node.js, Deno, Bun, Cloudflare Workers and more.
+url: https://the-guild.dev/graphql/yoga-server
+repo: https://github.com/graphql-hive/graphql-yoga
+license: MIT
+languages: [javascript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [GraphQL on any JavaScript runtime]
+avoid_when: [A simple CRUD API]
+edges:
+- {type: alternative-to, target: apollo-server}
+- {type: alternative-to, target: gqlgen}
+- {type: alternative-to, target: hot-chocolate}
+- {type: alternative-to, target: postgraphile}
+- {type: alternative-to, target: strawberry}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: fastify}
+- {type: pairs-with, target: nestjs}
+verified: 2026-11-14
+sources: ['https://the-guild.dev/graphql/yoga-server', 'https://github.com/graphql-hive/graphql-yoga']

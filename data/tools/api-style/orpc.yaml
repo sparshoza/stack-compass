@@ -1,0 +1,19 @@
+id: orpc
+name: oRPC
+aliases: []
+layer: api-style
+summary: Typesafe APIs for TypeScript that also generate OpenAPI specs.
+url: https://orpc.dev/
+repo: https://github.com/unnoq/orpc
+license: MIT
+languages: [typescript]
+tags: [type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Typed RPC with OpenAPI output]
+avoid_when: [You need a long track record]
+edges:
+- {type: alternative-to, target: trpc}
+verified: 2026-11-14
+sources: ['https://orpc.dev/', 'https://github.com/unnoq/orpc']

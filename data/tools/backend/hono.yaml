@@ -1,0 +1,20 @@
+id: hono
+name: Hono
+aliases: [hono js]
+layer: backend
+summary: A small web framework built on Web Standards that runs on Cloudflare Workers, Deno, Bun and Node.js.
+url: https://hono.dev
+repo: https://github.com/honojs/hono
+license: MIT
+languages: [typescript, javascript]
+tags: [edge-runtime]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Edge and serverless APIs, Runtime-portable code]
+avoid_when: [You need a large built-in feature set]
+edges:
+- {type: alternative-to, target: express}
+- {type: alternative-to, target: fastify}
+verified: 2026-11-14
+sources: ['https://hono.dev', 'https://github.com/honojs/hono']

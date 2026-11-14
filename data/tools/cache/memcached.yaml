@@ -1,0 +1,20 @@
+id: memcached
+name: Memcached
+aliases: []
+layer: cache
+summary: A free and open source distributed in-memory caching system.
+url: https://memcached.org
+repo: https://github.com/memcached/memcached
+license: BSD-3-Clause
+languages: []
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: ['Simple, fast object caching']
+avoid_when: ['Pub/sub, persistence or data structures']
+edges:
+- {type: alternative-to, target: redis}
+- {type: pairs-with, target: elasticache}
+verified: 2026-11-14
+sources: ['https://memcached.org', 'https://github.com/memcached/memcached']

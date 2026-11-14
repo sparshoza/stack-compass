@@ -1,0 +1,19 @@
+id: temporal
+name: Temporal
+aliases: []
+layer: jobs-queue
+summary: A durable execution platform that resumes workflows after crashes, with SDKs in many languages.
+url: https://temporal.io
+repo: https://github.com/temporalio/temporal
+license: MIT
+languages: [go, java, csharp, php, python, ruby, rust, typescript]
+tags: []
+hosting: [self-hosted, managed]
+pricing: [oss, paid]
+maturity: established
+good_for: ['Long-running, reliable workflows']
+avoid_when: [A simple fire-and-forget queue]
+edges:
+- {type: alternative-to, target: trigger-dev}
+verified: 2026-11-14
+sources: ['https://temporal.io', 'https://docs.temporal.io/develop', 'https://github.com/temporalio/temporal']

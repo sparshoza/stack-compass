@@ -1,0 +1,21 @@
+id: sea-orm
+name: SeaORM
+aliases: [seaorm]
+layer: orm
+summary: An async, dynamic ORM for Rust for building web services, with relations and migrations.
+url: https://www.sea-ql.org/SeaORM/
+repo: https://github.com/SeaQL/sea-orm
+license: MIT OR Apache-2.0
+languages: [rust]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Async Rust services]
+avoid_when: [Projects not using Rust]
+edges:
+- {type: alternative-to, target: diesel}
+- {type: pairs-with, target: axum}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://www.sea-ql.org/SeaORM/', 'https://github.com/SeaQL/sea-orm/tree/master/examples/axum_example', 'https://github.com/SeaQL/sea-orm']

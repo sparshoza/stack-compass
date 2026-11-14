@@ -1,0 +1,24 @@
+id: hot-chocolate
+name: Hot Chocolate
+aliases: [hotchocolate, chillicream]
+layer: api-style
+summary: A GraphQL server for .NET on ASP.NET Core, serving HTTP, WebSocket and SSE.
+url: https://chillicream.com/docs/hotchocolate
+repo: https://github.com/ChilliCream/graphql-platform
+license: MIT
+languages: [csharp]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [GraphQL in .NET]
+avoid_when: [You want a REST-only API]
+edges:
+- {type: alternative-to, target: apollo-server}
+- {type: alternative-to, target: gqlgen}
+- {type: alternative-to, target: graphql-yoga}
+- {type: alternative-to, target: postgraphile}
+- {type: alternative-to, target: strawberry}
+- {type: pairs-with, target: aspnet-core}
+verified: 2026-11-14
+sources: ['https://chillicream.com/docs/hotchocolate', 'https://github.com/ChilliCream/graphql-platform']

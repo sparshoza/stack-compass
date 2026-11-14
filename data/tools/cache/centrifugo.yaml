@@ -1,0 +1,21 @@
+id: centrifugo
+name: Centrifugo
+aliases: []
+layer: cache
+summary: A scalable realtime messaging server that pushes events to browsers over WebSocket and other transports.
+url: https://centrifugal.dev
+repo: https://github.com/centrifugal/centrifugo
+license: Apache-2.0
+languages: []
+tags: [realtime]
+hosting: [self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: [Adding realtime push to an existing backend]
+avoid_when: [Key-value caching]
+edges:
+- {type: alternative-to, target: nats}
+- {type: pairs-with, target: nats}
+- {type: pairs-with, target: redis}
+verified: 2026-11-14
+sources: ['https://centrifugal.dev', 'https://github.com/centrifugal/centrifugo']

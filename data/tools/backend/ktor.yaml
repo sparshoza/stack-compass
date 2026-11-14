@@ -1,0 +1,20 @@
+id: ktor
+name: Ktor
+aliases: []
+layer: backend
+summary: A Kotlin framework for asynchronous servers and clients, with websocket support.
+url: https://ktor.io
+repo: https://github.com/ktorio/ktor
+license: Apache-2.0
+languages: [kotlin]
+tags: [realtime]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Kotlin services with coroutines, Lightweight servers]
+avoid_when: [You want Spring's wider ecosystem]
+edges:
+- {type: alternative-to, target: spring-boot}
+- {type: pairs-with, target: exposed}
+verified: 2026-11-14
+sources: ['https://ktor.io', 'https://ktor.io/docs/server-websockets.html', 'https://github.com/ktorio/ktor']

@@ -1,0 +1,21 @@
+id: river
+name: River
+aliases: []
+layer: jobs-queue
+summary: A job library that runs on Postgres or SQLite with transactional enqueueing and cron jobs.
+url: https://riverqueue.com
+repo: https://github.com/riverqueue/river
+license: MPL-2.0
+languages: [go, java, ruby, rust, typescript]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss, paid]
+maturity: emerging
+good_for: [Go jobs enqueued in the same transaction as your data]
+avoid_when: [You do not use PostgreSQL]
+edges:
+- {type: alternative-to, target: asynq}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://riverqueue.com', 'https://github.com/riverqueue/river']

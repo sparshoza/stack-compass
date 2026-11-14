@@ -1,0 +1,19 @@
+id: sqlalchemy
+name: SQLAlchemy
+aliases: [sql alchemy]
+layer: orm
+summary: The Python SQL toolkit and ORM, with a Core query layer and a high-level ORM.
+url: https://www.sqlalchemy.org
+repo: https://github.com/sqlalchemy/sqlalchemy
+license: MIT
+languages: [python]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Python services with FastAPI or Flask, Complex queries]
+avoid_when: [Django projects (use its built-in ORM)]
+edges:
+- {type: alternative-to, target: sqlmodel}
+verified: 2026-11-14
+sources: ['https://www.sqlalchemy.org', 'https://github.com/sqlalchemy/sqlalchemy']

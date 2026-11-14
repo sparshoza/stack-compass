@@ -1,0 +1,20 @@
+id: asynq
+name: Asynq
+aliases: []
+layer: jobs-queue
+summary: A Go library for queueing tasks and processing them asynchronously with Redis.
+url: https://github.com/hibiken/asynq
+repo: https://github.com/hibiken/asynq
+license: MIT
+languages: [go]
+tags: [background-jobs, scheduled-jobs]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Go background tasks]
+avoid_when: [You do not run Redis]
+edges:
+- {type: alternative-to, target: river}
+- {type: pairs-with, target: redis}
+verified: 2026-11-14
+sources: ['https://github.com/hibiken/asynq']

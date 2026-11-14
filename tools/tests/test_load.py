@@ -33,9 +33,12 @@ def errors_of(kb_dir: Path) -> list[str]:
     return exc.value.errors
 
 
-def test_layers_are_the_spec_22():
-    assert len(LAYERS) == 22
-    assert LAYERS[0] == "frontend" and LAYERS[-1] == "testing"
+def test_layers_are_the_spec_22_in_scoring_order():
+    assert LAYERS == [
+        "backend", "frontend", "meta-framework", "mobile", "database", "orm", "api-style",
+        "auth", "cache", "jobs-queue", "search", "storage", "payments", "email", "cms",
+        "state", "ui-kit", "build-tool", "hosting", "ci-cd", "observability", "testing",
+    ]
 
 
 def test_loads_fixture():
@@ -187,3 +190,9 @@ def test_reports_all_errors_at_once(kb_dir):
     errs = errors_of(kb_dir)
     files = {e.split(":")[0] for e in errs}
     assert {"tools/frontend/react.yaml", "tools/backend/fastapi.yaml", "vocab.yaml"} <= files
+
+
+def test_rejects_duplicate_vocab_languages(kb_dir):
+    edit_yaml(kb_dir / "vocab.yaml", lambda d: d["languages"].append("Python "))
+    errs = errors_of(kb_dir)
+    assert any(e.startswith("vocab.yaml") and "duplicate language" in e for e in errs)

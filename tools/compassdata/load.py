@@ -53,6 +53,11 @@ def _validate(model: Any, data: Any, rel: str, errors: list[str]) -> Any:
 def _check_vocab(vocab: Vocab, errors: list[str]) -> None:
     rel = "vocab.yaml"
     layers = set(LAYERS)
+    seen_langs: set[str] = set()
+    for lang in vocab.languages:
+        if _norm(lang) in seen_langs:
+            errors.append(f"{rel}: duplicate language '{lang}'")
+        seen_langs.add(_norm(lang))
     seen: set[str] = set()
     for cap in vocab.capabilities:
         if cap.id in seen:

@@ -5,25 +5,26 @@ from datetime import date
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+# Scoring order, also the display order.
 LAYERS: list[str] = [
+    "backend",
     "frontend",
     "meta-framework",
-    "ui-kit",
-    "state",
-    "build-tool",
     "mobile",
-    "backend",
-    "api-style",
-    "orm",
     "database",
+    "orm",
+    "api-style",
+    "auth",
     "cache",
     "jobs-queue",
     "search",
     "storage",
-    "auth",
     "payments",
     "email",
     "cms",
+    "state",
+    "ui-kit",
+    "build-tool",
     "hosting",
     "ci-cd",
     "observability",

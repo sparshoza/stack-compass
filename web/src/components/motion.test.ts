@@ -41,7 +41,7 @@ describe('motion classes on the surfaces that move', () => {
   })
 
   it('closing sheets and dialogs hand focus back at once, not after their exit', () => {
-    for (const file of ['map/ToolPanel.tsx', 'choose/ChooseSheet.tsx', 'map/InfoDialog.tsx']) {
+    for (const file of ['map/ToolPanel.tsx', 'choose/ChooseSheet.tsx', 'map/InfoDialog.tsx', 'map/FiltersPopover.tsx']) {
       expect(source(file), file).toMatch(/useReturnFocusOnClose/)
     }
   })

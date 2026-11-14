@@ -21,7 +21,9 @@ function walk(dir: string, out: string[] = []): string[] {
   return out
 }
 
-const files = roots.flatMap((root) => walk(root))
+// The HTML shell has an inline script and could hold inline styles.
+const indexHtml = resolve(webSrc, '..', 'index.html')
+const files = [...roots.flatMap((root) => walk(root)), indexHtml]
 
 function offenders(pattern: RegExp): string[] {
   const hits: string[] = []
@@ -40,10 +42,20 @@ function offenders(pattern: RegExp): string[] {
 // only add the classes from styles/motion.css.
 const tokensFile = join(webSrc, 'styles', 'tokens.css')
 const isTest = (file: string) => /\.test\.tsx?$/.test(file)
-const cssFiles = () => files.filter((f) => f.startsWith(webSrc) && f.endsWith('.css'))
-const codeFiles = () => files.filter((f) => f.startsWith(webSrc) && /\.tsx?$/.test(f) && !isTest(f))
+const cssFiles = () => files.filter((f) => (f.startsWith(webSrc) && f.endsWith('.css')) || f === indexHtml)
+const codeFiles = () => files.filter((f) => (f.startsWith(webSrc) && /\.tsx?$/.test(f) && !isTest(f)) || f === indexHtml)
 const MOVING = new Set(['transform', 'opacity'])
+// Colour may cross-fade only on toggles (controller ruling PR7, DESIGN.md Motion).
 const FADING = new Set([...MOVING, 'color', 'background-color', 'border-color'])
+const COLOUR_CLASSES = /\.motion-(colors|thumb)\b/
+const RAW_TIME = /(?<![\w.-])\d*\.?\d+m?s\b/
+
+/** The selector of the rule that holds the declaration at `index`. */
+function selectorAt(css: string, index: number): string {
+  const open = css.lastIndexOf('{', index)
+  const start = Math.max(css.lastIndexOf('}', open), css.lastIndexOf(';', open), css.lastIndexOf('*/', open) + 1)
+  return css.slice(start + 1, open).trim()
+}
 
 function where(file: string, text: string, index: number): string {
   return `${relative(repoRoot, file)}:${text.slice(0, index).split('\n').length}`
@@ -81,9 +93,10 @@ function transitionOffenders(): string[] {
     for (const m of css.matchAll(/(?<![\w-])transition(-property)?\s*:\s*([^;}]+)/g)) {
       const value = m[2].replace(/!important/, '').trim()
       if (value === 'none') continue
+      const allowed = COLOUR_CLASSES.test(selectorAt(css, m.index)) ? FADING : MOVING
       for (const part of value.split(/,(?![^(]*\))/)) {
         const prop = part.trim().split(/\s+/)[0]
-        if (!FADING.has(prop)) hits.push(`${where(file, css, m.index)} ${prop}`)
+        if (!allowed.has(prop)) hits.push(`${where(file, css, m.index)} ${prop}`)
       }
     }
   }
@@ -96,7 +109,9 @@ function timingOffenders(): string[] {
   for (const file of cssFiles()) {
     if (file === tokensFile) continue
     const css = readFileSync(file, 'utf8')
-    for (const m of css.matchAll(/(?<![\w.-])\d*\.?\d+(ms|s)\b/g)) hits.push(`${where(file, css, m.index)} ${m[0]}`)
+    // index.html is scanned for times only inside a style element or attribute.
+    const text = file === indexHtml ? [...css.matchAll(/<style[^>]*>([\s\S]*?)<\/style>|style="([^"]*)"/g)].map((m) => m[1] ?? m[2]).join('\n') : css
+    for (const m of text.matchAll(new RegExp(RAW_TIME, 'g'))) hits.push(`${where(file, text, m.index)} ${m[0]}`)
     for (const m of css.matchAll(/(?<![\w-])(animation|transition)\s*:\s*([^;}]+)/g)) {
       const value = m[2].replace(/!important/, '').trim()
       if (value === 'none') continue
@@ -115,10 +130,17 @@ function timingOffenders(): string[] {
     const code = readFileSync(file, 'utf8')
     // Class names live in string literals; comments may say the words.
     for (const m of code.matchAll(/(["'`])((?:(?!\1)[^\\\n]|\\.)*)\1/g)) {
-      if (utility.test(m[2])) hits.push(`${where(file, code, m.index)} ${m[2]}`)
+      // A timing utility, a raw time ('opacity 200ms') or a value for every property.
+      if (utility.test(m[2]) || RAW_TIME.test(m[2]) || /^\s*all\b/.test(m[2])) {
+        hits.push(`${where(file, code, m.index)} ${m[2]}`)
+      }
     }
-    // A camera or tween duration written as a number instead of read from a token.
-    for (const m of code.matchAll(/[dD]uration\s*:\s*[1-9]/g)) hits.push(`${where(file, code, m.index)} ${m[0]}`)
+    // Inline style motion (transition, transitionProperty, animationName, ...): motion lives in motion.css.
+    for (const m of code.matchAll(/(?<![\w-])(transition|animation)(-?[A-Za-z]+)?["']?\s*:/g)) {
+      hits.push(`${where(file, code, m.index)} ${m[0]}`)
+    }
+    // A camera or tween duration written as a number (0.3 too) instead of read from a token.
+    for (const m of code.matchAll(/[dD]uration\s*:\s*(0?\.\d*[1-9]|[1-9])/g)) hits.push(`${where(file, code, m.index)} ${m[0]}`)
   }
   return hits
 }
@@ -128,7 +150,8 @@ const upper = 'upper' + 'case'
 const serif = 'se' + 'rif'
 
 describe('UI bans', () => {
-  it('scans both web/src and data', () => {
+  it('scans web/src, data and the HTML shell', () => {
+    expect(files).toContain(indexHtml)
     expect(files.some((f) => f.startsWith(webSrc))).toBe(true)
     expect(files.some((f) => f.startsWith(dataDir))).toBe(true)
   })
@@ -169,7 +192,7 @@ describe('UI bans', () => {
     expect(keyframeOffenders()).toEqual([])
   })
 
-  it('transitions name only transform, opacity or colour properties', () => {
+  it('transitions name only transform or opacity; colour only on .motion-colors and .motion-thumb', () => {
     expect(transitionOffenders()).toEqual([])
   })
 

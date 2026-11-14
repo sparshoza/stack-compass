@@ -71,10 +71,10 @@
    * Exits are faster than entrances. styles/motion.css and lib/motion.ts
    * read these; no other file writes a duration.
    */
-  --duration-fast: 120ms; /* press feedback, chip colour */
+  --duration-fast: 150ms; /* press feedback, chip colour */
   --duration-base: 200ms; /* sheets, popovers and dialogs entering; one pick lighting */
   --duration-slow: 280ms; /* the map camera gliding to a tool or a stack */
-  --duration-exit: 140ms; /* sheets, popovers and dialogs leaving */
+  --duration-exit: 160ms; /* sheets, popovers and dialogs leaving */
   --duration-stagger: 480ms; /* the whole pick sequence, first to last (600ms at most) */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --press-scale: 0.97;

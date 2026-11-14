@@ -82,8 +82,9 @@ export function FiltersPopover({
         sideOffset={8}
         collisionPadding={16}
         aria-labelledby={titleId}
-        onPointerDownOutside={() => {
-          clickedOutside.current = true
+        // A press on the trigger itself is not "elsewhere" (Safari never focuses buttons on click).
+        onPointerDownOutside={(event) => {
+          if (!triggerRef.current?.contains(event.target as Node)) clickedOutside.current = true
         }}
         onCloseAutoFocus={onCloseAutoFocus}
         className="max-h-(--radix-popover-content-available-height) w-[min(22rem,calc(100vw-2rem))] gap-0 overflow-y-auto rounded-xl p-0 text-[0.8125rem] lg:w-[38rem]"

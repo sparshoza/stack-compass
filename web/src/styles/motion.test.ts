@@ -36,9 +36,10 @@ describe('motion tokens', () => {
     expect(root).toMatch(/--press-scale:\s*0\.97;/)
   })
 
-  it('keeps UI feedback within 120 to 300ms, exits faster than entrances, a sequence within 600ms', () => {
+  it('keeps UI feedback within 150 to 300ms, exits faster than entrances, a sequence within 600ms', () => {
     const value = (name: string) => ms(new RegExp(`--duration-${name}:\\s*([^;]+);`).exec(root)![1])
-    expect(value('fast')).toBeGreaterThanOrEqual(100)
+    expect(value('fast')).toBeGreaterThanOrEqual(150)
+    expect(value('exit')).toBeGreaterThanOrEqual(150)
     expect(value('slow')).toBeLessThanOrEqual(300)
     expect(value('fast')).toBeLessThan(value('base'))
     expect(value('base')).toBeLessThan(value('slow'))

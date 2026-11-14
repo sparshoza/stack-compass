@@ -239,17 +239,26 @@ function cameraTarget(sigma: Sigma<NodeAttrs, EdgeAttrs>, move: () => void): Cam
  * the ease-out curve; 0 jumps. Zoom changes geometrically so its speed reads
  * even. Returns a cancel function that leaves the camera where it is.
  */
-function glideCamera(sigma: Sigma<NodeAttrs, EdgeAttrs>, target: CameraTarget, duration: number): () => void {
+function glideCamera(
+  sigma: Sigma<NodeAttrs, EdgeAttrs>,
+  target: CameraTarget,
+  duration: number,
+  done: () => void,
+): () => void {
   const camera = sigma.getCamera()
   const from = camera.getState()
-  return tween(duration, (t) => {
-    const k = easeOut(t)
-    camera.setState({
-      x: from.x + (target.x - from.x) * k,
-      y: from.y + (target.y - from.y) * k,
-      ratio: t >= 1 ? target.ratio : from.ratio * (target.ratio / from.ratio) ** k,
-    })
-  })
+  return tween(
+    duration,
+    (t) => {
+      const k = easeOut(t)
+      camera.setState({
+        x: from.x + (target.x - from.x) * k,
+        y: from.y + (target.y - from.y) * k,
+        ratio: t >= 1 ? target.ratio : from.ratio * (target.ratio / from.ratio) ** k,
+      })
+    },
+    done,
+  )
 }
 
 type Glide = { cancel: () => void; target: CameraTarget }
@@ -265,7 +274,11 @@ function moveCamera(glideRef: { current: Glide | null }, sigma: Sigma<NodeAttrs,
   const target = cameraTarget(sigma, move)
   const glide: Glide = { target, cancel: () => {} }
   glideRef.current = glide
-  glide.cancel = glideCamera(sigma, target, readDuration('--duration-slow'))
+  // A finished glide is forgotten, so nothing later can jump back to its target.
+  const forget = () => {
+    if (glideRef.current === glide) glideRef.current = null
+  }
+  glide.cancel = glideCamera(sigma, target, readDuration('--duration-slow'), forget)
 }
 
 /** Ids of the edges whose two ends are both in `ids`. */

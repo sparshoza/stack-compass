@@ -123,9 +123,15 @@ describe('staggerSchedule', () => {
     expect(Math.max(...slots.map((s) => s.delay + s.duration))).toBeLessThanOrEqual(STAGGER_LIMIT_MS)
   })
 
-  it('is not uniform: the first gaps are wider than the last', () => {
-    const slots = staggerSchedule(10, { total: 480, each: 200 })
-    expect(slots[1].delay - slots[0].delay).toBeGreaterThan(slots[9].delay - slots[8].delay)
+  it('is near-uniform: the first gaps a little wider, the last picks never bunch', () => {
+    for (const count of [5, 10, 17]) {
+      const slots = staggerSchedule(count, { total: 480, each: 200 })
+      const gaps = slots.slice(1).map((s, i) => s.delay - slots[i].delay)
+      const mean = gaps.reduce((a, b) => a + b, 0) / gaps.length
+      expect(gaps[0], `${count}`).toBeGreaterThan(gaps.at(-1)!)
+      // Even the last gap keeps at least 60% of the average step.
+      expect(Math.min(...gaps), `${count}`).toBeGreaterThanOrEqual(mean * 0.6)
+    }
   })
 
   it('keeps a short list from trickling: at most 50ms between items', () => {

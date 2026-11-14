@@ -358,6 +358,35 @@ describe('StackGraph', () => {
       }
     })
 
+    it('forgets a finished glide, so turning reduced motion on later never moves the camera', () => {
+      let reduce = false
+      const listeners = new Set<() => void>()
+      window.matchMedia = vi.fn((query: string) => ({
+        get matches() {
+          return query.includes('prefers-reduced-motion') && reduce
+        },
+        media: query,
+        onchange: null,
+        addEventListener: (_: string, fn: () => void) => listeners.add(fn),
+        removeEventListener: (_: string, fn: () => void) => listeners.delete(fn),
+        addListener: () => {},
+        removeListener: () => {},
+        dispatchEvent: () => false,
+      })) as unknown as typeof window.matchMedia
+      const { rerender } = render(<StackGraph />)
+      const { camera, now } = trackCamera()
+      rerender(<StackGraph focus={database.id} />)
+      act(() => vi.advanceTimersByTime(400))
+      expect(now()).toMatchObject({ x: 0.25, y: 0.75 })
+      // The reader pans away, then turns reduced motion on.
+      camera.setState({ x: 0.9, y: 0.1 })
+      act(() => {
+        reduce = true
+        for (const fn of listeners) fn()
+      })
+      expect(now()).toMatchObject({ x: 0.9, y: 0.1 })
+    })
+
     it('with reduced motion the camera jumps straight to the focused tool', () => {
       reduceMotion()
       const { rerender } = render(<StackGraph />)

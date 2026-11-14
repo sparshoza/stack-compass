@@ -88,9 +88,10 @@ export interface Slot {
 /**
  * Start times for a sequence of `count` items in the given order. The whole
  * sequence ends within `total` (and never past STAGGER_LIMIT_MS); each item
- * takes `each`. Gaps shrink along the list (the delays follow an ease-out),
- * so it reads as one wave rather than a metronome, and a short list never
- * waits more than MAX_STEP_MS between items. A total of 0 puts everything at
+ * takes `each`. Gaps are near-uniform, a little wider at the start than at
+ * the end (a quarter of the delay curve is an ease-out), so it reads as one
+ * wave without the last items bunching up; a short list never waits more
+ * than MAX_STEP_MS between items. A total of 0 puts everything at
  * once with no duration.
  */
 export function staggerSchedule(count: number, opts: { total: number; each: number }): Slot[] {
@@ -98,13 +99,15 @@ export function staggerSchedule(count: number, opts: { total: number; each: numb
   if (count <= 0) return []
   if (total === 0) return Array.from({ length: count }, () => ({ delay: 0, duration: 0 }))
   const duration = Math.min(Math.max(opts.each, 0), total)
+  // Share of the span reached at progress p: three quarters linear, one quarter ease-out.
+  const curve = (p: number) => 0.75 * p + 0.25 * (1 - (1 - p) ** 2)
   // The first gap is the widest; it may be at most MAX_STEP_MS.
-  const firstGap = count > 1 ? 1 - (1 - 1 / (count - 1)) ** 2 : 1
+  const firstGap = count > 1 ? curve(1 / (count - 1)) : 1
   const span = count > 1 ? Math.min(total - duration, MAX_STEP_MS / firstGap) : 0
-  return Array.from({ length: count }, (_, i) => {
-    const p = count > 1 ? i / (count - 1) : 0
-    return { delay: span * (1 - (1 - p) ** 2), duration }
-  })
+  return Array.from({ length: count }, (_, i) => ({
+    delay: span * curve(count > 1 ? i / (count - 1) : 0),
+    duration,
+  }))
 }
 
 /**

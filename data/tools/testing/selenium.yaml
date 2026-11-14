@@ -3,6 +3,7 @@ name: Selenium
 aliases:
 - selenium webdriver
 - webdriver
+needs_web_frontend: true
 layer: testing
 summary: Open-source umbrella project for browser automation, with WebDriver, Selenium Grid and language bindings.
 url: https://www.selenium.dev

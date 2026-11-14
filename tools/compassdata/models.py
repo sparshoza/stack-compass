@@ -63,6 +63,8 @@ class Tool(Strict):
     match_name: bool = True
     # A library that runs inside the app (no server of its own to host).
     runs_in_app: bool = False
+    # A tool that only makes sense with a web page to test (browser test runners).
+    needs_web_frontend: bool = False
     layer: str
     summary: str = Field(min_length=1, max_length=140)
     url: str = Field(min_length=1)

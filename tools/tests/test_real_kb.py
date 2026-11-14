@@ -160,6 +160,12 @@ def test_runs_in_app_marks_libraries_not_services():
     assert {t for t in services if tools[t].runs_in_app} == set()
 
 
+def test_needs_web_frontend_marks_browser_test_tools_only():
+    tools = load_kb(DATA).tools
+    browser = {"playwright", "cypress", "selenium"}
+    assert {t for t, tool in tools.items() if tool.needs_web_frontend} == browser
+
+
 def _kw_phrases():
     return {p for e in load_kb(DATA).keywords for p in e.phrases}
 

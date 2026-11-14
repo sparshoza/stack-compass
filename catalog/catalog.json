@@ -422,6 +422,18 @@
     },
     {
       "phrases": [
+        "an api",
+        "graphql api",
+        "graphql server"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "api-only"
+      }
+    },
+    {
+      "phrases": [
         "restful",
         "rest endpoints"
       ],
@@ -2505,6 +2517,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Active Record",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -2576,6 +2589,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Adyen",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -2652,6 +2666,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Algolia",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -2708,6 +2723,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Alpine.js",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -2802,6 +2818,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Amazon S3",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -2885,6 +2902,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Amazon SES",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -2935,6 +2953,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Analog",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3030,6 +3049,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Angular",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3082,6 +3102,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Angular Material",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3135,6 +3156,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Ant Design",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3204,6 +3226,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Apache Solr",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3266,6 +3289,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Apollo Server",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3308,6 +3332,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Argo CD",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3368,6 +3393,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "ASP.NET Core",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3513,6 +3539,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Astro",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3566,6 +3593,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "AsyncAPI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3610,6 +3638,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Asynq",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3711,6 +3740,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Auth0",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -3768,6 +3798,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "authentik",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3841,6 +3872,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Auth.js",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -3890,6 +3922,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "AWS Amplify Hosting",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -3952,6 +3985,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Amazon Cognito",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -3998,6 +4032,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Axum",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -4060,6 +4095,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Azure Blob Storage",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -4117,6 +4153,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Azure Pipelines",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -4169,6 +4206,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Babel",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -4229,6 +4267,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Backblaze B2",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -4327,6 +4366,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Better Auth",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -4391,6 +4431,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Bitbucket Pipelines",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -4450,6 +4491,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Braintree",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -4522,6 +4564,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Brevo",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -4569,6 +4612,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Bruno",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -4632,6 +4676,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "BugSnag",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -4676,6 +4721,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Buildkite",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -4733,6 +4779,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "BullMQ",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -4782,6 +4829,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Caffeine",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -4852,6 +4900,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Capacitor",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -4903,6 +4952,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Apache Cassandra",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -4964,6 +5014,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Celery",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -5010,6 +5061,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Centrifugo",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -5072,6 +5124,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Chakra UI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -5123,6 +5176,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Chargebee",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -5180,6 +5234,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "CircleCI",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -5305,6 +5360,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Clerk",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -5365,6 +5421,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "ClickHouse",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -5433,6 +5490,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Cloudflare Pages",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -5505,6 +5563,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Cloudflare R2",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -5556,6 +5615,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Cloudinary",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -5606,6 +5666,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Compose Multiplatform",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -5651,6 +5712,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Concourse CI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -5705,6 +5767,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Connect",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -5764,6 +5827,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Contentful",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -5815,6 +5879,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Coolify",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -5884,6 +5949,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Cypress",
+      "needs_web_frontend": true,
       "pricing": [
         "oss",
         "paid"
@@ -5929,6 +5995,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Dagger",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -5993,6 +6060,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Datadog",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -6056,6 +6124,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Decap CMS",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6113,6 +6182,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Devise",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6169,6 +6239,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Diesel",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6223,6 +6294,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "DigitalOcean App Platform",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -6332,6 +6404,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Django",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6403,6 +6476,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Django ORM",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6461,6 +6535,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Doctrine ORM",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6523,6 +6598,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Docusaurus",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6578,6 +6654,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Dokku",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6642,6 +6719,7 @@
       "match_name": true,
       "maturity": "established",
       "name": ".NET MAUI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6693,6 +6771,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Dragonfly",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -6795,6 +6874,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Drizzle ORM",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6844,6 +6924,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Amazon DynamoDB",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -6900,6 +6981,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Ecto",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6951,6 +7033,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Effector",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -6997,6 +7080,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Ehcache",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7045,6 +7129,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Amazon ElastiCache",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -7129,6 +7214,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Elasticsearch",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -7187,6 +7273,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Element Plus",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7255,6 +7342,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Eloquent",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7308,6 +7396,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Ember.js",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7365,6 +7454,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Entity Framework Core",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7416,6 +7506,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "esbuild",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7495,6 +7586,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Expo",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -7552,6 +7644,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Exposed",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7691,6 +7784,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Express",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7741,6 +7835,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "ExUnit",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7821,6 +7916,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "FastAPI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7904,6 +8000,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Fastify",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -7967,6 +8064,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Firebase Authentication",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -8014,6 +8112,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Firebase Hosting",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -8072,6 +8171,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Cloud Storage for Firebase",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -8155,6 +8255,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Flask",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8206,6 +8307,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "FlexSearch",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8271,6 +8373,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Fluent",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8347,6 +8450,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Flutter",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8396,6 +8500,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Flux",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8465,6 +8570,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Fly.io",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -8517,6 +8623,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Fresh",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8570,6 +8677,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Fuse.js",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8620,6 +8728,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Garage",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8671,6 +8780,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Garnet",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8726,6 +8836,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Gatsby",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8773,6 +8884,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Ghost",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -8833,6 +8945,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Gin",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -8936,6 +9049,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "GitHub Actions",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -8994,6 +9108,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "GitHub Pages",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -9054,6 +9169,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "GitLab CI/CD",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -9111,6 +9227,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "GlitchTip",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -9174,6 +9291,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "GoCardless",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -9222,6 +9340,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "GoCD",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -9275,6 +9394,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Google Cloud Run",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -9343,6 +9463,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Google Cloud Storage",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -9405,6 +9526,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "GORM",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -9446,6 +9568,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "gqlgen",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -9504,6 +9627,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Grafana",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -9565,6 +9689,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "GraphQL Yoga",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -9616,6 +9741,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "gRPC",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -9660,6 +9786,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Gulp",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -9716,6 +9843,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Headless UI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -9792,6 +9920,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Heroku",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -9855,6 +9984,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "HeroUI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -9911,6 +10041,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Hibernate ORM",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -9963,6 +10094,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Honeycomb",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -10045,6 +10177,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Hono",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10094,6 +10227,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Hot Chocolate",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10142,6 +10276,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "htmx",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10198,6 +10333,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Hygraph",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -10266,6 +10402,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Ionic",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -10315,6 +10452,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Jaeger",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10367,6 +10505,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Jenkins",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10444,6 +10583,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Jest",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10502,6 +10642,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "JobRunr",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10548,6 +10689,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "jQuery",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10598,6 +10740,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "JUnit",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10642,6 +10785,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "k6",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10688,6 +10832,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Kamal",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10749,6 +10894,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Keycloak",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10809,6 +10955,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "KeystoneJS",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10865,6 +11012,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Kill Bill",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10923,6 +11071,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Kotlin Multiplatform",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -10978,6 +11127,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Ktor",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11051,6 +11201,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Kysely",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11105,6 +11256,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Lago",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -11219,6 +11371,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Laravel",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11283,6 +11436,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Laravel Queues",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11334,6 +11488,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Lemon Squeezy",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -11375,6 +11530,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "listmonk",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11424,6 +11580,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Lit",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11472,6 +11629,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Grafana Loki",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11542,6 +11700,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "MailerSend",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -11614,6 +11773,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Mailgun",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -11655,6 +11815,7 @@
       "match_name": true,
       "maturity": "legacy",
       "name": "MailHog",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11692,6 +11853,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Mailpit",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11770,6 +11932,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Manticore Search",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11828,6 +11991,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Mantine",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -11918,6 +12082,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "MariaDB",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -11977,6 +12142,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Material UI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -12063,6 +12229,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Meilisearch",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -12122,6 +12289,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Memcached",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -12202,6 +12370,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "MikroORM",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -12250,6 +12419,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "MiniSearch",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -12292,6 +12462,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "MJML",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -12344,6 +12515,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "MobX",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -12406,6 +12578,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Mollie",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -12498,6 +12671,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "MongoDB",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -12668,6 +12842,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "MySQL",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -12730,6 +12905,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Nano Stores",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -12790,6 +12966,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "NativeScript",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -12834,6 +13011,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "NATS",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -12890,6 +13068,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Neon",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -13010,6 +13189,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "NestJS",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -13115,6 +13295,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Netlify",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -13178,6 +13359,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "New Relic",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -13346,6 +13528,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Next.js",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -13404,6 +13587,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "NgRx",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -13445,6 +13629,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Nodemailer",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -13545,6 +13730,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Nuxt",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -13601,6 +13787,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Nx",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -13656,6 +13843,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Oban",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -13707,6 +13895,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "OpenAPI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -13785,6 +13974,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "OpenSearch",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -13854,6 +14044,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "OpenTelemetry",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -13899,6 +14090,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "oRPC",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -13951,6 +14143,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Paddle",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -14002,6 +14195,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Pagefind",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14056,6 +14250,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Parcel",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14110,6 +14305,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Passport",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14179,6 +14375,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Payload",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14247,6 +14444,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "PayPal",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -14296,6 +14494,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "pg-boss",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14344,6 +14543,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "pgvector",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14363,7 +14563,12 @@
     {
       "aliases": [
         "phoenix framework",
-        "liveview"
+        "liveview",
+        "phoenix app",
+        "phoenix api",
+        "phoenix project",
+        "phoenix backend",
+        "elixir phoenix"
       ],
       "avoid_when": [
         "Your team has no Elixir experience"
@@ -14406,6 +14611,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Phoenix",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14455,6 +14661,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "PHPUnit",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14506,6 +14713,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Pinia",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14600,6 +14808,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Playwright",
+      "needs_web_frontend": true,
       "pricing": [
         "oss"
       ],
@@ -14661,6 +14870,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "Polar",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -14727,6 +14937,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Postal",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14778,6 +14989,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "PostGraphile",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -14976,6 +15188,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "PostgreSQL",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15020,6 +15233,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Postman",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -15089,6 +15303,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Postmark",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -15140,6 +15355,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Preact",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15190,6 +15406,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "PrimeNG",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -15244,6 +15461,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "PrimeVue",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -15366,6 +15584,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Prisma",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15438,6 +15657,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Prismic",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -15501,6 +15721,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Prometheus",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15566,6 +15787,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "pytest",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15607,6 +15829,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Qdrant",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier"
@@ -15654,6 +15877,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Quartz Scheduler",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15708,6 +15932,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Qwik",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15763,6 +15988,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Qwik City",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15818,6 +16044,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Radix UI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15927,6 +16154,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Ruby on Rails",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -15985,6 +16213,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Railway",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -16048,6 +16277,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Razorpay",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -16209,6 +16439,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "React",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -16258,6 +16489,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "React Email",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -16342,6 +16574,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "React Native",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -16409,6 +16642,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "React Router",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -16521,6 +16755,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Redis",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -16581,6 +16816,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Redux Toolkit",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -16670,6 +16906,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Render",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -16800,6 +17037,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Resend",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -16867,6 +17105,7 @@
       "match_name": false,
       "maturity": "emerging",
       "name": "River",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -16930,6 +17169,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Rollbar",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -16977,6 +17217,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Rolldown",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -17024,6 +17265,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Rollup",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -17076,6 +17318,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "RQ",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -17134,6 +17377,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Rspack",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -17175,6 +17419,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "RSpec",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -17243,6 +17488,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Sanity",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -17305,6 +17551,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SeaORM",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -17352,6 +17599,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SeaweedFS",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -17406,6 +17654,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Selenium",
+      "needs_web_frontend": true,
       "pricing": [
         "oss"
       ],
@@ -17475,6 +17724,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SendGrid",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -17651,6 +17901,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Sentry",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -17752,6 +18003,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Sequelize",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -17829,6 +18081,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "shadcn/ui",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -17876,6 +18129,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Sidekiq",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -17935,6 +18189,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "SigNoz",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -17994,6 +18249,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Solid Queue",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18064,6 +18320,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SolidJS",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18126,6 +18383,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "SolidStart",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18244,6 +18502,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Spring Boot",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18304,6 +18563,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Spring Security",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18375,6 +18635,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SQLAlchemy",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18533,6 +18794,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SQLite",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18580,6 +18842,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "SQLModel",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18643,6 +18906,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Square",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -18700,6 +18964,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Stimulus",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18759,6 +19024,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Storyblok",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -18821,6 +19087,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Strapi",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -18875,6 +19142,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Strawberry GraphQL",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -18965,6 +19233,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Stripe",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -19051,6 +19320,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Supabase",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -19125,6 +19395,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Supabase Auth",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -19191,6 +19462,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Supabase Storage",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -19254,6 +19526,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SuperTokens",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -19356,6 +19629,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Svelte",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -19470,6 +19744,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SvelteKit",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -19533,6 +19808,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SWC",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -19581,6 +19857,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SwiftUI",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier"
       ],
@@ -19631,6 +19908,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "SWR",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -19733,6 +20011,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Tailwind CSS",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -19805,6 +20084,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "TanStack Query",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -19873,6 +20153,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "TanStack Start",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -19943,6 +20224,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Tantivy",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -20022,6 +20304,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Tauri",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -20080,6 +20363,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Temporal",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -20127,6 +20411,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Testify",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -20174,6 +20459,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Testing Library",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -20234,6 +20520,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "TinaCMS",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -20290,6 +20577,7 @@
       "match_name": true,
       "maturity": "legacy",
       "name": "Travis CI",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -20338,6 +20626,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Trigger.dev",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -20400,6 +20689,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "tRPC",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -20456,6 +20746,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Turbopack",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -20500,6 +20791,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Turborepo",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier"
@@ -20556,6 +20848,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Turso",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -20647,6 +20940,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "TypeORM",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -20725,6 +21019,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Typesense",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -20773,6 +21068,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Uno Platform",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -20829,6 +21125,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "UploadThing",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -20878,6 +21175,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Uppy",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -20920,6 +21218,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Upstash Redis",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -20963,6 +21262,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Uptime Kuma",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21018,6 +21318,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Valkey",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21067,6 +21368,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Valtio",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21118,6 +21420,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Vapor",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21236,6 +21539,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Vercel",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -21302,6 +21606,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Vercel Blob",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -21373,6 +21678,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Vespa",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "paid"
@@ -21470,6 +21776,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Vite",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21536,6 +21843,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "VitePress",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21643,6 +21951,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Vitest",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21765,6 +22074,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Vue",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21821,6 +22131,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Vuetify",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21866,6 +22177,7 @@
       "match_name": true,
       "maturity": "legacy",
       "name": "Vuex",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21911,6 +22223,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Wagtail",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -21969,6 +22282,7 @@
       "match_name": false,
       "maturity": "established",
       "name": "Wasabi",
+      "needs_web_frontend": false,
       "pricing": [
         "paid"
       ],
@@ -22026,6 +22340,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "webpack",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -22070,6 +22385,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "Woodpecker CI",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -22119,6 +22435,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "WordPress",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -22189,6 +22506,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "WorkOS",
+      "needs_web_frontend": false,
       "pricing": [
         "free-tier",
         "paid"
@@ -22238,6 +22556,7 @@
       "match_name": true,
       "maturity": "legacy",
       "name": "Xamarin",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -22292,6 +22611,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "XState",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -22340,6 +22660,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "xUnit.net",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],
@@ -22402,6 +22723,7 @@
       "match_name": true,
       "maturity": "emerging",
       "name": "ZITADEL",
+      "needs_web_frontend": false,
       "pricing": [
         "oss",
         "free-tier",
@@ -22463,6 +22785,7 @@
       "match_name": true,
       "maturity": "established",
       "name": "Zustand",
+      "needs_web_frontend": false,
       "pricing": [
         "oss"
       ],

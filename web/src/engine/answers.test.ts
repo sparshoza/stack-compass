@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { DEFAULT_ANSWERS, defaultAnswers, fromDetected } from "./answers";
 
 describe("answers", () => {
-  it("defaults are either, any, startup, tooling on", () => {
+  it("defaults are either, any, startup, tooling off", () => {
     expect(DEFAULT_ANSWERS).toEqual({
       projectType: null,
       languagesPrefer: [],
@@ -12,7 +12,7 @@ describe("answers", () => {
       budget: "any",
       scale: "startup",
       knownTools: [],
-      tooling: true,
+      tooling: false,
     });
   });
 

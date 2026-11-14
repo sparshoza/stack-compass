@@ -24,6 +24,7 @@ describe("selectLayers", () => {
       answers({
         projectType: "saas",
         capabilities: ["payments", "background-jobs", "scheduled-jobs"],
+        tooling: true,
       }),
       kb,
     );
@@ -68,27 +69,32 @@ describe("selectLayers", () => {
   });
 
   it("state and build tool come only with a frontend layer", () => {
-    const api = selectLayers(answers({ projectType: "api-only" }), kb);
+    const api = selectLayers(answers({ projectType: "api-only", tooling: true }), kb);
     expect(api).not.toContain("state");
     expect(api).not.toContain("build-tool");
     for (const layer of ["ci-cd", "observability", "testing"]) expect(api).toContain(layer);
 
     // A mobile app has no web frontend, so no web state library or bundler.
-    const mobile = selectLayers(answers({ projectType: "mobile-app" }), kb);
+    const mobile = selectLayers(answers({ projectType: "mobile-app", tooling: true }), kb);
     expect(mobile).not.toContain("state");
     expect(mobile).not.toContain("build-tool");
     for (const layer of ["ci-cd", "observability", "testing"]) expect(mobile).toContain(layer);
 
     const apiWithApp = selectLayers(
-      answers({ projectType: "api-only", capabilities: ["native-mobile"] }),
+      answers({ projectType: "api-only", capabilities: ["native-mobile"], tooling: true }),
       kb,
     );
     expect(apiWithApp).toContain("mobile");
     expect(apiWithApp).not.toContain("state");
 
-    const web = selectLayers(answers({ projectType: "web-app" }), kb);
+    const web = selectLayers(answers({ projectType: "web-app", tooling: true }), kb);
     expect(web).toContain("state");
     expect(web).toContain("build-tool");
+  });
+
+  it("dev tooling is off by default, so a default stack has no tooling layers", () => {
+    const layers = selectLayers(answers({ projectType: "web-app" }), kb);
+    for (const layer of kb.vocab.tooling_layers) expect(layers).not.toContain(layer);
   });
 
   it("no project type returns empty", () => {

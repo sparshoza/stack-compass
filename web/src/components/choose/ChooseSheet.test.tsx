@@ -189,7 +189,8 @@ describe('Help me choose', () => {
     // Questions the text cannot answer keep their defaults.
     expect(within(within(dialog).getByRole('radiogroup', { name: 'Where should it run?' })).getByRole('radio', { name: 'Either' })).toBeChecked()
     expect(within(within(dialog).getByRole('radiogroup', { name: 'How big will it get?' })).getByRole('radio', { name: 'Real customers' })).toBeChecked()
-    expect(within(dialog).getByRole('switch', { name: /Include dev tooling/ })).toBeChecked()
+    // Dev tooling is off unless the person turns it on.
+    expect(within(dialog).getByRole('switch', { name: /Include dev tooling/ })).not.toBeChecked()
   })
 
   it('languages cycle through prefer, avoid and no preference; known tools are searchable', async () => {
@@ -418,8 +419,8 @@ describe('Help me choose', () => {
     const before = rows().length
     await openPreferences(user)
     await user.click(within(sheet()).getByRole('switch', { name: /Include dev tooling/ }))
-    expect(rows().length).toBeLessThan(before)
-    expect(params().get('tool')).toBe('0')
+    expect(rows().length).toBeGreaterThan(before)
+    expect(params().get('tool')).toBe('1')
   })
 
   it('Start over clears answers, highlight and URL', async () => {

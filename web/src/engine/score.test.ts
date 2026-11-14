@@ -275,6 +275,91 @@ describe("scoreStack", () => {
     ]);
   });
 
+  it("hosting shares a language with the backend pick; a host with no languages passes", () => {
+    const fx = makeKb(
+      [
+        makeTool("laravel", "backend", { languages: ["php"] }),
+        makeTool("aaa-js-host", "hosting", { languages: ["javascript"], uses: ["web-apps"] }),
+        makeTool("bbb-php-host", "hosting", { languages: ["php"], uses: ["backends"] }),
+        makeTool("ccc-containers", "hosting", { uses: ["backends", "containers"] }),
+      ],
+      ["backend", "hosting"],
+    );
+    const hosting = layerOf(scoreStack(answers({ scale: "prototype" }), fx), "hosting");
+    expect(hosting.pick).toBe("bbb-php-host");
+    expect(hosting.alternatives).toEqual(["ccc-containers"]);
+    expect(hosting.excluded).toEqual([
+      { toolId: "aaa-js-host", reason: "language-mismatch-with-pick" },
+    ]);
+  });
+
+  it("a static-only host drops out when the stack has a backend, and stays without one", () => {
+    const tools = [
+      makeTool("express", "backend", { languages: ["javascript"] }),
+      makeTool("aaa-pages", "hosting", { uses: ["static-sites"] }),
+      makeTool("zzz-run", "hosting", { uses: ["static-sites", "backends"] }),
+    ];
+    const withBackend = layerOf(
+      scoreStack(answers({ scale: "prototype" }), makeKb(tools, ["backend", "hosting"])),
+      "hosting",
+    );
+    expect(withBackend.pick).toBe("zzz-run");
+    expect(withBackend.excluded).toEqual([{ toolId: "aaa-pages", reason: "no-server-runtime" }]);
+    const staticSite = layerOf(
+      scoreStack(answers({ scale: "prototype" }), makeKb(tools, ["hosting"])),
+      "hosting",
+    );
+    expect(staticSite.pick).toBe("aaa-pages");
+  });
+
+  it("drops the build tool when a web framework is picked, since it brings its own bundler", () => {
+    const tools = [
+      makeTool("react", "frontend"),
+      makeTool("nextjs", "meta-framework", { edges: [{ type: "built-on", target: "react" }] }),
+      makeTool("vite", "build-tool"),
+    ];
+    const withFramework = scoreStack(answers(), makeKb(tools, ["frontend", "meta-framework", "build-tool"]));
+    expect(withFramework.map((r) => r.layer)).toEqual(["frontend", "meta-framework"]);
+    const without = scoreStack(answers(), makeKb(tools, ["frontend", "build-tool"]));
+    expect(without.map((r) => r.layer)).toEqual(["frontend", "build-tool"]);
+    expect(layerOf(without, "build-tool").pick).toBe("vite");
+  });
+
+  it("a frontend that adds small touches to server-built pages drops the web framework and state layers", () => {
+    const fx = makeKb(
+      [
+        makeTool("rails", "backend", { languages: ["ruby"] }),
+        makeTool("stimulus", "frontend", {
+          uses: ["sprinkles"],
+          edges: [{ type: "pairs-with", target: "rails" }],
+        }),
+        makeTool("nextjs", "meta-framework", { edges: [{ type: "built-on", target: "react" }] }),
+        makeTool("zustand", "state", { edges: [{ type: "pairs-with", target: "react" }] }),
+        makeTool("aaa-react-kit", "ui-kit", { edges: [{ type: "built-on", target: "react" }] }),
+        makeTool("tailwind", "ui-kit", { edges: [{ type: "pairs-with", target: "rails" }] }),
+      ],
+      ["backend", "frontend", "meta-framework", "state", "ui-kit"],
+    );
+    const results = scoreStack(answers({ languagesPrefer: ["ruby"] }), fx);
+    expect(results.map((r) => r.layer)).toEqual(["backend", "frontend", "ui-kit"]);
+    // The backend builds the pages, so a kit that fits the backend fits.
+    expect(layerOf(results, "ui-kit").pick).toBe("tailwind");
+  });
+
+  it("an interactive frontend keeps the ui kit rule against the frontend pick only", () => {
+    const fx = makeKb(
+      [
+        makeTool("rails", "backend", { languages: ["ruby"] }),
+        makeTool("react", "frontend", { uses: ["interactive"] }),
+        makeTool("aaa-rails-kit", "ui-kit", { edges: [{ type: "pairs-with", target: "rails" }] }),
+      ],
+      ["backend", "frontend", "ui-kit"],
+    );
+    const ui = layerOf(scoreStack(answers(), fx), "ui-kit");
+    expect(ui.pick).toBeNull();
+    expect(ui.excluded).toEqual([{ toolId: "aaa-rails-kit", reason: "not-compatible-with-pick" }]);
+  });
+
   it("paid-only excluded on free budget", () => {
     const fx = makeKb(
       [
@@ -439,7 +524,7 @@ describe("scoreStack", () => {
         makeTool("express", "backend", { languages: ["javascript"] }),
         makeTool("flask", "backend", { languages: ["python"] }),
         makeTool("aaa-db", "database", { languages: ["javascript"] }),
-        makeTool("aaa-host", "hosting"),
+        makeTool("aaa-host", "hosting", { uses: ["backends"] }),
         makeTool("aaa-orm", "orm"),
       ],
       ["backend", "database", "orm", "hosting"],
@@ -1125,19 +1210,22 @@ describe("scoreStack on the real catalog", () => {
     expect(pickOf(a, "testing")).not.toBe("playwright");
   });
 
-  it("pins a data fact: no state tool in the catalog works with Stimulus, so a Rails web app shows No match for state", () => {
-    const results = scoreStack(fromText("a web app in Rails"), kb);
+  it("a Rails web app with Stimulus gets Tailwind and no web framework, state or build tool rows", () => {
+    const results = scoreStack(fromText("a web app in Rails", { tooling: true }), kb);
     expect(results.find((r) => r.layer === "frontend")?.pick).toBe("stimulus");
-    const state = results.find((r) => r.layer === "state");
-    expect(state?.pick).toBeNull();
-    const compatible = kb.tools.filter(
-      (t) =>
-        t.layer === "state" &&
-        t.edges.some(
-          (e) => e.target === "stimulus" && ["built-on", "pairs-with"].includes(e.type),
-        ),
-    );
-    expect(compatible).toEqual([]);
+    const layers = results.map((r) => r.layer);
+    expect(layers).not.toContain("meta-framework");
+    expect(layers).not.toContain("state");
+    expect(results.find((r) => r.layer === "ui-kit")?.pick).toBe("tailwindcss");
+    expect(results.filter((r) => r.pick === null).map((r) => r.layer)).toEqual([]);
+  });
+
+  it("a PHP backend never gets a host without a PHP runtime", () => {
+    const results = scoreStack(fromText("a web app in Laravel"), kb);
+    const host = kb.tools.find((t) => t.id === results.find((r) => r.layer === "hosting")?.pick);
+    expect(host).toBeDefined();
+    expect(host?.languages.length === 0 || host?.languages.includes("php")).toBe(true);
+    expect(host?.id).not.toBe("vercel");
   });
 });
 

@@ -13,6 +13,8 @@ languages:
 - java
 - csharp
 - ruby
+- kotlin
+- php
 tags:
 - scheduled-jobs
 hosting:
@@ -32,8 +34,9 @@ edges:
   target: flyio
 - {type: pairs-with, target: spring-boot}
 uses: [backends, containers]
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://cloud.google.com/run
 - https://docs.cloud.google.com/run/docs/overview/what-is-cloud-run
 - https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-java-service
+- https://docs.cloud.google.com/run/docs/deploying-source-code

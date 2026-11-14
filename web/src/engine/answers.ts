@@ -12,7 +12,7 @@ export type Answers = {
   tooling: boolean;
 };
 
-/** Fresh default answers: either, any, startup, no lists, tooling on. */
+/** Fresh default answers: either, any, startup, no lists, dev tooling off. */
 export function defaultAnswers(): Answers {
   return {
     projectType: null,
@@ -23,7 +23,7 @@ export function defaultAnswers(): Answers {
     budget: "any",
     scale: "startup",
     knownTools: [],
-    tooling: true,
+    tooling: false,
   };
 }
 
@@ -49,7 +49,7 @@ export const DEFAULT_ANSWERS: Readonly<Answers> = Object.freeze<Answers>({
   get knownTools(): string[] {
     return [];
   },
-  tooling: true,
+  tooling: false,
 });
 
 /** Answers pre-filled from the matcher; everything it cannot detect keeps its default. */

@@ -39,12 +39,15 @@ export type LayerResult = {
  *   has a capability when it carries the tag or a same-layer tool built on
  *   it does. The code carries the capability id
  *   ("missing-capability:rest-api"), like the capability score codes.
- * - language-mismatch-with-pick: an orm, api-style or jobs-queue tool must
- *   share a language with the backend pick, and a testing tool with the
+ * - language-mismatch-with-pick: an orm, api-style, jobs-queue or hosting
+ *   tool must share a language with the backend pick (a host lists the
+ *   runtimes it runs), and a testing tool with the
  *   backend, the frontend or the mobile pick, when such a pick exists. An auth library
  *   that runs in the app must share a language with the backend pick, or
  *   with the frontend pick when there is no backend pick; a hosted auth
  *   service may match either. Tools with no languages pass.
+ * - no-server-runtime: a host that only serves static files (no languages
+ *   and no server use in `uses`) cannot run the backend pick.
  *
  * Everywhere languages are compared, typescript and javascript count as one.
  * - not-built-on-pick: a meta-framework must be built-on the frontend pick,
@@ -52,7 +55,10 @@ export type LayerResult = {
  *   (the Django ORM on Django) needs that tool to be the pick of its layer,
  *   when that layer has a pick; state and ui-kit keep the rule below.
  * - not-compatible-with-pick: state and ui-kit tools must be built-on or
- *   pair with the frontend pick, when there is one.
+ *   pair with the frontend pick, when there is one. When that frontend adds
+ *   small touches to pages the server builds (SERVER_PAGES_USE), a ui-kit
+ *   tool may pair with the backend pick instead, since the backend writes
+ *   the HTML.
  * - no-web-frontend: a tool marked needs_web_frontend (a browser test
  *   runner) needs a frontend or a meta-framework pick.
  */
@@ -64,6 +70,7 @@ export const REASON_CODES = [
   "budget-paid-only",
   "missing-capability",
   "language-mismatch-with-pick",
+  "no-server-runtime",
   "not-built-on-pick",
   "not-compatible-with-pick",
   "no-web-frontend",
@@ -110,7 +117,27 @@ const LANGUAGE_PICK_LAYERS: Partial<Record<Layer, Layer[]>> = {
   "jobs-queue": ["backend"],
   auth: ["backend", "frontend"],
   testing: ["backend", "frontend", "mobile"],
+  hosting: ["backend"],
 };
+
+/** Hosting `uses` options that mean the host runs server code, not only static files. */
+const SERVER_HOSTING_USES: ReadonlySet<string> = new Set(["backends", "containers", "web-apps"]);
+
+/**
+ * The frontend `uses` option for a library that adds small touches to pages
+ * the server builds (Stimulus, htmx, Alpine.js). Such a frontend has no web
+ * framework or client state library on top, so those layers are left out.
+ */
+const SERVER_PAGES_USE = "sprinkles";
+const INTERACTIVE_USE = "interactive";
+
+/** Layers left out of a stack whose frontend pick only adds touches to server-built pages. */
+const SERVER_PAGES_SKIPPED: ReadonlySet<Layer> = new Set<Layer>(["meta-framework", "state"]);
+
+/** True for a frontend that adds small touches to pages the server builds. */
+export function buildsOnServerPages(tool: Tool): boolean {
+  return tool.uses.includes(SERVER_PAGES_USE) && !tool.uses.includes(INTERACTIVE_USE);
+}
 
 /**
  * Layers whose ties go to the tool that shares a language with the earliest
@@ -295,6 +322,14 @@ function failedCheck(
   ) {
     return "language-mismatch-with-pick";
   }
+  if (
+    layer === "hosting" &&
+    picks.get("backend") &&
+    languages.length === 0 &&
+    !tool.uses.some((u) => SERVER_HOSTING_USES.has(u))
+  ) {
+    return "no-server-runtime";
+  }
   const frontend = picks.get("frontend");
   if (
     layer === "meta-framework" &&
@@ -306,12 +341,12 @@ function failedCheck(
   if (!FRONTEND_RULE_LAYERS.has(layer) && !builtOnPicks(tool, picks, layers)) {
     return "not-built-on-pick";
   }
-  if (
-    (layer === "state" || layer === "ui-kit") &&
-    frontend &&
-    !hasEdge(tool, ["built-on", "pairs-with"], frontend.id)
-  ) {
-    return "not-compatible-with-pick";
+  if ((layer === "state" || layer === "ui-kit") && frontend) {
+    const backend = picks.get("backend");
+    const fits = (pick: Tool) => hasEdge(tool, ["built-on", "pairs-with"], pick.id);
+    const fitsServerPages =
+      layer === "ui-kit" && buildsOnServerPages(frontend) && !!backend && fits(backend);
+    if (!fits(frontend) && !fitsServerPages) return "not-compatible-with-pick";
   }
   if (
     tool.needs_web_frontend &&
@@ -472,9 +507,22 @@ function scoreLayer(
 }
 
 /**
+ * Layers to leave out once earlier picks are known: the build tool when a
+ * web framework is picked (it bundles the code itself), and the web framework
+ * and state layers when the frontend pick only adds touches to server-built
+ * pages.
+ */
+function skippedAfterPicks(layer: Layer, picks: Picks): boolean {
+  if (layer === "build-tool" && picks.has("meta-framework")) return true;
+  const frontend = picks.get("frontend");
+  return !!frontend && buildsOnServerPages(frontend) && SERVER_PAGES_SKIPPED.has(layer);
+}
+
+/**
  * Scores every selected layer in scoring order. Each pick feeds the
- * pairs-with points and pick filters of later layers. Never throws: a layer
- * where nothing passes gets a null pick and its exclusions.
+ * pairs-with points and pick filters of later layers, and can leave later
+ * layers out (skippedAfterPicks). Never throws: a layer where nothing passes
+ * gets a null pick and its exclusions.
  */
 export function scoreStack(a: Answers, kb: KnowledgeBase): LayerResult[] {
   const byLayer = new Map<Layer, Tool[]>();
@@ -486,7 +534,9 @@ export function scoreStack(a: Answers, kb: KnowledgeBase): LayerResult[] {
     else byLayer.set(tool.layer, [tool]);
   }
   const picks: Picks = new Map();
-  return selectLayers(a, kb).map((layer) => {
+  const results: LayerResult[] = [];
+  for (const layer of selectLayers(a, kb)) {
+    if (skippedAfterPicks(layer, picks)) continue;
     const result = scoreLayer(
       layer,
       byLayer.get(layer) ?? [],
@@ -499,6 +549,7 @@ export function scoreStack(a: Answers, kb: KnowledgeBase): LayerResult[] {
       ? byLayer.get(layer)?.find((t) => t.id === result.pick)
       : undefined;
     if (pick) picks.set(layer, pick);
-    return result;
-  });
+    results.push(result);
+  }
+  return results;
 }

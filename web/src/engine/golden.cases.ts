@@ -89,6 +89,7 @@ export const GOLDEN_CASES: GoldenCase[] = [
   {
     id: "api-go-postgres",
     text: "A REST API written in Go with Postgres and background workers.",
+    answers: { tooling: true },
     checks: [
       { projectType: "api-only" },
       { backendLanguage: "go" },
@@ -115,6 +116,7 @@ export const GOLDEN_CASES: GoldenCase[] = [
     // language, so the app still gets a backend and an ORM.
     id: "mobile-flutter-offline",
     text: "A Flutter app for iOS and Android with offline mode and push notifications.",
+    answers: { tooling: true },
     checks: [
       { projectType: "mobile-app" },
       { pickIs: { layer: "mobile", tool: "flutter" } },
@@ -171,8 +173,9 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { pickIs: { layer: "backend", tool: "rails" } },
       { pickIs: { layer: "orm", tool: "active-record" } },
       { pickIs: { layer: "frontend", tool: "stimulus" } },
-      // Nothing in the catalog is built on Stimulus.
-      { pickIs: { layer: "meta-framework", tool: null } },
+      // Stimulus adds touches to pages Rails builds: no web framework layer.
+      { layerAbsent: "meta-framework" },
+      { pickIs: { layer: "ui-kit", tool: "tailwindcss" } },
       { layerAbsent: "payments" },
       { layerAbsent: "cache" },
     ],
@@ -250,6 +253,7 @@ export const GOLDEN_CASES: GoldenCase[] = [
   {
     id: "api-rust-iot",
     text: "A JSON API as a rust web server that ingests millions of events from IoT devices.",
+    answers: { tooling: true },
     checks: [
       { projectType: "api-only" },
       { backendLanguage: "rust" },
@@ -291,6 +295,7 @@ export const GOLDEN_CASES: GoldenCase[] = [
   {
     id: "mobile-python-backend",
     text: "A mobile app for iOS and Android, written in Python only.",
+    answers: { tooling: true },
     checks: [
       { projectType: "mobile-app" },
       { backendLanguage: "python" },
@@ -371,7 +376,7 @@ export const GOLDEN_CASES: GoldenCase[] = [
     // person picks API only by hand.
     id: "api-in-go-short",
     text: "an api in go",
-    answers: { projectType: "api-only" },
+    answers: { projectType: "api-only", tooling: true },
     checks: [
       { backendLanguage: "go" },
       { pickIs: { layer: "backend", tool: "gin" } },
@@ -402,6 +407,7 @@ export const GOLDEN_CASES: GoldenCase[] = [
     // Swift is typed, so it is preferred: the server and the app share it.
     id: "ios-swift-short",
     text: "an iOS app in Swift",
+    answers: { tooling: true },
     checks: [
       { projectType: "mobile-app" },
       { backendLanguage: "swift" },
@@ -437,6 +443,7 @@ export const GOLDEN_CASES: GoldenCase[] = [
     // No web frontend, so no browser test tool; Jest pairs with the ORM pick.
     id: "flutter-app-short",
     text: "a Flutter app",
+    answers: { tooling: true },
     checks: [
       { projectType: "mobile-app" },
       { pickIs: { layer: "backend", tool: "express" } },
@@ -503,6 +510,7 @@ export const GOLDEN_CASES: GoldenCase[] = [
   {
     id: "go-rest-api-short",
     text: "a Go REST API",
+    answers: { tooling: true },
     checks: [
       { projectType: "api-only" },
       { backendLanguage: "go" },
@@ -514,6 +522,7 @@ export const GOLDEN_CASES: GoldenCase[] = [
     // Testify and Jest tie (each pairs with one pick); the backend's language wins.
     id: "go-rest-api-mobile",
     text: "a REST API in Go for a mobile app",
+    answers: { tooling: true },
     checks: [
       { projectType: "api-only" },
       { backendLanguage: "go" },

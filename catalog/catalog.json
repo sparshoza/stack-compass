@@ -6458,7 +6458,10 @@
         "php",
         "javascript",
         "python",
-        "go"
+        "go",
+        "ruby",
+        "rust",
+        "csharp"
       ],
       "layer": "hosting",
       "license": "Proprietary",
@@ -6472,7 +6475,8 @@
       "sources": [
         "https://www.digitalocean.com/products/app-platform",
         "https://docs.digitalocean.com/products/app-platform/",
-        "https://www.digitalocean.com/pricing/app-platform"
+        "https://www.digitalocean.com/pricing/app-platform",
+        "https://docs.digitalocean.com/products/app-platform/reference/buildpacks/"
       ],
       "summary": "Managed platform that deploys apps from Git repositories or container images, with services, workers and jobs.",
       "tags": [
@@ -6487,7 +6491,7 @@
         "containers",
         "databases"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -8804,7 +8808,8 @@
         "rust",
         "python",
         "php",
-        "javascript"
+        "javascript",
+        "csharp"
       ],
       "layer": "hosting",
       "license": "Proprietary",
@@ -8819,7 +8824,8 @@
         "https://docs.fly.io/",
         "https://docs.fly.io/about/pricing",
         "https://fly.io/docs/laravel/",
-        "https://fly.io/docs/elixir/getting-started/"
+        "https://fly.io/docs/elixir/getting-started/",
+        "https://docs.fly.io/languages-and-frameworks"
       ],
       "summary": "Platform to build, deploy and run apps and AI agents on Fly Machines, billed pay as you go.",
       "tags": [],
@@ -8830,7 +8836,7 @@
         "databases",
         "near-users"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -9656,7 +9662,9 @@
         "python",
         "java",
         "csharp",
-        "ruby"
+        "ruby",
+        "kotlin",
+        "php"
       ],
       "layer": "hosting",
       "license": "Proprietary",
@@ -9670,7 +9678,8 @@
       "sources": [
         "https://cloud.google.com/run",
         "https://docs.cloud.google.com/run/docs/overview/what-is-cloud-run",
-        "https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-java-service"
+        "https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-java-service",
+        "https://docs.cloud.google.com/run/docs/deploying-source-code"
       ],
       "summary": "Fully managed Google Cloud platform for running code, functions or containers, scaling to zero when idle.",
       "tags": [
@@ -9681,7 +9690,7 @@
         "backends",
         "containers"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -16605,6 +16614,10 @@
         {
           "target": "rspec",
           "type": "pairs-with"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -16633,7 +16646,8 @@
         "https://guides.rubyonrails.org/active_storage_overview.html",
         "https://stimulus.hotwired.dev/handbook/installing",
         "https://guides.rubyonrails.org/action_cable_overview.html",
-        "https://rubyonrails.org/"
+        "https://rubyonrails.org/",
+        "https://tailwindcss.com/docs/installation/framework-guides/ruby-on-rails"
       ],
       "summary": "A full-stack Ruby framework with jobs, mailers, file storage and websockets built in.",
       "tags": [
@@ -20610,6 +20624,10 @@
         {
           "target": "expo",
           "type": "pairs-with"
+        },
+        {
+          "target": "rails",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -20635,7 +20653,8 @@
         "https://tailwindcss.com",
         "https://github.com/tailwindlabs/tailwindcss",
         "https://tailwindcss.com/docs/installation/framework-guides/laravel/vite",
-        "https://tailwindcss.com/docs/installation/framework-guides/nuxt"
+        "https://tailwindcss.com/docs/installation/framework-guides/nuxt",
+        "https://tailwindcss.com/docs/installation/framework-guides/ruby-on-rails"
       ],
       "summary": "A utility-first CSS framework for building custom designs directly in markup.",
       "tags": [],
@@ -20643,7 +20662,7 @@
       "uses": [
         "utility-css"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [

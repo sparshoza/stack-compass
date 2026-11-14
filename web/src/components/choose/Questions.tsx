@@ -234,7 +234,7 @@ function KnownTools({ selected, onChange }: { selected: string[]; onChange: (ids
   )
 }
 
-const TOOLING_NOTE = `Adds ${LAYER_LABELS['ci-cd']}, an ${LAYER_LABELS.observability} and a ${LAYER_LABELS.testing}, plus a ${LAYER_LABELS.state} and ${LAYER_LABELS['build-tool']} when there is a frontend or mobile app.`
+const TOOLING_NOTE = `Adds ${LAYER_LABELS['ci-cd']}, an ${LAYER_LABELS.observability} and a ${LAYER_LABELS.testing}, plus a ${LAYER_LABELS.state} and a ${LAYER_LABELS['build-tool']} next to a web frontend. A web framework brings its own build tool.`
 
 const GROUPS = featureGroups()
 
@@ -332,7 +332,7 @@ function withProjectType(a: Answers, projectType: string): Answers {
 
 /** How many of the developer answers differ from the defaults. */
 function preferenceCount(a: Answers): number {
-  return a.languagesPrefer.length + a.languagesAvoid.length + a.knownTools.length + (a.tooling ? 0 : 1)
+  return a.languagesPrefer.length + a.languagesAvoid.length + a.knownTools.length + (a.tooling ? 1 : 0)
 }
 
 /** Languages, tools already known and dev tooling: for people who know what they want. */

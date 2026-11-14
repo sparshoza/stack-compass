@@ -30,6 +30,7 @@ edges:
 - {type: pairs-with, target: stimulus}
 - {type: pairs-with, target: algolia}
 - {type: pairs-with, target: rspec}
+- {type: pairs-with, target: tailwindcss}
 uses: [all-in-one, live]
 verified: 2026-11-14
-sources: ['https://rubyonrails.org', 'https://guides.rubyonrails.org/configuring.html', 'https://guides.rubyonrails.org/caching_with_rails.html', 'https://guides.rubyonrails.org/active_storage_overview.html', 'https://stimulus.hotwired.dev/handbook/installing', 'https://guides.rubyonrails.org/action_cable_overview.html', 'https://rubyonrails.org/']
+sources: ['https://rubyonrails.org', 'https://guides.rubyonrails.org/configuring.html', 'https://guides.rubyonrails.org/caching_with_rails.html', 'https://guides.rubyonrails.org/active_storage_overview.html', 'https://stimulus.hotwired.dev/handbook/installing', 'https://guides.rubyonrails.org/action_cable_overview.html', 'https://rubyonrails.org/', 'https://tailwindcss.com/docs/installation/framework-guides/ruby-on-rails']

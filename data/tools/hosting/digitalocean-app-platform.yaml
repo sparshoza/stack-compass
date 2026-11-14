@@ -12,6 +12,9 @@ languages:
 - javascript
 - python
 - go
+- ruby
+- rust
+- csharp
 tags:
 - static-content
 - background-jobs
@@ -34,8 +37,9 @@ edges:
 - type: alternative-to
   target: render
 uses: [static-sites, backends, containers, databases]
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://www.digitalocean.com/products/app-platform
 - https://docs.digitalocean.com/products/app-platform/
 - https://www.digitalocean.com/pricing/app-platform
+- https://docs.digitalocean.com/products/app-platform/reference/buildpacks/

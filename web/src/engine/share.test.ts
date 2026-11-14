@@ -32,8 +32,13 @@ describe("share links", () => {
     expect(qs).toContain("c=payments,realtime");
     expect(qs).toContain("tool=0");
     expect(encode({ ...DEFAULT_ANSWERS, projectType: "saas" })).toBe(
-      "t=saas&h=either&b=any&s=startup&tool=1",
+      "t=saas&h=either&b=any&s=startup&tool=0",
     );
+  });
+
+  it("dev tooling stays off unless the link sets tool=1", () => {
+    expect(decode("t=saas", kb).answers.tooling).toBe(false);
+    expect(decode("t=saas&tool=1", kb).answers.tooling).toBe(true);
   });
 
   it("accepts a leading question mark", () => {

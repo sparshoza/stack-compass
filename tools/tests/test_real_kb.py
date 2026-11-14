@@ -111,4 +111,4 @@ def test_every_tool_has_an_edge():
 def test_no_dashes_in_data():
     for p in DATA.rglob("*.yaml"):
         text = p.read_text(encoding="utf-8")
-        assert "—" not in text and "–" not in text, p
+        assert chr(0x2014) not in text and chr(0x2013) not in text, p

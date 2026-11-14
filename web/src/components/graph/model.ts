@@ -52,8 +52,8 @@ export interface Palette {
 
 /** The dark tokens from styles/tokens.css, used when a variable cannot be read. */
 export const FALLBACK_PALETTE: Palette = {
-  families: { client: '#6aa9f5', server: '#e6b450', data: '#45c7a8', services: '#f08a70', ops: '#e286c0' },
-  accent: '#c8f05a',
+  families: { client: '#6aaae6', server: '#f2c681', data: '#74d3b6', services: '#e08e8e', ops: '#dbb5f8' },
+  accent: '#c8fa5c',
   text: '#e8eaed',
   textMuted: '#a4abb4',
   textFaint: '#8b929b',

@@ -10,6 +10,7 @@ import { useReturnFocusOnClose } from '@/lib/useReturnFocusOnClose'
 import { relationsOf } from '@/lib/relations'
 import { cn } from '@/lib/utils'
 import { SearchBox } from './SearchBox'
+import { escapeClearsField } from '@/lib/escape'
 
 interface ToolPanelProps {
   tool: Tool | undefined
@@ -124,8 +125,7 @@ export function ToolPanel({ tool: current, onClose, onFocusTool, onFindRoute, ro
           onInteractOutside={(e) => e.preventDefault()}
           // Escape in a field with text clears the field first (search does).
           onEscapeKeyDown={(e) => {
-            const target = e.target
-            if (target instanceof HTMLInputElement && target.value !== '') e.preventDefault()
+            if (escapeClearsField(e.target)) e.preventDefault()
           }}
           className={cn(
             'motion-sheet-end fixed z-20 flex flex-col border-line bg-surface text-[0.8125rem] text-text shadow-(--shadow-float) outline-none',

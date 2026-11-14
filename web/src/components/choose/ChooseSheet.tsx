@@ -13,6 +13,7 @@ import { OnePiece } from './OnePiece'
 import { Questions } from './Questions'
 import { StackList } from './StackList'
 import type { Chooser } from './useChooser'
+import { escapeClearsField } from '@/lib/escape'
 
 export type ChooseMode = 'stack' | 'piece'
 
@@ -217,8 +218,7 @@ export function ChooseSheet({
           onInteractOutside={(e) => e.preventDefault()}
           // Escape in a field with text clears the field first (tools search does).
           onEscapeKeyDown={(e) => {
-            const target = e.target
-            if (target instanceof HTMLInputElement && target.value !== '') e.preventDefault()
+            if (escapeClearsField(e.target)) e.preventDefault()
           }}
           className={cn(
             'motion-sheet-start fixed inset-0 z-40 flex flex-col bg-surface text-[0.8125rem] text-text outline-none',

@@ -108,6 +108,17 @@ describe('Help me choose', () => {
     await waitFor(() => expect(trigger).toHaveFocus())
   })
 
+  it('Escape closes the sheet while focus is on a project type chip', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    await showStack(user)
+    const radio = within(within(sheet()).getByRole('radiogroup', { name: /What are you building/ })).getByRole('radio', { name: 'Subscription app' })
+    expect(radio).toHaveFocus()
+    await user.keyboard('{Escape}')
+    expect(screen.queryByRole('dialog', { name: 'Help me choose' })).not.toBeInTheDocument()
+  })
+
   it('example prompts fill the textarea', async () => {
     const user = userEvent.setup()
     renderApp()

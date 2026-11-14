@@ -13,6 +13,6 @@ maturity: established
 good_for: [Self-hosted newsletters and mailing lists]
 avoid_when: [You mainly send per-user transactional email]
 edges:
-- {type: alternative-to, target: postal}
+- {type: pairs-with, target: postal}
 verified: '2026-11-14'
-sources: ['https://listmonk.app', 'https://github.com/knadh/listmonk']
+sources: ['https://listmonk.app', 'https://github.com/knadh/listmonk', 'https://listmonk.app/docs/apis/transactional/', 'https://listmonk.app/docs/configuration/']

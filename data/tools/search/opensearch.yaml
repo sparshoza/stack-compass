@@ -1,6 +1,6 @@
 id: opensearch
 name: OpenSearch
-aliases: [open search]
+aliases: []
 layer: search
 summary: A community-driven fork of Elasticsearch for search, analytics and vector search.
 url: https://opensearch.org

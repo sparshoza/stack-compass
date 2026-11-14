@@ -1,6 +1,7 @@
 id: clerk
 name: Clerk
-aliases: []
+aliases: [clerk.com, clerk auth]
+match_name: false
 layer: auth
 summary: A hosted authentication and user management service with prebuilt components.
 url: https://clerk.com

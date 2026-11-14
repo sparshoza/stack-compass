@@ -13,7 +13,6 @@ maturity: established
 good_for: [A polished upload dialog with resumable uploads]
 avoid_when: [You only need a plain file input]
 edges:
-- {type: alternative-to, target: cloudinary}
 - {type: alternative-to, target: uploadthing}
 - {type: pairs-with, target: supabase-storage}
 verified: '2026-11-14'

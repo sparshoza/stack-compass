@@ -3438,7 +3438,10 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "clerk.com",
+        "clerk auth"
+      ],
       "avoid_when": [
         "You need to host identity data yourself"
       ],
@@ -3481,7 +3484,7 @@
       ],
       "layer": "auth",
       "license": "Proprietary",
-      "match_name": true,
+      "match_name": false,
       "maturity": "established",
       "name": "Clerk",
       "pricing": [
@@ -3618,10 +3621,6 @@
       "edges": [
         {
           "target": "uploadthing",
-          "type": "alternative-to"
-        },
-        {
-          "target": "uppy",
           "type": "alternative-to"
         }
       ],
@@ -4572,9 +4571,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "elastic search"
-      ],
+      "aliases": [],
       "avoid_when": [
         "A small site where a lightweight engine is enough"
       ],
@@ -5351,9 +5348,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "flex search"
-      ],
+      "aliases": [],
       "avoid_when": [
         "You need server-side clustering or analytics"
       ],
@@ -5740,7 +5735,7 @@
       ],
       "layer": "cms",
       "license": "MIT",
-      "match_name": true,
+      "match_name": false,
       "maturity": "established",
       "name": "Ghost",
       "pricing": [
@@ -7270,7 +7265,7 @@
       "edges": [
         {
           "target": "postal",
-          "type": "alternative-to"
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -7292,7 +7287,9 @@
       "repo": null,
       "sources": [
         "https://listmonk.app",
-        "https://github.com/knadh/listmonk"
+        "https://github.com/knadh/listmonk",
+        "https://listmonk.app/docs/apis/transactional/",
+        "https://listmonk.app/docs/configuration/"
       ],
       "summary": "A self-hosted newsletter and mailing list manager shipped as a single binary.",
       "tags": [
@@ -8029,9 +8026,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "mini search"
-      ],
+      "aliases": [],
       "avoid_when": [
         "Datasets reach hundreds of thousands of documents"
       ],
@@ -9038,9 +9033,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "open search"
-      ],
+      "aliases": [],
       "avoid_when": [
         "You want a small footprint and instant setup"
       ],
@@ -9398,7 +9391,7 @@
       ],
       "layer": "cms",
       "license": "MIT",
-      "match_name": true,
+      "match_name": false,
       "maturity": "emerging",
       "name": "Payload",
       "pricing": [
@@ -9744,7 +9737,7 @@
         },
         {
           "target": "listmonk",
-          "type": "alternative-to"
+          "type": "pairs-with"
         },
         {
           "target": "mailersend",
@@ -11541,9 +11534,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "seaweed fs"
-      ],
+      "aliases": [],
       "avoid_when": [
         "You want a managed service"
       ],
@@ -13574,12 +13565,15 @@
       "maturity": "emerging",
       "name": "TinaCMS",
       "pricing": [
-        "oss"
+        "oss",
+        "free-tier",
+        "paid"
       ],
       "repo": null,
       "sources": [
         "https://tina.io",
-        "https://github.com/TinaCMS/tinacms"
+        "https://github.com/TinaCMS/tinacms",
+        "https://tina.io/pricing"
       ],
       "summary": "An open-source Git-backed CMS with visual editing for Markdown and MDX content.",
       "tags": [
@@ -13922,9 +13916,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "type sense"
-      ],
+      "aliases": [],
       "avoid_when": [
         "The whole index cannot fit in RAM"
       ],
@@ -13988,13 +13980,15 @@
       "maturity": "established",
       "name": "Typesense",
       "pricing": [
-        "oss"
+        "oss",
+        "paid"
       ],
       "repo": null,
       "sources": [
         "https://typesense.org",
         "https://github.com/typesense/typesense",
-        "https://github.com/typesense"
+        "https://github.com/typesense",
+        "https://cloud.typesense.org/pricing"
       ],
       "summary": "An open-source typo-tolerant search engine with vector search, built for speed.",
       "tags": [
@@ -14050,9 +14044,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "upload thing"
-      ],
+      "aliases": [],
       "avoid_when": [
         "You need uploads from non-JavaScript backends"
       ],
@@ -14103,10 +14095,6 @@
         "You only need a plain file input"
       ],
       "edges": [
-        {
-          "target": "cloudinary",
-          "type": "alternative-to"
-        },
         {
           "target": "uploadthing",
           "type": "alternative-to"
@@ -15169,13 +15157,16 @@
       "maturity": "emerging",
       "name": "ZITADEL",
       "pricing": [
-        "oss"
+        "oss",
+        "free-tier",
+        "paid"
       ],
       "repo": null,
       "sources": [
         "https://zitadel.com",
         "https://github.com/zitadel/zitadel",
-        "https://github.com/zitadel"
+        "https://github.com/zitadel",
+        "https://zitadel.com/pricing"
       ],
       "summary": "An open-source identity platform with multi-tenancy, SSO and social login, hosted or self-hosted.",
       "tags": [

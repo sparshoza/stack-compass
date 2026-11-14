@@ -1,6 +1,6 @@
 id: seaweedfs
 name: SeaweedFS
-aliases: [seaweed fs]
+aliases: []
 layer: storage
 summary: A distributed storage system for blobs, objects and files with an S3-compatible API.
 url: https://github.com/seaweedfs/seaweedfs

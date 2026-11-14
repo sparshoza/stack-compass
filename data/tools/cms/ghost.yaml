@@ -1,6 +1,7 @@
 id: ghost
 name: Ghost
 aliases: [ghost cms]
+match_name: false
 layer: cms
 summary: An open-source publishing platform for blogs, newsletters and paid memberships.
 url: https://ghost.org

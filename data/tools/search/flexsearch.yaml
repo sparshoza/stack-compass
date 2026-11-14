@@ -1,6 +1,6 @@
 id: flexsearch
 name: FlexSearch
-aliases: [flex search]
+aliases: []
 layer: search
 summary: A fast, memory-flexible full-text search library for browsers and Node.js.
 url: https://github.com/nextapps-de/flexsearch

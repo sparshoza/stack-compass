@@ -8,7 +8,7 @@ license: Apache-2.0
 languages: [typescript]
 tags: [content-editing]
 hosting: [managed, self-hosted]
-pricing: [oss]
+pricing: [oss, free-tier, paid]
 maturity: emerging
 good_for: [Visual editing for Git-based sites]
 avoid_when: [You need a classic database-backed CMS]
@@ -19,4 +19,4 @@ edges:
 - {type: alternative-to, target: strapi}
 - {type: alternative-to, target: wagtail}
 verified: '2026-11-14'
-sources: ['https://tina.io', 'https://github.com/TinaCMS/tinacms']
+sources: ['https://tina.io', 'https://github.com/TinaCMS/tinacms', 'https://tina.io/pricing']

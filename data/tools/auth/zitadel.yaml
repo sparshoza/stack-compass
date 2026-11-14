@@ -8,7 +8,7 @@ license: AGPL-3.0-only
 languages: [go, javascript, typescript, java, php, python, ruby]
 tags: [social-login, enterprise-sso, multi-tenant]
 hosting: [managed, self-hosted]
-pricing: [oss]
+pricing: [oss, free-tier, paid]
 maturity: emerging
 good_for: [B2B apps that need organisations and SSO]
 avoid_when: [Your policy bans AGPL software]
@@ -19,4 +19,4 @@ edges:
 - {type: alternative-to, target: spring-security}
 - {type: alternative-to, target: supertokens}
 verified: '2026-11-14'
-sources: ['https://zitadel.com', 'https://github.com/zitadel/zitadel', 'https://github.com/zitadel']
+sources: ['https://zitadel.com', 'https://github.com/zitadel/zitadel', 'https://github.com/zitadel', 'https://zitadel.com/pricing']

@@ -1,6 +1,7 @@
 id: payload
 name: Payload
 aliases: [payload cms, payloadcms]
+match_name: false
 layer: cms
 summary: An open-source, TypeScript-first headless CMS and app framework that installs inside Next.js.
 url: https://payloadcms.com

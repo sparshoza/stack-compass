@@ -1,6 +1,6 @@
 id: uploadthing
 name: UploadThing
-aliases: [upload thing]
+aliases: []
 layer: storage
 summary: A file upload service and SDK for TypeScript full-stack apps, with type-safe routes.
 url: https://uploadthing.com

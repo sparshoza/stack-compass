@@ -1,6 +1,6 @@
 id: typesense
 name: Typesense
-aliases: [type sense]
+aliases: []
 layer: search
 summary: An open-source typo-tolerant search engine with vector search, built for speed.
 url: https://typesense.org
@@ -8,7 +8,7 @@ license: GPL-3.0-only
 languages: [javascript, typescript, python, go, java, ruby, php, dart, swift, rust]
 tags: [full-text-search, vector-search]
 hosting: [managed, self-hosted]
-pricing: [oss]
+pricing: [oss, paid]
 maturity: established
 good_for: [Fast typo-tolerant search with an in-memory index]
 avoid_when: [The whole index cannot fit in RAM]
@@ -22,4 +22,4 @@ edges:
 - {type: alternative-to, target: tantivy}
 - {type: alternative-to, target: vespa}
 verified: '2026-11-14'
-sources: ['https://typesense.org', 'https://github.com/typesense/typesense', 'https://github.com/typesense']
+sources: ['https://typesense.org', 'https://github.com/typesense/typesense', 'https://github.com/typesense', 'https://cloud.typesense.org/pricing']

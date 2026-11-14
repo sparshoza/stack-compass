@@ -15,7 +15,7 @@ good_for: [Running your own sending infrastructure]
 avoid_when: [You do not want to manage IP reputation]
 edges:
 - {type: alternative-to, target: amazon-ses}
-- {type: alternative-to, target: listmonk}
+- {type: pairs-with, target: listmonk}
 - {type: alternative-to, target: mailersend}
 - {type: alternative-to, target: mailgun}
 - {type: alternative-to, target: postmark}

@@ -1,6 +1,6 @@
 id: elasticsearch
 name: Elasticsearch
-aliases: [elastic search]
+aliases: []
 layer: search
 summary: A distributed search and analytics engine built on Lucene with a REST API.
 url: https://www.elastic.co/elasticsearch

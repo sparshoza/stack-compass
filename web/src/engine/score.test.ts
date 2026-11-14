@@ -269,7 +269,7 @@ describe("scoreStack", () => {
     const db = layerOf(managed, "database");
     expect(db.pick).toBe("zzz-db");
     expect(db.excluded).toEqual([
-      { toolId: "aaa-db", reason: "hosting-mismatch" },
+      { toolId: "aaa-db", reason: "no-managed-service" },
     ]);
     expect(
       layerOf(scoreStack(answers({ hosting: "either" }), fx), "database").pick,
@@ -292,6 +292,103 @@ describe("scoreStack", () => {
     expect(r.pick).toBe("bbb");
     expect(r.alternatives).toEqual(["ccc"]);
     expect(r.excluded).toEqual([{ toolId: "aaa", reason: "language-excluded" }]);
+  });
+
+  it("language-excluded treats typescript and javascript as one family", () => {
+    const fx = makeKb(
+      [
+        makeTool("ts-only", "backend", { languages: ["typescript"] }),
+        makeTool("js-only", "backend", { languages: ["javascript"] }),
+        makeTool("py", "backend", { languages: ["python"] }),
+      ],
+      ["backend"],
+    );
+    const r = layerOf(
+      scoreStack(answers({ languagesAvoid: ["javascript"], knownTools: ["ts-only", "js-only"] }), fx),
+      "backend",
+    );
+    expect(r.pick).toBe("py");
+    expect(r.excluded).toEqual([
+      { toolId: "js-only", reason: "language-excluded" },
+      { toolId: "ts-only", reason: "language-excluded" },
+    ]);
+    const viaTs = layerOf(
+      scoreStack(answers({ languagesAvoid: ["typescript"], knownTools: ["js-only"] }), fx),
+      "backend",
+    );
+    expect(viaTs.excluded).toEqual([
+      { toolId: "js-only", reason: "language-excluded" },
+      { toolId: "ts-only", reason: "language-excluded" },
+    ]);
+  });
+
+  it("hosting never excludes a library that runs inside the app", () => {
+    const fx = makeKb(
+      [
+        makeTool("lib-auth", "auth", { runs_in_app: true, hosting: ["self-hosted"] }),
+        makeTool("idp", "auth", { hosting: ["self-hosted"] }),
+        makeTool("hosted", "auth", { hosting: ["managed"] }),
+      ],
+      ["auth"],
+    );
+    const r = layerOf(
+      scoreStack(answers({ hosting: "managed", knownTools: ["lib-auth", "idp"] }), fx),
+      "auth",
+    );
+    expect(r.pick).toBe("lib-auth");
+    expect(r.alternatives).toEqual(["hosted"]);
+    expect(r.excluded).toEqual([{ toolId: "idp", reason: "no-managed-service" }]);
+  });
+
+  it("a service without a managed offer reports no-managed-service, self-hosted keeps hosting-mismatch", () => {
+    const fx = makeKb(
+      [
+        makeTool("own", "database", { hosting: ["self-hosted"] }),
+        makeTool("cloud", "database", { hosting: ["managed"] }),
+      ],
+      ["database"],
+    );
+    const managed = layerOf(
+      scoreStack(answers({ hosting: "managed", knownTools: ["own"] }), fx),
+      "database",
+    );
+    expect(managed.excluded).toEqual([{ toolId: "own", reason: "no-managed-service" }]);
+    const selfHosted = layerOf(
+      scoreStack(answers({ hosting: "self-hosted", knownTools: ["cloud"] }), fx),
+      "database",
+    );
+    expect(selfHosted.excluded).toEqual([{ toolId: "cloud", reason: "hosting-mismatch" }]);
+  });
+
+  it("an in-app auth library shares a language with the backend pick, hosted auth with backend or frontend", () => {
+    const tools = [
+      makeTool("django", "backend", { languages: ["python"] }),
+      makeTool("react", "frontend", { languages: ["javascript", "typescript"] }),
+      makeTool("better-auth", "auth", { languages: ["typescript"], runs_in_app: true }),
+      makeTool("hosted-js", "auth", { languages: ["javascript"], hosting: ["managed"] }),
+      makeTool("hosted-any", "auth", { hosting: ["managed"] }),
+      makeTool("hosted-go", "auth", { languages: ["go"], hosting: ["managed"] }),
+    ];
+    const a = answers({ knownTools: ["better-auth", "hosted-go"] });
+    const r = layerOf(
+      scoreStack(a, makeKb(tools, ["backend", "frontend", "auth"])),
+      "auth",
+    );
+    // The TypeScript library cannot run inside a Python backend.
+    expect(r.excluded).toEqual([
+      { toolId: "better-auth", reason: "language-mismatch-with-pick" },
+      { toolId: "hosted-go", reason: "language-mismatch-with-pick" },
+    ]);
+    // A hosted service with a JavaScript SDK serves the React frontend.
+    expect(r.pick).toBe("hosted-any");
+    expect(r.alternatives).toEqual(["hosted-js"]);
+
+    // With no backend pick, the in-app library follows the frontend pick.
+    const frontendOnly = layerOf(
+      scoreStack(a, makeKb(tools, ["frontend", "auth"])),
+      "auth",
+    );
+    expect(frontendOnly.pick).toBe("better-auth");
   });
 
   it("language-required only on language layers and only when prefer is set", () => {

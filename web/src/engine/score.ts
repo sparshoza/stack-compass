@@ -16,20 +16,26 @@ export type LayerResult = {
  * Hard-filter reason codes, in the order they are checked. A filtered tool
  * reports only the first one it fails.
  *
- * - language-excluded: every language the tool lists is one to avoid. A tool
- *   with no languages is never excluded this way.
+ * - language-excluded: every language the tool lists is one to avoid
+ *   (typescript and javascript as one family). A tool with no languages is
+ *   never excluded this way.
  * - language-required: only in LANGUAGE_LAYERS and only when the person
  *   prefers at least one language. The tool must list a preferred language;
  *   a tool with no languages passes. On frontend, meta-framework and mobile
  *   it applies only when some tool in that layer has a preferred language
  *   (a Python web app still gets a frontend); backend and orm always apply.
- * - hosting-mismatch: only in SERVICE_LAYERS and only when hosting is not
- *   "either". The tool's hosting must include the chosen option.
+ * - no-managed-service / hosting-mismatch: only in SERVICE_LAYERS and only
+ *   when hosting is not "either". The tool's hosting must include the chosen
+ *   option: no-managed-service when the person chose managed, hosting-mismatch
+ *   when they chose self-hosted. A runs_in_app tool (a library inside your
+ *   app) is never excluded this way: there is no server of its own to host.
  * - budget-paid-only: on a free budget, pricing must include oss or free-tier.
  * - language-mismatch-with-pick: an orm, api-style or jobs-queue tool must
- *   share a language with the backend pick, and an auth or testing tool with
- *   the backend or the frontend pick, when such a pick exists. Tools with no
- *   languages pass.
+ *   share a language with the backend pick, and a testing tool with the
+ *   backend or the frontend pick, when such a pick exists. An auth library
+ *   that runs in the app must share a language with the backend pick, or
+ *   with the frontend pick when there is no backend pick; a hosted auth
+ *   service may match either. Tools with no languages pass.
  *
  * Everywhere languages are compared, typescript and javascript count as one.
  * - not-built-on-pick: a meta-framework must be built-on the frontend pick,
@@ -40,6 +46,7 @@ export type LayerResult = {
 export const REASON_CODES = [
   "language-excluded",
   "language-required",
+  "no-managed-service",
   "hosting-mismatch",
   "budget-paid-only",
   "language-mismatch-with-pick",
@@ -121,6 +128,11 @@ export function emittableCodes(kb: KnowledgeBase): string[] {
 const family = (language: string) =>
   language === "typescript" ? "javascript" : language;
 
+function avoidsAll(languages: string[], avoid: string[]): boolean {
+  const avoided = new Set(avoid.map(family));
+  return languages.length > 0 && languages.every((l) => avoided.has(family(l)));
+}
+
 function sharesLanguage(a: string[], b: string[]): boolean {
   const other = new Set(b.map(family));
   return a.some((l) => other.has(family(l)));
@@ -142,12 +154,7 @@ function failedCheck(
   ctx: LayerContext,
 ): ReasonCode | null {
   const { layer, languages } = tool;
-  if (
-    languages.length > 0 &&
-    languages.every((l) => a.languagesAvoid.includes(l))
-  ) {
-    return "language-excluded";
-  }
+  if (avoidsAll(languages, a.languagesAvoid)) return "language-excluded";
   if (
     ctx.preferApplies &&
     languages.length > 0 &&
@@ -157,10 +164,11 @@ function failedCheck(
   }
   if (
     SERVICE_LAYERS.has(layer) &&
+    !tool.runs_in_app &&
     a.hosting !== "either" &&
     !tool.hosting.includes(a.hosting)
   ) {
-    return "hosting-mismatch";
+    return a.hosting === "managed" ? "no-managed-service" : "hosting-mismatch";
   }
   if (
     a.budget === "free" &&
@@ -169,7 +177,12 @@ function failedCheck(
   ) {
     return "budget-paid-only";
   }
-  const against = (LANGUAGE_PICK_LAYERS[layer] ?? [])
+  let pickLayers = LANGUAGE_PICK_LAYERS[layer] ?? [];
+  // An in-app auth library runs in the backend when there is one.
+  if (layer === "auth" && tool.runs_in_app) {
+    pickLayers = picks.get("backend") ? ["backend"] : ["frontend"];
+  }
+  const against = pickLayers
     .map((l) => picks.get(l))
     .filter((pick): pick is Tool => !!pick && pick.languages.length > 0);
   if (

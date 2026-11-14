@@ -180,6 +180,26 @@ def _check_aliases(tools: dict[str, tuple[Tool, str]], errors: list[str]) -> Non
                 )
 
 
+def _check_keyword_tool_collisions(
+    keywords: list[KeywordEntry], tools: dict[str, tuple[Tool, str]], errors: list[str]
+) -> None:
+    """A keyword phrase may not equal a matched tool name or an alias: the
+    longest-match scan would read it as both."""
+    terms: dict[str, set[str]] = {}
+    for tool_id, (tool, _) in tools.items():
+        names = [tool.name] if tool.match_name else []
+        for term in [*names, *tool.aliases]:
+            terms.setdefault(_norm(term), set()).add(tool_id)
+    for i, entry in enumerate(keywords):
+        for phrase in entry.phrases:
+            owners = terms.get(_norm(phrase))
+            if owners:
+                errors.append(
+                    f"keywords.yaml: entry {i} phrase '{_norm(phrase)}' equals the name or "
+                    f"an alias of {', '.join(sorted(owners))}"
+                )
+
+
 def load_kb(data_dir: Path) -> KnowledgeBase:
     data_dir = Path(data_dir)
     errors: list[str] = []
@@ -233,6 +253,8 @@ def load_kb(data_dir: Path) -> KnowledgeBase:
         _check_edges(tools, errors)
         _check_exclusive_pair_edges(tools, errors)
         _check_aliases(tools, errors)
+        if keywords is not None:
+            _check_keyword_tool_collisions(keywords, tools, errors)
 
     if errors:
         raise KbError(errors)

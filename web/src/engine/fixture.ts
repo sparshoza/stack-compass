@@ -11,6 +11,7 @@ export function makeTool(
     name: id.charAt(0).toUpperCase() + id.slice(1),
     aliases: [],
     match_name: true,
+    runs_in_app: false,
     layer,
     summary: "",
     url: "https://example.org",

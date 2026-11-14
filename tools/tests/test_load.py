@@ -215,3 +215,29 @@ def test_rejects_alternative_and_pairs_with_between_the_same_pair(kb_dir):
     edit_tool(kb_dir, "frontend", "preact", add_back)
     errs = errors_of(kb_dir)
     assert any("alternative-to" in e and "pairs-with" in e for e in errs)
+
+
+def test_runs_in_app_defaults_to_false_and_can_be_true(kb_dir):
+    assert load_kb(kb_dir).tools["fastapi"].runs_in_app is False
+    edit_tool(kb_dir, "backend", "fastapi", lambda d: d.update(runs_in_app=True))
+    assert load_kb(kb_dir).tools["fastapi"].runs_in_app is True
+
+
+def test_rejects_keyword_phrase_equal_to_a_tool_alias(kb_dir):
+    edit_yaml(kb_dir / "keywords.yaml", lambda doc: doc[2]["phrases"].append(" Fast API "))
+    errs = errors_of(kb_dir)
+    assert any(
+        e.startswith("keywords.yaml") and "fast api" in e and "fastapi" in e for e in errs
+    )
+
+
+def test_rejects_keyword_phrase_equal_to_a_matched_tool_name(kb_dir):
+    edit_yaml(kb_dir / "keywords.yaml", lambda doc: doc[2]["phrases"].append("react"))
+    errs = errors_of(kb_dir)
+    assert any(e.startswith("keywords.yaml") and "'react'" in e for e in errs)
+
+
+def test_keyword_phrase_may_equal_a_name_that_is_not_matched(kb_dir):
+    edit_yaml(kb_dir / "keywords.yaml", lambda doc: doc[2]["phrases"].append("react"))
+    edit_tool(kb_dir, "frontend", "react", lambda d: d.update(match_name=False))
+    load_kb(kb_dir)

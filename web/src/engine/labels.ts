@@ -38,9 +38,10 @@ const FIXED: Record<string, string> = {
   "maturity-legacy": "is a legacy choice with fading support",
   "language-excluded": "uses only languages you want to avoid",
   "language-required": "does not use a language you prefer",
+  "no-managed-service": "has no official managed service",
   "hosting-mismatch": "does not offer the hosting you chose",
   "budget-paid-only": "has no free tier or open-source option",
-  "language-mismatch-with-pick": "does not share a language with your backend pick",
+  "language-mismatch-with-pick": "does not share a language with the rest of your stack",
   "not-built-on-pick": "is not built on your frontend pick",
   "not-compatible-with-pick": "does not work with your frontend pick",
 };

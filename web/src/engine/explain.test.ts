@@ -114,6 +114,11 @@ describe("label", () => {
     expect(label("language-required", kb)).toBe(
       "does not use a language you prefer",
     );
+    expect(label("no-managed-service", kb)).toBe("has no official managed service");
+    // Auth and testing compare with the backend or the frontend pick, so the label names neither.
+    expect(label("language-mismatch-with-pick", kb)).toBe(
+      "does not share a language with the rest of your stack",
+    );
   });
 
   it("unknown codes fall back to the code", () => {

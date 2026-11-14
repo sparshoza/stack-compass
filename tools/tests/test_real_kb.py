@@ -145,3 +145,15 @@ def test_total_tools_between_280_and_340():
 
 def test_keywords_at_least_150():
     assert len(load_kb(DATA).keywords) >= 150
+
+
+def test_runs_in_app_marks_libraries_not_services():
+    tools = load_kb(DATA).tools
+    libraries = {
+        "better-auth", "authjs", "passportjs", "devise", "spring-security",
+        "nodemailer", "react-email", "mjml", "fusejs", "minisearch", "flexsearch",
+        "pagefind", "uppy",
+    }
+    services = {"keycloak", "authentik", "zitadel", "meilisearch", "celery", "postgresql", "clerk"}
+    assert {t for t in libraries if not tools[t].runs_in_app} == set()
+    assert {t for t in services if tools[t].runs_in_app} == set()

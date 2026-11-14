@@ -494,7 +494,9 @@ export function StackGraph({
       Math.hypot(original.clientX - press.x, original.clientY - press.y) > DRAG_TOLERANCE_PX
     sigma.on('clickNode', ({ node, event }) => onSelectRef.current?.(node, { add: wantsRoute(event?.original) }))
     // sigma sends no click for the end of a drag, so this is a real click on empty map.
-    sigma.on('clickStage', () => {
+    // sigma drops the click that ends a drag of three moves or more; a shorter one is caught here.
+    sigma.on('clickStage', (e) => {
+      if (dragged(e.event?.original)) return
       setHover(null)
       onClearRef.current?.()
     })
@@ -537,6 +539,21 @@ export function StackGraph({
       sigmaRef.current = null
     }
   }, [graph])
+
+  // The camera may pan past the edge of the map by as much as the panels
+  // cover, so a tool near the edge can still be brought into the open area
+  // (on a phone the tool panel covers the bottom 60%). At rest the map stays
+  // inside the screen. Runs before the camera moves below.
+  const sides = (inset?: { top: number; right: number; bottom: number; left?: number }) =>
+    inset ? [inset.top, inset.right, inset.bottom, inset.left ?? 0] : []
+  const panTolerance = Math.max(
+    0,
+    ...(routeNodesKey ? sides(routeInset) : []),
+    ...(focus && !routeNodesKey ? sides(focusInset) : []),
+  )
+  useEffect(() => {
+    sigmaRef.current?.setSetting('cameraPanBoundaries', panTolerance > 0 ? { tolerance: panTolerance } : true)
+  }, [panTolerance])
 
   // When a result appears (no picks before, picks now), the picks light up
   // one after another in scoring order: colour, size and name only, the
@@ -699,6 +716,7 @@ export function StackGraph({
     moveCamera(glideRef, sigma, () => applyFit(sigma, areaFit(box, sigma.getDimensions(), inset)))
   }, [highlightKey])
 
+  const routeInsetKey = routeInset ? sides(routeInset).join(',') : ''
   // A route glides to fit all its tools in the area the panels leave free.
   useEffect(() => {
     const sigma = sigmaRef.current
@@ -709,7 +727,8 @@ export function StackGraph({
     if (!box) return
     const inset = routeInsetRef.current ?? { top: 0, right: 0, bottom: 0, left: 0 }
     moveCamera(glideRef, sigma, () => applyFit(sigma, areaFit(box, sigma.getDimensions(), inset)))
-  }, [routeNodesKey])
+    // routeInsetKey: a panel opening or closing beside the route frames it again.
+  }, [routeNodesKey, routeInsetKey])
 
   return <div ref={containerRef} className="absolute inset-0" data-testid="stack-graph" />
 }

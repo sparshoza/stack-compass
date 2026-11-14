@@ -15,7 +15,7 @@ import { FullscreenButton } from '@/components/shell/FullscreenButton'
 import { TopBar } from '@/components/shell/TopBar'
 import { Button } from '@/components/ui/button'
 import { defaultAnswers, type Answers } from '@/engine/answers'
-import { routes } from '@/engine/path'
+import { connect, type Route } from '@/engine/path'
 import { scoreStack } from '@/engine/score'
 import { decode, encode, SHARE_KEYS } from '@/engine/share'
 import { kb, toolById, type EdgeType, type Layer } from '@/lib/kb'
@@ -39,6 +39,10 @@ const TOP_BAR_INSET = { oneRow: 68, phone: 124 }
 const CORNER_INSET = 60
 /** Width of the route card plus its gap from the edge and from the map it frames (RouteCard on wide screens: w-[360px], left-6). */
 const ROUTE_CARD_INSET = 400
+/** Narrowest map the floating route card may leave between itself and the panels; below it the card goes in the panel. */
+const ROUTE_MAP_MIN = 480
+const ROUTE_FLOATS = `(min-width: ${SIDE_PANEL_INSET + ROUTE_CARD_INSET + ROUTE_MAP_MIN}px)`
+const ROUTE_FLOATS_BESIDE_HELP = `(min-width: ${CHOOSE_SHEET_INSET + SIDE_PANEL_INSET + ROUTE_CARD_INSET + ROUTE_MAP_MIN}px)`
 
 function isTyping(target: EventTarget | null): boolean {
   return (
@@ -104,6 +108,8 @@ export default function App() {
   const skipHelpRestoreRef = useRef(false)
   const wide = useMediaQuery(WIDE)
   const oneRowBar = useMediaQuery('(min-width: 768px)')
+  const roomForCard = useMediaQuery(ROUTE_FLOATS)
+  const roomForCardBesideHelp = useMediaQuery(ROUTE_FLOATS_BESIDE_HELP)
   // The map needs WebGL: without it, or once the browser drops the map's
   // context, the table view takes over.
   const webglSupported = useWebGL()
@@ -117,7 +123,14 @@ export default function App() {
   const tool = toolById(params.get('focus') ?? '')
   const toParam = toolById(params.get('to') ?? '')
   const routeTo = tool && toParam && toParam.id !== tool.id ? toParam : undefined
-  const found = useMemo(() => (tool && routeTo ? routes(tool.id, routeTo.id, kb) : []), [tool, routeTo])
+  const connection = useMemo(() => (tool && routeTo ? connect(tool.id, routeTo.id, kb) : null), [tool, routeTo])
+  // On the map a direct alternative is drawn as its own edge beside the routes.
+  const mapRoutes = useMemo((): Route[] | undefined => {
+    if (!tool || !routeTo || !connection) return undefined
+    if (!connection.alternatives) return connection.routes
+    const step = { from: tool.id, to: routeTo.id, type: 'alternative-to' as const, text: '' }
+    return [{ nodes: [tool.id, routeTo.id], steps: [step] }, ...connection.routes]
+  }, [tool, routeTo, connection])
   const view: View = !webgl || params.get('view') === 'table' ? 'table' : 'map'
 
   const updateParams = useCallback(
@@ -297,13 +310,18 @@ export default function App() {
         }
     : undefined
 
+  // How the two tools connect: a card floating over the map when the map
+  // keeps room beside it; otherwise (phones, or Help me choose open on a
+  // narrower screen) the card opens the tool panel.
+  const routeFloats = wide && (helpOpen ? roomForCardBesideHelp : roomForCard)
+
   // A route is framed in the map area the card, the panel and the bars leave free.
   const routeInset = wide
     ? {
         top: TOP_BAR_INSET.oneRow,
         right: SIDE_PANEL_INSET,
         bottom: CORNER_INSET,
-        left: (helpOpen ? CHOOSE_SHEET_INSET : 0) + ROUTE_CARD_INSET,
+        left: (helpOpen ? CHOOSE_SHEET_INSET : 0) + (routeFloats ? ROUTE_CARD_INSET : 0),
       }
     : {
         top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone,
@@ -312,17 +330,15 @@ export default function App() {
         left: 0,
       }
 
-  // How the two tools connect: a card over the map from 1024px; below that
-  // the map has only the strip above the panel, so the card opens the panel.
   const routeCard =
-    tool && routeTo ? (
+    tool && routeTo && connection ? (
       <RouteCard
         from={tool}
         to={routeTo}
-        routes={found}
+        connection={connection}
         onClose={clearRoute}
-        placement={wide ? 'float' : 'inline'}
-        className={wide ? 'w-[360px]' : undefined}
+        placement={routeFloats ? 'float' : 'inline'}
+        className={routeFloats ? 'w-[360px]' : undefined}
       />
     ) : null
 
@@ -393,7 +409,7 @@ export default function App() {
                   hiddenEdgeTypes={hiddenEdgeTypes}
                   onSelect={openTool}
                   onClear={clearMap}
-                  routes={routeTo ? found : undefined}
+                  routes={mapRoutes}
                   routeInset={routeInset}
                   focusInset={focusInset}
                   frameInset={{ top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone, bottom: CORNER_INSET }}
@@ -424,7 +440,7 @@ export default function App() {
                   Clear stack
                 </Button>
               )}
-              {wide && routeCard}
+              {routeFloats && routeCard}
             </div>
           </main>
           <CornerLinks />
@@ -449,7 +465,7 @@ export default function App() {
         onClose={closeTool}
         onFocusTool={openTool}
         onFindRoute={view === 'map' ? findRoute : undefined}
-        route={view === 'map' && !wide ? routeCard : null}
+        route={view === 'map' && !routeFloats ? routeCard : null}
         onRestoreFocus={restoreFocus}
       />
       <ChooseSheet

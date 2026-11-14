@@ -599,15 +599,21 @@ export function areaFit(
   viewport: { width: number; height: number },
   free: { top: number; right: number; bottom: number; left: number },
 ): { ratio: number; from: { x: number; y: number }; to: { x: number; y: number } } {
-  const freeWidth = Math.max(1, viewport.width - free.left - free.right - 2 * PICK_MARGIN)
-  const freeHeight = Math.max(1, viewport.height - free.top - free.bottom - 2 * PICK_MARGIN)
+  // An axis the panels leave (almost) no room on is fitted across the whole
+  // screen instead, so the fit never zooms out to nothing.
+  const axis = (size: number, start: number, end: number) =>
+    size - start - end - 2 * PICK_MARGIN > 0 ? { start, end } : { start: 0, end: 0 }
+  const x = axis(viewport.width, free.left, free.right)
+  const y = axis(viewport.height, free.top, free.bottom)
+  const freeWidth = Math.max(1, viewport.width - x.start - x.end - 2 * PICK_MARGIN)
+  const freeHeight = Math.max(1, viewport.height - y.start - y.end - 2 * PICK_MARGIN)
   const ratio = Math.max(MIN_FIT_RATIO, (drawn.x1 - drawn.x0) / freeWidth, (drawn.y1 - drawn.y0) / freeHeight)
   return {
     ratio,
     from: { x: (drawn.x0 + drawn.x1) / 2, y: (drawn.y0 + drawn.y1) / 2 },
     to: {
-      x: free.left + (viewport.width - free.left - free.right) / 2,
-      y: free.top + (viewport.height - free.top - free.bottom) / 2,
+      x: x.start + (viewport.width - x.start - x.end) / 2,
+      y: y.start + (viewport.height - y.start - y.end) / 2,
     },
   }
 }

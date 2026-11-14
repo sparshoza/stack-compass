@@ -16,6 +16,8 @@ npm --prefix web run dev   # http://localhost:5173
 
 Production build: `npm --prefix web run build`, then `npm --prefix web run preview` (http://localhost:4173).
 
+Browser check of the map (needs Chrome or Edge, with the preview running): `npm --prefix web run map-check`. It drives a real headless browser: a shaky double click must never leave the map blank, and on a 390px phone every tool of a route must land in the open strip above the tool panel.
+
 ## How it is built
 
 ```mermaid

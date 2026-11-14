@@ -161,6 +161,66 @@ describe('StackGraph', () => {
     expect(onClear).toHaveBeenCalledTimes(2)
   })
 
+  it('a click on empty map at the end of a small drag does not clear', () => {
+    const onClear = vi.fn()
+    render(<StackGraph onClear={onClear} />)
+    const s = latest()
+    act(() => {
+      s.container.dispatchEvent(new MouseEvent('mousedown', { clientX: 0, clientY: 0 }))
+    })
+    act(() => s.handlers.clickStage({ event: { original: new MouseEvent('click', { clientX: 12, clientY: 0 }) } } as never))
+    expect(onClear).not.toHaveBeenCalled()
+  })
+
+  it('a double tap never zooms either: it selects, or clears on empty map', () => {
+    const onSelect = vi.fn()
+    const onClear = vi.fn()
+    render(<StackGraph onSelect={onSelect} onClear={onClear} />)
+    const s = latest()
+    const prevent = vi.fn()
+    const original = new Event('touchend')
+    act(() => s.handlers.doubleClickNode({ node: database.id, preventSigmaDefault: prevent, event: { original } } as never))
+    act(() => s.handlers.doubleClickStage({ preventSigmaDefault: prevent, event: { original } } as never))
+    expect(prevent).toHaveBeenCalledTimes(2)
+    expect(onSelect).toHaveBeenCalledWith(database.id, { add: false })
+    expect(onClear).toHaveBeenCalledTimes(1)
+  })
+
+  it('lets the camera pan as far past the map edge as the panels cover, so a covered tool can be framed', () => {
+    const [a, b] = [backend.id, backend.edges.find((e) => kb.tools.some((t) => t.id === e.target))!.target]
+    const type = backend.edges.find((e) => e.target === b)!.type
+    const routes = [{ nodes: [a, b], steps: [{ from: a, to: b, type, text: '' }] }]
+    const { rerender } = render(<StackGraph />)
+    expect(latest().settings.cameraPanBoundaries).toBe(true)
+    rerender(<StackGraph focus={a} focusInset={{ top: 124, right: 0, bottom: 506 }} />)
+    expect(latest().settings.cameraPanBoundaries).toEqual({ tolerance: 506 })
+    rerender(<StackGraph focus={a} routes={routes} routeInset={{ top: 68, right: 424, bottom: 60, left: 400 }} />)
+    expect(latest().settings.cameraPanBoundaries).toEqual({ tolerance: 424 })
+    rerender(<StackGraph />)
+    expect(latest().settings.cameraPanBoundaries).toBe(true)
+  })
+
+  it('reframes a route when the area left for it changes', () => {
+    const [a, b] = [backend.id, backend.edges.find((e) => kb.tools.some((t) => t.id === e.target))!.target]
+    const type = backend.edges.find((e) => e.target === b)!.type
+    const routes = [{ nodes: [a, b], steps: [{ from: a, to: b, type, text: '' }] }]
+    const inset = { top: 68, right: 424, bottom: 60, left: 400 }
+    const { rerender } = render(<StackGraph />)
+    // Give the stand-in enough geometry for a fit.
+    const s = latest() as unknown as Record<string, unknown>
+    s.getDimensions = () => ({ width: 1440, height: 900 })
+    s.framedGraphToViewport = (p: { x: number; y: number }) => ({ x: p.x * 1000, y: p.y * 1000 })
+    s.viewportToFramedGraph = (p: { x: number; y: number }) => ({ x: p.x / 1000, y: p.y / 1000 })
+    const camera = latest().camera
+    rerender(<StackGraph focus={a} routes={routes} routeInset={inset} />)
+    const calls = camera.setState.mock.calls.length
+    expect(calls).toBeGreaterThan(0)
+    rerender(<StackGraph focus={a} routes={routes} routeInset={{ ...inset }} />)
+    expect(camera.setState.mock.calls.length).toBe(calls)
+    rerender(<StackGraph focus={a} routes={routes} routeInset={{ ...inset, left: 464 }} />)
+    expect(camera.setState.mock.calls.length).toBeGreaterThan(calls)
+  })
+
   it('lights a route between two tools and dims the rest of the map', () => {
     const [a, b] = [backend.id, backend.edges.find((e) => kb.tools.some((t) => t.id === e.target))!.target]
     const type = backend.edges.find((e) => e.target === b)!.type

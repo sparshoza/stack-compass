@@ -1,25 +1,28 @@
 import { useId } from 'react'
 import { XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import type { Route } from '@/engine/path'
-import type { Tool } from '@/lib/kb'
+import type { Connection, Route } from '@/engine/path'
+import { toolById, type Tool } from '@/lib/kb'
 import { cn } from '@/lib/utils'
 
 interface RouteCardProps {
   from: Tool
   to: Tool
-  /** The shortest routes from `from` to `to`; empty when they are not connected. */
-  routes: readonly Route[]
+  /** How the two connect (see engine/path `connect`). */
+  connection: Connection
   onClose: () => void
   /** `float`: over the map, its list scrolls within the height it is given. `inline`: inside the tool panel. */
   placement?: 'float' | 'inline'
   className?: string
 }
 
+/** Most shared partners named in "Both work with ..."; the rest are counted. */
+const SHARED_NAMED = 5
+
 function summary(routes: readonly Route[]): string {
   const steps = routes[0].steps.length
-  if (routes.length === 1) return steps === 1 ? 'Directly, in one step.' : `${steps} steps.`
-  return `${routes.length} routes, ${steps} ${steps === 1 ? 'step' : 'steps'} each.`
+  if (routes.length === 1) return steps === 1 ? 'Directly related.' : `${steps} steps.`
+  return `${routes.length} routes, ${steps} steps each.`
 }
 
 function via(route: Route): string {
@@ -28,21 +31,31 @@ function via(route: Route): string {
   return `Through ${others} other ${others === 1 ? 'tool' : 'tools'}`
 }
 
+function sharedLine(ids: readonly string[]): string {
+  const names = ids.slice(0, SHARED_NAMED).map((id) => toolById(id)?.name ?? id)
+  const rest = ids.length - names.length
+  const list = rest > 0 ? `${names.join(', ')} and ${rest} more` : names.join(', ')
+  return `Both work with ${ids.length} ${ids.length === 1 ? 'tool' : 'tools'}: ${list}.`
+}
+
 /**
- * How two tools connect: each of the shortest routes between them, one
- * relation per line in plain words. A small floating card over the map, not
- * a dialog: the map and the tool panel stay usable while it shows.
+ * How two tools connect: whether they are alternatives, then the best of the
+ * shortest routes between them, one relation per line in plain words, and the
+ * tools both work with. A small card over the map (or at the top of the tool
+ * panel), not a dialog: the map and the panel stay usable while it shows.
  */
-export function RouteCard({ from, to, routes, onClose, placement = 'float', className }: RouteCardProps) {
+export function RouteCard({ from, to, connection, onClose, placement = 'float', className }: RouteCardProps) {
   const float = placement === 'float'
   const headingId = useId()
   const title = `How ${from.name} connects to ${to.name}`
+  const { alternatives, routes, throughAlternatives, shared } = connection
+  const twoSteps = routes.length > 0 && routes[0].steps.length === 2 && !throughAlternatives
   return (
     <section
       aria-labelledby={headingId}
       className={cn(
         'pointer-events-auto grid rounded-[var(--radius-panel)] border border-line bg-surface text-[0.8125rem] text-text',
-        float ? 'max-h-full min-h-0 grid-rows-[auto_minmax(0,1fr)] shadow-(--shadow-float)' : '',
+        float && 'max-h-full min-h-0 grid-rows-[auto_minmax(0,1fr)] shadow-(--shadow-float)',
         className,
       )}
     >
@@ -57,16 +70,24 @@ export function RouteCard({ from, to, routes, onClose, placement = 'float', clas
       </div>
 
       <div aria-live="polite" className={cn('grid content-start gap-3 px-4 pb-4', float && 'overflow-y-auto')}>
-        {routes.length === 0 ? (
+        {alternatives && (
+          <p className="leading-snug">
+            {from.name} and {to.name} are alternatives: projects usually pick one.
+          </p>
+        )}
+        {!alternatives && routes.length === 0 && (
           <div className="grid gap-1">
             <p className="text-text">
-              No direct route between {from.name} and {to.name}
+              No close route between {from.name} and {to.name}
             </p>
-            <p className="text-xs text-text-muted">The catalog relates them through no other tools either.</p>
+            <p className="text-xs text-text-muted">The catalog does not relate them within three steps.</p>
           </div>
-        ) : (
+        )}
+        {routes.length > 0 && (
           <>
-            <p className="text-xs text-text-muted">{summary(routes)}</p>
+            <p className="text-xs text-text-muted">
+              {throughAlternatives ? 'Only through alternatives' : alternatives ? 'Shared partners:' : summary(routes)}
+            </p>
             {routes.map((route) => (
               <ul
                 key={route.nodes.join('>')}
@@ -80,6 +101,9 @@ export function RouteCard({ from, to, routes, onClose, placement = 'float', clas
                 ))}
               </ul>
             ))}
+            {twoSteps && shared.length > 0 && (
+              <p className="border-t border-line pt-3 text-xs leading-relaxed text-text-muted">{sharedLine(shared)}</p>
+            )}
           </>
         )}
       </div>

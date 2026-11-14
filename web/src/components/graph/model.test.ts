@@ -556,6 +556,17 @@ describe('areaFit', () => {
     const fit = areaFit({ x0: 700, y0: 400, x1: 710, y1: 410 }, screen, free)
     expect(fit.ratio).toBe(0.5)
   })
+
+  it('when the panels leave too little room on an axis, fits across the whole screen on it instead', () => {
+    const picks = { x0: 200, y0: 100, x1: 1200, y1: 800 }
+    const squeezed = areaFit(picks, screen, { top: 68, right: 900, bottom: 60, left: 600 })
+    expect(Number.isFinite(squeezed.ratio)).toBe(true)
+    expect(squeezed.ratio).toBeLessThan(3)
+    expect(squeezed.to.x).toBe(720)
+    expect(squeezed.to.y).toBe(68 + (900 - 68 - 60) / 2)
+    const tall = areaFit(picks, screen, { top: 500, right: 0, bottom: 500, left: 0 })
+    expect(tall.to.y).toBe(450)
+  })
 })
 
 describe('mix', () => {

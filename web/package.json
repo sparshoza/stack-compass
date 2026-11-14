@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "layout": "node scripts/layout.mjs",
+    "map-check": "node scripts/map-check.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest",

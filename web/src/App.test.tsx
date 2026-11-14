@@ -4,7 +4,7 @@ import { MemoryRouter, useLocation } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { StackGraphProps } from '@/components/graph/StackGraph'
 import App from './App'
-import { routes } from './engine/path'
+import { connect } from './engine/path'
 import { kb } from './lib/kb'
 import { REPO_URL } from './lib/links'
 
@@ -61,6 +61,23 @@ afterEach(() => {
  * Help me choose sheet is modal. Tests that use the map beside an open sheet
  * set the wide layout.
  */
+/** A screen `width` pixels wide: every min-width query up to it matches. */
+function setWidth(width: number) {
+  window.matchMedia = vi.fn((query: string) => {
+    const min = /min-width:\s*(\d+)px/.exec(query)
+    return {
+      matches: min ? Number(min[1]) <= width : false,
+      media: query,
+      onchange: null,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => false,
+    }
+  }) as unknown as typeof window.matchMedia
+}
+
 function setWide() {
   window.matchMedia = vi.fn((query: string) => ({
     matches: query.includes('min-width'),
@@ -462,7 +479,7 @@ describe('map screen', () => {
       expect(params().get('to')).toBe('postgresql')
       expect(params().get('t')).toBe('saas')
       const region = screen.getByRole('region', { name: 'How Django connects to PostgreSQL' })
-      const expected = routes('django', 'postgresql', kb)
+      const expected = connect('django', 'postgresql', kb).routes
       expect(graph.props?.routes).toEqual(expected)
       expect(within(region).getByText(expected[0].steps[0].text)).toBeInTheDocument()
       // The panel keeps showing the first tool.
@@ -531,6 +548,39 @@ describe('map screen', () => {
       await user.keyboard('{Enter}')
       expect(params().get('to')).toBe('postgresql')
       expect(card()).toHaveAccessibleName('How Django connects to PostgreSQL')
+    })
+
+    it('two alternatives: the card says so and the map draws their edge beside the routes', async () => {
+      setWide()
+      renderApp('/?focus=fastapi&to=flask')
+      await screen.findByTestId('stack-graph')
+      expect(within(card()!).getByText('FastAPI and Flask are alternatives: projects usually pick one.')).toBeInTheDocument()
+      const [first, ...rest] = graph.props?.routes ?? []
+      expect(first.steps).toEqual([{ from: 'fastapi', to: 'flask', type: 'alternative-to', text: '' }])
+      expect(rest).toEqual(connect('fastapi', 'flask', kb).routes)
+    })
+
+    it('floats the card over the map only when the map keeps room beside it', async () => {
+      setWidth(1440)
+      const user = userEvent.setup()
+      renderApp('/?focus=django&to=postgresql')
+      await screen.findByTestId('stack-graph')
+      const panelDialog = () => screen.getByRole('dialog', { name: 'Django' })
+      expect(within(panelDialog()).queryByRole('region', { name: /connects to/ })).not.toBeInTheDocument()
+      expect(graph.props?.routeInset?.left).toBe(400)
+      // Help me choose opens beside the map: no room left for a floating card at 1440px.
+      await user.click(screen.getAllByRole('button', { name: 'Help me choose' })[0])
+      expect(within(panelDialog()).getByRole('region', { name: 'How Django connects to PostgreSQL' })).toBeInTheDocument()
+      expect(graph.props?.routeInset?.left).toBe(464)
+    })
+
+    it('below 1304px the card sits in the tool panel even without Help me choose', async () => {
+      setWidth(1100)
+      renderApp('/?focus=django&to=postgresql')
+      await screen.findByTestId('stack-graph')
+      const panelDialog = screen.getByRole('dialog', { name: 'Django' })
+      expect(within(panelDialog).getByRole('region', { name: 'How Django connects to PostgreSQL' })).toBeInTheDocument()
+      expect(graph.props?.routeInset?.left).toBe(0)
     })
 
     it('ignores a route to the same tool or to an unknown one', async () => {

@@ -103,7 +103,7 @@ export function LayerRow({ anchorId, result, answers, onFocusTool }: LayerRowPro
                   <button
                     type="button"
                     onClick={() => onFocusTool(altId)}
-                    className="inline-flex h-8 items-center gap-1.5 rounded-full border border-line-strong px-2.5 text-xs text-text hover:border-text-faint hover:bg-raised active:bg-raised touch:h-11 touch:px-3.5"
+                    className="inline-flex h-8 items-center gap-1.5 rounded-full border border-line-control px-2.5 text-xs text-text hover:border-text-faint hover:bg-raised active:bg-raised touch:h-11 touch:px-3.5"
                   >
                     <span
                       aria-hidden="true"

@@ -130,8 +130,8 @@ export function FiltersPopover({
                           className={cn(
                             'motion-colors inline-flex h-8 items-center gap-1.5 rounded-full border px-2.5 text-xs touch:h-11 touch:px-3.5',
                             shown
-                              ? 'border-line-strong bg-raised text-text hover:border-text-faint'
-                              : 'border-line text-text-muted hover:border-line-strong hover:text-text',
+                              ? 'border-line-control bg-raised text-text hover:border-text-faint'
+                              : 'border-line text-text-muted hover:border-line-control hover:text-text',
                           )}
                         >
                           <span
@@ -172,7 +172,7 @@ export function FiltersPopover({
                       aria-hidden="true"
                       className={cn(
                         'motion-colors grid size-4 shrink-0 place-items-center rounded-[4px] border',
-                        shown ? 'border-text bg-text' : 'border-line-strong',
+                        shown ? 'border-text bg-text' : 'border-line-control',
                       )}
                     >
                       {shown && (

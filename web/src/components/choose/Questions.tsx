@@ -75,7 +75,7 @@ function Segmented<T extends string>({
   onSelect: (value: T) => void
 }) {
   return (
-    <div className="grid grid-flow-col auto-cols-fr rounded-full border border-line-strong p-0.5">
+    <div className="grid grid-flow-col auto-cols-fr rounded-full border border-line-control p-0.5">
       {options.map((option) => {
         const checked = option.value === value
         return (
@@ -133,7 +133,7 @@ function KnownTools({ selected, onChange }: { selected: string[]; onChange: (ids
             return (
               <li
                 key={toolId}
-                className="inline-flex h-8 items-center gap-1.5 rounded-full border border-line-strong bg-raised pl-3 text-xs text-text touch:h-11"
+                className="inline-flex h-8 items-center gap-1.5 rounded-full border border-line-control bg-raised pl-3 text-xs text-text touch:h-11"
               >
                 {tool && (
                   <span
@@ -277,7 +277,7 @@ function Features({ selected, onToggle }: { selected: string[]; onToggle: (id: s
                       ringWithin,
                       checked
                         ? 'border-text bg-text text-background'
-                        : 'border-line-strong text-text hover:border-text-faint hover:bg-raised',
+                        : 'border-line-control text-text hover:border-text-faint hover:bg-raised',
                     )}
                   >
                     <input
@@ -374,7 +374,7 @@ function Preferences({ answers, onChange }: Pick<QuestionsProps, 'answers' | 'on
                     onClick={() => onChange((a) => cycleLanguage(a, lang))}
                     className={cn(
                       'motion-colors inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
-                      state === 'none' && 'border-line-strong text-text hover:border-text-faint hover:bg-raised',
+                      state === 'none' && 'border-line-control text-text hover:border-text-faint hover:bg-raised',
                       state === 'prefer' && 'border-text bg-text text-background',
                       state === 'avoid' && 'border-dashed border-text-faint text-text-muted hover:bg-raised',
                     )}
@@ -414,7 +414,7 @@ function Preferences({ answers, onChange }: Pick<QuestionsProps, 'answers' | 'on
               aria-hidden="true"
               className={cn(
                 'motion-colors flex h-5 w-9 items-center rounded-full border p-0.5',
-                answers.tooling ? 'border-text bg-text' : 'border-line-strong bg-raised',
+                answers.tooling ? 'border-text bg-text' : 'border-line-control bg-raised',
               )}
             >
               {/* The thumb slides across (transform), so the switch reads as one moving part. */}

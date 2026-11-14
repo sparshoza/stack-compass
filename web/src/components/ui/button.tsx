@@ -21,7 +21,7 @@ const buttonVariants = cva(
         quiet:
           "rounded-full text-text-muted hover:bg-raised hover:text-text active:bg-raised aria-expanded:bg-raised aria-expanded:text-text",
         pill:
-          "rounded-full border-line-strong bg-surface font-normal text-text hover:border-text-faint hover:bg-raised active:bg-raised aria-expanded:border-text-faint aria-expanded:bg-raised",
+          "rounded-full border-line-control bg-surface font-normal text-text hover:border-text-faint hover:bg-raised active:bg-raised aria-expanded:border-text-faint aria-expanded:bg-raised",
       },
       size: {
         default:

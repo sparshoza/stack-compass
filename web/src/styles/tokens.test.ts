@@ -101,6 +101,20 @@ describe('design tokens', () => {
     })
   }
 
+  // WCAG 1.4.11: an unselected chip or segmented control is only its outline.
+  for (const [name, selector] of [
+    ['dark', ':root'],
+    ['light', ":root[data-theme='light']"],
+  ] as const) {
+    it(`control outlines hold 3:1 on every ground in the ${name} theme`, () => {
+      const t = theme(selector)
+      expect(t['line-control']).toBeDefined()
+      for (const ground of ['bg', 'surface', 'raised']) {
+        expect(ratio(t['line-control'], t[ground]), ground).toBeGreaterThanOrEqual(3)
+      }
+    })
+  }
+
   // Map edges at rest: visible as thin grey lines, still well under the
   // focused-edge colour and the text.
   for (const [name, selector, min] of [
@@ -183,6 +197,24 @@ describe('design tokens', () => {
     expect(FALLBACK_PALETTE.families).toEqual(families)
     expect(FALLBACK_PALETTE.accent).toBe(t.accent)
     expect(FALLBACK_PALETTE.background).toBe(t.bg)
+  })
+
+  it('chips, switches and segmented controls use the control outline, not the divider grey', () => {
+    const files = [
+      '../components/choose/OptionChip.tsx',
+      '../components/choose/Questions.tsx',
+      '../components/choose/OnePiece.tsx',
+      '../components/choose/ChooseSheet.tsx',
+      '../components/choose/LayerRow.tsx',
+      '../components/map/FiltersPopover.tsx',
+      '../components/map/ToolPanel.tsx',
+      '../components/ui/button.tsx',
+    ]
+    for (const file of files) {
+      const source = readFileSync(join(here, file), 'utf8')
+      expect(source, file).toMatch(/border-line-control/)
+      expect(source, file).not.toMatch(/border-line-strong/)
+    }
   })
 
   it('every text field uses the field border', () => {

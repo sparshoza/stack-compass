@@ -255,7 +255,7 @@ export function ChooseSheet({
               </div>
               <Tabs.List
                 aria-label="What do you need?"
-                className="grid grid-cols-2 rounded-full border border-line-strong p-0.5"
+                className="grid grid-cols-2 rounded-full border border-line-control p-0.5"
               >
                 {TABS.map((tab) => (
                   <Tabs.Trigger

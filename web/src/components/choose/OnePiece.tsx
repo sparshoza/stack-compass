@@ -143,7 +143,7 @@ export function OnePiece({
               <button
                 type="button"
                 onClick={() => onPickLayer(p.layer)}
-                className="motion-colors inline-flex h-8 items-center gap-2 rounded-full border border-line-strong px-3 text-xs text-text hover:border-text-faint hover:bg-raised touch:h-11 touch:px-3.5"
+                className="motion-colors inline-flex h-8 items-center gap-2 rounded-full border border-line-control px-3 text-xs text-text hover:border-text-faint hover:bg-raised touch:h-11 touch:px-3.5"
               >
                 <span
                   aria-hidden="true"

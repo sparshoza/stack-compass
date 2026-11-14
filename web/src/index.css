@@ -51,6 +51,7 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-line-field: var(--line-field);
+  --color-line-control: var(--line-control);
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-text-faint: var(--text-faint);

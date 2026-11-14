@@ -50,7 +50,7 @@ export function OptionChip({
           : 'h-8 items-center rounded-full px-3 touch:h-11 touch:px-3.5',
         checked
           ? 'border-text bg-text text-background'
-          : 'border-line-strong text-text hover:border-text-faint hover:bg-raised',
+          : 'border-line-control text-text hover:border-text-faint hover:bg-raised',
       )}
     >
       <input

@@ -24,7 +24,7 @@ flowchart LR
 
   subgraph browser["In the browser"]
     text["Free text<br/>(never leaves the page)"]
-    match["engine/match.ts<br/>keywords, aliases, negation"]
+    match["engine/match.ts<br/>keywords, aliases, negation,<br/>best guess type"]
     answers["Answers<br/>(questions, pre-filled)"]
     layers["engine/layers.ts<br/>layer selection"]
     score["engine/score.ts<br/>hard filters, points, tie-break"]
@@ -57,5 +57,5 @@ flowchart LR
 ## Tests
 
 - `uv run pytest`: the validator against fixtures (every rule), the real catalog (valid, fresh, per-layer counts, total), the stats module.
-- `npm --prefix web test -- --run`: the engine (every scoring rule, negation, round trips of share links including tampered ones), the golden set of 36 written project descriptions, the screens through Testing Library, the motion helpers (stagger timing, reduced motion), and a scan of `web/src` and `data/` for banned UI patterns and dash characters.
+- `npm --prefix web test -- --run`: the engine (every scoring rule, negation, round trips of share links including tampered ones), the golden set of 83 written project descriptions (40 of them plain prompts an owner might type), the screens through Testing Library, the motion helpers (stagger timing, reduced motion), and a scan of `web/src` and `data/` for banned UI patterns and dash characters.
 - CI (`.github/workflows/ci.yml`) runs both, plus lint, the catalog and layout freshness checks, and the production build.

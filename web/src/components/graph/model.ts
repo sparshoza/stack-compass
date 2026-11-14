@@ -36,6 +36,15 @@ export interface GraphView {
   neighbours: ReadonlySet<string>
   hiddenLayers: ReadonlySet<Layer>
   hiddenEdgeTypes: ReadonlySet<EdgeType>
+  /** Tools on the shown route between two tools; while set, it outranks a stack and the spotlight. */
+  route: ReadonlySet<string>
+  /** The route's edges, keyed by routeEdgeKey. */
+  routeEdges: ReadonlySet<string>
+}
+
+/** How an edge of a route is named: its relation and its two ends, the same whichever end comes first. */
+export function routeEdgeKey(a: string, b: string, kind: EdgeType): string {
+  return a < b ? `${kind}:${a}|${b}` : `${kind}:${b}|${a}`
 }
 
 export interface Palette {
@@ -86,8 +95,11 @@ export function makeView(opts: {
   neighbours?: ReadonlySet<string>
   hiddenLayers?: ReadonlySet<Layer>
   hiddenEdgeTypes?: ReadonlySet<EdgeType>
+  route?: { nodes: readonly string[]; edges: readonly string[] }
 }): GraphView {
   return {
+    route: opts.route?.nodes.length ? new Set(opts.route.nodes) : empty,
+    routeEdges: opts.route?.nodes.length ? new Set(opts.route.edges) : empty,
     highlight: new Set(opts.highlight ?? []),
     focus: opts.focus ?? null,
     spotlight: opts.spotlight ?? opts.focus ?? null,
@@ -168,6 +180,10 @@ type NodeStyle = Partial<NodeDisplayData> & { labelColor: string }
 /** Display attributes for one node under the current view. Pure, so it is tested directly. */
 export function nodeStyle(id: string, attrs: NodeAttrs, view: GraphView, palette: Palette): NodeStyle {
   const hidden = view.hiddenLayers.has(attrs.layer)
+  if (view.route.size > 0) {
+    // The route is drawn whole, even through a filtered layer.
+    return view.route.has(id) ? litStyle(false, attrs, palette) : dimStyle(hidden, attrs, palette)
+  }
   const picked = view.highlight.has(id)
   const focused = view.focus === id
   // A spotlight (focus or hover) only applies while no stack is highlighted.
@@ -176,31 +192,11 @@ export function nodeStyle(id: string, attrs: NodeAttrs, view: GraphView, palette
   const dimmed = view.highlight.size > 0 ? !picked && !focused : spot !== null && !lit
   const family = palette.families[attrs.family]
 
-  if (picked || focused) {
-    return {
-      hidden,
-      color: palette.accent,
-      size: attrs.size + PICK_EXTRA,
-      forceLabel: true,
-      labelColor: palette.text,
-      zIndex: 2,
-    }
-  }
+  if (picked || focused) return litStyle(hidden, attrs, palette)
   if (lit) {
     return { hidden, color: family, size: attrs.size, forceLabel: true, labelColor: palette.text, zIndex: 1 }
   }
-  if (dimmed) {
-    // The dot stays as context; its label goes, so only the lit tools read.
-    return {
-      hidden,
-      color: mix(family, palette.background, DIM_NODE),
-      size: attrs.size,
-      forceLabel: false,
-      label: null,
-      labelColor: mix(palette.textFaint, palette.background, DIM_LABEL),
-      zIndex: 0,
-    }
-  }
+  if (dimmed) return dimStyle(hidden, attrs, palette)
   return {
     hidden,
     color: family,
@@ -209,6 +205,53 @@ export function nodeStyle(id: string, attrs: NodeAttrs, view: GraphView, palette
     labelColor: palette.textMuted,
     zIndex: 1,
   }
+}
+
+/** A pick, the focused tool or a tool on a route: the accent, a larger dot and its name. */
+function litStyle(hidden: boolean, attrs: NodeAttrs, palette: Palette): NodeStyle {
+  return {
+    hidden,
+    color: palette.accent,
+    size: attrs.size + PICK_EXTRA,
+    forceLabel: true,
+    labelColor: palette.text,
+    zIndex: 2,
+  }
+}
+
+/** The dot stays as context; its label goes, so only the lit tools read. */
+function dimStyle(hidden: boolean, attrs: NodeAttrs, palette: Palette): NodeStyle {
+  const family = palette.families[attrs.family]
+  return {
+    hidden,
+    color: mix(family, palette.background, DIM_NODE),
+    size: attrs.size,
+    forceLabel: false,
+    label: null,
+    labelColor: mix(palette.textFaint, palette.background, DIM_LABEL),
+    zIndex: 0,
+  }
+}
+
+/**
+ * A tool part way through being selected, `p` from 0 to 1, spread over its
+ * nodeStyle: the focused dot grows from its resting size to its lit size and
+ * its neighbours' names fade in from the map colour. Only while the focus
+ * spotlight shows (no stack, no route); every other tool is left alone.
+ */
+export function selectingStyle(
+  id: string,
+  attrs: NodeAttrs,
+  style: Partial<NodeDisplayData> & { labelColor?: string },
+  view: GraphView,
+  palette: Palette,
+  p: number,
+): Partial<NodeStyle> {
+  if (view.route.size > 0 || view.highlight.size > 0 || view.focus === null || view.spotlight !== view.focus) return {}
+  const k = Math.max(0, Math.min(p, 1))
+  if (id === view.focus) return { size: attrs.size + PICK_EXTRA * k }
+  if (view.neighbours.has(id)) return { labelColor: mix(palette.background, style.labelColor ?? palette.text, k) }
+  return {}
 }
 
 /**
@@ -258,6 +301,12 @@ export function edgeStyle(attrs: EdgeAttrs, view: GraphView, palette: Palette): 
     view.hiddenLayers.has(attrs.targetLayer)
   const size = EDGE_SIZE[attrs.kind]
 
+  if (view.route.size > 0) {
+    if (view.routeEdges.has(routeEdgeKey(attrs.source, attrs.target, attrs.kind))) {
+      return { hidden: false, color: palette.accent, size: PICK_EDGE_SIZE, zIndex: 2 }
+    }
+    return { hidden, color: mix(palette.edge, palette.background, DIM_EDGE), size, zIndex: 0 }
+  }
   if (view.highlight.size === 0) {
     const spot = view.spotlight
     if (spot === null) return { hidden, color: palette.edge, size, zIndex: 0 }

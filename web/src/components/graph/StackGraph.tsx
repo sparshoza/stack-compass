@@ -3,6 +3,7 @@ import Sigma from 'sigma'
 import type { Settings } from 'sigma/settings'
 import type { NodeDisplayData, PartialButFor } from 'sigma/types'
 import layout from '@catalog/layout.json'
+import type { Route } from '@/engine/path'
 import { kb, type EdgeType, type Layer } from '@/lib/kb'
 import { instantCamera } from './camera'
 import { easeOut, readDuration, staggerSchedule, tween, useReducedMotion } from '@/lib/motion'
@@ -23,6 +24,8 @@ import {
   nodeStyle,
   portraitFit,
   readPalette,
+  routeEdgeKey,
+  selectingStyle,
   STAGE_PADDING,
   type Box,
   type EdgeAttrs,
@@ -43,11 +46,18 @@ export interface StackGraphProps {
   focus?: string
   hiddenLayers?: ReadonlySet<Layer>
   hiddenEdgeTypes?: ReadonlySet<EdgeType>
-  onSelect?: (id: string) => void
+  /** A click on a dot; `add` is true with Ctrl (Cmd on a Mac) held, to ask for a route to it. */
+  onSelect?: (id: string, opts: { add: boolean }) => void
+  /** A click (not the end of a drag) on empty map. */
+  onClear?: () => void
+  /** Routes between the focused tool and another, drawn in the accent over a dimmed map. */
+  routes?: readonly Route[]
   /** Pixels covered by the top bar and by panels on the sides or bottom; the focused tool is centred in the rest. */
   focusInset?: { top: number; right: number; bottom: number; left?: number }
   /** Pixels covered while a stack is highlighted; the camera fits the picks into the rest. */
   highlightInset?: { top: number; right: number; bottom: number; left: number }
+  /** Pixels covered while a route shows; the camera fits the route into the rest. */
+  routeInset?: { top: number; right: number; bottom: number; left: number }
   /** Pixels covered at rest by the top bar and the corner links; a portrait screen fits the map between them. */
   frameInset?: { top: number; bottom: number }
   /** The browser dropped the map's WebGL context (GPU reset, too many contexts). */
@@ -58,6 +68,11 @@ export interface StackGraphProps {
 const TOUCH_HOVER_GRACE_MS = 1000
 /** A press that moves further than this before its click is a drag, not a click (sigma's own tolerance is 3 moves). */
 const DRAG_TOLERANCE_PX = 4
+
+/** Ctrl on Windows and Linux, Cmd on a Mac (where Ctrl with a click opens the context menu). */
+function wantsRoute(original: unknown): boolean {
+  return original instanceof MouseEvent && (original.ctrlKey || original.metaKey)
+}
 
 function setKey(set: ReadonlySet<string> | undefined): string {
   return set?.size ? [...set].sort().join('\n') : ''
@@ -327,8 +342,11 @@ export function StackGraph({
   hiddenLayers,
   hiddenEdgeTypes,
   onSelect,
+  onClear,
+  routes,
   focusInset,
   highlightInset,
+  routeInset,
   frameInset,
   onContextLost,
 }: StackGraphProps) {
@@ -336,6 +354,7 @@ export function StackGraph({
   const sigmaRef = useRef<Sigma<NodeAttrs, EdgeAttrs> | null>(null)
   const onSelectRef = useRef(onSelect)
   const onContextLostRef = useRef(onContextLost)
+  const onClearRef = useRef(onClear)
   const palette = usePalette()
   const paletteRef = useRef(palette)
 
@@ -346,18 +365,24 @@ export function StackGraph({
   const lightingRef = useRef<Map<string, number> | null>(null)
   const stopLightingRef = useRef<(() => void) | null>(null)
   const litKeyRef = useRef('')
+  // Progress of the focused tool being selected (see selectingStyle); null when settled.
+  const selectingRef = useRef<number | null>(null)
+  const stopSelectingRef = useRef<(() => void) | null>(null)
 
   const focusInsetRef = useRef(focusInset)
   const frameInsetRef = useRef(frameInset)
   const highlightInsetRef = useRef(highlightInset)
+  const routeInsetRef = useRef(routeInset)
 
   useEffect(() => {
     onSelectRef.current = onSelect
     onContextLostRef.current = onContextLost
+    onClearRef.current = onClear
     focusInsetRef.current = focusInset
     frameInsetRef.current = frameInset
     highlightInsetRef.current = highlightInset
-  }, [onSelect, onContextLost, focusInset, frameInset, highlightInset])
+    routeInsetRef.current = routeInset
+  }, [onSelect, onClear, onContextLost, focusInset, frameInset, highlightInset, routeInset])
 
   // The round layout is stretched once to the shape of the screen the map
   // opens on (wider on desktop, taller on a phone); see mapStretch.
@@ -380,10 +405,17 @@ export function StackGraph({
   const highlightKey = highlight?.join('\n') ?? ''
   const layersKey = setKey(hiddenLayers)
   const edgeTypesKey = setKey(hiddenEdgeTypes)
+  // A route is drawn as its tools and the edges between them.
+  const routeKey = (routes ?? [])
+    .flatMap((r) => r.steps.map((step) => routeEdgeKey(step.from, step.to, step.type)))
+    .sort()
+    .join('\n')
+  const routeNodesKey = [...new Set((routes ?? []).flatMap((r) => r.nodes))].sort().join('\n')
   const view = useMemo(() => {
     const hiddenEdges = new Set(edgeTypesKey ? (edgeTypesKey.split('\n') as EdgeType[]) : [])
     // Hovering a dot lights its neighbourhood; otherwise the focused tool's.
-    const spotlight = hovered ?? focus ?? null
+    // A route stays as it is under a hover.
+    const spotlight = (routeNodesKey ? null : hovered) ?? focus ?? null
     return makeView({
       highlight: highlightKey ? highlightKey.split('\n') : [],
       focus: focus ?? null,
@@ -391,8 +423,9 @@ export function StackGraph({
       neighbours: spotlight ? neighboursOf(graph, spotlight, hiddenEdges) : undefined,
       hiddenLayers: new Set(layersKey ? (layersKey.split('\n') as Layer[]) : []),
       hiddenEdgeTypes: hiddenEdges,
+      route: routeNodesKey ? { nodes: routeNodesKey.split('\n'), edges: routeKey ? routeKey.split('\n') : [] } : undefined,
     })
-  }, [graph, hovered, highlightKey, focus, layersKey, edgeTypesKey])
+  }, [graph, hovered, highlightKey, focus, layersKey, edgeTypesKey, routeKey, routeNodesKey])
 
   // Create sigma once per mount. Styling is applied by the effect below.
   useEffect(() => {
@@ -459,18 +492,24 @@ export function StackGraph({
       press !== null &&
       original instanceof MouseEvent &&
       Math.hypot(original.clientX - press.x, original.clientY - press.y) > DRAG_TOLERANCE_PX
-    sigma.on('clickNode', ({ node }) => onSelectRef.current?.(node))
-    sigma.on('clickStage', () => setHover(null))
+    sigma.on('clickNode', ({ node, event }) => onSelectRef.current?.(node, { add: wantsRoute(event?.original) }))
+    // sigma sends no click for the end of a drag, so this is a real click on empty map.
+    sigma.on('clickStage', () => {
+      setHover(null)
+      onClearRef.current?.()
+    })
     // sigma turns the second of two quick clicks into a double click and
     // zooms, even when that click ends a drag; here it counts as the click it
     // is, and the map zooms only by wheel or pinch.
     sigma.on('doubleClickNode', (e) => {
       e.preventSigmaDefault()
-      if (!dragged(e.event?.original)) onSelectRef.current?.(e.node)
+      if (!dragged(e.event?.original)) onSelectRef.current?.(e.node, { add: wantsRoute(e.event?.original) })
     })
     sigma.on('doubleClickStage', (e) => {
       e.preventSigmaDefault()
+      if (dragged(e.event?.original)) return
       setHover(null)
+      onClearRef.current?.()
     })
     sigma.on('enterNode', ({ node }) => {
       if (Date.now() - lastTouch < TOUCH_HOVER_GRACE_MS) return
@@ -491,6 +530,9 @@ export function StackGraph({
       stopLightingRef.current?.()
       stopLightingRef.current = null
       lightingRef.current = null
+      stopSelectingRef.current?.()
+      stopSelectingRef.current = null
+      selectingRef.current = null
       sigma.kill()
       sigmaRef.current = null
     }
@@ -537,6 +579,32 @@ export function StackGraph({
     )
   }, [highlightKey])
 
+  // A newly focused tool eases in over --duration-base: its dot grows and
+  // the names of its neighbours fade in (selectingStyle). Each frame redraws
+  // only the tool and its neighbours; React does not re-render. With reduced
+  // motion the duration is 0 and it is lit at once.
+  useEffect(() => {
+    const sigma = sigmaRef.current
+    stopSelectingRef.current?.()
+    stopSelectingRef.current = null
+    selectingRef.current = null
+    if (!sigma || !focus || !graph.hasNode(focus)) return
+    const duration = readDuration('--duration-base')
+    if (duration <= 0) return
+    const nodes = [focus, ...graph.neighbors(focus)]
+    selectingRef.current = 0
+    stopSelectingRef.current = tween(
+      duration,
+      (t) => {
+        selectingRef.current = t >= 1 ? null : easeOut(t)
+        sigma.refresh({ partialGraph: { nodes } })
+      },
+      () => {
+        stopSelectingRef.current = null
+      },
+    )
+  }, [focus, graph])
+
   // Restyle on every view or theme change. Reducers must return full data.
   // A pick that is still lighting up is drawn part way (see lightingStyle).
   useEffect(() => {
@@ -546,6 +614,8 @@ export function StackGraph({
     sigma.setSetting('labelColor', { attribute: 'labelColor', color: palette.text })
     sigma.setSetting('nodeReducer', (node, data) => {
       const style = { ...data, ...nodeStyle(node, data, view, palette) }
+      const selecting = selectingRef.current
+      if (selecting !== null) Object.assign(style, selectingStyle(node, data, style, view, palette, selecting))
       const p = lightingRef.current?.get(node)
       return p === undefined || node === view.focus ? style : { ...style, ...lightingStyle(data, palette, p) }
     })
@@ -567,10 +637,13 @@ export function StackGraph({
       glideRef.current = null
       sigma.getCamera().setState(glide.target)
     }
-    if (stopLightingRef.current) {
-      stopLightingRef.current()
+    if (stopLightingRef.current || stopSelectingRef.current) {
+      stopLightingRef.current?.()
       stopLightingRef.current = null
       lightingRef.current = null
+      stopSelectingRef.current?.()
+      stopSelectingRef.current = null
+      selectingRef.current = null
       sigma.refresh()
     }
   }, [reduced])
@@ -580,9 +653,15 @@ export function StackGraph({
   // focusing it; this only guards against a stale focus.
   const focusHidden =
     focus !== undefined && graph.hasNode(focus) && view.hiddenLayers.has(graph.getNodeAttribute(focus, 'layer'))
+  // While a route shows, the camera frames the route instead (below).
+  const routing = routeNodesKey !== ''
+  const routingRef = useRef(routing)
+  useEffect(() => {
+    routingRef.current = routing
+  }, [routing])
   useEffect(() => {
     const sigma = sigmaRef.current
-    if (!sigma || !focus || focusHidden) return
+    if (!sigma || !focus || focusHidden || routingRef.current) return
     // Display data is only normalised once sigma has processed the graph; a
     // style change just before (or the first mount) leaves that pending, so
     // process now rather than read raw layout coordinates.
@@ -619,6 +698,18 @@ export function StackGraph({
     const inset = highlightInsetRef.current ?? { top: 0, right: 0, bottom: 0, left: 0 }
     moveCamera(glideRef, sigma, () => applyFit(sigma, areaFit(box, sigma.getDimensions(), inset)))
   }, [highlightKey])
+
+  // A route glides to fit all its tools in the area the panels leave free.
+  useEffect(() => {
+    const sigma = sigmaRef.current
+    if (!sigma || !routeNodesKey) return
+    if (typeof sigma.framedGraphToViewport !== 'function' || typeof sigma.getDimensions !== 'function') return
+    sigma.refresh()
+    const box = drawnBox(sigma, routeNodesKey.split('\n'))
+    if (!box) return
+    const inset = routeInsetRef.current ?? { top: 0, right: 0, bottom: 0, left: 0 }
+    moveCamera(glideRef, sigma, () => applyFit(sigma, areaFit(box, sigma.getDimensions(), inset)))
+  }, [routeNodesKey])
 
   return <div ref={containerRef} className="absolute inset-0" data-testid="stack-graph" />
 }

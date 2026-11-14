@@ -4,6 +4,7 @@ import { MemoryRouter, useLocation } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { StackGraphProps } from '@/components/graph/StackGraph'
 import App from './App'
+import { routes } from './engine/path'
 import { kb } from './lib/kb'
 import { REPO_URL } from './lib/links'
 
@@ -244,7 +245,7 @@ describe('map screen', () => {
   it('clicking a dot on the map opens its panel', async () => {
     renderApp()
     await screen.findByTestId('stack-graph')
-    act(() => graph.props?.onSelect?.('redis'))
+    act(() => graph.props?.onSelect?.('redis', { add: false }))
     expect(toolPanel('Redis')).toBeInTheDocument()
     expect(params().get('focus')).toBe('redis')
   })
@@ -446,5 +447,98 @@ describe('map screen', () => {
     await user.click(clear)
     expect(clear).not.toBeInTheDocument()
     expect(document.activeElement).toBe(document.getElementById('map'))
+  })
+
+  describe('routes between two tools', () => {
+    const card = () => screen.queryByRole('region', { name: /^How .* connects to / })
+
+    it('Ctrl or Cmd click on a second tool shows how the two connect', async () => {
+      setWide()
+      renderApp('/?t=saas')
+      await screen.findByTestId('stack-graph')
+      act(() => graph.props?.onSelect?.('django', { add: false }))
+      act(() => graph.props?.onSelect?.('postgresql', { add: true }))
+      expect(params().get('focus')).toBe('django')
+      expect(params().get('to')).toBe('postgresql')
+      expect(params().get('t')).toBe('saas')
+      const region = screen.getByRole('region', { name: 'How Django connects to PostgreSQL' })
+      const expected = routes('django', 'postgresql', kb)
+      expect(graph.props?.routes).toEqual(expected)
+      expect(within(region).getByText(expected[0].steps[0].text)).toBeInTheDocument()
+      // The panel keeps showing the first tool.
+      expect(toolPanel('Django')).toBeInTheDocument()
+    })
+
+    it('a third Ctrl click replaces the second; a plain click starts over', async () => {
+      renderApp('/?focus=django&to=postgresql')
+      await screen.findByTestId('stack-graph')
+      expect(card()).toHaveAccessibleName('How Django connects to PostgreSQL')
+      act(() => graph.props?.onSelect?.('redis', { add: true }))
+      expect(params().get('to')).toBe('redis')
+      expect(card()).toHaveAccessibleName('How Django connects to Redis')
+      act(() => graph.props?.onSelect?.('express', { add: false }))
+      expect(params().get('focus')).toBe('express')
+      expect(params().has('to')).toBe(false)
+      expect(card()).not.toBeInTheDocument()
+      expect(graph.props?.routes ?? []).toEqual([])
+    })
+
+    it('Ctrl click with nothing focused just focuses; on the focused tool it does nothing', async () => {
+      renderApp()
+      await screen.findByTestId('stack-graph')
+      act(() => graph.props?.onSelect?.('django', { add: true }))
+      expect(params().get('focus')).toBe('django')
+      act(() => graph.props?.onSelect?.('django', { add: true }))
+      expect(params().has('to')).toBe(false)
+    })
+
+    it('a click on empty map clears focus, route and panel', async () => {
+      setWide()
+      renderApp('/?focus=django&to=postgresql&t=saas')
+      await screen.findByTestId('stack-graph')
+      act(() => graph.props?.onClear?.())
+      expect(params().has('focus')).toBe(false)
+      expect(params().has('to')).toBe(false)
+      expect(params().get('t')).toBe('saas')
+      expect(card()).not.toBeInTheDocument()
+      await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Django' })).not.toBeInTheDocument())
+    })
+
+    it('Escape clears focus, route and panel', async () => {
+      const user = userEvent.setup()
+      renderApp('/?focus=django&to=postgresql')
+      await screen.findByTestId('stack-graph')
+      await user.keyboard('{Escape}')
+      expect(params().has('focus')).toBe(false)
+      expect(params().has('to')).toBe(false)
+      expect(card()).not.toBeInTheDocument()
+    })
+
+    it('Clear route keeps the tool open', async () => {
+      const user = userEvent.setup()
+      renderApp('/?focus=django&to=postgresql')
+      await user.click(screen.getByRole('button', { name: 'Clear route' }))
+      expect(params().get('focus')).toBe('django')
+      expect(params().has('to')).toBe(false)
+      expect(toolPanel('Django')).toBeInTheDocument()
+    })
+
+    it('from the keyboard: the panel finds a route to a tool by search', async () => {
+      const user = userEvent.setup()
+      renderApp('/?focus=django')
+      const field = within(toolPanel('Django')).getByRole('combobox', { name: 'Find a route to...' })
+      await user.type(field, 'postgres')
+      await user.keyboard('{Enter}')
+      expect(params().get('to')).toBe('postgresql')
+      expect(card()).toHaveAccessibleName('How Django connects to PostgreSQL')
+    })
+
+    it('ignores a route to the same tool or to an unknown one', async () => {
+      const first = renderApp('/?focus=django&to=django')
+      expect(card()).not.toBeInTheDocument()
+      first.unmount()
+      renderApp('/?focus=django&to=not-a-tool')
+      expect(card()).not.toBeInTheDocument()
+    })
   })
 })

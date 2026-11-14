@@ -9,11 +9,16 @@ import { newIssueUrl } from '@/lib/links'
 import { useReturnFocusOnClose } from '@/lib/useReturnFocusOnClose'
 import { relationsOf } from '@/lib/relations'
 import { cn } from '@/lib/utils'
+import { SearchBox } from './SearchBox'
 
 interface ToolPanelProps {
   tool: Tool | undefined
   onClose: () => void
   onFocusTool: (id: string) => void
+  /** Show how this tool connects to another (the keyboard way to Ctrl or Cmd click a second dot). */
+  onFindRoute?: (id: string) => void
+  /** How this tool connects to another, shown at the top of the panel (on narrow screens). */
+  route?: ReactNode
   /** Called once the panel has closed, to put keyboard focus back. */
   onRestoreFocus: () => void
 }
@@ -76,7 +81,10 @@ function Notes({ title, items }: { title: string; items: string[] }) {
  * behind it, so another dot or a relation swaps the tool in place. Right side
  * from 1024px, bottom sheet below. Escape or the close button closes it.
  */
-export function ToolPanel({ tool: current, onClose, onFocusTool, onRestoreFocus }: ToolPanelProps) {
+/** Cmd on a Mac, Ctrl elsewhere, for the hint under "Find a route to...". */
+const ROUTE_KEY = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform) ? 'Cmd' : 'Ctrl'
+
+export function ToolPanel({ tool: current, onClose, onFocusTool, onFindRoute, route, onRestoreFocus }: ToolPanelProps) {
   const headingRef = useRef<HTMLHeadingElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -160,7 +168,23 @@ export function ToolPanel({ tool: current, onClose, onFocusTool, onRestoreFocus 
               </div>
 
               <div ref={scrollRef} className="grid min-h-0 flex-1 content-start gap-6 overflow-y-auto px-5 pb-5 lg:px-6">
+                {route}
                 <p className="text-[0.875rem] leading-[1.6] text-text">{tool.summary}</p>
+
+                {onFindRoute && (
+                  <div className="grid gap-1.5">
+                    <SearchBox
+                      variant="panel"
+                      label="Find a route to..."
+                      placeholder="Find a route to..."
+                      exclude={tool.id}
+                      onPick={onFindRoute}
+                    />
+                    <p className="text-xs text-text-muted touch:hidden">
+                      Or {ROUTE_KEY}+click a tool on the map to see how it connects to {tool.name}.
+                    </p>
+                  </div>
+                )}
 
                 <dl className="divide-y divide-line border-y border-line">
                   <Fact term="Languages">

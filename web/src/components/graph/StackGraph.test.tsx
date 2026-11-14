@@ -128,7 +128,51 @@ describe('StackGraph', () => {
     const onSelect = vi.fn()
     render(<StackGraph onSelect={onSelect} />)
     act(() => latest().handlers.clickNode({ node: database.id }))
-    expect(onSelect).toHaveBeenCalledWith(database.id)
+    expect(onSelect).toHaveBeenCalledWith(database.id, { add: false })
+  })
+
+  it('Ctrl or Cmd with a click asks for a route instead of a new focus', () => {
+    const onSelect = vi.fn()
+    render(<StackGraph onSelect={onSelect} />)
+    const click = (init: MouseEventInit) =>
+      act(() => latest().handlers.clickNode({ node: database.id, event: { original: new MouseEvent('click', init) } } as never))
+    click({ ctrlKey: true })
+    expect(onSelect).toHaveBeenLastCalledWith(database.id, { add: true })
+    click({ metaKey: true })
+    expect(onSelect).toHaveBeenLastCalledWith(database.id, { add: true })
+    click({})
+    expect(onSelect).toHaveBeenLastCalledWith(database.id, { add: false })
+  })
+
+  it('a click on empty map clears, but not the end of a drag', () => {
+    const onClear = vi.fn()
+    render(<StackGraph onClear={onClear} />)
+    const s = latest()
+    act(() => s.handlers.clickStage({ event: { original: new MouseEvent('click') } } as never))
+    expect(onClear).toHaveBeenCalledTimes(1)
+    act(() => s.handlers.doubleClickStage({ preventSigmaDefault: () => {}, event: { original: new MouseEvent('click') } } as never))
+    expect(onClear).toHaveBeenCalledTimes(2)
+    act(() => {
+      s.container.dispatchEvent(new MouseEvent('mousedown', { clientX: 0, clientY: 0 }))
+    })
+    act(() =>
+      s.handlers.doubleClickStage({ preventSigmaDefault: () => {}, event: { original: new MouseEvent('click', { clientX: 40, clientY: 0 }) } } as never),
+    )
+    expect(onClear).toHaveBeenCalledTimes(2)
+  })
+
+  it('lights a route between two tools and dims the rest of the map', () => {
+    const [a, b] = [backend.id, backend.edges.find((e) => kb.tools.some((t) => t.id === e.target))!.target]
+    const type = backend.edges.find((e) => e.target === b)!.type
+    render(
+      <StackGraph focus={a} routes={[{ nodes: [a, b], steps: [{ from: a, to: b, type, text: '' }] }]} />,
+    )
+    expect(nodeOf(a).color).toBe(FALLBACK_PALETTE.accent)
+    expect(nodeOf(b).color).toBe(FALLBACK_PALETTE.accent)
+    expect(nodeOf(b).forceLabel).toBe(true)
+    expect(nodeOf(database.id).color).toBe(dimmedOf(database.layer))
+    const lit = edgesOfType(type).filter((e) => e.color === FALLBACK_PALETTE.accent)
+    expect(lit).toHaveLength(1)
   })
 
   it('applies zero-length camera animations at once (sigma leaves NaN until the next frame)', () => {
@@ -145,7 +189,7 @@ describe('StackGraph', () => {
     const onNode = vi.fn()
     act(() => s.handlers.doubleClickNode({ node: database.id, preventSigmaDefault: onNode } as never))
     expect(onNode).toHaveBeenCalled()
-    expect(onSelect).toHaveBeenCalledWith(database.id)
+    expect(onSelect).toHaveBeenCalledWith(database.id, { add: false })
     const onStage = vi.fn()
     act(() => s.handlers.doubleClickStage({ preventSigmaDefault: onStage } as never))
     expect(onStage).toHaveBeenCalled()
@@ -184,7 +228,7 @@ describe('StackGraph', () => {
     rerender(<StackGraph onSelect={second} />)
     act(() => latest().handlers.clickNode({ node: frontend.id }))
     expect(first).not.toHaveBeenCalled()
-    expect(second).toHaveBeenCalledWith(frontend.id)
+    expect(second).toHaveBeenCalledWith(frontend.id, { add: false })
     expect(fake.FakeSigma.instances).toHaveLength(1)
   })
 
@@ -458,6 +502,30 @@ describe('StackGraph', () => {
       const next = [...picks.slice(0, 4), backend.id]
       rerender(<StackGraph highlight={next} />)
       expect(nodeOf(backend.id).color).toBe(FALLBACK_PALETTE.accent)
+    })
+
+    it('a newly focused dot eases up in size and its neighbours names fade in, over the base duration', () => {
+      const neighbour = backend.edges.find((e) => kb.tools.some((t) => t.id === e.target))!.target
+      const { rerender } = render(<StackGraph />)
+      const rest = latest().graph.getNodeAttribute(backend.id, 'size')
+      rerender(<StackGraph focus={backend.id} />)
+      expect(nodeOf(backend.id).size).toBe(rest)
+      expect(nodeOf(neighbour).labelColor).toBe(FALLBACK_PALETTE.background)
+      act(() => vi.advanceTimersByTime(116))
+      const mid = nodeOf(backend.id).size as number
+      expect(mid).toBeGreaterThan(rest)
+      expect(nodeOf(neighbour).labelColor).not.toBe(FALLBACK_PALETTE.background)
+      act(() => vi.advanceTimersByTime(200))
+      expect(nodeOf(backend.id).size).toBeGreaterThan(mid)
+      expect(nodeOf(neighbour).labelColor).toBe(FALLBACK_PALETTE.text)
+    })
+
+    it('with reduced motion a focused tool is lit at once', () => {
+      reduceMotion()
+      const { rerender } = render(<StackGraph />)
+      const rest = latest().graph.getNodeAttribute(backend.id, 'size')
+      rerender(<StackGraph focus={backend.id} />)
+      expect(nodeOf(backend.id).size).toBeGreaterThan(rest)
     })
 
     it('with reduced motion every pick lights at once', () => {

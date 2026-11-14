@@ -7,6 +7,7 @@ import { useWebGL } from '@/components/graph/useWebGL'
 import { FiltersPopover } from '@/components/map/FiltersPopover'
 import { InfoDialog } from '@/components/map/InfoDialog'
 import { MapBoundary } from '@/components/map/MapBoundary'
+import { RouteCard } from '@/components/map/RouteCard'
 import { ToolPanel } from '@/components/map/ToolPanel'
 import { ToolTable } from '@/components/map/ToolTable'
 import { CornerLinks } from '@/components/shell/CornerLinks'
@@ -14,10 +15,12 @@ import { FullscreenButton } from '@/components/shell/FullscreenButton'
 import { TopBar } from '@/components/shell/TopBar'
 import { Button } from '@/components/ui/button'
 import { defaultAnswers, type Answers } from '@/engine/answers'
+import { routes } from '@/engine/path'
 import { scoreStack } from '@/engine/score'
 import { decode, encode, SHARE_KEYS } from '@/engine/share'
 import { kb, toolById, type EdgeType, type Layer } from '@/lib/kb'
 import { useTheme } from '@/lib/theme'
+import { cn } from '@/lib/utils'
 
 // sigma and graphology load in their own chunk, after the shell has painted.
 const StackGraph = lazy(() => import('@/components/graph/StackGraph').then((m) => ({ default: m.StackGraph })))
@@ -34,6 +37,8 @@ const CHOOSE_SHEET_INSET = 464
 const TOP_BAR_INSET = { oneRow: 68, phone: 124 }
 /** Height of the bottom corner links (44px pill plus its 12px inset on phones). */
 const CORNER_INSET = 60
+/** Width of the route card plus its gap from the edge and from the map it frames (RouteCard on wide screens: w-[360px], left-6). */
+const ROUTE_CARD_INSET = 400
 
 function isTyping(target: EventTarget | null): boolean {
   return (
@@ -105,10 +110,14 @@ export default function App() {
   const [contextLost, setContextLost] = useState(false)
   const webgl = webglSupported && !contextLost
 
-  // URL state: ?focus=<id> opens the tool panel, ?view=table shows the table.
-  // Other params (the recommender's answers) are always kept.
+  // URL state: ?focus=<id> opens the tool panel, ?to=<id> shows how it
+  // connects to a second tool, ?view=table shows the table. Other params (the
+  // recommender's answers) are always kept.
   const [params, setParams] = useSearchParams()
   const tool = toolById(params.get('focus') ?? '')
+  const toParam = toolById(params.get('to') ?? '')
+  const routeTo = tool && toParam && toParam.id !== tool.id ? toParam : undefined
+  const found = useMemo(() => (tool && routeTo ? routes(tool.id, routeTo.id, kb) : []), [tool, routeTo])
   const view: View = !webgl || params.get('view') === 'table' ? 'table' : 'map'
 
   const updateParams = useCallback(
@@ -122,21 +131,49 @@ export default function App() {
   )
 
   const openTool = useCallback(
-    (id: string) => {
+    (id: string, opts?: { add: boolean }) => {
       const target = toolById(id)
       if (!target) return
+      // Ctrl or Cmd with a click: a route from the open tool to this one,
+      // replacing any earlier second tool.
+      if (opts?.add && tool) {
+        if (id === tool.id) return
+        setHiddenLayers((hidden) => (hidden.has(target.layer) ? toggled(hidden, target.layer) : hidden))
+        updateParams((next) => next.set('to', id))
+        return
+      }
       // Remember where focus was when the panel first opens, to return it on close.
       if (!tool && document.activeElement instanceof HTMLElement && document.activeElement !== document.body) {
         returnFocusRef.current = document.activeElement
       }
       // A focused tool is always drawn: its layer comes back if it was hidden.
       setHiddenLayers((hidden) => (hidden.has(target.layer) ? toggled(hidden, target.layer) : hidden))
-      updateParams((next) => next.set('focus', id))
+      updateParams((next) => {
+        next.set('focus', id)
+        next.delete('to')
+      })
     },
     [tool, updateParams],
   )
 
-  const closeTool = useCallback(() => updateParams((next) => next.delete('focus')), [updateParams])
+  const closeTool = useCallback(
+    () =>
+      updateParams((next) => {
+        next.delete('focus')
+        next.delete('to')
+      }),
+    [updateParams],
+  )
+
+  const findRoute = useCallback((id: string) => openTool(id, { add: true }), [openTool])
+  const clearRoute = useCallback(() => updateParams((next) => next.delete('to')), [updateParams])
+
+  // A click on empty map clears the focus and any route; with nothing open it
+  // leaves the history alone.
+  const hasFocusParams = params.has('focus') || params.has('to')
+  const clearMap = useCallback(() => {
+    if (hasFocusParams) closeTool()
+  }, [hasFocusParams, closeTool])
 
   const restoreFocus = useCallback(() => {
     const target = returnFocusRef.current
@@ -260,6 +297,35 @@ export default function App() {
         }
     : undefined
 
+  // A route is framed in the map area the card, the panel and the bars leave free.
+  const routeInset = wide
+    ? {
+        top: TOP_BAR_INSET.oneRow,
+        right: SIDE_PANEL_INSET,
+        bottom: CORNER_INSET,
+        left: (helpOpen ? CHOOSE_SHEET_INSET : 0) + ROUTE_CARD_INSET,
+      }
+    : {
+        top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone,
+        right: 0,
+        bottom: Math.round(window.innerHeight * 0.6),
+        left: 0,
+      }
+
+  // How the two tools connect: a card over the map from 1024px; below that
+  // the map has only the strip above the panel, so the card opens the panel.
+  const routeCard =
+    tool && routeTo ? (
+      <RouteCard
+        from={tool}
+        to={routeTo}
+        routes={found}
+        onClose={clearRoute}
+        placement={wide ? 'float' : 'inline'}
+        className={wide ? 'w-[360px]' : undefined}
+      />
+    ) : null
+
   // A new stack is framed in the map area the sheet and the bars leave free.
   const highlightInset = wide
     ? {
@@ -326,6 +392,9 @@ export default function App() {
                   hiddenLayers={hiddenLayers}
                   hiddenEdgeTypes={hiddenEdgeTypes}
                   onSelect={openTool}
+                  onClear={clearMap}
+                  routes={routeTo ? found : undefined}
+                  routeInset={routeInset}
                   focusInset={focusInset}
                   frameInset={{ top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone, bottom: CORNER_INSET }}
                   onContextLost={() => setContextLost(true)}
@@ -333,21 +402,30 @@ export default function App() {
               </Suspense>
             </MapBoundary>
             <FullscreenButton />
-            {picks.length > 0 && !helpOpen && (
-              <Button
-                variant="pill"
-                size="pill"
-                className="absolute top-36 left-4 md:top-[4.75rem] md:left-6"
-                onClick={() => {
-                  chooser.setView('questions')
-                  // The button goes away with the stack, so focus lands on the map it sat on.
-                  document.getElementById('map')?.focus()
-                }}
-              >
-                <XIcon aria-hidden="true" />
-                Clear stack
-              </Button>
-            )}
+            {/* Top left, under the bar: Clear stack, then the route card (wide screens). Beside an open Help me choose sheet. */}
+            <div
+              className={cn(
+                'pointer-events-none absolute top-36 left-4 flex flex-col items-start gap-2 md:top-[4.75rem] md:left-6 lg:bottom-[4.5rem]',
+                helpOpen && 'lg:left-[30rem]',
+              )}
+            >
+              {picks.length > 0 && !helpOpen && (
+                <Button
+                  variant="pill"
+                  size="pill"
+                  className="pointer-events-auto"
+                  onClick={() => {
+                    chooser.setView('questions')
+                    // The button goes away with the stack, so focus lands on the map it sat on.
+                    document.getElementById('map')?.focus()
+                  }}
+                >
+                  <XIcon aria-hidden="true" />
+                  Clear stack
+                </Button>
+              )}
+              {wide && routeCard}
+            </div>
           </main>
           <CornerLinks />
         </>
@@ -366,7 +444,14 @@ export default function App() {
         </main>
       )}
 
-      <ToolPanel tool={tool} onClose={closeTool} onFocusTool={openTool} onRestoreFocus={restoreFocus} />
+      <ToolPanel
+        tool={tool}
+        onClose={closeTool}
+        onFocusTool={openTool}
+        onFindRoute={view === 'map' ? findRoute : undefined}
+        route={view === 'map' && !wide ? routeCard : null}
+        onRestoreFocus={restoreFocus}
+      />
       <ChooseSheet
         open={helpOpen}
         onOpenChange={setOpen('help')}

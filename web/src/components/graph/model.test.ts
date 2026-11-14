@@ -4,6 +4,8 @@ import { makeTool } from '@/engine/fixture'
 import {
   lightingEdgeStyle,
   lightingStyle,
+  routeEdgeKey,
+  selectingStyle,
   buildGraph,
   edgeStyle,
   FALLBACK_PALETTE,
@@ -648,5 +650,87 @@ describe('lightingStyle', () => {
     const edge = { kind: 'pairs-with' as EdgeType, source: 'a', target: 'b', sourceLayer: 'database' as Layer, targetLayer: 'orm' as Layer }
     expect(lightingEdgeStyle(edge, FALLBACK_PALETTE, 0).color).toBe(mix(FALLBACK_PALETTE.edge, FALLBACK_PALETTE.background, 0.6))
     expect(lightingEdgeStyle(edge, FALLBACK_PALETTE, 1).color!.toLowerCase()).toBe(FALLBACK_PALETTE.accent)
+  })
+})
+
+describe('route', () => {
+  const g = buildGraph(tools(), positions)
+  // react - fastapi - postgresql
+  const routeView = (extra: Parameters<typeof makeView>[0] = {}) =>
+    makeView({
+      focus: 'react',
+      neighbours: neighboursOf(g, 'react', new Set()),
+      route: {
+        nodes: ['react', 'fastapi', 'postgresql'],
+        edges: [routeEdgeKey('react', 'fastapi', 'pairs-with'), routeEdgeKey('postgresql', 'fastapi', 'pairs-with')],
+      },
+      ...extra,
+    })
+  const node = (id: string, v: ReturnType<typeof makeView>) => nodeStyle(id, g.getNodeAttributes(id), v, palette)
+  const edge = (source: string, target: string, v: ReturnType<typeof makeView>) =>
+    edgeStyle(g.getEdgeAttributes(g.edges(source, target)[0]), v, palette)
+
+  it('lights every tool on the route in the accent with its name and dims the rest', () => {
+    const v = routeView()
+    for (const id of ['react', 'fastapi', 'postgresql']) {
+      expect(node(id, v), id).toMatchObject({ color: palette.accent, forceLabel: true, zIndex: 2 })
+    }
+    expect(node('mysql', v).color).toBe(mix(palette.families.data, palette.background, DIM_NODE_MIX))
+    expect(node('mysql', v).label).toBeNull()
+  })
+
+  it('draws the route edges in the accent and dims the others', () => {
+    const v = routeView()
+    expect(edge('react', 'fastapi', v)).toMatchObject({ color: palette.accent, zIndex: 2 })
+    expect(edge('fastapi', 'postgresql', v).color).toBe(palette.accent)
+    expect(edge('postgresql', 'mysql', v).color).toBe(mix(palette.edge, palette.background, DIM_EDGE_MIX))
+  })
+
+  it('draws the whole route even through filtered layers and relation types', () => {
+    const v = routeView({ hiddenLayers: new Set(['backend']), hiddenEdgeTypes: new Set(['pairs-with']) })
+    expect(node('fastapi', v).hidden).toBe(false)
+    expect(edge('react', 'fastapi', v).hidden).toBe(false)
+    expect(edge('postgresql', 'mysql', routeView({ hiddenEdgeTypes: new Set(['alternative-to']) })).hidden).toBe(true)
+  })
+
+  it('wins over a highlighted stack', () => {
+    const v = routeView({ highlight: ['mysql'] })
+    expect(node('mysql', v).color).toBe(mix(palette.families.data, palette.background, DIM_NODE_MIX))
+    expect(node('fastapi', v).color).toBe(palette.accent)
+  })
+
+  it('keys an edge the same way round whichever end comes first', () => {
+    expect(routeEdgeKey('b', 'a', 'extends')).toBe(routeEdgeKey('a', 'b', 'extends'))
+    expect(routeEdgeKey('a', 'b', 'extends')).not.toBe(routeEdgeKey('a', 'b', 'built-on'))
+  })
+})
+
+describe('selectingStyle', () => {
+  const g = buildGraph(tools(), positions)
+  const v = makeView({ focus: 'fastapi', neighbours: neighboursOf(g, 'fastapi', new Set()) })
+  const at = (id: string, p: number) => {
+    const attrs = g.getNodeAttributes(id)
+    const style = nodeStyle(id, attrs, v, palette)
+    return { ...style, ...selectingStyle(id, attrs, style, v, palette, p) }
+  }
+
+  it('the focused dot grows from its resting size to its lit size', () => {
+    const rest = g.getNodeAttribute('fastapi', 'size')
+    const lit = nodeStyle('fastapi', g.getNodeAttributes('fastapi'), v, palette).size!
+    expect(at('fastapi', 0).size).toBe(rest)
+    expect(at('fastapi', 0.5).size).toBeGreaterThan(rest)
+    expect(at('fastapi', 0.5).size).toBeLessThan(lit)
+    expect(at('fastapi', 1).size).toBe(lit)
+    expect(at('fastapi', 0).color).toBe(palette.accent)
+  })
+
+  it("neighbours' names fade in from the map colour", () => {
+    expect(at('react', 0).labelColor).toBe(mix(palette.background, palette.text, 0))
+    expect(at('react', 1).labelColor).toBe(mix(palette.background, palette.text, 1))
+    expect(at('react', 0.5).labelColor).toBe(mix(palette.background, palette.text, 0.5))
+  })
+
+  it('leaves every other tool as it is', () => {
+    expect(selectingStyle('mysql', g.getNodeAttributes('mysql'), nodeStyle('mysql', g.getNodeAttributes('mysql'), v, palette), v, palette, 0.3)).toEqual({})
   })
 })

@@ -6,22 +6,40 @@ import { searchTools } from '@/lib/search'
 import { cn } from '@/lib/utils'
 
 interface SearchBoxProps {
-  inputRef: RefObject<HTMLInputElement | null>
+  inputRef?: RefObject<HTMLInputElement | null>
   onPick: (id: string) => void
+  /** The field's accessible name and placeholder. */
+  label?: string
+  placeholder?: string
+  /** A tool left out of the results (the one a route starts from). */
+  exclude?: string
+  /** `bar`: the pill in the top bar with its "/" hint. `panel`: a full-width field inside a panel. */
+  variant?: 'bar' | 'panel'
 }
 
 /**
  * The pill search field as an ARIA 1.2 combobox: type to list tools whose
  * name or alias matches, arrows to move, Enter or a click to open one.
  */
-export function SearchBox({ inputRef, onPick }: SearchBoxProps) {
+export function SearchBox({
+  inputRef,
+  onPick,
+  label = 'Search tools',
+  placeholder = 'Search',
+  exclude,
+  variant = 'bar',
+}: SearchBoxProps) {
+  const panel = variant === 'panel'
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
   const listId = useId()
   const optionId = (i: number) => `${listId}-option-${i}`
 
-  const results = useMemo(() => searchTools(query), [query])
+  const results = useMemo(
+    () => (exclude ? searchTools(query, 9).filter((t) => t.id !== exclude).slice(0, 8) : searchTools(query)),
+    [query, exclude],
+  )
   const showList = open && results.length > 0
   const showEmpty = open && query.trim() !== '' && results.length === 0
 
@@ -33,19 +51,28 @@ export function SearchBox({ inputRef, onPick }: SearchBoxProps) {
   }
 
   return (
-    <form role="search" className="relative min-w-0 flex-1 md:mr-1.5 md:flex-none" onSubmit={(e) => e.preventDefault()}>
-      <label className="flex h-11 items-center gap-2 rounded-full border border-line-field bg-surface px-3.5 focus-within:border-text-faint focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-highlight hover:border-text-faint md:h-9 md:w-56 lg:w-64">
+    <form
+      role="search"
+      className={cn('relative min-w-0', panel ? 'w-full' : 'flex-1 md:mr-1.5 md:flex-none')}
+      onSubmit={(e) => e.preventDefault()}
+    >
+      <label
+        className={cn(
+          'flex h-11 items-center gap-2 rounded-full border border-line-field bg-surface px-3.5 focus-within:border-text-faint focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-highlight hover:border-text-faint',
+          panel ? 'touch:h-11 md:h-9' : 'md:h-9 md:w-56 lg:w-64',
+        )}
+      >
         <SearchIcon aria-hidden="true" className="size-4 shrink-0 text-text-muted" />
         <input
           ref={inputRef}
           type="search"
           role="combobox"
-          aria-label="Search tools"
+          aria-label={label}
           aria-autocomplete="list"
           aria-expanded={showList}
           aria-controls={listId}
           aria-activedescendant={showList ? optionId(active) : undefined}
-          placeholder="Search"
+          placeholder={placeholder}
           autoComplete="off"
           spellCheck={false}
           value={query}
@@ -78,12 +105,14 @@ export function SearchBox({ inputRef, onPick }: SearchBoxProps) {
             }
           }}
         />
-        <kbd
-          aria-hidden="true"
-          className="hidden h-5 min-w-5 items-center justify-center rounded-sm border border-line-strong px-1 text-xs text-text-faint md:inline-flex"
-        >
-          /
-        </kbd>
+        {!panel && (
+          <kbd
+            aria-hidden="true"
+            className="hidden h-5 min-w-5 items-center justify-center rounded-sm border border-line-strong px-1 text-xs text-text-faint md:inline-flex"
+          >
+            /
+          </kbd>
+        )}
       </label>
 
       <ul
@@ -91,7 +120,10 @@ export function SearchBox({ inputRef, onPick }: SearchBoxProps) {
         role="listbox"
         aria-label="Matching tools"
         hidden={!showList}
-        className="absolute top-full left-0 z-10 mt-2 grid w-[calc(100vw-2rem)] gap-px rounded-xl border border-line bg-surface p-1.5 shadow-(--shadow-float) md:w-80"
+        className={cn(
+          'absolute top-full left-0 z-10 mt-2 grid gap-px rounded-xl border border-line bg-surface p-1.5 shadow-(--shadow-float)',
+          panel ? 'w-full' : 'w-[calc(100vw-2rem)] md:w-80',
+        )}
       >
         {showList &&
           results.map((tool, i) => (
@@ -125,7 +157,10 @@ export function SearchBox({ inputRef, onPick }: SearchBoxProps) {
         role="status"
         className={
           showEmpty
-            ? 'absolute top-full left-0 z-10 mt-2 w-[calc(100vw-2rem)] rounded-xl border border-line bg-surface px-4 py-3 text-[0.8125rem] text-text-muted shadow-(--shadow-float) md:w-80'
+            ? cn(
+                'absolute top-full left-0 z-10 mt-2 rounded-xl border border-line bg-surface px-4 py-3 text-[0.8125rem] text-text-muted shadow-(--shadow-float)',
+                panel ? 'w-full' : 'w-[calc(100vw-2rem)] md:w-80',
+              )
             : 'sr-only'
         }
       >

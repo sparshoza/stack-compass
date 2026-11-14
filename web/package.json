@@ -9,7 +9,8 @@
     "layout": "node scripts/layout.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "golden": "vitest --run --reporter=verbose src/engine/golden.test.ts"
   },
   "dependencies": {
     "@fontsource-variable/jetbrains-mono": "^5.3.0",

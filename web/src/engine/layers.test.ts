@@ -67,23 +67,28 @@ describe("selectLayers", () => {
     ]);
   });
 
-  it("state and build tool come only with a frontend or mobile layer", () => {
+  it("state and build tool come only with a frontend layer", () => {
     const api = selectLayers(answers({ projectType: "api-only" }), kb);
     expect(api).not.toContain("state");
     expect(api).not.toContain("build-tool");
     for (const layer of ["ci-cd", "observability", "testing"]) expect(api).toContain(layer);
 
+    // A mobile app has no web frontend, so no web state library or bundler.
     const mobile = selectLayers(answers({ projectType: "mobile-app" }), kb);
-    expect(mobile).toContain("state");
-    expect(mobile).toContain("build-tool");
+    expect(mobile).not.toContain("state");
+    expect(mobile).not.toContain("build-tool");
+    for (const layer of ["ci-cd", "observability", "testing"]) expect(mobile).toContain(layer);
 
-    // An API that ships a native app gets the mobile layer, and with it state and a build tool.
     const apiWithApp = selectLayers(
       answers({ projectType: "api-only", capabilities: ["native-mobile"] }),
       kb,
     );
     expect(apiWithApp).toContain("mobile");
-    expect(apiWithApp).toContain("state");
+    expect(apiWithApp).not.toContain("state");
+
+    const web = selectLayers(answers({ projectType: "web-app" }), kb);
+    expect(web).toContain("state");
+    expect(web).toContain("build-tool");
   });
 
   it("no project type returns empty", () => {

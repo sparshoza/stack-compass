@@ -498,6 +498,16 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { pickIs: { layer: "api-style", tool: "openapi" } },
     ],
   },
+  {
+    id: "go-rest-api-short",
+    text: "a Go REST API",
+    checks: [
+      { projectType: "api-only" },
+      { backendLanguage: "go" },
+      { pickIs: { layer: "api-style", tool: "openapi" } },
+      { pickIs: { layer: "testing", tool: "testify" } },
+    ],
+  },
 ];
 
 /**

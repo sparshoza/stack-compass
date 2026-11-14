@@ -575,6 +575,59 @@
     },
     {
       "phrases": [
+        "go rest api"
+      ],
+      "sets": {
+        "capabilities": [
+          "rest-api"
+        ],
+        "languages": [
+          "go"
+        ],
+        "project_type": "api-only"
+      }
+    },
+    {
+      "phrases": [
+        "go graphql api",
+        "go web service",
+        "go microservice"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "go"
+        ],
+        "project_type": "api-only"
+      }
+    },
+    {
+      "phrases": [
+        "go web app"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "go"
+        ],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "go app",
+        "go server"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "go"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
         "java",
         "jvm",
         "jdk"
@@ -1945,7 +1998,6 @@
         "written in go",
         "go backend",
         "go api",
-        "go microservice",
         "go service"
       ],
       "sets": {
@@ -21418,7 +21470,13 @@
     {
       "aliases": [
         "vapor swift",
-        "vapor.codes"
+        "vapor.codes",
+        "vapor backend",
+        "vapor api",
+        "vapor app",
+        "vapor server",
+        "vapor framework",
+        "swift vapor"
       ],
       "avoid_when": [
         "Your team does not know Swift"

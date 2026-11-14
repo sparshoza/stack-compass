@@ -192,6 +192,43 @@ describe("match", () => {
     expect(match("build an api, no graphql", kb).capabilities).toContain("rest-api");
   });
 
+  it("real catalog: Go is found in everyday phrasing", () => {
+    const rest = match("a Go REST API", kb);
+    expect(rest.projectType).toBe("api-only");
+    expect(rest.capabilities).toContain("rest-api");
+    expect(rest.languagesPrefer).toEqual(["go"]);
+    const graphql = match("a Go GraphQL API", kb);
+    expect(graphql.projectType).toBe("api-only");
+    expect(graphql.languagesPrefer).toEqual(["go"]);
+    expect(graphql.capabilities).not.toContain("rest-api");
+    const web = match("a Go web app", kb);
+    expect(web.projectType).toBe("web-app");
+    expect(web.languagesPrefer).toEqual(["go"]);
+    for (const text of ["a Go web service", "a Go microservice"]) {
+      const d = match(text, kb);
+      expect(d.projectType).toBe("api-only");
+      expect(d.languagesPrefer).toEqual(["go"]);
+    }
+    for (const text of ["a Go app", "a Go server"]) {
+      expect(match(text, kb).languagesPrefer).toEqual(["go"]);
+    }
+    // "go" alone is an ordinary verb.
+    expect(match("ready to go live with an app", kb).languagesPrefer).toEqual([]);
+  });
+
+  it("real catalog: Vapor is found in everyday phrasing", () => {
+    for (const text of [
+      "a Vapor api",
+      "a vapor backend",
+      "a Vapor app",
+      "our vapor server",
+      "the Vapor framework",
+      "a Swift Vapor project",
+    ]) {
+      expect(match(text, kb).knownTools).toContain("vapor");
+    }
+  });
+
   it("real catalog: Phoenix is found in everyday phrasing", () => {
     for (const text of ["a Phoenix app", "an Elixir Phoenix project", "our phoenix backend"]) {
       expect(match(text, kb).knownTools).toContain("phoenix");

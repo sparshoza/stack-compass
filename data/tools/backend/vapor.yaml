@@ -1,6 +1,6 @@
 id: vapor
 name: Vapor
-aliases: [vapor swift, vapor.codes]
+aliases: [vapor swift, vapor.codes, vapor backend, vapor api, vapor app, vapor server, vapor framework, swift vapor]
 match_name: false
 layer: backend
 summary: A Swift web framework for writing backends, web apps, APIs and HTTP servers, built on SwiftNIO.

@@ -106,9 +106,9 @@ function failures(
 }
 
 describe("golden set", () => {
-  it("has 39 cases with unique ids", () => {
-    expect(GOLDEN_CASES).toHaveLength(39);
-    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(39);
+  it("has 40 cases with unique ids", () => {
+    expect(GOLDEN_CASES).toHaveLength(40);
+    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(40);
   });
 
   it("every case has at least one check that depends on scoring", () => {

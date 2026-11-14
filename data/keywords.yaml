@@ -67,6 +67,14 @@
   sets: {languages: [javascript]}
 - phrases: [golang, go language, go lang, in go, using go, use go]
   sets: {languages: [go]}
+- phrases: [go rest api]
+  sets: {project_type: api-only, capabilities: [rest-api], languages: [go]}
+- phrases: [go graphql api, go web service, go microservice]
+  sets: {project_type: api-only, languages: [go]}
+- phrases: [go web app]
+  sets: {project_type: web-app, languages: [go]}
+- phrases: [go app, go server]
+  sets: {languages: [go]}
 - phrases: [java, jvm, jdk]
   sets: {languages: [java]}
 - phrases: [kotlin, android kotlin]
@@ -254,7 +262,7 @@
   sets: {languages: [typescript]}
 - phrases: [written in javascript, javascript backend, node backend, plain javascript, javascript api]
   sets: {languages: [javascript]}
-- phrases: [written in go, go backend, go api, go microservice, go service]
+- phrases: [written in go, go backend, go api, go service]
   sets: {languages: [go]}
 - phrases: [written in java, java backend, java developer, java enterprise, java api]
   sets: {languages: [java]}

@@ -235,6 +235,33 @@ def test_go_phrases_and_no_inner_tool_bias_phrases():
     assert not {"s3 compatible", "stripe like payments"} & phrases
 
 
+def _kw_sets(phrase):
+    return next(e.sets for e in load_kb(DATA).keywords if phrase in e.phrases)
+
+
+def test_go_project_phrases():
+    rest = _kw_sets("go rest api")
+    assert (rest.project_type, rest.capabilities, rest.languages) == (
+        "api-only", ["rest-api"], ["go"]
+    )
+    graphql = _kw_sets("go graphql api")
+    assert (graphql.project_type, graphql.capabilities, graphql.languages) == (
+        "api-only", [], ["go"]
+    )
+    web = _kw_sets("go web app")
+    assert (web.project_type, web.languages) == ("web-app", ["go"])
+    for phrase in ("go web service", "go microservice"):
+        assert (_kw_sets(phrase).project_type, _kw_sets(phrase).languages) == ("api-only", ["go"])
+    for phrase in ("go app", "go server"):
+        assert (_kw_sets(phrase).project_type, _kw_sets(phrase).languages) == (None, ["go"])
+
+
+def test_vapor_aliases():
+    aliases = set(load_kb(DATA).tools["vapor"].aliases)
+    assert {"vapor backend", "vapor api", "vapor app", "vapor server", "vapor framework",
+            "swift vapor"} <= aliases  # fmt: skip
+
+
 # A chosen capability is required in the layer it adds (when some tool there has
 # it), so these are the tools each one leaves out, each checked against its
 # official docs. PostgreSQL gets vector search from the separate pgvector tool,

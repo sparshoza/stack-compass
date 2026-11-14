@@ -117,6 +117,53 @@ describe("match", () => {
     expect(match("node.js", base).languagesPrefer).toEqual(["javascript"]);
   });
 
+  it("only backend, orm, api-style and jobs-queue tools set a language", () => {
+    const fx = fixture(
+      [entry(["swift"], { languages: ["swift"] })],
+      [
+        tool("flutter", "Flutter", { layer: "mobile", languages: ["dart"] }),
+        tool("svelte", "Svelte", { layer: "frontend", languages: ["typescript"] }),
+        tool("gorm", "GORM", { layer: "orm", languages: ["go"] }),
+        tool("celery", "Celery", { layer: "jobs-queue", languages: ["python"] }),
+        tool("gqlgen", "gqlgen", { layer: "api-style", languages: ["go"] }),
+      ],
+    );
+    const flutter = match("a Flutter app", fx);
+    expect(flutter.knownTools).toEqual(["flutter"]);
+    expect(flutter.languagesPrefer).toEqual([]);
+    expect(match("svelte", fx).languagesPrefer).toEqual([]);
+    expect(match("gorm", fx).languagesPrefer).toEqual(["go"]);
+    expect(match("celery", fx).languagesPrefer).toEqual(["python"]);
+    expect(match("gqlgen", fx).languagesPrefer).toEqual(["go"]);
+    // A language typed directly still counts.
+    expect(match("an app in swift", fx).languagesPrefer).toEqual(["swift"]);
+  });
+
+  it("a tool named inside a longer keyword phrase still counts as known", () => {
+    const fx = fixture(
+      [entry(["flutter app"], { project_type: "mobile-app" })],
+      [
+        tool("flutter", "Flutter", { layer: "mobile", languages: ["dart"] }),
+        tool("rails", "Rails", { languages: ["ruby"] }),
+      ],
+    );
+    const d = match("a Flutter app", fx);
+    expect(d.projectType).toBe("mobile-app");
+    expect(d.knownTools).toEqual(["flutter"]);
+    expect(d.languagesPrefer).toEqual([]);
+    const n = match("no flutter app", fx);
+    expect(n.knownTools).toEqual([]);
+    expect(n.droppedByNegation).toEqual(["flutter"]);
+  });
+
+  it("real catalog: Flutter sets no language, Django and Swift still do", () => {
+    const flutter = match("a Flutter app with a login", kb);
+    expect(flutter.knownTools).toContain("flutter");
+    expect(flutter.languagesPrefer).not.toContain("dart");
+    expect(match("an iOS app in Swift", kb).languagesPrefer).toContain("swift");
+    expect(match("a django app", kb).languagesPrefer).toContain("python");
+  });
+
   it("negation makes language avoided", () => {
     for (const text of [
       "no python",
@@ -161,7 +208,41 @@ describe("match", () => {
       "auth",
     ]);
     expect(match("not a real login", base).capabilities).toEqual([]);
-    expect(match("not a very real login", base).capabilities).toEqual(["auth"]);
+    expect(match("not a very real nice login", base).capabilities).toEqual([
+      "auth",
+    ]);
+  });
+
+  it("filler words do not count toward the negation window", () => {
+    const d = match("I don't want to use java", base);
+    expect(d.languagesAvoid).toEqual(["java"]);
+    expect(d.languagesPrefer).toEqual([]);
+    expect(match("we would not need any login", base).capabilities).toEqual([]);
+    // Fillers are skipped, but four real words still put a match out of reach.
+    expect(match("not a very real nice login", base).capabilities).toEqual([
+      "auth",
+    ]);
+    // A barrier still stops the look-back even across fillers.
+    expect(match("no budget, we want to use python", base).languagesPrefer).toEqual([
+      "python",
+    ]);
+  });
+
+  it("nothing, none and more contractions negate", () => {
+    const d = match("We use Go and react, nothing in Java", base);
+    expect(d.languagesAvoid).toEqual(["java"]);
+    expect(d.languagesPrefer).toEqual([]);
+    for (const w of ["none", "neither", "didn't", "haven't", "wouldn't"]) {
+      expect(match(`${w} java`, base).languagesAvoid, w).toEqual(["java"]);
+    }
+  });
+
+  it("real catalog: the reviewer's negations avoid the language", () => {
+    expect(match("I don't want to use Node", kb).languagesAvoid).toContain("javascript");
+    expect(match("I don't want to use Node", kb).languagesPrefer).not.toContain("javascript");
+    const d = match("We use Go and react, nothing in Java", kb);
+    expect(d.languagesAvoid).toContain("java");
+    expect(d.languagesPrefer).not.toContain("java");
   });
 
   it("negation stops at clause breaks", () => {

@@ -14,8 +14,32 @@ export type Detected = {
   droppedByNegation: string[];
 };
 
-/** A word within this many tokens before a match can negate it. */
+/** A word within this many tokens before a match can negate it. Fillers do not count. */
 const NEGATION_WINDOW = 3;
+
+/**
+ * Words skipped when counting the negation window, so "I don't want to use
+ * Node" reaches "dont" from "node". They never negate and never stop the
+ * look-back; clause barriers still do.
+ */
+const FILLERS = new Set([
+  "want",
+  "to",
+  "use",
+  "using",
+  "need",
+  "any",
+  "a",
+  "an",
+  "the",
+  "be",
+  "have",
+  "it",
+  "we",
+  "i",
+  "our",
+  "in",
+]);
 
 /**
  * Single-token negators. Apostrophes are removed during normalization, so
@@ -37,22 +61,22 @@ const NEGATORS = new Set([
   "shouldnt",
   "nor",
   "never",
+  "nothing",
+  "none",
+  "neither",
+  "didnt",
+  "havent",
+  "wouldnt",
 ]);
 
-/**
- * Normalize to a list of tokens: NFKC, lowercase, apostrophes dropped, every
- * character that is not a letter, digit or one of . + # becomes a space. A dot
- * survives only inside a word or as a single leading dot before a word
- * (".net"); a trailing dot is sentence punctuation. "+" and "#" survive at the
- * end of a word ("c++", "c#") and inside one, never at the start.
- */
 const BARRIER = "\uE000";
 const BARRIER_WORDS = new Set(["but", "however"]);
 
 /**
- * Like tokenize, but clause breaks (, ; : ! ? newline, sentence-final dots,
- * ellipses, and the words "but" and "however") appear as BARRIER tokens that
- * negation look-back does not cross. "and" is not a barrier.
+ * Tokens with clause breaks (, ; : ! ? newline, sentence-final dots, ellipses,
+ * and the words "but" and "however") kept as BARRIER tokens that negation
+ * look-back does not cross. "and" is not a barrier. See tokenize for the
+ * normalization rules.
  */
 function tokenizeWithBarriers(text: string): string[] {
   const cleaned = text
@@ -90,7 +114,15 @@ function tokenizeWithBarriers(text: string): string[] {
   return tokens;
 }
 
-/** Plain tokens with clause breaks removed; used for phrases and tool names. */
+/**
+ * Normalize to a list of tokens: NFKC, lowercase, apostrophes dropped, every
+ * character that is not a letter, digit or one of . + # becomes a space. A dot
+ * survives only inside a word or as a single leading dot before a word
+ * (".net"); a trailing dot is sentence punctuation. "+" and "#" survive at the
+ * end of a word ("c++", "c#") and inside one, never at the start.
+ *
+ * Clause breaks are removed; used for phrases and tool names.
+ */
 export function tokenize(text: string): string[] {
   return tokenizeWithBarriers(text).filter((t) => t !== BARRIER);
 }
@@ -136,22 +168,33 @@ function indexFor(kb: KnowledgeBase): Index {
 }
 
 /**
- * The one language a tool implies, or null. Language-bound means exactly one
- * listed language. A tool listing both typescript and javascript (one family)
+ * Layers whose tools fix the server language. Naming a tool anywhere else
+ * (Flutter, a UI kit, React) records it as known and forces no language.
+ */
+const LANGUAGE_SETTING_LAYERS: ReadonlySet<string> = new Set([
+  "backend",
+  "orm",
+  "api-style",
+  "jobs-queue",
+]);
+
+/**
+ * The one language a tool implies, or null. Only tools in
+ * LANGUAGE_SETTING_LAYERS imply one, and only when they list exactly one
+ * language. A tool listing both typescript and javascript (one family)
  * implies neither, and a hosted service with many SDK languages implies none.
  */
 function impliedLanguage(tool: Tool): string | null {
+  if (!LANGUAGE_SETTING_LAYERS.has(tool.layer)) return null;
   return tool.languages.length === 1 ? tool.languages[0] : null;
 }
 
 function isNegated(tokens: string[], position: number): boolean {
-  for (
-    let i = position - 1;
-    i >= Math.max(0, position - NEGATION_WINDOW);
-    i--
-  ) {
+  let counted = 0;
+  for (let i = position - 1; i >= 0 && counted < NEGATION_WINDOW; i--) {
     if (tokens[i] === BARRIER) return false;
     if (NEGATORS.has(tokens[i])) return true;
+    if (!FILLERS.has(tokens[i])) counted++;
   }
   return false;
 }
@@ -169,6 +212,38 @@ export function match(text: string, kb: KnowledgeBase): Detected {
   const droppedTools = new Set<string>();
   const dropped = new Set<string>();
 
+  const applyTool = (tool: Tool, negated: boolean) => {
+    if (negated) {
+      droppedTools.add(tool.id);
+      dropped.add(tool.id);
+    } else {
+      knownTools.add(tool.id);
+      const language = impliedLanguage(tool);
+      if (language) prefer.add(language);
+    }
+  };
+
+  /**
+   * Tools named inside a matched keyword phrase ("flutter app" holds
+   * "flutter") still count, scanned longest first within the phrase.
+   */
+  const applyInnerTools = (start: number, length: number, negated: boolean) => {
+    let j = start;
+    while (j < start + length) {
+      let step = 1;
+      for (let n = start + length - j; n >= 1; n--) {
+        if (n === length) continue;
+        const inner = phrases.get(tokens.slice(j, j + n).join(" "));
+        const innerTools = inner?.filter((t) => t.kind === "tool") ?? [];
+        if (innerTools.length === 0) continue;
+        for (const t of innerTools) if (t.kind === "tool") applyTool(t.tool, negated);
+        step = n;
+        break;
+      }
+      j += step;
+    }
+  };
+
   let i = 0;
   while (i < tokens.length) {
     let matched = 0;
@@ -178,32 +253,25 @@ export function match(text: string, kb: KnowledgeBase): Detected {
       matched = n;
       const negated = isNegated(tokens, i);
       for (const target of targets) {
-        if (target.kind === "keyword") {
-          const {
-            project_type,
-            capabilities: caps,
-            languages,
-          } = target.entry.sets;
-          if (negated) {
-            for (const cap of caps) {
-              droppedCapabilities.add(cap);
-              dropped.add(cap);
-            }
-            for (const language of languages) avoid.add(language);
-          } else {
-            if (project_type && projectType === null)
-              projectType = project_type;
-            for (const cap of caps) capabilities.add(cap);
-            for (const language of languages) prefer.add(language);
-          }
-        } else if (negated) {
-          droppedTools.add(target.tool.id);
-          dropped.add(target.tool.id);
-        } else {
-          knownTools.add(target.tool.id);
-          const language = impliedLanguage(target.tool);
-          if (language) prefer.add(language);
+        if (target.kind === "tool") {
+          applyTool(target.tool, negated);
+          continue;
         }
+        const { project_type, capabilities: caps, languages } = target.entry.sets;
+        if (negated) {
+          for (const cap of caps) {
+            droppedCapabilities.add(cap);
+            dropped.add(cap);
+          }
+          for (const language of languages) avoid.add(language);
+        } else {
+          if (project_type && projectType === null) projectType = project_type;
+          for (const cap of caps) capabilities.add(cap);
+          for (const language of languages) prefer.add(language);
+        }
+      }
+      if (n > 1 && targets.every((t) => t.kind === "keyword")) {
+        applyInnerTools(i, n, negated);
       }
       break;
     }

@@ -11,8 +11,8 @@ import {
 import { label } from "./labels";
 import {
   emittableCodes,
+  emittableReasons,
   LANGUAGE_LAYERS,
-  REASON_CODES,
   SERVICE_LAYERS,
   scoreStack,
   type LayerResult,
@@ -106,9 +106,9 @@ function failures(
 }
 
 describe("golden set", () => {
-  it("has 36 cases with unique ids", () => {
-    expect(GOLDEN_CASES).toHaveLength(36);
-    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(36);
+  it("has 39 cases with unique ids", () => {
+    expect(GOLDEN_CASES).toHaveLength(39);
+    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(39);
   });
 
   it("every case has at least one check that depends on scoring", () => {
@@ -139,7 +139,7 @@ describe("golden set", () => {
 
   it("every code in the golden results is one the scorer declares", () => {
     const scoreCodes = new Set(emittableCodes(kb));
-    const reasonCodes = new Set<string>(REASON_CODES);
+    const reasonCodes = new Set<string>(emittableReasons(kb));
     const unknown: string[] = [];
     for (const c of GOLDEN_CASES) {
       for (const r of run(c).results) {

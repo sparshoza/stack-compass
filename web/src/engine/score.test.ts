@@ -867,6 +867,73 @@ describe("scoreStack", () => {
     }
   });
 
+  it("a capability that adds a layer is required there when some tool in the layer provides it", () => {
+    const tools = [
+      makeTool("be", "backend", { edges: [{ type: "pairs-with", target: "rpc" }] }),
+      // Ranks first on its pairs-with points but has no REST tag.
+      makeTool("rpc", "api-style", { edges: [{ type: "pairs-with", target: "be" }] }),
+      makeTool("spec", "api-style", { tags: ["rest-api"] }),
+      makeTool("db", "database"),
+    ];
+    const fx = makeKb(tools, ["backend", "api-style", "database"]);
+    fx.vocab = {
+      ...fx.vocab,
+      capability_layers: { "rest-api": ["api-style"], realtime: ["cache"] },
+    };
+    const results = scoreStack(
+      answers({ capabilities: ["rest-api", "realtime"], scale: "prototype" }),
+      fx,
+    );
+    const api = layerOf(results, "api-style");
+    expect(api.pick).toBe("spec");
+    expect(api.excluded).toEqual([
+      { toolId: "rpc", reason: "missing-capability:rest-api" },
+    ]);
+    // Only the layers the capability adds: the database has no rest-api mapping.
+    expect(layerOf(results, "database").pick).toBe("db");
+
+    // Soft: when no tool in the layer has the tag, nothing is excluded.
+    const none = makeKb(
+      [makeTool("rpc", "api-style"), makeTool("gql", "api-style")],
+      ["api-style"],
+    );
+    none.vocab = { ...none.vocab, capability_layers: { "rest-api": ["api-style"] } };
+    const soft = layerOf(scoreStack(answers({ capabilities: ["rest-api"] }), none), "api-style");
+    expect(soft.pick).toBe("gql");
+    expect(soft.excluded).toEqual([]);
+
+    // Not chosen, not required.
+    expect(layerOf(scoreStack(answers(), fx), "api-style").pick).toBe("rpc");
+  });
+
+  it("every chosen capability for the layer is required on its own", () => {
+    const fx = makeKb(
+      [
+        makeTool("both", "jobs-queue", { tags: ["background-jobs", "scheduled-jobs"] }),
+        makeTool("queue", "jobs-queue", { tags: ["background-jobs"] }),
+        makeTool("aaa", "jobs-queue", { tags: ["background-jobs"] }),
+      ],
+      ["jobs-queue"],
+    );
+    fx.vocab = {
+      ...fx.vocab,
+      capability_layers: {
+        "background-jobs": ["jobs-queue"],
+        "scheduled-jobs": ["jobs-queue"],
+      },
+    };
+    const r = layerOf(
+      scoreStack(answers({ capabilities: ["background-jobs", "scheduled-jobs"] }), fx),
+      "jobs-queue",
+    );
+    expect(r.pick).toBe("both");
+    expect(r.alternatives).toEqual([]);
+    expect(r.excluded).toEqual([
+      { toolId: "aaa", reason: "missing-capability:scheduled-jobs" },
+      { toolId: "queue", reason: "missing-capability:scheduled-jobs" },
+    ]);
+  });
+
   it("no project type returns no layers", () => {
     expect(scoreStack(DEFAULT_ANSWERS, kb)).toEqual([]);
   });
@@ -937,6 +1004,22 @@ describe("scoreStack on the real catalog", () => {
       expect(kb.tools.find((t) => t.id === jobs)?.hosting).not.toContain("managed");
     });
   }
+
+  it("a REST API on a web app, SaaS or store gets OpenAPI over tRPC", () => {
+    for (const text of [
+      "a web app with a REST API",
+      "a SaaS with a public api",
+      "an ecommerce site with restful endpoints",
+    ]) {
+      const results = scoreStack(fromText(text), kb);
+      const api = results.find((r) => r.layer === "api-style");
+      expect(api?.pick).toBe("openapi");
+      expect(api?.excluded).toContainEqual({
+        toolId: "trpc",
+        reason: "missing-capability:rest-api",
+      });
+    }
+  });
 
   it("a Flutter app with no other language pick gets no Playwright", () => {
     const a = fromText("a Flutter app", { languagesPrefer: ["dart"] });

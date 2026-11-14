@@ -62,6 +62,11 @@ export function label(code: string, kb: KnowledgeBase): string {
     const cap = kb.vocab.capabilities.find((c) => c.id === id);
     return `supports ${cap ? lowerFirst(cap.label) : id}`;
   }
+  if (code.startsWith("missing-capability:")) {
+    const id = code.slice("missing-capability:".length);
+    const cap = kb.vocab.capabilities.find((c) => c.id === id);
+    return `does not provide ${cap ? lowerFirst(cap.label) : id}`;
+  }
   if (code.startsWith("pairs-with:")) {
     const id = code.slice("pairs-with:".length);
     const tool = kb.tools.find((t) => t.id === id);

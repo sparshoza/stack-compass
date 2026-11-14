@@ -471,6 +471,33 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { pickIs: { layer: "orm", tool: "ecto" } },
     ],
   },
+  {
+    // A REST API capability requires a REST tool in the API style layer, so
+    // tRPC (pairs with the picks but has no REST tag) drops out.
+    id: "webapp-rest-api",
+    text: "a web app with a REST API",
+    checks: [
+      { projectType: "web-app" },
+      { layerPresent: "api-style" },
+      { pickIs: { layer: "api-style", tool: "openapi" } },
+    ],
+  },
+  {
+    id: "saas-public-api",
+    text: "a SaaS with a public api",
+    checks: [
+      { projectType: "saas" },
+      { pickIs: { layer: "api-style", tool: "openapi" } },
+    ],
+  },
+  {
+    id: "ecommerce-restful",
+    text: "an ecommerce site with restful endpoints",
+    checks: [
+      { projectType: "ecommerce" },
+      { pickIs: { layer: "api-style", tool: "openapi" } },
+    ],
+  },
 ];
 
 /**

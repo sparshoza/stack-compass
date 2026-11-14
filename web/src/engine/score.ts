@@ -30,6 +30,11 @@ export type LayerResult = {
  *   when they chose self-hosted. A runs_in_app tool (a library inside your
  *   app) is never excluded this way: there is no server of its own to host.
  * - budget-paid-only: on a free budget, pricing must include oss or free-tier.
+ * - missing-capability: a chosen capability whose capability_layers entry
+ *   names this layer is required here when at least one tool in the layer
+ *   has its tag (soft, like the frontend language rule: a layer where no
+ *   tool has it keeps every tool). The code carries the capability id
+ *   ("missing-capability:rest-api"), like the capability score codes.
  * - language-mismatch-with-pick: an orm, api-style or jobs-queue tool must
  *   share a language with the backend pick, and a testing tool with the
  *   backend, the frontend or the mobile pick, when such a pick exists. An auth library
@@ -53,6 +58,7 @@ export const REASON_CODES = [
   "no-managed-service",
   "hosting-mismatch",
   "budget-paid-only",
+  "missing-capability",
   "language-mismatch-with-pick",
   "not-built-on-pick",
   "not-compatible-with-pick",
@@ -125,6 +131,18 @@ const PAIRS_WITH_POINTS = 2;
 const ALTERNATIVES = 2;
 const EXCLUDED_WINDOW = 3;
 
+/** The reason for a tool that lacks a capability the layer requires. */
+export const missingCapability = (tag: string) => `missing-capability:${tag}`;
+
+/** Every reason code the scorer can emit for this catalog. */
+export function emittableReasons(kb: KnowledgeBase): string[] {
+  return REASON_CODES.flatMap((code) =>
+    code === "missing-capability"
+      ? Object.keys(kb.vocab.capability_layers).map(missingCapability)
+      : [code],
+  );
+}
+
 /** Every score code the scorer can emit for this catalog. */
 export function emittableCodes(kb: KnowledgeBase): string[] {
   return [
@@ -157,7 +175,7 @@ function hasEdge(tool: Tool, types: string[], target: string): boolean {
 type Picks = Map<Layer, Tool>;
 
 /** Facts about the layer being scored that the filters need. */
-type LayerContext = { preferApplies: boolean };
+type LayerContext = { preferApplies: boolean; requiredCapabilities: string[] };
 
 /**
  * True when every other layer the tool is built-on, and that has a pick,
@@ -183,7 +201,7 @@ function failedCheck(
   picks: Picks,
   ctx: LayerContext,
   layers: Map<string, Layer>,
-): ReasonCode | null {
+): string | null {
   const { layer, languages } = tool;
   if (avoidsAll(languages, a.languagesAvoid)) return "language-excluded";
   if (
@@ -208,6 +226,8 @@ function failedCheck(
   ) {
     return "budget-paid-only";
   }
+  const missing = ctx.requiredCapabilities.find((cap) => !tool.tags.includes(cap));
+  if (missing) return missingCapability(missing);
   let pickLayers = LANGUAGE_PICK_LAYERS[layer] ?? [];
   // An in-app auth library runs in the backend when there is one.
   if (layer === "auth" && tool.runs_in_app) {
@@ -283,7 +303,7 @@ type Ranked = {
   total: number;
   /** Tie-break: how many pairs-with edges the tool has in the catalog. */
   pairs: number;
-  reason: ReasonCode | null;
+  reason: string | null;
 };
 
 /** Total descending, then pairs-with edge count descending, then id ascending. */
@@ -301,14 +321,35 @@ function preferApplies(layer: Layer, tools: Tool[], a: Answers): boolean {
   return tools.some((t) => sharesLanguage(t.languages, a.languagesPrefer));
 }
 
+/**
+ * Chosen capabilities that add this layer and that at least one of its tools
+ * provides, in the order they were chosen.
+ */
+function requiredCapabilities(
+  layer: Layer,
+  tools: Tool[],
+  a: Answers,
+  capabilityLayers: Record<string, Layer[]>,
+): string[] {
+  return [...new Set(a.capabilities)].filter(
+    (cap) =>
+      (capabilityLayers[cap] ?? []).includes(layer) &&
+      tools.some((t) => t.tags.includes(cap)),
+  );
+}
+
 function scoreLayer(
   layer: Layer,
   tools: Tool[],
   a: Answers,
   picks: Picks,
   layers: Map<string, Layer>,
+  capabilityLayers: Record<string, Layer[]>,
 ): LayerResult {
-  const ctx: LayerContext = { preferApplies: preferApplies(layer, tools, a) };
+  const ctx: LayerContext = {
+    preferApplies: preferApplies(layer, tools, a),
+    requiredCapabilities: requiredCapabilities(layer, tools, a, capabilityLayers),
+  };
   const ranked: Ranked[] = tools
     .map((tool) => {
       const breakdown = breakdownFor(tool, a, picks);
@@ -351,7 +392,14 @@ export function scoreStack(a: Answers, kb: KnowledgeBase): LayerResult[] {
   }
   const picks: Picks = new Map();
   return selectLayers(a, kb).map((layer) => {
-    const result = scoreLayer(layer, byLayer.get(layer) ?? [], a, picks, layerOfTool);
+    const result = scoreLayer(
+      layer,
+      byLayer.get(layer) ?? [],
+      a,
+      picks,
+      layerOfTool,
+      kb.vocab.capability_layers,
+    );
     const pick = result.pick
       ? byLayer.get(layer)?.find((t) => t.id === result.pick)
       : undefined;

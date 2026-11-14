@@ -4,7 +4,7 @@ import { DEFAULT_ANSWERS } from "./answers";
 import { explain } from "./explain";
 import { makeKb, makeTool } from "./fixture";
 import { label } from "./labels";
-import { emittableCodes, REASON_CODES, type LayerResult } from "./score";
+import { emittableCodes, emittableReasons, type LayerResult } from "./score";
 
 const fx = makeKb(
   [
@@ -91,12 +91,16 @@ describe("explain", () => {
 
 describe("label", () => {
   it("every code has a label", () => {
-    const codes = [...emittableCodes(kb), ...REASON_CODES];
+    const codes = [...emittableCodes(kb), ...emittableReasons(kb)];
     expect(codes).toContain("known");
     expect(codes).toContain("capability:realtime");
     expect(codes).toContain("pairs-with:django");
     expect(codes).toContain("language-mismatch-with-pick");
     expect(codes).toContain("no-web-frontend");
+    expect(codes).toContain("missing-capability:rest-api");
+    expect(codes).toContain("missing-capability:scheduled-jobs");
+    // The bare prefix is never emitted on its own.
+    expect(codes).not.toContain("missing-capability");
     expect(label("no-web-frontend", kb)).toBe("tests web pages, and your stack has none");
     const missing = codes.filter((code) => {
       const text = label(code, kb);
@@ -119,6 +123,10 @@ describe("label", () => {
       "does not use a language you prefer",
     );
     expect(label("no-managed-service", kb)).toBe("has no official managed service");
+    expect(label("missing-capability:rest-api", kb)).toBe("does not provide REST API");
+    expect(label("missing-capability:scheduled-jobs", kb)).toBe(
+      "does not provide scheduled jobs",
+    );
     // Auth and testing compare with the backend or the frontend pick, so the label names neither.
     expect(label("language-mismatch-with-pick", kb)).toBe(
       "does not share a language with the rest of your stack",

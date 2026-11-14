@@ -12,25 +12,50 @@ export type Answers = {
   tooling: boolean;
 };
 
-/** Frozen down to the arrays, so spreading it never shares a mutable list. */
-const none = (): string[] => Object.freeze([]) as unknown as string[];
+/** Fresh default answers: either, any, startup, no lists, tooling on. */
+export function defaultAnswers(): Answers {
+  return {
+    projectType: null,
+    languagesPrefer: [],
+    languagesAvoid: [],
+    capabilities: [],
+    hosting: "either",
+    budget: "any",
+    scale: "startup",
+    knownTools: [],
+    tooling: true,
+  };
+}
 
-export const DEFAULT_ANSWERS: Readonly<Answers> = Object.freeze({
+/**
+ * The defaults as a frozen object whose list fields are getters returning a
+ * new empty array on every read. `{ ...DEFAULT_ANSWERS }` therefore gets its
+ * own lists: pushing to them neither throws nor changes the defaults.
+ */
+export const DEFAULT_ANSWERS: Readonly<Answers> = Object.freeze<Answers>({
   projectType: null,
-  languagesPrefer: none(),
-  languagesAvoid: none(),
-  capabilities: none(),
+  get languagesPrefer(): string[] {
+    return [];
+  },
+  get languagesAvoid(): string[] {
+    return [];
+  },
+  get capabilities(): string[] {
+    return [];
+  },
   hosting: "either",
   budget: "any",
   scale: "startup",
-  knownTools: none(),
+  get knownTools(): string[] {
+    return [];
+  },
   tooling: true,
 });
 
 /** Answers pre-filled from the matcher; everything it cannot detect keeps its default. */
 export function fromDetected(d: Detected): Answers {
   return {
-    ...DEFAULT_ANSWERS,
+    ...defaultAnswers(),
     projectType: d.projectType,
     languagesPrefer: [...d.languagesPrefer],
     languagesAvoid: [...d.languagesAvoid],

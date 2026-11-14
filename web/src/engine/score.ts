@@ -20,12 +20,17 @@ export type LayerResult = {
  *   with no languages is never excluded this way.
  * - language-required: only in LANGUAGE_LAYERS and only when the person
  *   prefers at least one language. The tool must list a preferred language;
- *   a tool with no languages passes.
+ *   a tool with no languages passes. On frontend, meta-framework and mobile
+ *   it applies only when some tool in that layer has a preferred language
+ *   (a Python web app still gets a frontend); backend and orm always apply.
  * - hosting-mismatch: only in SERVICE_LAYERS and only when hosting is not
  *   "either". The tool's hosting must include the chosen option.
  * - budget-paid-only: on a free budget, pricing must include oss or free-tier.
- * - language-mismatch-with-pick: an orm must share a language with the
- *   backend pick (typescript and javascript count as one), when there is one.
+ * - language-mismatch-with-pick: an orm or jobs-queue tool must share a
+ *   language with the backend pick, and a testing tool with the backend or
+ *   the frontend pick, when such a pick exists. Tools with no languages pass.
+ *
+ * Everywhere languages are compared, typescript and javascript count as one.
  * - not-built-on-pick: a meta-framework must be built-on the frontend pick,
  *   when there is one.
  * - not-compatible-with-pick: state and ui-kit tools must be built-on or
@@ -68,6 +73,30 @@ export const SERVICE_LAYERS: ReadonlySet<Layer> = new Set<Layer>([
   "observability",
 ]);
 
+/** Language layers that skip the preference when none of their tools has it. */
+const SOFT_LANGUAGE_LAYERS: ReadonlySet<Layer> = new Set<Layer>([
+  "frontend",
+  "meta-framework",
+  "mobile",
+]);
+
+/** Layers checked against earlier picks' languages, and which picks. */
+const LANGUAGE_PICK_LAYERS: Partial<Record<Layer, Layer[]>> = {
+  orm: ["backend"],
+  "jobs-queue": ["backend"],
+  testing: ["backend", "frontend"],
+};
+
+/** Fixed score codes. Capability and pairs-with codes carry an id suffix. */
+export const SCORE_CODES = {
+  capability: (tag: string) => `capability:${tag}`,
+  known: "known",
+  pairsWith: (id: string) => `pairs-with:${id}`,
+  established: "maturity-established",
+  emerging: "maturity-emerging",
+  legacy: "maturity-legacy",
+} as const;
+
 const CAPABILITY_POINTS = 3;
 const KNOWN_POINTS = 2;
 const PAIRS_WITH_POINTS = 2;
@@ -77,12 +106,12 @@ const EXCLUDED_WINDOW = 3;
 /** Every score code the scorer can emit for this catalog. */
 export function emittableCodes(kb: KnowledgeBase): string[] {
   return [
-    ...kb.vocab.capabilities.map((c) => `capability:${c.id}`),
-    "known",
-    ...kb.tools.map((t) => `pairs-with:${t.id}`),
-    "maturity-established",
-    "maturity-emerging",
-    "maturity-legacy",
+    ...kb.vocab.capabilities.map((c) => SCORE_CODES.capability(c.id)),
+    SCORE_CODES.known,
+    ...kb.tools.map((t) => SCORE_CODES.pairsWith(t.id)),
+    SCORE_CODES.established,
+    SCORE_CODES.emerging,
+    SCORE_CODES.legacy,
   ];
 }
 
@@ -100,10 +129,14 @@ function hasEdge(tool: Tool, types: string[], target: string): boolean {
 
 type Picks = Map<Layer, Tool>;
 
+/** Facts about the layer being scored that the filters need. */
+type LayerContext = { preferApplies: boolean };
+
 function failedCheck(
   tool: Tool,
   a: Answers,
   picks: Picks,
+  ctx: LayerContext,
 ): ReasonCode | null {
   const { layer, languages } = tool;
   if (
@@ -113,10 +146,9 @@ function failedCheck(
     return "language-excluded";
   }
   if (
-    LANGUAGE_LAYERS.has(layer) &&
-    a.languagesPrefer.length > 0 &&
+    ctx.preferApplies &&
     languages.length > 0 &&
-    !languages.some((l) => a.languagesPrefer.includes(l))
+    !sharesLanguage(languages, a.languagesPrefer)
   ) {
     return "language-required";
   }
@@ -134,13 +166,13 @@ function failedCheck(
   ) {
     return "budget-paid-only";
   }
-  const backend = picks.get("backend");
+  const against = (LANGUAGE_PICK_LAYERS[layer] ?? [])
+    .map((l) => picks.get(l))
+    .filter((pick): pick is Tool => !!pick && pick.languages.length > 0);
   if (
-    layer === "orm" &&
-    backend &&
+    against.length > 0 &&
     languages.length > 0 &&
-    backend.languages.length > 0 &&
-    !sharesLanguage(languages, backend.languages)
+    !against.some((pick) => sharesLanguage(languages, pick.languages))
   ) {
     return "language-mismatch-with-pick";
   }
@@ -166,24 +198,24 @@ function breakdownFor(tool: Tool, a: Answers, picks: Picks): ScoreItem[] {
   const items: ScoreItem[] = [];
   for (const cap of new Set(a.capabilities)) {
     if (tool.tags.includes(cap)) {
-      items.push({ code: `capability:${cap}`, points: CAPABILITY_POINTS });
+      items.push({ code: SCORE_CODES.capability(cap), points: CAPABILITY_POINTS });
     }
   }
   if (a.knownTools.includes(tool.id)) {
-    items.push({ code: "known", points: KNOWN_POINTS });
+    items.push({ code: SCORE_CODES.known, points: KNOWN_POINTS });
   }
   // Picks are kept in scoring order, so earlier picks come first.
   for (const pick of picks.values()) {
     if (hasEdge(tool, ["pairs-with"], pick.id)) {
-      items.push({ code: `pairs-with:${pick.id}`, points: PAIRS_WITH_POINTS });
+      items.push({ code: SCORE_CODES.pairsWith(pick.id), points: PAIRS_WITH_POINTS });
     }
   }
   if (tool.maturity === "established" && a.scale !== "prototype") {
-    items.push({ code: "maturity-established", points: 1 });
+    items.push({ code: SCORE_CODES.established, points: 1 });
   } else if (tool.maturity === "emerging" && a.scale === "high") {
-    items.push({ code: "maturity-emerging", points: -1 });
+    items.push({ code: SCORE_CODES.emerging, points: -1 });
   } else if (tool.maturity === "legacy") {
-    items.push({ code: "maturity-legacy", points: -2 });
+    items.push({ code: SCORE_CODES.legacy, points: -2 });
   }
   return items;
 }
@@ -192,12 +224,24 @@ type Ranked = {
   tool: Tool;
   breakdown: ScoreItem[];
   total: number;
+  /** Tie-break: how many pairs-with edges the tool has in the catalog. */
+  pairs: number;
   reason: ReasonCode | null;
 };
 
+/** Total descending, then pairs-with edge count descending, then id ascending. */
 function byRank(x: Ranked, y: Ranked): number {
   if (x.total !== y.total) return y.total - x.total;
+  if (x.pairs !== y.pairs) return y.pairs - x.pairs;
   return x.tool.id < y.tool.id ? -1 : x.tool.id > y.tool.id ? 1 : 0;
+}
+
+function preferApplies(layer: Layer, tools: Tool[], a: Answers): boolean {
+  if (!LANGUAGE_LAYERS.has(layer) || a.languagesPrefer.length === 0) {
+    return false;
+  }
+  if (!SOFT_LANGUAGE_LAYERS.has(layer)) return true;
+  return tools.some((t) => sharesLanguage(t.languages, a.languagesPrefer));
 }
 
 function scoreLayer(
@@ -206,6 +250,7 @@ function scoreLayer(
   a: Answers,
   picks: Picks,
 ): LayerResult {
+  const ctx: LayerContext = { preferApplies: preferApplies(layer, tools, a) };
   const ranked: Ranked[] = tools
     .map((tool) => {
       const breakdown = breakdownFor(tool, a, picks);
@@ -213,7 +258,8 @@ function scoreLayer(
         tool,
         breakdown,
         total: breakdown.reduce((sum, item) => sum + item.points, 0),
-        reason: failedCheck(tool, a, picks),
+        pairs: tool.edges.filter((e) => e.type === "pairs-with").length,
+        reason: failedCheck(tool, a, picks, ctx),
       };
     })
     .sort(byRank);

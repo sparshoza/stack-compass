@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_ANSWERS, fromDetected } from "./answers";
+import { DEFAULT_ANSWERS, defaultAnswers, fromDetected } from "./answers";
 
 describe("answers", () => {
   it("defaults are either, any, startup, tooling on", () => {
@@ -33,6 +33,22 @@ describe("answers", () => {
       languagesAvoid: ["php"],
       knownTools: ["stripe"],
     });
+  });
+
+  it("a spread of the defaults can be mutated without touching them", () => {
+    const a = { ...DEFAULT_ANSWERS };
+    expect(() => a.capabilities.push("payments")).not.toThrow();
+    expect(() => a.knownTools.push("stripe")).not.toThrow();
+    expect(DEFAULT_ANSWERS.capabilities).toEqual([]);
+    expect(DEFAULT_ANSWERS.knownTools).toEqual([]);
+    expect({ ...DEFAULT_ANSWERS }.capabilities).toEqual([]);
+  });
+
+  it("defaultAnswers returns a fresh copy each call", () => {
+    const one = defaultAnswers();
+    one.languagesPrefer.push("python");
+    expect(defaultAnswers()).toEqual(DEFAULT_ANSWERS);
+    expect(defaultAnswers()).not.toBe(defaultAnswers());
   });
 
   it("fromDetected returns fresh arrays", () => {

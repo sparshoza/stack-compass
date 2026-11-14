@@ -9,13 +9,29 @@ import type { Answers } from "./answers";
  *   meta-framework, mobile) lists the language, and no pick in any other
  *   layer lists it as its only language.
  * - pickIs: the layer's pick is this tool id, or null for "No match".
+ * - noPaidOnlyPick: no pick is paid only (pricing without oss or free-tier).
+ * - pickHosting: every pick in a service layer offers this hosting.
+ * - projectType: the matched (or overridden) project type. This tests the
+ *   matcher, not scoring; core layers of a project type are checked here
+ *   rather than with layerPresent / layerAbsent.
  */
 export type Check =
+  | { projectType: string }
+  | { noPaidOnlyPick: true }
+  | { pickHosting: "managed" | "self-hosted" }
   | { backendLanguage: string }
   | { layerPresent: Layer }
   | { layerAbsent: Layer }
   | { noToolWithLanguage: string }
   | { pickIs: { layer: Layer; tool: string | null } };
+
+/** Check kinds whose outcome depends on scoring, not only on matching. */
+export const ENGINE_CHECKS = [
+  "pickIs",
+  "noToolWithLanguage",
+  "noPaidOnlyPick",
+  "pickHosting",
+] as const;
 
 export type GoldenCase = {
   id: string;
@@ -30,10 +46,10 @@ export const GOLDEN_CASES: GoldenCase[] = [
     id: "saas-python-stripe",
     text: "A B2B SaaS written in Python with subscription billing through Stripe and a nightly job that emails usage reports.",
     checks: [
+      { projectType: "saas" },
       { backendLanguage: "python" },
-      { layerPresent: "payments" },
+      { pickIs: { layer: "frontend", tool: "react" } },
       { pickIs: { layer: "payments", tool: "stripe" } },
-      { layerPresent: "jobs-queue" },
       { pickIs: { layer: "jobs-queue", tool: "celery" } },
       { noToolWithLanguage: "php" },
     ],
@@ -42,11 +58,14 @@ export const GOLDEN_CASES: GoldenCase[] = [
     id: "ecommerce-typescript-search",
     text: "An online store in TypeScript with product search, Stripe checkout and order confirmation emails.",
     checks: [
-      { backendLanguage: "typescript" },
+      { projectType: "ecommerce" },
+      { backendLanguage: "javascript" },
+      { pickIs: { layer: "backend", tool: "express" } },
+      { pickIs: { layer: "database", tool: "postgresql" } },
       { layerPresent: "search" },
-      { layerPresent: "payments" },
-      { layerPresent: "email" },
+      { pickIs: { layer: "search", tool: "elasticsearch" } },
       { pickIs: { layer: "payments", tool: "stripe" } },
+      { pickIs: { layer: "email", tool: "resend" } },
     ],
   },
   {
@@ -54,62 +73,68 @@ export const GOLDEN_CASES: GoldenCase[] = [
     text: "A personal blog with markdown content and good SEO, hosted for free.",
     answers: { budget: "free" },
     checks: [
-      { layerPresent: "cms" },
-      { layerPresent: "hosting" },
-      { layerAbsent: "backend" },
-      { layerAbsent: "database" },
-      { layerAbsent: "payments" },
+      { projectType: "content-site" },
+      { noPaidOnlyPick: true },
+      { pickIs: { layer: "meta-framework", tool: "nextjs" } },
+      { pickIs: { layer: "hosting", tool: "aws-amplify" } },
     ],
   },
   {
     id: "api-go-postgres",
     text: "A REST API written in Go with Postgres and background workers.",
     checks: [
+      { projectType: "api-only" },
       { backendLanguage: "go" },
       { pickIs: { layer: "backend", tool: "gin" } },
       { pickIs: { layer: "orm", tool: "gorm" } },
       { pickIs: { layer: "database", tool: "postgresql" } },
-      { layerPresent: "jobs-queue" },
-      { layerAbsent: "frontend" },
+      { pickIs: { layer: "jobs-queue", tool: "river" } },
+      { pickIs: { layer: "testing", tool: "testify" } },
     ],
   },
   {
     id: "realtime-elixir-chat",
     text: "A real time chat application in Elixir where users see who is online.",
     checks: [
+      { projectType: "realtime-app" },
       { backendLanguage: "elixir" },
       { pickIs: { layer: "backend", tool: "phoenix" } },
-      { layerPresent: "cache" },
-      { layerAbsent: "orm" },
+      { pickIs: { layer: "frontend", tool: "react" } },
+      { pickIs: { layer: "cache", tool: "redis" } },
     ],
   },
   {
+    // Contradiction: Dart is preferred but no backend or ORM in the catalog is Dart.
     id: "mobile-flutter-offline",
     text: "A Flutter app for iOS and Android with offline mode and push notifications.",
     checks: [
+      { projectType: "mobile-app" },
       { pickIs: { layer: "mobile", tool: "flutter" } },
-      { layerPresent: "backend" },
-      { layerPresent: "auth" },
-      { layerAbsent: "frontend" },
-      { layerAbsent: "meta-framework" },
+      { pickIs: { layer: "backend", tool: null } },
+      { pickIs: { layer: "orm", tool: null } },
+      { pickIs: { layer: "database", tool: "sqlite" } },
     ],
   },
   {
     id: "internal-django-admin-sso",
     text: "An internal tool for the ops team in Django with an admin panel and SSO login.",
     checks: [
-      { pickIs: { layer: "backend", tool: "django" } },
+      { projectType: "internal-tool" },
       { backendLanguage: "python" },
-      { layerAbsent: "meta-framework" },
-      { layerAbsent: "payments" },
+      { pickIs: { layer: "backend", tool: "django" } },
+      { pickIs: { layer: "database", tool: "postgresql" } },
+      { noToolWithLanguage: "php" },
     ],
   },
   {
     id: "ecommerce-laravel",
     text: "An online shop for my business built with Laravel, taking payments and sending order confirmation emails.",
     checks: [
-      { pickIs: { layer: "backend", tool: "laravel" } },
+      { projectType: "ecommerce" },
       { backendLanguage: "php" },
+      { pickIs: { layer: "backend", tool: "laravel" } },
+      { pickIs: { layer: "frontend", tool: "react" } },
+      { pickIs: { layer: "orm", tool: "doctrine" } },
       { pickIs: { layer: "payments", tool: "stripe" } },
       { pickIs: { layer: "email", tool: "resend" } },
     ],
@@ -118,18 +143,24 @@ export const GOLDEN_CASES: GoldenCase[] = [
     id: "saas-negated-languages",
     text: "A SaaS with a TypeScript backend, no PHP and no Java, with team workspaces for each customer.",
     checks: [
-      { backendLanguage: "typescript" },
+      { projectType: "saas" },
+      { backendLanguage: "javascript" },
       { noToolWithLanguage: "php" },
       { noToolWithLanguage: "java" },
+      { pickIs: { layer: "jobs-queue", tool: "pg-boss" } },
     ],
   },
   {
     id: "webapp-ruby-negated-features",
     text: "A todo app in Ruby. No payments, and we don't need real time updates.",
     checks: [
+      { projectType: "web-app" },
       { backendLanguage: "ruby" },
       { pickIs: { layer: "backend", tool: "rails" } },
       { pickIs: { layer: "orm", tool: "active-record" } },
+      { pickIs: { layer: "frontend", tool: "stimulus" } },
+      // Nothing in the catalog is built on Stimulus.
+      { pickIs: { layer: "meta-framework", tool: null } },
       { layerAbsent: "payments" },
       { layerAbsent: "cache" },
     ],
@@ -139,10 +170,11 @@ export const GOLDEN_CASES: GoldenCase[] = [
     text: "An internal app for staff in Python with Postgres that has to run on our own servers.",
     answers: { hosting: "self-hosted" },
     checks: [
+      { projectType: "internal-tool" },
       { backendLanguage: "python" },
+      { pickHosting: "self-hosted" },
       { pickIs: { layer: "database", tool: "postgresql" } },
       { pickIs: { layer: "hosting", tool: "dokku" } },
-      { layerAbsent: "payments" },
     ],
   },
   {
@@ -150,8 +182,9 @@ export const GOLDEN_CASES: GoldenCase[] = [
     text: "A startup MVP in JavaScript with Stripe like payments, on a zero budget.",
     answers: { budget: "free" },
     checks: [
+      { projectType: "saas" },
       { backendLanguage: "javascript" },
-      { layerPresent: "payments" },
+      { noPaidOnlyPick: true },
       { pickIs: { layer: "payments", tool: "polar" } },
     ],
   },
@@ -159,29 +192,32 @@ export const GOLDEN_CASES: GoldenCase[] = [
     id: "content-restaurant-cms",
     text: "A marketing website for a restaurant where non technical editors update the menu.",
     checks: [
-      { layerPresent: "cms" },
-      { layerAbsent: "backend" },
-      { layerAbsent: "orm" },
+      { projectType: "content-site" },
+      { pickIs: { layer: "cms", tool: "sanity" } },
+      { pickIs: { layer: "meta-framework", tool: "nextjs" } },
     ],
   },
   {
     id: "realtime-typescript-whiteboard",
     text: "A collaborative whiteboard in TypeScript with live cursors and login with Google.",
     checks: [
+      { projectType: "realtime-app" },
       { backendLanguage: "typescript" },
       { pickIs: { layer: "backend", tool: "nestjs" } },
-      { layerPresent: "cache" },
+      { pickIs: { layer: "cache", tool: "redis" } },
+      { pickIs: { layer: "auth", tool: "clerk" } },
     ],
   },
   {
     id: "webapp-java-bank",
     text: "A customer portal written in Java for a bank, with SAML SSO and a big audit log volume.",
     checks: [
+      { projectType: "web-app" },
       { backendLanguage: "java" },
       { pickIs: { layer: "backend", tool: "spring-boot" } },
       { pickIs: { layer: "orm", tool: "hibernate" } },
-      { pickIs: { layer: "auth", tool: "spring-security" } },
       { pickIs: { layer: "database", tool: "cassandra" } },
+      { pickIs: { layer: "auth", tool: "clerk" } },
     ],
   },
   {
@@ -189,9 +225,11 @@ export const GOLDEN_CASES: GoldenCase[] = [
     text: "A REST API written in C# that sends customer invoices and runs scheduled reports.",
     answers: { tooling: false },
     checks: [
+      { projectType: "api-only" },
       { backendLanguage: "csharp" },
       { pickIs: { layer: "backend", tool: "aspnet-core" } },
       { pickIs: { layer: "orm", tool: "entity-framework-core" } },
+      { pickIs: { layer: "jobs-queue", tool: "temporal" } },
       { layerPresent: "payments" },
       { layerAbsent: "testing" },
       { layerAbsent: "ci-cd" },
@@ -201,44 +239,56 @@ export const GOLDEN_CASES: GoldenCase[] = [
     id: "api-rust-iot",
     text: "A JSON API as a rust web server that ingests millions of events from IoT devices.",
     checks: [
+      { projectType: "api-only" },
       { backendLanguage: "rust" },
       { pickIs: { layer: "backend", tool: "axum" } },
       { pickIs: { layer: "orm", tool: "sea-orm" } },
       { pickIs: { layer: "database", tool: "cassandra" } },
+      { pickIs: { layer: "testing", tool: "postman" } },
     ],
   },
   {
     id: "mobile-kotlin-maps",
     text: "An android app in Kotlin with maps and geolocation.",
     checks: [
-      { pickIs: { layer: "mobile", tool: "compose-multiplatform" } },
-      { pickIs: { layer: "backend", tool: "ktor" } },
+      { projectType: "mobile-app" },
+      { backendLanguage: "kotlin" },
+      { pickIs: { layer: "mobile", tool: "kotlin-multiplatform" } },
       { pickIs: { layer: "orm", tool: "exposed" } },
+      { pickIs: { layer: "database", tool: "mysql" } },
       { noToolWithLanguage: "swift" },
     ],
   },
   {
-    id: "contradiction-python-nextjs",
+    // Python is preferred but no frontend tool is Python, so the frontend keeps
+    // JavaScript tools and the known Next.js wins the meta-framework.
+    id: "python-backend-nextjs-frontend",
     text: "A web app with a Python backend, and the frontend in Next.js.",
     checks: [
+      { projectType: "web-app" },
       { backendLanguage: "python" },
-      { pickIs: { layer: "frontend", tool: null } },
-      { pickIs: { layer: "meta-framework", tool: null } },
+      { pickIs: { layer: "frontend", tool: "react" } },
+      { pickIs: { layer: "meta-framework", tool: "nextjs" } },
+      { pickIs: { layer: "orm", tool: "sqlalchemy" } },
     ],
   },
   {
-    id: "contradiction-mobile-python-only",
+    id: "mobile-python-backend",
     text: "A mobile app for iOS and Android, written in Python only.",
     checks: [
+      { projectType: "mobile-app" },
       { backendLanguage: "python" },
-      { pickIs: { layer: "mobile", tool: null } },
+      { pickIs: { layer: "mobile", tool: "expo" } },
+      { pickIs: { layer: "testing", tool: "pytest" } },
     ],
   },
   {
+    // Contradiction: PHP is both preferred (set by hand) and avoided (from the text).
     id: "contradiction-prefer-and-avoid-php",
     text: "A booking app. The team knows PHP, but the CTO says avoid PHP.",
     answers: { languagesPrefer: ["php"] },
     checks: [
+      { projectType: "web-app" },
       { pickIs: { layer: "backend", tool: null } },
       { pickIs: { layer: "orm", tool: null } },
       { noToolWithLanguage: "php" },
@@ -248,29 +298,31 @@ export const GOLDEN_CASES: GoldenCase[] = [
     id: "saas-go-semantic-search",
     text: "A B2B SaaS written in Go with semantic search over documents and Stripe subscriptions.",
     checks: [
+      { projectType: "saas" },
       { backendLanguage: "go" },
       { pickIs: { layer: "backend", tool: "gin" } },
+      { pickIs: { layer: "database", tool: "supabase" } },
+      { pickIs: { layer: "jobs-queue", tool: "asynq" } },
       { pickIs: { layer: "payments", tool: "stripe" } },
-      { layerPresent: "database" },
     ],
   },
   {
     id: "internal-javascript-no-java",
     text: "A CRUD app for inventory management in our warehouse, written in JavaScript, no Java please.",
     checks: [
+      { projectType: "internal-tool" },
       { backendLanguage: "javascript" },
       { noToolWithLanguage: "java" },
-      { layerAbsent: "meta-framework" },
-      { layerAbsent: "payments" },
+      { pickIs: { layer: "orm", tool: "prisma" } },
     ],
   },
   {
     id: "content-docs-search",
     text: "A documentation site for our open source library with site search.",
     checks: [
+      { projectType: "content-site" },
       { layerPresent: "search" },
       { pickIs: { layer: "search", tool: "pagefind" } },
-      { layerAbsent: "backend" },
     ],
   },
   {
@@ -278,9 +330,11 @@ export const GOLDEN_CASES: GoldenCase[] = [
     text: "A SaaS platform in TypeScript expecting heavy traffic, with background jobs and user uploads.",
     answers: { scale: "high" },
     checks: [
-      { backendLanguage: "typescript" },
+      { projectType: "saas" },
+      { backendLanguage: "javascript" },
       { layerPresent: "storage" },
-      { layerPresent: "jobs-queue" },
+      { pickIs: { layer: "jobs-queue", tool: "bullmq" } },
+      { pickIs: { layer: "storage", tool: "uploadthing" } },
       { noToolWithLanguage: "php" },
     ],
   },

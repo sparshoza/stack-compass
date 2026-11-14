@@ -336,6 +336,151 @@ describe("scoreStack", () => {
     expect(r.alternatives).toEqual(["bbb", "mmm"]);
   });
 
+  it("ties break by pairs-with edge count, then id", () => {
+    const edges = (...targets: string[]) =>
+      targets.map((target) => ({ type: "pairs-with" as const, target }));
+    const fx = makeKb(
+      [
+        makeTool("aaa", "cache"),
+        makeTool("mmm", "cache", { edges: edges("x", "y") }),
+        makeTool("zzz", "cache", {
+          edges: [
+            ...edges("x", "y", "z"),
+            { type: "alternative-to", target: "aaa" },
+          ],
+        }),
+        makeTool("bbb", "cache", { edges: edges("x", "y") }),
+      ],
+      ["cache"],
+    );
+    const r = layerOf(scoreStack(answers(), fx), "cache");
+    expect(r.pick).toBe("zzz");
+    expect(r.alternatives).toEqual(["bbb", "mmm"]);
+    // A higher score still beats more edges.
+    const known = layerOf(
+      scoreStack(answers({ knownTools: ["aaa"] }), fx),
+      "cache",
+    );
+    expect(known.pick).toBe("aaa");
+    // The excluded ranking uses the same order.
+    const managed = makeKb(
+      fx.tools.map((t) => ({ ...t, hosting: ["managed" as const] })),
+      ["cache"],
+    );
+    expect(
+      layerOf(scoreStack(answers({ hosting: "self-hosted" }), managed), "cache")
+        .excluded.map((e) => e.toolId),
+    ).toEqual(["zzz", "bbb", "mmm"]);
+  });
+
+  it("language-required on frontend, meta-framework and mobile applies only when the layer has a preferred language", () => {
+    const fx = makeKb(
+      [
+        makeTool("react", "frontend", { languages: ["javascript", "typescript"] }),
+        makeTool("nextjs", "meta-framework", {
+          languages: ["javascript", "typescript"],
+          edges: [{ type: "built-on", target: "react" }],
+        }),
+        makeTool("expo", "mobile", { languages: ["javascript", "typescript"] }),
+        makeTool("maui", "mobile", { languages: ["csharp"] }),
+      ],
+      ["frontend", "meta-framework", "mobile"],
+    );
+    const python = scoreStack(answers({ languagesPrefer: ["python"] }), fx);
+    expect(layerOf(python, "frontend")).toMatchObject({ pick: "react", excluded: [] });
+    expect(layerOf(python, "meta-framework")).toMatchObject({ pick: "nextjs", excluded: [] });
+    expect(layerOf(python, "mobile")).toMatchObject({ pick: "expo", alternatives: ["maui"] });
+
+    const csharp = layerOf(
+      scoreStack(answers({ languagesPrefer: ["csharp"] }), fx),
+      "mobile",
+    );
+    expect(csharp.pick).toBe("maui");
+    expect(csharp.excluded).toEqual([
+      { toolId: "expo", reason: "language-required" },
+    ]);
+  });
+
+  it("typescript and javascript count as one family for language-required", () => {
+    const fx = makeKb(
+      [
+        makeTool("express", "backend", { languages: ["javascript"] }),
+        makeTool("flask", "backend", { languages: ["python"] }),
+        makeTool("lit", "frontend", { languages: ["javascript"] }),
+        makeTool("blazor", "frontend", { languages: ["csharp"] }),
+      ],
+      ["backend", "frontend"],
+    );
+    const results = scoreStack(answers({ languagesPrefer: ["typescript"] }), fx);
+    const backend = layerOf(results, "backend");
+    expect(backend.pick).toBe("express");
+    expect(backend.excluded).toEqual([
+      { toolId: "flask", reason: "language-required" },
+    ]);
+    const frontend = layerOf(results, "frontend");
+    expect(frontend.pick).toBe("lit");
+    expect(frontend.excluded).toEqual([
+      { toolId: "blazor", reason: "language-required" },
+    ]);
+  });
+
+  it("jobs-queue shares a language with the backend pick", () => {
+    const tools = [
+      makeTool("django", "backend", { languages: ["python"] }),
+      makeTool("bullmq", "jobs-queue", { languages: ["javascript"] }),
+      makeTool("celery", "jobs-queue", { languages: ["python"] }),
+      makeTool("any-queue", "jobs-queue"),
+    ];
+    const r = layerOf(
+      scoreStack(answers(), makeKb(tools, ["backend", "jobs-queue"])),
+      "jobs-queue",
+    );
+    expect(r.pick).toBe("any-queue");
+    expect(r.alternatives).toEqual(["celery"]);
+    expect(r.excluded).toEqual([
+      { toolId: "bullmq", reason: "language-mismatch-with-pick" },
+    ]);
+    const alone = layerOf(
+      scoreStack(answers(), makeKb(tools, ["jobs-queue"])),
+      "jobs-queue",
+    );
+    expect(alone.excluded).toEqual([]);
+  });
+
+  it("testing shares a language with the backend or frontend pick", () => {
+    const tools = [
+      makeTool("django", "backend", { languages: ["python"] }),
+      makeTool("react", "frontend", { languages: ["javascript", "typescript"] }),
+      makeTool("jest", "testing", { languages: ["typescript"] }),
+      makeTool("pytest", "testing", { languages: ["python"] }),
+      makeTool("rspec", "testing", { languages: ["ruby"] }),
+      makeTool("bruno", "testing"),
+    ];
+    // Knowing rspec lifts it into the top 3, so its exclusion is listed.
+    const a = answers({ knownTools: ["rspec"] });
+    const both = layerOf(
+      scoreStack(a, makeKb(tools, ["backend", "frontend", "testing"])),
+      "testing",
+    );
+    expect(both.pick).toBe("bruno");
+    expect(both.alternatives).toEqual(["jest", "pytest"]);
+    expect(both.excluded).toEqual([
+      { toolId: "rspec", reason: "language-mismatch-with-pick" },
+    ]);
+    const backendOnly = layerOf(
+      scoreStack(a, makeKb(tools, ["backend", "testing"])),
+      "testing",
+    );
+    expect(backendOnly.alternatives).toEqual(["pytest"]);
+    expect(backendOnly.excluded.map((e) => e.toolId)).toEqual(["rspec", "jest"]);
+    const none = layerOf(
+      scoreStack(a, makeKb(tools, ["testing"])),
+      "testing",
+    );
+    expect(none.pick).toBe("rspec");
+    expect(none.excluded).toEqual([]);
+  });
+
   it("excluded lists filtered tools that would rank top 3", () => {
     const fx = makeKb(
       [
@@ -393,21 +538,24 @@ describe("scoreStack", () => {
   it("null pick with reasons when nothing passes", () => {
     const fx = makeKb(
       [
-        makeTool("react", "frontend", { languages: ["javascript", "typescript"] }),
-        makeTool("vue", "frontend", { languages: ["javascript", "typescript"] }),
+        makeTool("express", "backend", { languages: ["javascript"] }),
+        makeTool("rails", "backend", { languages: ["ruby"] }),
+        makeTool("orm-js", "orm", { languages: ["javascript"] }),
       ],
-      ["frontend"],
+      ["backend", "orm"],
     );
-    const r = layerOf(
-      scoreStack(answers({ languagesPrefer: ["python"] }), fx),
-      "frontend",
-    );
+    const results = scoreStack(answers({ languagesPrefer: ["swift"] }), fx);
+    const r = layerOf(results, "backend");
     expect(r.pick).toBeNull();
     expect(r.alternatives).toEqual([]);
     expect(r.breakdown).toEqual([]);
     expect(r.excluded).toEqual([
-      { toolId: "react", reason: "language-required" },
-      { toolId: "vue", reason: "language-required" },
+      { toolId: "express", reason: "language-required" },
+      { toolId: "rails", reason: "language-required" },
+    ]);
+    // Backend and orm keep the plain rule even when no tool has the language.
+    expect(layerOf(results, "orm").excluded).toEqual([
+      { toolId: "orm-js", reason: "language-required" },
     ]);
   });
 
@@ -426,6 +574,8 @@ describe("scoreStack", () => {
   });
 
   it("contradictory real answers never throw", () => {
+    // Python plus a known Next.js: no frontend tool is Python, so the
+    // preference is skipped there and Next.js wins the meta-framework.
     const results = scoreStack(
       {
         ...DEFAULT_ANSWERS,
@@ -435,10 +585,25 @@ describe("scoreStack", () => {
       },
       kb,
     );
-    const frontend = layerOf(results, "frontend");
-    expect(frontend.pick).toBeNull();
-    expect(frontend.excluded.length).toBeGreaterThan(0);
-    expect(layerOf(results, "meta-framework").pick).toBeNull();
+    expect(layerOf(results, "frontend").pick).toBe("react");
+    const meta = layerOf(results, "meta-framework");
+    expect(meta.pick).toBe("nextjs");
+    expect(meta.breakdown).toContainEqual({ code: "known", points: 2 });
+    expect(layerOf(results, "backend").pick).toBe("django");
+
+    // Swift has no backend in the catalog: backend and orm are No match.
+    const swift = scoreStack(
+      { ...DEFAULT_ANSWERS, projectType: "web-app", languagesPrefer: ["swift"] },
+      kb,
+    );
+    for (const layer of ["backend", "orm"] as Layer[]) {
+      const r = layerOf(swift, layer);
+      expect(r.pick).toBeNull();
+      expect(r.excluded.length).toBeGreaterThan(0);
+      expect(new Set(r.excluded.map((e) => e.reason))).toEqual(
+        new Set(["language-required"]),
+      );
+    }
   });
 
   it("no project type returns no layers", () => {

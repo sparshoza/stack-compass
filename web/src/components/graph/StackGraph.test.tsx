@@ -1,5 +1,5 @@
 import { act, render } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type Graph from 'graphology'
 import { kb } from '@/lib/kb'
 
@@ -14,7 +14,14 @@ const fake = vi.hoisted(() => {
     handlers: Record<string, Handler> = {}
     refresh = vi.fn()
     kill = vi.fn()
-    camera = { setState: vi.fn(), animate: vi.fn(), getState: vi.fn(() => ({ x: 0.5, y: 0.5, ratio: 1, angle: 0 })) }
+    // The camera keeps the state it is given, like sigma's.
+    cameraState = { x: 0.5, y: 0.5, ratio: 1, angle: 0 }
+    camera = {
+      setState: vi.fn((next: Partial<typeof this.cameraState>) => {
+        this.cameraState = { ...this.cameraState, ...next }
+      }),
+      getState: vi.fn(() => ({ ...this.cameraState })),
+    }
     constructor(graph: Graph, container: HTMLElement, settings: Record<string, unknown>) {
       this.graph = graph
       this.container = container
@@ -31,6 +38,9 @@ const fake = vi.hoisted(() => {
     }
     getCamera() {
       return this.camera
+    }
+    getGraph() {
+      return this.graph
     }
     getNodeDisplayData(node: string) {
       return this.graph.hasNode(node) ? { x: 0.25, y: 0.75 } : undefined
@@ -79,7 +89,7 @@ describe('StackGraph', () => {
     fake.FakeSigma.instances.length = 0
   })
 
-  it('creates one sigma over every tool with motion turned off', () => {
+  it('creates one sigma over every tool; wheel and pinch zoom stay instant', () => {
     render(<StackGraph />)
     expect(fake.FakeSigma.instances).toHaveLength(1)
     const s = latest()
@@ -151,13 +161,15 @@ describe('StackGraph', () => {
     expect(edgesOfType('pairs-with').some((e) => e.hidden === false)).toBe(true)
   })
 
-  it('jumps the camera to the focused tool with no animation', () => {
+  it('jumps the camera to the focused tool when the motion tokens are missing', () => {
     const { rerender } = render(<StackGraph />)
     const camera = latest().camera
     expect(camera.setState).not.toHaveBeenCalled()
+    const raf = vi.spyOn(window, 'requestAnimationFrame')
     rerender(<StackGraph focus={database.id} />)
-    expect(camera.setState).toHaveBeenCalledWith(expect.objectContaining({ x: 0.25, y: 0.75 }))
-    for (const call of camera.animate.mock.calls) expect(call[1]).toMatchObject({ duration: 0 })
+    expect(camera.setState).toHaveBeenLastCalledWith(expect.objectContaining({ x: 0.25, y: 0.75 }))
+    expect(raf).not.toHaveBeenCalled()
+    raf.mockRestore()
     expect(nodeOf(database.id).forceLabel).toBe(true)
   })
 
@@ -260,6 +272,134 @@ describe('StackGraph', () => {
     expect(nodeOf(frontend.id).color).toBe('#437000')
     expect(before).not.toBe('#437000')
     root.removeAttribute('style')
+  })
+
+  describe('motion', () => {
+    const start = { x: 0.5, y: 0.5, ratio: 1, angle: 0 }
+    const picks = kb.tools.filter((t) => t.layer !== 'database').slice(0, 8).map((t) => t.id)
+
+    beforeEach(() => {
+      vi.useFakeTimers({ toFake: ['requestAnimationFrame', 'cancelAnimationFrame', 'performance'] })
+      const root = document.documentElement
+      root.style.setProperty('--duration-slow', '280ms')
+      root.style.setProperty('--duration-base', '200ms')
+      root.style.setProperty('--duration-stagger', '480ms')
+    })
+
+    afterEach(() => {
+      vi.useRealTimers()
+      vi.restoreAllMocks()
+      document.documentElement.removeAttribute('style')
+      // @ts-expect-error restore jsdom's missing matchMedia
+      delete window.matchMedia
+    })
+
+    function reduceMotion() {
+      window.matchMedia = vi.fn((query: string) => ({
+        matches: query.includes('prefers-reduced-motion'),
+        media: query,
+        onchange: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        addListener: () => {},
+        removeListener: () => {},
+        dispatchEvent: () => false,
+      })) as unknown as typeof window.matchMedia
+    }
+
+    /** Each recorded camera state, with the camera's live state following setState like sigma's. */
+    function trackCamera() {
+      const camera = latest().camera
+      let state = { ...start }
+      camera.getState.mockImplementation(() => ({ ...state }))
+      camera.setState.mockImplementation((next: Partial<typeof state>) => {
+        state = { ...state, ...next }
+      })
+      return { camera, now: () => state }
+    }
+
+    it('glides the camera to a focused tool over the slow duration', () => {
+      const { rerender } = render(<StackGraph />)
+      const { camera, now } = trackCamera()
+      rerender(<StackGraph focus={database.id} />)
+      // The camera has not jumped: it starts from where it was.
+      expect(now()).toMatchObject({ x: 0.5, y: 0.5 })
+      act(() => vi.advanceTimersByTime(140))
+      const mid = now()
+      expect(mid.x).toBeLessThan(0.5)
+      expect(mid.x).toBeGreaterThan(0.25)
+      // 280ms from the first frame (16ms in).
+      act(() => vi.advanceTimersByTime(170))
+      expect(now()).toMatchObject({ x: 0.25, y: 0.75, ratio: 0.5 })
+      const calls = camera.setState.mock.calls.length
+      act(() => vi.advanceTimersByTime(200))
+      expect(camera.setState.mock.calls.length).toBe(calls)
+    })
+
+    it('stops gliding the moment the user wheels, drags or touches the map', () => {
+      for (const type of ['wheel', 'pointerdown', 'touchstart']) {
+        fake.FakeSigma.instances.length = 0
+        const { rerender, unmount } = render(<StackGraph />)
+        const { camera, now } = trackCamera()
+        rerender(<StackGraph focus={database.id} />)
+        act(() => vi.advanceTimersByTime(80))
+        act(() => {
+          latest().container.dispatchEvent(new Event(type))
+        })
+        const at = now()
+        // Caught mid-flight, between where it was and the tool.
+        expect(at.x, type).toBeLessThan(0.5)
+        expect(at.x, type).toBeGreaterThan(0.25)
+        const calls = camera.setState.mock.calls.length
+        act(() => vi.advanceTimersByTime(400))
+        expect(camera.setState.mock.calls.length, type).toBe(calls)
+        expect(now(), type).toEqual(at)
+        unmount()
+      }
+    })
+
+    it('with reduced motion the camera jumps straight to the focused tool', () => {
+      reduceMotion()
+      const { rerender } = render(<StackGraph />)
+      const { now } = trackCamera()
+      const raf = vi.spyOn(window, 'requestAnimationFrame')
+      rerender(<StackGraph focus={database.id} />)
+      expect(now()).toMatchObject({ x: 0.25, y: 0.75, ratio: 0.5 })
+      expect(raf).not.toHaveBeenCalled()
+    })
+
+    it('lights the picks in scoring order when a result appears, all lit within 600ms', () => {
+      const { rerender } = render(<StackGraph />)
+      rerender(<StackGraph highlight={picks} />)
+      const accent = FALLBACK_PALETTE.accent
+      // At the start nothing is lit yet: every pick waits as a dimmed dot.
+      expect(picks.every((id) => nodeOf(id).color !== accent)).toBe(true)
+      act(() => vi.advanceTimersByTime(120))
+      // How far each pick has grown from its resting dot; earlier picks are further along.
+      const sizes = picks.map((id) => (nodeOf(id).size as number) - latest().graph.getNodeAttribute(id, 'size'))
+      expect(sizes[0]).toBeGreaterThan(sizes.at(-1)!)
+      for (let i = 1; i < sizes.length; i++) expect(sizes[i]).toBeLessThanOrEqual(sizes[i - 1])
+      act(() => vi.advanceTimersByTime(480))
+      expect(picks.every((id) => nodeOf(id).color === accent)).toBe(true)
+      expect(picks.every((id) => nodeOf(id).forceLabel === true)).toBe(true)
+      // Only colour and size move: the dimmed rest of the map is unchanged.
+      expect(nodeOf(database.id).color).toBe(dimmedOf(database.layer))
+    })
+
+    it('a changed result swaps the lit picks at once, without replaying the sequence', () => {
+      const { rerender } = render(<StackGraph highlight={picks} />)
+      act(() => vi.advanceTimersByTime(700))
+      const next = [...picks.slice(0, 4), backend.id]
+      rerender(<StackGraph highlight={next} />)
+      expect(nodeOf(backend.id).color).toBe(FALLBACK_PALETTE.accent)
+    })
+
+    it('with reduced motion every pick lights at once', () => {
+      reduceMotion()
+      const { rerender } = render(<StackGraph />)
+      rerender(<StackGraph highlight={picks} />)
+      expect(picks.every((id) => nodeOf(id).color === FALLBACK_PALETTE.accent)).toBe(true)
+    })
   })
 
   it('kills sigma on unmount', () => {

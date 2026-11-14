@@ -1,10 +1,11 @@
-import { useId } from 'react'
+import { useId, useRef, useState } from 'react'
 import { MapIcon, SlidersHorizontalIcon, TableIcon } from 'lucide-react'
 import { EDGE_SIZE } from '@/components/graph/edgeSizes'
 import { quietOverMap } from '@/components/shell/TopBar'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { layerName } from '@/lib/display'
+import { useReturnFocusOnClose } from '@/lib/useReturnFocusOnClose'
 import { FAMILIES, familyColor } from '@/lib/families'
 import type { EdgeType, Layer } from '@/lib/kb'
 import { cn } from '@/lib/utils'
@@ -51,18 +52,40 @@ export function FiltersPopover({
   const titleId = useId()
   const nothingHidden = hiddenLayers.size === 0 && hiddenEdgeTypes.size === 0
 
+  // Escape or the trigger hands focus back to the trigger as the popover
+  // starts to close; a click elsewhere leaves focus where it landed.
+  const [open, setOpen] = useState(false)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const clickedOutside = useRef(false)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const onCloseAutoFocus = useReturnFocusOnClose(open, () => {
+    if (!clickedOutside.current) triggerRef.current?.focus()
+    clickedOutside.current = false
+  }, contentRef)
+
   return (
-    <Popover>
+    <Popover
+      open={open}
+      onOpenChange={(next) => {
+        if (next) clickedOutside.current = false
+        setOpen(next)
+      }}
+    >
       <PopoverTrigger asChild>
-        <Button variant="quiet" size="icon-pill" className={quietOverMap} aria-label="Filters">
+        <Button ref={triggerRef} variant="quiet" size="icon-pill" className={quietOverMap} aria-label="Filters">
           <SlidersHorizontalIcon aria-hidden="true" />
         </Button>
       </PopoverTrigger>
       <PopoverContent
+        ref={contentRef}
         align="end"
         sideOffset={8}
         collisionPadding={16}
         aria-labelledby={titleId}
+        onPointerDownOutside={() => {
+          clickedOutside.current = true
+        }}
+        onCloseAutoFocus={onCloseAutoFocus}
         className="max-h-(--radix-popover-content-available-height) w-[min(22rem,calc(100vw-2rem))] gap-0 overflow-y-auto rounded-xl p-0 text-[0.8125rem] lg:w-[38rem]"
       >
         <div className="flex items-center justify-between gap-3 px-4 pt-3.5 pb-1">
@@ -104,7 +127,7 @@ export function FiltersPopover({
                           aria-pressed={shown}
                           onClick={() => onToggleLayer(layer)}
                           className={cn(
-                            'inline-flex h-8 items-center gap-1.5 rounded-full border px-2.5 text-xs touch:h-11 touch:px-3.5',
+                            'motion-colors inline-flex h-8 items-center gap-1.5 rounded-full border px-2.5 text-xs touch:h-11 touch:px-3.5',
                             shown
                               ? 'border-line-strong bg-raised text-text hover:border-text-faint'
                               : 'border-line text-text-muted hover:border-line-strong hover:text-text',
@@ -142,12 +165,12 @@ export function FiltersPopover({
                     type="button"
                     aria-pressed={shown}
                     onClick={() => onToggleEdgeType(type)}
-                    className="-mx-2 flex h-9 items-center gap-3 rounded-lg px-2 text-left hover:bg-raised touch:h-11"
+                    className="motion-colors -mx-2 flex h-9 items-center gap-3 rounded-lg px-2 text-left hover:bg-raised touch:h-11"
                   >
                     <span
                       aria-hidden="true"
                       className={cn(
-                        'grid size-4 shrink-0 place-items-center rounded-[4px] border',
+                        'motion-colors grid size-4 shrink-0 place-items-center rounded-[4px] border',
                         shown ? 'border-text bg-text' : 'border-line-strong',
                       )}
                     >

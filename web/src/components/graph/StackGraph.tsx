@@ -4,6 +4,7 @@ import type { Settings } from 'sigma/settings'
 import type { NodeDisplayData, PartialButFor } from 'sigma/types'
 import layout from '@catalog/layout.json'
 import { kb, type EdgeType, type Layer } from '@/lib/kb'
+import { easeOut, readDuration, staggerSchedule, tween, useReducedMotion } from '@/lib/motion'
 import {
   areaFit,
   buildGraph,
@@ -12,6 +13,8 @@ import {
   labelBoxes,
   labelOrigin,
   LabelPlacer,
+  lightingEdgeStyle,
+  lightingStyle,
   makeView,
   mapStretch,
   neighboursOf,
@@ -211,6 +214,66 @@ function applyFit(
   })
 }
 
+interface CameraTarget {
+  x: number
+  y: number
+  ratio: number
+}
+
+/**
+ * The camera state `move` would set, worked out on the live camera and then
+ * put back before sigma draws a frame (sigma renders on the next animation
+ * frame), so the camera can glide there instead of jumping.
+ */
+function cameraTarget(sigma: Sigma<NodeAttrs, EdgeAttrs>, move: () => void): CameraTarget {
+  const camera = sigma.getCamera()
+  const before = camera.getState()
+  move()
+  const { x, y, ratio } = camera.getState()
+  camera.setState(before)
+  return { x, y, ratio }
+}
+
+/**
+ * Glides the camera from where it is now to `target` over `duration` ms on
+ * the ease-out curve; 0 jumps. Zoom changes geometrically so its speed reads
+ * even. Returns a cancel function that leaves the camera where it is.
+ */
+function glideCamera(sigma: Sigma<NodeAttrs, EdgeAttrs>, target: CameraTarget, duration: number): () => void {
+  const camera = sigma.getCamera()
+  const from = camera.getState()
+  return tween(duration, (t) => {
+    const k = easeOut(t)
+    camera.setState({
+      x: from.x + (target.x - from.x) * k,
+      y: from.y + (target.y - from.y) * k,
+      ratio: t >= 1 ? target.ratio : from.ratio * (target.ratio / from.ratio) ** k,
+    })
+  })
+}
+
+type Glide = { cancel: () => void; target: CameraTarget }
+
+/**
+ * Moves the camera where `move` would put it: a glide over --duration-slow,
+ * a jump with reduced motion. A new move starts from wherever a running
+ * glide has got to.
+ */
+function moveCamera(glideRef: { current: Glide | null }, sigma: Sigma<NodeAttrs, EdgeAttrs>, move: () => void) {
+  glideRef.current?.cancel()
+  glideRef.current = null
+  const target = cameraTarget(sigma, move)
+  const glide: Glide = { target, cancel: () => {} }
+  glideRef.current = glide
+  glide.cancel = glideCamera(sigma, target, readDuration('--duration-slow'))
+}
+
+/** Ids of the edges whose two ends are both in `ids`. */
+function edgesAmong(sigma: Sigma<NodeAttrs, EdgeAttrs>, ids: readonly string[]): string[] {
+  const set = new Set(ids)
+  return sigma.getGraph().filterEdges((_, attrs) => set.has(attrs.source) && set.has(attrs.target))
+}
+
 /** Where the given tools are drawn at the current camera, in pixels; null when none is drawn. */
 function drawnBox(sigma: Sigma<NodeAttrs, EdgeAttrs>, ids: string[]): Box | null {
   let box: Box | null = null
@@ -259,6 +322,14 @@ export function StackGraph({
   const onContextLostRef = useRef(onContextLost)
   const palette = usePalette()
   const paletteRef = useRef(palette)
+
+  // Motion state lives in refs: the camera glide and the pick sequence run on
+  // animation frames and redraw through sigma, never through React.
+  const reduced = useReducedMotion()
+  const glideRef = useRef<Glide | null>(null)
+  const lightingRef = useRef<Map<string, number> | null>(null)
+  const stopLightingRef = useRef<(() => void) | null>(null)
+  const litKeyRef = useRef('')
 
   const focusInsetRef = useRef(focusInset)
   const frameInsetRef = useRef(frameInset)
@@ -330,7 +401,8 @@ export function StackGraph({
       labelRenderedSizeThreshold: 0,
       defaultDrawNodeLabel: labels.draw,
       defaultDrawNodeHover: labels.drawHover,
-      // No motion in phase 1: every camera move is instant.
+      // Wheel, pinch and double-click zoom follow the hand at once: they
+      // repeat many times in a row, so they never animate.
       zoomDuration: 0,
       inertiaDuration: 0,
       doubleClickZoomingDuration: 0,
@@ -352,6 +424,14 @@ export function StackGraph({
     // Context events fire on sigma's canvases and do not bubble, so listen in the capture phase.
     const onLost = () => onContextLostRef.current?.()
     container.addEventListener('webglcontextlost', onLost, true)
+    // Any hand on the map stops a camera glide where it is, before sigma's
+    // own handlers move the camera, so the two never fight.
+    const stopGlide = () => {
+      glideRef.current?.cancel()
+      glideRef.current = null
+    }
+    const grabs = ['wheel', 'pointerdown', 'mousedown', 'touchstart'] as const
+    for (const type of grabs) container.addEventListener(type, stopGlide, { capture: true, passive: true })
     sigma.on('clickNode', ({ node }) => onSelectRef.current?.(node))
     sigma.on('clickStage', () => setHover(null))
     sigma.on('enterNode', ({ node }) => {
@@ -367,22 +447,96 @@ export function StackGraph({
     return () => {
       container.removeEventListener('touchstart', onTouch)
       container.removeEventListener('webglcontextlost', onLost, true)
+      for (const type of grabs) container.removeEventListener(type, stopGlide, { capture: true })
+      stopGlide()
+      stopLightingRef.current?.()
+      stopLightingRef.current = null
+      lightingRef.current = null
       sigma.kill()
       sigmaRef.current = null
     }
   }, [graph])
 
+  // When a result appears (no picks before, picks now), the picks light up
+  // one after another in scoring order: colour, size and name only, the
+  // whole sequence within --duration-stagger (600ms at most). A changed
+  // result swaps at once. Each frame redraws only the picks and the edges
+  // between them; React does not re-render.
+  useEffect(() => {
+    const sigma = sigmaRef.current
+    const was = litKeyRef.current
+    litKeyRef.current = highlightKey
+    stopLightingRef.current?.()
+    stopLightingRef.current = null
+    lightingRef.current = null
+    if (!sigma || !highlightKey || was) return
+    const ids = highlightKey.split('\n')
+    const slots = staggerSchedule(ids.length, {
+      total: readDuration('--duration-stagger'),
+      each: readDuration('--duration-base'),
+    })
+    const end = Math.max(0, ...slots.map((slot) => slot.delay + slot.duration))
+    if (end <= 0) return
+    const progress = new Map(ids.map((id) => [id, 0]))
+    lightingRef.current = progress
+    const partialGraph = { nodes: ids, edges: edgesAmong(sigma, ids) }
+    stopLightingRef.current = tween(
+      end,
+      (t) => {
+        const now = t * end
+        ids.forEach((id, i) => {
+          const { delay, duration } = slots[i]
+          const local = duration > 0 ? (now - delay) / duration : now >= delay ? 1 : 0
+          progress.set(id, easeOut(Math.max(0, Math.min(1, local))))
+        })
+        if (t >= 1) lightingRef.current = null
+        sigma.refresh({ partialGraph })
+      },
+      () => {
+        stopLightingRef.current = null
+      },
+    )
+  }, [highlightKey])
+
   // Restyle on every view or theme change. Reducers must return full data.
+  // A pick that is still lighting up is drawn part way (see lightingStyle).
   useEffect(() => {
     const sigma = sigmaRef.current
     if (!sigma) return
     paletteRef.current = palette
     sigma.setSetting('labelColor', { attribute: 'labelColor', color: palette.text })
-    sigma.setSetting('nodeReducer', (node, data) => ({ ...data, ...nodeStyle(node, data, view, palette) }))
-    sigma.setSetting('edgeReducer', (_edge, data) => ({ ...data, ...edgeStyle(data, view, palette) }))
+    sigma.setSetting('nodeReducer', (node, data) => {
+      const style = { ...data, ...nodeStyle(node, data, view, palette) }
+      const p = lightingRef.current?.get(node)
+      return p === undefined || node === view.focus ? style : { ...style, ...lightingStyle(data, palette, p) }
+    })
+    sigma.setSetting('edgeReducer', (_edge, data) => {
+      const style = { ...data, ...edgeStyle(data, view, palette) }
+      const a = lightingRef.current?.get(data.source)
+      const b = lightingRef.current?.get(data.target)
+      return a === undefined || b === undefined ? style : { ...style, ...lightingEdgeStyle(data, palette, Math.min(a, b)) }
+    })
   }, [view, palette])
 
-  // Jump (duration 0) to the focused tool. A tool in a hidden layer is not
+  // Turning reduced motion on part way finishes any motion at once.
+  useEffect(() => {
+    const sigma = sigmaRef.current
+    if (!reduced || !sigma) return
+    const glide = glideRef.current
+    if (glide) {
+      glide.cancel()
+      glideRef.current = null
+      sigma.getCamera().setState(glide.target)
+    }
+    if (stopLightingRef.current) {
+      stopLightingRef.current()
+      stopLightingRef.current = null
+      lightingRef.current = null
+      sigma.refresh()
+    }
+  }, [reduced])
+
+  // Glide to the focused tool. A tool in a hidden layer is not
   // drawn, so the camera stays put. The app shows a tool's layer again before
   // focusing it; this only guards against a stale focus.
   const focusHidden =
@@ -396,23 +550,25 @@ export function StackGraph({
     sigma.refresh()
     const at = sigma.getNodeDisplayData(focus)
     if (!at) return
-    const camera = sigma.getCamera()
-    const ratio = Math.min(camera.getState().ratio, 0.5)
-    camera.setState({ x: at.x, y: at.y, ratio })
-    // Shift so the tool sits in the middle of the area the panel leaves free.
-    const inset = focusInsetRef.current
-    if (inset && typeof sigma.viewportToFramedGraph === 'function') {
-      const { width, height } = sigma.getDimensions()
-      const centre = sigma.viewportToFramedGraph({ x: width / 2, y: height / 2 })
-      const shifted = sigma.viewportToFramedGraph({
-        x: width / 2 + (inset.right - (inset.left ?? 0)) / 2,
-        y: height / 2 + (inset.bottom - inset.top) / 2,
-      })
-      camera.setState({ x: at.x + shifted.x - centre.x, y: at.y + shifted.y - centre.y, ratio })
-    }
+    moveCamera(glideRef, sigma, () => {
+      const camera = sigma.getCamera()
+      const ratio = Math.min(camera.getState().ratio, 0.5)
+      camera.setState({ x: at.x, y: at.y, ratio })
+      // Shift so the tool sits in the middle of the area the panel leaves free.
+      const inset = focusInsetRef.current
+      if (inset && typeof sigma.viewportToFramedGraph === 'function') {
+        const { width, height } = sigma.getDimensions()
+        const centre = sigma.viewportToFramedGraph({ x: width / 2, y: height / 2 })
+        const shifted = sigma.viewportToFramedGraph({
+          x: width / 2 + (inset.right - (inset.left ?? 0)) / 2,
+          y: height / 2 + (inset.bottom - inset.top) / 2,
+        })
+        camera.setState({ x: at.x + shifted.x - centre.x, y: at.y + shifted.y - centre.y, ratio })
+      }
+    })
   }, [focus, focusHidden])
 
-  // A new stack jumps (duration 0) to frame its picks in the area the sheet
+  // A new stack glides to frame its picks in the area the sheet
   // and the bars leave free. A focused tool takes the camera instead.
   useEffect(() => {
     const sigma = sigmaRef.current
@@ -422,7 +578,7 @@ export function StackGraph({
     const box = drawnBox(sigma, highlightKey.split('\n'))
     if (!box) return
     const inset = highlightInsetRef.current ?? { top: 0, right: 0, bottom: 0, left: 0 }
-    applyFit(sigma, areaFit(box, sigma.getDimensions(), inset))
+    moveCamera(glideRef, sigma, () => applyFit(sigma, areaFit(box, sigma.getDimensions(), inset)))
   }, [highlightKey])
 
   return <div ref={containerRef} className="absolute inset-0" data-testid="stack-graph" />

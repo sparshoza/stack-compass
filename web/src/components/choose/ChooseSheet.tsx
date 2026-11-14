@@ -3,6 +3,7 @@ import { InfoIcon, LinkIcon, XIcon } from 'lucide-react'
 import { Dialog as DialogPrimitive } from 'radix-ui'
 import { Button } from '@/components/ui/button'
 import type { LayerResult } from '@/engine/score'
+import { useReturnFocusOnClose } from '@/lib/useReturnFocusOnClose'
 import { cn } from '@/lib/utils'
 import { DetectedChips } from './DetectedChips'
 import { Describe } from './Describe'
@@ -85,8 +86,10 @@ export function ChooseSheet({
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const typeRef = useRef<HTMLInputElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
   const focusNext = useRef<Target | null>(null)
   const [copied, setCopied] = useState<{ state: CopyState; url: string; answers: unknown } | null>(null)
+  const onCloseAutoFocus = useReturnFocusOnClose(open, onRestoreFocus, contentRef)
 
   const { view, answers } = chooser
   const showingResult = view === 'result'
@@ -130,15 +133,14 @@ export function ChooseSheet({
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} modal={modal}>
       <DialogPrimitive.Portal>
         <DialogPrimitive.Content
+          ref={contentRef}
           aria-describedby={`${id}-about`}
           onOpenAutoFocus={(e) => {
             e.preventDefault()
             focusTarget(showingResult ? 'heading' : 'text')
           }}
-          onCloseAutoFocus={(e) => {
-            e.preventDefault()
-            onRestoreFocus()
-          }}
+          // Focus goes back as the sheet starts to close (useReturnFocusOnClose).
+          onCloseAutoFocus={onCloseAutoFocus}
           // The map and the tool panel stay usable beside the sheet.
           onInteractOutside={(e) => e.preventDefault()}
           // Escape in a field with text clears the field first (tools search does).
@@ -147,7 +149,7 @@ export function ChooseSheet({
             if (target instanceof HTMLInputElement && target.value !== '') e.preventDefault()
           }}
           className={cn(
-            'fixed inset-0 z-40 flex flex-col bg-surface text-[0.8125rem] text-text outline-none',
+            'motion-sheet-start fixed inset-0 z-40 flex flex-col bg-surface text-[0.8125rem] text-text outline-none',
             'lg:inset-auto lg:top-[4.5rem] lg:bottom-[4.5rem] lg:left-6 lg:z-20 lg:w-[440px] lg:rounded-[var(--radius-panel)] lg:border lg:border-line lg:shadow-(--shadow-float)',
           )}
         >

@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react'
+import { useRef, type ReactNode } from 'react'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { kb } from '@/lib/kb'
 import { REPO_URL, WHICHDB_URL } from '@/lib/links'
+import { useReturnFocusOnClose } from '@/lib/useReturnFocusOnClose'
 
 interface InfoDialogProps {
   open: boolean
@@ -21,9 +22,24 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 /** About: how picks are made, where the facts come from, how to correct them, credits. */
 export function InfoDialog({ open, onOpenChange }: InfoDialogProps) {
+  // Focus goes back to what opened the dialog as soon as it starts to close.
+  const returnTo = useRef<HTMLElement | null>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const onCloseAutoFocus = useReturnFocusOnClose(open, () => {
+    const target = returnTo.current
+    returnTo.current = null
+    if (target?.isConnected) target.focus()
+  }, contentRef)
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[calc(100dvh-2rem)] gap-5 overflow-y-auto p-6 text-[0.8125rem] leading-[1.6] text-text-muted sm:max-w-lg">
+      <DialogContent
+        ref={contentRef}
+        // Runs before Radix moves focus in, so this is still the opener.
+        onOpenAutoFocus={() => {
+          returnTo.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+        }}
+        onCloseAutoFocus={onCloseAutoFocus}
+        className="max-h-[calc(100dvh-2rem)] gap-5 overflow-y-auto p-6 text-[0.8125rem] leading-[1.6] text-text-muted sm:max-w-lg">
         <DialogHeader className="gap-2 pr-8">
           <DialogTitle className="text-[1rem] font-semibold text-text">About Stack Compass</DialogTitle>
           <DialogDescription className="text-[0.8125rem] text-text-muted">

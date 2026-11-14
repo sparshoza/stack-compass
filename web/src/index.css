@@ -2,6 +2,7 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/jetbrains-mono";
 @import "./styles/tokens.css";
+@import "./styles/motion.css";
 
 /* Touch-size targets (44px): below 1024px, and on any coarse pointer. */
 @custom-variant touch {
@@ -88,15 +89,6 @@
     font-size: var(--text-sm);
     line-height: var(--leading-body);
     font-variant-numeric: tabular-nums;
-  }
-
-  /* Phase 1 has no motion at all: state changes are instant. */
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
   }
 
   a[href],

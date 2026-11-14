@@ -243,6 +243,11 @@ export default function App() {
   }
 
   const helpOpen = overlay === 'help'
+  // A skip left over from a close that kept focus elsewhere never carries
+  // into the next time the sheet opens.
+  useEffect(() => {
+    if (helpOpen) skipHelpRestoreRef.current = false
+  }, [helpOpen])
 
   // Keep the focused tool clear of the bar and the open panels.
   const focusInset = tool

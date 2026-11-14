@@ -65,6 +65,32 @@
   --control-h-touch: 2.75rem; /* 44px phone */
   --focus-ring: 2px solid var(--accent);
   --shadow-float: 0 8px 24px rgb(0 0 0 / 0.45); /* sheets, popovers, dialogs only */
+
+  /*
+   * Motion: transform and opacity (and the map camera), one ease-out curve.
+   * Exits are faster than entrances. styles/motion.css and lib/motion.ts
+   * read these; no other file writes a duration.
+   */
+  --duration-fast: 120ms; /* press feedback, chip colour */
+  --duration-base: 200ms; /* sheets, popovers and dialogs entering; one pick lighting */
+  --duration-slow: 280ms; /* the map camera gliding to a tool or a stack */
+  --duration-exit: 140ms; /* sheets, popovers and dialogs leaving */
+  --duration-stagger: 480ms; /* the whole pick sequence, first to last (600ms at most) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --press-scale: 0.97;
+  --pop-scale: 0.97;
+  --sheet-shift: 14px;
+}
+
+/* Reduced motion: every duration is 0, so everything changes at once. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --duration-exit: 0ms;
+    --duration-stagger: 0ms;
+  }
 }
 
 :root[data-theme='light'] {

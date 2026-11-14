@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { ExternalLinkIcon, XIcon } from 'lucide-react'
 import { Dialog as DialogPrimitive } from 'radix-ui'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -6,6 +6,7 @@ import { HOSTING_NAMES, PRICING_NAMES, languageName, layerName } from '@/lib/dis
 import { familyColor, LAYER_FAMILY } from '@/lib/families'
 import type { Tool } from '@/lib/kb'
 import { newIssueUrl } from '@/lib/links'
+import { useReturnFocusOnClose } from '@/lib/useReturnFocusOnClose'
 import { relationsOf } from '@/lib/relations'
 import { cn } from '@/lib/utils'
 
@@ -75,14 +76,22 @@ function Notes({ title, items }: { title: string; items: string[] }) {
  * behind it, so another dot or a relation swaps the tool in place. Right side
  * from 1024px, bottom sheet below. Escape or the close button closes it.
  */
-export function ToolPanel({ tool, onClose, onFocusTool, onRestoreFocus }: ToolPanelProps) {
+export function ToolPanel({ tool: current, onClose, onFocusTool, onRestoreFocus }: ToolPanelProps) {
   const headingRef = useRef<HTMLHeadingElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  // While the panel slides out it keeps showing the tool it had.
+  const [last, setLast] = useState(current)
+  if (current && current !== last) setLast(current)
+  const tool = current ?? last
+  const open = current !== undefined
+  const onCloseAutoFocus = useReturnFocusOnClose(open, onRestoreFocus, contentRef)
 
   // Each tool that opens, from search, the map or a relation, takes focus to
   // its name so screen readers announce it, and starts at the top. The first
   // open is handled by onOpenAutoFocus, since the portal mounts a render later.
-  const id = tool?.id
+  const id = current?.id
   useEffect(() => {
     if (!id) return
     scrollRef.current?.scrollTo?.({ top: 0 })
@@ -92,18 +101,17 @@ export function ToolPanel({ tool, onClose, onFocusTool, onRestoreFocus }: ToolPa
   const relations = tool ? relationsOf(tool.id) : []
 
   return (
-    <DialogPrimitive.Root open={tool !== undefined} onOpenChange={(open) => !open && onClose()} modal={false}>
+    <DialogPrimitive.Root open={open} onOpenChange={(next) => !next && onClose()} modal={false}>
       <DialogPrimitive.Portal>
         <DialogPrimitive.Content
+          ref={contentRef}
           aria-describedby={undefined}
           onOpenAutoFocus={(e) => {
             e.preventDefault()
             headingRef.current?.focus()
           }}
-          onCloseAutoFocus={(e) => {
-            e.preventDefault()
-            onRestoreFocus()
-          }}
+          // Focus goes back as the panel starts to close (useReturnFocusOnClose).
+          onCloseAutoFocus={onCloseAutoFocus}
           // Clicks and focus elsewhere (the map, search) leave the panel open.
           onInteractOutside={(e) => e.preventDefault()}
           // Escape in a field with text clears the field first (search does).
@@ -112,7 +120,7 @@ export function ToolPanel({ tool, onClose, onFocusTool, onRestoreFocus }: ToolPa
             if (target instanceof HTMLInputElement && target.value !== '') e.preventDefault()
           }}
           className={cn(
-            'fixed z-20 flex flex-col border-line bg-surface text-[0.8125rem] text-text shadow-(--shadow-float) outline-none',
+            'motion-sheet-end fixed z-20 flex flex-col border-line bg-surface text-[0.8125rem] text-text shadow-(--shadow-float) outline-none',
             'inset-x-0 bottom-0 max-h-[60dvh] rounded-t-[var(--radius-panel)] border-t',
             'lg:top-[4.5rem] lg:right-6 lg:bottom-[4.5rem] lg:left-auto lg:max-h-none lg:w-[400px] lg:rounded-[var(--radius-panel)] lg:border',
           )}

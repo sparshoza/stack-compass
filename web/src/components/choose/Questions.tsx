@@ -329,7 +329,7 @@ function Features({ selected, onToggle }: { selected: string[]; onToggle: (id: s
                 <li key={cap.id}>
                   <label
                     className={cn(
-                      'inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
+                      'motion-colors inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
                       ringWithin,
                       checked
                         ? 'border-text bg-text text-background'
@@ -420,7 +420,7 @@ export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
                   type="button"
                   onClick={() => onChange((a) => cycleLanguage(a, lang))}
                   className={cn(
-                    'inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
+                    'motion-colors inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
                     state === 'none' && 'border-line-strong text-text hover:border-text-faint hover:bg-raised',
                     state === 'prefer' && 'border-text bg-text text-background',
                     state === 'avoid' && 'border-dashed border-text-faint text-text-muted hover:bg-raised',
@@ -477,11 +477,15 @@ export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
           <span
             aria-hidden="true"
             className={cn(
-              'flex h-5 w-9 items-center rounded-full border p-0.5',
-              answers.tooling ? 'justify-end border-text bg-text' : 'justify-start border-line-strong bg-raised',
+              'motion-colors flex h-5 w-9 items-center rounded-full border p-0.5',
+              answers.tooling ? 'border-text bg-text' : 'border-line-strong bg-raised',
             )}
           >
-            <span className={cn('size-3.5 rounded-full', answers.tooling ? 'bg-background' : 'bg-text-muted')} />
+            {/* The thumb slides across (transform), so the switch reads as one moving part. */}
+            <span
+              data-on={answers.tooling}
+              className={cn('motion-thumb size-3.5 rounded-full', answers.tooling ? 'bg-background' : 'bg-text-muted')}
+            />
           </span>
         </button>
       </div>

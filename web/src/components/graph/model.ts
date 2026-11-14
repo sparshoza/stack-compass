@@ -71,6 +71,9 @@ const DIM_NODE = 0.75
 const DIM_LABEL = 0.65
 const DIM_EDGE = 0.6
 const SPOT_EDGE_SIZE = 1.5
+/** Extra dot radius for a pick or the focused tool, and the width of an edge between two picks. */
+const PICK_EXTRA = 2
+const PICK_EDGE_SIZE = 2
 /** Dot radius in pixels at rest: small and near-uniform, a touch larger for hubs. */
 const BASE_SIZE = 2.5
 const HUB_EXTRA = 1
@@ -177,7 +180,7 @@ export function nodeStyle(id: string, attrs: NodeAttrs, view: GraphView, palette
     return {
       hidden,
       color: palette.accent,
-      size: attrs.size + 2,
+      size: attrs.size + PICK_EXTRA,
       forceLabel: true,
       labelColor: palette.text,
       zIndex: 2,
@@ -208,6 +211,45 @@ export function nodeStyle(id: string, attrs: NodeAttrs, view: GraphView, palette
   }
 }
 
+/**
+ * A pick part way through lighting up, `p` from 0 (its dimmed dot, no name)
+ * to 1 (the lit accent dot with its name). Colour and size only; the name
+ * fades in with it. Spread over nodeStyle's result, which keeps `hidden`.
+ */
+export function lightingStyle(attrs: NodeAttrs, palette: Palette, p: number): Omit<NodeStyle, 'hidden'> {
+  const dim = mix(palette.families[attrs.family], palette.background, DIM_NODE)
+  if (p <= 0) {
+    return {
+      color: dim,
+      size: attrs.size,
+      forceLabel: false,
+      label: null,
+      labelColor: mix(palette.textFaint, palette.background, DIM_LABEL),
+      zIndex: 0,
+    }
+  }
+  const k = Math.min(p, 1)
+  return {
+    color: mix(dim, palette.accent, k),
+    size: attrs.size + PICK_EXTRA * k,
+    forceLabel: true,
+    labelColor: mix(palette.background, palette.text, k),
+    zIndex: 2,
+  }
+}
+
+/** An edge between two picks while they light up: it follows the later of its two ends. */
+export function lightingEdgeStyle(attrs: EdgeAttrs, palette: Palette, p: number): Partial<EdgeDisplayData> {
+  const dim = mix(palette.edge, palette.background, DIM_EDGE)
+  const k = Math.max(0, Math.min(p, 1))
+  if (k === 0) return { color: dim, size: EDGE_SIZE[attrs.kind], zIndex: 0 }
+  return {
+    color: mix(dim, palette.accent, k),
+    size: EDGE_SIZE[attrs.kind] + (PICK_EDGE_SIZE - EDGE_SIZE[attrs.kind]) * k,
+    zIndex: 2,
+  }
+}
+
 /** Display attributes for one edge under the current view. */
 export function edgeStyle(attrs: EdgeAttrs, view: GraphView, palette: Palette): Partial<EdgeDisplayData> {
   const hidden =
@@ -225,7 +267,7 @@ export function edgeStyle(attrs: EdgeAttrs, view: GraphView, palette: Palette): 
     return { hidden, color: mix(palette.edge, palette.background, DIM_EDGE), size, zIndex: 0 }
   }
   if (view.highlight.has(attrs.source) && view.highlight.has(attrs.target)) {
-    return { hidden, color: palette.accent, size: 2, zIndex: 2 }
+    return { hidden, color: palette.accent, size: PICK_EDGE_SIZE, zIndex: 2 }
   }
   return { hidden, color: mix(palette.edge, palette.background, DIM_EDGE), size, zIndex: 0 }
 }

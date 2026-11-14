@@ -2,6 +2,8 @@ import { afterEach, describe, expect, it } from 'vitest'
 import type { EdgeType, Layer, Tool } from '@/lib/kb'
 import { makeTool } from '@/engine/fixture'
 import {
+  lightingEdgeStyle,
+  lightingStyle,
   buildGraph,
   edgeStyle,
   FALLBACK_PALETTE,
@@ -618,5 +620,33 @@ describe('readPalette', () => {
 
   it('falls back to the dark tokens when a variable is missing', () => {
     expect(readPalette(document.documentElement)).toEqual(FALLBACK_PALETTE)
+  })
+})
+
+describe('lightingStyle', () => {
+  const attrs = { x: 0, y: 0, label: 'Postgres', size: 3, layer: 'database' as Layer, family: 'data' as const }
+  const view = makeView({ highlight: ['other'] })
+
+  it('starts as the dimmed dot with no name', () => {
+    const dimmed = nodeStyle('pg', attrs, view, FALLBACK_PALETTE)
+    const start = lightingStyle(attrs, FALLBACK_PALETTE, 0)
+    expect(start).toMatchObject({ color: dimmed.color, size: dimmed.size, label: null, forceLabel: false })
+  })
+
+  it('ends as the lit pick and grows on the way', () => {
+    const lit = nodeStyle('pg', attrs, makeView({ highlight: ['pg'] }), FALLBACK_PALETTE)
+    const end = lightingStyle(attrs, FALLBACK_PALETTE, 1)
+    expect(end.color!.toLowerCase()).toBe(lit.color!.toLowerCase())
+    expect(end.size).toBe(lit.size)
+    const half = lightingStyle(attrs, FALLBACK_PALETTE, 0.5)
+    expect(half.size).toBeGreaterThan(attrs.size)
+    expect(half.size).toBeLessThan(end.size!)
+    expect(half.forceLabel).toBe(true)
+  })
+
+  it('an edge between two picks goes from dimmed to the accent', () => {
+    const edge = { kind: 'pairs-with' as EdgeType, source: 'a', target: 'b', sourceLayer: 'database' as Layer, targetLayer: 'orm' as Layer }
+    expect(lightingEdgeStyle(edge, FALLBACK_PALETTE, 0).color).toBe(mix(FALLBACK_PALETTE.edge, FALLBACK_PALETTE.background, 0.6))
+    expect(lightingEdgeStyle(edge, FALLBACK_PALETTE, 1).color!.toLowerCase()).toBe(FALLBACK_PALETTE.accent)
   })
 })

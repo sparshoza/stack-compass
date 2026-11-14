@@ -1,0 +1,135 @@
+/*
+ * Motion classes. Components add these; the timing comes only from the
+ * tokens in tokens.css. Transform and opacity only, except the quick colour
+ * change on toggles. Radix sets data-state="open" or "closed" and waits for
+ * the closing animation before it unmounts; a closing surface ignores the
+ * pointer so it never blocks a click on what is under it.
+ */
+
+/* Press feedback on buttons: a slight give while held. */
+.motion-press {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.motion-press:active:not(:disabled, [aria-disabled='true']) {
+  transform: scale(var(--press-scale));
+}
+
+/* Chips and toggles: the on and off colours cross-fade. */
+.motion-colors {
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+/* The thumb of a switch slides to its side (16px: the track less the thumb and padding). */
+.motion-thumb {
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+.motion-thumb[data-on='true'] {
+  transform: translateX(1rem);
+}
+
+/*
+ * Side sheets: in from their own edge, out the same way, faster. Below
+ * 1024px both sheets rise from the bottom; from 1024px the tool panel comes
+ * from the right and Help me choose from the left.
+ */
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--sheet-x), var(--sheet-y), 0);
+  }
+}
+@keyframes sheet-out {
+  to {
+    opacity: 0;
+    transform: translate3d(var(--sheet-x), var(--sheet-y), 0);
+  }
+}
+.motion-sheet-end,
+.motion-sheet-start {
+  --sheet-x: 0px;
+  --sheet-y: var(--sheet-shift);
+}
+@media (width >= 64rem) {
+  .motion-sheet-end {
+    --sheet-x: var(--sheet-shift);
+    --sheet-y: 0px;
+  }
+  .motion-sheet-start {
+    --sheet-x: calc(-1 * var(--sheet-shift));
+    --sheet-y: 0px;
+  }
+}
+.motion-sheet-end[data-state='open'],
+.motion-sheet-start[data-state='open'] {
+  animation: sheet-in var(--duration-base) var(--ease-out);
+}
+.motion-sheet-end[data-state='closed'],
+.motion-sheet-start[data-state='closed'] {
+  animation: sheet-out var(--duration-exit) var(--ease-out) forwards;
+}
+
+/*
+ * Popovers grow from their trigger (the origin is set by the component from
+ * Radix's transform origin); dialogs grow from their centre.
+ */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(var(--pop-scale));
+  }
+}
+@keyframes pop-out {
+  to {
+    opacity: 0;
+    transform: scale(var(--pop-scale));
+  }
+}
+.motion-pop[data-state='open'] {
+  animation: pop-in var(--duration-base) var(--ease-out);
+}
+.motion-pop[data-state='closed'] {
+  animation: pop-out var(--duration-exit) var(--ease-out) forwards;
+}
+
+/* The scrim behind a modal fades with it. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+.motion-fade[data-state='open'] {
+  animation: fade-in var(--duration-base) var(--ease-out);
+}
+.motion-fade[data-state='closed'] {
+  animation: fade-out var(--duration-exit) var(--ease-out) forwards;
+}
+
+.motion-sheet-end[data-state='closed'],
+.motion-sheet-start[data-state='closed'],
+.motion-pop[data-state='closed'],
+.motion-fade[data-state='closed'] {
+  pointer-events: none;
+}
+
+/*
+ * Reduced motion: nothing animates. With no animation Radix also unmounts a
+ * closing surface at once.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

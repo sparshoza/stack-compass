@@ -32,6 +32,7 @@ edges:
   target: datadog
 - type: alternative-to
   target: honeycomb
+uses: [errors, logs, metrics, tracing, uptime]
 verified: '2026-11-14'
 sources:
 - https://newrelic.com

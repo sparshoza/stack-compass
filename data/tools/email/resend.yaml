@@ -32,5 +32,6 @@ edges:
 - {type: pairs-with, target: nuxt}
 - {type: pairs-with, target: sveltekit}
 - {type: pairs-with, target: flask}
+uses: [app-emails, newsletters]
 verified: '2026-11-14'
 sources: ['https://resend.com', 'https://resend.com/pricing', 'https://resend.com/docs/send-with-nextjs', 'https://resend.com/docs/send-with-astro', 'https://resend.com/docs/send-with-express', 'https://resend.com/docs/send-with-rails', 'https://resend.com/docs/send-with-django', 'https://resend.com/docs/send-with-java', 'https://resend.com/docs/send-with-nuxt', 'https://resend.com/docs/send-with-sveltekit', 'https://resend.com/docs/send-with-flask']

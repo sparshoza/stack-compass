@@ -33,7 +33,11 @@ edges:
 - type: alternative-to
   target: xamarin
 - {type: pairs-with, target: sentry}
+uses:
+- ios-android
+- desktop
 verified: '2026-11-14'
 sources:
 - https://dotnet.microsoft.com/apps/maui
 - https://github.com/dotnet/maui
+- https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui

@@ -16,5 +16,6 @@ avoid_when: [You need a very small in-process queue]
 edges:
 - {type: alternative-to, target: bullmq}
 - {type: alternative-to, target: temporal}
+uses: [background, scheduled, workflows, own-service]
 verified: 2026-11-14
-sources: ['https://trigger.dev', 'https://github.com/triggerdotdev/trigger.dev']
+sources: ['https://trigger.dev', 'https://github.com/triggerdotdev/trigger.dev', 'https://trigger.dev/docs/tasks/scheduled', 'https://trigger.dev/docs/introduction']

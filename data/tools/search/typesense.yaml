@@ -21,5 +21,7 @@ edges:
 - {type: alternative-to, target: opensearch}
 - {type: alternative-to, target: tantivy}
 - {type: alternative-to, target: vespa}
+uses: [app-search, by-meaning, site-search]
+scale: single
 verified: '2026-11-14'
-sources: ['https://typesense.org', 'https://github.com/typesense/typesense', 'https://github.com/typesense', 'https://cloud.typesense.org/pricing']
+sources: ['https://typesense.org', 'https://github.com/typesense/typesense', 'https://github.com/typesense', 'https://cloud.typesense.org/pricing', 'https://typesense.org/docs/guide/high-availability.html', 'https://typesense.org/docs/guide/docsearch.html', 'https://typesense.org/docs/29.0/api/vector-search.html']

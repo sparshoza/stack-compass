@@ -16,5 +16,7 @@ avoid_when: [Plain key-value caching]
 edges:
 - {type: pairs-with, target: centrifugo}
 - {type: pairs-with, target: nestjs}
+uses: [messaging]
+scale: both
 verified: 2026-11-14
-sources: ['https://nats.io', 'https://github.com/nats-io/nats-server']
+sources: ['https://nats.io', 'https://github.com/nats-io/nats-server', 'https://docs.nats.io/nats-concepts/overview', 'https://docs.nats.io/running-a-nats-service/configuration/clustering']

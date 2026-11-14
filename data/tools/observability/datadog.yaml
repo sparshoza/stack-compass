@@ -37,6 +37,7 @@ edges:
   target: sentry
 - type: alternative-to
   target: prometheus
+uses: [errors, logs, metrics, tracing, uptime]
 verified: '2026-11-14'
 sources:
 - https://www.datadoghq.com

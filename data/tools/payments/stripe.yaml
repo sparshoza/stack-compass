@@ -25,5 +25,6 @@ edges:
 - {type: pairs-with, target: laravel}
 - {type: pairs-with, target: clerk}
 - {type: pairs-with, target: expo}
+uses: [one-time, subscriptions, usage-billing, in-person, payouts]
 verified: '2026-11-14'
 sources: ['https://stripe.com', 'https://docs.stripe.com/sdks', 'https://docs.stripe.com/checkout/quickstart?client=next']

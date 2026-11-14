@@ -32,6 +32,7 @@ edges:
   target: loki
 - type: pairs-with
   target: k6
+uses: [metrics]
 verified: '2026-11-14'
 sources:
 - https://grafana.com/oss/grafana/

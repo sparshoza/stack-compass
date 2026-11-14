@@ -20,5 +20,6 @@ edges:
 - {type: alternative-to, target: mailgun}
 - {type: alternative-to, target: postmark}
 - {type: alternative-to, target: resend}
+uses: [app-emails, inbound]
 verified: '2026-11-14'
 sources: ['https://docs.postalserver.io', 'https://github.com/postalserver/postal']

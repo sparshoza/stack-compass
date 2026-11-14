@@ -19,5 +19,6 @@ edges:
 - {type: alternative-to, target: postmark}
 - {type: alternative-to, target: resend}
 - {type: alternative-to, target: sendgrid}
+uses: [app-emails, newsletters]
 verified: '2026-11-14'
 sources: ['https://www.brevo.com', 'https://www.brevo.com/pricing/', 'https://developers.brevo.com/docs/send-a-transactional-email', 'https://developers.brevo.com/docs/api-clients']

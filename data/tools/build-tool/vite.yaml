@@ -47,6 +47,9 @@ edges:
   target: solidstart
 - {type: pairs-with, target: laravel}
 - {type: pairs-with, target: vitest}
+uses:
+- dev-server
+- bundle
 verified: '2026-11-14'
 sources:
 - https://vite.dev

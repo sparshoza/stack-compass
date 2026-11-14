@@ -29,7 +29,11 @@ edges:
   target: element-plus
 - type: built-on
   target: vue
+uses:
+- ready-components
+- data-screens
 verified: '2026-11-14'
 sources:
 - https://primevue.dev
 - https://github.com/primefaces/primevue
+- https://primevue.org/

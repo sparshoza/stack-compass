@@ -16,5 +16,6 @@ edges:
 - {type: built-on, target: sqlalchemy}
 - {type: pairs-with, target: fastapi}
 - {type: pairs-with, target: sqlite}
+uses: [objects]
 verified: 2026-11-14
 sources: ['https://sqlmodel.tiangolo.com', 'https://sqlmodel.tiangolo.com/']

@@ -37,6 +37,7 @@ edges:
 - {type: pairs-with, target: sentry}
 - {type: pairs-with, target: aspnet-core}
 - {type: pairs-with, target: hono}
+uses: [tracing, metrics, logs]
 verified: '2026-11-14'
 sources:
 - https://opentelemetry.io

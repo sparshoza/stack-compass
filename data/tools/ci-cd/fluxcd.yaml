@@ -24,6 +24,7 @@ edges:
 - type: alternative-to
   target: argo-cd
 - {type: pairs-with, target: github-actions}
+uses: [kubernetes, deploy]
 verified: '2026-11-14'
 sources:
 - https://fluxcd.io

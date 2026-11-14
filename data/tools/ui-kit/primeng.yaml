@@ -27,7 +27,11 @@ edges:
   target: angular-material
 - type: built-on
   target: angular
+uses:
+- ready-components
+- data-screens
 verified: '2026-11-14'
 sources:
 - https://primeng.org
 - https://github.com/primefaces/primeng
+- https://primeng.org/

@@ -24,8 +24,11 @@ avoid_when:
 edges:
 - type: pairs-with
   target: angular
+uses:
+- shared-state
 verified: '2026-11-14'
 sources:
 - https://ngrx.io
 - https://github.com/ngrx/platform
 - https://ngrx.io/
+- https://raw.githubusercontent.com/ngrx/platform/main/README.md

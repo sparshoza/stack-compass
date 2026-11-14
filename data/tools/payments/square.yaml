@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: braintree}
 - {type: alternative-to, target: paypal}
 - {type: alternative-to, target: stripe}
+uses: [one-time, subscriptions, in-person]
 verified: '2026-11-14'
 sources: ['https://developer.squareup.com', 'https://developer.squareup.com/docs/sdks', 'https://developer.squareup.com/docs/payments-pricing', 'https://squareup.com/us/en/payments/our-fees']

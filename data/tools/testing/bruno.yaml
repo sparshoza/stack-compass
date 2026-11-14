@@ -25,8 +25,11 @@ avoid_when:
 edges:
 - type: alternative-to
   target: postman
+uses:
+- api
 verified: '2026-11-14'
 sources:
 - https://www.usebruno.com
 - https://github.com/usebruno/bruno
 - https://www.usebruno.com/pricing
+- https://docs.usebruno.com/

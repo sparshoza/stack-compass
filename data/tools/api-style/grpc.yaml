@@ -15,5 +15,6 @@ good_for: [Service-to-service calls, Polyglot microservices]
 avoid_when: [Public APIs called directly from browsers]
 edges:
 - {type: alternative-to, target: connectrpc}
+uses: [service-calls]
 verified: 2026-11-14
 sources: ['https://grpc.io', 'https://grpc.io/docs/languages/', 'https://github.com/grpc/grpc']

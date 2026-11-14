@@ -19,5 +19,6 @@ edges:
 - {type: alternative-to, target: backblaze-b2}
 - {type: alternative-to, target: cloudflare-r2}
 - {type: alternative-to, target: google-cloud-storage}
+uses: [user-uploads, backups]
 verified: '2026-11-14'
-sources: ['https://wasabi.com']
+sources: ['https://wasabi.com', 'https://docs.wasabi.com/docs/getting-started']

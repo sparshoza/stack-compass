@@ -60,9 +60,12 @@ edges:
 - {type: pairs-with, target: vitest}
 - {type: pairs-with, target: clerk}
 - {type: pairs-with, target: supabase}
+uses:
+- interactive
 verified: '2026-11-14'
 sources:
 - https://vuejs.org
 - https://github.com/vuejs/core
 - https://vuejs.org/guide/typescript/overview
 - https://vuejs.org/guide/scaling-up/ssr.html
+- https://vuejs.org/guide/introduction.html

@@ -21,6 +21,7 @@ avoid_when:
 - You need APM or tracing
 edges:
 - {type: pairs-with, target: prometheus}
+uses: [uptime]
 verified: '2026-11-14'
 sources:
 - https://uptime.kuma.pet

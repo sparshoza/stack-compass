@@ -34,6 +34,9 @@ edges:
   target: vite
 - {type: pairs-with, target: vercel}
 - {type: pairs-with, target: netlify}
+uses:
+- docs
+- static-export
 verified: '2026-11-14'
 sources:
 - https://vitepress.dev

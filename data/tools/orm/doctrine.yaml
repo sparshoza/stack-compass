@@ -19,5 +19,6 @@ edges:
 - {type: pairs-with, target: mariadb}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
+uses: [objects]
 verified: 2026-11-14
 sources: ['https://www.doctrine-project.org', 'https://www.doctrine-project.org/projects/orm.html', 'https://github.com/doctrine/orm', 'https://www.doctrine-project.org/projects/dbal.html']

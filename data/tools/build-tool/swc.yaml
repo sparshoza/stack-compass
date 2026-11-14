@@ -26,7 +26,10 @@ edges:
 - type: alternative-to
   target: babel
 - {type: pairs-with, target: nestjs}
+uses:
+- compile
 verified: '2026-11-14'
 sources:
 - https://swc.rs
 - https://github.com/swc-project/swc
+- https://swc.rs/docs/getting-started

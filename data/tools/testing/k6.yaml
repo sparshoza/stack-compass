@@ -24,6 +24,8 @@ avoid_when:
 edges:
 - type: pairs-with
   target: grafana
+uses:
+- load
 verified: '2026-11-14'
 sources:
 - https://k6.io

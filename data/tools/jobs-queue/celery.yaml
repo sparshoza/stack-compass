@@ -20,5 +20,6 @@ edges:
 - {type: pairs-with, target: fastapi}
 - {type: pairs-with, target: flask}
 - {type: pairs-with, target: pytest}
+uses: [background, scheduled, redis, own-service]
 verified: 2026-11-14
-sources: ['https://docs.celeryq.dev', 'https://github.com/celery/celery', 'https://docs.celeryq.dev/en/stable/userguide/testing.html']
+sources: ['https://docs.celeryq.dev', 'https://github.com/celery/celery', 'https://docs.celeryq.dev/en/stable/userguide/testing.html', 'https://docs.celeryq.dev/en/stable/getting-started/introduction.html', 'https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html']

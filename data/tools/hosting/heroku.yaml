@@ -38,6 +38,7 @@ edges:
 - {type: pairs-with, target: spring-boot}
 - {type: pairs-with, target: aspnet-core}
 - {type: pairs-with, target: vapor}
+uses: [backends, containers, databases]
 verified: '2026-11-14'
 sources:
 - https://www.heroku.com

@@ -16,5 +16,7 @@ edges:
 - {type: pairs-with, target: memcached}
 - {type: pairs-with, target: redis}
 - {type: pairs-with, target: valkey}
+uses: [speed-up, messaging]
+scale: both
 verified: 2026-11-14
-sources: ['https://aws.amazon.com/elasticache', 'https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html']
+sources: ['https://aws.amazon.com/elasticache', 'https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html', 'https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Replication.Redis-RedisCluster.html']

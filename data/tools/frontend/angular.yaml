@@ -47,9 +47,13 @@ edges:
   target: nativescript
 - {type: pairs-with, target: netlify}
 - {type: pairs-with, target: sentry}
+uses:
+- interactive
+- large-teams
 verified: '2026-11-14'
 sources:
 - https://angular.dev
 - https://github.com/angular/angular
 - https://angular.dev/guide/ssr
 - https://angular.dev/tools/cli/deployment
+- https://angular.dev/overview

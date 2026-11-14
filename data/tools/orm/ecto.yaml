@@ -19,5 +19,6 @@ edges:
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
 - {type: pairs-with, target: exunit}
+uses: [framework-built-in]
 verified: 2026-11-14
-sources: ['https://ecto.hexdocs.pm/', 'https://phoenix.hexdocs.pm/ecto.html', 'https://github.com/elixir-ecto/ecto', 'https://hexdocs.pm/ecto/testing-with-ecto.html']
+sources: ['https://ecto.hexdocs.pm/', 'https://phoenix.hexdocs.pm/ecto.html', 'https://github.com/elixir-ecto/ecto', 'https://hexdocs.pm/ecto/testing-with-ecto.html', 'https://hexdocs.pm/ecto/Ecto.html']

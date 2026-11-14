@@ -22,5 +22,6 @@ edges:
 - {type: pairs-with, target: mongodb}
 - {type: pairs-with, target: hono}
 - {type: pairs-with, target: typeorm}
+uses: [login, social]
 verified: '2026-11-14'
 sources: ['https://authjs.dev', 'https://github.com/nextauthjs/next-auth', 'https://authjs.dev/getting-started/installation', 'https://authjs.dev/getting-started/database']

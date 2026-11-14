@@ -16,5 +16,6 @@ edges:
 - {type: alternative-to, target: chargebee}
 - {type: alternative-to, target: lago}
 - {type: pairs-with, target: stripe}
+uses: [subscriptions, usage-billing]
 verified: '2026-11-14'
 sources: ['https://killbill.io', 'https://github.com/killbill/killbill', 'https://github.com/killbill']

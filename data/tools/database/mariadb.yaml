@@ -27,5 +27,7 @@ edges:
 - {type: pairs-with, target: doctrine}
 - {type: pairs-with, target: django-orm}
 - {type: pairs-with, target: eloquent}
+uses: [app-data, text-search, vectors]
+scale: single
 verified: 2026-11-14
-sources: ['https://mariadb.org', 'https://github.com/MariaDB/server', 'https://mariadb.com/docs/server/reference/sql-structure/vectors/vector-overview']
+sources: ['https://mariadb.org', 'https://github.com/MariaDB/server', 'https://mariadb.com/docs/server/reference/sql-structure/vectors/vector-overview', 'https://mariadb.com/kb/en/full-text-index-overview/', 'https://mariadb.com/kb/en/vector-overview/']

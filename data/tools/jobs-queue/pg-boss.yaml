@@ -17,5 +17,6 @@ avoid_when: [Very high job throughput]
 edges:
 - {type: alternative-to, target: bullmq}
 - {type: pairs-with, target: postgresql}
+uses: [background, scheduled, my-database]
 verified: 2026-11-14
 sources: ['https://github.com/timgit/pg-boss']

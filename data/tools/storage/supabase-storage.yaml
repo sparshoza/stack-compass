@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: firebase-storage}
 - {type: alternative-to, target: vercel-blob}
 - {type: pairs-with, target: uppy}
+uses: [user-uploads, site-files]
 verified: '2026-11-14'
 sources: ['https://supabase.com/docs/guides/storage', 'https://github.com/supabase/storage']

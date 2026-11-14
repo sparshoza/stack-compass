@@ -46,6 +46,9 @@ edges:
 - {type: pairs-with, target: better-auth}
 - {type: pairs-with, target: resend}
 - {type: pairs-with, target: prismic}
+uses:
+- web-apps
+- static-export
 verified: '2026-11-14'
 sources:
 - https://nuxt.com
@@ -56,3 +59,4 @@ sources:
 - https://nuxt.com/deploy/vercel
 - https://nuxt.com/deploy/netlify
 - https://nuxt.com/docs/getting-started/testing
+- https://nuxt.com/docs/getting-started/prerendering

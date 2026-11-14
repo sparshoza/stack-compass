@@ -27,6 +27,8 @@ edges:
   target: react
 - type: pairs-with
   target: shadcn-ui
+uses:
+- own-look
 verified: '2026-11-14'
 sources:
 - https://www.radix-ui.com

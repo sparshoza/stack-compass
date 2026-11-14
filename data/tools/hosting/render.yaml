@@ -46,6 +46,7 @@ edges:
 - {type: pairs-with, target: express}
 - {type: pairs-with, target: flask}
 - {type: pairs-with, target: phoenix}
+uses: [static-sites, backends, containers, databases]
 verified: '2026-11-14'
 sources:
 - https://render.com

@@ -34,5 +34,6 @@ edges:
 - {type: pairs-with, target: mongodb}
 - {type: pairs-with, target: neon}
 - {type: pairs-with, target: turso}
+uses: [typed]
 verified: 2026-11-14
-sources: ['https://www.prisma.io', 'https://github.com/prisma/prisma', 'https://www.prisma.io/docs/guides/nextjs', 'https://www.prisma.io/docs/orm/overview/databases', 'https://www.prisma.io/docs/guides/astro', 'https://www.prisma.io/docs/guides/nestjs', 'https://www.prisma.io/docs/guides/sveltekit', 'https://www.prisma.io/docs/guides/nuxt', 'https://www.prisma.io/docs/guides/testing/unit-testing', 'https://www.prisma.io/docs/guides/clerk-nextjs', 'https://www.prisma.io/docs/guides/hono']
+sources: ['https://www.prisma.io', 'https://github.com/prisma/prisma', 'https://www.prisma.io/docs/guides/nextjs', 'https://www.prisma.io/docs/orm/overview/databases', 'https://www.prisma.io/docs/guides/astro', 'https://www.prisma.io/docs/guides/nestjs', 'https://www.prisma.io/docs/guides/sveltekit', 'https://www.prisma.io/docs/guides/nuxt', 'https://www.prisma.io/docs/guides/testing/unit-testing', 'https://www.prisma.io/docs/guides/clerk-nextjs', 'https://www.prisma.io/docs/guides/hono', 'https://www.prisma.io/orm']

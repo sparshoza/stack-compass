@@ -30,6 +30,7 @@ edges:
   target: loki
 - type: built-on
   target: opentelemetry
+uses: [logs, metrics, tracing]
 verified: '2026-11-14'
 sources:
 - https://signoz.io

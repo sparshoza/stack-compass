@@ -38,8 +38,13 @@ edges:
 - type: pairs-with
   target: angular
 - {type: pairs-with, target: sentry}
+uses:
+- ios-android
+- web-skills
+- web-too
 verified: '2026-11-14'
 sources:
 - https://capacitorjs.com
 - https://github.com/ionic-team/capacitor
 - https://capacitorjs.com/docs
+- https://capacitorjs.com/docs/web

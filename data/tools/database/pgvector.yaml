@@ -18,5 +18,7 @@ edges:
 - {type: built-on, target: postgresql}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: supabase}
+uses: [vectors]
+scale: single
 verified: 2026-11-14
 sources: ['https://github.com/pgvector/pgvector', 'https://raw.githubusercontent.com/pgvector/pgvector/master/LICENSE']

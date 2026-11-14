@@ -35,6 +35,7 @@ edges:
 - {type: pairs-with, target: laravel}
 - {type: pairs-with, target: phoenix}
 - {type: pairs-with, target: vapor}
+uses: [backends, containers, databases, near-users]
 verified: '2026-11-14'
 sources:
 - https://fly.io

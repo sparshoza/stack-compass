@@ -31,8 +31,10 @@ avoid_when:
 edges:
 - type: alternative-to
   target: circleci
+uses: [test-build, deploy]
 verified: '2026-11-14'
 sources:
 - https://www.travis-ci.com
 - https://www.travis-ci.com/pricing/
 - https://docs.travis-ci.com/user/languages/
+- https://docs.travis-ci.com/user/for-beginners/

@@ -21,5 +21,7 @@ edges:
 - {type: alternative-to, target: tantivy}
 - {type: alternative-to, target: typesense}
 - {type: alternative-to, target: vespa}
+uses: [app-search, logs, by-meaning]
+scale: both
 verified: '2026-11-14'
-sources: ['https://manticoresearch.com', 'https://github.com/manticoresoftware/manticoresearch']
+sources: ['https://manticoresearch.com', 'https://github.com/manticoresoftware/manticoresearch', 'https://manticoresearch.com/', 'https://manual.manticoresearch.com/Creating_a_cluster/Creating_a_cluster']

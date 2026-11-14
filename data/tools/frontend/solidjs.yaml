@@ -35,7 +35,11 @@ edges:
   target: tanstack-query
 - {type: pairs-with, target: sentry}
 - {type: pairs-with, target: vitest}
+uses:
+- interactive
+- small-fast
 verified: '2026-11-14'
 sources:
 - https://www.solidjs.com
 - https://github.com/solidjs/solid
+- https://raw.githubusercontent.com/solidjs/solid/main/README.md

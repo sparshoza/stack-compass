@@ -75,6 +75,8 @@ edges:
 - {type: pairs-with, target: cypress}
 - {type: pairs-with, target: better-auth}
 - {type: pairs-with, target: sanity}
+uses:
+- interactive
 verified: '2026-11-14'
 sources:
 - https://react.dev

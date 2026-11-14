@@ -17,5 +17,6 @@ avoid_when: [You do not run Redis]
 edges:
 - {type: alternative-to, target: solid-queue}
 - {type: pairs-with, target: rails}
+uses: [background, redis]
 verified: 2026-11-14
 sources: ['https://sidekiq.org', 'https://github.com/sidekiq/sidekiq/blob/main/LICENSE.txt', 'https://github.com/sidekiq/sidekiq/wiki/Getting-Started', 'https://github.com/sidekiq/sidekiq', 'https://github.com/sidekiq/sidekiq/wiki/Scheduled-Jobs']

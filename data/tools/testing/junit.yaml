@@ -23,6 +23,8 @@ edges:
 - {type: pairs-with, target: spring-boot}
 - {type: pairs-with, target: playwright}
 - {type: pairs-with, target: ktor}
+uses:
+- unit
 verified: '2026-11-14'
 sources:
 - https://junit.org/junit5/

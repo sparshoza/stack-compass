@@ -28,8 +28,11 @@ edges:
   target: vuex
 - type: pairs-with
   target: vue
+uses:
+- shared-state
 verified: '2026-11-14'
 sources:
 - https://pinia.vuejs.org
 - https://github.com/vuejs/pinia
 - https://pinia.vuejs.org/introduction.html
+- https://raw.githubusercontent.com/vuejs/pinia/v3/README.md

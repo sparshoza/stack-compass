@@ -34,9 +34,13 @@ edges:
   target: ant-design
 - type: built-on
   target: react
+uses:
+- ready-components
+- data-screens
 verified: '2026-11-14'
 sources:
 - https://mui.com/material-ui/
 - https://github.com/mui/material-ui
 - https://mui.com/pricing/
 - https://mui.com/material-ui/guides/typescript/
+- https://mui.com/x/react-data-grid/

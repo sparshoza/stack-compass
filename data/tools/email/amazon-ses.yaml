@@ -21,5 +21,6 @@ edges:
 - {type: alternative-to, target: resend}
 - {type: alternative-to, target: sendgrid}
 - {type: pairs-with, target: nodemailer}
+uses: [app-emails, inbound]
 verified: '2026-11-14'
 sources: ['https://aws.amazon.com/ses/', 'https://aws.amazon.com/ses/pricing/', 'https://github.com/aws/aws-sdk-go-v2']

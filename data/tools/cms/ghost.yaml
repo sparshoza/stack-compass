@@ -15,5 +15,6 @@ good_for: [Publications with newsletters and memberships]
 avoid_when: [You need custom content models for an app]
 edges:
 - {type: alternative-to, target: wordpress}
+uses: [blog]
 verified: '2026-11-14'
 sources: ['https://ghost.org', 'https://github.com/TryGhost/Ghost', 'https://ghost.org/docs/content-api/']

@@ -30,8 +30,12 @@ edges:
   target: material-ui
 - type: built-on
   target: react
+uses:
+- ready-components
+- data-screens
 verified: '2026-11-14'
 sources:
 - https://ant.design
 - https://github.com/ant-design/ant-design
 - https://ant.design/docs/react/introduce
+- https://ant.design/components/overview

@@ -21,5 +21,7 @@ edges:
 - {type: alternative-to, target: tantivy}
 - {type: alternative-to, target: typesense}
 - {type: alternative-to, target: vespa}
+uses: [app-search, logs, by-meaning]
+scale: both
 verified: '2026-11-14'
-sources: ['https://opensearch.org', 'https://opensearch.org/docs/latest/clients/']
+sources: ['https://opensearch.org', 'https://opensearch.org/docs/latest/clients/', 'https://docs.opensearch.org/latest/about/', 'https://docs.opensearch.org/latest/vector-search/', 'https://opensearch.org/platform/observability/']

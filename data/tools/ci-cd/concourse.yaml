@@ -23,6 +23,7 @@ edges:
   target: woodpecker-ci
 - type: alternative-to
   target: jenkins
+uses: [test-build]
 verified: '2026-11-14'
 sources:
 - https://concourse-ci.org

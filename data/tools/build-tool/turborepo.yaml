@@ -25,8 +25,11 @@ avoid_when:
 edges:
 - type: alternative-to
   target: nx
+uses:
+- monorepo
 verified: '2026-11-14'
 sources:
 - https://turborepo.com
 - https://github.com/vercel/turborepo
 - https://turborepo.com/docs/core-concepts/remote-caching
+- https://turborepo.dev/docs

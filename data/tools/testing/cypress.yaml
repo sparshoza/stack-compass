@@ -35,6 +35,9 @@ edges:
 - {type: pairs-with, target: nextjs}
 - {type: pairs-with, target: astro}
 - {type: pairs-with, target: react}
+uses:
+- browser
+- components
 verified: '2026-11-14'
 sources:
 - https://www.cypress.io

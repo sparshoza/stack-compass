@@ -29,5 +29,6 @@ edges:
 - {type: pairs-with, target: nestjs}
 - {type: pairs-with, target: better-auth}
 - {type: pairs-with, target: payload}
+uses: [close-to-sql, typed]
 verified: 2026-11-14
-sources: ['https://orm.drizzle.team', 'https://github.com/drizzle-team/drizzle-orm', 'https://orm.drizzle.team/docs/tutorials/drizzle-nextjs-neon']
+sources: ['https://orm.drizzle.team', 'https://github.com/drizzle-team/drizzle-orm', 'https://orm.drizzle.team/docs/tutorials/drizzle-nextjs-neon', 'https://orm.drizzle.team/docs/overview']

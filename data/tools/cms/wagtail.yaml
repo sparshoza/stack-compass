@@ -15,5 +15,6 @@ avoid_when: [The backend is not Python]
 edges:
 - {type: alternative-to, target: decap-cms}
 - {type: alternative-to, target: tinacms}
+uses: [pages, many-channels]
 verified: '2026-11-14'
 sources: ['https://wagtail.org', 'https://github.com/wagtail/wagtail']

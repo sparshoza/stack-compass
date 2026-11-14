@@ -19,5 +19,6 @@ edges:
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
 - {type: pairs-with, target: exunit}
+uses: [background, scheduled, my-database]
 verified: 2026-11-14
-sources: ['https://oban.pro', 'https://github.com/oban-bg/oban', 'https://hexdocs.pm/oban/testing.html']
+sources: ['https://oban.pro', 'https://github.com/oban-bg/oban', 'https://hexdocs.pm/oban/testing.html', 'https://hexdocs.pm/oban/Oban.html']

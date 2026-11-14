@@ -26,7 +26,10 @@ edges:
   target: tanstack-query
 - type: pairs-with
   target: react
+uses:
+- server-data
 verified: '2026-11-14'
 sources:
 - https://swr.vercel.app
 - https://github.com/vercel/swr
+- https://swr.vercel.app/

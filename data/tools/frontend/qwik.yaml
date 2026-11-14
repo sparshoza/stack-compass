@@ -28,6 +28,9 @@ edges:
 - type: alternative-to
   target: react
 - {type: pairs-with, target: vitest}
+uses:
+- interactive
+- small-fast
 verified: '2026-11-14'
 sources:
 - https://qwik.dev

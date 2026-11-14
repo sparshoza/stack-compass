@@ -18,5 +18,6 @@ edges:
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: spring-boot}
+uses: [objects]
 verified: 2026-11-14
-sources: ['https://hibernate.org/orm', 'https://github.com/hibernate/hibernate-orm']
+sources: ['https://hibernate.org/orm', 'https://github.com/hibernate/hibernate-orm', 'https://hibernate.org/orm/']

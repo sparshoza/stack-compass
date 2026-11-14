@@ -17,5 +17,7 @@ edges:
 - {type: alternative-to, target: flexsearch}
 - {type: alternative-to, target: fusejs}
 - {type: alternative-to, target: minisearch}
+uses: [site-search, in-browser]
+scale: single
 verified: '2026-11-14'
-sources: ['https://pagefind.app', 'https://github.com/CloudCannon/pagefind']
+sources: ['https://pagefind.app', 'https://github.com/CloudCannon/pagefind', 'https://pagefind.app/']

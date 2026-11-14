@@ -28,6 +28,7 @@ edges:
 - type: alternative-to
   target: flyio
 - {type: pairs-with, target: gin}
+uses: [backends, containers, databases]
 verified: '2026-11-14'
 sources:
 - https://railway.com

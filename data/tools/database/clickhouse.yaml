@@ -16,5 +16,7 @@ avoid_when: [Row-level transactional workloads]
 edges:
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: gorm}
+uses: [analytics, time-series]
+scale: both
 verified: 2026-11-14
-sources: ['https://clickhouse.com', 'https://github.com/ClickHouse/ClickHouse', 'https://clickhouse.com/docs/engines/table-engines/mergetree-family/annindexes']
+sources: ['https://clickhouse.com', 'https://github.com/ClickHouse/ClickHouse', 'https://clickhouse.com/docs/engines/table-engines/mergetree-family/annindexes', 'https://clickhouse.com/docs/en/intro', 'https://clickhouse.com/docs/en/architecture/horizontal-scaling']

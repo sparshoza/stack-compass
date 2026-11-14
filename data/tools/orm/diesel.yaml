@@ -19,5 +19,6 @@ edges:
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
+uses: [typed]
 verified: 2026-11-14
-sources: ['https://diesel.rs', 'https://github.com/diesel-rs/diesel']
+sources: ['https://diesel.rs', 'https://github.com/diesel-rs/diesel', 'https://diesel.rs/']

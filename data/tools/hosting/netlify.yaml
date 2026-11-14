@@ -44,6 +44,7 @@ edges:
 - {type: pairs-with, target: docusaurus}
 - {type: pairs-with, target: angular}
 - {type: pairs-with, target: decap-cms}
+uses: [static-sites, web-apps, near-users]
 verified: '2026-11-14'
 sources:
 - https://www.netlify.com

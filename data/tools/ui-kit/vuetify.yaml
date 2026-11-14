@@ -27,7 +27,11 @@ edges:
   target: element-plus
 - type: built-on
   target: vue
+uses:
+- ready-components
+- data-screens
 verified: '2026-11-14'
 sources:
 - https://vuetifyjs.com
 - https://github.com/vuetifyjs/vuetify
+- https://vuetifyjs.com/en/components/data-tables/basics/

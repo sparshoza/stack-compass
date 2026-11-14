@@ -23,7 +23,10 @@ avoid_when:
 edges:
 - type: alternative-to
   target: dotnet-maui
+uses:
+- ios-android
 verified: '2026-11-14'
 sources:
 - https://dotnet.microsoft.com/apps/xamarin
 - https://github.com/xamarin/xamarin-android
+- https://dotnet.microsoft.com/en-us/apps/xamarin

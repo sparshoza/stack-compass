@@ -26,6 +26,7 @@ edges:
   target: kamal
 - type: alternative-to
   target: heroku
+uses: [backends, containers]
 verified: '2026-11-14'
 sources:
 - https://dokku.com

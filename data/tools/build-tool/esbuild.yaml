@@ -26,6 +26,9 @@ edges:
   target: swc
 - type: alternative-to
   target: rolldown
+uses:
+- bundle
+- compile
 verified: '2026-11-14'
 sources:
 - https://esbuild.github.io

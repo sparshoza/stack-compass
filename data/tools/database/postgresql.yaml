@@ -53,5 +53,7 @@ edges:
 - {type: pairs-with, target: django-orm}
 - {type: pairs-with, target: fluent}
 - {type: pairs-with, target: eloquent}
+uses: [app-data, text-search]
+scale: single
 verified: 2026-11-14
-sources: ['https://www.postgresql.org', 'https://www.postgresql.org/about/license/', 'https://www.postgresql.org/docs/current/textsearch-intro.html']
+sources: ['https://www.postgresql.org', 'https://www.postgresql.org/about/license/', 'https://www.postgresql.org/docs/current/textsearch-intro.html', 'https://www.postgresql.org/docs/current/textsearch.html']

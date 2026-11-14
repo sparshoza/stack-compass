@@ -32,6 +32,7 @@ edges:
   target: bitbucket-pipelines
 - type: alternative-to
   target: github-actions
+uses: [test-build, deploy]
 verified: '2026-11-14'
 sources:
 - https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines

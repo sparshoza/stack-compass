@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: paypal}
 - {type: alternative-to, target: square}
 - {type: alternative-to, target: stripe}
+uses: [one-time, subscriptions]
 verified: '2026-11-14'
 sources: ['https://developer.paypal.com/braintree/docs', 'https://developer.paypal.com/braintree/docs/start/hello-server', 'https://www.paypal.com/us/enterprise/paypal-braintree-fees']

@@ -17,5 +17,6 @@ avoid_when: [You do not run Redis]
 edges:
 - {type: alternative-to, target: river}
 - {type: pairs-with, target: redis}
+uses: [background, scheduled, redis]
 verified: 2026-11-14
 sources: ['https://github.com/hibiken/asynq']

@@ -24,6 +24,8 @@ edges:
   target: pinia
 - type: pairs-with
   target: vue
+uses:
+- shared-state
 verified: '2026-11-14'
 sources:
 - https://vuex.vuejs.org

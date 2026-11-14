@@ -22,5 +22,6 @@ edges:
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: sqlite}
 - {type: pairs-with, target: mongodb}
+uses: [objects, framework-built-in]
 verified: 2026-11-14
 sources: ['https://github.com/vapor/fluent/blob/main/Package.swift', 'https://docs.vapor.codes/fluent/overview/', 'https://github.com/vapor/fluent']

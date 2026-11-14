@@ -19,5 +19,6 @@ edges:
 - {type: pairs-with, target: gqlgen}
 - {type: pairs-with, target: railway}
 - {type: pairs-with, target: testify}
+uses: [lightweight, apis]
 verified: 2026-11-14
 sources: ['https://gin-gonic.com', 'https://gqlgen.com/recipes/gin/', 'https://github.com/gin-gonic/gin', 'https://gin-gonic.com/en/docs/testing/']

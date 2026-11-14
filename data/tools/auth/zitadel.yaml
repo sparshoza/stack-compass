@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: keycloak}
 - {type: alternative-to, target: spring-security}
 - {type: alternative-to, target: supertokens}
+uses: [login, social, company-sso, second-factor, teams, ready-screens]
 verified: '2026-11-14'
 sources: ['https://zitadel.com', 'https://github.com/zitadel/zitadel', 'https://github.com/zitadel', 'https://zitadel.com/pricing']

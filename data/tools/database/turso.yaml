@@ -18,5 +18,7 @@ edges:
 - {type: pairs-with, target: drizzle}
 - {type: pairs-with, target: mikro-orm}
 - {type: pairs-with, target: prisma}
+uses: [app-data, vectors]
+scale: single
 verified: 2026-11-14
-sources: ['https://turso.tech', 'https://turso.tech/pricing', 'https://github.com/tursodatabase/libsql']
+sources: ['https://turso.tech', 'https://turso.tech/pricing', 'https://github.com/tursodatabase/libsql', 'https://docs.turso.tech/features/ai-and-embeddings']

@@ -22,7 +22,11 @@ avoid_when:
 edges:
 - type: alternative-to
   target: bruno
+uses:
+- api
+- load
 verified: '2026-11-14'
 sources:
 - https://www.postman.com
 - https://www.postman.com/pricing/
+- https://learning.postman.com/docs/collections/performance-testing/testing-api-performance/

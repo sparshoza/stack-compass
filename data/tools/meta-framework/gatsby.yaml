@@ -30,8 +30,12 @@ edges:
 - type: built-on
   target: react
 - {type: pairs-with, target: jest}
+uses:
+- content
+- static-export
 verified: '2026-11-14'
 sources:
 - https://www.gatsbyjs.com
 - https://github.com/gatsbyjs/gatsby
 - https://www.gatsbyjs.com/docs/unit-testing/
+- https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/

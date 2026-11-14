@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: workos}
 - {type: alternative-to, target: zitadel}
 - {type: pairs-with, target: nestjs}
+uses: [login, social, second-factor, teams, ready-screens]
 verified: '2026-11-14'
 sources: ['https://supertokens.com', 'https://supertokens.com/pricing', 'https://supertokens.com/docs/quickstart/introduction', 'https://github.com/supertokens/supertokens-core', 'https://supertokens.com/docs/quickstart/integrations/nestjs']

@@ -49,6 +49,9 @@ edges:
   target: nativescript
 - {type: pairs-with, target: sentry}
 - {type: pairs-with, target: vitest}
+uses:
+- interactive
+- small-fast
 verified: '2026-11-14'
 sources:
 - https://svelte.dev

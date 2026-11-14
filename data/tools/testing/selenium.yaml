@@ -32,6 +32,8 @@ edges:
   target: playwright
 - type: alternative-to
   target: cypress
+uses:
+- browser
 verified: '2026-11-14'
 sources:
 - https://www.selenium.dev

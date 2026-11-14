@@ -25,7 +25,10 @@ edges:
   target: rollup
 - type: alternative-to
   target: esbuild
+uses:
+- bundle
 verified: '2026-11-14'
 sources:
 - https://rolldown.rs
 - https://github.com/rolldown/rolldown
+- https://rolldown.rs/

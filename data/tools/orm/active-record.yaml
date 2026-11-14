@@ -19,5 +19,6 @@ edges:
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: rails}
 - {type: pairs-with, target: sqlite}
+uses: [objects, framework-built-in]
 verified: 2026-11-14
 sources: ['https://guides.rubyonrails.org/active_record_basics.html', 'https://rubyonrails.org']

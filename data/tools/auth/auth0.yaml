@@ -26,5 +26,6 @@ edges:
 - {type: alternative-to, target: zitadel}
 - {type: pairs-with, target: nextjs}
 - {type: pairs-with, target: express}
+uses: [login, social, company-sso, second-factor, teams, ready-screens]
 verified: '2026-11-14'
 sources: ['https://auth0.com', 'https://auth0.com/docs/libraries', 'https://auth0.com/docs/quickstart/webapp/nextjs', 'https://auth0.com/docs/quickstart/backend/nodejs']

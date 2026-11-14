@@ -15,5 +15,7 @@ avoid_when: [You need Android too, You are not on a Mac]
 edges:
 - {type: alternative-to, target: flutter}
 - {type: alternative-to, target: react-native}
+uses:
+- apple-only
 verified: 2026-11-14
 sources: ['https://developer.apple.com/swiftui/', 'https://apps.apple.com/us/app/xcode/id497799835', 'https://developer.apple.com/programs/']

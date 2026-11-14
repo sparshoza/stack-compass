@@ -14,5 +14,7 @@ good_for: [Serverless and edge apps]
 avoid_when: [Constant high-volume traffic where per-request pricing hurts]
 edges:
 - {type: alternative-to, target: redis}
+uses: [speed-up, sessions, counters]
+scale: single
 verified: 2026-11-14
-sources: ['https://upstash.com/docs/redis/overall/getstarted', 'https://upstash.com/docs/redis/features/restapi']
+sources: ['https://upstash.com/docs/redis/overall/getstarted', 'https://upstash.com/docs/redis/features/restapi', 'https://upstash.com/docs/redis/sdks/ratelimit-ts/overview', 'https://upstash.com/docs/redis/tutorials/python_session', 'https://upstash.com/docs/redis/features/globaldatabase']

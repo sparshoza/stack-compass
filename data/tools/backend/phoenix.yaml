@@ -20,5 +20,6 @@ edges:
 - {type: pairs-with, target: render}
 - {type: pairs-with, target: flyio}
 - {type: pairs-with, target: exunit}
+uses: [live]
 verified: 2026-11-14
-sources: ['https://www.phoenixframework.org', 'https://phoenix.hexdocs.pm/ecto.html', 'https://github.com/phoenixframework/phoenix', 'https://hexdocs.pm/phoenix/asset_management.html', 'https://hexdocs.pm/phoenix/testing.html']
+sources: ['https://www.phoenixframework.org', 'https://phoenix.hexdocs.pm/ecto.html', 'https://github.com/phoenixframework/phoenix', 'https://hexdocs.pm/phoenix/asset_management.html', 'https://hexdocs.pm/phoenix/testing.html', 'https://www.phoenixframework.org/']

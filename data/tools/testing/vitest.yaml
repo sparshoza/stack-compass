@@ -38,6 +38,9 @@ edges:
 - {type: pairs-with, target: solidjs}
 - {type: pairs-with, target: qwik}
 - {type: pairs-with, target: preact}
+uses:
+- unit
+- components
 verified: '2026-11-14'
 sources:
 - https://vitest.dev

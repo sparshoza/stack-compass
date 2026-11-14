@@ -35,6 +35,8 @@ edges:
 - {type: pairs-with, target: sentry}
 - {type: pairs-with, target: cloudflare-pages}
 - {type: pairs-with, target: clerk}
+uses:
+- web-apps
 verified: '2026-11-14'
 sources:
 - https://reactrouter.com

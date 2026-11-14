@@ -29,7 +29,10 @@ edges:
   target: vue
 - type: pairs-with
   target: tailwindcss
+uses:
+- own-look
 verified: '2026-11-14'
 sources:
 - https://headlessui.com
 - https://github.com/tailwindlabs/headlessui
+- https://headlessui.com/

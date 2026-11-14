@@ -28,6 +28,9 @@ edges:
   target: rspack
 - type: pairs-with
   target: nextjs
+uses:
+- dev-server
+- bundle
 verified: '2026-11-14'
 sources:
 - https://nextjs.org/docs/app/api-reference/turbopack

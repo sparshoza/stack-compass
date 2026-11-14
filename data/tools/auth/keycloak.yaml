@@ -19,5 +19,6 @@ edges:
 - {type: alternative-to, target: supertokens}
 - {type: alternative-to, target: zitadel}
 - {type: pairs-with, target: mysql}
+uses: [login, social, company-sso, second-factor, teams, ready-screens]
 verified: '2026-11-14'
-sources: ['https://www.keycloak.org', 'https://github.com/keycloak/keycloak', 'https://www.keycloak.org/securing-apps/overview', 'https://www.keycloak.org/server/db']
+sources: ['https://www.keycloak.org', 'https://github.com/keycloak/keycloak', 'https://www.keycloak.org/securing-apps/overview', 'https://www.keycloak.org/server/db', 'https://www.keycloak.org/docs/latest/server_admin/index.html', 'https://www.keycloak.org/docs/latest/server_admin/index.html']

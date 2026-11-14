@@ -19,5 +19,6 @@ edges:
 - {type: alternative-to, target: tinacms}
 - {type: alternative-to, target: wagtail}
 - {type: pairs-with, target: netlify}
+uses: [git-files]
 verified: '2026-11-14'
 sources: ['https://decapcms.org', 'https://github.com/decaporg/decap-cms', 'https://decapcms.org/docs/intro/']

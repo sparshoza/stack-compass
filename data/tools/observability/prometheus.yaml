@@ -31,6 +31,7 @@ edges:
   target: grafana
 - {type: pairs-with, target: ktor}
 - {type: pairs-with, target: uptime-kuma}
+uses: [metrics]
 verified: '2026-11-14'
 sources:
 - https://prometheus.io

@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: apollo-server}
 - {type: alternative-to, target: graphql-yoga}
 - {type: pairs-with, target: postgresql}
+uses: [from-database, flexible-queries]
 verified: 2026-11-14
-sources: ['https://postgraphile.org', 'https://github.com/graphile/crystal']
+sources: ['https://postgraphile.org', 'https://github.com/graphile/crystal', 'https://www.graphile.org/postgraphile/']

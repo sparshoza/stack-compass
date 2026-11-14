@@ -31,6 +31,7 @@ edges:
 - {type: pairs-with, target: react-router}
 - {type: pairs-with, target: gitlab-ci}
 - {type: pairs-with, target: tanstack-start}
+uses: [static-sites, web-apps, near-users]
 verified: '2026-11-14'
 sources:
 - https://pages.cloudflare.com

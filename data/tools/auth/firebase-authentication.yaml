@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: aws-cognito}
 - {type: pairs-with, target: astro}
 - {type: pairs-with, target: clerk}
+uses: [login, social, ready-screens]
 verified: '2026-11-14'
 sources: ['https://firebase.google.com/docs/auth', 'https://firebase.google.com/docs/admin/setup', 'https://firebase.google.com/pricing']

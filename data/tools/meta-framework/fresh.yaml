@@ -31,6 +31,8 @@ edges:
   target: astro
 - type: built-on
   target: preact
+uses:
+- web-apps
 verified: '2026-11-14'
 sources:
 - https://fresh.deno.dev

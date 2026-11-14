@@ -19,5 +19,6 @@ edges:
 - {type: pairs-with, target: heroku}
 - {type: pairs-with, target: flyio}
 - {type: pairs-with, target: swift-testing}
+uses: [apis, live]
 verified: 2026-11-14
-sources: ['https://vapor.codes', 'https://docs.vapor.codes/', 'https://github.com/vapor/vapor', 'https://docs.vapor.codes/advanced/testing/']
+sources: ['https://vapor.codes', 'https://docs.vapor.codes/', 'https://github.com/vapor/vapor', 'https://docs.vapor.codes/advanced/testing/', 'https://docs.vapor.codes/advanced/websockets/']

@@ -14,5 +14,6 @@ good_for: [Rust services, Low memory and high performance]
 avoid_when: [Rapid prototyping with a small team new to Rust]
 edges:
 - {type: pairs-with, target: sea-orm}
+uses: [lightweight, live]
 verified: 2026-11-14
-sources: ['https://docs.rs/axum']
+sources: ['https://docs.rs/axum', 'https://docs.rs/axum/latest/axum/']

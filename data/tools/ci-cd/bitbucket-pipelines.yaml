@@ -27,6 +27,7 @@ edges:
   target: azure-pipelines
 - type: alternative-to
   target: github-actions
+uses: [test-build, deploy, git-host]
 verified: '2026-11-14'
 sources:
 - https://bitbucket.org/product/features/pipelines

@@ -24,6 +24,7 @@ edges:
   target: coolify
 - type: alternative-to
   target: dokku
+uses: [backends, containers]
 verified: '2026-11-14'
 sources:
 - https://kamal-deploy.org

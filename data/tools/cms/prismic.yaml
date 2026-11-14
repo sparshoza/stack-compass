@@ -19,5 +19,6 @@ edges:
 - {type: alternative-to, target: storyblok}
 - {type: pairs-with, target: sveltekit}
 - {type: pairs-with, target: nuxt}
+uses: [pages, many-channels, languages]
 verified: '2026-11-14'
 sources: ['https://prismic.io', 'https://prismic.io/pricing', 'https://prismic.io/docs/sveltekit', 'https://prismic.io/docs/nuxt']

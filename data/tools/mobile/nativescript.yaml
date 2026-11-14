@@ -32,7 +32,10 @@ edges:
   target: vue
 - type: pairs-with
   target: svelte
+uses:
+- ios-android
 verified: '2026-11-14'
 sources:
 - https://nativescript.org
 - https://github.com/NativeScript/NativeScript
+- https://nativescript.org/

@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: uppy}
 - {type: pairs-with, target: nextjs}
 - {type: pairs-with, target: express}
+uses: [user-uploads, upload-widget]
 verified: '2026-11-14'
 sources: ['https://uploadthing.com', 'https://github.com/pingdotgg/uploadthing', 'https://docs.uploadthing.com/getting-started/appdir', 'https://docs.uploadthing.com/backend-adapters/express']

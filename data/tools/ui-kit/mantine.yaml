@@ -30,8 +30,12 @@ edges:
   target: shadcn-ui
 - type: built-on
   target: react
+uses:
+- ready-components
+- data-screens
 verified: '2026-11-14'
 sources:
 - https://mantine.dev
 - https://github.com/mantinedev/mantine
 - https://mantine.dev/guides/typescript/
+- https://mantine.dev/dates/getting-started/

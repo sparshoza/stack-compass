@@ -356,22 +356,13 @@ def _shared_match(facet: str, option: str, tool) -> bool:
     return option == "any" or "oss" in tool.pricing
 
 
-# Shared options whose matching tool only exists once part B tags the catalog.
-PENDING_PART_B = {("run", "database", "in-app")}  # sqlite gets runs_in_app in part B
-
-
 def _shared_cases():
     kb = load_kb(DATA)
     for shared in kb.vocab.shared_facets:
         for layer, options in shared.layers.items():
             for option in options:
                 case = (shared.id, layer, option)
-                marks = (
-                    [pytest.mark.skip(reason="part B sets runs_in_app on embedded databases")]
-                    if case in PENDING_PART_B
-                    else []
-                )
-                yield pytest.param(*case, marks=marks, id="-".join(case))
+                yield pytest.param(*case, id="-".join(case))
 
 
 @pytest.mark.parametrize(("facet", "layer", "option"), list(_shared_cases()))
@@ -380,7 +371,14 @@ def test_every_shown_shared_option_matches_a_tool(facet, layer, option):
     assert any(_shared_match(facet, option, t) for t in tools)
 
 
-@pytest.mark.skip(reason="part B tags `uses` and `scale`; the integrator removes this skip")
+# Tools on a layer with a scale group that deliberately leave `scale` unset.
+SCALE_UNSET = {
+    # Algolia is a hosted search API: its docs describe no single-node or sharded
+    # topology the user chooses, so neither scale option is a true claim.
+    "algolia",
+}
+
+
 def test_every_facet_option_matches_a_tool_and_every_tool_has_a_need():
     kb = load_kb(DATA)
     for layer, groups in kb.vocab.facets.items():
@@ -395,5 +393,5 @@ def test_every_facet_option_matches_a_tool_and_every_tool_has_a_need():
         need = {o.id for o in groups[0].options}
         for t in tools:
             assert need & set(t.uses), f"{t.id} has no need option"
-            if any(g.id == "scale" for g in groups):
+            if any(g.id == "scale" for g in groups) and t.id not in SCALE_UNSET:
                 assert t.scale is not None, f"{t.id} has no scale"

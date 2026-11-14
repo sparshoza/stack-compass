@@ -28,6 +28,8 @@ edges:
 - type: built-on
   target: angular
 - {type: pairs-with, target: vitest}
+uses:
+- web-apps
 verified: '2026-11-14'
 sources:
 - https://analogjs.org

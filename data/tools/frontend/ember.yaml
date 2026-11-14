@@ -28,8 +28,12 @@ edges:
   target: react
 - type: alternative-to
   target: vue
+uses:
+- interactive
+- large-teams
 verified: '2026-11-14'
 sources:
 - https://emberjs.com
 - https://github.com/emberjs/ember.js
 - https://guides.emberjs.com/release/typescript/
+- https://emberjs.com/

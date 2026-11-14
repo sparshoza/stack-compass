@@ -17,5 +17,6 @@ avoid_when: [You only need a simple JSON REST API]
 edges:
 - {type: alternative-to, target: grpc}
 - {type: alternative-to, target: trpc}
+uses: [service-calls]
 verified: 2026-11-14
-sources: ['https://connectrpc.com', 'https://github.com/connectrpc/connect-es']
+sources: ['https://connectrpc.com', 'https://github.com/connectrpc/connect-es', 'https://connectrpc.com/docs/introduction']

@@ -53,6 +53,7 @@ edges:
 - {type: pairs-with, target: tauri}
 - {type: pairs-with, target: fluxcd}
 - {type: pairs-with, target: pytest}
+uses: [test-build, deploy, git-host]
 verified: '2026-11-14'
 sources:
 - https://github.com/features/actions
@@ -61,3 +62,4 @@ sources:
 - https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing
 - https://docs.github.com/en/billing/managing-billing-for-your-products/about-billing-for-github-actions
 - https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python
+- https://docs.github.com/en/actions/get-started/understanding-github-actions

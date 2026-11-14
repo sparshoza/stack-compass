@@ -31,6 +31,10 @@ edges:
   target: vue
 - type: pairs-with
   target: svelte
+uses:
+- shared-state
+- tiny
 verified: '2026-11-14'
 sources:
 - https://github.com/nanostores/nanostores
+- https://raw.githubusercontent.com/nanostores/nanostores/main/README.md

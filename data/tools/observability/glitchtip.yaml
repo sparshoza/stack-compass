@@ -29,6 +29,7 @@ edges:
   target: bugsnag
 - type: alternative-to
   target: rollbar
+uses: [errors, uptime]
 verified: '2026-11-14'
 sources:
 - https://glitchtip.com

@@ -27,7 +27,10 @@ edges:
   target: react
 - type: pairs-with
   target: vue
+uses:
+- shared-state
 verified: '2026-11-14'
 sources:
 - https://effector.dev
 - https://github.com/effector/effector
+- https://raw.githubusercontent.com/effector/effector/master/README.md

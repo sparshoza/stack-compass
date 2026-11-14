@@ -30,6 +30,8 @@ edges:
   target: vue
 - type: pairs-with
   target: svelte
+uses:
+- flows
 verified: '2026-11-14'
 sources:
 - https://stately.ai/docs/xstate

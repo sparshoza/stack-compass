@@ -15,5 +15,6 @@ avoid_when: [You want a polished developer experience out of the box]
 edges:
 - {type: alternative-to, target: auth0}
 - {type: alternative-to, target: firebase-authentication}
+uses: [login, social, company-sso, second-factor, ready-screens]
 verified: '2026-11-14'
 sources: ['https://aws.amazon.com/cognito/', 'https://aws.amazon.com/cognito/pricing/', 'https://github.com/aws/aws-sdk-go-v2']

@@ -16,5 +16,6 @@ edges:
 - {type: alternative-to, target: auth0}
 - {type: alternative-to, target: keycloak}
 - {type: alternative-to, target: zitadel}
+uses: [login, social, company-sso, second-factor]
 verified: '2026-11-14'
 sources: ['https://goauthentik.io', 'https://github.com/goauthentik/authentik']

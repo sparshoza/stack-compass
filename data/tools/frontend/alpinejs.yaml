@@ -27,6 +27,9 @@ edges:
   target: stimulus
 - type: alternative-to
   target: jquery
+uses:
+- sprinkles
+- small-fast
 verified: '2026-11-14'
 sources:
 - https://alpinejs.dev

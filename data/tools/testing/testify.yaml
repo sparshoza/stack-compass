@@ -25,6 +25,9 @@ avoid_when:
 - Suites do not support parallel tests
 edges:
 - {type: pairs-with, target: gin}
+uses:
+- unit
 verified: '2026-11-14'
 sources:
 - https://github.com/stretchr/testify
+- https://raw.githubusercontent.com/stretchr/testify/master/README.md

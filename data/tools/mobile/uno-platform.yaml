@@ -24,8 +24,13 @@ avoid_when:
 edges:
 - type: alternative-to
   target: dotnet-maui
+uses:
+- ios-android
+- desktop
+- web-too
 verified: '2026-11-14'
 sources:
 - https://platform.uno
 - https://github.com/unoplatform/uno
 - https://platform.uno/pricing/
+- https://raw.githubusercontent.com/unoplatform/uno/master/README.md

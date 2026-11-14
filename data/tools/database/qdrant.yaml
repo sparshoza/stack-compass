@@ -15,5 +15,7 @@ good_for: [Dedicated vector search at scale]
 avoid_when: [A small app that can use pgvector]
 edges:
 - {type: alternative-to, target: pgvector}
+uses: [vectors]
+scale: both
 verified: 2026-11-14
-sources: ['https://qdrant.tech', 'https://github.com/qdrant/qdrant']
+sources: ['https://qdrant.tech', 'https://github.com/qdrant/qdrant', 'https://qdrant.tech/documentation/scaling/distributed_deployment/', 'https://qdrant.tech/documentation/overview/']

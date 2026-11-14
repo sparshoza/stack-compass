@@ -21,5 +21,7 @@ edges:
 - {type: alternative-to, target: opensearch}
 - {type: alternative-to, target: typesense}
 - {type: alternative-to, target: vespa}
+uses: [app-search]
+scale: single
 verified: '2026-11-14'
 sources: ['https://github.com/quickwit-oss/tantivy', 'https://github.com/quickwit-oss/tantivy-py']

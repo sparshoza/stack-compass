@@ -25,7 +25,10 @@ edges:
   target: primeng
 - type: built-on
   target: angular
+uses:
+- ready-components
 verified: '2026-11-14'
 sources:
 - https://material.angular.dev
 - https://github.com/angular/components
+- https://material.angular.dev/

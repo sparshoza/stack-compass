@@ -15,5 +15,6 @@ avoid_when: [A simple single-price checkout]
 edges:
 - {type: alternative-to, target: kill-bill}
 - {type: alternative-to, target: lago}
+uses: [subscriptions, usage-billing]
 verified: '2026-11-14'
 sources: ['https://www.chargebee.com', 'https://www.chargebee.com/pricing/']

@@ -15,5 +15,6 @@ avoid_when: [You need marketplaces or complex invoicing]
 edges:
 - {type: alternative-to, target: paddle}
 - {type: alternative-to, target: polar}
+uses: [one-time, subscriptions, tax-handled]
 verified: '2026-11-14'
 sources: ['https://www.lemonsqueezy.com', 'https://www.lemonsqueezy.com/pricing', 'https://github.com/lmsqueezy/lemonsqueezy.js']

@@ -41,6 +41,9 @@ edges:
 - {type: pairs-with, target: pytest}
 - {type: pairs-with, target: junit}
 - {type: pairs-with, target: xunit}
+uses:
+- browser
+- api
 verified: '2026-11-14'
 sources:
 - https://playwright.dev
@@ -51,3 +54,4 @@ sources:
 - https://playwright.dev/python/docs/test-runners
 - https://playwright.dev/java/docs/test-runners
 - https://playwright.dev/dotnet/docs/test-runners
+- https://playwright.dev/docs/api-testing

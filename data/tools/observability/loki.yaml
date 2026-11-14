@@ -26,6 +26,7 @@ edges:
   target: signoz
 - type: pairs-with
   target: grafana
+uses: [logs]
 verified: '2026-11-14'
 sources:
 - https://grafana.com/oss/loki/

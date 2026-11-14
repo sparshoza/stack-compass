@@ -20,5 +20,6 @@ edges:
 - {type: alternative-to, target: google-cloud-storage}
 - {type: alternative-to, target: seaweedfs}
 - {type: alternative-to, target: wasabi}
+uses: [user-uploads, site-files]
 verified: '2026-11-14'
 sources: ['https://developers.cloudflare.com/r2/', 'https://developers.cloudflare.com/r2/pricing/']

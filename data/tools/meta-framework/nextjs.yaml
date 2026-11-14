@@ -66,6 +66,9 @@ edges:
 - {type: pairs-with, target: workos}
 - {type: pairs-with, target: uploadthing}
 - {type: pairs-with, target: tanstack-query}
+uses:
+- web-apps
+- static-export
 verified: '2026-11-14'
 sources:
 - https://nextjs.org

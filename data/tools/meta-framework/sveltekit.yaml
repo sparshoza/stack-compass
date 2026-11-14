@@ -48,6 +48,9 @@ edges:
 - {type: pairs-with, target: resend}
 - {type: pairs-with, target: supabase-auth}
 - {type: pairs-with, target: prismic}
+uses:
+- web-apps
+- static-export
 verified: '2026-11-14'
 sources:
 - https://svelte.dev/docs/kit
@@ -59,3 +62,4 @@ sources:
 - https://svelte.dev/docs/cli/playwright
 - https://svelte.dev/docs/cli/vitest
 - https://svelte.dev/docs/cli/tailwind
+- https://svelte.dev/docs/kit/adapter-static

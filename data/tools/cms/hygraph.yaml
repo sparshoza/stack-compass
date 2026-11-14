@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: prismic}
 - {type: alternative-to, target: sanity}
 - {type: alternative-to, target: storyblok}
+uses: [many-channels, languages]
 verified: '2026-11-14'
 sources: ['https://hygraph.com', 'https://hygraph.com/pricing', 'https://hygraph.com/docs', 'https://github.com/hygraph/management-sdk']

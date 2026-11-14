@@ -33,5 +33,6 @@ edges:
 - {type: pairs-with, target: vue}
 - {type: pairs-with, target: firebase-authentication}
 - {type: pairs-with, target: supabase}
+uses: [login, social, second-factor, teams, ready-screens]
 verified: '2026-11-14'
 sources: ['https://clerk.com', 'https://clerk.com/docs/references/overview', 'https://github.com/clerk', 'https://clerk.com/docs/nextjs/getting-started/quickstart', 'https://clerk.com/docs/expressjs/getting-started/quickstart', 'https://clerk.com/docs/nuxt/getting-started/quickstart', 'https://clerk.com/docs/guides/development/integrations/databases/supabase', 'https://clerk.com/docs/billing/overview', 'https://clerk.com/docs/react/getting-started/quickstart', 'https://clerk.com/docs/expo/getting-started/quickstart', 'https://clerk.com/docs/references/fastify/overview', 'https://clerk.com/docs/react-router/getting-started/quickstart', 'https://clerk.com/docs/tanstack-react-start/getting-started/quickstart', 'https://clerk.com/docs/vue/getting-started/quickstart', 'https://clerk.com/docs/guides/development/integrations/databases/firebase']

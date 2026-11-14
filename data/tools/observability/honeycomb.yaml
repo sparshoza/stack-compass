@@ -31,6 +31,7 @@ edges:
   target: datadog
 - type: alternative-to
   target: new-relic
+uses: [tracing, logs, metrics]
 verified: '2026-11-14'
 sources:
 - https://www.honeycomb.io

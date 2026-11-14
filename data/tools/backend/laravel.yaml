@@ -32,5 +32,6 @@ edges:
 - {type: pairs-with, target: amazon-s3}
 - {type: pairs-with, target: vite}
 - {type: pairs-with, target: phpunit}
+uses: [all-in-one, live]
 verified: 2026-11-14
-sources: ['https://laravel.com', 'https://laravel.com/docs/queues', 'https://laravel.com/docs/scheduling', 'https://laravel.com/docs/mail', 'https://github.com/laravel/laravel', 'https://laravel.com/docs/master/database', 'https://laravel.com/docs/master/redis', 'https://laravel.com/docs/master/billing', 'https://laravel.com/docs/master/mail', 'https://laravel.com/docs/master/starter-kits', 'https://laravel.com/docs/master/cache', 'https://laravel.com/docs/master/scout', 'https://laravel.com/docs/master/filesystem', 'https://laravel.com/docs/master/vite', 'https://laravel.com/docs/master/testing']
+sources: ['https://laravel.com', 'https://laravel.com/docs/queues', 'https://laravel.com/docs/scheduling', 'https://laravel.com/docs/mail', 'https://github.com/laravel/laravel', 'https://laravel.com/docs/master/database', 'https://laravel.com/docs/master/redis', 'https://laravel.com/docs/master/billing', 'https://laravel.com/docs/master/mail', 'https://laravel.com/docs/master/starter-kits', 'https://laravel.com/docs/master/cache', 'https://laravel.com/docs/master/scout', 'https://laravel.com/docs/master/filesystem', 'https://laravel.com/docs/master/vite', 'https://laravel.com/docs/master/testing', 'https://laravel.com/docs/12.x']

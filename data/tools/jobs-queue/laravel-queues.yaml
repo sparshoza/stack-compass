@@ -17,5 +17,6 @@ avoid_when: [Projects not using Laravel]
 edges:
 - {type: pairs-with, target: laravel}
 - {type: pairs-with, target: redis}
+uses: [background, my-database, redis]
 verified: 2026-11-14
-sources: ['https://laravel.com/docs/queues', 'https://laravel.com/docs/scheduling', 'https://github.com/laravel/framework']
+sources: ['https://laravel.com/docs/queues', 'https://laravel.com/docs/scheduling', 'https://github.com/laravel/framework', 'https://laravel.com/docs/12.x/queues']

@@ -20,5 +20,6 @@ edges:
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: spring-boot}
+uses: [background, scheduled, my-database, redis]
 verified: 2026-11-14
-sources: ['https://www.jobrunr.io', 'https://github.com/jobrunr/jobrunr']
+sources: ['https://www.jobrunr.io', 'https://github.com/jobrunr/jobrunr', 'https://www.jobrunr.io/en/', 'https://www.jobrunr.io/en/documentation/configuration/']

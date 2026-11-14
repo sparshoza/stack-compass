@@ -16,5 +16,6 @@ avoid_when: [You need a long track record]
 edges:
 - {type: alternative-to, target: trpc}
 - {type: pairs-with, target: openapi}
+uses: [typed-calls, public-api]
 verified: 2026-11-14
-sources: ['https://orpc.dev/', 'https://github.com/unnoq/orpc']
+sources: ['https://orpc.dev/', 'https://github.com/unnoq/orpc', 'https://orpc.unnoq.com/']

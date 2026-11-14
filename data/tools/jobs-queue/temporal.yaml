@@ -16,5 +16,6 @@ good_for: ['Long-running, reliable workflows']
 avoid_when: [A simple fire-and-forget queue]
 edges:
 - {type: alternative-to, target: trigger-dev}
+uses: [workflows, scheduled, own-service]
 verified: 2026-11-14
-sources: ['https://temporal.io', 'https://docs.temporal.io/develop', 'https://github.com/temporalio/temporal', 'https://docs.temporal.io/schedule']
+sources: ['https://temporal.io', 'https://docs.temporal.io/develop', 'https://github.com/temporalio/temporal', 'https://docs.temporal.io/schedule', 'https://docs.temporal.io/workflows']

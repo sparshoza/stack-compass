@@ -41,7 +41,10 @@ edges:
 - {type: pairs-with, target: jest}
 - {type: pairs-with, target: supabase}
 - {type: alternative-to, target: swiftui}
+uses:
+- ios-android
 verified: '2026-11-14'
 sources:
 - https://reactnative.dev
 - https://github.com/facebook/react-native
+- https://reactnative.dev/

@@ -33,6 +33,9 @@ edges:
   target: react
 - {type: pairs-with, target: vercel}
 - {type: pairs-with, target: netlify}
+uses:
+- docs
+- static-export
 verified: '2026-11-14'
 sources:
 - https://docusaurus.io

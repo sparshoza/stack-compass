@@ -17,5 +17,7 @@ edges:
 - {type: alternative-to, target: flexsearch}
 - {type: alternative-to, target: minisearch}
 - {type: alternative-to, target: pagefind}
+uses: [in-browser]
+scale: single
 verified: '2026-11-14'
-sources: ['https://www.fusejs.io', 'https://github.com/krisk/Fuse']
+sources: ['https://www.fusejs.io', 'https://github.com/krisk/Fuse', 'https://www.fusejs.io/']

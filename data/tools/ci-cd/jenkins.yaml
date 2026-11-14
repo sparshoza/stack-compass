@@ -27,6 +27,7 @@ edges:
   target: concourse
 - type: alternative-to
   target: woodpecker-ci
+uses: [test-build]
 verified: '2026-11-14'
 sources:
 - https://www.jenkins.io

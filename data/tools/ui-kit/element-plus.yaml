@@ -28,7 +28,11 @@ edges:
   target: primevue
 - type: built-on
   target: vue
+uses:
+- ready-components
+- data-screens
 verified: '2026-11-14'
 sources:
 - https://element-plus.org
 - https://github.com/element-plus/element-plus
+- https://element-plus.org/en-US/component/overview.html

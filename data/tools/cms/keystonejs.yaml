@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: payload}
 - {type: alternative-to, target: strapi}
 - {type: alternative-to, target: tinacms}
+uses: [many-channels]
 verified: '2026-11-14'
 sources: ['https://keystonejs.com', 'https://github.com/keystonejs/keystone']

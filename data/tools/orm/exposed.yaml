@@ -17,5 +17,6 @@ avoid_when: [Your team uses JPA everywhere]
 edges:
 - {type: pairs-with, target: ktor}
 - {type: pairs-with, target: postgresql}
+uses: [close-to-sql, objects]
 verified: 2026-11-14
-sources: ['https://www.jetbrains.com/help/exposed', 'https://ktor.io/docs/server-integrate-database.html', 'https://github.com/JetBrains/Exposed']
+sources: ['https://www.jetbrains.com/help/exposed', 'https://ktor.io/docs/server-integrate-database.html', 'https://github.com/JetBrains/Exposed', 'https://www.jetbrains.com/help/exposed/about.html']

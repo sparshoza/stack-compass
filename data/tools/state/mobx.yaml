@@ -28,6 +28,8 @@ edges:
   target: valtio
 - type: pairs-with
   target: react
+uses:
+- shared-state
 verified: '2026-11-14'
 sources:
 - https://mobx.js.org

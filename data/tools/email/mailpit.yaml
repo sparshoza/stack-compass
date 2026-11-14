@@ -14,5 +14,6 @@ good_for: [Testing email locally without sending anything]
 avoid_when: [You need real delivery]
 edges:
 - {type: alternative-to, target: mailhog}
+uses: [dev-testing]
 verified: '2026-11-14'
 sources: ['https://mailpit.axllent.org', 'https://github.com/axllent/mailpit']

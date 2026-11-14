@@ -60,6 +60,9 @@ edges:
 - {type: pairs-with, target: resend}
 - {type: pairs-with, target: firebase-authentication}
 - {type: pairs-with, target: supabase-auth}
+uses:
+- content
+- static-export
 verified: '2026-11-14'
 sources:
 - https://astro.build
@@ -73,3 +76,4 @@ sources:
 - https://docs.astro.build/en/guides/authentication/
 - https://docs.astro.build/en/guides/cms/
 - https://docs.astro.build/en/guides/backend/firebase/
+- https://astro.build/

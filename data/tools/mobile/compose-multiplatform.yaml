@@ -25,6 +25,10 @@ edges:
   target: flutter
 - type: pairs-with
   target: kotlin-multiplatform
+uses:
+- ios-android
+- desktop
+- web-too
 verified: '2026-11-14'
 sources:
 - https://www.jetbrains.com/compose-multiplatform/

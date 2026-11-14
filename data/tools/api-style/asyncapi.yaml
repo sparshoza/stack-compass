@@ -15,5 +15,6 @@ good_for: [Documenting websocket and message APIs]
 avoid_when: [A plain request and response API]
 edges:
 - {type: pairs-with, target: openapi}
+uses: [events]
 verified: 2026-11-14
-sources: ['https://www.asyncapi.com', 'https://github.com/asyncapi/spec']
+sources: ['https://www.asyncapi.com', 'https://github.com/asyncapi/spec', 'https://www.asyncapi.com/en']

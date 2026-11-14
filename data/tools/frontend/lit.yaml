@@ -26,6 +26,9 @@ avoid_when:
 edges:
 - type: alternative-to
   target: svelte
+uses:
+- widgets
+- small-fast
 verified: '2026-11-14'
 sources:
 - https://lit.dev

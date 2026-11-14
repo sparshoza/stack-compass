@@ -29,6 +29,7 @@ edges:
   target: travis-ci
 - type: alternative-to
   target: buildkite
+uses: [test-build, deploy]
 verified: '2026-11-14'
 sources:
 - https://circleci.com

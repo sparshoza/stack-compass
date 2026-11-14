@@ -16,5 +16,6 @@ edges:
 - {type: alternative-to, target: supabase-storage}
 - {type: alternative-to, target: vercel-blob}
 - {type: built-on, target: google-cloud-storage}
+uses: [user-uploads]
 verified: '2026-11-14'
 sources: ['https://firebase.google.com/docs/storage', 'https://firebase.google.com/docs/storage/admin/start', 'https://firebase.google.com/pricing']

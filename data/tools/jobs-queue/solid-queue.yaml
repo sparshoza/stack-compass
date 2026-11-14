@@ -20,5 +20,6 @@ edges:
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: rails}
 - {type: pairs-with, target: sqlite}
+uses: [background, scheduled, my-database]
 verified: 2026-11-14
 sources: ['https://github.com/rails/solid_queue']

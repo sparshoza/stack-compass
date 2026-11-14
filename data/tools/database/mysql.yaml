@@ -46,5 +46,7 @@ edges:
 - {type: pairs-with, target: django-orm}
 - {type: pairs-with, target: fluent}
 - {type: pairs-with, target: eloquent}
+uses: [app-data, text-search]
+scale: single
 verified: 2026-11-14
-sources: ['https://www.mysql.com', 'https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html', 'https://dev.mysql.com/doc/refman/8.4/en/spatial-types.html', 'https://github.com/mysql/mysql-server']
+sources: ['https://www.mysql.com', 'https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html', 'https://dev.mysql.com/doc/refman/8.4/en/spatial-types.html', 'https://github.com/mysql/mysql-server', 'https://docs.oracle.com/cd/E17952_01/mysql-8.4-en/fulltext-search.html']

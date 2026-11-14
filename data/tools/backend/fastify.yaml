@@ -24,5 +24,6 @@ edges:
 - {type: pairs-with, target: mongodb}
 - {type: pairs-with, target: clerk}
 - {type: pairs-with, target: better-auth}
+uses: [apis, lightweight]
 verified: 2026-11-14
 sources: ['https://fastify.dev', 'https://github.com/fastify/fastify', 'https://fastify.dev/ecosystem/']

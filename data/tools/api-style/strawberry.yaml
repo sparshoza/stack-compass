@@ -17,5 +17,6 @@ edges:
 - {type: pairs-with, target: django}
 - {type: pairs-with, target: fastapi}
 - {type: pairs-with, target: flask}
+uses: [flexible-queries]
 verified: 2026-11-14
-sources: ['https://strawberry.rocks', 'https://github.com/strawberry-graphql/strawberry']
+sources: ['https://strawberry.rocks', 'https://github.com/strawberry-graphql/strawberry', 'https://strawberry.rocks/']

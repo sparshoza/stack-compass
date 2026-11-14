@@ -15,5 +15,6 @@ good_for: [Typed GraphQL in Go]
 avoid_when: [You prefer code-first schemas]
 edges:
 - {type: pairs-with, target: gin}
+uses: [flexible-queries]
 verified: 2026-11-14
 sources: ['https://gqlgen.com', 'https://gqlgen.com/recipes/gin/', 'https://github.com/99designs/gqlgen']

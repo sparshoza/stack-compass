@@ -15,5 +15,6 @@ avoid_when: [Plain one-off checkout is enough]
 edges:
 - {type: alternative-to, target: chargebee}
 - {type: alternative-to, target: kill-bill}
+uses: [subscriptions, usage-billing]
 verified: '2026-11-14'
 sources: ['https://www.getlago.com', 'https://github.com/getlago/lago', 'https://github.com/getlago', 'https://www.getlago.com/pricing']

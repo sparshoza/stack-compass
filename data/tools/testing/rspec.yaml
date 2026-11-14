@@ -20,8 +20,11 @@ avoid_when:
 - You need to test non-Ruby code
 edges:
 - {type: pairs-with, target: rails}
+uses:
+- unit
 verified: '2026-11-14'
 sources:
 - https://rspec.info
 - https://github.com/rspec/rspec
 - https://github.com/rspec/rspec-rails
+- https://rspec.info/

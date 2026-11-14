@@ -25,7 +25,9 @@ avoid_when:
 edges:
 - type: alternative-to
   target: jenkins
+uses: [test-build, deploy]
 verified: '2026-11-14'
 sources:
 - https://www.gocd.org
 - https://github.com/gocd/gocd
+- https://docs.gocd.org/current/

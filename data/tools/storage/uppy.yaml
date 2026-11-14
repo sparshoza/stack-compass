@@ -16,5 +16,6 @@ avoid_when: [You only need a plain file input]
 edges:
 - {type: alternative-to, target: uploadthing}
 - {type: pairs-with, target: supabase-storage}
+uses: [upload-widget]
 verified: '2026-11-14'
 sources: ['https://uppy.io', 'https://github.com/transloadit/uppy']

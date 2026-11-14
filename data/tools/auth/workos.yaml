@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: devise}
 - {type: alternative-to, target: supertokens}
 - {type: pairs-with, target: nextjs}
+uses: [login, social, company-sso, second-factor, teams, ready-screens]
 verified: '2026-11-14'
 sources: ['https://workos.com', 'https://workos.com/docs', 'https://workos.com/docs/sdks', 'https://workos.com/pricing', 'https://workos.com/docs/authkit/nextjs']

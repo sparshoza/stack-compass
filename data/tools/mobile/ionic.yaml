@@ -35,8 +35,13 @@ edges:
   target: react
 - type: pairs-with
   target: vue
+uses:
+- ios-android
+- web-skills
+- web-too
 verified: '2026-11-14'
 sources:
 - https://ionicframework.com
 - https://github.com/ionic-team/ionic-framework
 - https://ionicframework.com/docs
+- https://ionicframework.com/docs/react/pwa

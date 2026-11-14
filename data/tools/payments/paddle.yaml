@@ -16,5 +16,6 @@ avoid_when: [You want direct control of the payment flow]
 edges:
 - {type: alternative-to, target: lemon-squeezy}
 - {type: alternative-to, target: polar}
+uses: [one-time, subscriptions, tax-handled]
 verified: '2026-11-14'
 sources: ['https://www.paddle.com', 'https://github.com/PaddleHQ']

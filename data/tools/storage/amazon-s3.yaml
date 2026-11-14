@@ -24,5 +24,6 @@ edges:
 - {type: alternative-to, target: wasabi}
 - {type: pairs-with, target: rails}
 - {type: pairs-with, target: laravel}
+uses: [user-uploads, site-files, backups]
 verified: '2026-11-14'
 sources: ['https://aws.amazon.com/s3/', 'https://github.com/aws/aws-sdk-go-v2']

@@ -21,5 +21,6 @@ edges:
 - {type: pairs-with, target: vercel}
 - {type: pairs-with, target: mongodb}
 - {type: pairs-with, target: drizzle}
+uses: [pages, visual-editing, many-channels, languages]
 verified: '2026-11-14'
 sources: ['https://payloadcms.com', 'https://github.com/payloadcms/payload', 'https://payloadcms.com/docs/production/deployment', 'https://payloadcms.com/docs/database/overview']

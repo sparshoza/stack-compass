@@ -19,5 +19,6 @@ edges:
 - {type: alternative-to, target: clerk}
 - {type: alternative-to, target: workos}
 - {type: pairs-with, target: rails}
+uses: [login, social]
 verified: '2026-11-14'
 sources: ['https://github.com/heartcombo/devise']

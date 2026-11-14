@@ -19,5 +19,6 @@ edges:
 - {type: pairs-with, target: opentelemetry}
 - {type: pairs-with, target: heroku}
 - {type: pairs-with, target: xunit}
+uses: [apis, live]
 verified: 2026-11-14
-sources: ['https://dotnet.microsoft.com/apps/aspnet', 'https://learn.microsoft.com/aspnet/core/data/ef-rp/intro', 'https://github.com/dotnet/aspnetcore', 'https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel', 'https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests']
+sources: ['https://dotnet.microsoft.com/apps/aspnet', 'https://learn.microsoft.com/aspnet/core/data/ef-rp/intro', 'https://github.com/dotnet/aspnetcore', 'https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel', 'https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests', 'https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core']

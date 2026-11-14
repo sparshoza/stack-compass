@@ -16,5 +16,6 @@ good_for: [GraphQL in .NET]
 avoid_when: [You want a REST-only API]
 edges:
 - {type: pairs-with, target: aspnet-core}
+uses: [flexible-queries]
 verified: 2026-11-14
-sources: ['https://chillicream.com/docs/hotchocolate', 'https://github.com/ChilliCream/graphql-platform']
+sources: ['https://chillicream.com/docs/hotchocolate', 'https://github.com/ChilliCream/graphql-platform', 'https://chillicream.com/docs/hotchocolate/v15']

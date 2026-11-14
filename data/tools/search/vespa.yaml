@@ -21,5 +21,7 @@ edges:
 - {type: alternative-to, target: opensearch}
 - {type: alternative-to, target: tantivy}
 - {type: alternative-to, target: typesense}
+uses: [app-search, by-meaning, logs]
+scale: both
 verified: '2026-11-14'
-sources: ['https://vespa.ai', 'https://github.com/vespa-engine/vespa', 'https://github.com/vespa-engine/pyvespa']
+sources: ['https://vespa.ai', 'https://github.com/vespa-engine/vespa', 'https://github.com/vespa-engine/pyvespa', 'https://docs.vespa.ai/en/overview.html', 'https://docs.vespa.ai/en/elasticity.html']

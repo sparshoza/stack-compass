@@ -23,5 +23,6 @@ edges:
 - {type: pairs-with, target: celery}
 - {type: pairs-with, target: render}
 - {type: pairs-with, target: pytest}
+uses: [apis, live]
 verified: 2026-11-14
-sources: ['https://fastapi.tiangolo.com', 'https://fastapi.tiangolo.com/tutorial/sql-databases/', 'https://fastapi.tiangolo.com/tutorial/background-tasks/', 'https://fastapi.tiangolo.com/tutorial/testing/']
+sources: ['https://fastapi.tiangolo.com', 'https://fastapi.tiangolo.com/tutorial/sql-databases/', 'https://fastapi.tiangolo.com/tutorial/background-tasks/', 'https://fastapi.tiangolo.com/tutorial/testing/', 'https://fastapi.tiangolo.com/advanced/websockets/']

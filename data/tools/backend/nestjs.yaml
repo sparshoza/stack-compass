@@ -31,5 +31,6 @@ edges:
 - {type: pairs-with, target: nats}
 - {type: pairs-with, target: swc}
 - {type: pairs-with, target: supertokens}
+uses: [apis, live]
 verified: 2026-11-14
 sources: ['https://nestjs.com', 'https://docs.nestjs.com/websockets/gateways', 'https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/data/typeorm.md', 'https://docs.nestjs.com/microservices/redis', 'https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/data/drizzle.md', 'https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/data/mongo.md', 'https://docs.nestjs.com/recipes/passport', 'https://docs.nestjs.com/graphql/quick-start', 'https://docs.nestjs.com/microservices/nats', 'https://docs.nestjs.com/recipes/swc']

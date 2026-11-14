@@ -22,5 +22,6 @@ edges:
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
+uses: [close-to-sql, typed]
 verified: 2026-11-14
-sources: ['https://kysely.dev', 'https://github.com/kysely-org/kysely']
+sources: ['https://kysely.dev', 'https://github.com/kysely-org/kysely', 'https://kysely.dev/']

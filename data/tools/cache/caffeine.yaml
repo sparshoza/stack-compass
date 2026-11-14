@@ -18,5 +18,7 @@ avoid_when: [A cache shared between many services]
 edges:
 - {type: alternative-to, target: ehcache}
 - {type: pairs-with, target: spring-boot}
+uses: [speed-up]
+scale: single
 verified: 2026-11-14
 sources: ['https://github.com/ben-manes/caffeine']

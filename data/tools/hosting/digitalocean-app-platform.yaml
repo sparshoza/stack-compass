@@ -33,6 +33,7 @@ edges:
   target: heroku
 - type: alternative-to
   target: render
+uses: [static-sites, backends, containers, databases]
 verified: '2026-11-14'
 sources:
 - https://www.digitalocean.com/products/app-platform

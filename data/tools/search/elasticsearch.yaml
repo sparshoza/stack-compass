@@ -23,5 +23,7 @@ edges:
 - {type: alternative-to, target: vespa}
 - {type: pairs-with, target: spring-boot}
 - {type: pairs-with, target: express}
+uses: [app-search, logs, by-meaning]
+scale: both
 verified: '2026-11-14'
-sources: ['https://www.elastic.co/elasticsearch', 'https://www.elastic.co/blog/elasticsearch-is-open-source-again', 'https://github.com/elastic/elasticsearch/blob/main/LICENSE.txt', 'https://github.com/elastic']
+sources: ['https://www.elastic.co/elasticsearch', 'https://www.elastic.co/blog/elasticsearch-is-open-source-again', 'https://github.com/elastic/elasticsearch/blob/main/LICENSE.txt', 'https://github.com/elastic', 'https://www.elastic.co/docs/solutions/search', 'https://www.elastic.co/docs/deploy-manage/distributed-architecture/clusters-nodes-shards']

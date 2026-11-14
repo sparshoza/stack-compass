@@ -23,6 +23,7 @@ avoid_when:
 edges:
 - type: alternative-to
   target: fluxcd
+uses: [kubernetes, deploy]
 verified: '2026-11-14'
 sources:
 - https://argo-cd.readthedocs.io

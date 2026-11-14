@@ -15,5 +15,7 @@ avoid_when: [Flexible ad hoc queries]
 edges:
 - {type: alternative-to, target: cassandra}
 - {type: alternative-to, target: mongodb}
+uses: [flexible-data]
+scale: both
 verified: 2026-11-14
-sources: ['https://aws.amazon.com/dynamodb']
+sources: ['https://aws.amazon.com/dynamodb', 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html', 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html']

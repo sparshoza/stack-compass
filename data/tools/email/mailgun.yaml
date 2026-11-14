@@ -20,5 +20,6 @@ edges:
 - {type: alternative-to, target: postmark}
 - {type: alternative-to, target: resend}
 - {type: alternative-to, target: sendgrid}
+uses: [app-emails, inbound]
 verified: '2026-11-14'
-sources: ['https://www.mailgun.com', 'https://github.com/mailgun']
+sources: ['https://www.mailgun.com', 'https://github.com/mailgun', 'https://documentation.mailgun.com/docs/mailgun/user-manual/receive-forward-store/receive-forward-store', 'https://documentation.mailgun.com/docs/mailgun/user-manual/receive-forward-store/receive-forward-store']

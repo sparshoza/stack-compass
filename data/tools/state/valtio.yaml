@@ -26,7 +26,10 @@ edges:
   target: mobx
 - type: pairs-with
   target: react
+uses:
+- shared-state
 verified: '2026-11-14'
 sources:
 - https://valtio.dev
 - https://github.com/pmndrs/valtio
+- https://raw.githubusercontent.com/pmndrs/valtio/main/README.md

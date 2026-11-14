@@ -21,5 +21,6 @@ edges:
 - {type: pairs-with, target: nextjs}
 - {type: pairs-with, target: astro}
 - {type: pairs-with, target: react}
+uses: [many-channels, visual-editing]
 verified: '2026-11-14'
 sources: ['https://www.sanity.io', 'https://www.sanity.io/pricing', 'https://www.sanity.io/docs/nextjs', 'https://www.sanity.io/docs/studio/installation']

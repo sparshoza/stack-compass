@@ -15,5 +15,6 @@ good_for: [Sending email from Node with any SMTP provider]
 avoid_when: ['You want deliverability tooling, which needs a provider']
 edges:
 - {type: pairs-with, target: amazon-ses}
+uses: [app-emails]
 verified: '2026-11-14'
 sources: ['https://nodemailer.com', 'https://github.com/nodemailer/nodemailer']

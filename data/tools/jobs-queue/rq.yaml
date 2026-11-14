@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: celery}
 - {type: pairs-with, target: redis}
 - {type: pairs-with, target: valkey}
+uses: [background, redis]
 verified: 2026-11-14
 sources: ['https://python-rq.org', 'https://raw.githubusercontent.com/rq/rq/master/LICENSE', 'https://github.com/rq/rq', 'https://python-rq.org/docs/scheduling/']

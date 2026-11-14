@@ -16,5 +16,6 @@ avoid_when: [The backend is not JavaScript]
 edges:
 - {type: alternative-to, target: mjml}
 - {type: pairs-with, target: resend}
+uses: [design]
 verified: '2026-11-14'
 sources: ['https://react.email', 'https://github.com/resend/react-email']

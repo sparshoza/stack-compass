@@ -29,8 +29,12 @@ edges:
   target: turbopack
 - type: alternative-to
   target: parcel
+uses:
+- dev-server
+- bundle
 verified: '2026-11-14'
 sources:
 - https://rspack.dev
 - https://github.com/web-infra-dev/rspack
 - https://rspack.dev/guide/start/introduction
+- https://rspack.rs/guide/start/introduction

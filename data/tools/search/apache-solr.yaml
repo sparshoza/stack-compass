@@ -20,5 +20,7 @@ edges:
 - {type: alternative-to, target: tantivy}
 - {type: alternative-to, target: typesense}
 - {type: alternative-to, target: vespa}
+uses: [app-search, by-meaning]
+scale: both
 verified: '2026-11-14'
-sources: ['https://solr.apache.org']
+sources: ['https://solr.apache.org', 'https://solr.apache.org/guide/solr/latest/getting-started/introduction.html', 'https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html', 'https://solr.apache.org/guide/solr/latest/deployment-guide/solrcloud-shards-indexing.html']

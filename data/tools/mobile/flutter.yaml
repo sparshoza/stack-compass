@@ -36,6 +36,10 @@ edges:
 - {type: pairs-with, target: supabase}
 - {type: pairs-with, target: sqlite}
 - {type: alternative-to, target: swiftui}
+uses:
+- ios-android
+- desktop
+- web-too
 verified: '2026-11-14'
 sources:
 - https://flutter.dev

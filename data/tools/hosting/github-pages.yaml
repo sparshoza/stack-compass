@@ -29,6 +29,7 @@ edges:
   target: netlify
 - type: pairs-with
   target: github-actions
+uses: [static-sites]
 verified: '2026-11-14'
 sources:
 - https://pages.github.com

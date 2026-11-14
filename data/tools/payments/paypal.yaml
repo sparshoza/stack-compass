@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: mollie}
 - {type: alternative-to, target: square}
 - {type: alternative-to, target: stripe}
+uses: [one-time, subscriptions]
 verified: '2026-11-14'
-sources: ['https://developer.paypal.com', 'https://github.com/paypal/PayPal-Server-SDKs', 'https://www.paypal.com/us/business/paypal-business-fees']
+sources: ['https://developer.paypal.com', 'https://github.com/paypal/PayPal-Server-SDKs', 'https://www.paypal.com/us/business/paypal-business-fees', 'https://developer.paypal.com/docs/subscriptions/', 'https://developer.paypal.com/docs/subscriptions/']

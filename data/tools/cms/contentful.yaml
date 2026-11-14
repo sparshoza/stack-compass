@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: prismic}
 - {type: alternative-to, target: sanity}
 - {type: alternative-to, target: storyblok}
+uses: [many-channels, languages]
 verified: '2026-11-14'
 sources: ['https://www.contentful.com', 'https://www.contentful.com/pricing/', 'https://www.contentful.com/help/admin/billing-subscription/contentful-free-plan/', 'https://github.com/contentful']

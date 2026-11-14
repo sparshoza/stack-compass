@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: hygraph}
 - {type: alternative-to, target: prismic}
 - {type: alternative-to, target: sanity}
+uses: [pages, visual-editing, many-channels, languages]
 verified: '2026-11-14'
 sources: ['https://www.storyblok.com', 'https://www.storyblok.com/docs/packages', 'https://www.storyblok.com/pricing']

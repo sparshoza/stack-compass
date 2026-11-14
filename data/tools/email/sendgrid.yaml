@@ -19,5 +19,6 @@ edges:
 - {type: alternative-to, target: mailgun}
 - {type: alternative-to, target: postmark}
 - {type: alternative-to, target: resend}
+uses: [app-emails, newsletters, inbound]
 verified: '2026-11-14'
 sources: ['https://sendgrid.com', 'https://www.twilio.com/docs/sendgrid/for-developers/sending-email/libraries', 'https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send', 'https://github.com/sendgrid/sendgrid-nodejs']

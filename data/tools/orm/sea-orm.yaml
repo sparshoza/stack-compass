@@ -19,5 +19,6 @@ edges:
 - {type: pairs-with, target: sqlite}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: mysql}
+uses: [objects]
 verified: 2026-11-14
 sources: ['https://www.sea-ql.org/SeaORM/', 'https://github.com/SeaQL/sea-orm/tree/master/examples/axum_example', 'https://github.com/SeaQL/sea-orm']

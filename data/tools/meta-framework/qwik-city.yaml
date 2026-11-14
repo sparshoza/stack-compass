@@ -30,8 +30,12 @@ edges:
   target: nextjs
 - type: built-on
   target: qwik
+uses:
+- web-apps
+- static-export
 verified: '2026-11-14'
 sources:
 - https://qwik.dev/docs/qwikcity/
 - https://github.com/QwikDev/qwik
 - https://qwik.dev/docs/deployments/
+- https://qwik.dev/docs/guides/static-site-generation/

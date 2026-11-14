@@ -23,5 +23,6 @@ edges:
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
+uses: [objects]
 verified: 2026-11-14
-sources: ['https://sequelize.org', 'https://github.com/sequelize/sequelize']
+sources: ['https://sequelize.org', 'https://github.com/sequelize/sequelize', 'https://sequelize.org/']

@@ -24,6 +24,7 @@ edges:
   target: signoz
 - type: pairs-with
   target: opentelemetry
+uses: [tracing]
 verified: '2026-11-14'
 sources:
 - https://www.jaegertracing.io

@@ -19,5 +19,6 @@ edges:
 - {type: alternative-to, target: trigger-dev}
 - {type: pairs-with, target: nestjs}
 - {type: pairs-with, target: redis}
+uses: [background, scheduled, redis]
 verified: 2026-11-14
-sources: ['https://bullmq.io', 'https://github.com/taskforcesh/bullmq']
+sources: ['https://bullmq.io', 'https://github.com/taskforcesh/bullmq', 'https://docs.bullmq.io/', 'https://docs.bullmq.io/guide/jobs/repeatable']

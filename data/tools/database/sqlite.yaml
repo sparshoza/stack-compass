@@ -43,5 +43,8 @@ edges:
 - {type: pairs-with, target: django-orm}
 - {type: pairs-with, target: fluent}
 - {type: pairs-with, target: eloquent}
+runs_in_app: true
+uses: [app-data, text-search]
+scale: single
 verified: 2026-11-14
-sources: ['https://www.sqlite.org']
+sources: ['https://www.sqlite.org', 'https://www.sqlite.org/fts5.html', 'https://www.sqlite.org/serverless.html']

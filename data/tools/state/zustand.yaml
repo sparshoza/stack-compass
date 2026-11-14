@@ -29,7 +29,11 @@ edges:
   target: nanostores
 - type: pairs-with
   target: react
+uses:
+- shared-state
+- tiny
 verified: '2026-11-14'
 sources:
 - https://zustand.docs.pmnd.rs
 - https://github.com/pmndrs/zustand
+- https://raw.githubusercontent.com/pmndrs/zustand/main/README.md

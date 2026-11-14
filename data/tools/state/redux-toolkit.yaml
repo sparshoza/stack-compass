@@ -32,8 +32,12 @@ edges:
   target: effector
 - type: pairs-with
   target: react
+uses:
+- shared-state
+- server-data
 verified: '2026-11-14'
 sources:
 - https://redux-toolkit.js.org
 - https://github.com/reduxjs/redux-toolkit
 - https://redux-toolkit.js.org/usage/usage-with-typescript
+- https://redux-toolkit.js.org/rtk-query/overview

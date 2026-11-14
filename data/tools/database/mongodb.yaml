@@ -27,5 +27,7 @@ edges:
 - {type: pairs-with, target: prisma}
 - {type: pairs-with, target: fluent}
 - {type: pairs-with, target: eloquent}
+uses: [flexible-data, text-search]
+scale: both
 verified: 2026-11-14
-sources: ['https://www.mongodb.com', 'https://www.mongodb.com/docs/manual/geospatial-queries/', 'https://github.com/mongodb/mongo']
+sources: ['https://www.mongodb.com', 'https://www.mongodb.com/docs/manual/geospatial-queries/', 'https://github.com/mongodb/mongo', 'https://www.mongodb.com/docs/manual/introduction/', 'https://www.mongodb.com/docs/manual/core/indexes/index-types/index-text/', 'https://www.mongodb.com/docs/manual/sharding/']

@@ -23,6 +23,8 @@ avoid_when:
 edges:
 - type: pairs-with
   target: babel
+uses:
+- tasks
 verified: '2026-11-14'
 sources:
 - https://gulpjs.com

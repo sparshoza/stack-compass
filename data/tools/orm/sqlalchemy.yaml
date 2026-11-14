@@ -21,5 +21,6 @@ edges:
 - {type: pairs-with, target: mariadb}
 - {type: pairs-with, target: sqlite}
 - {type: alternative-to, target: django-orm}
+uses: [objects, close-to-sql]
 verified: 2026-11-14
-sources: ['https://www.sqlalchemy.org', 'https://github.com/sqlalchemy/sqlalchemy', 'https://docs.sqlalchemy.org/en/20/dialects/']
+sources: ['https://www.sqlalchemy.org', 'https://github.com/sqlalchemy/sqlalchemy', 'https://docs.sqlalchemy.org/en/20/dialects/', 'https://www.sqlalchemy.org/']

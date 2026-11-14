@@ -31,5 +31,7 @@ edges:
 - {type: pairs-with, target: express}
 - {type: pairs-with, target: nestjs}
 - {type: pairs-with, target: laravel}
+uses: [speed-up, sessions, counters, live-updates, messaging]
+scale: both
 verified: 2026-11-14
-sources: ['https://redis.io', 'https://github.com/redis/redis']
+sources: ['https://redis.io', 'https://github.com/redis/redis', 'https://redis.io/docs/latest/develop/get-started/', 'https://redis.io/docs/latest/operate/oss_and_stack/management/scaling/', 'https://redis.io/docs/latest/develop/interact/pubsub/']

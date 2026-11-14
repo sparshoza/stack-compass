@@ -28,7 +28,11 @@ edges:
   target: webpack
 - type: alternative-to
   target: rspack
+uses:
+- dev-server
+- bundle
 verified: '2026-11-14'
 sources:
 - https://parceljs.org
 - https://github.com/parcel-bundler/parcel
+- https://parceljs.org/

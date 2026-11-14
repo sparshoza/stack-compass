@@ -54,6 +54,7 @@ edges:
 - {type: pairs-with, target: payload}
 - {type: pairs-with, target: vitepress}
 - {type: pairs-with, target: docusaurus}
+uses: [static-sites, web-apps, near-users]
 verified: '2026-11-14'
 sources:
 - https://vercel.com

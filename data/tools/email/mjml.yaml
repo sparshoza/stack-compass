@@ -15,5 +15,6 @@ good_for: [Responsive email templates without table hacks]
 avoid_when: [You prefer components in React]
 edges:
 - {type: alternative-to, target: react-email}
+uses: [design]
 verified: '2026-11-14'
 sources: ['https://mjml.io', 'https://github.com/mjmlio/mjml']

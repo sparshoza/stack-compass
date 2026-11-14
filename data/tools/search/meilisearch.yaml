@@ -21,5 +21,7 @@ edges:
 - {type: alternative-to, target: tantivy}
 - {type: alternative-to, target: typesense}
 - {type: alternative-to, target: vespa}
+uses: [app-search, by-meaning]
+scale: single
 verified: '2026-11-14'
-sources: ['https://www.meilisearch.com', 'https://github.com/meilisearch/meilisearch', 'https://github.com/meilisearch']
+sources: ['https://www.meilisearch.com', 'https://github.com/meilisearch/meilisearch', 'https://github.com/meilisearch', 'https://www.meilisearch.com/docs/learn/getting_started/what_is_meilisearch', 'https://www.meilisearch.com/docs/resources/self_hosting/enterprise_edition']

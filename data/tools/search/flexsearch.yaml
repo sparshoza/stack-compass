@@ -17,5 +17,7 @@ edges:
 - {type: alternative-to, target: fusejs}
 - {type: alternative-to, target: minisearch}
 - {type: alternative-to, target: pagefind}
+uses: [in-browser]
+scale: single
 verified: '2026-11-14'
 sources: ['https://github.com/nextapps-de/flexsearch', 'https://github.com/nextapps-de/flexsearch']

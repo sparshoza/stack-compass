@@ -37,6 +37,9 @@ edges:
 - {type: pairs-with, target: tailwindcss}
 - {type: pairs-with, target: stripe}
 - {type: pairs-with, target: better-auth}
+uses:
+- ios-android
+- web-too
 verified: '2026-11-14'
 sources:
 - https://expo.dev
@@ -47,3 +50,4 @@ sources:
 - https://docs.expo.dev/develop/unit-testing/
 - https://docs.expo.dev/guides/tailwind/
 - https://docs.expo.dev/versions/latest/sdk/stripe/
+- https://docs.expo.dev/workflow/web/

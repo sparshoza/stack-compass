@@ -29,7 +29,12 @@ edges:
 - type: pairs-with
   target: compose-multiplatform
 - {type: pairs-with, target: sentry}
+uses:
+- ios-android
+- desktop
+- web-too
 verified: '2026-11-14'
 sources:
 - https://kotlinlang.org/docs/multiplatform.html
 - https://github.com/JetBrains/kotlin
+- https://kotlinlang.org/docs/multiplatform/kmp-overview.html

@@ -20,5 +20,6 @@ edges:
 - {type: alternative-to, target: razorpay}
 - {type: alternative-to, target: square}
 - {type: alternative-to, target: stripe}
+uses: [one-time, subscriptions, in-person, payouts]
 verified: '2026-11-14'
 sources: ['https://www.adyen.com', 'https://www.adyen.com/pricing', 'https://github.com/Adyen']

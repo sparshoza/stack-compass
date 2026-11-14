@@ -19,5 +19,7 @@ edges:
 - {type: alternative-to, target: redis}
 - {type: pairs-with, target: elasticache}
 - {type: pairs-with, target: rq}
+uses: [speed-up, messaging]
+scale: both
 verified: 2026-11-14
-sources: ['https://valkey.io', 'https://github.com/valkey-io/valkey', 'https://valkey.io/topics/pubsub/']
+sources: ['https://valkey.io', 'https://github.com/valkey-io/valkey', 'https://valkey.io/topics/pubsub/', 'https://valkey.io/topics/cluster-tutorial/']

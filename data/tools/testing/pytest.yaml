@@ -27,6 +27,8 @@ edges:
 - {type: pairs-with, target: playwright}
 - {type: pairs-with, target: flask}
 - {type: pairs-with, target: celery}
+uses:
+- unit
 verified: '2026-11-14'
 sources:
 - https://docs.pytest.org

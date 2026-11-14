@@ -14,5 +14,6 @@ good_for: [Quickly catching dev emails in older setups]
 avoid_when: [You want an actively maintained tool]
 edges:
 - {type: alternative-to, target: mailpit}
+uses: [dev-testing]
 verified: '2026-11-14'
 sources: ['https://github.com/mailhog/MailHog']

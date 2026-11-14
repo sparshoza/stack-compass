@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: cloudflare-r2}
 - {type: alternative-to, target: google-cloud-storage}
 - {type: alternative-to, target: wasabi}
+uses: [user-uploads, site-files, backups]
 verified: '2026-11-14'
 sources: ['https://azure.microsoft.com/products/storage/blobs', 'https://github.com/Azure/azure-sdk-for-go']

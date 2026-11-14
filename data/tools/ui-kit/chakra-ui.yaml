@@ -32,8 +32,11 @@ edges:
   target: heroui
 - type: built-on
   target: react
+uses:
+- ready-components
 verified: '2026-11-14'
 sources:
 - https://chakra-ui.com
 - https://github.com/chakra-ui/chakra-ui
 - https://chakra-ui.com/docs/get-started/installation
+- https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/README.md

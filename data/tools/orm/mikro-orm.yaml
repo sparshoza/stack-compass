@@ -25,5 +25,6 @@ edges:
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
 - {type: pairs-with, target: turso}
+uses: [objects]
 verified: 2026-11-14
-sources: ['https://mikro-orm.io', 'https://github.com/mikro-orm/mikro-orm']
+sources: ['https://mikro-orm.io', 'https://github.com/mikro-orm/mikro-orm', 'https://mikro-orm.io/']

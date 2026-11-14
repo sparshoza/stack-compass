@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: mollie}
 - {type: alternative-to, target: razorpay}
 - {type: alternative-to, target: stripe}
+uses: [bank-payments, subscriptions]
 verified: '2026-11-14'
 sources: ['https://gocardless.com', 'https://gocardless.com/pricing/', 'https://github.com/gocardless']

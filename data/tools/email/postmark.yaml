@@ -20,5 +20,6 @@ edges:
 - {type: alternative-to, target: postal}
 - {type: alternative-to, target: resend}
 - {type: alternative-to, target: sendgrid}
+uses: [app-emails, newsletters, inbound]
 verified: '2026-11-14'
 sources: ['https://postmarkapp.com', 'https://postmarkapp.com/pricing']

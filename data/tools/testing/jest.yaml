@@ -33,6 +33,8 @@ edges:
 - {type: pairs-with, target: expo}
 - {type: pairs-with, target: gatsby}
 - {type: pairs-with, target: babel}
+uses:
+- unit
 verified: '2026-11-14'
 sources:
 - https://jestjs.io

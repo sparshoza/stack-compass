@@ -16,5 +16,7 @@ avoid_when: [Key-value caching]
 edges:
 - {type: pairs-with, target: nats}
 - {type: pairs-with, target: redis}
+uses: [live-updates]
+scale: both
 verified: 2026-11-14
-sources: ['https://centrifugal.dev', 'https://github.com/centrifugal/centrifugo']
+sources: ['https://centrifugal.dev', 'https://github.com/centrifugal/centrifugo', 'https://centrifugal.dev/docs/getting-started/introduction', 'https://centrifugal.dev/docs/server/engines']

@@ -24,5 +24,6 @@ edges:
 - {type: pairs-with, target: authjs}
 - {type: pairs-with, target: better-auth}
 - {type: pairs-with, target: opentelemetry}
+uses: [lightweight, edge, apis]
 verified: 2026-11-14
 sources: ['https://hono.dev', 'https://github.com/honojs/hono', 'https://hono.dev/docs/getting-started/vercel', 'https://hono.dev/docs/getting-started/netlify', 'https://hono.dev/docs/middleware/third-party', 'https://hono.dev/docs/guides/testing']

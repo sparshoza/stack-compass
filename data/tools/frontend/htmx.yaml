@@ -26,6 +26,8 @@ edges:
   target: alpinejs
 - type: alternative-to
   target: stimulus
+uses:
+- sprinkles
 verified: '2026-11-14'
 sources:
 - https://htmx.org

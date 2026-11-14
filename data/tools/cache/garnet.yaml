@@ -18,5 +18,7 @@ edges:
 - {type: alternative-to, target: dragonfly}
 - {type: alternative-to, target: redis}
 - {type: alternative-to, target: valkey}
+uses: [speed-up]
+scale: both
 verified: 2026-11-14
 sources: ['https://microsoft.github.io/garnet', 'https://github.com/microsoft/garnet', 'https://microsoft.github.io/garnet/docs/commands/api-compatibility']

@@ -30,7 +30,10 @@ edges:
   target: react
 - type: pairs-with
   target: tailwindcss
+uses:
+- ready-components
 verified: '2026-11-14'
 sources:
 - https://www.heroui.com
 - https://github.com/heroui-inc/heroui
+- https://www.heroui.com/docs/guide/introduction

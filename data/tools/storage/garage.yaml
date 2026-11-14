@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: amazon-s3}
 - {type: alternative-to, target: cloudflare-r2}
 - {type: alternative-to, target: seaweedfs}
+uses: [user-uploads, site-files]
 verified: '2026-11-14'
 sources: ['https://garagehq.deuxfleurs.fr', 'https://github.com/deuxfleurs-org/garage']

@@ -21,7 +21,10 @@ avoid_when:
 edges:
 - {type: pairs-with, target: laravel}
 - {type: pairs-with, target: wordpress}
+uses:
+- unit
 verified: '2026-11-14'
 sources:
 - https://phpunit.de
 - https://github.com/sebastianbergmann/phpunit
+- https://phpunit.de/

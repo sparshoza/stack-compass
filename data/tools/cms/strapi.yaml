@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: payload}
 - {type: alternative-to, target: tinacms}
 - {type: pairs-with, target: postgresql}
+uses: [many-channels, languages]
 verified: '2026-11-14'
 sources: ['https://strapi.io', 'https://github.com/strapi/strapi', 'https://docs.strapi.io/cms/configurations/database']

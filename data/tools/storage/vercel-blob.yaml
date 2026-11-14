@@ -16,5 +16,6 @@ edges:
 - {type: alternative-to, target: amazon-s3}
 - {type: alternative-to, target: firebase-storage}
 - {type: alternative-to, target: supabase-storage}
+uses: [user-uploads, site-files]
 verified: '2026-11-14'
 sources: ['https://vercel.com/docs/storage/vercel-blob', 'https://vercel.com/docs/vercel-blob/using-blob-sdk']

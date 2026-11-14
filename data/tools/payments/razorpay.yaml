@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: gocardless}
 - {type: alternative-to, target: mollie}
 - {type: alternative-to, target: stripe}
+uses: [one-time, subscriptions]
 verified: '2026-11-14'
 sources: ['https://razorpay.com', 'https://razorpay.com/pricing/', 'https://github.com/razorpay']

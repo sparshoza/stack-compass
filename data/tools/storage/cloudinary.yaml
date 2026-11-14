@@ -14,5 +14,6 @@ good_for: [Image and video transformations delivered over a CDN]
 avoid_when: [Raw file storage is all you need]
 edges:
 - {type: alternative-to, target: uploadthing}
+uses: [media, upload-widget]
 verified: '2026-11-14'
 sources: ['https://cloudinary.com', 'https://github.com/cloudinary', 'https://cloudinary.com/pricing']

@@ -19,5 +19,6 @@ edges:
 - {type: alternative-to, target: asynq}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
+uses: [background, scheduled, my-database]
 verified: 2026-11-14
-sources: ['https://riverqueue.com', 'https://github.com/riverqueue/river']
+sources: ['https://riverqueue.com', 'https://github.com/riverqueue/river', 'https://riverqueue.com/docs', 'https://riverqueue.com/docs/periodic-jobs']

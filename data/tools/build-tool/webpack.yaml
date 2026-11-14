@@ -30,8 +30,12 @@ edges:
   target: parcel
 - type: alternative-to
   target: turbopack
+uses:
+- bundle
+- dev-server
 verified: '2026-11-14'
 sources:
 - https://webpack.js.org
 - https://github.com/webpack/webpack
 - https://webpack.js.org/concepts/
+- https://webpack.js.org/configuration/dev-server/

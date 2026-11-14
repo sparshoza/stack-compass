@@ -27,6 +27,7 @@ avoid_when:
 edges:
 - type: alternative-to
   target: vercel
+uses: [static-sites, web-apps]
 verified: '2026-11-14'
 sources:
 - https://aws.amazon.com/amplify/hosting/

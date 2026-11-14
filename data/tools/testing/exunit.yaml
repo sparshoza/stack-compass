@@ -22,6 +22,8 @@ edges:
 - {type: pairs-with, target: phoenix}
 - {type: pairs-with, target: oban}
 - {type: pairs-with, target: ecto}
+uses:
+- unit
 verified: '2026-11-14'
 sources:
 - https://hexdocs.pm/ex_unit/ExUnit.html

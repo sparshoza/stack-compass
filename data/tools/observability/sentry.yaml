@@ -70,6 +70,7 @@ edges:
 - {type: pairs-with, target: capacitor}
 - {type: pairs-with, target: kotlin-multiplatform}
 - {type: pairs-with, target: dotnet-maui}
+uses: [errors, logs, tracing, uptime]
 verified: '2026-11-14'
 sources:
 - https://sentry.io

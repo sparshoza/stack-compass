@@ -109,6 +109,13 @@
     cursor: pointer;
   }
 
+  /* Pull a word down so a paragraph never ends on one stray word. */
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
   button:disabled,
   [aria-disabled="true"] {
     cursor: not-allowed;

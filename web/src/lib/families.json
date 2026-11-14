@@ -1,0 +1,27 @@
+[
+  {
+    "id": "client",
+    "label": "Client",
+    "layers": ["frontend", "meta-framework", "ui-kit", "state", "build-tool", "mobile"]
+  },
+  {
+    "id": "server",
+    "label": "Server",
+    "layers": ["backend", "api-style", "orm", "auth", "jobs-queue"]
+  },
+  {
+    "id": "data",
+    "label": "Data",
+    "layers": ["database", "cache", "search", "storage"]
+  },
+  {
+    "id": "services",
+    "label": "Services",
+    "layers": ["payments", "email", "cms"]
+  },
+  {
+    "id": "ops",
+    "label": "Ops",
+    "layers": ["hosting", "ci-cd", "observability", "testing"]
+  }
+]

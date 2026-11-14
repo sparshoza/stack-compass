@@ -10,7 +10,9 @@ import {
 } from "./golden.cases";
 import { label } from "./labels";
 import {
+  emittableCodes,
   LANGUAGE_LAYERS,
+  REASON_CODES,
   SERVICE_LAYERS,
   scoreStack,
   type LayerResult,
@@ -124,6 +126,23 @@ describe("golden set", () => {
       return !text || text === code || text.startsWith("pairs with ") && !text.includes(", your ");
     });
     expect(fallback).toEqual([]);
+  });
+
+  it("every code in the golden results is one the scorer declares", () => {
+    const scoreCodes = new Set(emittableCodes(kb));
+    const reasonCodes = new Set<string>(REASON_CODES);
+    const unknown: string[] = [];
+    for (const c of GOLDEN_CASES) {
+      for (const r of run(c).results) {
+        for (const item of r.breakdown) {
+          if (!scoreCodes.has(item.code)) unknown.push(item.code);
+        }
+        for (const e of r.excluded) {
+          if (!reasonCodes.has(e.reason)) unknown.push(e.reason);
+        }
+      }
+    }
+    expect(unknown).toEqual([]);
   });
 
   for (const c of GOLDEN_CASES) {

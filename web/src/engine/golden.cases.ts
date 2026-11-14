@@ -49,6 +49,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { projectType: "saas" },
       { backendLanguage: "python" },
       { pickIs: { layer: "frontend", tool: "react" } },
+      // Emailing usage reports is a job, not an analytics database.
+      { pickIs: { layer: "database", tool: "postgresql" } },
       { pickIs: { layer: "payments", tool: "stripe" } },
       { pickIs: { layer: "jobs-queue", tool: "celery" } },
       { noToolWithLanguage: "php" },
@@ -76,7 +78,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { projectType: "content-site" },
       { noPaidOnlyPick: true },
       { pickIs: { layer: "meta-framework", tool: "nextjs" } },
-      { pickIs: { layer: "hosting", tool: "aws-amplify" } },
+      // A static host with a free tier that pairs with Next.js.
+      { pickIs: { layer: "hosting", tool: "vercel" } },
     ],
   },
   {
@@ -104,15 +107,19 @@ export const GOLDEN_CASES: GoldenCase[] = [
     ],
   },
   {
-    // Contradiction: Dart is preferred but no backend or ORM in the catalog is Dart.
+    // Naming Flutter picks the mobile framework but forces no server
+    // language, so the app still gets a backend and an ORM.
     id: "mobile-flutter-offline",
     text: "A Flutter app for iOS and Android with offline mode and push notifications.",
     checks: [
       { projectType: "mobile-app" },
       { pickIs: { layer: "mobile", tool: "flutter" } },
-      { pickIs: { layer: "backend", tool: null } },
-      { pickIs: { layer: "orm", tool: null } },
+      { pickIs: { layer: "backend", tool: "express" } },
+      { pickIs: { layer: "orm", tool: "prisma" } },
       { pickIs: { layer: "database", tool: "sqlite" } },
+      // No web frontend, so no web state library or bundler.
+      { layerAbsent: "state" },
+      { layerAbsent: "build-tool" },
     ],
   },
   {
@@ -216,8 +223,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { backendLanguage: "java" },
       { pickIs: { layer: "backend", tool: "spring-boot" } },
       { pickIs: { layer: "orm", tool: "hibernate" } },
-      { pickIs: { layer: "database", tool: "cassandra" } },
-      { pickIs: { layer: "auth", tool: "clerk" } },
+      // Audit logs do not make a wide-column store the primary database.
+      { pickIs: { layer: "database", tool: "postgresql" } },
     ],
   },
   {

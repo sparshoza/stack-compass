@@ -23,15 +23,19 @@
   --text-faint: #8b929b;
 
   /* One accent: picks on the map, focus, the active control */
-  --accent: #c8f05a;
+  --accent: #c8fa5c;
   --accent-ink: #0d0f12;
 
-  /* Layer families, one hue each (ids match lib/families.json) */
-  --family-client: #6aa9f5;
-  --family-server: #e6b450;
-  --family-data: #45c7a8;
-  --family-services: #f08a70;
-  --family-ops: #e286c0;
+  /*
+   * Layer families, one hue each (ids match lib/families.json). Soft
+   * pastels on the dark ground; tokens.test.ts holds them apart for normal
+   * and red-green colour-blind vision and from the accent.
+   */
+  --family-client: #6aaae6;
+  --family-server: #f2c681;
+  --family-data: #74d3b6;
+  --family-services: #e08e8e;
+  --family-ops: #dbb5f8;
 
   /* Map */
   --edge: #3a4048;
@@ -109,14 +113,14 @@
   --text-muted: #4f5661;
   --text-faint: #646b76;
 
-  --accent: #437000;
+  --accent: #0f641d;
   --accent-ink: #ffffff;
 
-  --family-client: #1d64c4;
-  --family-server: #8a6100;
-  --family-data: #0a7a63;
-  --family-services: #bd4527;
-  --family-ops: #a8357a;
+  --family-client: #347ec4;
+  --family-server: #cf6f19;
+  --family-data: #359b75;
+  --family-services: #ab3841;
+  --family-ops: #694191;
 
   --edge: #cfd4da;
   --edge-strong: #8a919b;

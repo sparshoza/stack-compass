@@ -15924,7 +15924,6 @@
       "runs_in_app": false,
       "sources": [
         "https://rubyonrails.org",
-        "https://guides.rubyonrails.org/api_app.html",
         "https://guides.rubyonrails.org/configuring.html",
         "https://guides.rubyonrails.org/caching_with_rails.html",
         "https://guides.rubyonrails.org/active_storage_overview.html",
@@ -15932,7 +15931,6 @@
       ],
       "summary": "A full-stack Ruby framework with jobs, mailers, file storage and websockets built in.",
       "tags": [
-        "rest-api",
         "background-jobs",
         "realtime",
         "file-uploads",
@@ -18243,7 +18241,6 @@
       "runs_in_app": false,
       "sources": [
         "https://spring.io/projects/spring-boot",
-        "https://spring.io/guides/gs/rest-service",
         "https://docs.spring.io/spring-boot/reference/features/kotlin.html",
         "https://github.com/spring-projects/spring-boot",
         "https://docs.spring.io/spring-boot/reference/data/sql.html",
@@ -18254,9 +18251,7 @@
         "https://docs.spring.io/spring-boot/reference/testing/index.html"
       ],
       "summary": "A Java and Kotlin framework for production-grade Spring applications with minimal setup.",
-      "tags": [
-        "rest-api"
-      ],
+      "tags": [],
       "url": "https://spring.io/projects/spring-boot",
       "verified": "2026-11-14"
     },

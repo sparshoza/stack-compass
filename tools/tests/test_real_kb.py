@@ -177,8 +177,7 @@ def test_rest_api_capability_and_keywords():
 def test_rest_api_tags_only_where_docs_say_so():
     tools = load_kb(DATA).tools
     tagged = {t.id for t in tools.values() if "rest-api" in t.tags}
-    assert {"openapi", "spring-boot", "rails"} <= tagged
-    assert tagged <= {"openapi", "spring-boot", "rails"}
+    assert tagged == {"openapi"}
 
 
 def test_new_tools_exist_with_official_sources():

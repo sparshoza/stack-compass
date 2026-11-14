@@ -26,6 +26,9 @@ BOT_BLOCKED: dict[str, set[int]] = {
     "https://opensearch.org": {403},
     # GitHub rate limits bursts of requests with 429.
     "https://github.com/": {429},
+    # The Mac App Store listing for Xcode (the only official page that states it is free)
+    # answers 429 to automated clients; it loads in a browser.
+    "https://apps.apple.com/": {429},
 }
 
 

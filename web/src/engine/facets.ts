@@ -147,7 +147,8 @@ export function narrowingOptions(layer: Layer, selection: Selection, kb: FacetKb
  * A short use for a matching tool, for its row in the list. With several
  * answers chosen in a question, the first one the tool covers (vocab order),
  * so the rows tell them apart. With one answer chosen, every row has it
- * already, so the tool's first other use in that question, or nothing. With
+ * already, so the tool's first other use in that question as "Also ...", or
+ * nothing. With
  * none chosen, the first thing the tool is for.
  */
 export function matchLabel(tool: Tool, selection: Selection, kb: FacetKb): string {
@@ -160,7 +161,8 @@ export function matchLabel(tool: Tool, selection: Selection, kb: FacetKb): strin
       if (hit) return hit.label;
       continue;
     }
-    return group.options.find((o) => o.id !== picked[0] && tool.uses.includes(o.id))?.label ?? "";
+    const other = group.options.find((o) => o.id !== picked[0] && tool.uses.includes(o.id))?.label;
+    return other ? `Also ${/^[A-Z]{2}/.test(other) ? other : other.charAt(0).toLowerCase() + other.slice(1)}` : "";
   }
   const need = groups[0];
   return need?.options.find((o) => tool.uses.includes(o.id))?.label ?? "";

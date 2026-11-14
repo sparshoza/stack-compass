@@ -158,8 +158,9 @@ describe("narrowingOptions (PQ6)", () => {
 describe("matchLabel", () => {
   it("names the first chosen use the tool has, else its first need, in vocab order", () => {
     const pg = fixture.tools.find((t) => t.id === "pg")!;
-    // One chosen answer is on every row already: show the tool's other use instead.
-    expect(matchLabel(pg, { need: ["text-search"] }, fixture)).toBe("App data");
+    // One chosen answer is on every row already: show the tool's other use,
+    // marked as extra so it never reads as the answer chosen.
+    expect(matchLabel(pg, { need: ["text-search"] }, fixture)).toBe("Also app data");
     expect(matchLabel(fixture.tools.find((t) => t.id === "lite")!, { need: ["app-data"] }, fixture)).toBe("");
     // With several chosen, the row says which of them the tool covers.
     expect(matchLabel(pg, { need: ["vectors", "text-search"] }, fixture)).toBe("Text search");

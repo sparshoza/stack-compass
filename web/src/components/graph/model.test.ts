@@ -9,7 +9,7 @@ import {
   makeView,
   neighboursOf,
   nodeStyle,
-  portraitCamera,
+  portraitFit,
   readPalette,
   withAlpha,
   type Palette,
@@ -109,6 +109,7 @@ describe('nodeStyle and edgeStyle', () => {
     expect(picked.size).toBeGreaterThan(g.getNodeAttribute('react', 'size'))
     expect(other.color).toBe(withAlpha(palette.families.data, 0.25))
     expect(other.forceLabel).toBeFalsy()
+    expect(other.label).toBeNull()
   })
 
   it('draws edges between two highlighted tools thicker in the accent and dims the rest', () => {
@@ -164,7 +165,8 @@ describe('focus neighbourhood', () => {
     const other = node('mysql', v)
     expect(other.color).toBe(withAlpha(palette.families.data, 0.25))
     expect(other.forceLabel).toBe(false)
-    expect(other.labelColor).toBe(withAlpha(palette.textFaint, 0.35))
+    // dimmed tools keep their dot but lose their label
+    expect(other.label).toBeNull()
   })
 
   it('draws the focused tool edges stronger and dims the others', () => {
@@ -233,17 +235,36 @@ describe('LabelPlacer', () => {
   })
 })
 
-describe('portraitCamera', () => {
-  it('leaves landscape screens at the fitted view', () => {
-    expect(portraitCamera(1440, 900)).toEqual({ ratio: 1 })
-    expect(portraitCamera(900, 900)).toEqual({ ratio: 1 })
+describe('portraitFit', () => {
+  const phone = { width: 390, height: 844 }
+  const free = { top: 124, bottom: 64 }
+  // The map as sigma first draws it on a 390x844 screen: 310 wide, 270 tall, centred.
+  const drawn = { x0: 40, y0: 287, x1: 350, y1: 557 }
+
+  it('does nothing on landscape or square screens', () => {
+    expect(portraitFit(drawn, { width: 1440, height: 900 }, free)).toBeNull()
+    expect(portraitFit(drawn, { width: 900, height: 900 }, free)).toBeNull()
   })
 
-  it('zooms in on portrait screens so the map uses more of the height', () => {
-    const { ratio } = portraitCamera(390, 844)
-    expect(ratio).toBeLessThan(1)
-    expect(ratio).toBeGreaterThanOrEqual(0.7)
-    expect(portraitCamera(390, 844).ratio).toBeLessThan(portraitCamera(768, 1024).ratio)
+  it('zooms so the whole map spans the width less a small margin', () => {
+    const fit = portraitFit(drawn, phone, free)!
+    const width = (drawn.x1 - drawn.x0) / fit.ratio
+    const height = (drawn.y1 - drawn.y0) / fit.ratio
+    expect(width).toBeCloseTo(390 - 2 * 12, 5)
+    expect(height).toBeLessThanOrEqual(844 - 124 - 64 - 2 * 12)
+  })
+
+  it('centres the map in the free area between the bar and the corner links', () => {
+    const fit = portraitFit(drawn, phone, free)!
+    expect(fit.from).toEqual({ x: 195, y: 422 })
+    expect(fit.to).toEqual({ x: 195, y: 124 + (844 - 124 - 64) / 2 })
+  })
+
+  it('a tall map is limited by the free height instead', () => {
+    const tall = { x0: 145, y0: 222, x1: 245, y1: 622 }
+    const fit = portraitFit(tall, phone, free)!
+    expect((tall.y1 - tall.y0) / fit.ratio).toBeCloseTo(844 - 124 - 64 - 2 * 12, 5)
+    expect((tall.x1 - tall.x0) / fit.ratio).toBeLessThanOrEqual(390 - 24)
   })
 })
 

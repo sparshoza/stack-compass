@@ -24,6 +24,8 @@ const WIDE = '(min-width: 1024px)'
 const SIDE_PANEL_INSET = 424
 /** Height of the floating top bar: one row on wide screens, two rows and the hint line on phones. */
 const TOP_BAR_INSET = { oneRow: 68, phone: 124 }
+/** Height of the bottom corner links (44px pill plus its 12px inset on phones). */
+const CORNER_INSET = 60
 
 function isTyping(target: EventTarget | null): boolean {
   return (
@@ -189,6 +191,7 @@ export default function App() {
                   hiddenEdgeTypes={hiddenEdgeTypes}
                   onSelect={openTool}
                   focusInset={focusInset}
+                  frameInset={{ top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone, bottom: CORNER_INSET }}
                 />
               </Suspense>
             </MapBoundary>

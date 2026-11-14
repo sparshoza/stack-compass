@@ -149,13 +149,25 @@ export function nodeStyle(id: string, attrs: NodeAttrs, view: GraphView, palette
   if (lit) {
     return { hidden, color: family, size: attrs.size, forceLabel: true, labelColor: palette.text, zIndex: 1 }
   }
+  if (dimmed) {
+    // The dot stays as context; its label goes, so only the lit tools read.
+    return {
+      hidden,
+      color: withAlpha(family, DIM_NODE),
+      size: attrs.size,
+      forceLabel: false,
+      label: null,
+      labelColor: withAlpha(palette.textFaint, DIM_LABEL),
+      zIndex: 0,
+    }
+  }
   return {
     hidden,
-    color: dimmed ? withAlpha(family, DIM_NODE) : family,
+    color: family,
     size: attrs.size,
     forceLabel: false,
-    labelColor: dimmed ? withAlpha(palette.textFaint, DIM_LABEL) : palette.textMuted,
-    zIndex: dimmed ? 0 : 1,
+    labelColor: palette.textMuted,
+    zIndex: 1,
   }
 }
 
@@ -281,15 +293,31 @@ export class LabelPlacer {
 
 /** Sigma's stage padding, in pixels (StackGraph). */
 export const STAGE_PADDING = 40
-const MIN_PORTRAIT_RATIO = 0.7
+const FIT_MARGIN = 12
 
 /**
- * Sigma fits the round map into the shorter side of the screen, which leaves
- * a portrait phone mostly empty above and below. Zoom in on tall screens so
- * the map uses more of the height. The sides spill over slightly (labels that
- * would be cut off are not drawn, and the map pans).
+ * Sigma fits the map into the shorter side of the screen, which on a portrait
+ * phone leaves it small, off-centre and with empty space below. Given where
+ * sigma first draws the map (`drawn`, in pixels) and the area left free by
+ * the top bar and the corner links, returns the zoom that makes the whole map
+ * fit that area with a small margin (width-limited for a round map), and the
+ * screen point its centre should move to. Null on landscape screens.
  */
-export function portraitCamera(width: number, height: number): { ratio: number } {
-  if (height <= width || width === 0) return { ratio: 1 }
-  return { ratio: Math.min(1, Math.max(MIN_PORTRAIT_RATIO, (width / height) * 1.5)) }
+export function portraitFit(
+  drawn: Box,
+  viewport: { width: number; height: number },
+  free: { top: number; bottom: number },
+): { ratio: number; from: { x: number; y: number }; to: { x: number; y: number } } | null {
+  const { width, height } = viewport
+  if (height <= width || width === 0) return null
+  const freeHeight = height - free.top - free.bottom
+  const ratio = Math.max(
+    (drawn.x1 - drawn.x0) / (width - 2 * FIT_MARGIN),
+    (drawn.y1 - drawn.y0) / (freeHeight - 2 * FIT_MARGIN),
+  )
+  return {
+    ratio,
+    from: { x: (drawn.x0 + drawn.x1) / 2, y: (drawn.y0 + drawn.y1) / 2 },
+    to: { x: width / 2, y: free.top + freeHeight / 2 },
+  }
 }

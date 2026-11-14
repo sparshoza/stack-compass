@@ -198,6 +198,37 @@ describe('StackGraph', () => {
     expect(nodeOf(backend.id).forceLabel).toBe(false)
   })
 
+  it('a hover left over from before a new focus never overrides it', () => {
+    const neighbour = backend.edges.find((e) => kb.tools.some((t) => t.id === e.target))!.target
+    const { rerender } = render(<StackGraph />)
+    const s = latest()
+    act(() => s.handlers.enterNode({ node: database.id }))
+    expect(nodeOf(database.id).forceLabel).toBe(true)
+    // a tap on a touch screen never sends leaveNode; then the focus moves
+    rerender(<StackGraph focus={backend.id} />)
+    expect(nodeOf(neighbour).forceLabel).toBe(true)
+    const databaseLinked = backend.edges.some((e) => e.target === database.id) || database.edges.some((e) => e.target === backend.id)
+    if (!databaseLinked) expect(nodeOf(database.id).forceLabel).toBe(false)
+  })
+
+  it('clicking empty map clears a hover', () => {
+    render(<StackGraph />)
+    const s = latest()
+    act(() => s.handlers.enterNode({ node: backend.id }))
+    act(() => s.handlers.clickStage({} as never))
+    expect(nodeOf(backend.id).forceLabel).toBe(false)
+  })
+
+  it('ignores hover that comes from a touch', () => {
+    render(<StackGraph />)
+    const s = latest()
+    act(() => {
+      s.container.dispatchEvent(new Event('touchstart'))
+    })
+    act(() => s.handlers.enterNode({ node: backend.id }))
+    expect(nodeOf(backend.id).forceLabel).toBe(false)
+  })
+
   it('re-reads colours when the theme changes', async () => {
     render(<StackGraph highlight={[frontend.id]} />)
     const before = nodeOf(frontend.id).color

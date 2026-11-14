@@ -11,7 +11,7 @@ import {
   makeView,
   neighboursOf,
   nodeStyle,
-  portraitCamera,
+  portraitFit,
   readPalette,
   STAGE_PADDING,
   type Box,
@@ -34,7 +34,12 @@ export interface StackGraphProps {
   onSelect?: (id: string) => void
   /** Pixels covered by the top bar and by a panel on the right or bottom; the focused tool is centred in the rest. */
   focusInset?: { top: number; right: number; bottom: number }
+  /** Pixels covered at rest by the top bar and the corner links; a portrait screen fits the map between them. */
+  frameInset?: { top: number; bottom: number }
 }
+
+/** A touch is followed by emulated mouse events; hover from those is ignored for this long. */
+const TOUCH_HOVER_GRACE_MS = 1000
 
 function setKey(set: ReadonlySet<string> | undefined): string {
   return set?.size ? [...set].sort().join('\n') : ''
@@ -160,6 +165,47 @@ function makeLabelDrawer() {
   return { attach, draw }
 }
 
+/**
+ * On a portrait screen, zoom and move the camera so the whole map fits the
+ * width between the top bar and the corner links (see portraitFit). Measured
+ * from where sigma draws every dot at the starting camera.
+ */
+function fitPortrait(sigma: Sigma<NodeAttrs, EdgeAttrs>, inset: { top: number; bottom: number } | undefined) {
+  if (!inset || typeof sigma.getDimensions !== 'function') return
+  sigma.refresh()
+  const viewport = sigma.getDimensions()
+  let drawn: Box | null = null
+  sigma.getGraph().forEachNode((id) => {
+    const data = sigma.getNodeDisplayData(id)
+    if (!data) return
+    const at = sigma.framedGraphToViewport(data)
+    const r = sigma.scaleSize(data.size)
+    drawn = drawn
+      ? {
+          x0: Math.min(drawn.x0, at.x - r),
+          y0: Math.min(drawn.y0, at.y - r),
+          x1: Math.max(drawn.x1, at.x + r),
+          y1: Math.max(drawn.y1, at.y + r),
+        }
+      : { x0: at.x - r, y0: at.y - r, x1: at.x + r, y1: at.y + r }
+  })
+  if (!drawn) return
+  const fit = portraitFit(drawn, viewport, inset)
+  if (!fit) return
+  // At the starting camera, find the map point under `from` and the vector
+  // for the pixel offset between the screen centre and `to`; at the new zoom
+  // that offset scales with the ratio.
+  const centre = { x: viewport.width / 2, y: viewport.height / 2 }
+  const from = sigma.viewportToFramedGraph(fit.from)
+  const a = sigma.viewportToFramedGraph(centre)
+  const b = sigma.viewportToFramedGraph({ x: centre.x + centre.x - fit.to.x, y: centre.y + centre.y - fit.to.y })
+  sigma.getCamera().setState({
+    x: from.x + (b.x - a.x) * fit.ratio,
+    y: from.y + (b.y - a.y) * fit.ratio,
+    ratio: fit.ratio,
+  })
+}
+
 function readFont(): string {
   const font = getComputedStyle(document.documentElement).getPropertyValue('--font-ui').trim()
   return font || 'ui-monospace, monospace'
@@ -184,6 +230,7 @@ export function StackGraph({
   hiddenEdgeTypes,
   onSelect,
   focusInset,
+  frameInset,
 }: StackGraphProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const sigmaRef = useRef<Sigma<NodeAttrs, EdgeAttrs> | null>(null)
@@ -191,15 +238,24 @@ export function StackGraph({
   const palette = usePalette()
 
   const focusInsetRef = useRef(focusInset)
+  const frameInsetRef = useRef(frameInset)
 
   useEffect(() => {
     onSelectRef.current = onSelect
     focusInsetRef.current = focusInset
-  }, [onSelect, focusInset])
+    frameInsetRef.current = frameInset
+  }, [onSelect, focusInset, frameInset])
 
   const graph = useMemo(() => buildGraph(kb.tools, layout as Positions), [])
 
-  const [hovered, setHovered] = useState<string | null>(null)
+  // A hover remembers the focus it happened under, so a hover left behind
+  // (touch screens never send leaveNode) never outlives a change of focus.
+  const [hover, setHover] = useState<{ node: string; focus: string | null } | null>(null)
+  const hovered = hover && hover.focus === (focus ?? null) ? hover.node : null
+  const focusRef = useRef(focus)
+  useEffect(() => {
+    focusRef.current = focus
+  }, [focus])
 
   // Props are compared by content, not identity, so a parent that builds new
   // arrays or Sets on every render does not restyle the whole graph.
@@ -251,20 +307,28 @@ export function StackGraph({
       enableCameraRotation: false,
     })
     labels.attach(sigma)
-    // A portrait phone starts zoomed in so the round map spans its width.
-    const { ratio } = portraitCamera(container.clientWidth, container.clientHeight)
-    if (ratio < 1) sigma.getCamera().setState({ x: 0.5, y: 0.5, ratio })
+    fitPortrait(sigma, frameInsetRef.current)
+
+    let lastTouch = -Infinity
+    const onTouch = () => {
+      lastTouch = Date.now()
+      setHover(null)
+    }
+    container.addEventListener('touchstart', onTouch, { passive: true })
     sigma.on('clickNode', ({ node }) => onSelectRef.current?.(node))
+    sigma.on('clickStage', () => setHover(null))
     sigma.on('enterNode', ({ node }) => {
+      if (Date.now() - lastTouch < TOUCH_HOVER_GRACE_MS) return
       container.style.cursor = 'pointer'
-      setHovered(node)
+      setHover({ node, focus: focusRef.current ?? null })
     })
     sigma.on('leaveNode', () => {
       container.style.cursor = ''
-      setHovered(null)
+      setHover(null)
     })
     sigmaRef.current = sigma
     return () => {
+      container.removeEventListener('touchstart', onTouch)
       sigma.kill()
       sigmaRef.current = null
     }

@@ -331,18 +331,18 @@ export function ChooseSheet({
               </Tabs.Content>
             </div>
 
-            <div className="grid gap-2 border-t border-line bg-surface px-5 py-3.5 lg:rounded-b-[var(--radius-panel)] lg:px-6">
+            <div className="grid gap-2 border-t border-line bg-surface px-4 py-3.5 sm:px-5 lg:rounded-b-[var(--radius-panel)] lg:px-6">
               {ready ? (
-                <div className="flex flex-wrap items-center gap-1.5">
+                <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
                   {!resultInView && (
                     <Button
                       variant="pill"
                       size="pill"
-                      className="touch:h-11 max-sm:w-full max-sm:justify-start"
+                      className="touch:h-11 max-sm:px-3"
                       onClick={() => go(mode === 'piece' ? 'count' : 'stack', undefined, false)}
                     >
                       {jumpLabel}
-                      <ArrowDownIcon aria-hidden="true" className="max-sm:ml-auto" />
+                      <ArrowDownIcon aria-hidden="true" />
                     </Button>
                   )}
                   <Button variant="pill" size="pill" className={cn(primary, 'touch:h-11 max-sm:px-3')} onClick={copyLink}>
@@ -353,7 +353,7 @@ export function ChooseSheet({
                     <Button
                       variant="quiet"
                       size="pill"
-                      className="ml-auto -mr-2 px-2 touch:h-11"
+                      className="ml-auto -mr-1.5 px-1.5 touch:h-11 sm:-mr-2 sm:px-2"
                       onClick={() => go('text', onStartOver)}
                     >
                       Start over

@@ -21,6 +21,9 @@ const fake = vi.hoisted(() => {
         this.cameraState = { ...this.cameraState, ...next }
       }),
       getState: vi.fn(() => ({ ...this.cameraState })),
+      // sigma animates over time; a stand-in that never arrives shows when the graph relies on it.
+      animate: vi.fn(),
+      isAnimated: vi.fn(() => false),
     }
     constructor(graph: Graph, container: HTMLElement, settings: Record<string, unknown>) {
       this.graph = graph
@@ -126,6 +129,40 @@ describe('StackGraph', () => {
     render(<StackGraph onSelect={onSelect} />)
     act(() => latest().handlers.clickNode({ node: database.id }))
     expect(onSelect).toHaveBeenCalledWith(database.id)
+  })
+
+  it('applies zero-length camera animations at once (sigma leaves NaN until the next frame)', () => {
+    render(<StackGraph />)
+    const camera = latest().camera
+    camera.animate({ x: 0.1, y: 0.2, ratio: 0.4 }, { duration: 0 })
+    expect(camera.getState()).toMatchObject({ x: 0.1, y: 0.2, ratio: 0.4 })
+  })
+
+  it('a double click selects like a click and never zooms the camera', () => {
+    const onSelect = vi.fn()
+    render(<StackGraph onSelect={onSelect} />)
+    const s = latest()
+    const onNode = vi.fn()
+    act(() => s.handlers.doubleClickNode({ node: database.id, preventSigmaDefault: onNode } as never))
+    expect(onNode).toHaveBeenCalled()
+    expect(onSelect).toHaveBeenCalledWith(database.id)
+    const onStage = vi.fn()
+    act(() => s.handlers.doubleClickStage({ preventSigmaDefault: onStage } as never))
+    expect(onStage).toHaveBeenCalled()
+  })
+
+  it('the click that ends a drag is never a double click on a dot', () => {
+    const onSelect = vi.fn()
+    render(<StackGraph onSelect={onSelect} />)
+    const s = latest()
+    act(() => {
+      s.container.dispatchEvent(new MouseEvent('mousedown', { clientX: 10, clientY: 10 }))
+    })
+    const original = new MouseEvent('click', { clientX: 60, clientY: 30 })
+    const prevent = vi.fn()
+    act(() => s.handlers.doubleClickNode({ node: database.id, preventSigmaDefault: prevent, event: { original } } as never))
+    expect(prevent).toHaveBeenCalled()
+    expect(onSelect).not.toHaveBeenCalled()
   })
 
   it('reports a lost WebGL context on the map canvas', () => {

@@ -4,6 +4,7 @@ import type { Settings } from 'sigma/settings'
 import type { NodeDisplayData, PartialButFor } from 'sigma/types'
 import layout from '@catalog/layout.json'
 import { kb, type EdgeType, type Layer } from '@/lib/kb'
+import { instantCamera } from './camera'
 import { easeOut, readDuration, staggerSchedule, tween, useReducedMotion } from '@/lib/motion'
 import {
   areaFit,
@@ -55,6 +56,8 @@ export interface StackGraphProps {
 
 /** A touch is followed by emulated mouse events; hover from those is ignored for this long. */
 const TOUCH_HOVER_GRACE_MS = 1000
+/** A press that moves further than this before its click is a drag, not a click (sigma's own tolerance is 3 moves). */
+const DRAG_TOLERANCE_PX = 4
 
 function setKey(set: ReadonlySet<string> | undefined): string {
   return set?.size ? [...set].sort().join('\n') : ''
@@ -414,8 +417,8 @@ export function StackGraph({
       labelRenderedSizeThreshold: 0,
       defaultDrawNodeLabel: labels.draw,
       defaultDrawNodeHover: labels.drawHover,
-      // Wheel, pinch and double-click zoom follow the hand at once: they
-      // repeat many times in a row, so they never animate.
+      // Wheel and pinch zoom follow the hand at once: they repeat many times
+      // in a row, so they never animate. Double click does not zoom (below).
       zoomDuration: 0,
       inertiaDuration: 0,
       doubleClickZoomingDuration: 0,
@@ -426,6 +429,7 @@ export function StackGraph({
       enableCameraRotation: false,
     })
     labels.attach(sigma)
+    instantCamera(sigma.getCamera())
     fitPortrait(sigma, frameInsetRef.current)
 
     let lastTouch = -Infinity
@@ -445,8 +449,29 @@ export function StackGraph({
     }
     const grabs = ['wheel', 'pointerdown', 'mousedown', 'touchstart'] as const
     for (const type of grabs) container.addEventListener(type, stopGlide, { capture: true, passive: true })
+    // Where the last mouse press started, to tell a click from the end of a drag.
+    let press: { x: number; y: number } | null = null
+    const onPress = (e: MouseEvent) => {
+      press = { x: e.clientX, y: e.clientY }
+    }
+    container.addEventListener('mousedown', onPress, { capture: true, passive: true })
+    const dragged = (original: unknown) =>
+      press !== null &&
+      original instanceof MouseEvent &&
+      Math.hypot(original.clientX - press.x, original.clientY - press.y) > DRAG_TOLERANCE_PX
     sigma.on('clickNode', ({ node }) => onSelectRef.current?.(node))
     sigma.on('clickStage', () => setHover(null))
+    // sigma turns the second of two quick clicks into a double click and
+    // zooms, even when that click ends a drag; here it counts as the click it
+    // is, and the map zooms only by wheel or pinch.
+    sigma.on('doubleClickNode', (e) => {
+      e.preventSigmaDefault()
+      if (!dragged(e.event?.original)) onSelectRef.current?.(e.node)
+    })
+    sigma.on('doubleClickStage', (e) => {
+      e.preventSigmaDefault()
+      setHover(null)
+    })
     sigma.on('enterNode', ({ node }) => {
       if (Date.now() - lastTouch < TOUCH_HOVER_GRACE_MS) return
       container.style.cursor = 'pointer'
@@ -459,6 +484,7 @@ export function StackGraph({
     sigmaRef.current = sigma
     return () => {
       container.removeEventListener('touchstart', onTouch)
+      container.removeEventListener('mousedown', onPress, true)
       container.removeEventListener('webglcontextlost', onLost, true)
       for (const type of grabs) container.removeEventListener(type, stopGlide, { capture: true })
       stopGlide()

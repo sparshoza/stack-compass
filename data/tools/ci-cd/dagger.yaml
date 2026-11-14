@@ -1,0 +1,30 @@
+id: dagger
+name: Dagger
+aliases:
+- dagger.io
+match_name: false
+layer: ci-cd
+summary: Software delivery automation tool that defines builds, tests and deployments in code and runs them anywhere.
+url: https://dagger.io
+repo: https://github.com/dagger/dagger
+license: Apache-2.0
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Pipelines that run the same on a laptop and in CI
+- Defining pipelines in code
+avoid_when:
+- A short YAML workflow is enough
+edges:
+- type: alternative-to
+  target: github-actions
+verified: '2026-11-14'
+sources:
+- https://dagger.io
+- https://docs.dagger.io
+- https://github.com/dagger/dagger

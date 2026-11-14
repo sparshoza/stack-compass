@@ -1,0 +1,53 @@
+id: playwright
+name: Playwright
+aliases:
+- playwright test
+match_name: false
+layer: testing
+summary: Framework for web testing and automation that drives Chromium, Firefox and WebKit, with Node.js, Python, Java and .NET bindings.
+url: https://playwright.dev
+repo: https://github.com/microsoft/playwright
+license: Apache-2.0
+languages:
+- typescript
+- javascript
+- python
+- java
+- csharp
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Cross-browser end-to-end tests
+- Running in CI with a GitHub Actions guide
+avoid_when:
+- You only need unit tests
+edges:
+- type: alternative-to
+  target: cypress
+- type: alternative-to
+  target: selenium
+- type: pairs-with
+  target: github-actions
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: nuxt}
+- {type: pairs-with, target: vitest}
+- {type: pairs-with, target: gitlab-ci}
+- {type: pairs-with, target: pytest}
+- {type: pairs-with, target: junit}
+- {type: pairs-with, target: xunit}
+verified: '2026-11-14'
+sources:
+- https://playwright.dev
+- https://playwright.dev/docs/intro
+- https://github.com/microsoft/playwright
+- https://playwright.dev/docs/ci-intro
+- https://playwright.dev/docs/test-typescript
+- https://playwright.dev/python/docs/test-runners
+- https://playwright.dev/java/docs/test-runners
+- https://playwright.dev/dotnet/docs/test-runners

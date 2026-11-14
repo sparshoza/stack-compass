@@ -1,0 +1,27 @@
+id: xunit
+name: xUnit.net
+aliases:
+- xunit
+layer: testing
+summary: Free, open-source, community-focused unit testing tool for C#, F# and Visual Basic, part of the .NET Foundation.
+url: https://xunit.net
+repo: https://github.com/xunit/xunit
+license: Apache-2.0
+languages:
+- csharp
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- C# and .NET unit tests
+avoid_when:
+- You need to test non-.NET code
+edges:
+- {type: pairs-with, target: playwright}
+- {type: pairs-with, target: aspnet-core}
+verified: '2026-11-14'
+sources:
+- https://xunit.net

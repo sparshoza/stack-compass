@@ -27,9 +27,11 @@ avoid_when:
 edges:
 - type: built-on
   target: angular
+- {type: pairs-with, target: vitest}
 verified: '2026-11-14'
 sources:
 - https://analogjs.org
 - https://github.com/analogjs/analog
 - https://analogjs.org/docs
 - https://analogjs.org/docs/features/api/overview
+- https://analogjs.org/docs/features/testing/overview

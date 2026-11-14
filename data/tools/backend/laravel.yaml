@@ -17,5 +17,21 @@ edges:
 - {type: pairs-with, target: doctrine}
 - {type: pairs-with, target: eloquent}
 - {type: pairs-with, target: laravel-queues}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: redis}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: stripe}
+- {type: pairs-with, target: tailwindcss}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: react}
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: flyio}
+- {type: pairs-with, target: memcached}
+- {type: pairs-with, target: algolia}
+- {type: pairs-with, target: amazon-s3}
+- {type: pairs-with, target: vite}
+- {type: pairs-with, target: phpunit}
 verified: 2026-11-14
-sources: ['https://laravel.com', 'https://laravel.com/docs/queues', 'https://laravel.com/docs/scheduling', 'https://laravel.com/docs/mail', 'https://github.com/laravel/laravel']
+sources: ['https://laravel.com', 'https://laravel.com/docs/queues', 'https://laravel.com/docs/scheduling', 'https://laravel.com/docs/mail', 'https://github.com/laravel/laravel', 'https://laravel.com/docs/master/database', 'https://laravel.com/docs/master/redis', 'https://laravel.com/docs/master/billing', 'https://laravel.com/docs/master/mail', 'https://laravel.com/docs/master/starter-kits', 'https://laravel.com/docs/master/cache', 'https://laravel.com/docs/master/scout', 'https://laravel.com/docs/master/filesystem', 'https://laravel.com/docs/master/vite', 'https://laravel.com/docs/master/testing']

@@ -1,0 +1,31 @@
+id: fluxcd
+name: Flux
+aliases:
+- flux cd
+- flux2
+match_name: false
+layer: ci-cd
+summary: Open and extensible continuous delivery solution for Kubernetes, powered by the GitOps Toolkit.
+url: https://fluxcd.io
+repo: https://github.com/fluxcd/flux2
+license: Apache-2.0
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Keeping Kubernetes clusters in sync with Git and OCI sources
+avoid_when:
+- You do not run Kubernetes
+edges:
+- type: alternative-to
+  target: argo-cd
+- {type: pairs-with, target: github-actions}
+verified: '2026-11-14'
+sources:
+- https://fluxcd.io
+- https://github.com/fluxcd/flux2
+- https://fluxcd.io/flux/flux-gh-action/

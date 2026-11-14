@@ -1,0 +1,44 @@
+id: cypress
+name: Cypress
+aliases: []
+match_name: false
+layer: testing
+summary: Quality platform for web apps covering end-to-end and component testing in a real browser, with a paid Cypress Cloud.
+url: https://www.cypress.io
+repo: https://github.com/cypress-io/cypress
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- oss
+- paid
+maturity: established
+good_for:
+- End-to-end and component tests for React, Angular, Vue and Svelte
+- Running in GitHub Actions with a step-by-step guide
+avoid_when:
+- You need to test things that do not run in a browser
+edges:
+- type: alternative-to
+  target: playwright
+- type: alternative-to
+  target: selenium
+- type: pairs-with
+  target: github-actions
+- type: pairs-with
+  target: testing-library
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: react}
+verified: '2026-11-14'
+sources:
+- https://www.cypress.io
+- https://docs.cypress.io/app/get-started/why-cypress
+- https://github.com/cypress-io/cypress
+- https://docs.cypress.io/app/continuous-integration/github-actions
+- https://docs.cypress.io/app/component-testing/get-started

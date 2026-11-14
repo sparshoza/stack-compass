@@ -1,0 +1,30 @@
+id: woodpecker-ci
+name: Woodpecker CI
+aliases: []
+layer: ci-cd
+summary: Lightweight, simple and fast CI/CD tool with plugins that you deploy yourself, even on a Raspberry Pi.
+url: https://woodpecker-ci.org
+repo: https://github.com/woodpecker-ci/woodpecker
+license: Apache-2.0
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Lightweight self-hosted CI
+- Teams that want plugin-based pipelines
+avoid_when:
+- You want a hosted service
+edges:
+- type: alternative-to
+  target: concourse
+- type: alternative-to
+  target: jenkins
+verified: '2026-11-14'
+sources:
+- https://woodpecker-ci.org
+- https://woodpecker-ci.org/docs/intro
+- https://github.com/woodpecker-ci/woodpecker

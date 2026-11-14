@@ -1,0 +1,34 @@
+id: bitbucket-pipelines
+name: Bitbucket Pipelines
+aliases:
+- bitbucket ci
+layer: ci-cd
+summary: CI/CD built into Bitbucket Cloud for automating builds, tests and deployments.
+url: https://bitbucket.org/product/features/pipelines
+license: Proprietary
+languages:
+- java
+- python
+tags: []
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Teams that use Bitbucket Cloud
+- Hybrid runners behind your own firewall
+avoid_when:
+- Your code is not on Bitbucket
+- The free plan includes only 50 build minutes
+edges:
+- type: alternative-to
+  target: azure-pipelines
+- type: alternative-to
+  target: github-actions
+verified: '2026-11-14'
+sources:
+- https://bitbucket.org/product/features/pipelines
+- https://www.atlassian.com/software/bitbucket/features/pipelines
+- https://www.atlassian.com/software/bitbucket/pricing

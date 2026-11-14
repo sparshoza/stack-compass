@@ -1,0 +1,31 @@
+id: gocd
+name: GoCD
+aliases:
+- go cd
+- thoughtworks gocd
+layer: ci-cd
+summary: Free, open-source CI/CD server for modelling complex delivery workflows, with a built-in value stream map.
+url: https://www.gocd.org
+repo: https://github.com/gocd/gocd
+license: Apache-2.0
+languages:
+- java
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Modelling pipeline dependencies and parallel execution
+- Commit-to-deploy traceability
+avoid_when:
+- You want a managed service
+edges:
+- type: alternative-to
+  target: jenkins
+verified: '2026-11-14'
+sources:
+- https://www.gocd.org
+- https://github.com/gocd/gocd

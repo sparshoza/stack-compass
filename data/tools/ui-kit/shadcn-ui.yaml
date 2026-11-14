@@ -37,8 +37,12 @@ edges:
   target: tailwindcss
 - type: pairs-with
   target: radix-ui
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: astro}
 verified: '2026-11-14'
 sources:
 - https://ui.shadcn.com
 - https://github.com/shadcn-ui/ui
 - https://ui.shadcn.com/docs
+- https://ui.shadcn.com/docs/installation/next
+- https://ui.shadcn.com/docs/installation/astro

@@ -1,0 +1,39 @@
+id: grafana
+name: Grafana
+aliases:
+- grafana oss
+- grafana cloud
+layer: observability
+summary: Open-source platform for monitoring, observability and data visualization, also offered as Grafana Cloud.
+url: https://grafana.com/oss/grafana/
+repo: https://github.com/grafana/grafana
+license: AGPL-3.0
+languages: []
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- oss
+- free-tier
+- paid
+maturity: established
+good_for:
+- Dashboards over many data sources
+- An always-free Grafana Cloud tier
+avoid_when:
+- AGPL licensing is a problem for you
+edges:
+- type: alternative-to
+  target: signoz
+- type: pairs-with
+  target: prometheus
+- type: pairs-with
+  target: loki
+- type: pairs-with
+  target: k6
+verified: '2026-11-14'
+sources:
+- https://grafana.com/oss/grafana/
+- https://github.com/grafana/grafana
+- https://grafana.com/pricing/

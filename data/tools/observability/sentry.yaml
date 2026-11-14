@@ -1,0 +1,104 @@
+id: sentry
+name: Sentry
+aliases:
+- sentry.io
+match_name: false
+layer: observability
+summary: Application monitoring with error tracking and tracing, with SDKs for many platforms, hosted or self-hosted.
+url: https://sentry.io
+repo: https://github.com/getsentry/sentry
+license: FSL-1.1-Apache-2.0
+languages:
+- csharp
+- dart
+- elixir
+- go
+- java
+- javascript
+- kotlin
+- php
+- python
+- ruby
+- rust
+- swift
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Error tracking with SDKs for many platforms
+- A free Developer plan for solo projects
+avoid_when:
+- You mainly need infrastructure metrics
+- You require an OSI open-source licence
+edges:
+- type: alternative-to
+  target: glitchtip
+- type: alternative-to
+  target: bugsnag
+- type: alternative-to
+  target: rollbar
+- type: alternative-to
+  target: datadog
+- type: pairs-with
+  target: vercel
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: fastapi}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: spring-boot}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: nuxt}
+- {type: pairs-with, target: cloudflare-pages}
+- {type: pairs-with, target: react}
+- {type: pairs-with, target: react-native}
+- {type: pairs-with, target: expo}
+- {type: pairs-with, target: flutter}
+- {type: pairs-with, target: opentelemetry}
+- {type: pairs-with, target: react-router}
+- {type: pairs-with, target: solidstart}
+- {type: pairs-with, target: angular}
+- {type: pairs-with, target: vue}
+- {type: pairs-with, target: svelte}
+- {type: pairs-with, target: solidjs}
+- {type: pairs-with, target: capacitor}
+- {type: pairs-with, target: kotlin-multiplatform}
+- {type: pairs-with, target: dotnet-maui}
+verified: '2026-11-14'
+sources:
+- https://sentry.io
+- https://docs.sentry.io/platforms/
+- https://sentry.io/pricing/
+- https://raw.githubusercontent.com/getsentry/sentry/master/LICENSE.md
+- https://develop.sentry.dev/self-hosted/
+- https://docs.sentry.io/platforms/javascript/guides/nextjs/
+- https://docs.sentry.io/platforms/python/integrations/django/
+- https://docs.sentry.io/platforms/python/integrations/fastapi/
+- https://docs.sentry.io/platforms/ruby/guides/rails/
+- https://docs.sentry.io/platforms/php/guides/laravel/
+- https://docs.sentry.io/platforms/java/guides/spring-boot/
+- https://docs.sentry.io/platforms/javascript/guides/express/
+- https://docs.sentry.io/platforms/javascript/guides/astro/
+- https://docs.sentry.io/platforms/javascript/guides/sveltekit/
+- https://docs.sentry.io/platforms/javascript/guides/nuxt/
+- https://docs.sentry.io/platforms/javascript/guides/cloudflare/
+- https://docs.sentry.io/platforms/javascript/guides/react/
+- https://docs.sentry.io/platforms/react-native/
+- https://docs.sentry.io/platforms/dart/guides/flutter/
+- https://docs.sentry.io/concepts/otlp/
+- https://docs.sentry.io/platforms/javascript/guides/react-router/
+- https://docs.sentry.io/platforms/javascript/guides/solidstart/
+- https://docs.sentry.io/platforms/javascript/guides/angular/
+- https://docs.sentry.io/platforms/javascript/guides/vue/
+- https://docs.sentry.io/platforms/javascript/guides/svelte/
+- https://docs.sentry.io/platforms/javascript/guides/solid/
+- https://docs.sentry.io/platforms/javascript/guides/capacitor/
+- https://docs.sentry.io/platforms/kotlin-multiplatform/
+- https://docs.sentry.io/platforms/dotnet/guides/maui/

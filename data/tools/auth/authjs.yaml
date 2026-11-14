@@ -15,5 +15,11 @@ avoid_when: [You need ready-made enterprise SSO or a user admin console]
 edges:
 - {type: alternative-to, target: better-auth}
 - {type: alternative-to, target: passportjs}
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: hono}
+- {type: pairs-with, target: typeorm}
 verified: '2026-11-14'
-sources: ['https://authjs.dev', 'https://github.com/nextauthjs/next-auth']
+sources: ['https://authjs.dev', 'https://github.com/nextauthjs/next-auth', 'https://authjs.dev/getting-started/installation', 'https://authjs.dev/getting-started/database']

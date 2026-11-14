@@ -24,5 +24,10 @@ edges:
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
 - {type: pairs-with, target: turso}
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: supabase}
+- {type: pairs-with, target: nestjs}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: payload}
 verified: 2026-11-14
-sources: ['https://orm.drizzle.team', 'https://github.com/drizzle-team/drizzle-orm']
+sources: ['https://orm.drizzle.team', 'https://github.com/drizzle-team/drizzle-orm', 'https://orm.drizzle.team/docs/tutorials/drizzle-nextjs-neon']

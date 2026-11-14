@@ -17,5 +17,20 @@ edges:
 - {type: alternative-to, target: ktor}
 - {type: pairs-with, target: hibernate}
 - {type: pairs-with, target: jobrunr}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: redis}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: heroku}
+- {type: pairs-with, target: cassandra}
+- {type: pairs-with, target: elasticsearch}
+- {type: pairs-with, target: caffeine}
+- {type: pairs-with, target: ehcache}
+- {type: pairs-with, target: spring-security}
+- {type: pairs-with, target: quartz}
+- {type: pairs-with, target: google-cloud-run}
+- {type: pairs-with, target: junit}
 verified: 2026-11-14
-sources: ['https://spring.io/projects/spring-boot', 'https://docs.spring.io/spring-boot/reference/features/kotlin.html', 'https://github.com/spring-projects/spring-boot']
+sources: ['https://spring.io/projects/spring-boot', 'https://docs.spring.io/spring-boot/reference/features/kotlin.html', 'https://github.com/spring-projects/spring-boot', 'https://docs.spring.io/spring-boot/reference/data/sql.html', 'https://docs.spring.io/spring-boot/reference/data/nosql.html', 'https://docs.spring.io/spring-boot/reference/io/caching.html', 'https://docs.spring.io/spring-boot/reference/web/spring-security.html', 'https://docs.spring.io/spring-boot/reference/io/quartz.html', 'https://docs.spring.io/spring-boot/reference/testing/index.html']

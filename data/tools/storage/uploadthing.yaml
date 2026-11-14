@@ -15,5 +15,7 @@ avoid_when: [You need uploads from non-JavaScript backends]
 edges:
 - {type: alternative-to, target: cloudinary}
 - {type: alternative-to, target: uppy}
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: express}
 verified: '2026-11-14'
-sources: ['https://uploadthing.com', 'https://github.com/pingdotgg/uploadthing']
+sources: ['https://uploadthing.com', 'https://github.com/pingdotgg/uploadthing', 'https://docs.uploadthing.com/getting-started/appdir', 'https://docs.uploadthing.com/backend-adapters/express']

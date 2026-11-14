@@ -15,5 +15,6 @@ good_for: [Analytics and event data]
 avoid_when: [Row-level transactional workloads]
 edges:
 - {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: gorm}
 verified: 2026-11-14
 sources: ['https://clickhouse.com', 'https://github.com/ClickHouse/ClickHouse']

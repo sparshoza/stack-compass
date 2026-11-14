@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: orpc}
 - {type: pairs-with, target: express}
 - {type: pairs-with, target: fastify}
+- {type: pairs-with, target: nextjs}
 verified: 2026-11-14
-sources: ['https://trpc.io', 'https://github.com/trpc/trpc']
+sources: ['https://trpc.io', 'https://github.com/trpc/trpc', 'https://trpc.io/docs/client/nextjs']

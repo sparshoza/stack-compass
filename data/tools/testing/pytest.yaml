@@ -1,0 +1,35 @@
+id: pytest
+name: pytest
+aliases:
+- py.test
+layer: testing
+summary: Testing framework that makes it easy to write small, readable tests, with fixtures and a large plugin ecosystem.
+url: https://docs.pytest.org
+repo: https://github.com/pytest-dev/pytest
+license: MIT
+languages:
+- python
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Python unit and integration tests
+- Fixtures and parametrised tests
+avoid_when:
+- You need to test non-Python code
+edges:
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: fastapi}
+- {type: pairs-with, target: github-actions}
+- {type: pairs-with, target: playwright}
+- {type: pairs-with, target: flask}
+- {type: pairs-with, target: celery}
+verified: '2026-11-14'
+sources:
+- https://docs.pytest.org
+- https://docs.pytest.org/en/stable/
+- https://github.com/pytest-dev/pytest
+- https://pytest-django.readthedocs.io/en/latest/

@@ -47,9 +47,12 @@ edges:
   target: tauri
 - type: pairs-with
   target: nativescript
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: vitest}
 verified: '2026-11-14'
 sources:
 - https://svelte.dev
 - https://github.com/sveltejs/svelte
 - https://svelte.dev/docs/svelte/typescript
 - https://svelte.dev/docs/svelte/svelte-server
+- https://svelte.dev/docs/svelte/testing

@@ -32,6 +32,7 @@ edges:
   target: xamarin
 - type: alternative-to
   target: xamarin
+- {type: pairs-with, target: sentry}
 verified: '2026-11-14'
 sources:
 - https://dotnet.microsoft.com/apps/maui

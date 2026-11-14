@@ -16,5 +16,7 @@ avoid_when: [You want Spring's wider ecosystem]
 edges:
 - {type: alternative-to, target: spring-boot}
 - {type: pairs-with, target: exposed}
+- {type: pairs-with, target: prometheus}
+- {type: pairs-with, target: junit}
 verified: 2026-11-14
-sources: ['https://ktor.io', 'https://ktor.io/docs/server-websockets.html', 'https://github.com/ktorio/ktor']
+sources: ['https://ktor.io', 'https://ktor.io/docs/server-websockets.html', 'https://github.com/ktorio/ktor', 'https://ktor.io/docs/server-metrics-micrometer.html', 'https://ktor.io/docs/server-testing.html']

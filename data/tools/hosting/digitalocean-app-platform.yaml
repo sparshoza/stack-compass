@@ -1,0 +1,40 @@
+id: digitalocean-app-platform
+name: DigitalOcean App Platform
+aliases:
+- do app platform
+- digitalocean apps
+layer: hosting
+summary: Managed platform that deploys apps from Git repositories or container images, with services, workers and jobs.
+url: https://www.digitalocean.com/products/app-platform
+license: Proprietary
+languages:
+- php
+- javascript
+- python
+- go
+tags:
+- static-content
+- background-jobs
+- scheduled-jobs
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Static sites on the free tier
+- Apps that need workers and jobs on a paid plan
+avoid_when:
+- You need a free tier for anything beyond static sites
+- You need to self-host
+edges:
+- type: alternative-to
+  target: heroku
+- type: alternative-to
+  target: render
+verified: '2026-11-14'
+sources:
+- https://www.digitalocean.com/products/app-platform
+- https://docs.digitalocean.com/products/app-platform/
+- https://www.digitalocean.com/pricing/app-platform

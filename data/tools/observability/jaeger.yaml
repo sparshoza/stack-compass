@@ -1,0 +1,31 @@
+id: jaeger
+name: Jaeger
+aliases:
+- jaeger tracing
+layer: observability
+summary: Open-source distributed tracing platform, a CNCF project originally created at Uber.
+url: https://www.jaegertracing.io
+repo: https://github.com/jaegertracing/jaeger
+license: Apache-2.0
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Visualising request traces across services
+- Self-hosted tracing for OpenTelemetry data
+avoid_when:
+- You need metrics or logs as well
+edges:
+- type: alternative-to
+  target: signoz
+- type: pairs-with
+  target: opentelemetry
+verified: '2026-11-14'
+sources:
+- https://www.jaegertracing.io
+- https://www.jaegertracing.io/docs/latest/
+- https://github.com/jaegertracing/jaeger

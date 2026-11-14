@@ -15,5 +15,10 @@ good_for: [Python services with FastAPI or Flask, Complex queries]
 avoid_when: [Django projects (use its built-in ORM)]
 edges:
 - {type: pairs-with, target: flask}
+- {type: pairs-with, target: fastapi}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: sqlite}
 verified: 2026-11-14
-sources: ['https://www.sqlalchemy.org', 'https://github.com/sqlalchemy/sqlalchemy']
+sources: ['https://www.sqlalchemy.org', 'https://github.com/sqlalchemy/sqlalchemy', 'https://docs.sqlalchemy.org/en/20/dialects/']

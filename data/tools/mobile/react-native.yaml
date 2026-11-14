@@ -37,6 +37,9 @@ edges:
   target: capacitor
 - type: built-on
   target: react
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: jest}
+- {type: pairs-with, target: supabase}
 verified: '2026-11-14'
 sources:
 - https://reactnative.dev

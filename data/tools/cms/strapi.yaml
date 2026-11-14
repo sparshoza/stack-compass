@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: keystonejs}
 - {type: alternative-to, target: payload}
 - {type: alternative-to, target: tinacms}
+- {type: pairs-with, target: postgresql}
 verified: '2026-11-14'
-sources: ['https://strapi.io', 'https://github.com/strapi/strapi']
+sources: ['https://strapi.io', 'https://github.com/strapi/strapi', 'https://docs.strapi.io/cms/configurations/database']

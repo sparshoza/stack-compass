@@ -21,5 +21,9 @@ edges:
 - {type: pairs-with, target: mikro-orm}
 - {type: pairs-with, target: sequelize}
 - {type: pairs-with, target: typeorm}
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: sqlalchemy}
+- {type: pairs-with, target: doctrine}
 verified: 2026-11-14
 sources: ['https://mariadb.org', 'https://github.com/MariaDB/server']

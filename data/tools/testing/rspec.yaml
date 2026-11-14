@@ -1,0 +1,27 @@
+id: rspec
+name: RSpec
+aliases: []
+layer: testing
+summary: Behaviour-driven development tool for Ruby, built from core, expectations and mocks gems.
+url: https://rspec.info
+repo: https://github.com/rspec/rspec
+license: MIT
+languages:
+- ruby
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Ruby test suites written as behaviour examples
+avoid_when:
+- You need to test non-Ruby code
+edges:
+- {type: pairs-with, target: rails}
+verified: '2026-11-14'
+sources:
+- https://rspec.info
+- https://github.com/rspec/rspec
+- https://github.com/rspec/rspec-rails

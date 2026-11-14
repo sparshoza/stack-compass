@@ -1,0 +1,44 @@
+id: bugsnag
+name: BugSnag
+aliases:
+- bugsnag.com
+layer: observability
+summary: Error monitoring for web and mobile apps from SmartBear, with SDKs for many platforms.
+url: https://www.bugsnag.com
+license: Proprietary
+languages:
+- csharp
+- dart
+- go
+- java
+- javascript
+- kotlin
+- php
+- python
+- ruby
+- swift
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Mobile and web error tracking
+- A free plan with 7 days of retention
+avoid_when:
+- You need infrastructure metrics
+edges:
+- type: alternative-to
+  target: sentry
+- type: alternative-to
+  target: glitchtip
+- type: alternative-to
+  target: rollbar
+verified: '2026-11-14'
+sources:
+- https://www.bugsnag.com
+- https://www.bugsnag.com/pricing/
+- https://docs.bugsnag.com/platforms/

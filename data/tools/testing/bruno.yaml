@@ -1,0 +1,31 @@
+id: bruno
+name: Bruno
+aliases:
+- usebruno
+match_name: false
+layer: testing
+summary: Open-source, offline-only API client that stores collections as plain-text Bru files you can version in Git.
+url: https://www.usebruno.com
+repo: https://github.com/usebruno/bruno
+license: MIT
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+- paid
+maturity: emerging
+good_for:
+- API testing with collections versioned in Git
+- Offline, local-first workflows
+avoid_when:
+- You need cloud sync, which Bruno does not plan to offer
+edges:
+- type: alternative-to
+  target: postman
+verified: '2026-11-14'
+sources:
+- https://www.usebruno.com
+- https://github.com/usebruno/bruno
+- https://www.usebruno.com/pricing

@@ -1,0 +1,60 @@
+id: render
+name: Render
+aliases:
+- render.com
+match_name: false
+layer: hosting
+summary: Cloud platform for web services, static sites, background workers and cron jobs, with free instances for some types.
+url: https://render.com
+license: Proprietary
+languages:
+- javascript
+- typescript
+- python
+- ruby
+- go
+- rust
+- elixir
+tags:
+- static-content
+- background-jobs
+- scheduled-jobs
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Full-stack apps with workers and cron jobs
+- Free static sites and web services to start
+avoid_when:
+- Free web services spin down after 15 minutes without traffic
+- Only web services and static sites have free instances
+edges:
+- type: alternative-to
+  target: railway
+- type: alternative-to
+  target: flyio
+- type: alternative-to
+  target: heroku
+- type: alternative-to
+  target: digitalocean-app-platform
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: fastapi}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: flask}
+- {type: pairs-with, target: phoenix}
+verified: '2026-11-14'
+sources:
+- https://render.com
+- https://render.com/docs
+- https://render.com/docs/language-support
+- https://render.com/docs/free
+- https://render.com/docs/deploy-django
+- https://render.com/docs/deploy-fastapi
+- https://render.com/docs/deploy-rails
+- https://render.com/docs/deploy-node-express-app
+- https://render.com/docs/deploy-flask
+- https://render.com/docs/deploy-phoenix

@@ -15,5 +15,7 @@ avoid_when: [You are not using Supabase]
 edges:
 - {type: alternative-to, target: auth0}
 - {type: alternative-to, target: clerk}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: sveltekit}
 verified: '2026-11-14'
-sources: ['https://supabase.com/docs/guides/auth', 'https://github.com/supabase/auth']
+sources: ['https://supabase.com/docs/guides/auth', 'https://github.com/supabase/auth', 'https://supabase.com/docs/guides/auth/server-side/sveltekit']

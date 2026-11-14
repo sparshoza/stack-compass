@@ -1,0 +1,42 @@
+id: cloudflare-pages
+name: Cloudflare Pages
+aliases:
+- cf pages
+layer: hosting
+summary: Git-integrated hosting for full-stack sites on Cloudflare's network, with server-side code in Pages Functions.
+url: https://pages.cloudflare.com
+license: Proprietary
+languages:
+- javascript
+- typescript
+- python
+- rust
+tags: []
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Full-stack sites on a global network
+- Projects that start on a free plan
+avoid_when:
+- Cloudflare recommends Workers for new projects
+- You need to self-host
+edges:
+- type: alternative-to
+  target: vercel
+- type: alternative-to
+  target: netlify
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: react-router}
+- {type: pairs-with, target: gitlab-ci}
+- {type: pairs-with, target: tanstack-start}
+verified: '2026-11-14'
+sources:
+- https://pages.cloudflare.com
+- https://developers.cloudflare.com/pages/
+- https://developers.cloudflare.com/pages/functions/
+- https://developers.cloudflare.com/workers/languages/
+- https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/

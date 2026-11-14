@@ -1,0 +1,42 @@
+id: gitlab-ci
+name: GitLab CI/CD
+aliases:
+- gitlab pipelines
+- gitlab-ci.yml
+layer: ci-cd
+summary: CI/CD built into GitLab, configured with a .gitlab-ci.yml file and run on GitLab-hosted or your own runners.
+url: https://docs.gitlab.com/ee/ci/
+repo: https://gitlab.com/gitlab-org/gitlab
+license: MIT
+languages: []
+tags:
+- scheduled-jobs
+hosting:
+- managed
+- self-hosted
+pricing:
+- oss
+- free-tier
+- paid
+maturity: established
+good_for:
+- Teams using GitLab for source and review
+- Self-managed instances with your own runners
+avoid_when:
+- Your code is not on GitLab
+edges:
+- type: alternative-to
+  target: github-actions
+- type: alternative-to
+  target: circleci
+- {type: pairs-with, target: playwright}
+- {type: pairs-with, target: cloudflare-pages}
+- {type: pairs-with, target: junit}
+verified: '2026-11-14'
+sources:
+- https://docs.gitlab.com/ee/ci/
+- https://docs.gitlab.com/ci/
+- https://about.gitlab.com/pricing/
+- https://docs.gitlab.com/ci/pipelines/schedules/
+- https://gitlab.com/gitlab-org/gitlab/-/blob/master/LICENSE
+- https://docs.gitlab.com/ci/testing/unit_test_reports/

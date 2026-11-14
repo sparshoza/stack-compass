@@ -1,0 +1,48 @@
+id: vitest
+name: Vitest
+aliases: []
+layer: testing
+summary: Next generation testing framework powered by Vite, reading your existing Vite config.
+url: https://vitest.dev
+repo: https://github.com/vitest-dev/vitest
+license: MIT
+languages:
+- typescript
+- javascript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Vite projects that want to reuse their config
+- Migrating from Jest
+avoid_when:
+- Your project does not use Vite
+edges:
+- type: alternative-to
+  target: jest
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: nuxt}
+- {type: pairs-with, target: playwright}
+- {type: pairs-with, target: react}
+- {type: pairs-with, target: hono}
+- {type: pairs-with, target: tauri}
+- {type: pairs-with, target: svelte}
+- {type: pairs-with, target: analog}
+- {type: pairs-with, target: vite}
+- {type: pairs-with, target: vue}
+- {type: pairs-with, target: solidjs}
+- {type: pairs-with, target: qwik}
+- {type: pairs-with, target: preact}
+verified: '2026-11-14'
+sources:
+- https://vitest.dev
+- https://vitest.dev/guide/
+- https://github.com/vitest-dev/vitest
+- https://vitest.dev/guide/features
+- https://vitest.dev/guide/browser/playwright
+- https://vitest.dev/guide/browser/component-testing

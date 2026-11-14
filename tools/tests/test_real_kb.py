@@ -3,6 +3,7 @@ from pathlib import Path
 
 from compassdata.compile import compile_catalog, render
 from compassdata.load import load_kb
+from compassdata.models import LAYERS
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
@@ -87,7 +88,7 @@ def test_keywords_cover_vocab():
         assert all(p == p.lower() for p in e.phrases)
 
 
-def test_orm_languages_match_a_backend():
+def test_every_orm_language_matches_some_backend():
     tools = load_kb(DATA).tools.values()
     backend_langs = {x for t in tools if t.layer == "backend" for x in t.languages}
     for t in tools:
@@ -103,7 +104,7 @@ def test_backend_covers_core_languages():
     assert need <= langs
 
 
-def test_every_tool_has_an_edge():
+def test_every_tool_has_at_least_one_edge():
     for t in load_kb(DATA).tools.values():
         assert t.edges, t.id
 
@@ -130,3 +131,17 @@ def test_every_state_and_ui_kit_built_on_or_pairs_with_a_frontend():
     for t in subjects:
         linked = [e.target for e in t.edges if e.type in ("built-on", "pairs-with")]
         assert any(tools[x].layer == "frontend" for x in linked), t.id
+
+
+def test_all_22_layers_present():
+    tools = load_kb(DATA).tools.values()
+    assert len(LAYERS) == 22
+    assert {t.layer for t in tools} == set(LAYERS)
+
+
+def test_total_tools_between_280_and_340():
+    assert 280 <= len(load_kb(DATA).tools) <= 340
+
+
+def test_keywords_at_least_150():
+    assert len(load_kb(DATA).keywords) >= 150

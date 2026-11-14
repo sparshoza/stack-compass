@@ -1,0 +1,37 @@
+id: github-pages
+name: GitHub Pages
+aliases:
+- gh pages
+- ghpages
+layer: hosting
+summary: Static site hosting that publishes a website straight from a GitHub repository.
+url: https://pages.github.com
+license: Proprietary
+languages: []
+tags:
+- static-content
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Docs, project pages and personal sites
+- Static output built by a GitHub Actions workflow
+avoid_when:
+- You need server-side code or a database
+- You need private sites without a paid organization plan
+edges:
+- type: alternative-to
+  target: firebase-hosting
+- type: alternative-to
+  target: netlify
+- type: pairs-with
+  target: github-actions
+verified: '2026-11-14'
+sources:
+- https://pages.github.com
+- https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
+- https://docs.github.com/en/get-started/learning-about-github/githubs-plans
+- https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages

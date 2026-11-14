@@ -27,6 +27,7 @@ edges:
   target: solidjs
 - type: alternative-to
   target: react
+- {type: pairs-with, target: vitest}
 verified: '2026-11-14'
 sources:
 - https://qwik.dev

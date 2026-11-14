@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: auth0}
 - {type: alternative-to, target: clerk}
 - {type: alternative-to, target: workos}
+- {type: pairs-with, target: rails}
 verified: '2026-11-14'
 sources: ['https://github.com/heartcombo/devise']

@@ -16,5 +16,9 @@ avoid_when: [You prefer Active Record style]
 edges:
 - {type: alternative-to, target: eloquent}
 - {type: pairs-with, target: laravel}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: sqlite}
 verified: 2026-11-14
-sources: ['https://www.doctrine-project.org', 'https://github.com/doctrine/orm']
+sources: ['https://www.doctrine-project.org', 'https://github.com/doctrine/orm', 'https://www.doctrine-project.org/projects/dbal.html']

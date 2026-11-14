@@ -32,8 +32,12 @@ edges:
   target: ionic
 - type: alternative-to
   target: dotnet-maui
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: supabase}
+- {type: pairs-with, target: sqlite}
 verified: '2026-11-14'
 sources:
 - https://flutter.dev
 - https://github.com/flutter/flutter
 - https://flutter.dev/
+- https://docs.flutter.dev/cookbook/persistence/sqlite

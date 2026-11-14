@@ -25,5 +25,11 @@ edges:
 - {type: pairs-with, target: elasticache}
 - {type: pairs-with, target: laravel-queues}
 - {type: pairs-with, target: rq}
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: spring-boot}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: nestjs}
+- {type: pairs-with, target: laravel}
 verified: 2026-11-14
 sources: ['https://redis.io', 'https://github.com/redis/redis']

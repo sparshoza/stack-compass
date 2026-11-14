@@ -1,0 +1,44 @@
+id: datadog
+name: Datadog
+aliases:
+- datadog apm
+layer: observability
+summary: SaaS monitoring platform covering infrastructure, APM, logs and real user monitoring.
+url: https://www.datadoghq.com
+license: Proprietary
+languages:
+- java
+- python
+- ruby
+- go
+- javascript
+- php
+- rust
+- csharp
+tags: []
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- One platform for metrics, traces and logs
+- Large teams with many services
+avoid_when:
+- You need a free tier for APM or logs
+- You need to self-host
+edges:
+- type: alternative-to
+  target: new-relic
+- type: alternative-to
+  target: honeycomb
+- type: alternative-to
+  target: sentry
+- type: alternative-to
+  target: prometheus
+verified: '2026-11-14'
+sources:
+- https://www.datadoghq.com
+- https://www.datadoghq.com/pricing/
+- https://docs.datadoghq.com/tracing/trace_collection/dd_libraries/

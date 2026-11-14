@@ -1,0 +1,33 @@
+id: loki
+name: Grafana Loki
+aliases:
+- loki logs
+- grafana loki
+layer: observability
+summary: Open-source, horizontally scalable, multi-tenant log aggregation system that indexes labels, not log contents.
+url: https://grafana.com/oss/loki/
+repo: https://github.com/grafana/loki
+license: AGPL-3.0
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Log storage that indexes only labels
+- Querying logs from Grafana
+avoid_when:
+- You need to index the contents of every log line
+- AGPL licensing is a problem for you
+edges:
+- type: alternative-to
+  target: signoz
+- type: pairs-with
+  target: grafana
+verified: '2026-11-14'
+sources:
+- https://grafana.com/oss/loki/
+- https://github.com/grafana/loki
+- https://grafana.com/docs/loki/latest/

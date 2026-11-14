@@ -1,0 +1,44 @@
+id: opentelemetry
+name: OpenTelemetry
+aliases:
+- otel
+- open telemetry
+layer: observability
+summary: Open-source observability framework with APIs and SDKs in many languages for sending telemetry to backends.
+url: https://opentelemetry.io
+repo: https://github.com/open-telemetry
+license: Apache-2.0
+languages:
+- csharp
+- elixir
+- go
+- java
+- javascript
+- kotlin
+- php
+- python
+- ruby
+- rust
+- swift
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Instrumenting once and sending data to backends such as Jaeger
+- Cross-language traces, metrics and logs
+avoid_when:
+- You want a ready-made backend and UI, since it only collects data
+edges:
+- type: pairs-with
+  target: jaeger
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: aspnet-core}
+- {type: pairs-with, target: hono}
+verified: '2026-11-14'
+sources:
+- https://opentelemetry.io
+- https://opentelemetry.io/docs/languages/
+- https://github.com/open-telemetry/opentelemetry-specification

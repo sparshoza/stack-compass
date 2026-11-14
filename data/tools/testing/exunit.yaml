@@ -1,0 +1,29 @@
+id: exunit
+name: ExUnit
+aliases: []
+layer: testing
+summary: 'Unit testing framework for Elixir, run with mix test, where test modules can run concurrently with async: true.'
+url: https://hexdocs.pm/ex_unit/ExUnit.html
+repo: https://github.com/elixir-lang/elixir
+license: Apache-2.0
+languages:
+- elixir
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Elixir tests with concurrent test modules
+avoid_when:
+- You need to test non-Elixir code
+edges:
+- {type: pairs-with, target: phoenix}
+- {type: pairs-with, target: oban}
+- {type: pairs-with, target: ecto}
+verified: '2026-11-14'
+sources:
+- https://hexdocs.pm/ex_unit/ExUnit.html
+- https://ex-unit.hexdocs.pm/ExUnit.html
+- https://github.com/elixir-lang/elixir

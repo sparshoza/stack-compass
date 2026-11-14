@@ -18,5 +18,8 @@ edges:
 - {type: alternative-to, target: keystonejs}
 - {type: alternative-to, target: strapi}
 - {type: alternative-to, target: tinacms}
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: drizzle}
 verified: '2026-11-14'
-sources: ['https://payloadcms.com', 'https://github.com/payloadcms/payload']
+sources: ['https://payloadcms.com', 'https://github.com/payloadcms/payload', 'https://payloadcms.com/docs/production/deployment', 'https://payloadcms.com/docs/database/overview']

@@ -19,5 +19,20 @@ edges:
 - {type: alternative-to, target: mikro-orm}
 - {type: alternative-to, target: sequelize}
 - {type: alternative-to, target: typeorm}
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: nestjs}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: nuxt}
+- {type: pairs-with, target: jest}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: hono}
+- {type: pairs-with, target: supabase}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: neon}
+- {type: pairs-with, target: turso}
 verified: 2026-11-14
-sources: ['https://www.prisma.io', 'https://github.com/prisma/prisma']
+sources: ['https://www.prisma.io', 'https://github.com/prisma/prisma', 'https://www.prisma.io/docs/guides/nextjs', 'https://www.prisma.io/docs/orm/overview/databases', 'https://www.prisma.io/docs/guides/astro', 'https://www.prisma.io/docs/guides/nestjs', 'https://www.prisma.io/docs/guides/sveltekit', 'https://www.prisma.io/docs/guides/nuxt', 'https://www.prisma.io/docs/guides/testing/unit-testing', 'https://www.prisma.io/docs/guides/clerk-nextjs', 'https://www.prisma.io/docs/guides/hono']

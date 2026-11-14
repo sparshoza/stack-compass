@@ -32,8 +32,11 @@ edges:
   target: vue
 - type: pairs-with
   target: vite
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: netlify}
 verified: '2026-11-14'
 sources:
 - https://vitepress.dev
 - https://github.com/vuejs/vitepress
 - https://vitepress.dev/guide/what-is-vitepress
+- https://vitepress.dev/guide/deploy

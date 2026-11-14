@@ -1,0 +1,33 @@
+id: coolify
+name: Coolify
+aliases:
+- coolify.io
+layer: hosting
+summary: Open-source tool for managing servers, apps and databases on your own hardware, with a hosted Coolify Cloud option.
+url: https://coolify.io
+repo: https://github.com/coollabsio/coolify
+license: Apache-2.0
+languages: []
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- oss
+- paid
+maturity: emerging
+good_for:
+- A self-hosted alternative to Heroku, Netlify and Vercel
+- Deploying apps from Git providers to your own servers
+avoid_when:
+- You want to avoid managing servers
+edges:
+- type: alternative-to
+  target: dokku
+- type: alternative-to
+  target: kamal
+verified: '2026-11-14'
+sources:
+- https://coolify.io
+- https://coolify.io/docs/
+- https://github.com/coollabsio/coolify

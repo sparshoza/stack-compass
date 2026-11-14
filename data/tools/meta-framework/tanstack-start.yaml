@@ -32,8 +32,11 @@ edges:
   target: react
 - type: pairs-with
   target: vite
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: cloudflare-pages}
 verified: '2026-11-14'
 sources:
 - https://tanstack.com/start
 - https://github.com/TanStack/router
 - https://tanstack.com/start/latest/docs/framework/react/overview
+- https://tanstack.com/start/latest/docs/framework/react/guide/hosting

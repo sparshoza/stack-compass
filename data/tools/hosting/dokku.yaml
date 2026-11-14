@@ -1,0 +1,33 @@
+id: dokku
+name: Dokku
+aliases: []
+layer: hosting
+summary: Self-hosted platform as a service that runs on a single server and builds apps from a git push.
+url: https://dokku.com
+repo: https://github.com/dokku/dokku
+license: MIT
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Small self-hosted setups on one server
+- Heroku-style git push deploys
+avoid_when:
+- You want a managed service
+- You need more than one server
+edges:
+- type: alternative-to
+  target: coolify
+- type: alternative-to
+  target: kamal
+- type: alternative-to
+  target: heroku
+verified: '2026-11-14'
+sources:
+- https://dokku.com
+- https://dokku.com/docs/getting-started/installation/
+- https://github.com/dokku/dokku

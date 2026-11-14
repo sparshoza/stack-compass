@@ -44,6 +44,28 @@ edges:
   target: tailwindcss
 - type: pairs-with
   target: turbopack
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: netlify}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: stripe}
+- {type: pairs-with, target: drizzle}
+- {type: pairs-with, target: jest}
+- {type: pairs-with, target: vitest}
+- {type: pairs-with, target: playwright}
+- {type: pairs-with, target: authjs}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: sanity}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: shadcn-ui}
+- {type: pairs-with, target: cypress}
+- {type: pairs-with, target: tauri}
+- {type: pairs-with, target: trpc}
+- {type: pairs-with, target: auth0}
+- {type: pairs-with, target: workos}
+- {type: pairs-with, target: uploadthing}
+- {type: pairs-with, target: tanstack-query}
 verified: '2026-11-14'
 sources:
 - https://nextjs.org
@@ -52,3 +74,9 @@ sources:
 - https://nextjs.org/docs/app/guides/static-exports
 - https://nextjs.org/docs/app/api-reference/config/typescript
 - https://nextjs.org/docs/app/guides/self-hosting
+- https://vercel.com/docs/frameworks/nextjs
+- https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview/
+- https://nextjs.org/docs/app/guides/testing/jest
+- https://nextjs.org/docs/app/guides/testing/vitest
+- https://nextjs.org/docs/app/guides/testing/playwright
+- https://nextjs.org/docs/app/guides/testing/cypress

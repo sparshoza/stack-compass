@@ -1,0 +1,38 @@
+id: signoz
+name: SigNoz
+aliases:
+- signoz.io
+layer: observability
+summary: Open-source, OpenTelemetry-native observability platform with logs, metrics, traces, alerts and dashboards.
+url: https://signoz.io
+repo: https://github.com/SigNoz/signoz
+license: MIT
+languages: []
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- oss
+- paid
+maturity: emerging
+good_for:
+- One tool for traces, metrics and logs
+- Teams adopting OpenTelemetry
+avoid_when:
+- You need SAML or compliance features from the Community Edition
+edges:
+- type: alternative-to
+  target: jaeger
+- type: alternative-to
+  target: grafana
+- type: alternative-to
+  target: loki
+- type: built-on
+  target: opentelemetry
+verified: '2026-11-14'
+sources:
+- https://signoz.io
+- https://github.com/SigNoz/signoz
+- https://signoz.io/pricing/
+- https://raw.githubusercontent.com/SigNoz/signoz/main/LICENSE

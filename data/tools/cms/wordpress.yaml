@@ -14,5 +14,7 @@ good_for: [Content sites with a huge plugin and theme ecosystem]
 avoid_when: [You want a modern JavaScript-only stack]
 edges:
 - {type: alternative-to, target: ghost}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: phpunit}
 verified: '2026-11-14'
-sources: ['https://wordpress.org', 'https://wordpress.org/about/license/']
+sources: ['https://wordpress.org', 'https://wordpress.org/about/license/', 'https://make.wordpress.org/hosting/handbook/server-environment/', 'https://make.wordpress.org/core/handbook/testing/automated-testing/phpunit/']

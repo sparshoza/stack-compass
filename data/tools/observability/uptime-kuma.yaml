@@ -1,0 +1,28 @@
+id: uptime-kuma
+name: Uptime Kuma
+aliases:
+- uptimekuma
+layer: observability
+summary: Self-hosted monitoring tool with HTTP, TCP, ping and DNS monitors and mappable status pages.
+url: https://uptime.kuma.pet
+repo: https://github.com/louislam/uptime-kuma
+license: MIT
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Simple self-hosted uptime checks
+- Status pages on your own domain
+avoid_when:
+- You need APM or tracing
+edges:
+- {type: pairs-with, target: prometheus}
+verified: '2026-11-14'
+sources:
+- https://uptime.kuma.pet
+- https://github.com/louislam/uptime-kuma
+- https://github.com/louislam/uptime-kuma/wiki/Prometheus-Integration

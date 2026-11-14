@@ -183,3 +183,134 @@
   sets: {capabilities: [transactional-email]}
 - phrases: [editors can edit, blog editor, wysiwyg editor]
   sets: {capabilities: [content-editing]}
+# Delivery layers and cross-layer phrases (Task 5)
+- phrases: [sell products, sell online, sell merchandise, sell digital products, product catalog, shopping cart, online shop, shop for my business]
+  sets: {project_type: ecommerce}
+- phrases: [company website, small business website, brochure site, restaurant website, photography portfolio, news site, online magazine, marketing website, event website]
+  sets: {project_type: content-site, capabilities: [static-content]}
+- phrases: [backend service, backend api, rest backend, data api, webhook receiver, api for a mobile app, api gateway, graphql api]
+  sets: {project_type: api-only}
+- phrases: [cross platform mobile, android and ios, mobile application, app for my phone, mobile first app, app in the app store]
+  sets: {project_type: mobile-app, capabilities: [native-mobile]}
+- phrases: [chat application, real time chat, online multiplayer, live auction, live scoreboard, collaborative whiteboard, realtime collaboration, live notifications]
+  sets: {project_type: realtime-app, capabilities: [realtime]}
+- phrases: [internal admin, ops dashboard, inventory management, employee portal, crm for my team, back office app, team dashboard, reporting tool]
+  sets: {project_type: internal-tool}
+- phrases: [b2b saas, saas platform, saas mvp, multi tenant saas, software subscription, paid subscription app, startup mvp]
+  sets: {project_type: saas}
+- phrases: [booking app, booking system, web portal, social network, todo app, project management app, customer dashboard, client portal, community platform, job board]
+  sets: {project_type: web-app}
+- phrases: [real time, real time updates, presence indicator, pub sub, live reactions]
+  sets: {capabilities: [realtime]}
+- phrases: [good seo, search engine friendly, server rendered pages, indexable by google, crawlable pages]
+  sets: {capabilities: [ssr-seo]}
+- phrases: [jamstack site, markdown content, mdx content, generate static pages, markdown blog, static documentation]
+  sets: {capabilities: [static-content]}
+- phrases: [offline mode, work without internet, local first, offline capable, spotty connection]
+  sets: {capabilities: [offline]}
+- phrases: [upload documents, profile pictures, store images, image hosting, user avatars, store files, video hosting]
+  sets: {capabilities: [file-uploads]}
+- phrases: [fuzzy search, search suggestions, search filters, full text index, search across articles]
+  sets: {capabilities: [full-text-search]}
+- phrases: [process in the background, queue workers, async processing, retry failed jobs, send emails in background, image processing jobs, durable workflows, workflow engine]
+  sets: {capabilities: [background-jobs]}
+- phrases: [scheduled reports, run every night, daily cron, recurring tasks, run every hour, timed jobs]
+  sets: {capabilities: [scheduled-jobs]}
+- phrases: [subscription billing, recurring payments, payment processing, charge customers, pricing plans, metered billing, customer invoices, one time purchase]
+  sets: {capabilities: [payments]}
+- phrases: [email templates, magic link emails, order confirmation emails, signup confirmation, notification emails, email deliverability]
+  sets: {capabilities: [transactional-email]}
+- phrases: [content editors, marketing team edits, edit pages without code, visual editor, editorial workflow, content model]
+  sets: {capabilities: [content-editing]}
+- phrases: [multiple customers, team workspaces, organization accounts, customer organizations, separate data per customer]
+  sets: {capabilities: [multi-tenant]}
+- phrases: [map view, store finder, proximity search, find places nearby, location search, map markers]
+  sets: {capabilities: [geospatial]}
+- phrases: [event analytics, data dashboards, reporting dashboard, olap, usage reports, funnel analysis]
+  sets: {capabilities: [analytics]}
+- phrases: [semantic similarity, nearest neighbor search, vector database, find similar items, ask questions over documents]
+  sets: {capabilities: [vector-search]}
+- phrases: [login with google, google sign in, facebook login, apple login, passwordless login, magic link login, sign in with github]
+  sets: {capabilities: [social-login]}
+- phrases: [sso login, identity provider, ldap, scim provisioning, enterprise customers login, saml sso]
+  sets: {capabilities: [enterprise-sso]}
+- phrases: [serverless functions, global edge network, run close to users, edge network, edge deployment]
+  sets: {capabilities: [edge-runtime]}
+- phrases: [typed end to end, type checked api, typed queries, generated types, schema first types]
+  sets: {capabilities: [type-safety]}
+- phrases: [admin interface, manage data screens, data management ui, content admin, generated admin]
+  sets: {capabilities: [admin-ui]}
+- phrases: [millions of writes, write heavy workload, time series data, event ingestion, metrics ingestion, logging pipeline, high volume events]
+  sets: {capabilities: [high-write-throughput]}
+- phrases: [native ios, native android, app store release, store submission, device sensors, push notifications mobile]
+  sets: {capabilities: [native-mobile]}
+- phrases: [written in python, python backend, python api, python web app, python service]
+  sets: {languages: [python]}
+- phrases: [written in typescript, typescript backend, typescript api, node typescript, typescript fullstack]
+  sets: {languages: [typescript]}
+- phrases: [written in javascript, javascript backend, node backend, plain javascript, javascript api]
+  sets: {languages: [javascript]}
+- phrases: [written in go, go backend, go api, go microservice, go service]
+  sets: {languages: [go]}
+- phrases: [written in java, java backend, java developer, java enterprise, java api]
+  sets: {languages: [java]}
+- phrases: [written in kotlin, kotlin backend, kotlin server, kotlin api]
+  sets: {languages: [kotlin]}
+- phrases: [written in c#, c# backend, csharp backend, dotnet backend, c# api, dotnet api, .net backend]
+  sets: {languages: [csharp]}
+- phrases: [written in ruby, ruby backend, ruby developer, ruby web app, ruby api]
+  sets: {languages: [ruby]}
+- phrases: [written in php, php backend, php developer, php website, php api]
+  sets: {languages: [php]}
+- phrases: [written in rust, rust backend, rust api, rust service, rust web server]
+  sets: {languages: [rust]}
+- phrases: [written in elixir, elixir backend, beam vm, elixir api, elixir web app]
+  sets: {languages: [elixir]}
+- phrases: [written in dart, dart backend, dart server, dart developer]
+  sets: {languages: [dart]}
+- phrases: [written in swift, swift backend, swift developer, ios swift]
+  sets: {languages: [swift]}
+- phrases: [static hosting, host my site, deploy my site, free hosting, host a static site, deploy a website]
+  sets: {capabilities: [static-content]}
+- phrases: [edge computing, cdn functions, edge workers]
+  sets: {capabilities: [edge-runtime]}
+- phrases: [cron job, scheduled function, cloud cron]
+  sets: {capabilities: [scheduled-jobs]}
+- phrases: [background workers, worker processes, queue consumers]
+  sets: {capabilities: [background-jobs]}
+- phrases: [page analytics, web analytics, usage analytics, traffic analytics]
+  sets: {capabilities: [analytics]}
+- phrases: [python tests, pytest style testing, python unit tests]
+  sets: {languages: [python]}
+- phrases: [ruby tests, ruby unit tests, rails testing]
+  sets: {languages: [ruby]}
+- phrases: [java tests, jvm tests, java unit tests]
+  sets: {languages: [java]}
+- phrases: [dotnet tests, .net tests, c# unit tests]
+  sets: {languages: [csharp]}
+- phrases: [go tests, golang tests, go unit tests]
+  sets: {languages: [go]}
+- phrases: [php tests, php unit tests, laravel tests]
+  sets: {languages: [php]}
+- phrases: [elixir tests, elixir unit tests]
+  sets: {languages: [elixir]}
+- phrases: [javascript tests, typescript tests, frontend unit tests]
+  sets: {languages: [typescript]}
+- phrases: [internet of things, smart devices, device telemetry]
+  sets: {capabilities: [high-write-throughput]}
+- phrases: [knowledge portal, help center site, customer help center]
+  sets: {project_type: content-site, capabilities: [static-content]}
+- phrases: [shop for artists, print on demand store, sell tickets online]
+  sets: {project_type: ecommerce, capabilities: [payments]}
+- phrases: [invoicing app, billing portal, payment dashboard]
+  sets: {project_type: saas, capabilities: [payments]}
+- phrases: [video call app, live streaming app, collaborative document editor]
+  sets: {project_type: realtime-app, capabilities: [realtime]}
+- phrases: [fleet tracking, asset tracking, tracking app with map]
+  sets: {capabilities: [geospatial]}
+- phrases: [subscription paywall, gated content, members only content]
+  sets: {capabilities: [payments]}
+- phrases: [transactional messages, account emails, verification emails]
+  sets: {capabilities: [transactional-email]}
+- phrases: [jamstack, personal website]
+  sets: {project_type: content-site}

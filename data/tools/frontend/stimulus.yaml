@@ -29,6 +29,7 @@ edges:
   target: htmx
 - type: alternative-to
   target: alpinejs
+- {type: pairs-with, target: rails}
 verified: '2026-11-14'
 sources:
 - https://stimulus.hotwired.dev

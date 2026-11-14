@@ -1,0 +1,31 @@
+id: firebase-hosting
+name: Firebase Hosting
+aliases: []
+layer: hosting
+summary: Hosting for static content and single-page apps, paired with Cloud Functions or Cloud Run for dynamic content.
+url: https://firebase.google.com/products/hosting
+license: Proprietary
+languages: []
+tags:
+- static-content
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Static sites and single-page apps
+- Apps already using other Firebase products
+avoid_when:
+- You need server-side code without Cloud Functions or Cloud Run
+edges:
+- type: alternative-to
+  target: github-pages
+- type: alternative-to
+  target: netlify
+verified: '2026-11-14'
+sources:
+- https://firebase.google.com/products/hosting
+- https://firebase.google.com/docs/hosting
+- https://firebase.google.com/pricing

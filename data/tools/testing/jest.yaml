@@ -1,0 +1,41 @@
+id: jest
+name: Jest
+aliases:
+- jestjs
+layer: testing
+summary: JavaScript testing framework with a global test API, mock functions, snapshot testing and a CLI.
+url: https://jestjs.io
+repo: https://github.com/jestjs/jest
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Unit and snapshot tests for JavaScript and TypeScript
+- Zero-config setup in many projects
+avoid_when:
+- You use Vite, which Jest does not support
+edges:
+- type: alternative-to
+  target: vitest
+- type: pairs-with
+  target: testing-library
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: react-native}
+- {type: pairs-with, target: expo}
+- {type: pairs-with, target: gatsby}
+- {type: pairs-with, target: babel}
+verified: '2026-11-14'
+sources:
+- https://jestjs.io
+- https://jestjs.io/docs/getting-started
+- https://github.com/jestjs/jest
+- https://jestjs.io/docs/tutorial-react-native

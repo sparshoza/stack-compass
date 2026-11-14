@@ -17,5 +17,7 @@ edges:
 - {type: alternative-to, target: hygraph}
 - {type: alternative-to, target: sanity}
 - {type: alternative-to, target: storyblok}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: nuxt}
 verified: '2026-11-14'
-sources: ['https://prismic.io', 'https://prismic.io/pricing']
+sources: ['https://prismic.io', 'https://prismic.io/pricing', 'https://prismic.io/docs/sveltekit', 'https://prismic.io/docs/nuxt']

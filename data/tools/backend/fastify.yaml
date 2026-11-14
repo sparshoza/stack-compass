@@ -20,5 +20,9 @@ edges:
 - {type: pairs-with, target: apollo-server}
 - {type: pairs-with, target: graphql-yoga}
 - {type: pairs-with, target: trpc}
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: better-auth}
 verified: 2026-11-14
-sources: ['https://fastify.dev', 'https://github.com/fastify/fastify']
+sources: ['https://fastify.dev', 'https://github.com/fastify/fastify', 'https://fastify.dev/ecosystem/']

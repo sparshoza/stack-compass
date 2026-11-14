@@ -45,6 +45,8 @@ edges:
   target: tanstack-start
 - type: pairs-with
   target: solidstart
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: vitest}
 verified: '2026-11-14'
 sources:
 - https://vite.dev

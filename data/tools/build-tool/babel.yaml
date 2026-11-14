@@ -26,6 +26,7 @@ edges:
   target: swc
 - type: pairs-with
   target: gulp
+- {type: pairs-with, target: jest}
 verified: '2026-11-14'
 sources:
 - https://babeljs.io

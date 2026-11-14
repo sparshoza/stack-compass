@@ -15,5 +15,17 @@ avoid_when: [You need a decade of proven production history]
 edges:
 - {type: alternative-to, target: authjs}
 - {type: alternative-to, target: passportjs}
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: nestjs}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: nuxt}
+- {type: pairs-with, target: drizzle}
+- {type: pairs-with, target: react}
+- {type: pairs-with, target: expo}
+- {type: pairs-with, target: fastify}
+- {type: pairs-with, target: hono}
 verified: '2026-11-14'
-sources: ['https://www.better-auth.com', 'https://github.com/better-auth/better-auth']
+sources: ['https://www.better-auth.com', 'https://github.com/better-auth/better-auth', 'https://www.better-auth.com/docs/integrations/next', 'https://www.better-auth.com/docs/adapters/postgresql', 'https://www.better-auth.com/docs/integrations/express', 'https://www.better-auth.com/docs/integrations/nestjs', 'https://www.better-auth.com/docs/integrations/svelte-kit', 'https://www.better-auth.com/docs/integrations/nuxt', 'https://www.better-auth.com/docs/adapters/drizzle', 'https://www.better-auth.com/docs/basic-usage', 'https://www.better-auth.com/docs/integrations/expo', 'https://www.better-auth.com/docs/integrations/fastify', 'https://www.better-auth.com/docs/integrations/hono']

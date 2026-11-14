@@ -18,5 +18,6 @@ edges:
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: clickhouse}
 verified: 2026-11-14
 sources: ['https://gorm.io', 'https://gorm.io/docs/connecting_to_the_database.html', 'https://github.com/go-gorm/gorm']

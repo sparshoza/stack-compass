@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: postgraphile}
 - {type: pairs-with, target: express}
 - {type: pairs-with, target: fastify}
+- {type: pairs-with, target: nestjs}
 verified: 2026-11-14
 sources: ['https://www.apollographql.com/docs/apollo-server', 'https://github.com/apollographql/apollo-server']

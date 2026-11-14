@@ -24,5 +24,7 @@ edges:
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: nestjs}
+- {type: pairs-with, target: authjs}
 verified: 2026-11-14
 sources: ['https://typeorm.io', 'https://github.com/typeorm/typeorm']

@@ -45,8 +45,11 @@ edges:
   target: ionic
 - type: pairs-with
   target: nativescript
+- {type: pairs-with, target: netlify}
+- {type: pairs-with, target: sentry}
 verified: '2026-11-14'
 sources:
 - https://angular.dev
 - https://github.com/angular/angular
 - https://angular.dev/guide/ssr
+- https://angular.dev/tools/cli/deployment

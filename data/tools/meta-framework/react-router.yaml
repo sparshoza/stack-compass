@@ -32,6 +32,9 @@ edges:
   target: tanstack-start
 - type: built-on
   target: react
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: cloudflare-pages}
+- {type: pairs-with, target: clerk}
 verified: '2026-11-14'
 sources:
 - https://reactrouter.com
@@ -39,3 +42,4 @@ sources:
 - https://reactrouter.com/start/modes
 - https://reactrouter.com/how-to/pre-rendering
 - https://reactrouter.com/explanation/type-safety
+- https://reactrouter.com/start/framework/deploying

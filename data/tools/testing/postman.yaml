@@ -1,0 +1,28 @@
+id: postman
+name: Postman
+aliases:
+- postman api
+layer: testing
+summary: API platform with an API client, mock servers, a collection runner and performance testing for building and testing APIs.
+url: https://www.postman.com
+license: Proprietary
+languages: []
+tags: []
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Exploring and testing HTTP APIs
+- Sharing collections across a team
+avoid_when:
+- You want a fully local, open-source client
+edges:
+- type: alternative-to
+  target: bruno
+verified: '2026-11-14'
+sources:
+- https://www.postman.com
+- https://www.postman.com/pricing/

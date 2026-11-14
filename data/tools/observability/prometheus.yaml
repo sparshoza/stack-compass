@@ -1,0 +1,39 @@
+id: prometheus
+name: Prometheus
+aliases: []
+layer: observability
+summary: Open-source monitoring and alerting toolkit that stores metrics as time series and queries them with PromQL.
+url: https://prometheus.io
+repo: https://github.com/prometheus/prometheus
+license: Apache-2.0
+languages:
+- go
+- java
+- javascript
+- python
+- ruby
+- rust
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Metrics and alerting for services
+- Querying labelled time series with PromQL
+avoid_when:
+- You need a managed service with no setup
+edges:
+- type: alternative-to
+  target: datadog
+- type: pairs-with
+  target: grafana
+- {type: pairs-with, target: ktor}
+- {type: pairs-with, target: uptime-kuma}
+verified: '2026-11-14'
+sources:
+- https://prometheus.io
+- https://prometheus.io/docs/introduction/overview/
+- https://prometheus.io/docs/instrumenting/clientlibs/
+- https://github.com/prometheus/prometheus

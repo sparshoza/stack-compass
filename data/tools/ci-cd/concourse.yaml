@@ -1,0 +1,29 @@
+id: concourse
+name: Concourse CI
+aliases: []
+layer: ci-cd
+summary: Open-source, container-based automation system for CI/CD, built around pipelines, jobs, resources and tasks.
+url: https://concourse-ci.org
+repo: https://github.com/concourse/concourse
+license: Apache-2.0
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Declarative pipelines defined in code
+- Clean container environments per task
+avoid_when:
+- You want a managed service
+edges:
+- type: alternative-to
+  target: woodpecker-ci
+- type: alternative-to
+  target: jenkins
+verified: '2026-11-14'
+sources:
+- https://concourse-ci.org
+- https://github.com/concourse/concourse

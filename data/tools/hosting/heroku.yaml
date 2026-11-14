@@ -1,0 +1,48 @@
+id: heroku
+name: Heroku
+aliases: []
+layer: hosting
+summary: Managed platform that runs apps on dynos, with language support for many stacks and an add-ons marketplace.
+url: https://www.heroku.com
+license: Proprietary
+languages:
+- csharp
+- go
+- java
+- javascript
+- php
+- python
+- ruby
+tags:
+- background-jobs
+hosting:
+- managed
+pricing:
+- paid
+maturity: established
+good_for:
+- Teams that want a managed platform with a guide per language
+- Apps that need worker dynos
+avoid_when:
+- You need a free plan
+- You need to self-host
+edges:
+- type: alternative-to
+  target: render
+- type: alternative-to
+  target: digitalocean-app-platform
+- type: alternative-to
+  target: dokku
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: spring-boot}
+- {type: pairs-with, target: aspnet-core}
+verified: '2026-11-14'
+sources:
+- https://www.heroku.com
+- https://devcenter.heroku.com/categories/language-support
+- https://www.heroku.com/pricing
+- https://devcenter.heroku.com/articles/django-app-configuration
+- https://devcenter.heroku.com/articles/getting-started-with-rails8
+- https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku
+- https://devcenter.heroku.com/articles/getting-started-with-dotnet

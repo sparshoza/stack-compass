@@ -1,0 +1,39 @@
+id: selenium
+name: Selenium
+aliases:
+- selenium webdriver
+- webdriver
+layer: testing
+summary: Open-source umbrella project for browser automation, with WebDriver, Selenium Grid and language bindings.
+url: https://www.selenium.dev
+repo: https://github.com/SeleniumHQ/selenium
+license: Apache-2.0
+languages:
+- java
+- python
+- csharp
+- ruby
+- javascript
+- kotlin
+- rust
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Cross-browser automation in many languages
+- Parallel runs with Selenium Grid
+avoid_when:
+- You only need unit tests
+edges:
+- type: alternative-to
+  target: playwright
+- type: alternative-to
+  target: cypress
+verified: '2026-11-14'
+sources:
+- https://www.selenium.dev
+- https://www.selenium.dev/documentation/
+- https://github.com/SeleniumHQ/selenium

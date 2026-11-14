@@ -36,5 +36,19 @@ edges:
 - {type: pairs-with, target: solid-queue}
 - {type: pairs-with, target: supabase}
 - {type: pairs-with, target: typeorm}
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: spring-boot}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: nestjs}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: tauri}
+- {type: pairs-with, target: strapi}
+- {type: pairs-with, target: sqlalchemy}
+- {type: pairs-with, target: doctrine}
+- {type: pairs-with, target: sea-orm}
+- {type: pairs-with, target: entity-framework-core}
 verified: 2026-11-14
 sources: ['https://www.postgresql.org', 'https://www.postgresql.org/about/license/', 'https://www.postgresql.org/docs/current/textsearch-intro.html']

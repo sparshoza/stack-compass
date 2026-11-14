@@ -35,6 +35,17 @@ edges:
   target: sveltekit
 - type: built-on
   target: vue
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: netlify}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: vitest}
+- {type: pairs-with, target: playwright}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: tailwindcss}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: prismic}
 verified: '2026-11-14'
 sources:
 - https://nuxt.com
@@ -42,3 +53,6 @@ sources:
 - https://nuxt.com/docs/guide/concepts/rendering
 - https://nuxt.com/docs/guide/concepts/typescript
 - https://nuxt.com/docs/getting-started/deployment
+- https://nuxt.com/deploy/vercel
+- https://nuxt.com/deploy/netlify
+- https://nuxt.com/docs/getting-started/testing

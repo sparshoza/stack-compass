@@ -16,5 +16,19 @@ edges:
 - {type: pairs-with, target: active-record}
 - {type: pairs-with, target: sidekiq}
 - {type: pairs-with, target: solid-queue}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: redis}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: render}
+- {type: pairs-with, target: heroku}
+- {type: pairs-with, target: memcached}
+- {type: pairs-with, target: amazon-s3}
+- {type: pairs-with, target: devise}
+- {type: pairs-with, target: stimulus}
+- {type: pairs-with, target: algolia}
+- {type: pairs-with, target: rspec}
 verified: 2026-11-14
-sources: ['https://rubyonrails.org']
+sources: ['https://rubyonrails.org', 'https://guides.rubyonrails.org/configuring.html', 'https://guides.rubyonrails.org/caching_with_rails.html', 'https://guides.rubyonrails.org/active_storage_overview.html', 'https://stimulus.hotwired.dev/handbook/installing']

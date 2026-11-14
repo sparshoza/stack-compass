@@ -16,5 +16,13 @@ avoid_when: [You need a large built-in feature set]
 edges:
 - {type: alternative-to, target: express}
 - {type: alternative-to, target: fastify}
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: netlify}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: vitest}
+- {type: pairs-with, target: authjs}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: opentelemetry}
 verified: 2026-11-14
-sources: ['https://hono.dev', 'https://github.com/honojs/hono']
+sources: ['https://hono.dev', 'https://github.com/honojs/hono', 'https://hono.dev/docs/getting-started/vercel', 'https://hono.dev/docs/getting-started/netlify', 'https://hono.dev/docs/middleware/third-party', 'https://hono.dev/docs/guides/testing']

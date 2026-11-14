@@ -18,5 +18,16 @@ edges:
 - {type: alternative-to, target: flask}
 - {type: pairs-with, target: celery}
 - {type: pairs-with, target: strawberry}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: redis}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: render}
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: heroku}
+- {type: pairs-with, target: memcached}
+- {type: pairs-with, target: pytest}
 verified: 2026-11-14
-sources: ['https://www.djangoproject.com', 'https://github.com/django/django']
+sources: ['https://www.djangoproject.com', 'https://github.com/django/django', 'https://docs.djangoproject.com/en/stable/ref/databases/', 'https://docs.djangoproject.com/en/stable/topics/cache/']

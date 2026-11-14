@@ -1,0 +1,38 @@
+id: google-cloud-run
+name: Google Cloud Run
+aliases:
+- cloud run
+layer: hosting
+summary: Fully managed Google Cloud platform for running code, functions or containers, scaling to zero when idle.
+url: https://cloud.google.com/run
+license: Proprietary
+languages:
+- go
+- javascript
+- python
+- java
+- csharp
+- ruby
+tags:
+- scheduled-jobs
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- HTTP services and jobs that scale to zero
+- Teams already on Google Cloud
+avoid_when:
+- You need to self-host
+- Scale to zero can slow the first responses
+edges:
+- type: alternative-to
+  target: flyio
+- {type: pairs-with, target: spring-boot}
+verified: '2026-11-14'
+sources:
+- https://cloud.google.com/run
+- https://docs.cloud.google.com/run/docs/overview/what-is-cloud-run
+- https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-java-service

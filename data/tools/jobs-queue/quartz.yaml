@@ -15,5 +15,6 @@ good_for: [Cron-style scheduling on the JVM]
 avoid_when: [Distributed job queues with a web dashboard]
 edges:
 - {type: alternative-to, target: jobrunr}
+- {type: pairs-with, target: spring-boot}
 verified: 2026-11-14
 sources: ['https://www.quartz-scheduler.org', 'https://github.com/quartz-scheduler/quartz']

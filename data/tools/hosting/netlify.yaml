@@ -1,0 +1,52 @@
+id: netlify
+name: Netlify
+aliases:
+- netlify.app
+layer: hosting
+summary: Web hosting platform with serverless functions, edge functions, scheduled functions and a free plan.
+url: https://www.netlify.com
+license: Proprietary
+languages:
+- javascript
+- typescript
+- go
+tags:
+- edge-runtime
+- scheduled-jobs
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Sites that need functions and edge logic without running a server
+- Starting on a free plan
+avoid_when:
+- You need to self-host
+- Scheduled functions are limited to 30 seconds of run time
+edges:
+- type: alternative-to
+  target: vercel
+- type: alternative-to
+  target: cloudflare-pages
+- type: alternative-to
+  target: github-pages
+- type: alternative-to
+  target: firebase-hosting
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: nuxt}
+- {type: pairs-with, target: hono}
+- {type: pairs-with, target: vitepress}
+- {type: pairs-with, target: docusaurus}
+- {type: pairs-with, target: angular}
+- {type: pairs-with, target: decap-cms}
+verified: '2026-11-14'
+sources:
+- https://www.netlify.com
+- https://www.netlify.com/pricing/
+- https://docs.netlify.com/build/functions/lambda-compatibility/
+- https://docs.netlify.com/build/edge-functions/overview/
+- https://docs.netlify.com/build/functions/scheduled-functions/

@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: spring-security}
 - {type: alternative-to, target: supertokens}
 - {type: alternative-to, target: zitadel}
+- {type: pairs-with, target: mysql}
 verified: '2026-11-14'
-sources: ['https://www.keycloak.org', 'https://github.com/keycloak/keycloak', 'https://www.keycloak.org/securing-apps/overview']
+sources: ['https://www.keycloak.org', 'https://github.com/keycloak/keycloak', 'https://www.keycloak.org/securing-apps/overview', 'https://www.keycloak.org/server/db']

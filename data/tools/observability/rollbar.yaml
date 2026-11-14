@@ -1,0 +1,42 @@
+id: rollbar
+name: Rollbar
+aliases:
+- rollbar.com
+layer: observability
+summary: Error monitoring service with a free plan, error grouping, deploy tracking and SDKs for several languages.
+url: https://rollbar.com
+license: Proprietary
+languages:
+- swift
+- go
+- javascript
+- java
+- csharp
+- php
+- python
+- ruby
+tags: []
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Real-time error alerts and grouping
+- Deploy tracking
+avoid_when:
+- You need to self-host
+- You need infrastructure metrics
+edges:
+- type: alternative-to
+  target: sentry
+- type: alternative-to
+  target: glitchtip
+- type: alternative-to
+  target: bugsnag
+verified: '2026-11-14'
+sources:
+- https://rollbar.com
+- https://rollbar.com/pricing/
+- https://docs.rollbar.com/docs/

@@ -28,6 +28,7 @@ edges:
   target: flutter
 - type: pairs-with
   target: compose-multiplatform
+- {type: pairs-with, target: sentry}
 verified: '2026-11-14'
 sources:
 - https://kotlinlang.org/docs/multiplatform.html

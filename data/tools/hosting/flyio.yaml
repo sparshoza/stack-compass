@@ -1,0 +1,43 @@
+id: flyio
+name: Fly.io
+aliases: []
+layer: hosting
+summary: Platform to build, deploy and run apps and AI agents on Fly Machines, billed pay as you go.
+url: https://fly.io
+license: Proprietary
+languages:
+- elixir
+- ruby
+- go
+- rust
+- python
+- php
+- javascript
+tags: []
+hosting:
+- managed
+pricing:
+- paid
+maturity: established
+good_for:
+- Phoenix, Rails, Django, Laravel and Go apps with official guides
+- Pay-as-you-go billing
+avoid_when:
+- You want a free tier
+- You need to self-host
+edges:
+- type: alternative-to
+  target: render
+- type: alternative-to
+  target: railway
+- type: alternative-to
+  target: google-cloud-run
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: phoenix}
+verified: '2026-11-14'
+sources:
+- https://fly.io
+- https://docs.fly.io/
+- https://docs.fly.io/about/pricing
+- https://fly.io/docs/laravel/
+- https://fly.io/docs/elixir/getting-started/

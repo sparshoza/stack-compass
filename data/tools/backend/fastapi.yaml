@@ -17,5 +17,11 @@ edges:
 - {type: alternative-to, target: flask}
 - {type: pairs-with, target: sqlmodel}
 - {type: pairs-with, target: strawberry}
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: sqlalchemy}
+- {type: pairs-with, target: celery}
+- {type: pairs-with, target: render}
+- {type: pairs-with, target: pytest}
 verified: 2026-11-14
-sources: ['https://fastapi.tiangolo.com']
+sources: ['https://fastapi.tiangolo.com', 'https://fastapi.tiangolo.com/tutorial/sql-databases/', 'https://fastapi.tiangolo.com/tutorial/background-tasks/', 'https://fastapi.tiangolo.com/tutorial/testing/']

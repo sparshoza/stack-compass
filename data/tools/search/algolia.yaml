@@ -18,5 +18,7 @@ edges:
 - {type: alternative-to, target: meilisearch}
 - {type: alternative-to, target: opensearch}
 - {type: alternative-to, target: typesense}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: laravel}
 verified: '2026-11-14'
-sources: ['https://www.algolia.com', 'https://www.algolia.com/pricing/', 'https://www.algolia.com/doc/libraries/']
+sources: ['https://www.algolia.com', 'https://www.algolia.com/pricing/', 'https://www.algolia.com/doc/libraries/', 'https://www.algolia.com/doc/framework-integration/rails/getting-started/setup/']

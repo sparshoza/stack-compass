@@ -1,0 +1,29 @@
+id: testify
+name: Testify
+aliases:
+- stretchr testify
+match_name: false
+layer: testing
+summary: Go toolkit with assertions, mocks and test suites that works with the standard library's testing package.
+url: https://github.com/stretchr/testify
+repo: https://github.com/stretchr/testify
+license: MIT
+languages:
+- go
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Go unit tests with readable assertions
+- Mocking dependencies
+avoid_when:
+- You prefer only the standard library
+- Suites do not support parallel tests
+edges:
+- {type: pairs-with, target: gin}
+verified: '2026-11-14'
+sources:
+- https://github.com/stretchr/testify

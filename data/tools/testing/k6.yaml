@@ -1,0 +1,31 @@
+id: k6
+name: k6
+aliases:
+- grafana k6
+layer: testing
+summary: Open-source, developer-friendly performance testing tool from Grafana, also offered as Grafana Cloud k6.
+url: https://k6.io
+repo: https://github.com/grafana/k6
+license: AGPL-3.0
+languages:
+- javascript
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Load and performance tests written as scripts
+- Preventing SLO breaches
+avoid_when:
+- AGPL licensing is a problem for you
+edges:
+- type: pairs-with
+  target: grafana
+verified: '2026-11-14'
+sources:
+- https://k6.io
+- https://grafana.com/docs/k6/latest/
+- https://github.com/grafana/k6

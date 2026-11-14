@@ -1,0 +1,34 @@
+id: aws-amplify
+name: AWS Amplify Hosting
+aliases:
+- amplify hosting
+layer: hosting
+summary: Git-based hosting for full-stack serverless web apps on AWS, with SSR, SPA and static site frameworks.
+url: https://aws.amazon.com/amplify/hosting/
+license: Proprietary
+languages:
+- javascript
+- typescript
+tags:
+- static-content
+- ssr-seo
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Next.js, Nuxt and SPA apps on AWS
+- Pull request previews
+avoid_when:
+- You need to self-host
+- The free tier lasts only 12 months
+edges:
+- type: alternative-to
+  target: vercel
+verified: '2026-11-14'
+sources:
+- https://aws.amazon.com/amplify/hosting/
+- https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html
+- https://aws.amazon.com/amplify/pricing/

@@ -1,0 +1,64 @@
+id: vercel
+name: Vercel
+aliases:
+- vercel.com
+layer: hosting
+summary: Cloud platform for deploying web apps with a CDN, functions in several runtimes, cron jobs and web analytics.
+url: https://vercel.com
+license: Proprietary
+languages:
+- javascript
+- typescript
+- python
+- go
+- ruby
+- rust
+tags:
+- edge-runtime
+- scheduled-jobs
+- analytics
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Frontend apps deployed straight from Git
+- Projects that want a free Hobby plan to start
+avoid_when:
+- You need to self-host
+- You need Hobby usage beyond its caps
+edges:
+- type: alternative-to
+  target: netlify
+- type: alternative-to
+  target: cloudflare-pages
+- type: alternative-to
+  target: aws-amplify
+- type: pairs-with
+  target: sentry
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: fastapi}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: github-actions}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: nuxt}
+- {type: pairs-with, target: supabase}
+- {type: pairs-with, target: flask}
+- {type: pairs-with, target: fastify}
+- {type: pairs-with, target: hono}
+- {type: pairs-with, target: payload}
+- {type: pairs-with, target: vitepress}
+- {type: pairs-with, target: docusaurus}
+verified: '2026-11-14'
+sources:
+- https://vercel.com
+- https://vercel.com/docs/functions/runtimes
+- https://vercel.com/pricing
+- https://vercel.com/docs/frameworks/backend/fastapi
+- https://vercel.com/docs/frameworks/backend/express
+- https://vercel.com/guides/how-can-i-use-github-actions-with-vercel
+- https://vercel.com/docs/frameworks/backend/flask
+- https://vercel.com/docs/frameworks/backend/fastify

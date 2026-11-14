@@ -18,5 +18,20 @@ edges:
 - {type: alternative-to, target: devise}
 - {type: alternative-to, target: supabase-auth}
 - {type: alternative-to, target: workos}
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: nuxt}
+- {type: pairs-with, target: stripe}
+- {type: pairs-with, target: react}
+- {type: pairs-with, target: expo}
+- {type: pairs-with, target: fastify}
+- {type: pairs-with, target: hono}
+- {type: pairs-with, target: react-router}
+- {type: pairs-with, target: tanstack-start}
+- {type: pairs-with, target: vue}
+- {type: pairs-with, target: firebase-authentication}
+- {type: pairs-with, target: supabase}
 verified: '2026-11-14'
-sources: ['https://clerk.com', 'https://clerk.com/docs/references/overview', 'https://github.com/clerk']
+sources: ['https://clerk.com', 'https://clerk.com/docs/references/overview', 'https://github.com/clerk', 'https://clerk.com/docs/nextjs/getting-started/quickstart', 'https://clerk.com/docs/expressjs/getting-started/quickstart', 'https://clerk.com/docs/nuxt/getting-started/quickstart', 'https://clerk.com/docs/guides/development/integrations/databases/supabase', 'https://clerk.com/docs/billing/overview', 'https://clerk.com/docs/react/getting-started/quickstart', 'https://clerk.com/docs/expo/getting-started/quickstart', 'https://clerk.com/docs/references/fastify/overview', 'https://clerk.com/docs/react-router/getting-started/quickstart', 'https://clerk.com/docs/tanstack-react-start/getting-started/quickstart', 'https://clerk.com/docs/vue/getting-started/quickstart', 'https://clerk.com/docs/guides/development/integrations/databases/firebase']

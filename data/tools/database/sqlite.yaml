@@ -28,5 +28,17 @@ edges:
 - {type: pairs-with, target: sequelize}
 - {type: pairs-with, target: solid-queue}
 - {type: pairs-with, target: typeorm}
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: nestjs}
+- {type: pairs-with, target: flask}
+- {type: pairs-with, target: flutter}
+- {type: pairs-with, target: tauri}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: sqlalchemy}
+- {type: pairs-with, target: sqlmodel}
+- {type: pairs-with, target: doctrine}
 verified: 2026-11-14
 sources: ['https://www.sqlite.org']

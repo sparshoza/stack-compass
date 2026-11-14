@@ -1,0 +1,40 @@
+id: azure-pipelines
+name: Azure Pipelines
+aliases:
+- azure devops pipelines
+- azure devops
+layer: ci-cd
+summary: CI/CD service in Azure DevOps that builds, tests and deploys many languages on Microsoft-hosted or self-hosted agents.
+url: https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines
+license: Proprietary
+languages:
+- javascript
+- python
+- java
+- php
+- ruby
+- csharp
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Microsoft and .NET stacks
+- One free parallel job on Microsoft-hosted agents
+avoid_when:
+- The free Microsoft-hosted job is capped at 1,800 minutes a month
+edges:
+- type: alternative-to
+  target: bitbucket-pipelines
+- type: alternative-to
+  target: github-actions
+- {type: pairs-with, target: junit}
+verified: '2026-11-14'
+sources:
+- https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines
+- https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/
+- https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-test-results-v2

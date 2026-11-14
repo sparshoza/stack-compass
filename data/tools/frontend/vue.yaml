@@ -56,6 +56,10 @@ edges:
   target: ionic
 - type: pairs-with
   target: nativescript
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: vitest}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: supabase}
 verified: '2026-11-14'
 sources:
 - https://vuejs.org

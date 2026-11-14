@@ -1,0 +1,38 @@
+id: travis-ci
+name: Travis CI
+aliases: []
+layer: ci-cd
+summary: Hosted CI/CD service with usage-based and unlimited paid plans and an on-premise Server plan.
+url: https://www.travis-ci.com
+license: Proprietary
+languages:
+- javascript
+- python
+- java
+- go
+- php
+- ruby
+- rust
+- csharp
+- dart
+- elixir
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- paid
+maturity: legacy
+good_for:
+- Existing projects already using Travis
+avoid_when:
+- You need a free tier
+- You are starting a new project
+edges:
+- type: alternative-to
+  target: circleci
+verified: '2026-11-14'
+sources:
+- https://www.travis-ci.com
+- https://www.travis-ci.com/pricing/
+- https://docs.travis-ci.com/user/languages/

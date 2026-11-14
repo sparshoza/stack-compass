@@ -37,8 +37,10 @@ edges:
   target: svelte
 - type: pairs-with
   target: angular
+- {type: pairs-with, target: nextjs}
 verified: '2026-11-14'
 sources:
 - https://tanstack.com/query
 - https://github.com/TanStack/query
 - https://tanstack.com/query/latest/docs/framework/react/typescript
+- https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr

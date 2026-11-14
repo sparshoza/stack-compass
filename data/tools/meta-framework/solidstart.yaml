@@ -32,6 +32,7 @@ edges:
   target: solidjs
 - type: pairs-with
   target: vite
+- {type: pairs-with, target: sentry}
 verified: '2026-11-14'
 sources:
 - https://start.solidjs.com

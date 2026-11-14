@@ -1,0 +1,38 @@
+id: honeycomb
+name: Honeycomb
+aliases:
+- honeycomb.io
+match_name: false
+layer: observability
+summary: Observability service that receives traces, metrics and logs through OpenTelemetry, with a free plan.
+url: https://www.honeycomb.io
+license: Proprietary
+languages:
+- go
+- java
+- csharp
+- python
+- ruby
+- javascript
+tags: []
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Teams already using OpenTelemetry instrumentation
+- A free plan with 20M events a month
+avoid_when:
+- You need to run it entirely yourself
+edges:
+- type: alternative-to
+  target: datadog
+- type: alternative-to
+  target: new-relic
+verified: '2026-11-14'
+sources:
+- https://www.honeycomb.io
+- https://www.honeycomb.io/pricing
+- https://docs.honeycomb.io/send-data/

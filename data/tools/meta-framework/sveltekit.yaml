@@ -36,9 +36,26 @@ edges:
   target: svelte
 - type: pairs-with
   target: vite
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: netlify}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: playwright}
+- {type: pairs-with, target: vitest}
+- {type: pairs-with, target: tailwindcss}
+- {type: pairs-with, target: authjs}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: supabase-auth}
+- {type: pairs-with, target: prismic}
 verified: '2026-11-14'
 sources:
 - https://svelte.dev/docs/kit
 - https://github.com/sveltejs/kit
 - https://svelte.dev/docs/kit/adapters
 - https://svelte.dev/docs/kit/types
+- https://svelte.dev/docs/kit/adapter-vercel
+- https://svelte.dev/docs/kit/adapter-netlify
+- https://svelte.dev/docs/cli/playwright
+- https://svelte.dev/docs/cli/vitest
+- https://svelte.dev/docs/cli/tailwind

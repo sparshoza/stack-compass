@@ -22,5 +22,15 @@ edges:
 - {type: alternative-to, target: postmark}
 - {type: alternative-to, target: sendgrid}
 - {type: pairs-with, target: react-email}
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: express}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: spring-boot}
+- {type: pairs-with, target: nuxt}
+- {type: pairs-with, target: sveltekit}
+- {type: pairs-with, target: flask}
 verified: '2026-11-14'
-sources: ['https://resend.com', 'https://resend.com/pricing']
+sources: ['https://resend.com', 'https://resend.com/pricing', 'https://resend.com/docs/send-with-nextjs', 'https://resend.com/docs/send-with-astro', 'https://resend.com/docs/send-with-express', 'https://resend.com/docs/send-with-rails', 'https://resend.com/docs/send-with-django', 'https://resend.com/docs/send-with-java', 'https://resend.com/docs/send-with-nuxt', 'https://resend.com/docs/send-with-sveltekit', 'https://resend.com/docs/send-with-flask']

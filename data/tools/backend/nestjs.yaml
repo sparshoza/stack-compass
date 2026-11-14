@@ -17,5 +17,19 @@ edges:
 - {type: alternative-to, target: fastify}
 - {type: pairs-with, target: bullmq}
 - {type: pairs-with, target: graphql-yoga}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: redis}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: drizzle}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: typeorm}
+- {type: pairs-with, target: passportjs}
+- {type: pairs-with, target: apollo-server}
+- {type: pairs-with, target: nats}
+- {type: pairs-with, target: swc}
+- {type: pairs-with, target: supertokens}
 verified: 2026-11-14
-sources: ['https://nestjs.com', 'https://docs.nestjs.com/websockets/gateways']
+sources: ['https://nestjs.com', 'https://docs.nestjs.com/websockets/gateways', 'https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/data/typeorm.md', 'https://docs.nestjs.com/microservices/redis', 'https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/data/drizzle.md', 'https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/data/mongo.md', 'https://docs.nestjs.com/recipes/passport', 'https://docs.nestjs.com/graphql/quick-start', 'https://docs.nestjs.com/microservices/nats', 'https://docs.nestjs.com/recipes/swc']

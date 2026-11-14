@@ -15,5 +15,7 @@ avoid_when: [You need self-hosted identity]
 edges:
 - {type: alternative-to, target: auth0}
 - {type: alternative-to, target: aws-cognito}
+- {type: pairs-with, target: astro}
+- {type: pairs-with, target: clerk}
 verified: '2026-11-14'
 sources: ['https://firebase.google.com/docs/auth', 'https://firebase.google.com/docs/admin/setup', 'https://firebase.google.com/pricing']

@@ -25,6 +25,7 @@ edges:
   target: esbuild
 - type: alternative-to
   target: babel
+- {type: pairs-with, target: nestjs}
 verified: '2026-11-14'
 sources:
 - https://swc.rs

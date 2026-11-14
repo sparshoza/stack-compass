@@ -17,5 +17,8 @@ avoid_when: [Simple jobs where a lighter queue is enough]
 edges:
 - {type: alternative-to, target: rq}
 - {type: pairs-with, target: django}
+- {type: pairs-with, target: fastapi}
+- {type: pairs-with, target: flask}
+- {type: pairs-with, target: pytest}
 verified: 2026-11-14
-sources: ['https://docs.celeryq.dev', 'https://github.com/celery/celery']
+sources: ['https://docs.celeryq.dev', 'https://github.com/celery/celery', 'https://docs.celeryq.dev/en/stable/userguide/testing.html']

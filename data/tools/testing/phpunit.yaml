@@ -1,0 +1,27 @@
+id: phpunit
+name: PHPUnit
+aliases: []
+layer: testing
+summary: The testing framework for PHP, a programmer-oriented unit testing tool.
+url: https://phpunit.de
+repo: https://github.com/sebastianbergmann/phpunit
+license: BSD-3-Clause
+languages:
+- php
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- PHP unit tests
+avoid_when:
+- You need to test non-PHP code
+edges:
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: wordpress}
+verified: '2026-11-14'
+sources:
+- https://phpunit.de
+- https://github.com/sebastianbergmann/phpunit

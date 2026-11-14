@@ -21,5 +21,23 @@ edges:
 - {type: pairs-with, target: apollo-server}
 - {type: pairs-with, target: graphql-yoga}
 - {type: pairs-with, target: trpc}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: redis}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: mongodb}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: authjs}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: render}
+- {type: pairs-with, target: elasticsearch}
+- {type: pairs-with, target: cassandra}
+- {type: pairs-with, target: passportjs}
+- {type: pairs-with, target: uploadthing}
+- {type: pairs-with, target: auth0}
+- {type: pairs-with, target: polar}
 verified: 2026-11-14
-sources: ['https://expressjs.com', 'https://github.com/expressjs/express']
+sources: ['https://expressjs.com', 'https://github.com/expressjs/express', 'https://expressjs.com/en/guide/database-integration.html', 'https://expressjs.com/en/resources/middleware.html']

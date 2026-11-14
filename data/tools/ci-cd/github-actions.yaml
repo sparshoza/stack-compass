@@ -1,0 +1,63 @@
+id: github-actions
+name: GitHub Actions
+aliases:
+- gha
+- gh actions
+- github workflows
+layer: ci-cd
+summary: CI/CD platform built into GitHub that runs workflows on GitHub-hosted or self-hosted runners.
+url: https://github.com/features/actions
+license: Proprietary
+languages:
+- go
+- java
+- csharp
+- javascript
+- python
+- ruby
+- rust
+- swift
+tags:
+- scheduled-jobs
+hosting:
+- managed
+- self-hosted
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Projects hosted on GitHub
+- Free standard runners for public repositories
+avoid_when:
+- Your code lives on another Git host
+edges:
+- type: alternative-to
+  target: gitlab-ci
+- type: alternative-to
+  target: circleci
+- type: alternative-to
+  target: bitbucket-pipelines
+- type: alternative-to
+  target: azure-pipelines
+- type: alternative-to
+  target: dagger
+- type: pairs-with
+  target: github-pages
+- type: pairs-with
+  target: playwright
+- type: pairs-with
+  target: cypress
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: expo}
+- {type: pairs-with, target: tauri}
+- {type: pairs-with, target: fluxcd}
+- {type: pairs-with, target: pytest}
+verified: '2026-11-14'
+sources:
+- https://github.com/features/actions
+- https://docs.github.com/en/actions/about-github-actions/understanding-github-actions
+- https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+- https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing
+- https://docs.github.com/en/billing/managing-billing-for-your-products/about-billing-for-github-actions
+- https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python

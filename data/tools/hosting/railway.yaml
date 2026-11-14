@@ -1,0 +1,37 @@
+id: railway
+name: Railway
+aliases:
+- railway.app
+match_name: false
+layer: hosting
+summary: Cloud platform that deploys from a code repository or container image, with cron jobs and a free plan.
+url: https://railway.com
+license: Proprietary
+languages: []
+tags:
+- scheduled-jobs
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Deploying straight from a repo or image
+- Small projects on the free or Hobby plan
+avoid_when:
+- You need to self-host
+- The free plan caps you at 1 project and 3 services
+edges:
+- type: alternative-to
+  target: render
+- type: alternative-to
+  target: flyio
+- {type: pairs-with, target: gin}
+verified: '2026-11-14'
+sources:
+- https://railway.com
+- https://docs.railway.com/overview/about-railway
+- https://railway.com/pricing
+- https://docs.railway.com/reference/cron-jobs
+- https://docs.railway.com/guides/gin

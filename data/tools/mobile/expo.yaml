@@ -29,9 +29,21 @@ avoid_when:
 edges:
 - type: built-on
   target: react-native
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: github-actions}
+- {type: pairs-with, target: jest}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: supabase}
+- {type: pairs-with, target: tailwindcss}
+- {type: pairs-with, target: stripe}
+- {type: pairs-with, target: better-auth}
 verified: '2026-11-14'
 sources:
 - https://expo.dev
 - https://github.com/expo/expo
 - https://docs.expo.dev/
 - https://expo.dev/pricing
+- https://docs.expo.dev/build/building-on-ci/
+- https://docs.expo.dev/develop/unit-testing/
+- https://docs.expo.dev/guides/tailwind/
+- https://docs.expo.dev/versions/latest/sdk/stripe/

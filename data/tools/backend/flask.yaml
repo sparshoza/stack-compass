@@ -18,5 +18,11 @@ edges:
 - {type: alternative-to, target: fastapi}
 - {type: pairs-with, target: sqlalchemy}
 - {type: pairs-with, target: strawberry}
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: celery}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: render}
+- {type: pairs-with, target: pytest}
 verified: 2026-11-14
-sources: ['https://flask.palletsprojects.com', 'https://flask.palletsprojects.com/en/stable/license/']
+sources: ['https://flask.palletsprojects.com', 'https://flask.palletsprojects.com/en/stable/license/', 'https://flask.palletsprojects.com/en/stable/tutorial/database/', 'https://flask.palletsprojects.com/en/stable/patterns/celery/', 'https://flask.palletsprojects.com/en/stable/testing/']

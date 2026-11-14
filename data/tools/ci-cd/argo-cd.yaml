@@ -1,0 +1,29 @@
+id: argo-cd
+name: Argo CD
+aliases:
+- argocd
+layer: ci-cd
+summary: Declarative GitOps continuous delivery tool for Kubernetes.
+url: https://argo-cd.readthedocs.io
+repo: https://github.com/argoproj/argo-cd
+license: Apache-2.0
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Kubernetes deployments driven from Git
+- Declarative rollouts
+avoid_when:
+- You do not run Kubernetes
+- You need a build pipeline, not only delivery
+edges:
+- type: alternative-to
+  target: fluxcd
+verified: '2026-11-14'
+sources:
+- https://argo-cd.readthedocs.io
+- https://github.com/argoproj/argo-cd

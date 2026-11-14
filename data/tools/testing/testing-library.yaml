@@ -1,0 +1,33 @@
+id: testing-library
+name: Testing Library
+aliases:
+- react testing library
+- dom testing library
+layer: testing
+summary: Family of packages for testing UI components the way users use them, with DOM Testing Library at its core.
+url: https://testing-library.com
+repo: https://github.com/testing-library/dom-testing-library
+license: MIT
+languages:
+- javascript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Component tests that mirror how users use the app
+- React, Angular and Vue wrappers
+avoid_when:
+- You need full end-to-end browser tests on its own
+edges:
+- type: pairs-with
+  target: jest
+- type: pairs-with
+  target: cypress
+verified: '2026-11-14'
+sources:
+- https://testing-library.com
+- https://testing-library.com/docs/
+- https://github.com/testing-library/dom-testing-library

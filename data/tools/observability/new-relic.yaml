@@ -1,0 +1,39 @@
+id: new-relic
+name: New Relic
+aliases:
+- newrelic
+layer: observability
+summary: Observability platform with APM agents and a perpetual free tier that includes 100 GB a month of data ingest.
+url: https://newrelic.com
+license: Proprietary
+languages:
+- go
+- java
+- csharp
+- javascript
+- php
+- python
+- ruby
+tags: []
+hosting:
+- managed
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Full-stack APM with a free tier
+- One vendor for telemetry
+avoid_when:
+- You need to self-host
+- Data ingest stops when you pass 100 GB on the free tier
+edges:
+- type: alternative-to
+  target: datadog
+- type: alternative-to
+  target: honeycomb
+verified: '2026-11-14'
+sources:
+- https://newrelic.com
+- https://newrelic.com/pricing
+- https://docs.newrelic.com/docs/apm/new-relic-apm/getting-started/introduction-apm/

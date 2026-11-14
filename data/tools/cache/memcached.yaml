@@ -16,5 +16,8 @@ avoid_when: ['Pub/sub, persistence or data structures']
 edges:
 - {type: alternative-to, target: redis}
 - {type: pairs-with, target: elasticache}
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: rails}
+- {type: pairs-with, target: laravel}
 verified: 2026-11-14
 sources: ['https://memcached.org', 'https://github.com/memcached/memcached']

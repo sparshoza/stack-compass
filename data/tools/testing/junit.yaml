@@ -1,0 +1,33 @@
+id: junit
+name: JUnit
+aliases: []
+layer: testing
+summary: The programmer-friendly testing framework for Java and the JVM.
+url: https://junit.org/junit5/
+repo: https://github.com/junit-team/junit5
+license: EPL-2.0
+languages:
+- java
+- kotlin
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Java and Kotlin unit tests
+avoid_when:
+- You need to test non-JVM code
+edges:
+- {type: pairs-with, target: spring-boot}
+- {type: pairs-with, target: playwright}
+- {type: pairs-with, target: ktor}
+- {type: pairs-with, target: jenkins}
+- {type: pairs-with, target: gitlab-ci}
+- {type: pairs-with, target: circleci}
+- {type: pairs-with, target: azure-pipelines}
+verified: '2026-11-14'
+sources:
+- https://junit.org/junit5/
+- https://github.com/junit-team/junit5

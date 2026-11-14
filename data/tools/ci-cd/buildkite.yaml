@@ -1,0 +1,30 @@
+id: buildkite
+name: Buildkite
+aliases:
+- buildkite agent
+layer: ci-cd
+summary: CI/CD platform that runs builds on Buildkite hosted agents or on self-hosted agents in your own infrastructure.
+url: https://buildkite.com
+license: Proprietary
+languages: []
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Teams that want to run builds on their own agents
+- Starting on a free plan with 10 concurrent jobs
+avoid_when:
+- You need Mac, Windows or ARM hosted agents on the free plan
+edges:
+- type: alternative-to
+  target: circleci
+verified: '2026-11-14'
+sources:
+- https://buildkite.com
+- https://buildkite.com/pricing
+- https://buildkite.com/docs/pipelines/getting-started

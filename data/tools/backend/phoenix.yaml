@@ -16,5 +16,9 @@ good_for: [Realtime and chat apps, Many concurrent connections]
 avoid_when: [Your team has no Elixir experience]
 edges:
 - {type: pairs-with, target: ecto}
+- {type: pairs-with, target: tailwindcss}
+- {type: pairs-with, target: render}
+- {type: pairs-with, target: flyio}
+- {type: pairs-with, target: exunit}
 verified: 2026-11-14
-sources: ['https://www.phoenixframework.org', 'https://phoenix.hexdocs.pm/ecto.html', 'https://github.com/phoenixframework/phoenix']
+sources: ['https://www.phoenixframework.org', 'https://phoenix.hexdocs.pm/ecto.html', 'https://github.com/phoenixframework/phoenix', 'https://hexdocs.pm/phoenix/asset_management.html', 'https://hexdocs.pm/phoenix/testing.html']

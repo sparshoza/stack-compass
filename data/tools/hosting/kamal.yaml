@@ -1,0 +1,30 @@
+id: kamal
+name: Kamal
+aliases:
+- kamal deploy
+layer: hosting
+summary: Tool that deploys containerized web apps to bare metal or cloud VMs with zero downtime.
+url: https://kamal-deploy.org
+repo: https://github.com/basecamp/kamal
+license: MIT
+languages: []
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Deploying Rails and other web apps to your own servers
+- Zero-downtime deploys without a managed platform
+avoid_when:
+- You want a managed platform with a dashboard
+edges:
+- type: alternative-to
+  target: coolify
+- type: alternative-to
+  target: dokku
+verified: '2026-11-14'
+sources:
+- https://kamal-deploy.org
+- https://github.com/basecamp/kamal

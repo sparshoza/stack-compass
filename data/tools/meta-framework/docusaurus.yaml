@@ -31,9 +31,12 @@ edges:
   target: vitepress
 - type: built-on
   target: react
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: netlify}
 verified: '2026-11-14'
 sources:
 - https://docusaurus.io
 - https://github.com/facebook/docusaurus
 - https://docusaurus.io/docs
 - https://docusaurus.io/docs/typescript-support
+- https://docusaurus.io/docs/deployment

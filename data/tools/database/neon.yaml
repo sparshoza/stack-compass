@@ -18,5 +18,6 @@ edges:
 - {type: alternative-to, target: supabase}
 - {type: pairs-with, target: drizzle}
 - {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: prisma}
 verified: 2026-11-14
 sources: ['https://neon.com', 'https://neon.com/docs/extensions/pgvector', 'https://neon.com/docs/serverless/serverless-driver', 'https://neon.com/pricing', 'https://github.com/neondatabase/neon']

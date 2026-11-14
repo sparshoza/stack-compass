@@ -17,5 +17,6 @@ edges:
 - {type: alternative-to, target: clerk}
 - {type: alternative-to, target: devise}
 - {type: alternative-to, target: supertokens}
+- {type: pairs-with, target: nextjs}
 verified: '2026-11-14'
-sources: ['https://workos.com', 'https://workos.com/docs', 'https://workos.com/docs/sdks', 'https://workos.com/pricing']
+sources: ['https://workos.com', 'https://workos.com/docs', 'https://workos.com/docs/sdks', 'https://workos.com/pricing', 'https://workos.com/docs/authkit/nextjs']

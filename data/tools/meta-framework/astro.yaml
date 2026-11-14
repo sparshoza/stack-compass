@@ -45,6 +45,21 @@ edges:
   target: solidjs
 - type: pairs-with
   target: tailwindcss
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: netlify}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: prisma}
+- {type: pairs-with, target: vitest}
+- {type: pairs-with, target: jest}
+- {type: pairs-with, target: playwright}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: sanity}
+- {type: pairs-with, target: cypress}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: shadcn-ui}
+- {type: pairs-with, target: resend}
+- {type: pairs-with, target: firebase-authentication}
+- {type: pairs-with, target: supabase-auth}
 verified: '2026-11-14'
 sources:
 - https://astro.build
@@ -52,3 +67,9 @@ sources:
 - https://docs.astro.build/en/guides/typescript/
 - https://docs.astro.build/en/guides/on-demand-rendering/
 - https://docs.astro.build/en/guides/framework-components/
+- https://docs.astro.build/en/guides/deploy/vercel/
+- https://docs.astro.build/en/guides/deploy/netlify/
+- https://docs.astro.build/en/guides/testing/
+- https://docs.astro.build/en/guides/authentication/
+- https://docs.astro.build/en/guides/cms/
+- https://docs.astro.build/en/guides/backend/firebase/

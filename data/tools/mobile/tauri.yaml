@@ -30,8 +30,18 @@ edges:
   target: svelte
 - type: pairs-with
   target: react
+- {type: pairs-with, target: nextjs}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: github-actions}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: vitest}
+- {type: pairs-with, target: sqlite}
 verified: '2026-11-14'
 sources:
 - https://tauri.app
 - https://github.com/tauri-apps/tauri
 - https://tauri.app/blog/tauri-20/
+- https://v2.tauri.app/start/frontend/nextjs/
+- https://v2.tauri.app/plugin/sql/
+- https://v2.tauri.app/distribute/pipelines/github/
+- https://v2.tauri.app/develop/tests/mocking/

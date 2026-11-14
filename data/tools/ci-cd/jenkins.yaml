@@ -1,0 +1,36 @@
+id: jenkins
+name: Jenkins
+aliases:
+- jenkins ci
+layer: ci-cd
+summary: Self-contained, open-source automation server for building, testing and deploying software, extended with plugins.
+url: https://www.jenkins.io
+repo: https://github.com/jenkinsci/jenkins
+license: MIT
+languages:
+- java
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Full control over pipelines on your own servers
+- A very large plugin ecosystem
+avoid_when:
+- You do not want to maintain a CI server
+edges:
+- type: alternative-to
+  target: gocd
+- type: alternative-to
+  target: concourse
+- type: alternative-to
+  target: woodpecker-ci
+- {type: pairs-with, target: junit}
+verified: '2026-11-14'
+sources:
+- https://www.jenkins.io
+- https://www.jenkins.io/doc/
+- https://github.com/jenkinsci/jenkins
+- https://www.jenkins.io/doc/pipeline/steps/junit/

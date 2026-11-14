@@ -67,6 +67,14 @@ edges:
   target: ionic
 - type: pairs-with
   target: tauri
+- {type: pairs-with, target: laravel}
+- {type: pairs-with, target: sentry}
+- {type: pairs-with, target: vitest}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: supabase}
+- {type: pairs-with, target: cypress}
+- {type: pairs-with, target: better-auth}
+- {type: pairs-with, target: sanity}
 verified: '2026-11-14'
 sources:
 - https://react.dev

@@ -17,5 +17,14 @@ edges:
 - {type: alternative-to, target: neon}
 - {type: pairs-with, target: pgvector}
 - {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: vercel}
+- {type: pairs-with, target: clerk}
+- {type: pairs-with, target: drizzle}
+- {type: pairs-with, target: react}
+- {type: pairs-with, target: flutter}
+- {type: pairs-with, target: expo}
+- {type: pairs-with, target: react-native}
+- {type: pairs-with, target: vue}
+- {type: pairs-with, target: prisma}
 verified: 2026-11-14
-sources: ['https://supabase.com', 'https://github.com/supabase/supabase']
+sources: ['https://supabase.com', 'https://github.com/supabase/supabase', 'https://supabase.com/partners/integrations/vercel', 'https://orm.drizzle.team/docs/tutorials/drizzle-with-supabase', 'https://supabase.com/docs/guides/getting-started/quickstarts/reactjs', 'https://supabase.com/docs/guides/getting-started/quickstarts/flutter', 'https://supabase.com/docs/guides/getting-started/quickstarts/expo-react-native', 'https://supabase.com/docs/guides/getting-started/quickstarts/vue', 'https://supabase.com/docs/guides/database/prisma']

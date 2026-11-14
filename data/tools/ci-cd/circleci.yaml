@@ -1,0 +1,37 @@
+id: circleci
+name: CircleCI
+aliases:
+- circle ci
+layer: ci-cd
+summary: Hosted CI/CD service with a free plan, usage-based credits and self-hosted runners on every plan.
+url: https://circleci.com
+license: Proprietary
+languages: []
+tags: []
+hosting:
+- managed
+- self-hosted
+pricing:
+- free-tier
+- paid
+maturity: established
+good_for:
+- Teams that want CI separate from their Git host
+- Self-hosted runners on every plan
+avoid_when:
+- Credit-based billing is hard to predict for you
+edges:
+- type: alternative-to
+  target: github-actions
+- type: alternative-to
+  target: gitlab-ci
+- type: alternative-to
+  target: travis-ci
+- type: alternative-to
+  target: buildkite
+- {type: pairs-with, target: junit}
+verified: '2026-11-14'
+sources:
+- https://circleci.com
+- https://circleci.com/pricing/
+- https://circleci.com/docs/collect-test-data/

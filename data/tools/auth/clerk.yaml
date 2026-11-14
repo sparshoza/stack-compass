@@ -11,7 +11,7 @@ tags: [social-login, enterprise-sso]
 hosting: [managed]
 pricing: [free-tier, paid]
 maturity: established
-good_for: [Drop-in sign-in UI and user management for React apps]
+good_for: [Ready-made sign-in screens and user management for React apps]
 avoid_when: [You need to host identity data yourself]
 edges:
 - {type: alternative-to, target: auth0}

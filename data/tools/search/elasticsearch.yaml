@@ -10,7 +10,7 @@ tags: [full-text-search, vector-search, analytics]
 hosting: [managed, self-hosted]
 pricing: [oss, paid]
 maturity: established
-good_for: [Large-scale full-text search and log analytics]
+good_for: [Searching lots of text and logs at large scale]
 avoid_when: [A small site where a lightweight engine is enough]
 edges:
 - {type: alternative-to, target: algolia}

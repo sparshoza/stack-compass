@@ -10,7 +10,7 @@ tags: [full-text-search]
 hosting: [self-hosted]
 pricing: [oss]
 maturity: established
-good_for: [The default relational choice, Complex queries and JSON]
+good_for: [The safe default for app data, Complex queries and JSON]
 avoid_when: [Embedded single-file databases]
 edges:
 - {type: alternative-to, target: mariadb}

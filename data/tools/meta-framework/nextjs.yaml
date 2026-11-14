@@ -19,7 +19,7 @@ pricing:
 - oss
 maturity: established
 good_for:
-- React apps that need SEO and server rendering
+- React sites that load fast and show up well on Google
 - Full-stack apps with server components and API routes
 avoid_when:
 - You want to avoid React

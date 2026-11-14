@@ -113,6 +113,32 @@ export function pieceOf(layer: Layer) {
   return PIECES.find((p) => p.layer === layer)!
 }
 
+/** What each part does for the person, in one plain sentence, shown above its pick. */
+export const LAYER_PURPOSE: Record<Layer, string> = {
+  database: 'Keeps your data safe and ready to look up.',
+  hosting: 'Puts your app on the internet.',
+  auth: 'Lets people create an account and sign in.',
+  payments: 'Takes card payments from your customers.',
+  email: 'Sends receipts, password resets and other emails.',
+  storage: 'Keeps the files and photos people upload.',
+  search: 'Powers the search box.',
+  cms: 'Lets you edit pages and posts without code.',
+  mobile: 'Builds the app for iPhone and Android.',
+  'jobs-queue': 'Runs slow work and timed tasks in the background.',
+  cache: 'Keeps busy data close at hand for speed and live updates.',
+  frontend: 'Draws the screens people click on.',
+  backend: 'Runs your business rules on the server.',
+  'meta-framework': 'Builds the pages and connects the screens to the server.',
+  'ui-kit': 'Ready-made styles and buttons for the screens.',
+  observability: 'Tells you when something breaks.',
+  testing: 'Checks your code still works before each release.',
+  'ci-cd': 'Tests and ships each change for you.',
+  orm: 'Lets the server code read and write the database.',
+  'api-style': 'Sets how other apps talk to yours.',
+  state: 'Keeps what the screens show in step with the server.',
+  'build-tool': 'Bundles the code for the browser.',
+}
+
 /** A part's plain name, the same in both modes: "Sign-in", "Screens (frontend)". */
 export function plainLayerName(layer: Layer): string {
   return pieceOf(layer).label

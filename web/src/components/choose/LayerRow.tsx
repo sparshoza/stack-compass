@@ -7,7 +7,7 @@ import type { LayerResult } from '@/engine/score'
 import { familyColor, LAYER_FAMILY } from '@/lib/families'
 import { kb, toolById } from '@/lib/kb'
 import { cn } from '@/lib/utils'
-import { plainLayerName } from './plain'
+import { LAYER_PURPOSE, plainLayerName } from './plain'
 
 interface LayerRowProps {
   /** Id on the row, so the summary can jump to it. */
@@ -69,6 +69,7 @@ export function LayerRow({ anchorId, result, answers, onFocusTool }: LayerRowPro
           <span className="text-[0.9375rem] leading-tight font-semibold text-text">No match</span>
         )}
       </h4>
+      <p className="-mt-1 text-xs leading-[1.45] text-text-muted">{LAYER_PURPOSE[result.layer]}</p>
 
       {pick ? (
         <>

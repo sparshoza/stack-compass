@@ -26,7 +26,7 @@ pricing:
 - paid
 maturity: established
 good_for:
-- Frontend apps deployed straight from Git
+- Sites and apps that go live on every code change
 - Projects that want a free Hobby plan to start
 avoid_when:
 - You need to self-host

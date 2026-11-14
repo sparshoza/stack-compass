@@ -3042,7 +3042,7 @@
         "aws s3"
       ],
       "avoid_when": [
-        "Egress fees would dominate your costs"
+        "Fees for sending files out would be most of your bill"
       ],
       "edges": [
         {
@@ -3091,7 +3091,8 @@
         }
       ],
       "good_for": [
-        "Durable object storage with the broadest ecosystem"
+        "Keeping files safe",
+        "with the widest support"
       ],
       "hosting": [
         "managed"
@@ -5719,7 +5720,7 @@
         }
       ],
       "good_for": [
-        "Drop-in sign-in UI and user management for React apps"
+        "Ready-made sign-in screens and user management for React apps"
       ],
       "hosting": [
         "managed"
@@ -7646,7 +7647,7 @@
         }
       ],
       "good_for": [
-        "Large-scale full-text search and log analytics"
+        "Searching lots of text and logs at large scale"
       ],
       "hosting": [
         "managed",
@@ -14147,7 +14148,7 @@
         }
       ],
       "good_for": [
-        "React apps that need SEO and server rendering",
+        "React sites that load fast and show up well on Google",
         "Full-stack apps with server components and API routes"
       ],
       "hosting": [
@@ -15874,7 +15875,7 @@
         }
       ],
       "good_for": [
-        "The default relational choice",
+        "The safe default for app data",
         "Complex queries and JSON"
       ],
       "hosting": [
@@ -16280,7 +16281,7 @@
         }
       ],
       "good_for": [
-        "Typed queries with an approachable API",
+        "Reading and writing data with fewer mistakes",
         "Schema-driven migrations"
       ],
       "hosting": [
@@ -17768,7 +17769,8 @@
         }
       ],
       "good_for": [
-        "Developer-friendly transactional email"
+        "Receipts",
+        "sign-up and password emails sent from your app"
       ],
       "hosting": [
         "managed"
@@ -19750,7 +19752,7 @@
         }
       ],
       "good_for": [
-        "Rails-style apps with HTML over the wire",
+        "Rails apps where the server builds the pages",
         "Small, reusable behaviors on server-rendered pages"
       ],
       "hosting": [
@@ -19968,7 +19970,7 @@
     {
       "aliases": [],
       "avoid_when": [
-        "You need a merchant of record to handle global tax"
+        "You want a company that collects sales tax in every country for you"
       ],
       "edges": [
         {
@@ -22471,7 +22473,7 @@
         }
       ],
       "good_for": [
-        "Frontend apps deployed straight from Git",
+        "Sites and apps that go live on every code change",
         "Projects that want a free Hobby plan to start"
       ],
       "hosting": [

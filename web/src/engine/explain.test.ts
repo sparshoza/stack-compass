@@ -38,7 +38,31 @@ describe("explain", () => {
       ],
     });
     expect(explain(r, DEFAULT_ANSWERS, fx).why).toBe(
-      "Supports realtime and pairs with FastAPI, your backend pick. Good for: Chat and live dashboards.",
+      "Sends live updates and works with FastAPI, the backend you got. Good for: Chat and live dashboards.",
+    );
+  });
+
+  it("why keeps a comma before the second reason when the first has one", () => {
+    const r = result({
+      breakdown: [
+        { code: "pairs-with:fastapi", points: 2 },
+        { code: "maturity-established", points: 1 },
+      ],
+    });
+    expect(explain(r, DEFAULT_ANSWERS, fx).why).toBe(
+      "Works with FastAPI, the backend you got, and is mature and widely used. Good for: Chat and live dashboards.",
+    );
+  });
+
+  it("two tools it works with read as one reason", () => {
+    const r = result({
+      breakdown: [
+        { code: "pairs-with:fastapi", points: 2 },
+        { code: "pairs-with:plain", points: 2 },
+      ],
+    });
+    expect(explain(r, DEFAULT_ANSWERS, fx).why).toBe(
+      "Works with FastAPI and Plain from your stack. Good for: Chat and live dashboards.",
     );
   });
 
@@ -111,17 +135,16 @@ describe("label", () => {
   });
 
   it("labels read as plain words", () => {
-    expect(label("capability:ssr-seo", kb)).toBe(
-      "supports server rendering and SEO",
-    );
-    // An acronym at the start keeps its capitals.
-    expect(label("capability:rest-api", kb)).toBe("supports REST API");
+    expect(label("capability:ssr-seo", kb)).toBe("helps pages show up on Google");
+    expect(label("capability:transactional-email", kb)).toBe("sends emails to your customers");
+    expect(label("capability:rest-api", kb)).toBe("lets other apps connect");
     expect(label("capability:vector-search:via:pgvector", kb)).toBe(
-      "supports vector search via pgvector",
+      "finds similar things (AI) through pgvector",
     );
-    expect(label("pairs-with:django", kb)).toBe(
-      "pairs with Django, your backend pick",
-    );
+    expect(label("pairs-with:django", kb)).toBe("works with Django, the backend you got");
+    expect(label("pairs-with:nextjs", kb)).toBe("works with Next.js, the web framework you got");
+    expect(label("pairs-with:prisma", kb)).toBe("works with Prisma, the database library you got");
+    expect(label("not-compatible-with-pick", kb)).toBe("does not work with the frontend you got");
     expect(label("known", kb)).toBe("is a tool you already know");
     expect(label("language-required", kb)).toBe(
       "does not use a language you prefer",
@@ -135,6 +158,14 @@ describe("label", () => {
     expect(label("language-mismatch-with-pick", kb)).toBe(
       "does not share a language with the rest of your stack",
     );
+  });
+
+  it("every capability reads as plain words, with no developer terms", () => {
+    for (const cap of kb.vocab.capabilities) {
+      const text = label(`capability:${cap.id}`, kb);
+      expect(text, cap.id).not.toMatch(/^supports /);
+      expect(text, cap.id).not.toMatch(/transactional|meta-framework|SSR|SEO|tenant|realtime/i);
+    }
   });
 
   it("unknown codes fall back to the code", () => {

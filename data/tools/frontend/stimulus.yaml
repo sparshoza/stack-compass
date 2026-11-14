@@ -20,7 +20,7 @@ pricing:
 - oss
 maturity: established
 good_for:
-- Rails-style apps with HTML over the wire
+- Rails apps where the server builds the pages
 - Small, reusable behaviors on server-rendered pages
 avoid_when:
 - You need a client-side rendered single-page app

@@ -10,7 +10,7 @@ import { scoreStack } from '@/engine/score'
 import { decode } from '@/engine/share'
 import { kb, toolById, type Layer } from '@/lib/kb'
 import { EXAMPLES } from './examples'
-import { CAPABILITY_LABELS, PIECES, plainLayerName, PROJECT_TYPES } from './plain'
+import { CAPABILITY_LABELS, LAYER_PURPOSE, PIECES, plainLayerName, PROJECT_TYPES } from './plain'
 
 // The map is a stub that records the props the app passes (see App.test.tsx).
 const graph = vi.hoisted(() => ({ props: null as StackGraphProps | null }))
@@ -292,7 +292,11 @@ describe('Help me choose', () => {
       expect(within(row).getByRole('button', { name: new RegExp(`^${tool.name}, show on the map`) })).toBeInTheDocument()
       expect(within(row).getByText(/Good for|Ranked first/)).toBeInTheDocument()
       if (tool.avoid_when[0]) expect(within(row).getByText(tool.avoid_when[0])).toBeInTheDocument()
+      // Each part says in plain words what it is for.
+      expect(within(row).getByText(LAYER_PURPOSE[result.layer])).toBeInTheDocument()
     })
+    const signIn = rows().find((r) => within(r).queryByText('Sign-in'))!
+    expect(within(signIn).getByText('Lets people create an account and sign in.')).toBeInTheDocument()
   })
 
   it('alternative chip focuses that tool on the map', async () => {

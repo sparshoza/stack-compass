@@ -11,7 +11,7 @@ tags: [transactional-email]
 hosting: [managed]
 pricing: [free-tier, paid]
 maturity: established
-good_for: [Developer-friendly transactional email]
+good_for: [Receipts, sign-up and password emails sent from your app]
 avoid_when: [You need very high volume at the lowest cost]
 edges:
 - {type: alternative-to, target: amazon-ses}

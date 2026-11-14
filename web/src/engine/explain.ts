@@ -1,9 +1,11 @@
-import type { KnowledgeBase } from "../lib/kb";
+import type { KnowledgeBase, Tool } from "../lib/kb";
 import type { Answers } from "./answers";
 import { label } from "./labels";
 import type { LayerResult } from "./score";
 
 export type Explanation = { why: string; watchOut: string | null };
+
+const PAIRS = "pairs-with:";
 
 const capitalize = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
@@ -33,14 +35,25 @@ export function explain(
       watchOut: null,
     };
   }
-  const top = r.breakdown
+  const topItems = r.breakdown
     .filter((item) => item.points > 0)
     .map((item, index) => ({ item, index }))
     .sort((x, y) => y.item.points - x.item.points || x.index - y.index)
     .slice(0, 2)
-    .map(({ item }) => label(item.code, kb));
+    .map(({ item }) => item);
+  const paired = topItems
+    .map((item) => item.code.startsWith(PAIRS) && kb.tools.find((t) => `${PAIRS}${t.id}` === item.code))
+    .filter((t): t is Tool => !!t);
+  // Two tools it works with read as one reason: "Works with Express and React from your stack".
+  const top =
+    paired.length === 2
+      ? [`works with ${paired[0].name} and ${paired[1].name} from your stack`]
+      : topItems.map((item) => label(item.code, kb));
   const parts: string[] = [];
-  if (top.length) parts.push(sentence(capitalize(top.join(" and "))));
+  // "Works with FastAPI, the backend you got, and is mature": a comma closes
+  // the first reason when it has one of its own.
+  const joiner = top[0]?.includes(",") ? ", and " : " and ";
+  if (top.length) parts.push(sentence(capitalize(top.join(joiner))));
   if (tool.good_for.length) parts.push(sentence(`Good for: ${tool.good_for[0]}`));
   return {
     why: parts.length

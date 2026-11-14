@@ -11,7 +11,7 @@ tags: [type-safety]
 hosting: [self-hosted]
 pricing: [oss]
 maturity: established
-good_for: [Typed queries with an approachable API, Schema-driven migrations]
+good_for: [Reading and writing data with fewer mistakes, Schema-driven migrations]
 avoid_when: [Very complex hand-tuned SQL everywhere]
 edges:
 - {type: alternative-to, target: drizzle}

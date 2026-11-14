@@ -152,7 +152,7 @@ describe("golden set", () => {
     expect(codes.size).toBeGreaterThan(10);
     const fallback = [...codes].filter((code) => {
       const text = label(code, kb);
-      return !text || text === code || text.startsWith("pairs with ") && !text.includes(", your ");
+      return !text || text === code || text.startsWith("works with ") && !text.endsWith(" you got");
     });
     expect(fallback).toEqual([]);
   });

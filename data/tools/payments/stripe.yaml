@@ -11,7 +11,7 @@ hosting: [managed]
 pricing: [paid]
 maturity: established
 good_for: [Online payments and subscriptions with strong APIs]
-avoid_when: [You need a merchant of record to handle global tax]
+avoid_when: [You want a company that collects sales tax in every country for you]
 edges:
 - {type: alternative-to, target: adyen}
 - {type: alternative-to, target: braintree}

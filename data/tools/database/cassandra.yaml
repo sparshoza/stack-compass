@@ -14,7 +14,6 @@ maturity: established
 good_for: ['Write-heavy, always-on workloads']
 avoid_when: [Ad hoc queries and joins]
 edges:
-- {type: alternative-to, target: clickhouse}
 - {type: alternative-to, target: dynamodb}
 verified: 2026-11-14
 sources: ['https://cassandra.apache.org', 'https://github.com/apache/cassandra']

@@ -1,6 +1,7 @@
 id: exposed
 name: Exposed
-aliases: [kotlin exposed]
+aliases: [kotlin exposed, jetbrains exposed]
+match_name: false
 layer: orm
 summary: A Kotlin SQL framework from JetBrains with a DSL and a DAO API.
 url: https://www.jetbrains.com/help/exposed
@@ -14,7 +15,6 @@ maturity: established
 good_for: [Kotlin and Ktor services]
 avoid_when: [Your team uses JPA everywhere]
 edges:
-- {type: alternative-to, target: hibernate}
 - {type: pairs-with, target: ktor}
 - {type: pairs-with, target: postgresql}
 verified: 2026-11-14

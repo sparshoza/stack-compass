@@ -151,6 +151,20 @@ def _check_edges(tools: dict[str, tuple[Tool, str]], errors: list[str]) -> None:
                 )
 
 
+def _check_exclusive_pair_edges(tools: dict[str, tuple[Tool, str]], errors: list[str]) -> None:
+    exclusive = ("alternative-to", "pairs-with")
+    for tool_id, (tool, rel) in tools.items():
+        for target in sorted({e.target for e in tool.edges}):
+            if target <= tool_id:
+                continue
+            types = {e.type for e in tool.edges if e.target == target}
+            if set(exclusive) <= types:
+                errors.append(
+                    f"{rel}: '{tool_id}' and '{target}' cannot be both alternative-to "
+                    f"and pairs-with"
+                )
+
+
 def _check_aliases(tools: dict[str, tuple[Tool, str]], errors: list[str]) -> None:
     owners: dict[str, set[str]] = {}
     for tool_id, (tool, _) in tools.items():
@@ -217,6 +231,7 @@ def load_kb(data_dir: Path) -> KnowledgeBase:
             else:
                 tools[tool.id] = (tool, rel)
         _check_edges(tools, errors)
+        _check_exclusive_pair_edges(tools, errors)
         _check_aliases(tools, errors)
 
     if errors:

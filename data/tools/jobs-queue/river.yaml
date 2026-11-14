@@ -1,6 +1,7 @@
 id: river
 name: River
-aliases: []
+aliases: [river queue, riverqueue]
+match_name: false
 layer: jobs-queue
 summary: A job library that runs on Postgres or SQLite with transactional enqueueing and cron jobs.
 url: https://riverqueue.com

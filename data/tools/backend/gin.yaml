@@ -1,6 +1,7 @@
 id: gin
 name: Gin
 aliases: [gin-gonic, gin web framework]
+match_name: false
 layer: backend
 summary: A high-performance Go web framework with radix tree routing and middleware.
 url: https://gin-gonic.com

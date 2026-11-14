@@ -14,7 +14,6 @@ maturity: established
 good_for: [Java enterprise apps, Spring Data JPA]
 avoid_when: [You want lightweight SQL control]
 edges:
-- {type: alternative-to, target: exposed}
 - {type: pairs-with, target: mariadb}
 - {type: pairs-with, target: mysql}
 - {type: pairs-with, target: postgresql}

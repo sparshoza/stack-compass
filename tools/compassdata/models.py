@@ -60,6 +60,7 @@ class Tool(Strict):
     id: str = Field(min_length=1)
     name: str = Field(min_length=1)
     aliases: list[str] = []
+    match_name: bool = True
     layer: str
     summary: str = Field(min_length=1, max_length=140)
     url: str = Field(min_length=1)

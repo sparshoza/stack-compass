@@ -1,6 +1,7 @@
 id: garnet
 name: Garnet
-aliases: []
+aliases: [microsoft garnet, garnet cache]
+match_name: false
 layer: cache
 summary: A cache-store from Microsoft Research that speaks the RESP protocol, so Redis clients connect unchanged.
 url: https://microsoft.github.io/garnet

@@ -13,7 +13,6 @@ maturity: emerging
 good_for: [FastAPI apps with one model for API and database]
 avoid_when: [You need every SQLAlchemy feature directly]
 edges:
-- {type: alternative-to, target: sqlalchemy}
 - {type: built-on, target: sqlalchemy}
 - {type: pairs-with, target: fastapi}
 verified: 2026-11-14

@@ -1,6 +1,7 @@
 id: diesel
 name: Diesel
-aliases: []
+aliases: [diesel.rs, diesel orm]
+match_name: false
 layer: orm
 summary: A Rust ORM and query builder that checks queries at compile time.
 url: https://diesel.rs

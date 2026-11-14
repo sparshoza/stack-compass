@@ -15,5 +15,6 @@ good_for: [Typed RPC with OpenAPI output]
 avoid_when: [You need a long track record]
 edges:
 - {type: alternative-to, target: trpc}
+- {type: pairs-with, target: openapi}
 verified: 2026-11-14
 sources: ['https://orpc.dev/', 'https://github.com/unnoq/orpc']

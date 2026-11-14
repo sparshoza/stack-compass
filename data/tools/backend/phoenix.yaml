@@ -1,6 +1,7 @@
 id: phoenix
 name: Phoenix
 aliases: [phoenix framework, liveview]
+match_name: false
 layer: backend
 summary: An Elixir web framework with Channels and LiveView for realtime features.
 url: https://www.phoenixframework.org

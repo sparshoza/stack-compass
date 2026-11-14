@@ -1,6 +1,6 @@
 id: strawberry
 name: Strawberry GraphQL
-aliases: [strawberry graphql]
+aliases: []
 layer: api-style
 summary: A Python GraphQL library that uses type hints to build schemas.
 url: https://strawberry.rocks
@@ -14,11 +14,8 @@ maturity: established
 good_for: [Typed GraphQL in Python]
 avoid_when: [You want a REST-only API]
 edges:
-- {type: alternative-to, target: apollo-server}
-- {type: alternative-to, target: gqlgen}
-- {type: alternative-to, target: graphql-yoga}
-- {type: alternative-to, target: hot-chocolate}
-- {type: alternative-to, target: postgraphile}
 - {type: pairs-with, target: django}
+- {type: pairs-with, target: fastapi}
+- {type: pairs-with, target: flask}
 verified: 2026-11-14
 sources: ['https://strawberry.rocks', 'https://github.com/strawberry-graphql/strawberry']

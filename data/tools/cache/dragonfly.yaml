@@ -1,6 +1,7 @@
 id: dragonfly
 name: Dragonfly
 aliases: [dragonflydb]
+match_name: false
 layer: cache
 summary: An in-memory data store with Redis, Valkey and Memcached APIs, self-hosted or as Dragonfly Cloud.
 url: https://www.dragonflydb.io

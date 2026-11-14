@@ -1,6 +1,6 @@
 id: sea-orm
 name: SeaORM
-aliases: [seaorm]
+aliases: []
 layer: orm
 summary: An async, dynamic ORM for Rust for building web services, with relations and migrations.
 url: https://www.sea-ql.org/SeaORM/

@@ -14,11 +14,8 @@ maturity: established
 good_for: [GraphQL APIs in Node, Teams already using Apollo clients]
 avoid_when: [A simple CRUD API]
 edges:
-- {type: alternative-to, target: gqlgen}
 - {type: alternative-to, target: graphql-yoga}
-- {type: alternative-to, target: hot-chocolate}
 - {type: alternative-to, target: postgraphile}
-- {type: alternative-to, target: strawberry}
 - {type: pairs-with, target: express}
 - {type: pairs-with, target: fastify}
 verified: 2026-11-14

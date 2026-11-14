@@ -1,6 +1,7 @@
 id: active-record
 name: Active Record
 aliases: [activerecord]
+match_name: false
 layer: orm
 summary: The ORM of Ruby on Rails, mapping tables to Ruby classes with migrations.
 url: https://guides.rubyonrails.org/active_record_basics.html

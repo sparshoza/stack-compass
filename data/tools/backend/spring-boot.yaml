@@ -1,6 +1,6 @@
 id: spring-boot
 name: Spring Boot
-aliases: [spring, springboot]
+aliases: [springboot]
 layer: backend
 summary: A Java and Kotlin framework for production-grade Spring applications with minimal setup.
 url: https://spring.io/projects/spring-boot

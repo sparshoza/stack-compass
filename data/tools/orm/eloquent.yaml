@@ -1,6 +1,7 @@
 id: eloquent
 name: Eloquent
 aliases: [laravel eloquent]
+match_name: false
 layer: orm
 summary: Laravel's Active Record ORM for working with databases using PHP models.
 url: https://laravel.com/docs/eloquent

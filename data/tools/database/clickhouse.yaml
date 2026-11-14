@@ -14,6 +14,6 @@ maturity: established
 good_for: [Analytics and event data]
 avoid_when: [Row-level transactional workloads]
 edges:
-- {type: alternative-to, target: cassandra}
+- {type: pairs-with, target: postgresql}
 verified: 2026-11-14
 sources: ['https://clickhouse.com', 'https://github.com/ClickHouse/ClickHouse']

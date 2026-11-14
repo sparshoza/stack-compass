@@ -15,10 +15,7 @@ good_for: [Postgres-centric GraphQL APIs]
 avoid_when: [You do not use PostgreSQL]
 edges:
 - {type: alternative-to, target: apollo-server}
-- {type: alternative-to, target: gqlgen}
 - {type: alternative-to, target: graphql-yoga}
-- {type: alternative-to, target: hot-chocolate}
-- {type: alternative-to, target: strawberry}
 - {type: pairs-with, target: postgresql}
 verified: 2026-11-14
 sources: ['https://postgraphile.org', 'https://github.com/graphile/crystal']

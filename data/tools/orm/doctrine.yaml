@@ -1,6 +1,6 @@
 id: doctrine
 name: Doctrine ORM
-aliases: [doctrine orm]
+aliases: []
 layer: orm
 summary: A PHP object-relational mapper built on DBAL, integrated with Symfony, Laravel and Laminas.
 url: https://www.doctrine-project.org

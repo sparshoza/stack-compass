@@ -196,3 +196,22 @@ def test_rejects_duplicate_vocab_languages(kb_dir):
     edit_yaml(kb_dir / "vocab.yaml", lambda d: d["languages"].append("Python "))
     errs = errors_of(kb_dir)
     assert any(e.startswith("vocab.yaml") and "duplicate language" in e for e in errs)
+
+
+def test_match_name_defaults_to_true_and_can_be_false(kb_dir):
+    assert load_kb(kb_dir).tools["react"].match_name is True
+    edit_tool(kb_dir, "frontend", "react", lambda d: d.update(match_name=False))
+    assert load_kb(kb_dir).tools["react"].match_name is False
+
+
+def test_rejects_alternative_and_pairs_with_between_the_same_pair(kb_dir):
+    def add(d):
+        d["edges"].append({"type": "pairs-with", "target": "preact"})
+
+    def add_back(d):
+        d["edges"].append({"type": "pairs-with", "target": "react"})
+
+    edit_tool(kb_dir, "frontend", "react", add)
+    edit_tool(kb_dir, "frontend", "preact", add_back)
+    errs = errors_of(kb_dir)
+    assert any("alternative-to" in e and "pairs-with" in e for e in errs)

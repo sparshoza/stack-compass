@@ -1,6 +1,7 @@
 id: neon
 name: Neon
 aliases: [neon postgres, neon tech]
+match_name: false
 layer: database
 summary: Serverless Postgres that scales to zero, with branches per pull request and an edge-ready driver.
 url: https://neon.com

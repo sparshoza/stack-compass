@@ -1,6 +1,7 @@
 id: express
 name: Express
 aliases: [expressjs, express.js]
+match_name: false
 layer: backend
 summary: A fast, unopinionated, minimalist web framework for Node.js.
 url: https://expressjs.com

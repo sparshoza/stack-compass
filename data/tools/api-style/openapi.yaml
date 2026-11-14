@@ -14,7 +14,7 @@ maturity: established
 good_for: [Documented REST APIs, Generating client SDKs]
 avoid_when: [You want one typed codebase instead of a separate spec]
 edges:
-- {type: alternative-to, target: asyncapi}
-- {type: alternative-to, target: grpc}
+- {type: pairs-with, target: asyncapi}
+- {type: pairs-with, target: orpc}
 verified: 2026-11-14
 sources: ['https://www.openapis.org', 'https://github.com/OAI/OpenAPI-Specification']

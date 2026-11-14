@@ -14,6 +14,6 @@ maturity: established
 good_for: [Documenting websocket and message APIs]
 avoid_when: [A plain request and response API]
 edges:
-- {type: alternative-to, target: openapi}
+- {type: pairs-with, target: openapi}
 verified: 2026-11-14
 sources: ['https://www.asyncapi.com', 'https://github.com/asyncapi/spec']

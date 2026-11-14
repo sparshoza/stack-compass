@@ -1,6 +1,7 @@
 id: connectrpc
 name: Connect
 aliases: [connect rpc, connect-rpc]
+match_name: false
 layer: api-style
 summary: Protobuf RPC that works over plain HTTP, so browsers and gRPC clients can both call it.
 url: https://connectrpc.com

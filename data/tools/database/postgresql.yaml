@@ -16,6 +16,7 @@ edges:
 - {type: alternative-to, target: mariadb}
 - {type: alternative-to, target: mysql}
 - {type: pairs-with, target: active-record}
+- {type: pairs-with, target: clickhouse}
 - {type: pairs-with, target: diesel}
 - {type: pairs-with, target: drizzle}
 - {type: pairs-with, target: ecto}

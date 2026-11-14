@@ -14,7 +14,6 @@ maturity: established
 good_for: [Realtime messaging between services]
 avoid_when: [Plain key-value caching]
 edges:
-- {type: alternative-to, target: centrifugo}
 - {type: pairs-with, target: centrifugo}
 verified: 2026-11-14
 sources: ['https://nats.io', 'https://github.com/nats-io/nats-server']

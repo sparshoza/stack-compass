@@ -15,10 +15,7 @@ good_for: [GraphQL on any JavaScript runtime]
 avoid_when: [A simple CRUD API]
 edges:
 - {type: alternative-to, target: apollo-server}
-- {type: alternative-to, target: gqlgen}
-- {type: alternative-to, target: hot-chocolate}
 - {type: alternative-to, target: postgraphile}
-- {type: alternative-to, target: strawberry}
 - {type: pairs-with, target: express}
 - {type: pairs-with, target: fastify}
 - {type: pairs-with, target: nestjs}

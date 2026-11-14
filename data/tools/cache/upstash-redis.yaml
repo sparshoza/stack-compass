@@ -13,8 +13,6 @@ maturity: established
 good_for: [Serverless and edge apps]
 avoid_when: [Constant high-volume traffic where per-request pricing hurts]
 edges:
-- {type: alternative-to, target: cloudflare-kv}
-- {type: alternative-to, target: elasticache}
 - {type: alternative-to, target: redis}
 verified: 2026-11-14
 sources: ['https://upstash.com/docs/redis/overall/getstarted']

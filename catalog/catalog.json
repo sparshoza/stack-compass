@@ -32,7 +32,7 @@
         "ssr",
         "seo",
         "search engine optimization",
-        "search engines"
+        "rank on google"
       ],
       "sets": {
         "capabilities": [
@@ -137,7 +137,6 @@
         "scheduled tasks",
         "recurring jobs",
         "nightly job",
-        "reminders",
         "periodic tasks"
       ],
       "sets": {
@@ -170,9 +169,7 @@
       "phrases": [
         "transactional email",
         "send email",
-        "emails",
         "password reset email",
-        "receipts",
         "email notifications",
         "newsletter"
       ],
@@ -188,7 +185,6 @@
       "phrases": [
         "cms",
         "content management",
-        "editors",
         "content editing",
         "editorial",
         "non technical editors"
@@ -222,7 +218,6 @@
       "phrases": [
         "maps",
         "geospatial",
-        "location",
         "gps",
         "nearby",
         "geolocation",
@@ -240,9 +235,7 @@
     {
       "phrases": [
         "analytics",
-        "metrics",
         "event tracking",
-        "reporting",
         "data warehouse",
         "business intelligence",
         "time series"
@@ -310,7 +303,6 @@
     },
     {
       "phrases": [
-        "edge",
         "edge runtime",
         "edge functions",
         "serverless edge",
@@ -329,7 +321,6 @@
       "phrases": [
         "type safe",
         "type safety",
-        "typed",
         "end to end types",
         "strict types",
         "typed api"
@@ -401,7 +392,6 @@
         "web app",
         "web application",
         "webapp",
-        "dashboard",
         "portal",
         "customer portal"
       ],
@@ -468,10 +458,8 @@
         "online store",
         "web shop",
         "webshop",
-        "shop",
         "marketplace",
-        "storefront",
-        "cart"
+        "storefront"
       ],
       "sets": {
         "capabilities": [],
@@ -497,8 +485,7 @@
       "phrases": [
         "python",
         "django developer",
-        "pythonic",
-        "pip"
+        "pythonic"
       ],
       "sets": {
         "capabilities": [],
@@ -598,7 +585,6 @@
     {
       "phrases": [
         "ruby",
-        "gem",
         "bundler"
       ],
       "sets": {
@@ -625,8 +611,7 @@
     {
       "phrases": [
         "rust",
-        "cargo",
-        "crate"
+        "cargo"
       ],
       "sets": {
         "capabilities": [],
@@ -639,8 +624,7 @@
     {
       "phrases": [
         "elixir",
-        "erlang",
-        "beam"
+        "erlang"
       ],
       "sets": {
         "capabilities": [],
@@ -679,7 +663,6 @@
       "phrases": [
         "instant messaging",
         "notifications push",
-        "presence",
         "who is online",
         "live comments",
         "live score"
@@ -839,7 +822,6 @@
       "phrases": [
         "usage statistics",
         "product analytics",
-        "funnel",
         "dashboards of events",
         "clickstream"
       ],
@@ -976,22 +958,6 @@
     },
     {
       "phrases": [
-        "startup mvp",
-        "side project",
-        "weekend project",
-        "prototype",
-        "hackathon"
-      ],
-      "sets": {
-        "capabilities": [],
-        "languages": [],
-        "project_type": "web-app"
-      }
-    },
-    {
-      "phrases": [
-        "booking system",
-        "reservation",
         "appointment scheduling",
         "subscription box",
         "membership site"
@@ -1069,6 +1035,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": false,
       "maturity": "established",
       "name": "Active Record",
       "pricing": [
@@ -1094,23 +1061,11 @@
       ],
       "edges": [
         {
-          "target": "gqlgen",
-          "type": "alternative-to"
-        },
-        {
           "target": "graphql-yoga",
           "type": "alternative-to"
         },
         {
-          "target": "hot-chocolate",
-          "type": "alternative-to"
-        },
-        {
           "target": "postgraphile",
-          "type": "alternative-to"
-        },
-        {
-          "target": "strawberry",
           "type": "alternative-to"
         },
         {
@@ -1135,6 +1090,7 @@
       ],
       "layer": "api-style",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Apollo Server",
       "pricing": [
@@ -1152,7 +1108,6 @@
     },
     {
       "aliases": [
-        "asp.net core",
         "aspnet",
         ".net web"
       ],
@@ -1182,6 +1137,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "ASP.NET Core",
       "pricing": [
@@ -1210,7 +1166,7 @@
       "edges": [
         {
           "target": "openapi",
-          "type": "alternative-to"
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -1223,6 +1179,7 @@
       "languages": [],
       "layer": "api-style",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "AsyncAPI",
       "pricing": [
@@ -1265,6 +1222,7 @@
       ],
       "layer": "jobs-queue",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Asynq",
       "pricing": [
@@ -1306,6 +1264,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Axum",
       "pricing": [
@@ -1358,6 +1317,7 @@
       ],
       "layer": "jobs-queue",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "BullMQ",
       "pricing": [
@@ -1377,7 +1337,9 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "caffeine cache"
+      ],
       "avoid_when": [
         "A cache shared between many services"
       ],
@@ -1399,6 +1361,7 @@
       ],
       "layer": "cache",
       "license": "Apache-2.0",
+      "match_name": false,
       "maturity": "established",
       "name": "Caffeine",
       "pricing": [
@@ -1422,10 +1385,6 @@
       ],
       "edges": [
         {
-          "target": "clickhouse",
-          "type": "alternative-to"
-        },
-        {
           "target": "dynamodb",
           "type": "alternative-to"
         }
@@ -1440,6 +1399,7 @@
       "languages": [],
       "layer": "database",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Apache Cassandra",
       "pricing": [
@@ -1458,7 +1418,10 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "celery task queue",
+        "celery python"
+      ],
       "avoid_when": [
         "Simple jobs where a lighter queue is enough"
       ],
@@ -1484,6 +1447,7 @@
       ],
       "layer": "jobs-queue",
       "license": "BSD-3-Clause",
+      "match_name": false,
       "maturity": "established",
       "name": "Celery",
       "pricing": [
@@ -1510,10 +1474,6 @@
       "edges": [
         {
           "target": "nats",
-          "type": "alternative-to"
-        },
-        {
-          "target": "nats",
           "type": "pairs-with"
         },
         {
@@ -1531,6 +1491,7 @@
       "languages": [],
       "layer": "cache",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Centrifugo",
       "pricing": [
@@ -1556,8 +1517,8 @@
       ],
       "edges": [
         {
-          "target": "cassandra",
-          "type": "alternative-to"
+          "target": "postgresql",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -1571,6 +1532,7 @@
       "languages": [],
       "layer": "database",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "ClickHouse",
       "pricing": [
@@ -1587,45 +1549,6 @@
         "analytics"
       ],
       "url": "https://clickhouse.com",
-      "verified": "2026-11-14"
-    },
-    {
-      "aliases": [
-        "workers kv",
-        "cloudflare kv"
-      ],
-      "avoid_when": [
-        "Data that needs strong consistency"
-      ],
-      "edges": [
-        {
-          "target": "upstash-redis",
-          "type": "alternative-to"
-        }
-      ],
-      "good_for": [
-        "Read-heavy config and cached data at the edge"
-      ],
-      "hosting": [
-        "managed"
-      ],
-      "id": "cloudflare-kv",
-      "languages": [],
-      "layer": "cache",
-      "license": "Proprietary",
-      "maturity": "established",
-      "name": "Cloudflare Workers KV",
-      "pricing": [
-        "free-tier",
-        "paid"
-      ],
-      "repo": null,
-      "sources": [
-        "https://developers.cloudflare.com/kv"
-      ],
-      "summary": "A global, low-latency key-value store for Cloudflare Workers.",
-      "tags": [],
-      "url": "https://developers.cloudflare.com/kv",
       "verified": "2026-11-14"
     },
     {
@@ -1665,6 +1588,7 @@
       ],
       "layer": "api-style",
       "license": "Apache-2.0",
+      "match_name": false,
       "maturity": "emerging",
       "name": "Connect",
       "pricing": [
@@ -1681,7 +1605,10 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "diesel.rs",
+        "diesel orm"
+      ],
       "avoid_when": [
         "You need an async-first API out of the box"
       ],
@@ -1715,6 +1642,7 @@
       ],
       "layer": "orm",
       "license": "MIT OR Apache-2.0",
+      "match_name": false,
       "maturity": "established",
       "name": "Diesel",
       "pricing": [
@@ -1770,6 +1698,7 @@
       ],
       "layer": "backend",
       "license": "BSD-3-Clause",
+      "match_name": true,
       "maturity": "established",
       "name": "Django",
       "pricing": [
@@ -1788,9 +1717,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "doctrine orm"
-      ],
+      "aliases": [],
       "avoid_when": [
         "You prefer Active Record style"
       ],
@@ -1816,6 +1743,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Doctrine ORM",
       "pricing": [
@@ -1863,6 +1791,7 @@
       "languages": [],
       "layer": "cache",
       "license": "Dragonfly Source-Available License",
+      "match_name": false,
       "maturity": "emerging",
       "name": "Dragonfly",
       "pricing": [
@@ -1943,6 +1872,7 @@
       ],
       "layer": "orm",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Drizzle ORM",
       "pricing": [
@@ -1989,6 +1919,7 @@
       "languages": [],
       "layer": "database",
       "license": "Proprietary",
+      "match_name": true,
       "maturity": "established",
       "name": "Amazon DynamoDB",
       "pricing": [
@@ -2039,6 +1970,7 @@
       ],
       "layer": "orm",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Ecto",
       "pricing": [
@@ -2078,6 +2010,7 @@
       ],
       "layer": "cache",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Ehcache",
       "pricing": [
@@ -2102,10 +2035,6 @@
       ],
       "edges": [
         {
-          "target": "upstash-redis",
-          "type": "alternative-to"
-        },
-        {
           "target": "memcached",
           "type": "pairs-with"
         },
@@ -2128,6 +2057,7 @@
       "languages": [],
       "layer": "cache",
       "license": "Proprietary",
+      "match_name": true,
       "maturity": "established",
       "name": "Amazon ElastiCache",
       "pricing": [
@@ -2171,6 +2101,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": false,
       "maturity": "established",
       "name": "Eloquent",
       "pricing": [
@@ -2217,6 +2148,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Entity Framework Core",
       "pricing": [
@@ -2235,16 +2167,13 @@
     },
     {
       "aliases": [
-        "kotlin exposed"
+        "kotlin exposed",
+        "jetbrains exposed"
       ],
       "avoid_when": [
         "Your team uses JPA everywhere"
       ],
       "edges": [
-        {
-          "target": "hibernate",
-          "type": "alternative-to"
-        },
         {
           "target": "ktor",
           "type": "pairs-with"
@@ -2266,6 +2195,7 @@
       ],
       "layer": "orm",
       "license": "Apache-2.0",
+      "match_name": false,
       "maturity": "established",
       "name": "Exposed",
       "pricing": [
@@ -2331,6 +2261,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": false,
       "maturity": "established",
       "name": "Express",
       "pricing": [
@@ -2365,6 +2296,10 @@
         {
           "target": "sqlmodel",
           "type": "pairs-with"
+        },
+        {
+          "target": "strawberry",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -2380,6 +2315,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "FastAPI",
       "pricing": [
@@ -2442,6 +2378,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Fastify",
       "pricing": [
@@ -2458,7 +2395,10 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "flask framework",
+        "flask python"
+      ],
       "avoid_when": [
         "You want auth, admin and ORM included"
       ],
@@ -2470,6 +2410,14 @@
         {
           "target": "fastapi",
           "type": "alternative-to"
+        },
+        {
+          "target": "sqlalchemy",
+          "type": "pairs-with"
+        },
+        {
+          "target": "strawberry",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -2484,6 +2432,7 @@
       ],
       "layer": "backend",
       "license": "BSD-3-Clause",
+      "match_name": false,
       "maturity": "established",
       "name": "Flask",
       "pricing": [
@@ -2500,7 +2449,10 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "microsoft garnet",
+        "garnet cache"
+      ],
       "avoid_when": [
         "You need the full Redis module ecosystem"
       ],
@@ -2528,6 +2480,7 @@
       "languages": [],
       "layer": "cache",
       "license": "MIT",
+      "match_name": false,
       "maturity": "emerging",
       "name": "Garnet",
       "pricing": [
@@ -2574,6 +2527,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": false,
       "maturity": "established",
       "name": "Gin",
       "pricing": [
@@ -2627,6 +2581,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "GORM",
       "pricing": [
@@ -2650,26 +2605,6 @@
       ],
       "edges": [
         {
-          "target": "apollo-server",
-          "type": "alternative-to"
-        },
-        {
-          "target": "graphql-yoga",
-          "type": "alternative-to"
-        },
-        {
-          "target": "hot-chocolate",
-          "type": "alternative-to"
-        },
-        {
-          "target": "postgraphile",
-          "type": "alternative-to"
-        },
-        {
-          "target": "strawberry",
-          "type": "alternative-to"
-        },
-        {
           "target": "gin",
           "type": "pairs-with"
         }
@@ -2686,6 +2621,7 @@
       ],
       "layer": "api-style",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "gqlgen",
       "pricing": [
@@ -2717,19 +2653,7 @@
           "type": "alternative-to"
         },
         {
-          "target": "gqlgen",
-          "type": "alternative-to"
-        },
-        {
-          "target": "hot-chocolate",
-          "type": "alternative-to"
-        },
-        {
           "target": "postgraphile",
-          "type": "alternative-to"
-        },
-        {
-          "target": "strawberry",
           "type": "alternative-to"
         },
         {
@@ -2757,6 +2681,7 @@
       ],
       "layer": "api-style",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "GraphQL Yoga",
       "pricing": [
@@ -2780,10 +2705,6 @@
       "edges": [
         {
           "target": "connectrpc",
-          "type": "alternative-to"
-        },
-        {
-          "target": "openapi",
           "type": "alternative-to"
         }
       ],
@@ -2810,6 +2731,7 @@
       ],
       "layer": "api-style",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "gRPC",
       "pricing": [
@@ -2835,10 +2757,6 @@
         "You want lightweight SQL control"
       ],
       "edges": [
-        {
-          "target": "exposed",
-          "type": "alternative-to"
-        },
         {
           "target": "mariadb",
           "type": "pairs-with"
@@ -2869,6 +2787,7 @@
       ],
       "layer": "orm",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Hibernate ORM",
       "pricing": [
@@ -2915,6 +2834,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Hono",
       "pricing": [
@@ -2942,26 +2862,6 @@
       ],
       "edges": [
         {
-          "target": "apollo-server",
-          "type": "alternative-to"
-        },
-        {
-          "target": "gqlgen",
-          "type": "alternative-to"
-        },
-        {
-          "target": "graphql-yoga",
-          "type": "alternative-to"
-        },
-        {
-          "target": "postgraphile",
-          "type": "alternative-to"
-        },
-        {
-          "target": "strawberry",
-          "type": "alternative-to"
-        },
-        {
           "target": "aspnet-core",
           "type": "pairs-with"
         }
@@ -2978,6 +2878,7 @@
       ],
       "layer": "api-style",
       "license": "MIT",
+      "match_name": false,
       "maturity": "established",
       "name": "Hot Chocolate",
       "pricing": [
@@ -3032,6 +2933,7 @@
       ],
       "layer": "jobs-queue",
       "license": "LGPL-3.0",
+      "match_name": true,
       "maturity": "established",
       "name": "JobRunr",
       "pricing": [
@@ -3078,6 +2980,7 @@
       ],
       "layer": "backend",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Ktor",
       "pricing": [
@@ -3147,6 +3050,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Kysely",
       "pricing": [
@@ -3196,6 +3100,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Laravel",
       "pricing": [
@@ -3248,6 +3153,7 @@
       ],
       "layer": "jobs-queue",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Laravel Queues",
       "pricing": [
@@ -3313,6 +3219,7 @@
       "languages": [],
       "layer": "database",
       "license": "GPL-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "MariaDB",
       "pricing": [
@@ -3354,6 +3261,7 @@
       "languages": [],
       "layer": "cache",
       "license": "BSD-3-Clause",
+      "match_name": true,
       "maturity": "established",
       "name": "Memcached",
       "pricing": [
@@ -3370,9 +3278,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "mikroorm"
-      ],
+      "aliases": [],
       "avoid_when": [
         "You want the simplest possible setup"
       ],
@@ -3434,6 +3340,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "MikroORM",
       "pricing": [
@@ -3486,6 +3393,7 @@
       "languages": [],
       "layer": "database",
       "license": "SSPL-1.0",
+      "match_name": true,
       "maturity": "established",
       "name": "MongoDB",
       "pricing": [
@@ -3586,6 +3494,7 @@
       "languages": [],
       "layer": "database",
       "license": "GPL-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "MySQL",
       "pricing": [
@@ -3615,10 +3524,6 @@
       "edges": [
         {
           "target": "centrifugo",
-          "type": "alternative-to"
-        },
-        {
-          "target": "centrifugo",
           "type": "pairs-with"
         }
       ],
@@ -3632,6 +3537,7 @@
       "languages": [],
       "layer": "cache",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "NATS",
       "pricing": [
@@ -3682,6 +3588,7 @@
       "languages": [],
       "layer": "database",
       "license": "Apache-2.0",
+      "match_name": false,
       "maturity": "established",
       "name": "Neon",
       "pricing": [
@@ -3744,6 +3651,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "NestJS",
       "pricing": [
@@ -3793,6 +3701,7 @@
       ],
       "layer": "jobs-queue",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Oban",
       "pricing": [
@@ -3824,11 +3733,11 @@
       "edges": [
         {
           "target": "asyncapi",
-          "type": "alternative-to"
+          "type": "pairs-with"
         },
         {
-          "target": "grpc",
-          "type": "alternative-to"
+          "target": "orpc",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -3842,6 +3751,7 @@
       "languages": [],
       "layer": "api-style",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "OpenAPI",
       "pricing": [
@@ -3866,6 +3776,10 @@
         {
           "target": "trpc",
           "type": "alternative-to"
+        },
+        {
+          "target": "openapi",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -3880,6 +3794,7 @@
       ],
       "layer": "api-style",
       "license": "MIT",
+      "match_name": true,
       "maturity": "emerging",
       "name": "oRPC",
       "pricing": [
@@ -3926,6 +3841,7 @@
       ],
       "layer": "jobs-queue",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "pg-boss",
       "pricing": [
@@ -3972,6 +3888,7 @@
       "languages": [],
       "layer": "database",
       "license": "PostgreSQL",
+      "match_name": true,
       "maturity": "established",
       "name": "pgvector",
       "pricing": [
@@ -4016,6 +3933,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": false,
       "maturity": "established",
       "name": "Phoenix",
       "pricing": [
@@ -4045,19 +3963,7 @@
           "type": "alternative-to"
         },
         {
-          "target": "gqlgen",
-          "type": "alternative-to"
-        },
-        {
           "target": "graphql-yoga",
-          "type": "alternative-to"
-        },
-        {
-          "target": "hot-chocolate",
-          "type": "alternative-to"
-        },
-        {
-          "target": "strawberry",
           "type": "alternative-to"
         },
         {
@@ -4078,6 +3984,7 @@
       ],
       "layer": "api-style",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "PostGraphile",
       "pricing": [
@@ -4112,6 +4019,10 @@
         },
         {
           "target": "active-record",
+          "type": "pairs-with"
+        },
+        {
+          "target": "clickhouse",
           "type": "pairs-with"
         },
         {
@@ -4202,6 +4113,7 @@
       "languages": [],
       "layer": "database",
       "license": "PostgreSQL",
+      "match_name": true,
       "maturity": "established",
       "name": "PostgreSQL",
       "pricing": [
@@ -4262,6 +4174,7 @@
       ],
       "layer": "orm",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Prisma",
       "pricing": [
@@ -4301,6 +4214,7 @@
       "languages": [],
       "layer": "database",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Qdrant",
       "pricing": [
@@ -4320,9 +4234,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "quartz scheduler"
-      ],
+      "aliases": [],
       "avoid_when": [
         "Distributed job queues with a web dashboard"
       ],
@@ -4344,6 +4256,7 @@
       ],
       "layer": "jobs-queue",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Quartz Scheduler",
       "pricing": [
@@ -4396,6 +4309,7 @@
       ],
       "layer": "backend",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Ruby on Rails",
       "pricing": [
@@ -4478,6 +4392,7 @@
       "languages": [],
       "layer": "cache",
       "license": "RSALv2, SSPLv1 or AGPLv3",
+      "match_name": true,
       "maturity": "established",
       "name": "Redis",
       "pricing": [
@@ -4498,7 +4413,10 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "river queue",
+        "riverqueue"
+      ],
       "avoid_when": [
         "You do not use PostgreSQL"
       ],
@@ -4532,6 +4450,7 @@
       ],
       "layer": "jobs-queue",
       "license": "MPL-2.0",
+      "match_name": false,
       "maturity": "emerging",
       "name": "River",
       "pricing": [
@@ -4585,6 +4504,7 @@
       ],
       "layer": "jobs-queue",
       "license": "BSD-2-Clause",
+      "match_name": true,
       "maturity": "established",
       "name": "RQ",
       "pricing": [
@@ -4604,9 +4524,7 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "seaorm"
-      ],
+      "aliases": [],
       "avoid_when": [
         "Projects not using Rust"
       ],
@@ -4636,6 +4554,7 @@
       ],
       "layer": "orm",
       "license": "MIT OR Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "SeaORM",
       "pricing": [
@@ -4708,6 +4627,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Sequelize",
       "pricing": [
@@ -4750,6 +4670,7 @@
       ],
       "layer": "jobs-queue",
       "license": "LGPL-3.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Sidekiq",
       "pricing": [
@@ -4765,8 +4686,7 @@
       ],
       "summary": "Simple, efficient background jobs for Ruby, with a free LGPL edition and paid Pro and Enterprise tiers.",
       "tags": [
-        "background-jobs",
-        "scheduled-jobs"
+        "background-jobs"
       ],
       "url": "https://sidekiq.org",
       "verified": "2026-11-14"
@@ -4810,6 +4730,7 @@
       ],
       "layer": "jobs-queue",
       "license": "MIT",
+      "match_name": true,
       "maturity": "emerging",
       "name": "Solid Queue",
       "pricing": [
@@ -4829,7 +4750,6 @@
     },
     {
       "aliases": [
-        "spring",
         "springboot"
       ],
       "avoid_when": [
@@ -4863,6 +4783,7 @@
       ],
       "layer": "backend",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Spring Boot",
       "pricing": [
@@ -4888,8 +4809,8 @@
       ],
       "edges": [
         {
-          "target": "sqlmodel",
-          "type": "alternative-to"
+          "target": "flask",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -4905,6 +4826,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "SQLAlchemy",
       "pricing": [
@@ -5000,6 +4922,7 @@
       "languages": [],
       "layer": "database",
       "license": "Public domain",
+      "match_name": true,
       "maturity": "established",
       "name": "SQLite",
       "pricing": [
@@ -5022,10 +4945,6 @@
       "edges": [
         {
           "target": "sqlalchemy",
-          "type": "alternative-to"
-        },
-        {
-          "target": "sqlalchemy",
           "type": "built-on"
         },
         {
@@ -5045,6 +4964,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": true,
       "maturity": "emerging",
       "name": "SQLModel",
       "pricing": [
@@ -5062,35 +4982,21 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [
-        "strawberry graphql"
-      ],
+      "aliases": [],
       "avoid_when": [
         "You want a REST-only API"
       ],
       "edges": [
         {
-          "target": "apollo-server",
-          "type": "alternative-to"
-        },
-        {
-          "target": "gqlgen",
-          "type": "alternative-to"
-        },
-        {
-          "target": "graphql-yoga",
-          "type": "alternative-to"
-        },
-        {
-          "target": "hot-chocolate",
-          "type": "alternative-to"
-        },
-        {
-          "target": "postgraphile",
-          "type": "alternative-to"
-        },
-        {
           "target": "django",
+          "type": "pairs-with"
+        },
+        {
+          "target": "fastapi",
+          "type": "pairs-with"
+        },
+        {
+          "target": "flask",
           "type": "pairs-with"
         }
       ],
@@ -5106,6 +5012,7 @@
       ],
       "layer": "api-style",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "Strawberry GraphQL",
       "pricing": [
@@ -5151,6 +5058,7 @@
       "languages": [],
       "layer": "database",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "established",
       "name": "Supabase",
       "pricing": [
@@ -5173,7 +5081,10 @@
       "verified": "2026-11-14"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "temporal.io",
+        "temporal workflow"
+      ],
       "avoid_when": [
         "A simple fire-and-forget queue"
       ],
@@ -5203,6 +5114,7 @@
       ],
       "layer": "jobs-queue",
       "license": "MIT",
+      "match_name": false,
       "maturity": "established",
       "name": "Temporal",
       "pricing": [
@@ -5250,6 +5162,7 @@
       ],
       "layer": "jobs-queue",
       "license": "Apache-2.0",
+      "match_name": true,
       "maturity": "emerging",
       "name": "Trigger.dev",
       "pricing": [
@@ -5306,6 +5219,7 @@
       ],
       "layer": "api-style",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "tRPC",
       "pricing": [
@@ -5356,6 +5270,7 @@
       "languages": [],
       "layer": "database",
       "license": "MIT",
+      "match_name": true,
       "maturity": "emerging",
       "name": "Turso",
       "pricing": [
@@ -5437,6 +5352,7 @@
       ],
       "layer": "orm",
       "license": "MIT",
+      "match_name": true,
       "maturity": "established",
       "name": "TypeORM",
       "pricing": [
@@ -5461,14 +5377,6 @@
       ],
       "edges": [
         {
-          "target": "cloudflare-kv",
-          "type": "alternative-to"
-        },
-        {
-          "target": "elasticache",
-          "type": "alternative-to"
-        },
-        {
           "target": "redis",
           "type": "alternative-to"
         }
@@ -5483,6 +5391,7 @@
       "languages": [],
       "layer": "cache",
       "license": "Proprietary",
+      "match_name": true,
       "maturity": "established",
       "name": "Upstash Redis",
       "pricing": [
@@ -5537,6 +5446,7 @@
       "languages": [],
       "layer": "cache",
       "license": "BSD-3-Clause",
+      "match_name": true,
       "maturity": "established",
       "name": "Valkey",
       "pricing": [

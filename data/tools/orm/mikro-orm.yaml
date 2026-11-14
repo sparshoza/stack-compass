@@ -1,6 +1,6 @@
 id: mikro-orm
 name: MikroORM
-aliases: [mikroorm]
+aliases: []
 layer: orm
 summary: A TypeScript ORM based on Data Mapper, Unit of Work and Identity Map patterns.
 url: https://mikro-orm.io

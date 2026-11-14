@@ -1,6 +1,7 @@
 id: flask
 name: Flask
-aliases: []
+aliases: [flask framework, flask python]
+match_name: false
 layer: backend
 summary: A lightweight Python web framework you extend with the libraries you choose.
 url: https://flask.palletsprojects.com
@@ -15,5 +16,7 @@ avoid_when: ['You want auth, admin and ORM included']
 edges:
 - {type: alternative-to, target: django}
 - {type: alternative-to, target: fastapi}
+- {type: pairs-with, target: sqlalchemy}
+- {type: pairs-with, target: strawberry}
 verified: 2026-11-14
 sources: ['https://flask.palletsprojects.com', 'https://flask.palletsprojects.com/en/stable/license/']

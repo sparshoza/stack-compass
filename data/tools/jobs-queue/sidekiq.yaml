@@ -7,7 +7,7 @@ url: https://sidekiq.org
 repo: https://github.com/sidekiq/sidekiq
 license: LGPL-3.0
 languages: [ruby]
-tags: [background-jobs, scheduled-jobs]
+tags: [background-jobs]
 hosting: [self-hosted]
 pricing: [oss, paid]
 maturity: established

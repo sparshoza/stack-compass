@@ -13,7 +13,6 @@ maturity: established
 good_for: [Caching inside an AWS stack]
 avoid_when: [You are not on AWS]
 edges:
-- {type: alternative-to, target: upstash-redis}
 - {type: pairs-with, target: memcached}
 - {type: pairs-with, target: redis}
 - {type: pairs-with, target: valkey}

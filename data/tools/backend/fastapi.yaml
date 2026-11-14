@@ -16,5 +16,6 @@ edges:
 - {type: alternative-to, target: django}
 - {type: alternative-to, target: flask}
 - {type: pairs-with, target: sqlmodel}
+- {type: pairs-with, target: strawberry}
 verified: 2026-11-14
 sources: ['https://fastapi.tiangolo.com']

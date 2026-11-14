@@ -1,6 +1,7 @@
 id: temporal
 name: Temporal
-aliases: []
+aliases: [temporal.io, temporal workflow]
+match_name: false
 layer: jobs-queue
 summary: A durable execution platform that resumes workflows after crashes, with SDKs in many languages.
 url: https://temporal.io

@@ -14,7 +14,6 @@ maturity: established
 good_for: [Adding realtime push to an existing backend]
 avoid_when: [Key-value caching]
 edges:
-- {type: alternative-to, target: nats}
 - {type: pairs-with, target: nats}
 - {type: pairs-with, target: redis}
 verified: 2026-11-14

@@ -1,7 +1,7 @@
 # Phrases are lowercase. Tool names and aliases are matched automatically, so they are not listed here.
 - phrases: [chat, live updates, multiplayer, websocket, websockets, live dashboard, live cursors, collaborative editing]
   sets: {capabilities: [realtime]}
-- phrases: [server side rendering, ssr, seo, search engine optimization, search engines]
+- phrases: [server side rendering, ssr, seo, search engine optimization, rank on google]
   sets: {capabilities: [ssr-seo]}
 - phrases: [static site, static content, blog, marketing site, docs site, documentation site, landing page, portfolio]
   sets: {project_type: content-site, capabilities: [static-content]}
@@ -13,19 +13,19 @@
   sets: {capabilities: [full-text-search]}
 - phrases: [background jobs, background tasks, job queue, task queue, worker queue, async jobs, long running tasks]
   sets: {capabilities: [background-jobs]}
-- phrases: [cron, scheduled jobs, scheduled tasks, recurring jobs, nightly job, reminders, periodic tasks]
+- phrases: [cron, scheduled jobs, scheduled tasks, recurring jobs, nightly job, periodic tasks]
   sets: {capabilities: [scheduled-jobs]}
 - phrases: [payments, checkout, subscriptions, billing, credit card, invoices, take payments]
   sets: {capabilities: [payments]}
-- phrases: [transactional email, send email, emails, password reset email, receipts, email notifications, newsletter]
+- phrases: [transactional email, send email, password reset email, email notifications, newsletter]
   sets: {capabilities: [transactional-email]}
-- phrases: [cms, content management, editors, content editing, editorial, non technical editors]
+- phrases: [cms, content management, content editing, editorial, non technical editors]
   sets: {capabilities: [content-editing]}
 - phrases: [multi tenant, multitenant, multi tenancy, white label, organizations and teams, workspaces]
   sets: {capabilities: [multi-tenant]}
-- phrases: [maps, geospatial, location, gps, nearby, geolocation, store locator, distance search]
+- phrases: [maps, geospatial, gps, nearby, geolocation, store locator, distance search]
   sets: {capabilities: [geospatial]}
-- phrases: [analytics, metrics, event tracking, reporting, data warehouse, business intelligence, time series]
+- phrases: [analytics, event tracking, data warehouse, business intelligence, time series]
   sets: {capabilities: [analytics]}
 - phrases: [vector search, semantic search, embeddings, similarity search, recommendations, recommendation engine, rag]
   sets: {capabilities: [vector-search]}
@@ -33,9 +33,9 @@
   sets: {capabilities: [social-login]}
 - phrases: [enterprise sso, single sign on, sso, saml, oidc, okta, company login]
   sets: {capabilities: [enterprise-sso]}
-- phrases: [edge, edge runtime, edge functions, serverless edge, low latency worldwide, cloudflare workers]
+- phrases: [edge runtime, edge functions, serverless edge, low latency worldwide, cloudflare workers]
   sets: {capabilities: [edge-runtime]}
-- phrases: [type safe, type safety, typed, end to end types, strict types, typed api]
+- phrases: [type safe, type safety, end to end types, strict types, typed api]
   sets: {capabilities: [type-safety]}
 - phrases: [admin panel, admin ui, admin dashboard, back office, backoffice, crud screens]
   sets: {capabilities: [admin-ui]}
@@ -43,7 +43,7 @@
   sets: {capabilities: [high-write-throughput]}
 - phrases: [native app, mobile app, ios app, android app, app store, play store, phone app]
   sets: {project_type: mobile-app, capabilities: [native-mobile]}
-- phrases: [web app, web application, webapp, dashboard, portal, customer portal]
+- phrases: [web app, web application, webapp, portal, customer portal]
   sets: {project_type: web-app}
 - phrases: [api only, rest api, json api, backend only, headless api, public api, microservice, microservices]
   sets: {project_type: api-only}
@@ -51,11 +51,11 @@
   sets: {project_type: realtime-app, capabilities: [realtime]}
 - phrases: [internal tool, internal app, admin tool, ops tool, employee tool, staff portal, back office tool]
   sets: {project_type: internal-tool}
-- phrases: [ecommerce, e-commerce, online store, web shop, webshop, shop, marketplace, storefront, cart]
+- phrases: [ecommerce, e-commerce, online store, web shop, webshop, marketplace, storefront]
   sets: {project_type: ecommerce}
 - phrases: [saas, software as a service, subscription product, b2b software, startup product]
   sets: {project_type: saas}
-- phrases: [python, django developer, pythonic, pip]
+- phrases: [python, django developer, pythonic]
   sets: {languages: [python]}
 - phrases: [typescript, ts]
   sets: {languages: [typescript]}
@@ -69,19 +69,19 @@
   sets: {languages: [kotlin]}
 - phrases: [csharp, c#, dotnet, .net, c sharp]
   sets: {languages: [csharp]}
-- phrases: [ruby, gem, bundler]
+- phrases: [ruby, bundler]
   sets: {languages: [ruby]}
 - phrases: [php, composer]
   sets: {languages: [php]}
-- phrases: [rust, cargo, crate]
+- phrases: [rust, cargo]
   sets: {languages: [rust]}
-- phrases: [elixir, erlang, beam]
+- phrases: [elixir, erlang]
   sets: {languages: [elixir]}
 - phrases: [dart]
   sets: {languages: [dart]}
 - phrases: [swift, swiftui]
   sets: {languages: [swift]}
-- phrases: [instant messaging, notifications push, presence, who is online, live comments, live score]
+- phrases: [instant messaging, notifications push, who is online, live comments, live score]
   sets: {capabilities: [realtime]}
 - phrases: [pdf upload, image gallery, photo sharing, media library, avatars, document upload]
   sets: {capabilities: [file-uploads]}
@@ -101,7 +101,7 @@
   sets: {capabilities: [multi-tenant]}
 - phrases: [delivery tracking, ride sharing, route planning, geofencing, real estate map]
   sets: {capabilities: [geospatial]}
-- phrases: [usage statistics, product analytics, funnel, dashboards of events, clickstream]
+- phrases: [usage statistics, product analytics, dashboards of events, clickstream]
   sets: {capabilities: [analytics]}
 - phrases: [ai search, chat with documents, similar products, image similarity, knowledge base search]
   sets: {capabilities: [vector-search]}
@@ -119,7 +119,5 @@
   sets: {capabilities: [high-write-throughput]}
 - phrases: [pwa, progressive web app, installable app, cross platform app, ios and android]
   sets: {capabilities: [native-mobile]}
-- phrases: [startup mvp, side project, weekend project, prototype, hackathon]
-  sets: {project_type: web-app}
-- phrases: [booking system, reservation, appointment scheduling, subscription box, membership site]
+- phrases: [appointment scheduling, subscription box, membership site]
   sets: {project_type: saas}

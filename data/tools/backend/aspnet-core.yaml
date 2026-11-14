@@ -1,6 +1,6 @@
 id: aspnet-core
 name: ASP.NET Core
-aliases: [asp.net core, aspnet, .net web]
+aliases: [aspnet, .net web]
 layer: backend
 summary: A cross-platform .NET framework for web apps and APIs, including SignalR for realtime.
 url: https://dotnet.microsoft.com/apps/aspnet

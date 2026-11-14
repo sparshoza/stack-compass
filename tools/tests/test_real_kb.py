@@ -1,4 +1,5 @@
 from collections import Counter
+from functools import cache
 from pathlib import Path
 
 import pytest
@@ -39,6 +40,17 @@ SPEC_CAP_LAYERS = {
 }
 
 
+@cache
+def _real_kb():
+    """The real catalog, loaded once for the whole module instead of once per test."""
+    return load_kb(DATA)
+
+
+@pytest.fixture(scope="module")
+def kb():
+    return _real_kb()
+
+
 def test_real_kb_valid():
     load_kb(DATA)
 
@@ -47,15 +59,14 @@ def test_compiled_is_fresh():
     assert CATALOG.read_text(encoding="utf-8") == render(compile_catalog(DATA))
 
 
-def test_layers_present_have_10_to_20_tools():
-    counts = Counter(t.layer for t in load_kb(DATA).tools.values())
+def test_layers_present_have_10_to_20_tools(kb):
+    counts = Counter(t.layer for t in kb.tools.values())
     assert counts
     for layer, n in counts.items():
         assert 10 <= n <= 20, f"{layer} has {n} tools"
 
 
-def test_vocab_matches_spec():
-    kb = load_kb(DATA)
+def test_vocab_matches_spec(kb):
     v = kb.vocab
     assert v.languages == [
         "python", "typescript", "javascript", "go", "java", "kotlin", "csharp",
@@ -78,8 +89,7 @@ def test_vocab_matches_spec():
     assert v.tooling_layers == ["state", "build-tool", "ci-cd", "observability", "testing"]
 
 
-def test_keywords_cover_vocab():
-    kb = load_kb(DATA)
+def test_keywords_cover_vocab(kb):
     assert len(kb.keywords) >= 60
     types = {e.sets.project_type for e in kb.keywords}
     caps = {c for e in kb.keywords for c in e.sets.capabilities}
@@ -91,24 +101,24 @@ def test_keywords_cover_vocab():
         assert all(p == p.lower() for p in e.phrases)
 
 
-def test_every_orm_language_matches_some_backend():
-    tools = load_kb(DATA).tools.values()
+def test_every_orm_language_matches_some_backend(kb):
+    tools = kb.tools.values()
     backend_langs = {x for t in tools if t.layer == "backend" for x in t.languages}
     for t in tools:
         if t.layer == "orm":
             assert set(t.languages) & backend_langs, t.id
 
 
-def test_backend_covers_core_languages():
-    tools = load_kb(DATA).tools.values()
+def test_backend_covers_core_languages(kb):
+    tools = kb.tools.values()
     langs = {x for t in tools if t.layer == "backend" for x in t.languages}
     need = {"python", "typescript", "javascript", "go", "java", "kotlin", "csharp",
             "ruby", "php", "rust", "elixir"}  # fmt: skip
     assert need <= langs
 
 
-def test_every_tool_has_at_least_one_edge():
-    for t in load_kb(DATA).tools.values():
+def test_every_tool_has_at_least_one_edge(kb):
+    for t in kb.tools.values():
         assert t.edges, t.id
 
 
@@ -118,8 +128,8 @@ def test_no_dashes_in_data():
         assert chr(0x2014) not in text and chr(0x2013) not in text, p
 
 
-def test_every_meta_framework_built_on_a_frontend():
-    tools = load_kb(DATA).tools
+def test_every_meta_framework_built_on_a_frontend(kb):
+    tools = kb.tools
     metas = [t for t in tools.values() if t.layer == "meta-framework"]
     assert metas
     for t in metas:
@@ -127,8 +137,8 @@ def test_every_meta_framework_built_on_a_frontend():
         assert any(tools[x].layer == "frontend" for x in built), t.id
 
 
-def test_every_state_and_ui_kit_built_on_or_pairs_with_a_frontend():
-    tools = load_kb(DATA).tools
+def test_every_state_and_ui_kit_built_on_or_pairs_with_a_frontend(kb):
+    tools = kb.tools
     subjects = [t for t in tools.values() if t.layer in ("state", "ui-kit")]
     assert subjects
     for t in subjects:
@@ -136,22 +146,22 @@ def test_every_state_and_ui_kit_built_on_or_pairs_with_a_frontend():
         assert any(tools[x].layer == "frontend" for x in linked), t.id
 
 
-def test_all_22_layers_present():
-    tools = load_kb(DATA).tools.values()
+def test_all_22_layers_present(kb):
+    tools = kb.tools.values()
     assert len(LAYERS) == 22
     assert {t.layer for t in tools} == set(LAYERS)
 
 
-def test_total_tools_between_280_and_340():
-    assert 280 <= len(load_kb(DATA).tools) <= 340
+def test_total_tools_between_280_and_340(kb):
+    assert 280 <= len(kb.tools) <= 340
 
 
-def test_keywords_at_least_150():
-    assert len(load_kb(DATA).keywords) >= 150
+def test_keywords_at_least_150(kb):
+    assert len(kb.keywords) >= 150
 
 
-def test_runs_in_app_marks_libraries_not_services():
-    tools = load_kb(DATA).tools
+def test_runs_in_app_marks_libraries_not_services(kb):
+    tools = kb.tools
     libraries = {
         "better-auth", "authjs", "passportjs", "devise", "spring-security",
         "nodemailer", "react-email", "mjml", "fusejs", "minisearch", "flexsearch",
@@ -162,18 +172,17 @@ def test_runs_in_app_marks_libraries_not_services():
     assert {t for t in services if tools[t].runs_in_app} == set()
 
 
-def test_needs_web_frontend_marks_browser_test_tools_only():
-    tools = load_kb(DATA).tools
+def test_needs_web_frontend_marks_browser_test_tools_only(kb):
+    tools = kb.tools
     browser = {"playwright", "cypress", "selenium"}
     assert {t for t, tool in tools.items() if tool.needs_web_frontend} == browser
 
 
 def _kw_phrases():
-    return {p for e in load_kb(DATA).keywords for p in e.phrases}
+    return {p for e in _real_kb().keywords for p in e.phrases}
 
 
-def test_rest_api_capability_and_keywords():
-    kb = load_kb(DATA)
+def test_rest_api_capability_and_keywords(kb):
     cap = next(c for c in kb.vocab.capabilities if c.id == "rest-api")
     assert cap.label == "REST API" and cap.explain
     assert len(kb.vocab.capabilities) == 23
@@ -182,14 +191,14 @@ def test_rest_api_capability_and_keywords():
     assert {"rest api", "restful", "rest endpoints", "json api"} <= setting
 
 
-def test_rest_api_tags_only_where_docs_say_so():
-    tools = load_kb(DATA).tools
+def test_rest_api_tags_only_where_docs_say_so(kb):
+    tools = kb.tools
     tagged = {t.id for t in tools.values() if "rest-api" in t.tags}
     assert tagged == {"openapi"}
 
 
-def test_new_tools_exist_with_official_sources():
-    tools = load_kb(DATA).tools
+def test_new_tools_exist_with_official_sources(kb):
+    tools = kb.tools
     expect = {
         "django-orm": ("orm", "python", "docs.djangoproject.com"),
         "vapor": ("backend", "swift", "vapor.codes"),
@@ -211,8 +220,8 @@ def _pairs(tools, tid):
     return {e.target for e in tools[tid].edges if e.type == "pairs-with"}
 
 
-def test_new_tool_edges():
-    tools = load_kb(DATA).tools
+def test_new_tool_edges(kb):
+    tools = kb.tools
     assert {"django", "postgresql", "mariadb", "mysql", "sqlite"} <= _pairs(tools, "django-orm")
     assert {"vapor", "postgresql", "mysql", "sqlite", "mongodb"} <= _pairs(tools, "fluent")
     assert "fluent" in _pairs(tools, "vapor")
@@ -223,8 +232,8 @@ def test_new_tool_edges():
         assert "eloquent" in _pairs(tools, db) and "django-orm" in _pairs(tools, db)
 
 
-def test_job_queue_in_app_libraries_run_in_app():
-    tools = load_kb(DATA).tools
+def test_job_queue_in_app_libraries_run_in_app(kb):
+    tools = kb.tools
     in_app = {"oban", "solid-queue", "laravel-queues", "river", "pg-boss", "jobrunr",
               "quartz", "bullmq", "sidekiq", "rq", "asynq"}  # fmt: skip
     assert {t for t in in_app if not tools[t].runs_in_app} == set()
@@ -238,7 +247,7 @@ def test_go_phrases_and_no_inner_tool_bias_phrases():
 
 
 def _kw_sets(phrase):
-    return next(e.sets for e in load_kb(DATA).keywords if phrase in e.phrases)
+    return next(e.sets for e in _real_kb().keywords if phrase in e.phrases)
 
 
 def test_go_project_phrases():
@@ -258,8 +267,8 @@ def test_go_project_phrases():
     assert not {"go app", "go server"} & _kw_phrases()
 
 
-def test_vapor_aliases():
-    aliases = set(load_kb(DATA).tools["vapor"].aliases)
+def test_vapor_aliases(kb):
+    aliases = set(kb.tools["vapor"].aliases)
     assert {"vapor backend", "vapor api", "vapor app", "vapor server", "vapor framework",
             "swift vapor"} <= aliases  # fmt: skip
 
@@ -283,8 +292,7 @@ CAPABILITY_GAPS = {
 }
 
 
-def test_required_capabilities_leave_out_only_reviewed_tools():
-    kb = load_kb(DATA)
+def test_required_capabilities_leave_out_only_reviewed_tools(kb):
     gaps = {}
     for cap, layers in kb.vocab.capability_layers.items():
         if cap == "rest-api":
@@ -295,8 +303,8 @@ def test_required_capabilities_leave_out_only_reviewed_tools():
     assert gaps == CAPABILITY_GAPS
 
 
-def test_swift_testing_tool():
-    tools = load_kb(DATA).tools
+def test_swift_testing_tool(kb):
+    tools = kb.tools
     t = tools["swift-testing"]
     assert (t.layer, t.languages, t.license, t.pricing) == (
         "testing", ["swift"], "Apache-2.0", ["oss"]
@@ -305,8 +313,8 @@ def test_swift_testing_tool():
     assert "https://docs.vapor.codes/advanced/testing/" in t.sources
 
 
-def test_every_layer_has_facets_led_by_a_need_group():
-    facets = load_kb(DATA).vocab.facets
+def test_every_layer_has_facets_led_by_a_need_group(kb):
+    facets = kb.vocab.facets
     assert set(facets) == set(LAYERS)
     for layer, groups in facets.items():
         assert 1 <= len(groups) <= 3, layer
@@ -314,8 +322,8 @@ def test_every_layer_has_facets_led_by_a_need_group():
         assert groups[0].question == "What do you need it for?", layer
 
 
-def test_scale_groups_only_where_size_splits_the_layer():
-    facets = load_kb(DATA).vocab.facets
+def test_scale_groups_only_where_size_splits_the_layer(kb):
+    facets = kb.vocab.facets
     with_scale = {layer for layer, gs in facets.items() if any(g.id == "scale" for g in gs)}
     assert with_scale == {"database", "cache", "search"}
 
@@ -326,18 +334,17 @@ SERVICE_LAYERS = [
 ]  # fmt: skip
 
 
-def test_service_layers_are_the_scorer_service_layers():
+def test_service_layers_are_the_scorer_service_layers(kb):
     # web/src/engine/score.test.ts checks SERVICE_LAYERS in score.ts against this list.
-    assert load_kb(DATA).vocab.service_layers == SERVICE_LAYERS
+    assert kb.vocab.service_layers == SERVICE_LAYERS
 
 
-def test_run_is_shown_on_service_layers_except_jobs_queue():
-    shared = {s.id: s for s in load_kb(DATA).vocab.shared_facets}
+def test_run_is_shown_on_service_layers_except_jobs_queue(kb):
+    shared = {s.id: s for s in kb.vocab.shared_facets}
     assert list(shared["run"].layers) == [x for x in SERVICE_LAYERS if x != "jobs-queue"]
 
 
-def test_license_is_shown_wherever_it_can_narrow_the_list():
-    kb = load_kb(DATA)
+def test_license_is_shown_wherever_it_can_narrow_the_list(kb):
     license_layers = {s.id: s for s in kb.vocab.shared_facets}["license"].layers
     for layer in SERVICE_LAYERS:
         tools = [t for t in kb.tools.values() if t.layer == layer]
@@ -357,7 +364,7 @@ def _shared_match(facet: str, option: str, tool) -> bool:
 
 
 def _shared_cases():
-    kb = load_kb(DATA)
+    kb = _real_kb()
     for shared in kb.vocab.shared_facets:
         for layer, options in shared.layers.items():
             for option in options:
@@ -366,8 +373,8 @@ def _shared_cases():
 
 
 @pytest.mark.parametrize(("facet", "layer", "option"), list(_shared_cases()))
-def test_every_shown_shared_option_matches_a_tool(facet, layer, option):
-    tools = [t for t in load_kb(DATA).tools.values() if t.layer == layer]
+def test_every_shown_shared_option_matches_a_tool(facet, layer, option, kb):
+    tools = [t for t in kb.tools.values() if t.layer == layer]
     assert any(_shared_match(facet, option, t) for t in tools)
 
 
@@ -379,8 +386,7 @@ SCALE_UNSET = {
 }
 
 
-def test_every_facet_option_matches_a_tool_and_every_tool_has_a_need():
-    kb = load_kb(DATA)
+def test_every_facet_option_matches_a_tool_and_every_tool_has_a_need(kb):
     for layer, groups in kb.vocab.facets.items():
         tools = [t for t in kb.tools.values() if t.layer == layer]
         for group in groups:

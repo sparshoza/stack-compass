@@ -5,6 +5,7 @@ import type { NodeDisplayData, PartialButFor } from 'sigma/types'
 import layout from '@catalog/layout.json'
 import { kb, type EdgeType, type Layer } from '@/lib/kb'
 import {
+  areaFit,
   buildGraph,
   edgeStyle,
   LabelPlacer,
@@ -32,8 +33,10 @@ export interface StackGraphProps {
   hiddenLayers?: ReadonlySet<Layer>
   hiddenEdgeTypes?: ReadonlySet<EdgeType>
   onSelect?: (id: string) => void
-  /** Pixels covered by the top bar and by a panel on the right or bottom; the focused tool is centred in the rest. */
-  focusInset?: { top: number; right: number; bottom: number }
+  /** Pixels covered by the top bar and by panels on the sides or bottom; the focused tool is centred in the rest. */
+  focusInset?: { top: number; right: number; bottom: number; left?: number }
+  /** Pixels covered while a stack is highlighted; the camera fits the picks into the rest. */
+  highlightInset?: { top: number; right: number; bottom: number; left: number }
   /** Pixels covered at rest by the top bar and the corner links; a portrait screen fits the map between them. */
   frameInset?: { top: number; bottom: number }
 }
@@ -133,10 +136,18 @@ function makeLabelDrawer() {
     })
     placer.reset(dots)
     allowed = new Map()
+    // Labels that must show still dodge each other: right of the dot, else
+    // left of it, else right regardless.
+    // Dimmed dots underneath are context, so only lit dots count here.
+    const lit = new Set(candidates.filter((c) => c.rank === 0).map((c) => c.id))
     for (const c of candidates) {
       if (c.rank !== 0) continue
-      placer.reserve(c.right)
-      allowed.set(c.id, 'right')
+      if (placer.place(c.right, c.id, lit)) allowed.set(c.id, 'right')
+      else if (placer.place(c.left, c.id, lit)) allowed.set(c.id, 'left')
+      else {
+        placer.reserve(c.right)
+        allowed.set(c.id, 'right')
+      }
     }
     candidates.sort((a, b) => a.rank - b.rank || b.size - a.size || (a.id < b.id ? -1 : 1))
     for (const c of candidates) {
@@ -191,19 +202,45 @@ function fitPortrait(sigma: Sigma<NodeAttrs, EdgeAttrs>, inset: { top: number; b
   })
   if (!drawn) return
   const fit = portraitFit(drawn, viewport, inset)
-  if (!fit) return
-  // At the starting camera, find the map point under `from` and the vector
+  if (fit) applyFit(sigma, fit)
+}
+
+/**
+ * Moves the camera so the map point now drawn at `fit.from` lands on screen
+ * point `fit.to`, zoomed by `fit.ratio` relative to the current zoom.
+ */
+function applyFit(
+  sigma: Sigma<NodeAttrs, EdgeAttrs>,
+  fit: { ratio: number; from: { x: number; y: number }; to: { x: number; y: number } },
+) {
+  const viewport = sigma.getDimensions()
+  // At the current camera, find the map point under `from` and the vector
   // for the pixel offset between the screen centre and `to`; at the new zoom
   // that offset scales with the ratio.
   const centre = { x: viewport.width / 2, y: viewport.height / 2 }
   const from = sigma.viewportToFramedGraph(fit.from)
   const a = sigma.viewportToFramedGraph(centre)
   const b = sigma.viewportToFramedGraph({ x: centre.x + centre.x - fit.to.x, y: centre.y + centre.y - fit.to.y })
-  sigma.getCamera().setState({
+  const camera = sigma.getCamera()
+  camera.setState({
     x: from.x + (b.x - a.x) * fit.ratio,
     y: from.y + (b.y - a.y) * fit.ratio,
-    ratio: fit.ratio,
+    ratio: camera.getState().ratio * fit.ratio,
   })
+}
+
+/** Where the given tools are drawn at the current camera, in pixels; null when none is drawn. */
+function drawnBox(sigma: Sigma<NodeAttrs, EdgeAttrs>, ids: string[]): Box | null {
+  let box: Box | null = null
+  for (const id of ids) {
+    const data = sigma.getNodeDisplayData(id)
+    if (!data || data.hidden) continue
+    const at = sigma.framedGraphToViewport(data)
+    box = box
+      ? { x0: Math.min(box.x0, at.x), y0: Math.min(box.y0, at.y), x1: Math.max(box.x1, at.x), y1: Math.max(box.y1, at.y) }
+      : { x0: at.x, y0: at.y, x1: at.x, y1: at.y }
+  }
+  return box
 }
 
 function readFont(): string {
@@ -230,6 +267,7 @@ export function StackGraph({
   hiddenEdgeTypes,
   onSelect,
   focusInset,
+  highlightInset,
   frameInset,
 }: StackGraphProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -239,12 +277,14 @@ export function StackGraph({
 
   const focusInsetRef = useRef(focusInset)
   const frameInsetRef = useRef(frameInset)
+  const highlightInsetRef = useRef(highlightInset)
 
   useEffect(() => {
     onSelectRef.current = onSelect
     focusInsetRef.current = focusInset
     frameInsetRef.current = frameInset
-  }, [onSelect, focusInset, frameInset])
+    highlightInsetRef.current = highlightInset
+  }, [onSelect, focusInset, frameInset, highlightInset])
 
   const graph = useMemo(() => buildGraph(kb.tools, layout as Positions), [])
 
@@ -366,12 +406,25 @@ export function StackGraph({
       const { width, height } = sigma.getDimensions()
       const centre = sigma.viewportToFramedGraph({ x: width / 2, y: height / 2 })
       const shifted = sigma.viewportToFramedGraph({
-        x: width / 2 + inset.right / 2,
+        x: width / 2 + (inset.right - (inset.left ?? 0)) / 2,
         y: height / 2 + (inset.bottom - inset.top) / 2,
       })
       camera.setState({ x: at.x + shifted.x - centre.x, y: at.y + shifted.y - centre.y, ratio })
     }
   }, [focus, focusHidden])
+
+  // A new stack jumps (duration 0) to frame its picks in the area the sheet
+  // and the bars leave free. A focused tool takes the camera instead.
+  useEffect(() => {
+    const sigma = sigmaRef.current
+    if (!sigma || !highlightKey || focusRef.current) return
+    if (typeof sigma.framedGraphToViewport !== 'function' || typeof sigma.getDimensions !== 'function') return
+    sigma.refresh()
+    const box = drawnBox(sigma, highlightKey.split('\n'))
+    if (!box) return
+    const inset = highlightInsetRef.current ?? { top: 0, right: 0, bottom: 0, left: 0 }
+    applyFit(sigma, areaFit(box, sigma.getDimensions(), inset))
+  }, [highlightKey])
 
   return <div ref={containerRef} className="absolute inset-0" data-testid="stack-graph" />
 }

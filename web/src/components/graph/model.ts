@@ -281,11 +281,12 @@ export class LabelPlacer {
     this.placed.push(box)
   }
 
-  place(box: Box, ownDot?: string): boolean {
+  /** `among`, when given, limits the dots a label must avoid to those tools (the lit ones). */
+  place(box: Box, ownDot?: string, among?: ReadonlySet<string>): boolean {
     const { width, height } = this.size
     if (box.x0 < 0 || box.y0 < 0 || box.x1 > width || box.y1 > height) return false
     if (this.placed.some((other) => overlaps(box, other))) return false
-    if (this.dots.some((dot) => dot.id !== ownDot && overlaps(box, dot.box))) return false
+    if (this.dots.some((dot) => dot.id !== ownDot && (!among || among.has(dot.id)) && overlaps(box, dot.box))) return false
     this.placed.push(box)
     return true
   }
@@ -319,5 +320,33 @@ export function portraitFit(
     ratio,
     from: { x: (drawn.x0 + drawn.x1) / 2, y: (drawn.y0 + drawn.y1) / 2 },
     to: { x: width / 2, y: free.top + freeHeight / 2 },
+  }
+}
+
+/** Room around fitted picks, so the labels drawn right of the dots stay on screen. */
+const PICK_MARGIN = 48
+/** The closest a fit may zoom in, as a share of the current zoom. */
+const MIN_FIT_RATIO = 0.5
+
+/**
+ * The zoom (relative to the current one) and move that fit `drawn` (pixels at
+ * the current camera) into the screen less the `free` insets on each side,
+ * as with portraitFit: map point `from` goes to screen point `to`.
+ */
+export function areaFit(
+  drawn: Box,
+  viewport: { width: number; height: number },
+  free: { top: number; right: number; bottom: number; left: number },
+): { ratio: number; from: { x: number; y: number }; to: { x: number; y: number } } {
+  const freeWidth = Math.max(1, viewport.width - free.left - free.right - 2 * PICK_MARGIN)
+  const freeHeight = Math.max(1, viewport.height - free.top - free.bottom - 2 * PICK_MARGIN)
+  const ratio = Math.max(MIN_FIT_RATIO, (drawn.x1 - drawn.x0) / freeWidth, (drawn.y1 - drawn.y0) / freeHeight)
+  return {
+    ratio,
+    from: { x: (drawn.x0 + drawn.x1) / 2, y: (drawn.y0 + drawn.y1) / 2 },
+    to: {
+      x: free.left + (viewport.width - free.left - free.right) / 2,
+      y: free.top + (viewport.height - free.top - free.bottom) / 2,
+    },
   }
 }

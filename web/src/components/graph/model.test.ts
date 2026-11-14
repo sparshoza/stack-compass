@@ -10,6 +10,7 @@ import {
   neighboursOf,
   nodeStyle,
   portraitFit,
+  areaFit,
   readPalette,
   withAlpha,
   type Palette,
@@ -209,6 +210,17 @@ describe('LabelPlacer', () => {
     expect(placer.place(box(90, 10, 150, 24))).toBe(true)
   })
 
+  it('can limit the dots a label avoids to the lit ones', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    placer.reset([
+      { id: 'dim', box: box(50, 10, 60, 20) },
+      { id: 'lit', box: box(150, 10, 160, 20) },
+    ])
+    const lit = new Set(['lit'])
+    expect(placer.place(box(40, 8, 100, 22), 'own', lit)).toBe(true)
+    expect(placer.place(box(140, 8, 200, 22), 'own', lit)).toBe(false)
+  })
+
   it('refuses a label over another dot but not over its own', () => {
     const placer = new LabelPlacer({ width: 400, height: 300 })
     placer.reset([
@@ -265,6 +277,27 @@ describe('portraitFit', () => {
     const fit = portraitFit(tall, phone, free)!
     expect((tall.y1 - tall.y0) / fit.ratio).toBeCloseTo(844 - 124 - 64 - 2 * 12, 5)
     expect((tall.x1 - tall.x0) / fit.ratio).toBeLessThanOrEqual(390 - 24)
+  })
+})
+
+describe('areaFit', () => {
+  const screen = { width: 1440, height: 900 }
+  const free = { top: 68, right: 0, bottom: 60, left: 464 }
+
+  it('fits the picks into the area the sheet and bars leave free, with room for labels', () => {
+    const picks = { x0: 200, y0: 100, x1: 1200, y1: 800 }
+    const fit = areaFit(picks, screen, free)
+    const freeWidth = 1440 - 464 - 2 * 48
+    const freeHeight = 900 - 68 - 60 - 2 * 48
+    expect((picks.x1 - picks.x0) / fit.ratio).toBeLessThanOrEqual(freeWidth + 1e-6)
+    expect((picks.y1 - picks.y0) / fit.ratio).toBeLessThanOrEqual(freeHeight + 1e-6)
+    expect(fit.from).toEqual({ x: 700, y: 450 })
+    expect(fit.to).toEqual({ x: 464 + (1440 - 464) / 2, y: 68 + (900 - 68 - 60) / 2 })
+  })
+
+  it('never zooms in closer than the limit for a tight cluster', () => {
+    const fit = areaFit({ x0: 700, y0: 400, x1: 710, y1: 410 }, screen, free)
+    expect(fit.ratio).toBe(0.5)
   })
 })
 

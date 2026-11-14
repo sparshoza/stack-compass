@@ -96,6 +96,13 @@ describe("share links", () => {
     expect(decode(undefined as unknown as string, kb).answers).toEqual({ ...DEFAULT_ANSWERS });
   });
 
+  it("flags a link that is too long to read", () => {
+    const long = decode("t=saas&c=" + "a".repeat(5000), kb);
+    expect(long.tooLong).toBe(true);
+    expect(long.answers).toEqual({ ...DEFAULT_ANSWERS });
+    expect(decode("t=saas", kb).tooLong).toBeUndefined();
+  });
+
   it("decoded answers never share arrays with the defaults", () => {
     const { answers } = decode("", kb);
     answers.capabilities.push("realtime");

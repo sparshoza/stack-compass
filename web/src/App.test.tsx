@@ -287,7 +287,8 @@ describe('map screen', () => {
     const user = userEvent.setup()
     renderApp('/?focus=express&t=saas')
     await user.click(within(toolPanel('Express')).getByRole('button', { name: 'Close' }))
-    expect(panel()).not.toBeInTheDocument()
+    // t=saas is a share link, so the Help me choose sheet stays open.
+    expect(screen.queryByRole('dialog', { name: 'Express' })).not.toBeInTheDocument()
     expect(params().get('focus')).toBeNull()
     expect(params().get('t')).toBe('saas')
   })

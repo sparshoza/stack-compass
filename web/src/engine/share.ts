@@ -48,16 +48,27 @@ function freshDefaults(): Answers {
   };
 }
 
+/** Keys a share link writes; everything else in the query belongs to the page. */
+export const SHARE_KEYS = ["t", "lp", "la", "c", "h", "b", "s", "k", "tool"] as const;
+
+export type Decoded = {
+  answers: Answers;
+  ignored: string[];
+  /** Set when the query was too long to read at all; the answers are the defaults. */
+  tooLong?: true;
+};
+
 /**
  * Reads a share link back into answers. Never throws: anything it does not
  * recognise (an unknown capability, a tool removed from the catalog, a bad
  * option value) is dropped and described in `ignored` for a small notice.
  */
-export function decode(qs: string, kb: ShareKb): { answers: Answers; ignored: string[] } {
+export function decode(qs: string, kb: ShareKb): Decoded {
   const answers = freshDefaults();
   const ignored: string[] = [];
   try {
-    if (typeof qs !== "string" || qs.length > MAX_QUERY_LENGTH) return { answers, ignored };
+    if (typeof qs !== "string") return { answers, ignored };
+    if (qs.length > MAX_QUERY_LENGTH) return { answers, ignored, tooLong: true };
     const params = new URLSearchParams(qs);
 
     const known = {

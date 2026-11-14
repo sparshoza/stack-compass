@@ -1,5 +1,7 @@
-import { lazy, Suspense, useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
-import { useSearchParams } from 'react-router'
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
+import { useLocation, useSearchParams } from 'react-router'
+import { ChooseSheet } from '@/components/choose/ChooseSheet'
+import { useChooser, type ChooseView } from '@/components/choose/useChooser'
 import { useWebGL } from '@/components/graph/useWebGL'
 import { FiltersPopover } from '@/components/map/FiltersPopover'
 import { InfoDialog } from '@/components/map/InfoDialog'
@@ -8,8 +10,10 @@ import { ToolPanel } from '@/components/map/ToolPanel'
 import { ToolTable } from '@/components/map/ToolTable'
 import { CornerLinks } from '@/components/shell/CornerLinks'
 import { FullscreenButton } from '@/components/shell/FullscreenButton'
-import { HelpSheet } from '@/components/shell/HelpSheet'
 import { TopBar } from '@/components/shell/TopBar'
+import { defaultAnswers, type Answers } from '@/engine/answers'
+import { scoreStack } from '@/engine/score'
+import { decode, encode, SHARE_KEYS } from '@/engine/share'
 import { kb, toolById, type EdgeType, type Layer } from '@/lib/kb'
 import { useTheme } from '@/lib/theme'
 
@@ -22,6 +26,8 @@ type View = 'map' | 'table'
 const WIDE = '(min-width: 1024px)'
 /** Width of the side panel plus its gap from the edge (ToolPanel: lg:w-[400px] lg:right-6). */
 const SIDE_PANEL_INSET = 424
+/** Width of the Help me choose sheet plus its gap from the edge (ChooseSheet: lg:w-[440px] lg:left-6). */
+const CHOOSE_SHEET_INSET = 464
 /** Height of the floating top bar: one row on wide screens, two rows and the hint line on phones. */
 const TOP_BAR_INSET = { oneRow: 68, phone: 124 }
 /** Height of the bottom corner links (44px pill plus its 12px inset on phones). */
@@ -54,13 +60,41 @@ function toggled<T>(set: ReadonlySet<T>, item: T): ReadonlySet<T> {
 
 const none: ReadonlySet<never> = new Set()
 
+/**
+ * A share link the page was opened with (`?t=...`): its answers, whether
+ * they make a stack, and a note about anything that could not be used.
+ */
+function readShareLink(search: string): { answers: Answers; view: ChooseView; notice: string | null } | null {
+  const query = search.startsWith('?') ? search.slice(1) : search
+  if (!new URLSearchParams(query).has('t')) return null
+  const { answers, ignored, tooLong } = decode(query, kb)
+  const notice = tooLong
+    ? 'This link is too long to read, so its answers were not used. Answer the questions to build a stack.'
+    : ignored.length
+      ? `Some parts of this link were ignored: ${ignored.join(', ')}.`
+      : null
+  return { answers, view: answers.projectType ? 'result' : 'questions', notice }
+}
+
+/** The Help me choose button the person can see (the bar has a wide and a narrow one). */
+function helpTrigger(): HTMLElement | null {
+  const buttons = [...document.querySelectorAll<HTMLElement>('[data-help-trigger]')]
+  return buttons.find((b) => b.offsetParent !== null) ?? buttons[0] ?? null
+}
+
 export default function App() {
   const [theme, toggleTheme] = useTheme()
-  const [overlay, setOverlay] = useState<Overlay>(null)
+  const { search } = useLocation()
+  // Read once: a share link opens the sheet straight on its result.
+  const [shareLink] = useState(() => readShareLink(search))
+  const [overlay, setOverlay] = useState<Overlay>(shareLink ? 'help' : null)
+  const chooser = useChooser(shareLink ?? { answers: defaultAnswers(), view: 'questions', notice: null })
   const [hiddenLayers, setHiddenLayers] = useState<ReadonlySet<Layer>>(none)
   const [hiddenEdgeTypes, setHiddenEdgeTypes] = useState<ReadonlySet<EdgeType>>(none)
   const searchRef = useRef<HTMLInputElement>(null)
   const returnFocusRef = useRef<HTMLElement | null>(null)
+  const helpReturnRef = useRef<HTMLElement | null>(null)
+  const skipHelpRestoreRef = useRef(false)
   const wide = useMediaQuery(WIDE)
   const oneRowBar = useMediaQuery('(min-width: 768px)')
   const webgl = useWebGL()
@@ -72,12 +106,12 @@ export default function App() {
   const view: View = !webgl || params.get('view') === 'table' ? 'table' : 'map'
 
   const updateParams = useCallback(
-    (change: (next: URLSearchParams) => void) =>
+    (change: (next: URLSearchParams) => void, options?: { replace?: boolean }) =>
       setParams((prev) => {
         const next = new URLSearchParams(prev)
         change(next)
         return next
-      }),
+      }, options),
     [setParams],
   )
 
@@ -126,16 +160,91 @@ export default function App() {
 
   const setOpen = (which: Exclude<Overlay, null>) => (open: boolean) => setOverlay(open ? which : null)
 
-  // Keep the focused tool clear of the bar and the open panel.
+  // The recommender. The result is recomputed from the answers on every
+  // change, and while it shows, the URL carries the answers (never the text).
+  const { view: chooseView, answers } = chooser
+  const results = useMemo(
+    () => (chooseView === 'result' && answers.projectType ? scoreStack(answers, kb) : []),
+    [chooseView, answers],
+  )
+  const picks = useMemo(() => results.flatMap((r) => (r.pick ? [r.pick] : [])), [results])
+
+  useEffect(() => {
+    if (chooseView !== 'result' || !answers.projectType) return
+    const shared = new URLSearchParams(encode(answers))
+    updateParams(
+      (next) => {
+        for (const key of SHARE_KEYS) next.delete(key)
+        for (const [key, value] of shared) next.set(key, value)
+      },
+      { replace: true },
+    )
+  }, [chooseView, answers, updateParams])
+
+  const openHelp = () => {
+    const active = document.activeElement
+    helpReturnRef.current = active instanceof HTMLElement && active !== document.body ? active : null
+    setOverlay('help')
+  }
+
+  const restoreHelpFocus = () => {
+    if (skipHelpRestoreRef.current) {
+      skipHelpRestoreRef.current = false
+      return
+    }
+    const target = helpReturnRef.current
+    helpReturnRef.current = null
+    if (target?.isConnected) target.focus()
+    else helpTrigger()?.focus()
+  }
+
+  const startOver = () => {
+    chooser.reset()
+    updateParams((next) => {
+      for (const key of SHARE_KEYS) next.delete(key)
+    })
+  }
+
+  const shareUrl = () => {
+    const url = new URL(window.location.href)
+    url.search = encode(answers)
+    url.hash = ''
+    return url.toString()
+  }
+
+  // On a phone the sheet covers the map, so focusing a tool closes it first;
+  // the result stays and comes back with the sheet.
+  const focusFromSheet = (id: string) => {
+    if (!wide) {
+      skipHelpRestoreRef.current = true
+      setOverlay(null)
+    }
+    openTool(id)
+    if (!wide) returnFocusRef.current = helpTrigger()
+  }
+
+  const helpOpen = overlay === 'help'
+
+  // Keep the focused tool clear of the bar and the open panels.
   const focusInset = tool
     ? wide
-      ? { top: TOP_BAR_INSET.oneRow, right: SIDE_PANEL_INSET, bottom: 0 }
+      ? { top: TOP_BAR_INSET.oneRow, right: SIDE_PANEL_INSET, bottom: 0, left: helpOpen ? CHOOSE_SHEET_INSET : 0 }
       : {
           top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone,
           right: 0,
           bottom: Math.round(window.innerHeight * 0.6),
         }
     : undefined
+
+  // A new stack is framed in the map area the sheet and the bars leave free.
+  const highlightInset = wide
+    ? {
+        top: TOP_BAR_INSET.oneRow,
+        right: tool ? SIDE_PANEL_INSET : 0,
+        bottom: CORNER_INSET,
+        left: helpOpen ? CHOOSE_SHEET_INSET : 0,
+      }
+    : { top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone, right: 0, bottom: CORNER_INSET, left: 0 }
 
   return (
     <>
@@ -151,7 +260,8 @@ export default function App() {
         view={view}
         theme={theme}
         onToggleTheme={toggleTheme}
-        onHelp={() => setOverlay('help')}
+        helpOpen={helpOpen}
+        onHelp={openHelp}
         onInfo={() => setOverlay('info')}
         onPickTool={openTool}
         searchRef={searchRef}
@@ -186,6 +296,8 @@ export default function App() {
                 }
               >
                 <StackGraph
+                  highlight={picks}
+                  highlightInset={highlightInset}
                   focus={tool?.id}
                   hiddenLayers={hiddenLayers}
                   hiddenEdgeTypes={hiddenEdgeTypes}
@@ -215,7 +327,18 @@ export default function App() {
       )}
 
       <ToolPanel tool={tool} onClose={closeTool} onFocusTool={openTool} onRestoreFocus={restoreFocus} />
-      <HelpSheet open={overlay === 'help'} onOpenChange={setOpen('help')} />
+      <ChooseSheet
+        open={helpOpen}
+        onOpenChange={setOpen('help')}
+        chooser={chooser}
+        results={results}
+        onShowStack={() => chooser.setView('result')}
+        onStartOver={startOver}
+        onFocusTool={focusFromSheet}
+        onRestoreFocus={restoreHelpFocus}
+        shareUrl={shareUrl}
+        litOnMap={view === 'map'}
+      />
       <InfoDialog open={overlay === 'info'} onOpenChange={setOpen('info')} />
     </>
   )

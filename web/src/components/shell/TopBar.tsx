@@ -14,6 +14,8 @@ interface TopBarProps {
   view: 'map' | 'table'
   theme: Theme
   onToggleTheme: () => void
+  /** True while the Help me choose sheet is open. */
+  helpOpen: boolean
   onHelp: () => void
   onInfo: () => void
   onPickTool: (id: string) => void
@@ -34,6 +36,7 @@ export function TopBar({
   view,
   theme,
   onToggleTheme,
+  helpOpen,
   onHelp,
   onInfo,
   onPickTool,
@@ -74,11 +77,26 @@ export function TopBar({
         <div className="pointer-events-auto flex w-full items-center gap-2 md:w-auto md:gap-1.5">
           <SearchBox inputRef={searchRef} onPick={onPickTool} />
 
-          <Button variant="pill" size="pill" className="max-md:hidden" onClick={onHelp}>
+          <Button
+            variant="pill"
+            size="pill"
+            className="max-md:hidden"
+            aria-expanded={helpOpen}
+            data-help-trigger
+            onClick={onHelp}
+          >
             <CompassIcon aria-hidden="true" />
             Help me choose
           </Button>
-          <Button variant="pill" size="icon-pill" className="md:hidden" aria-label="Help me choose" onClick={onHelp}>
+          <Button
+            variant="pill"
+            size="icon-pill"
+            className="md:hidden"
+            aria-label="Help me choose"
+            aria-expanded={helpOpen}
+            data-help-trigger
+            onClick={onHelp}
+          >
             <CompassIcon aria-hidden="true" />
           </Button>
 

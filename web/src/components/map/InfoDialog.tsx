@@ -40,9 +40,14 @@ export function InfoDialog({ open, onOpenChange }: InfoDialogProps) {
           </p>
           <p>
             Each layer your project needs is then scored by fixed rules. Tools that fail a hard filter drop out first:
-            a language you want to avoid, hosting you can't use, or a paid-only tool on a free budget. The rest earn
-            points for the features you asked for, for tools you already know and for pairing with earlier picks.
-            The same answers always give the same stack, and every pick shows its reasons.
+            only languages you want to avoid, none of your preferred languages in a code layer, hosting you
+            can't use, a paid-only tool on a free budget, or no fit with an earlier pick. The rest earn points for the features you asked for, for
+            tools you already know, for pairing with earlier picks and for maturity. The same answers always give the
+            same stack.
+          </p>
+          <p>
+            Every pick shows why it won, its score and the close tools that were ruled out. Copy link puts your
+            answers in the address, so the same stack opens for anyone you send it to.
           </p>
         </Section>
 

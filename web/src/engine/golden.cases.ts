@@ -510,6 +510,17 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { pickIs: { layer: "testing", tool: "testify" } },
     ],
   },
+  {
+    // Testify and Jest tie (each pairs with one pick); the backend's language wins.
+    id: "go-rest-api-mobile",
+    text: "a REST API in Go for a mobile app",
+    checks: [
+      { projectType: "api-only" },
+      { backendLanguage: "go" },
+      { pickIs: { layer: "api-style", tool: "openapi" } },
+      { pickIs: { layer: "testing", tool: "testify" } },
+    ],
+  },
 ];
 
 /**

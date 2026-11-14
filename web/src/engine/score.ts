@@ -108,6 +108,13 @@ const LANGUAGE_PICK_LAYERS: Partial<Record<Layer, Layer[]>> = {
   testing: ["backend", "frontend", "mobile"],
 };
 
+/**
+ * Layers whose ties go to the tool that shares a language with the earliest
+ * pick layer listed in LANGUAGE_PICK_LAYERS (testing: the backend's language,
+ * then the frontend's, then the mobile's). Points never change.
+ */
+const LANGUAGE_ORDER_LAYERS: ReadonlySet<Layer> = new Set<Layer>(["testing"]);
+
 /** Layers with their own rule against the frontend pick. */
 const FRONTEND_RULE_LAYERS: ReadonlySet<Layer> = new Set<Layer>([
   "meta-framework",
@@ -301,16 +308,39 @@ type Ranked = {
   tool: Tool;
   breakdown: ScoreItem[];
   total: number;
+  /**
+   * Tie-break in LANGUAGE_ORDER_LAYERS: the index of the first pick layer
+   * whose pick shares a language with the tool (lower first). 0 elsewhere.
+   */
+  languageOrder: number;
   /** Tie-break: how many pairs-with edges the tool has in the catalog. */
   pairs: number;
   reason: string | null;
 };
 
-/** Total descending, then pairs-with edge count descending, then id ascending. */
+/**
+ * Total descending, then language order ascending, then pairs-with edge
+ * count descending, then id ascending.
+ */
 function byRank(x: Ranked, y: Ranked): number {
   if (x.total !== y.total) return y.total - x.total;
+  if (x.languageOrder !== y.languageOrder) return x.languageOrder - y.languageOrder;
   if (x.pairs !== y.pairs) return y.pairs - x.pairs;
   return x.tool.id < y.tool.id ? -1 : x.tool.id > y.tool.id ? 1 : 0;
+}
+
+/**
+ * Where the tool's language comes in the layer's pick order: 0 when it shares
+ * a language with the first pick layer that has a pick, and so on; one past
+ * the last when it shares none (or lists no languages).
+ */
+function languageOrder(tool: Tool, picks: Picks): number {
+  if (!LANGUAGE_ORDER_LAYERS.has(tool.layer)) return 0;
+  const order = (LANGUAGE_PICK_LAYERS[tool.layer] ?? [])
+    .map((l) => picks.get(l))
+    .filter((pick): pick is Tool => !!pick && pick.languages.length > 0);
+  const at = order.findIndex((pick) => sharesLanguage(tool.languages, pick.languages));
+  return at === -1 ? order.length : at;
 }
 
 function preferApplies(layer: Layer, tools: Tool[], a: Answers): boolean {
@@ -357,6 +387,7 @@ function scoreLayer(
         tool,
         breakdown,
         total: breakdown.reduce((sum, item) => sum + item.points, 0),
+        languageOrder: languageOrder(tool, picks),
         pairs: tool.edges.filter((e) => e.type === "pairs-with").length,
         reason: failedCheck(tool, a, picks, ctx, layers),
       };

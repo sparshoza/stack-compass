@@ -672,8 +672,9 @@ describe("scoreStack", () => {
       scoreStack(a, makeKb(tools, ["backend", "frontend", "testing"])),
       "testing",
     );
-    expect(both.pick).toBe("bruno");
-    expect(both.alternatives).toEqual(["jest", "pytest"]);
+    // A tie goes to the backend's language first, then the frontend's.
+    expect(both.pick).toBe("pytest");
+    expect(both.alternatives).toEqual(["jest", "bruno"]);
     expect(both.excluded).toEqual([
       { toolId: "rspec", reason: "language-mismatch-with-pick" },
     ]);
@@ -681,8 +682,10 @@ describe("scoreStack", () => {
       scoreStack(a, makeKb(tools, ["backend", "testing"])),
       "testing",
     );
-    expect(backendOnly.alternatives).toEqual(["pytest"]);
-    expect(backendOnly.excluded.map((e) => e.toolId)).toEqual(["rspec", "jest"]);
+    expect(backendOnly.pick).toBe("pytest");
+    expect(backendOnly.alternatives).toEqual(["bruno"]);
+    // Jest shares no language with Django, so it ranks after Bruno, outside the top 3.
+    expect(backendOnly.excluded.map((e) => e.toolId)).toEqual(["rspec"]);
     const none = layerOf(
       scoreStack(a, makeKb(tools, ["testing"])),
       "testing",
@@ -714,6 +717,54 @@ describe("scoreStack", () => {
       "testing",
     );
     expect(expo.pick).toBe("playwright");
+  });
+
+  it("on a tie, testing prefers the backend pick's language, then the frontend's, then the mobile's", () => {
+    const tools = [
+      makeTool("gin", "backend", { languages: ["go"] }),
+      makeTool("react", "frontend", { languages: ["typescript"] }),
+      makeTool("flutter", "mobile", { languages: ["dart"] }),
+      makeTool("expo", "mobile", { languages: ["typescript"] }),
+      // More pairs-with edges in the catalog, which used to break the tie.
+      makeTool("jest", "testing", {
+        languages: ["typescript"],
+        edges: [
+          { type: "pairs-with", target: "expo" },
+          { type: "pairs-with", target: "react" },
+        ],
+      }),
+      makeTool("testify", "testing", {
+        languages: ["go"],
+        edges: [{ type: "pairs-with", target: "gin" }],
+      }),
+      makeTool("flutter-test", "testing", {
+        languages: ["dart"],
+        edges: [
+          { type: "pairs-with", target: "flutter" },
+          { type: "pairs-with", target: "x" },
+          { type: "pairs-with", target: "y" },
+        ],
+      }),
+      makeTool("postman", "testing"),
+    ];
+    // Go backend, Expo app: Jest and Testify each pair with one pick.
+    const goMobile = layerOf(
+      scoreStack(
+        answers({ knownTools: ["expo"] }),
+        makeKb(tools, ["mobile", "backend", "testing"]),
+      ),
+      "testing",
+    );
+    expect(goMobile.pick).toBe("testify");
+    expect(goMobile.alternatives).toEqual(["jest", "postman"]);
+    // No backend: the frontend's language comes before the mobile's.
+    const noBackend = makeKb(
+      tools.filter((t) => t.id !== "gin" && t.id !== "expo"),
+      ["frontend", "mobile", "testing"],
+    );
+    const fe = layerOf(scoreStack(answers(), noBackend), "testing");
+    expect(fe.pick).toBe("jest");
+    expect(fe.alternatives).toEqual(["flutter-test", "postman"]);
   });
 
   it("a tool that needs a web frontend drops out of a stack with none", () => {

@@ -170,8 +170,7 @@
         "transactional email",
         "send email",
         "password reset email",
-        "email notifications",
-        "newsletter"
+        "email notifications"
       ],
       "sets": {
         "capabilities": [
@@ -1450,7 +1449,9 @@
         "shop for my business"
       ],
       "sets": {
-        "capabilities": [],
+        "capabilities": [
+          "payments"
+        ],
         "languages": [],
         "project_type": "ecommerce"
       }
@@ -1923,7 +1924,9 @@
         "app store release",
         "store submission",
         "device sensors",
-        "push notifications mobile"
+        "push notifications mobile",
+        "push notifications",
+        "push notification"
       ],
       "sets": {
         "capabilities": [
@@ -2488,6 +2491,249 @@
           "elixir"
         ],
         "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "take orders",
+        "online orders",
+        "order online",
+        "online ordering",
+        "sell",
+        "selling",
+        "shop",
+        "my store",
+        "store for my",
+        "merch store",
+        "merch shop",
+        "ticket booking",
+        "event tickets",
+        "concert tickets",
+        "buy tickets",
+        "ticket sales"
+      ],
+      "sets": {
+        "capabilities": [
+          "payments"
+        ],
+        "languages": [],
+        "project_type": "ecommerce"
+      }
+    },
+    {
+      "phrases": [
+        "orders",
+        "donations",
+        "donate",
+        "pay",
+        "payment",
+        "pay rent",
+        "collect rent",
+        "rent payments",
+        "pay monthly",
+        "monthly fee",
+        "get paid",
+        "paid plans",
+        "subscription",
+        "deposits"
+      ],
+      "sets": {
+        "capabilities": [
+          "payments"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "emails",
+        "email",
+        "notify",
+        "notifications",
+        "contact form",
+        "waitlist",
+        "confirmation emails"
+      ],
+      "sets": {
+        "capabilities": [
+          "transactional-email"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "reminders",
+        "send reminders",
+        "email reminders"
+      ],
+      "sets": {
+        "capabilities": [
+          "transactional-email",
+          "scheduled-jobs"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "newsletter",
+        "mailing list"
+      ],
+      "sets": {
+        "capabilities": [
+          "transactional-email"
+        ],
+        "languages": [],
+        "project_type": "content-site"
+      }
+    },
+    {
+      "phrases": [
+        "booking",
+        "bookings",
+        "book appointments",
+        "book classes",
+        "book a table",
+        "appointments",
+        "appointment",
+        "reservations",
+        "reservation",
+        "site where",
+        "website where",
+        "app where",
+        "platform where",
+        "sharing site",
+        "sharing app",
+        "sharing platform",
+        "members area",
+        "customer accounts",
+        "community",
+        "forum",
+        "online courses"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "dashboard",
+        "crm",
+        "inventory",
+        "track inventory",
+        "track stock",
+        "stock levels",
+        "for my team",
+        "for our team",
+        "for my staff",
+        "for our staff",
+        "my employees",
+        "sales team",
+        "tool for my",
+        "tool for our",
+        "staff app",
+        "team app"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "internal-tool"
+      }
+    },
+    {
+      "phrases": [
+        "chat app",
+        "messaging app",
+        "chat platform",
+        "group chat",
+        "live chat",
+        "video call"
+      ],
+      "sets": {
+        "capabilities": [
+          "realtime"
+        ],
+        "languages": [],
+        "project_type": "realtime-app"
+      }
+    },
+    {
+      "phrases": [
+        "chatbot",
+        "ai chatbot",
+        "ai assistant",
+        "answers questions",
+        "faq bot"
+      ],
+      "sets": {
+        "capabilities": [
+          "vector-search"
+        ],
+        "languages": [],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "like uber",
+        "uber for"
+      ],
+      "sets": {
+        "capabilities": [
+          "native-mobile",
+          "geospatial",
+          "payments"
+        ],
+        "languages": [],
+        "project_type": "mobile-app"
+      }
+    },
+    {
+      "phrases": [
+        "videos",
+        "upload",
+        "uploads",
+        "upload videos",
+        "photo uploads",
+        "send photos"
+      ],
+      "sets": {
+        "capabilities": [
+          "file-uploads"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "search"
+      ],
+      "sets": {
+        "capabilities": [
+          "full-text-search"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "map",
+        "on a map"
+      ],
+      "sets": {
+        "capabilities": [
+          "geospatial"
+        ],
+        "languages": [],
+        "project_type": null
       }
     }
   ],

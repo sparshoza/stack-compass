@@ -43,6 +43,26 @@ function failures(
       ? []
       : [`project type is ${answers.projectType}, expected ${check.projectType}`];
   }
+  if ("capabilities" in check) {
+    return check.capabilities
+      .filter((cap) => !answers.capabilities.includes(cap))
+      .map((cap) => `capability ${cap} not set`);
+  }
+  if ("hostingRunsBackend" in check) {
+    const backend = toolOf(byLayer.get("backend")?.pick ?? null);
+    const host = toolOf(byLayer.get("hosting")?.pick ?? null);
+    if (!backend) return [`no backend pick`];
+    if (!host) return [`no hosting pick`];
+    const family = (l: string) => (l === "typescript" ? "javascript" : l);
+    const runs =
+      host.languages.length === 0
+        ? host.uses.some((u) => ["backends", "containers", "web-apps"].includes(u))
+        : host.languages.some((l) => backend.languages.map(family).includes(family(l)));
+    return runs ? [] : [`hosting pick ${host.id} cannot run backend pick ${backend.id}`];
+  }
+  if ("noEmptyLayer" in check) {
+    return results.filter((r) => r.pick === null).map((r) => `layer ${r.layer} has no match`);
+  }
   if ("backendLanguage" in check) {
     const pick = byLayer.get("backend")?.pick ?? null;
     return languagesOf(pick).includes(check.backendLanguage)
@@ -106,9 +126,9 @@ function failures(
 }
 
 describe("golden set", () => {
-  it("has 43 cases with unique ids", () => {
-    expect(GOLDEN_CASES).toHaveLength(43);
-    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(43);
+  it("has 83 cases with unique ids", () => {
+    expect(GOLDEN_CASES).toHaveLength(83);
+    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(83);
   });
 
   it("every case has at least one check that depends on scoring", () => {

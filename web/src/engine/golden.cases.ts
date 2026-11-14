@@ -16,6 +16,10 @@ import type { Answers } from "./answers";
  * - projectType: the matched (or overridden) project type. This tests the
  *   matcher, not scoring; core layers of a project type are checked here
  *   rather than with layerPresent / layerAbsent.
+ * - capabilities: the matched (or overridden) capabilities include these.
+ * - hostingRunsBackend: the hosting pick can run the backend pick: it lists
+ *   the backend's language, or lists no languages and runs server code.
+ * - noEmptyLayer: every layer in the result has a pick (no "No match").
  */
 export type Check =
   | { projectType: string }
@@ -26,7 +30,10 @@ export type Check =
   | { layerAbsent: Layer }
   | { noToolWithLanguage: string }
   | { pickIs: { layer: Layer; tool: string | null } }
-  | { ormPairsWithBackend: true };
+  | { ormPairsWithBackend: true }
+  | { capabilities: string[] }
+  | { hostingRunsBackend: true }
+  | { noEmptyLayer: true };
 
 /** Check kinds whose outcome depends on scoring, not only on matching. */
 export const ENGINE_CHECKS = [
@@ -35,6 +42,8 @@ export const ENGINE_CHECKS = [
   "noPaidOnlyPick",
   "pickHosting",
   "ormPairsWithBackend",
+  "hostingRunsBackend",
+  "noEmptyLayer",
 ] as const;
 
 export type GoldenCase = {
@@ -547,6 +556,421 @@ export const GOLDEN_CASES: GoldenCase[] = [
     checks: [
       { backendLanguage: "python" },
       { pickIs: { layer: "database", tool: "postgresql" } },
+    ],
+  },
+  // Plain prompts a non-technical owner might type. The stack must be one a
+  // senior engineer would defend: the right kind of project, the features the
+  // words imply, a host that runs the backend, and no "No match" rows.
+  {
+    id: "plain-bakery-orders",
+    text: "an app for my bakery to take orders",
+    checks: [
+      { projectType: "ecommerce" },
+      { capabilities: ["payments"] },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-salon-booking",
+    text: "a booking site for my salon",
+    checks: [
+      { projectType: "web-app" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-marketplace-etsy",
+    text: "a marketplace like Etsy for local artists",
+    checks: [
+      { projectType: "ecommerce" },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // The features a marketplace owner adds by hand: no row may dead-end.
+    id: "plain-marketplace-full",
+    text: "a marketplace like Etsy for local artists",
+    answers: { capabilities: ["payments", "file-uploads", "full-text-search", "transactional-email", "social-login"] },
+    checks: [
+      { projectType: "ecommerce" },
+      { layerPresent: "search" },
+      { layerPresent: "storage" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-inventory-tool",
+    text: "an internal tool for my team to track inventory",
+    checks: [
+      { projectType: "internal-tool" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-restaurant-website",
+    text: "a website for my restaurant with the menu and opening hours",
+    checks: [
+      { projectType: "content-site" },
+      { layerAbsent: "backend" },
+      { pickIs: { layer: "cms", tool: "sanity" } },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-candle-shop",
+    text: "an online shop to sell my handmade candles",
+    checks: [
+      { projectType: "ecommerce" },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-gym-phone-app",
+    text: "a phone app for my gym members to book classes",
+    checks: [
+      { projectType: "mobile-app" },
+      { pickIs: { layer: "mobile", tool: "expo" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // Dev tooling is off by default, so a blog gets no test runner or bundler.
+    id: "plain-travel-blog",
+    text: "a blog for my travel photos",
+    checks: [
+      { projectType: "content-site" },
+      { layerAbsent: "backend" },
+      { layerAbsent: "testing" },
+      { layerAbsent: "build-tool" },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-cooking-membership",
+    text: "a membership site where people pay monthly for my cooking videos",
+    checks: [
+      { capabilities: ["payments", "file-uploads"] },
+      { layerPresent: "storage" },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-community-chat",
+    text: "a chat app for my community",
+    checks: [
+      { projectType: "realtime-app" },
+      { capabilities: ["realtime"] },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-plumber-website",
+    text: "a simple website for my plumbing business",
+    checks: [
+      { projectType: "content-site" },
+      { layerAbsent: "backend" },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-homework-app",
+    text: "an app where parents can see their kids school homework",
+    checks: [
+      { projectType: "web-app" },
+      { layerPresent: "auth" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-sales-dashboard",
+    text: "a dashboard for my sales team to see how many deals we closed",
+    checks: [
+      { projectType: "internal-tool" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-tenant-rent",
+    text: "a site where tenants can pay rent and report repairs",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["payments"] },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-uber-dog-walkers",
+    text: "an app like Uber but for dog walkers",
+    checks: [
+      { projectType: "mobile-app" },
+      { capabilities: ["geospatial", "payments"] },
+      { layerPresent: "payments" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // Selling classes on your own platform: a web app that takes payments.
+    id: "plain-course-platform",
+    text: "a course platform where I sell online classes",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["payments"] },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-art-portfolio",
+    text: "a portfolio website to show my art",
+    checks: [
+      { projectType: "content-site" },
+      { layerAbsent: "backend" },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-clinic-appointments",
+    text: "a tool for my clinic to manage patient appointments",
+    checks: [
+      { projectType: "internal-tool" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-newsletter",
+    text: "a newsletter for my small business customers",
+    checks: [
+      { projectType: "content-site" },
+      { capabilities: ["transactional-email"] },
+      { layerPresent: "email" },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-church-donations",
+    text: "an app for my church to share events and take donations",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["payments"] },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-real-estate-crm",
+    text: "a crm for my real estate agency",
+    checks: [
+      { projectType: "internal-tool" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-recipe-sharing",
+    text: "a recipe sharing site with search",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["full-text-search"] },
+      { layerPresent: "search" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-concert-tickets",
+    text: "a ticket booking site for local concerts",
+    checks: [
+      { projectType: "ecommerce" },
+      { capabilities: ["payments"] },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-photo-quote",
+    text: "something to let my customers upload photos and get a quote",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["file-uploads"] },
+      { layerPresent: "storage" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // pgvector adds vector search to PostgreSQL.
+    id: "plain-ai-chatbot",
+    text: "an AI chatbot that answers questions about my products",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["vector-search"] },
+      { pickIs: { layer: "database", tool: "postgresql" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // Laravel has no runtime on Vercel, so the host must run PHP.
+    id: "plain-php-web-app",
+    text: "a web app in PHP",
+    checks: [
+      { projectType: "web-app" },
+      { pickIs: { layer: "backend", tool: "laravel" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-yoga-classes",
+    text: "a website for my yoga studio where clients can book classes",
+    checks: [
+      { projectType: "web-app" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-clothing-store",
+    text: "an online store for my clothing brand",
+    checks: [
+      { projectType: "ecommerce" },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-theatre-tickets",
+    text: "a site to sell tickets for my theatre",
+    checks: [
+      { projectType: "ecommerce" },
+      { capabilities: ["payments"] },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-restaurant-reservations",
+    text: "an app for my restaurant to take reservations",
+    checks: [
+      { projectType: "web-app" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-gym-members-area",
+    text: "a members area for my gym where people pay monthly",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["payments"] },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-photographer-contact-form",
+    text: "a website for my wedding photography with a contact form",
+    checks: [
+      { projectType: "content-site" },
+      { capabilities: ["transactional-email"] },
+      { layerPresent: "email" },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-warehouse-stock",
+    text: "a tool for my warehouse staff to track stock",
+    checks: [
+      { projectType: "internal-tool" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-homework-reminders",
+    text: "an app for my school to send homework reminders to parents",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["transactional-email", "scheduled-jobs"] },
+      { layerPresent: "jobs-queue" },
+      { layerPresent: "email" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-freelancer-marketplace",
+    text: "a site where freelancers can find clients and get paid",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["payments"] },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-landing-waitlist",
+    text: "a landing page for my new product with a waitlist",
+    checks: [
+      { projectType: "content-site" },
+      { capabilities: ["transactional-email"] },
+      { layerPresent: "email" },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-band-merch",
+    text: "a website for my band with tour dates and a merch store",
+    checks: [
+      { projectType: "ecommerce" },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-landlord-dashboard",
+    text: "a dashboard for my landlord business to track rent payments",
+    checks: [
+      { projectType: "internal-tool" },
+      { capabilities: ["payments"] },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-food-truck-map",
+    text: "an app for my food truck with a map of where I park",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["geospatial"] },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
     ],
   },
 ];

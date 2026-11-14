@@ -170,9 +170,22 @@ describe('Help me choose', () => {
     await openSheet(user)
     await describeProject(user, 'something for my aunt')
     expect(
-      within(sheet()).getByText("We didn't recognise anything specific. Answer the questions below."),
+      within(sheet()).getByText('We did not recognise anything specific. Pick what you are building above, or try other words.'),
     ).toBeInTheDocument()
     expect(within(sheet()).queryByRole('list', { name: 'Picked up from your description' })).not.toBeInTheDocument()
+  })
+
+  it('a plain description sets a best guess type, shown as a chip that can be removed', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    const dialog = await openSheet(user)
+    await describeProject(user, 'a simple website for my plumbing business')
+    const chips = within(dialog).getByRole('list', { name: 'Picked up from your description' })
+    expect(within(chips).getByText('Website or blog (best guess)')).toBeInTheDocument()
+    const type = within(dialog).getByRole('radiogroup', { name: /What are you building/ })
+    expect(within(type).getByRole('radio', { name: 'Website or blog' })).toBeChecked()
+    await user.click(within(chips).getByRole('button', { name: 'Remove Website or blog (best guess)' }))
+    expect(within(type).getByRole('radio', { name: 'Website or blog' })).not.toBeChecked()
   })
 
   it('questions are pre-filled from detection', async () => {

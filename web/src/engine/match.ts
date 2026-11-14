@@ -12,6 +12,12 @@ export type Detected = {
    * because the consumer works in ids.
    */
   droppedByNegation: string[];
+  /**
+   * True when no phrase named the project type and it was guessed from a
+   * plain head noun ("an app", "a website") or from what people do in it
+   * (guessType). Absent otherwise.
+   */
+  guessedType?: true;
 };
 
 /** A word within this many tokens before a match can negate it. Fillers do not count. */
@@ -196,6 +202,80 @@ function impliedLanguages(tool: Tool): string[] {
   return families.size <= MAX_IMPLIED_FAMILIES ? tool.languages : [];
 }
 
+/**
+ * Plain head nouns that hint at a project type when no phrase names one. "site"
+ * nouns mean a content site unless the text asks for something only an app
+ * does. Phrases in keywords.yaml always win over these.
+ */
+const HEAD_NOUNS: ReadonlyMap<string, "app" | "site" | "tool"> = new Map([
+  ["app", "app"],
+  ["apps", "app"],
+  ["application", "app"],
+  ["platform", "app"],
+  ["system", "app"],
+  ["website", "site"],
+  ["site", "site"],
+  ["webpage", "site"],
+  ["homepage", "site"],
+  ["tool", "tool"],
+]);
+
+/** Words for the people who use the thing ("let my customers upload photos"). */
+const AUDIENCE_WORDS: ReadonlySet<string> = new Set([
+  "customers",
+  "clients",
+  "users",
+  "members",
+  "people",
+  "students",
+  "parents",
+  "patients",
+  "tenants",
+  "guests",
+  "visitors",
+]);
+
+/** Capabilities a plain content site can have; any other one means an app. */
+const CONTENT_SITE_CAPABILITIES: ReadonlySet<string> = new Set([
+  "static-content",
+  "ssr-seo",
+  "content-editing",
+  "full-text-search",
+  "transactional-email",
+  "analytics",
+  "geospatial",
+  "edge-runtime",
+]);
+
+const GUESS_TYPES = {
+  app: "web-app",
+  site: "content-site",
+  tool: "internal-tool",
+  mobile: "mobile-app",
+} as const;
+const MOBILE_CAPABILITY = "native-mobile";
+
+/**
+ * The most likely project type when no phrase set one: from the first plain
+ * head noun that is not negated, or, with no head noun, from an audience word
+ * next to a feature only an app has. Null when the text gives neither.
+ */
+function guessType(tokens: string[], capabilities: Set<string>): string | null {
+  const needsApp = [...capabilities].some((c) => !CONTENT_SITE_CAPABILITIES.has(c));
+  const phone = capabilities.has(MOBILE_CAPABILITY);
+  let head: "app" | "site" | "tool" | null = null;
+  for (let i = 0; i < tokens.length && !head; i++) {
+    const kind = HEAD_NOUNS.get(tokens[i]);
+    if (kind && !isNegated(tokens, i)) head = kind;
+  }
+  if (head === "tool") return GUESS_TYPES.tool;
+  if (head === "site") return needsApp ? GUESS_TYPES.app : GUESS_TYPES.site;
+  if (head === "app") return phone ? GUESS_TYPES.mobile : GUESS_TYPES.app;
+  if (phone) return GUESS_TYPES.mobile;
+  if (needsApp && tokens.some((t) => AUDIENCE_WORDS.has(t))) return GUESS_TYPES.app;
+  return null;
+}
+
 /** Project type whose stacks get the rest-api capability unless another API style is named. */
 const REST_DEFAULT_TYPE = "api-only";
 const REST_CAPABILITY = "rest-api";
@@ -304,8 +384,16 @@ export function match(text: string, kb: KnowledgeBase): Detected {
     capabilities.add(REST_CAPABILITY);
   }
 
+  const kept = new Set([...capabilities].filter((c) => !droppedCapabilities.has(c)));
+  let guessed = false;
+  if (projectType === null) {
+    projectType = guessType(tokens, kept);
+    guessed = projectType !== null;
+  }
+
   // Negation wins over a positive mention elsewhere in the text.
   return {
+    ...(guessed ? { guessedType: true as const } : {}),
     projectType,
     capabilities: [...capabilities].filter((c) => !droppedCapabilities.has(c)),
     languagesPrefer: [...prefer].filter((l) => !avoid.has(l)),

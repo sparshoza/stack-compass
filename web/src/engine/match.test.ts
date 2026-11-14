@@ -422,6 +422,80 @@ describe("match", () => {
     expect(d.projectType).toBe("ecommerce");
   });
 
+  describe("plain head nouns when no phrase sets a type", () => {
+    it("an app is a web app, marked as a guess", () => {
+      const d = match("an app for my dog grooming business", kb);
+      expect(d.projectType).toBe("web-app");
+      expect(d.guessedType).toBe(true);
+    });
+
+    it("a website is a content site", () => {
+      const d = match("a simple website for my plumbing business", kb);
+      expect(d.projectType).toBe("content-site");
+      expect(d.guessedType).toBe(true);
+    });
+
+    it("a website with things only an app does is a web app", () => {
+      expect(match("a website for my gym with photo uploads", kb).projectType).toBe("web-app");
+    });
+
+    it("an app for phones is a mobile app", () => {
+      expect(match("an app for ios and android", kb).projectType).toBe("mobile-app");
+    });
+
+    it("people doing things with a feature is a web app even without a head noun", () => {
+      const d = match("something to let my customers upload photos and get a quote", kb);
+      expect(d.projectType).toBe("web-app");
+      expect(d.guessedType).toBe(true);
+    });
+
+    it("a negated head noun does not count", () => {
+      expect(match("not an app, just a website", kb).projectType).toBe("content-site");
+      expect(match("no app", kb).projectType).toBeNull();
+    });
+
+    it("a phrase always wins over a head noun, and is not a guess", () => {
+      const d = match("an app to sell my candles", kb);
+      expect(d.projectType).toBe("ecommerce");
+      expect(d.guessedType).toBeUndefined();
+    });
+
+    it("words that only contain a head noun do not count", () => {
+      expect(match("I like apples and parasites", kb).projectType).toBeNull();
+    });
+  });
+
+  describe("plain owner words", () => {
+    const cases: [string, string | null, string[]][] = [
+      ["a booking site for my salon", "web-app", []],
+      ["an app for my bakery to take orders", "ecommerce", ["payments"]],
+      ["a chat app for my community", "realtime-app", ["realtime"]],
+      ["a site where tenants can pay rent and report repairs", "web-app", ["payments"]],
+      ["a dashboard for my sales team", "internal-tool", []],
+      ["a crm for my real estate agency", "internal-tool", []],
+      ["a tool for my clinic to manage patient appointments", "internal-tool", []],
+      ["a newsletter for my small business customers", "content-site", ["transactional-email"]],
+      ["an app for my church to share events and take donations", "web-app", ["payments"]],
+      ["a recipe sharing site with search", "web-app", ["full-text-search"]],
+      ["a ticket booking site for local concerts", "ecommerce", ["payments"]],
+      ["an AI chatbot that answers questions about my products", "web-app", ["vector-search"]],
+      ["an app like Uber but for dog walkers", "mobile-app", ["geospatial", "payments"]],
+    ];
+    for (const [text, type, caps] of cases) {
+      it(text, () => {
+        const d = match(text, kb);
+        expect(d.projectType).toBe(type);
+        for (const cap of caps) expect(d.capabilities).toContain(cap);
+      });
+    }
+
+    it("negation still drops the plain words", () => {
+      expect(match("a website for my band, we don't take donations", kb).capabilities).not.toContain("payments");
+      expect(match("a site for my club, no emails please", kb).capabilities).not.toContain("transactional-email");
+      expect(match("an app for my shop without search", kb).capabilities).not.toContain("full-text-search");
+    });
+  });
+
   it("returns fresh arrays on every call", () => {
     const a = match("chat", base);
     a.capabilities.push("x");

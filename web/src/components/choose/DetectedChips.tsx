@@ -38,7 +38,7 @@ export function DetectedChips({ chips, nothingFound, onRemove }: DetectedChipsPr
       ) : (
         nothingFound && (
           <p className="rounded-[var(--radius-sm)] bg-raised px-3 py-2.5 text-[0.8125rem] text-text-muted">
-            We didn't recognise anything specific. Answer the questions below.
+            We did not recognise anything specific. Pick what you are building above, or try other words.
           </p>
         )
       )}

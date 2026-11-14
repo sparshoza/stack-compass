@@ -31,8 +31,10 @@ export function isEmpty(d: Detected): boolean {
 
 /** The detection without the chips the person removed. */
 export function withoutDismissed(d: Detected, dismissed: ReadonlySet<string>): Detected {
+  const projectType = d.projectType && !dismissed.has(`type:${d.projectType}`) ? d.projectType : null
   return {
-    projectType: d.projectType && !dismissed.has(`type:${d.projectType}`) ? d.projectType : null,
+    ...(projectType && d.guessedType ? { guessedType: true as const } : {}),
+    projectType,
     capabilities: d.capabilities.filter((id) => !dismissed.has(`cap:${id}`)),
     languagesPrefer: d.languagesPrefer.filter((id) => !dismissed.has(`prefer:${id}`)),
     languagesAvoid: d.languagesAvoid.filter((id) => !dismissed.has(`avoid:${id}`)),
@@ -47,7 +49,11 @@ const capabilityLabel = (id: string) => plainCapability(id, kb.vocab.capabilitie
 /** Chips in reading order: what it is, what it needs, languages, tools. */
 export function chipsOf(d: Detected): Chip[] {
   const chips: Chip[] = []
-  if (d.projectType) chips.push({ key: `type:${d.projectType}`, label: projectLabel(d.projectType) })
+  if (d.projectType) {
+    // A type guessed from "an app" or "a website" says so, so it is easy to change.
+    const label = projectLabel(d.projectType)
+    chips.push({ key: `type:${d.projectType}`, label: d.guessedType ? `${label} (best guess)` : label })
+  }
   for (const id of d.capabilities) chips.push({ key: `cap:${id}`, label: capabilityLabel(id) })
   for (const id of d.languagesPrefer) chips.push({ key: `prefer:${id}`, label: languageName(id) })
   for (const id of d.languagesAvoid) chips.push({ key: `avoid:${id}`, label: `Avoid ${languageName(id)}` })

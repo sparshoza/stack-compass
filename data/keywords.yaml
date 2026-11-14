@@ -17,7 +17,7 @@
   sets: {capabilities: [scheduled-jobs]}
 - phrases: [payments, checkout, subscriptions, billing, credit card, invoices, take payments]
   sets: {capabilities: [payments]}
-- phrases: [transactional email, send email, password reset email, email notifications, newsletter]
+- phrases: [transactional email, send email, password reset email, email notifications]
   sets: {capabilities: [transactional-email]}
 - phrases: [cms, content management, content editing, editorial, non technical editors]
   sets: {capabilities: [content-editing]}
@@ -197,7 +197,7 @@
   sets: {capabilities: [content-editing]}
 # Delivery layers and cross-layer phrases (Task 5)
 - phrases: [sell products, sell online, sell merchandise, sell digital products, product catalog, shopping cart, online shop, shop for my business]
-  sets: {project_type: ecommerce}
+  sets: {project_type: ecommerce, capabilities: [payments]}
 - phrases: [company website, small business website, brochure site, restaurant website, photography portfolio, news site, online magazine, marketing website, event website]
   sets: {project_type: content-site, capabilities: [static-content]}
 - phrases: [cross platform mobile, android and ios, mobile application, app for my phone, app in the app store]
@@ -252,7 +252,7 @@
   sets: {capabilities: [admin-ui]}
 - phrases: [millions of writes, write heavy workload, time series data, event ingestion, metrics ingestion, logging pipeline, high volume events]
   sets: {capabilities: [high-write-throughput]}
-- phrases: [native ios, native android, app store release, store submission, device sensors, push notifications mobile]
+- phrases: [native ios, native android, app store release, store submission, device sensors, push notifications mobile, push notifications, push notification]
   sets: {capabilities: [native-mobile]}
 - phrases: [written in python, python backend, python api, python service]
   sets: {languages: [python]}
@@ -332,3 +332,32 @@
   sets: {project_type: web-app, languages: [ruby]}
 - phrases: [elixir web app]
   sets: {project_type: web-app, languages: [elixir]}
+# Plain words a business owner uses (phase 3). Single head nouns such as "app"
+# and "website" are not listed: the matcher uses them only when no phrase sets
+# a project type (see match.ts, guessType).
+- phrases: [take orders, online orders, order online, online ordering, sell, selling, shop, my store, store for my, merch store, merch shop, ticket booking, event tickets, concert tickets, buy tickets, ticket sales]
+  sets: {project_type: ecommerce, capabilities: [payments]}
+- phrases: [orders, donations, donate, pay, payment, pay rent, collect rent, rent payments, pay monthly, monthly fee, get paid, paid plans, subscription, deposits]
+  sets: {capabilities: [payments]}
+- phrases: [emails, email, notify, notifications, contact form, waitlist, confirmation emails]
+  sets: {capabilities: [transactional-email]}
+- phrases: [reminders, send reminders, email reminders]
+  sets: {capabilities: [transactional-email, scheduled-jobs]}
+- phrases: [newsletter, mailing list]
+  sets: {project_type: content-site, capabilities: [transactional-email]}
+- phrases: [booking, bookings, book appointments, book classes, book a table, appointments, appointment, reservations, reservation, site where, website where, app where, platform where, sharing site, sharing app, sharing platform, members area, customer accounts, community, forum, online courses]
+  sets: {project_type: web-app}
+- phrases: [dashboard, crm, inventory, track inventory, track stock, stock levels, for my team, for our team, for my staff, for our staff, my employees, sales team, tool for my, tool for our, staff app, team app]
+  sets: {project_type: internal-tool}
+- phrases: [chat app, messaging app, chat platform, group chat, live chat, video call]
+  sets: {project_type: realtime-app, capabilities: [realtime]}
+- phrases: [chatbot, ai chatbot, ai assistant, answers questions, faq bot]
+  sets: {project_type: web-app, capabilities: [vector-search]}
+- phrases: [like uber, uber for]
+  sets: {project_type: mobile-app, capabilities: [native-mobile, geospatial, payments]}
+- phrases: [videos, upload, uploads, upload videos, photo uploads, send photos]
+  sets: {capabilities: [file-uploads]}
+- phrases: [search]
+  sets: {capabilities: [full-text-search]}
+- phrases: [map, on a map]
+  sets: {capabilities: [geospatial]}

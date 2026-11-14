@@ -1,5 +1,5 @@
 import { useId, useMemo, useState, type ReactNode, type RefObject } from 'react'
-import { BanIcon, CheckIcon, XIcon } from 'lucide-react'
+import { BanIcon, CheckIcon, ChevronDownIcon, XIcon } from 'lucide-react'
 import type { Answers } from '@/engine/answers'
 import { LAYER_LABELS } from '@/engine/labels'
 import { languageName, layerName } from '@/lib/display'
@@ -8,36 +8,19 @@ import { kb, toolById } from '@/lib/kb'
 import { searchTools } from '@/lib/search'
 import { cn } from '@/lib/utils'
 import { featureGroups } from './features'
+import { OptionChip, legendClass, ringWithin } from './OptionChip'
+import { BUDGET, capabilityLabel, HOSTING, PROJECT_TYPES, PROJECT_TYPE_ORDER, SCALE } from './plain'
 
 interface QuestionsProps {
   answers: Answers
   onChange: (change: (answers: Answers) => Answers) => void
-  /** The checked project type radio, so Edit answers can put focus back on it. */
+  /** The checked project type radio. */
   typeRef: RefObject<HTMLInputElement | null>
 }
 
-const legend = 'text-[0.8125rem] font-semibold text-text'
+const legend = legendClass
 const hint = 'text-xs text-text-muted'
 
-/** A focus ring on a label that wraps a visually hidden input. */
-const ringWithin =
-  'has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-highlight'
-
-const HOSTING: { value: Answers['hosting']; label: string }[] = [
-  { value: 'managed', label: 'Managed' },
-  { value: 'self-hosted', label: 'Self-hosted' },
-  { value: 'either', label: 'Either' },
-]
-const BUDGET: { value: Answers['budget']; label: string }[] = [
-  { value: 'free', label: 'Free tiers only' },
-  { value: 'low', label: 'Low' },
-  { value: 'any', label: 'Any' },
-]
-const SCALE: { value: Answers['scale']; label: string }[] = [
-  { value: 'prototype', label: 'Prototype' },
-  { value: 'startup', label: 'Startup' },
-  { value: 'high', label: 'High traffic' },
-]
 
 type LanguageState = 'prefer' | 'avoid' | 'none'
 const STATE_WORDS: Record<LanguageState, string> = { none: 'no preference', prefer: 'prefer', avoid: 'avoid' }
@@ -74,47 +57,6 @@ function Question({ title, note, children, role, id }: { title: ReactNode; note?
       )}
       {children}
     </fieldset>
-  )
-}
-
-/** One choice as a pill: a real radio input, hidden, inside its label. */
-function RadioPill<T extends string>({
-  name,
-  value,
-  label,
-  checked,
-  onSelect,
-  inputRef,
-}: {
-  name: string
-  value: T
-  label: string
-  checked: boolean
-  onSelect: (value: T) => void
-  inputRef?: RefObject<HTMLInputElement | null>
-}) {
-  return (
-    <label
-      className={cn(
-        'inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
-        ringWithin,
-        checked
-          ? 'border-text bg-text text-background'
-          : 'border-line-strong text-text hover:border-text-faint hover:bg-raised',
-      )}
-    >
-      <input
-        ref={checked ? inputRef : undefined}
-        type="radio"
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={() => onSelect(value)}
-        className="sr-only"
-      />
-      {checked && <CheckIcon aria-hidden="true" className="-ml-0.5 size-3.5" />}
-      {label}
-    </label>
   )
 }
 
@@ -295,7 +237,7 @@ const TOOLING_NOTE = `Adds ${LAYER_LABELS['ci-cd']}, an ${LAYER_LABELS.observabi
 const GROUPS = featureGroups()
 
 /**
- * Must-have features in labelled groups, each a checkbox chip. An
+ * What it should do, in labelled groups, each a checkbox chip. An
  * explanation shows under its group once the feature is chosen, or for all
  * of them with the toggle; hidden ones stay in the DOM for screen readers.
  */
@@ -306,7 +248,7 @@ function Features({ selected, onToggle }: { selected: string[]; onToggle: (id: s
     <section aria-labelledby={`${id}-title`} className="grid gap-3">
       <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
         <h3 id={`${id}-title`} className={legend}>
-          Must-have features
+          What should it do?
         </h3>
         <button
           type="button"
@@ -345,7 +287,7 @@ function Features({ selected, onToggle }: { selected: string[]; onToggle: (id: s
                       className="sr-only"
                     />
                     {checked && <CheckIcon aria-hidden="true" className="-ml-0.5 size-3.5" />}
-                    <span id={`${id}-${cap.id}`}>{cap.label}</span>
+                    <span id={`${id}-${cap.id}`}>{capabilityLabel(cap.id, cap.label)}</span>
                   </label>
                 </li>
               )
@@ -365,7 +307,7 @@ function Features({ selected, onToggle }: { selected: string[]; onToggle: (id: s
                   id={`${id}-${cap.id}-explain`}
                   className={shown ? 'text-xs leading-[1.45] text-text-muted' : 'sr-only'}
                 >
-                  {shown && <span aria-hidden="true" className="text-text">{cap.label}: </span>}
+                  {shown && <span aria-hidden="true" className="text-text">{capabilityLabel(cap.id, cap.label)}: </span>}
                   {cap.explain}
                 </li>
               )
@@ -378,63 +320,137 @@ function Features({ selected, onToggle }: { selected: string[]; onToggle: (id: s
 }
 
 /**
- * Sets the project type. Picking API only also ticks the REST API feature,
- * as describing an API does; the person can untick it.
+ * Sets the project type. Picking a service for other apps also ticks "Let
+ * other apps connect", as describing an API does; the person can untick it.
  */
 function withProjectType(a: Answers, projectType: string): Answers {
   const addRest = projectType === 'api-only' && a.projectType !== 'api-only' && !a.capabilities.includes('rest-api')
   return { ...a, projectType, capabilities: addRest ? [...a.capabilities, 'rest-api'] : a.capabilities }
 }
 
-/** The eight one-click questions, filled in from the description where it said something. */
+/** How many of the developer answers differ from the defaults. */
+function preferenceCount(a: Answers): number {
+  return a.languagesPrefer.length + a.languagesAvoid.length + a.knownTools.length + (a.tooling ? 0 : 1)
+}
+
+/** Languages, tools already known and dev tooling: for people who know what they want. */
+function Preferences({ answers, onChange }: Pick<QuestionsProps, 'answers' | 'onChange'>) {
+  const id = useId()
+  const count = preferenceCount(answers)
+  // Opens by itself when a link or the description already set some.
+  const [open, setOpen] = useState(() => count > 0)
+  const set = <K extends keyof Answers>(key: K) => (value: Answers[K]) => onChange((a) => ({ ...a, [key]: value }))
+
+  return (
+    <div className="grid gap-4 border-t border-line pt-5">
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={`${id}-panel`}
+        onClick={() => setOpen((o) => !o)}
+        className="-mx-2 flex min-h-8 flex-wrap items-center gap-x-2 rounded-full px-2 text-left text-[0.8125rem] font-semibold text-text hover:bg-raised touch:min-h-11"
+      >
+        <ChevronDownIcon aria-hidden="true" className={cn('size-4 shrink-0 text-text-muted', !open && '-rotate-90')} />
+        I have preferences
+        <span className="font-normal text-text-muted">{count > 0 ? `${count} set` : 'Languages and tools'}</span>
+      </button>
+      <div id={`${id}-panel`} hidden={!open} className="grid gap-7">
+        <Question id={`${id}-languages`} title="Languages" note="Click once to prefer, twice to avoid, three times to clear.">
+          <ul className="flex flex-wrap gap-1.5">
+            {kb.vocab.languages.map((lang) => {
+              const state = languageState(answers, lang)
+              const name = languageName(lang)
+              return (
+                <li key={lang}>
+                  <button
+                    type="button"
+                    onClick={() => onChange((a) => cycleLanguage(a, lang))}
+                    className={cn(
+                      'motion-colors inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
+                      state === 'none' && 'border-line-strong text-text hover:border-text-faint hover:bg-raised',
+                      state === 'prefer' && 'border-text bg-text text-background',
+                      state === 'avoid' && 'border-dashed border-text-faint text-text-muted hover:bg-raised',
+                    )}
+                  >
+                    {state === 'prefer' && <CheckIcon aria-hidden="true" className="-ml-0.5 size-3.5" />}
+                    {state === 'avoid' && <BanIcon aria-hidden="true" className="-ml-0.5 size-3.5" />}
+                    <span className={state === 'avoid' ? 'line-through decoration-1' : undefined}>{name}</span>
+                    <span className="sr-only">: {STATE_WORDS[state]}</span>
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </Question>
+
+        <KnownTools selected={answers.knownTools} onChange={set('knownTools')} />
+
+        <div className="flex items-start justify-between gap-4">
+          <div className="grid gap-0.5">
+            <span id={`${id}-tooling`} className={legend}>
+              Include dev tooling
+            </span>
+            <span id={`${id}-tooling-note`} className={hint}>
+              {TOOLING_NOTE}
+            </span>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={answers.tooling}
+            aria-labelledby={`${id}-tooling`}
+            aria-describedby={`${id}-tooling-note`}
+            onClick={() => onChange((a) => ({ ...a, tooling: !a.tooling }))}
+            className="-my-1.5 grid h-8 w-12 shrink-0 place-items-center touch:h-11"
+          >
+            <span
+              aria-hidden="true"
+              className={cn(
+                'motion-colors flex h-5 w-9 items-center rounded-full border p-0.5',
+                answers.tooling ? 'border-text bg-text' : 'border-line-strong bg-raised',
+              )}
+            >
+              {/* The thumb slides across (transform), so the switch reads as one moving part. */}
+              <span
+                data-on={answers.tooling}
+                className={cn('motion-thumb size-3.5 rounded-full', answers.tooling ? 'bg-background' : 'bg-text-muted')}
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const TYPES = [
+  ...PROJECT_TYPE_ORDER.flatMap((typeId) => kb.vocab.project_types.filter((p) => p.id === typeId)),
+  ...kb.vocab.project_types.filter((p) => !PROJECT_TYPE_ORDER.includes(p.id)),
+]
+
+/** The Whole stack questions in plain words, filled in from the description where it said something. */
 export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
   const id = useId()
   const set = <K extends keyof Answers>(key: K) => (value: Answers[K]) => onChange((a) => ({ ...a, [key]: value }))
 
   return (
     <div className="grid gap-7">
-      <Question id={`${id}-type`} role="radiogroup" title={<>What are you building? <span className="font-normal text-text-muted">(required)</span></>}>
-        <div className="flex flex-wrap gap-1.5">
-          {kb.vocab.project_types.map((type) => (
-            <RadioPill
+      <Question id={`${id}-type`} role="radiogroup" title="What are you building?">
+        <div className="grid grid-cols-2 gap-1.5">
+          {TYPES.map((type) => (
+            <OptionChip
               key={type.id}
+              type="radio"
               name={`${id}-type`}
               value={type.id}
-              label={type.label}
+              label={PROJECT_TYPES[type.id]?.label ?? type.label}
+              hint={PROJECT_TYPES[type.id]?.hint}
               checked={answers.projectType === type.id}
-              onSelect={(value) => onChange((a) => withProjectType(a, value))}
-              inputRef={typeRef}
+              onChange={() => onChange((a) => withProjectType(a, type.id))}
+              inputRef={answers.projectType === type.id ? typeRef : undefined}
             />
           ))}
         </div>
-      </Question>
-
-      <Question id={`${id}-languages`} title="Languages" note="Click once to prefer, twice to avoid, three times to clear.">
-        <ul className="flex flex-wrap gap-1.5">
-          {kb.vocab.languages.map((lang) => {
-            const state = languageState(answers, lang)
-            const name = languageName(lang)
-            return (
-              <li key={lang}>
-                <button
-                  type="button"
-                  onClick={() => onChange((a) => cycleLanguage(a, lang))}
-                  className={cn(
-                    'motion-colors inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
-                    state === 'none' && 'border-line-strong text-text hover:border-text-faint hover:bg-raised',
-                    state === 'prefer' && 'border-text bg-text text-background',
-                    state === 'avoid' && 'border-dashed border-text-faint text-text-muted hover:bg-raised',
-                  )}
-                >
-                  {state === 'prefer' && <CheckIcon aria-hidden="true" className="-ml-0.5 size-3.5" />}
-                  {state === 'avoid' && <BanIcon aria-hidden="true" className="-ml-0.5 size-3.5" />}
-                  <span className={state === 'avoid' ? 'line-through decoration-1' : undefined}>{name}</span>
-                  <span className="sr-only">: {STATE_WORDS[state]}</span>
-                </button>
-              </li>
-            )
-          })}
-        </ul>
       </Question>
 
       <Features
@@ -442,7 +458,11 @@ export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
         onToggle={(capId) => onChange((a) => ({ ...a, capabilities: toggle(a.capabilities, capId) }))}
       />
 
-      <Question id={`${id}-hosting`} role="radiogroup" title="Hosting">
+      <Question id={`${id}-scale`} role="radiogroup" title="How big will it get?">
+        <Segmented name={`${id}-scale`} options={SCALE} value={answers.scale} onSelect={set('scale')} />
+      </Question>
+
+      <Question id={`${id}-hosting`} role="radiogroup" title="Where should it run?">
         <Segmented name={`${id}-hosting`} options={HOSTING} value={answers.hosting} onSelect={set('hosting')} />
       </Question>
 
@@ -450,45 +470,7 @@ export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
         <Segmented name={`${id}-budget`} options={BUDGET} value={answers.budget} onSelect={set('budget')} />
       </Question>
 
-      <Question id={`${id}-scale`} role="radiogroup" title="Scale">
-        <Segmented name={`${id}-scale`} options={SCALE} value={answers.scale} onSelect={set('scale')} />
-      </Question>
-
-      <KnownTools selected={answers.knownTools} onChange={set('knownTools')} />
-
-      <div className="flex items-start justify-between gap-4">
-        <div className="grid gap-0.5">
-          <span id={`${id}-tooling`} className={legend}>
-            Include dev tooling
-          </span>
-          <span id={`${id}-tooling-note`} className={hint}>
-            {TOOLING_NOTE}
-          </span>
-        </div>
-        <button
-          type="button"
-          role="switch"
-          aria-checked={answers.tooling}
-          aria-labelledby={`${id}-tooling`}
-          aria-describedby={`${id}-tooling-note`}
-          onClick={() => onChange((a) => ({ ...a, tooling: !a.tooling }))}
-          className="-my-1.5 grid h-8 w-12 shrink-0 place-items-center touch:h-11"
-        >
-          <span
-            aria-hidden="true"
-            className={cn(
-              'motion-colors flex h-5 w-9 items-center rounded-full border p-0.5',
-              answers.tooling ? 'border-text bg-text' : 'border-line-strong bg-raised',
-            )}
-          >
-            {/* The thumb slides across (transform), so the switch reads as one moving part. */}
-            <span
-              data-on={answers.tooling}
-              className={cn('motion-thumb size-3.5 rounded-full', answers.tooling ? 'bg-background' : 'bg-text-muted')}
-            />
-          </span>
-        </button>
-      </div>
+      <Preferences answers={answers} onChange={onChange} />
     </div>
   )
 }

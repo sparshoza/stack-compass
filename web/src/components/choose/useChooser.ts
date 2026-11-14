@@ -4,8 +4,6 @@ import { match, type Detected } from '@/engine/match'
 import { kb } from '@/lib/kb'
 import { applyDetection, chipsOf, emptyDetection, isEmpty, withoutDismissed, type Chip } from './detection'
 
-export type ChooseView = 'questions' | 'result'
-
 /** Detection waits for this long a pause in typing. It is a debounce, not motion. */
 export const TYPING_PAUSE_MS = 300
 
@@ -16,7 +14,6 @@ interface State {
   raw: Detected | null
   dismissed: ReadonlySet<string>
   answers: Answers
-  view: ChooseView
   /** A note about the link the page was opened with. */
   notice: string | null
 }
@@ -32,8 +29,6 @@ export interface Chooser {
   removeChip: (key: string) => void
   answers: Answers
   setAnswers: (change: (answers: Answers) => Answers) => void
-  view: ChooseView
-  setView: (view: ChooseView) => void
   notice: string | null
   /** Back to an empty description and the default answers. */
   reset: () => void
@@ -42,10 +37,10 @@ export interface Chooser {
 const none: ReadonlySet<string> = new Set()
 
 function fresh(): State {
-  return { text: '', raw: null, dismissed: none, answers: defaultAnswers(), view: 'questions', notice: null }
+  return { text: '', raw: null, dismissed: none, answers: defaultAnswers(), notice: null }
 }
 
-export function useChooser(initial: { answers: Answers; view: ChooseView; notice: string | null }): Chooser {
+export function useChooser(initial: { answers: Answers; notice: string | null }): Chooser {
   const [state, setState] = useState<State>(() => ({ ...fresh(), ...initial }))
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   // The latest text, so Read description never misses a keystroke still in flight.
@@ -100,8 +95,6 @@ export function useChooser(initial: { answers: Answers; view: ChooseView; notice
     setState((s) => ({ ...s, answers: change(s.answers), notice: null }))
   }, [])
 
-  const setView = useCallback((view: ChooseView) => setState((s) => ({ ...s, view })), [])
-
   const reset = useCallback(() => {
     clearTimeout(timer.current)
     textRef.current = ''
@@ -119,8 +112,6 @@ export function useChooser(initial: { answers: Answers; view: ChooseView; notice
     removeChip,
     answers: state.answers,
     setAnswers,
-    view: state.view,
-    setView,
     notice: state.notice,
     reset,
   }

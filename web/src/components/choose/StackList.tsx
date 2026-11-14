@@ -7,6 +7,7 @@ import { layerName } from '@/lib/display'
 import { familyColor, LAYER_FAMILY } from '@/lib/families'
 import { kb, toolById } from '@/lib/kb'
 import { LayerRow } from './LayerRow'
+import { projectTypeLabel } from './plain'
 
 interface StackListProps {
   results: LayerResult[]
@@ -34,7 +35,7 @@ export function StackList({ results, answers, headingRef, litOnMap, onSeeMap, on
   const type = kb.vocab.project_types.find((p) => p.id === answers.projectType)
   const missing = results.filter((r) => r.pick === null).length
   const facts = [
-    type?.label,
+    type && projectTypeLabel(type.id, type.label),
     `${results.length} ${results.length === 1 ? 'layer' : 'layers'}`,
     missing ? `${missing} without a match` : null,
   ].filter(Boolean)
@@ -46,11 +47,11 @@ export function StackList({ results, answers, headingRef, litOnMap, onSeeMap, on
           id="choose-result"
           ref={headingRef}
           tabIndex={-1}
-          className="text-[1.25rem] leading-tight font-semibold tracking-[-0.01em] outline-none focus-visible:underline focus-visible:decoration-highlight focus-visible:underline-offset-4"
+          className="scroll-mt-5 text-[1.25rem] leading-tight font-semibold tracking-[-0.01em] outline-none focus-visible:underline focus-visible:decoration-highlight focus-visible:underline-offset-4"
         >
           Your stack
         </h3>
-        <p className="text-xs text-text-muted">
+        <p role="status" className="text-xs text-text-muted">
           {facts.join(' · ')}
           {!onSeeMap && litOnMap ? '. Picks are lit on the map.' : '.'}
         </p>

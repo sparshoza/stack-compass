@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { kb } from "../lib/kb";
 import { DEFAULT_ANSWERS, fromDetected, type Answers } from "./answers";
 import { match } from "./match";
-import { decode, encode } from "./share";
+import { decode, decodePiece, encode, encodePiece, PIECE_KEYS } from "./share";
 
 const full: Answers = {
   projectType: "saas",
@@ -130,5 +130,52 @@ describe("share links", () => {
       expect(qs.toLowerCase()).not.toContain(word);
     }
     expect(qs).not.toContain(encodeURIComponent(description));
+  });
+});
+
+describe("one piece links", () => {
+  it("round trip: mode, layer and answers as group:option pairs", () => {
+    const piece = { layer: "database" as const, selection: { need: ["vectors", "analytics"], run: ["managed"] } };
+    const qs = encodePiece(piece);
+    expect(qs).toBe("m=piece&l=database&f=need:vectors,need:analytics,run:managed");
+    expect(decodePiece(qs, kb)).toEqual({ piece, ignored: [] });
+    expect([...new URLSearchParams(qs).keys()].every((k) => (PIECE_KEYS as readonly string[]).includes(k))).toBe(true);
+  });
+
+  it("no layer yet writes the mode only, and no answers", () => {
+    expect(encodePiece({ layer: null, selection: {} })).toBe("m=piece");
+    expect(encodePiece({ layer: "cache", selection: { need: [] } })).toBe("m=piece&l=cache");
+    expect(decodePiece("m=piece", kb)).toEqual({ piece: { layer: null, selection: {} }, ignored: [] });
+  });
+
+  it("drops an unknown part, unknown answers and extra answers to a one-answer question", () => {
+    expect(decodePiece("m=piece&l=teleporter&f=need:vectors", kb)).toEqual({
+      piece: { layer: null, selection: {} },
+      ignored: ['part "teleporter"', 'answer "need:vectors"'],
+    });
+    const { piece, ignored } = decodePiece(
+      "m=piece&l=database&f=need:vectors,need:vectors,need:warp,colour:red,scale:single,scale:scale-out,run:in-app,junk",
+      kb,
+    );
+    expect(piece).toEqual({ layer: "database", selection: { need: ["vectors"], scale: ["single"], run: ["in-app"] } });
+    expect(ignored).toEqual([
+      'answer "need:warp"',
+      'answer "colour:red"',
+      'answer "scale:scale-out" (one answer only)',
+      'answer "junk"',
+    ]);
+  });
+
+  it("a shared option the layer does not offer is ignored", () => {
+    // Payments never runs inside your app.
+    expect(decodePiece("m=piece&l=payments&f=run:in-app", kb).ignored).toEqual(['answer "run:in-app"']);
+  });
+
+  it("garbage never throws and a long link is flagged", () => {
+    for (const qs of ["", "%%%", "m=piece&l=__proto__&f=__proto__:x", "m=piece&f=" + ",".repeat(3000)]) {
+      expect(() => decodePiece(qs, kb)).not.toThrow();
+      expect(decodePiece(qs, kb).piece.selection).toEqual({});
+    }
+    expect(decodePiece("m=piece&l=database&f=" + "need:x,".repeat(1000), kb).tooLong).toBe(true);
   });
 });

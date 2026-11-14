@@ -4,12 +4,14 @@ import { MemoryRouter, useLocation } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { StackGraphProps } from '@/components/graph/StackGraph'
 import App from '@/App'
+import { matchLabel, matchTools, narrowingOptions } from '@/engine/facets'
 import { match } from '@/engine/match'
 import { scoreStack } from '@/engine/score'
 import { decode } from '@/engine/share'
 import { layerName } from '@/lib/display'
 import { kb, toolById } from '@/lib/kb'
 import { EXAMPLES } from './examples'
+import { CAPABILITY_LABELS, PIECES, PROJECT_TYPES } from './plain'
 
 // The map is a stub that records the props the app passes (see App.test.tsx).
 const graph = vi.hoisted(() => ({ props: null as StackGraphProps | null }))
@@ -43,7 +45,7 @@ function renderApp(path = '/') {
 const search = () => screen.getByTestId('location').textContent ?? ''
 const params = () => new URLSearchParams(search())
 const sheet = () => screen.getByRole('dialog', { name: 'Help me choose' })
-const SHARE_KEYS = ['t', 'lp', 'la', 'c', 'h', 'b', 's', 'k', 'tool']
+const SHARE_KEYS = ['t', 'lp', 'la', 'c', 'h', 'b', 's', 'k', 'tool', 'm', 'l', 'f']
 
 async function openSheet(user: ReturnType<typeof userEvent.setup>) {
   await user.click(screen.getAllByRole('button', { name: 'Help me choose' })[0])
@@ -51,17 +53,23 @@ async function openSheet(user: ReturnType<typeof userEvent.setup>) {
 }
 
 async function describeProject(user: ReturnType<typeof userEvent.setup>, text: string) {
-  const box = within(sheet()).getByRole('textbox', { name: /Describe your project/ })
+  const box = within(sheet()).getByRole('textbox', { name: /Describe it in your own words/ })
   await user.clear(box)
   await user.type(box, text)
   // Detection runs on a typing pause; Read description runs it at once.
   await user.click(within(sheet()).getByRole('button', { name: 'Read description' }))
 }
 
-async function showStack(user: ReturnType<typeof userEvent.setup>, type = 'SaaS product') {
+/** Picks a project type; the stack shows at once, with no button to press. */
+async function showStack(user: ReturnType<typeof userEvent.setup>, type = 'Subscription app') {
   const dialog = sheet()
   await user.click(within(within(dialog).getByRole('radiogroup', { name: /What are you building/ })).getByRole('radio', { name: type }))
-  await user.click(within(dialog).getByRole('button', { name: 'Show my stack' }))
+}
+
+/** Opens the "I have preferences" section if it is closed. */
+async function openPreferences(user: ReturnType<typeof userEvent.setup>) {
+  const toggle = within(sheet()).getByRole('button', { name: /I have preferences/ })
+  if (toggle.getAttribute('aria-expanded') !== 'true') await user.click(toggle)
 }
 
 const rows = () => within(screen.getByRole('list', { name: 'Your stack by layer' })).getAllByRole('listitem', { name: /./ })
@@ -105,10 +113,11 @@ describe('Help me choose', () => {
     const user = userEvent.setup()
     renderApp()
     const dialog = await openSheet(user)
+    await user.click(within(dialog).getByRole('button', { name: 'Show examples' }))
     const examples = within(within(dialog).getByRole('group', { name: 'Examples' })).getAllByRole('button')
     expect(examples).toHaveLength(3)
     await user.click(examples[0])
-    expect(within(dialog).getByRole('textbox', { name: /Describe your project/ })).toHaveValue(examples[0].textContent)
+    expect(within(dialog).getByRole('textbox', { name: /Describe it in your own words/ })).toHaveValue(examples[0].textContent)
     // Each example is picked up straight away.
     expect(within(dialog).getByRole('list', { name: 'Picked up from your description' })).toBeInTheDocument()
   })
@@ -126,21 +135,22 @@ describe('Help me choose', () => {
     const user = userEvent.setup()
     renderApp()
     const dialog = await openSheet(user)
-    const box = within(dialog).getByRole('textbox', { name: /Describe your project/ })
+    const box = within(dialog).getByRole('textbox', { name: /Describe it in your own words/ })
     await user.type(box, 'A saas with payments and realtime chat in python, no php')
     // Picked up on the typing pause, with no button press.
     const chips = await within(dialog).findByRole('list', { name: 'Picked up from your description' })
-    for (const name of ['SaaS product', 'Payments', 'Realtime', 'Python', 'Avoid PHP']) {
+    for (const name of ['Subscription app', 'Take payments', 'Live updates', 'Python', 'Avoid PHP']) {
       expect(within(chips).getByText(name)).toBeInTheDocument()
     }
     expect(within(dialog).getByText(/We picked up/)).toBeInTheDocument()
 
-    expect(within(dialog).getByRole('checkbox', { name: /^Payments/ })).toBeChecked()
-    await user.click(within(chips).getByRole('button', { name: 'Remove Payments' }))
-    expect(within(chips).queryByText('Payments')).not.toBeInTheDocument()
-    expect(within(dialog).getByRole('checkbox', { name: /^Payments/ })).not.toBeChecked()
+    expect(within(dialog).getByRole('checkbox', { name: /^Take payments/ })).toBeChecked()
+    await user.click(within(chips).getByRole('button', { name: 'Remove Take payments' }))
+    expect(within(chips).queryByText('Take payments')).not.toBeInTheDocument()
+    expect(within(dialog).getByRole('checkbox', { name: /^Take payments/ })).not.toBeChecked()
 
     await user.click(within(chips).getByRole('button', { name: 'Remove Python' }))
+    await openPreferences(user)
     expect(within(dialog).getByRole('button', { name: 'Python: no preference' })).toBeInTheDocument()
   })
 
@@ -162,12 +172,13 @@ describe('Help me choose', () => {
     await describeProject(user, 'An online store with product search, python, no php')
     const type = within(dialog).getByRole('radiogroup', { name: /What are you building/ })
     expect(within(type).getByRole('radio', { name: 'Online store' })).toBeChecked()
-    expect(within(dialog).getByRole('checkbox', { name: /^Full-text search/ })).toBeChecked()
+    expect(within(dialog).getByRole('checkbox', { name: /^A search box/ })).toBeChecked()
+    await openPreferences(user)
     expect(within(dialog).getByRole('button', { name: 'Python: prefer' })).toBeInTheDocument()
     expect(within(dialog).getByRole('button', { name: 'PHP: avoid' })).toBeInTheDocument()
     // Questions the text cannot answer keep their defaults.
-    expect(within(within(dialog).getByRole('radiogroup', { name: 'Hosting' })).getByRole('radio', { name: 'Either' })).toBeChecked()
-    expect(within(within(dialog).getByRole('radiogroup', { name: 'Scale' })).getByRole('radio', { name: 'Startup' })).toBeChecked()
+    expect(within(within(dialog).getByRole('radiogroup', { name: 'Where should it run?' })).getByRole('radio', { name: 'Either' })).toBeChecked()
+    expect(within(within(dialog).getByRole('radiogroup', { name: 'How big will it get?' })).getByRole('radio', { name: 'Real customers' })).toBeChecked()
     expect(within(dialog).getByRole('switch', { name: /Include dev tooling/ })).toBeChecked()
   })
 
@@ -175,6 +186,9 @@ describe('Help me choose', () => {
     const user = userEvent.setup()
     renderApp()
     const dialog = await openSheet(user)
+    // Languages and known tools sit in a closed "I have preferences" section.
+    expect(within(dialog).queryByRole('button', { name: 'Go: no preference' })).not.toBeInTheDocument()
+    await openPreferences(user)
     await user.click(within(dialog).getByRole('button', { name: 'Go: no preference' }))
     await user.click(within(dialog).getByRole('button', { name: 'Go: prefer' }))
     expect(within(dialog).getByRole('button', { name: 'Go: avoid' })).toBeInTheDocument()
@@ -190,24 +204,40 @@ describe('Help me choose', () => {
     expect(params().get('k')).toBe('postgresql')
   })
 
-  it('Show my stack disabled until project type set', async () => {
+  it('no stack and no link until a project type is chosen, then the stack shows at once', async () => {
     const user = userEvent.setup()
     renderApp()
     const dialog = await openSheet(user)
-    const show = within(dialog).getByRole('button', { name: 'Show my stack' })
-    expect(show).toBeDisabled()
-    expect(show).toHaveAccessibleDescription('Pick what you are building first.')
+    expect(within(dialog).getByText('Pick what you are building to see your stack.')).toBeInTheDocument()
+    expect(within(dialog).queryByRole('button', { name: 'Copy link' })).not.toBeInTheDocument()
+    expect(within(dialog).queryByRole('button', { name: /Show my stack|Edit answers/ })).not.toBeInTheDocument()
+    expect(params().has('t')).toBe(false)
     await user.click(within(dialog).getByRole('radio', { name: 'Web app' }))
-    expect(show).toBeEnabled()
+    expect(screen.getByRole('heading', { name: 'Your stack' })).toBeInTheDocument()
+    expect(params().get('t')).toBe('web-app')
+    expect(within(dialog).getByRole('button', { name: /^Your stack \(\d+\)$/ })).toBeInTheDocument()
   })
 
-  it('picking API only by hand pre-selects the REST API feature, which stays removable', async () => {
+  it('project types read in plain words with a hint, and every feature, type and part has a plain name', async () => {
     const user = userEvent.setup()
     renderApp()
     const dialog = await openSheet(user)
-    const rest = within(dialog).getByRole('checkbox', { name: /^REST API/ })
+    const types = within(within(dialog).getByRole('radiogroup', { name: /What are you building/ })).getAllByRole('radio')
+    expect(types).toHaveLength(kb.vocab.project_types.length)
+    const store = within(dialog).getByRole('radio', { name: 'Online store' })
+    expect(store).toHaveAccessibleDescription('Sell products with a cart and checkout')
+    for (const p of kb.vocab.project_types) expect(PROJECT_TYPES[p.id]).toBeDefined()
+    for (const c of kb.vocab.capabilities) expect(CAPABILITY_LABELS[c.id]).toBeDefined()
+    expect(PIECES.map((p) => p.layer).sort()).toEqual([...kb.layers].sort())
+  })
+
+  it('picking a service for other apps by hand ticks Let other apps connect, which stays removable', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    const dialog = await openSheet(user)
+    const rest = within(dialog).getByRole('checkbox', { name: /^Let other apps connect/ })
     expect(rest).not.toBeChecked()
-    await user.click(within(dialog).getByRole('radio', { name: 'API only' }))
+    await user.click(within(dialog).getByRole('radio', { name: 'Service for other apps' }))
     expect(rest).toBeChecked()
     await user.click(rest)
     expect(rest).not.toBeChecked()
@@ -216,15 +246,17 @@ describe('Help me choose', () => {
     expect(rest).not.toBeChecked()
   })
 
-  it('result replaces the questions with one row per selected layer (pick, why, watch-out)', async () => {
+  it('the stack sits under the questions with one row per selected layer (pick, why, watch-out)', async () => {
     const user = userEvent.setup()
     renderApp()
     await openSheet(user)
-    await showStack(user, 'SaaS product')
+    await showStack(user, 'Subscription app')
 
     const heading = screen.getByRole('heading', { name: 'Your stack' })
-    expect(heading).toHaveFocus()
-    expect(within(sheet()).queryByRole('radiogroup', { name: /What are you building/ })).not.toBeInTheDocument()
+    // Questions and stack stay together, so focus stays on the answer just given.
+    expect(within(sheet()).getByRole('radio', { name: 'Subscription app' })).toHaveFocus()
+    const questions = within(sheet()).getByRole('radiogroup', { name: /What are you building/ })
+    expect(questions.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
 
     const answers = decode(search().slice(1), kb).answers
     const expected = scoreStack(answers, kb)
@@ -309,7 +341,15 @@ describe('Help me choose', () => {
       .filter((p): p is string => p !== null)
     expect(graph.props?.highlight).toEqual(picks)
 
-    await user.click(screen.getByRole('button', { name: 'Edit answers' }))
+    // Another answer relights the map at once.
+    await user.click(within(sheet()).getByRole('radio', { name: 'Free only' }))
+    const again = scoreStack(decode(search().slice(1), kb).answers, kb)
+      .map((r) => r.pick)
+      .filter((p): p is string => p !== null)
+    expect(graph.props?.highlight).toEqual(again)
+
+    // The One piece tab lights nothing until a part is chosen.
+    await user.click(within(sheet()).getByRole('tab', { name: 'One piece' }))
     expect(graph.props?.highlight ?? []).toEqual([])
   })
 
@@ -318,7 +358,6 @@ describe('Help me choose', () => {
     renderApp('/?focus=express')
     await openSheet(user)
     await describeProject(user, 'A saas for my grandmother with payments in python')
-    await user.click(within(sheet()).getByRole('button', { name: 'Show my stack' }))
     await user.click(screen.getByRole('button', { name: 'Copy link' }))
     const copied = await navigator.clipboard.readText()
     const url = new URL(copied)
@@ -350,27 +389,25 @@ describe('Help me choose', () => {
     renderApp('/?t=spaceship')
     expect(sheet()).toBeInTheDocument()
     expect(screen.getByText(/Some parts of this link were ignored: project type "spaceship"/)).toBeInTheDocument()
-    expect(within(sheet()).getByRole('button', { name: 'Show my stack' })).toBeDisabled()
+    expect(within(sheet()).getByText('Pick what you are building to see your stack.')).toBeInTheDocument()
   })
 
-  it('Edit answers returns to questions with answers kept', async () => {
-    const user = userEvent.setup()
+  it('a link from before keeps its answers in the questions, with its preferences open', async () => {
     renderApp('/?t=api-only&lp=go&s=high')
-    await user.click(screen.getByRole('button', { name: 'Edit answers' }))
     const dialog = sheet()
-    expect(within(dialog).getByRole('radio', { name: 'API only' })).toBeChecked()
-    expect(within(dialog).getByRole('radio', { name: 'API only' })).toHaveFocus()
+    expect(within(dialog).getByRole('tab', { name: 'Whole stack' })).toHaveAttribute('aria-selected', 'true')
+    expect(within(dialog).getByRole('radio', { name: 'Service for other apps' })).toBeChecked()
     expect(within(dialog).getByRole('button', { name: 'Go: prefer' })).toBeInTheDocument()
-    expect(within(within(dialog).getByRole('radiogroup', { name: 'Scale' })).getByRole('radio', { name: 'High traffic' })).toBeChecked()
+    expect(within(within(dialog).getByRole('radiogroup', { name: 'How big will it get?' })).getByRole('radio', { name: 'Very busy' })).toBeChecked()
+    expect(screen.getByRole('heading', { name: 'Your stack' })).toBeInTheDocument()
   })
 
   it('result recomputes live as answers change', async () => {
     const user = userEvent.setup()
     renderApp('/?t=api-only')
     const before = rows().length
-    await user.click(screen.getByRole('button', { name: 'Edit answers' }))
+    await openPreferences(user)
     await user.click(within(sheet()).getByRole('switch', { name: /Include dev tooling/ }))
-    await user.click(within(sheet()).getByRole('button', { name: 'Show my stack' }))
     expect(rows().length).toBeLessThan(before)
     expect(params().get('tool')).toBe('0')
   })
@@ -384,10 +421,11 @@ describe('Help me choose', () => {
     expect(params().get('focus')).toBe('express')
     expect(graph.props?.highlight ?? []).toEqual([])
     const dialog = sheet()
-    expect(within(dialog).getByRole('button', { name: 'Show my stack' })).toBeDisabled()
+    expect(within(dialog).getByText('Pick what you are building to see your stack.')).toBeInTheDocument()
+    await openPreferences(user)
     expect(within(dialog).getByRole('button', { name: 'Python: no preference' })).toBeInTheDocument()
-    expect(within(dialog).getByRole('textbox', { name: /Describe your project/ })).toHaveValue('')
-    expect(within(dialog).getByRole('textbox', { name: /Describe your project/ })).toHaveFocus()
+    expect(within(dialog).getByRole('textbox', { name: /Describe it in your own words/ })).toHaveValue('')
+    expect(within(dialog).getByRole('textbox', { name: /Describe it in your own words/ })).toHaveFocus()
   })
 
   it('features come in labelled groups; an explanation shows once checked or with the toggle', async () => {
@@ -401,7 +439,7 @@ describe('Help me choose', () => {
     expect(all).toHaveLength(kb.vocab.capabilities.length)
     for (const group of groups) expect(group).toHaveAccessibleName(/./)
 
-    const payments = within(dialog).getByRole('checkbox', { name: 'Payments' })
+    const payments = within(dialog).getByRole('checkbox', { name: 'Take payments' })
     const explain = kb.vocab.capabilities.find((c) => c.id === 'payments')!.explain
     expect(payments).toHaveAccessibleDescription(explain)
     const note = document.getElementById(payments.getAttribute('aria-describedby')!)!
@@ -412,7 +450,7 @@ describe('Help me choose', () => {
     expect(note).not.toHaveClass('sr-only')
     expect(note.parentElement).not.toHaveClass('sr-only')
 
-    const realtime = within(dialog).getByRole('checkbox', { name: 'Realtime' })
+    const realtime = within(dialog).getByRole('checkbox', { name: 'Live updates' })
     const realtimeNote = document.getElementById(realtime.getAttribute('aria-describedby')!)!
     expect(realtimeNote).toHaveClass('sr-only')
     await user.click(within(dialog).getByRole('button', { name: 'Show what each one means' }))
@@ -456,7 +494,7 @@ describe('Help me choose', () => {
     const dialog = await openSheet(user)
     await describeProject(user, 'a saas in python')
     const chips = within(dialog).getByRole('list', { name: 'Picked up from your description' })
-    const examples = within(dialog).getByRole('group', { name: 'Examples' })
+    const examples = within(dialog).getByRole('button', { name: 'Show examples' })
     expect(chips.compareDocumentPosition(examples) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 
@@ -511,14 +549,14 @@ describe('Help me choose', () => {
     expect(screen.queryByRole('button', { name: 'Clear stack' })).not.toBeInTheDocument()
   })
 
-  it('Edit answers takes the stack out of the URL until Show my stack is pressed again', async () => {
+  it('the link follows every answer while a project type is chosen', async () => {
     const user = userEvent.setup()
     renderApp('/?t=api-only&lp=go')
-    await user.click(screen.getByRole('button', { name: 'Edit answers' }))
-    for (const key of SHARE_KEYS) expect(params().has(key)).toBe(false)
-    await user.click(within(sheet()).getByRole('button', { name: 'Show my stack' }))
-    expect(params().get('t')).toBe('api-only')
+    await user.click(within(sheet()).getByRole('radio', { name: 'Web app' }))
+    expect(params().get('t')).toBe('web-app')
     expect(params().get('lp')).toBe('go')
+    await user.click(within(sheet()).getByRole('radio', { name: 'My own servers' }))
+    expect(params().get('h')).toBe('self-hosted')
   })
 
   it('free text never reaches storage', async () => {
@@ -530,5 +568,189 @@ describe('Help me choose', () => {
     await act(async () => {})
     for (const call of setItem.mock.calls) expect(String(call[1])).not.toMatch(/bakery/)
     setItem.mockRestore()
+  })
+})
+
+describe('Help me choose, One piece', () => {
+  const piece = () => within(sheet()).getByRole('tabpanel', { name: 'One piece' })
+  const matchRows = () => within(screen.getByRole('list', { name: 'Matching tools' })).getAllByRole('button')
+  const status = () => within(piece()).getByRole('status')
+  const priceTag = (t: { pricing: string[] }) =>
+    t.pricing.includes('oss') ? 'Open source' : t.pricing.includes('free-tier') ? 'Free tier' : 'Paid'
+
+  async function pickPart(user: ReturnType<typeof userEvent.setup>, part = 'Database') {
+    await user.click(within(sheet()).getByRole('tab', { name: 'One piece' }))
+    await user.click(within(piece()).getByRole('button', { name: part }))
+  }
+
+  it('two tabs, Whole stack first; One piece asks which part, in plain names, and goes in the link', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    const dialog = await openSheet(user)
+    const tabs = within(within(dialog).getByRole('tablist')).getAllByRole('tab')
+    expect(tabs.map((t) => t.textContent)).toEqual(['Whole stack', 'One piece'])
+    expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
+    // The sheet opens with focus on the open tab; arrow keys move between tabs.
+    expect(tabs[0]).toHaveFocus()
+    await user.keyboard('{ArrowRight}')
+    expect(tabs[1]).toHaveFocus()
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
+    expect(within(piece()).getByRole('heading', { name: 'Which part do you need help with?' })).toBeInTheDocument()
+    const parts = within(within(piece()).getByRole('list', { name: 'Which part do you need help with?' })).getAllByRole('button')
+    expect(parts.slice(0, 5).map((b) => b.textContent)).toEqual(['Database', 'Hosting', 'Sign-in', 'Payments', 'Email'])
+    expect(parts).toHaveLength(kb.layers.length)
+    await waitFor(() => expect(params().get('m')).toBe('piece'))
+    expect(within(dialog).getByText('Pick a part to see the tools that fit.')).toBeInTheDocument()
+  })
+
+  it('picking a part shows its questions, every tool of it as a match, and lights them on the map', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    await pickPart(user)
+    expect(within(piece()).getByRole('heading', { name: 'Which database?' })).toHaveFocus()
+    const legends = within(piece())
+      .getAllByRole('group')
+      .concat(within(piece()).getAllByRole('radiogroup'))
+      .map((g) => g.getAttribute('aria-labelledby'))
+      .map((labelId) => document.getElementById(labelId!)!.textContent)
+    expect(legends.sort()).toEqual(
+      ['What do you need it for?', 'Where should it run?', 'How big will it get?', 'Does it have to be open source?'].sort(),
+    )
+    const all = matchTools('database', {}, kb)
+    expect(status()).toHaveTextContent(`${all.length} matches`)
+    expect(matchRows()).toHaveLength(all.length)
+    expect(graph.props?.highlight).toEqual(all.map((t) => t.id))
+    expect(params().get('l')).toBe('database')
+    // Need answers are two-line chips: the name, then a hint.
+    expect(within(piece()).getByRole('checkbox', { name: 'AI and vectors' })).toHaveAccessibleDescription(
+      'Power AI features that find similar things',
+    )
+  })
+
+  it('answers narrow the list, the count and the map; the link keeps them', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    await pickPart(user)
+    await user.click(within(piece()).getByRole('checkbox', { name: 'AI and vectors' }))
+    await user.click(within(piece()).getByRole('checkbox', { name: 'Managed for me' }))
+    const expected = matchTools('database', { need: ['vectors'], run: ['managed'] }, kb)
+    expect(expected.length).toBeGreaterThan(0)
+    expect(status()).toHaveTextContent(`${expected.length} ${expected.length === 1 ? 'match' : 'matches'}`)
+    expect(matchRows().map((r) => r.textContent)).toEqual(expected.map((t) => `${t.name}AI and vectors${priceTag(t)}`))
+    expect(graph.props?.highlight).toEqual(expected.map((t) => t.id))
+    expect(params().get('f')).toBe('need:vectors,run:managed')
+  })
+
+  it('only options that would narrow the matches show; a chosen one stays', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    await pickPart(user, 'Sign-in')
+    const need = kb.vocab.facets.auth![0]
+    const visible = narrowingOptions('auth', {}, kb).need
+    const shown = within(piece())
+      .getAllByRole('checkbox')
+      .map((c) => document.getElementById(c.getAttribute('aria-labelledby')!)!.textContent)
+    for (const option of need.options) expect(shown.includes(option.label)).toBe(visible.includes(option.id))
+    // Some sign-in uses are on every tool: they never show as a filter.
+    expect(visible.length).toBeLessThan(need.options.length)
+
+    // A chosen option stays even once the others make it narrow nothing.
+    const first = need.options.find((o) => visible.includes(o.id))!
+    await user.click(within(piece()).getByRole('checkbox', { name: first.label }))
+    expect(within(piece()).getByRole('checkbox', { name: first.label })).toBeChecked()
+  })
+
+  it('a one-answer question has a no-preference answer that clears it', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    await pickPart(user)
+    const license = within(piece()).getByRole('radiogroup', { name: 'Does it have to be open source?' })
+    expect(within(license).getByRole('radio', { name: 'Anything' })).toBeChecked()
+    await user.click(within(license).getByRole('radio', { name: 'Open source only' }))
+    expect(params().get('f')).toBe('license:oss')
+    expect(matchRows().map((r) => r.textContent)).toEqual(
+      matchTools('database', { license: ['oss'] }, kb).map((t) => `${t.name}${matchLabel(t, {}, kb)}${priceTag(t)}`),
+    )
+    await user.click(within(license).getByRole('radio', { name: 'Anything' }))
+    expect(params().has('f')).toBe(false)
+  })
+
+  it('a match focuses its tool on the map and the sheet stays open beside it on wide screens', async () => {
+    setWide(true)
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    await pickPart(user)
+    const first = matchTools('database', {}, kb)[0]
+    await user.click(matchRows()[0])
+    expect(params().get('focus')).toBe(first.id)
+    expect(graph.props?.focus).toBe(first.id)
+    expect(sheet()).toBeInTheDocument()
+    expect(matchRows()[0]).toHaveAttribute('aria-current', 'true')
+  })
+
+  it('a One piece link opens on its part and answers; unknown answers show a notice', () => {
+    const first = renderApp('/?m=piece&l=database&f=need:vectors,need:teleport')
+    expect(within(sheet()).getByRole('tab', { name: 'One piece' })).toHaveAttribute('aria-selected', 'true')
+    expect(within(piece()).getByRole('checkbox', { name: 'AI and vectors' })).toBeChecked()
+    expect(screen.getByText(/Some parts of this link were ignored: answer "need:teleport"/)).toBeInTheDocument()
+    expect(graph.props?.highlight).toEqual(matchTools('database', { need: ['vectors'] }, kb).map((t) => t.id))
+    first.unmount()
+
+    renderApp('/?m=piece&l=warp')
+    expect(screen.getByText(/Some parts of this link were ignored: part "warp"/)).toBeInTheDocument()
+    expect(within(piece()).getByRole('heading', { name: 'Which part do you need help with?' })).toBeInTheDocument()
+  })
+
+  it('Change part and Start over go back to the list of parts', async () => {
+    const user = userEvent.setup()
+    renderApp('/?m=piece&l=cache')
+    await user.click(within(piece()).getByRole('button', { name: 'Change part' }))
+    expect(within(piece()).getByRole('button', { name: 'Database' })).toHaveFocus()
+    expect(params().has('l')).toBe(false)
+
+    await user.click(within(piece()).getByRole('button', { name: 'Email' }))
+    await user.click(within(sheet()).getByRole('button', { name: 'Start over' }))
+    expect(within(piece()).getByRole('button', { name: 'Database' })).toHaveFocus()
+    expect(graph.props?.highlight ?? []).toEqual([])
+  })
+
+  it('Copy link carries the part and answers; the jump button names the count', async () => {
+    const user = userEvent.setup()
+    renderApp('/?m=piece&l=database&f=need:analytics')
+    const count = matchTools('database', { need: ['analytics'] }, kb).length
+    expect(within(sheet()).getByRole('button', { name: `${count} ${count === 1 ? 'match' : 'matches'}` })).toBeInTheDocument()
+    await user.click(within(sheet()).getByRole('button', { name: 'Copy link' }))
+    const url = new URL(await navigator.clipboard.readText())
+    expect(url.searchParams.get('m')).toBe('piece')
+    expect(url.searchParams.get('l')).toBe('database')
+    expect(url.searchParams.get('f')).toBe('need:analytics')
+    expect(url.searchParams.has('t')).toBe(false)
+  })
+
+  it('switching tabs keeps each mode answers; the link follows the open tab', async () => {
+    const user = userEvent.setup()
+    renderApp('/?t=saas')
+    await pickPart(user)
+    expect(params().has('t')).toBe(false)
+    await user.click(within(sheet()).getByRole('tab', { name: 'Whole stack' }))
+    expect(params().get('t')).toBe('saas')
+    expect(params().has('l')).toBe(false)
+    await user.click(within(sheet()).getByRole('tab', { name: 'One piece' }))
+    expect(within(piece()).getByRole('heading', { name: 'Which database?' })).toBeInTheDocument()
+  })
+
+  it('closing the sheet keeps the matches lit, with Clear matches on the map', async () => {
+    const user = userEvent.setup()
+    renderApp('/?m=piece&l=database')
+    await user.click(within(sheet()).getByRole('button', { name: 'Close' }))
+    expect(graph.props?.highlight?.length).toBeGreaterThan(0)
+    await user.click(screen.getByRole('button', { name: 'Clear matches' }))
+    expect(graph.props?.highlight ?? []).toEqual([])
+    expect(params().has('l')).toBe(false)
   })
 })

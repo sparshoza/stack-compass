@@ -2,6 +2,7 @@ import type { Answers } from '@/engine/answers'
 import type { Detected } from '@/engine/match'
 import { languageName } from '@/lib/display'
 import { kb, toolById } from '@/lib/kb'
+import { capabilityLabel as plainCapability, projectTypeLabel } from './plain'
 
 /** One thing picked up from the description, shown as a removable chip. */
 export interface Chip {
@@ -40,8 +41,8 @@ export function withoutDismissed(d: Detected, dismissed: ReadonlySet<string>): D
   }
 }
 
-const projectLabel = (id: string) => kb.vocab.project_types.find((p) => p.id === id)?.label ?? id
-const capabilityLabel = (id: string) => kb.vocab.capabilities.find((c) => c.id === id)?.label ?? id
+const projectLabel = (id: string) => projectTypeLabel(id, kb.vocab.project_types.find((p) => p.id === id)?.label ?? id)
+const capabilityLabel = (id: string) => plainCapability(id, kb.vocab.capabilities.find((c) => c.id === id)?.label ?? id)
 
 /** Chips in reading order: what it is, what it needs, languages, tools. */
 export function chipsOf(d: Detected): Chip[] {

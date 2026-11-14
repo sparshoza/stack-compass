@@ -1,31 +1,45 @@
-import { useEffect, useId, useRef, useState } from 'react'
-import { InfoIcon, LinkIcon, XIcon } from 'lucide-react'
-import { Dialog as DialogPrimitive } from 'radix-ui'
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { ArrowDownIcon, InfoIcon, XIcon } from 'lucide-react'
+import { Dialog as DialogPrimitive, Tabs } from 'radix-ui'
 import { Button } from '@/components/ui/button'
 import type { LayerResult } from '@/engine/score'
+import type { Piece } from '@/engine/share'
+import type { Layer, Tool } from '@/lib/kb'
 import { useReturnFocusOnClose } from '@/lib/useReturnFocusOnClose'
 import { cn } from '@/lib/utils'
 import { DetectedChips } from './DetectedChips'
 import { Describe } from './Describe'
+import { OnePiece } from './OnePiece'
 import { Questions } from './Questions'
 import { StackList } from './StackList'
 import type { Chooser } from './useChooser'
 
+export type ChooseMode = 'stack' | 'piece'
+
 interface ChooseSheetProps {
   open: boolean
   onOpenChange: (open: boolean) => void
+  mode: ChooseMode
+  onModeChange: (mode: ChooseMode) => void
+  /** Whole stack: the description, answers and the live stack. */
   chooser: Chooser
-  /** The scored stack while the result is shown; empty otherwise. */
   results: LayerResult[]
-  onShowStack: () => void
+  /** One piece: the chosen part and answers, and the tools that fit. */
+  piece: Piece
+  onPieceChange: (piece: Piece) => void
+  matches: Tool[]
+  /** A note about a One piece link that could not be read in full. */
+  pieceNotice: string | null
   onStartOver: () => void
   onFocusTool: (id: string) => void
+  /** The tool open on the map. */
+  focusedTool?: string
   /** Called once the sheet has closed, to put keyboard focus back. */
   onRestoreFocus: () => void
-  /** The link that reopens this stack. */
+  /** The link that reopens what the sheet shows now. */
   shareUrl: () => string
   litOnMap: boolean
-  /** Where the sheet covers the map: closes it so the lit stack shows. */
+  /** Where the sheet covers the map: closes it so the lit tools show. */
   onSeeMap?: () => void
   /**
    * True below 1024 px, where the sheet covers the whole screen: focus stays
@@ -56,25 +70,47 @@ function CopyFallback({ id, url }: { id: string; url: string }) {
   )
 }
 
-type Target = 'heading' | 'type' | 'text'
+type Target = 'tab' | 'text' | 'picker' | 'question' | 'stack' | 'count'
 type CopyState = 'idle' | 'copied' | 'manual'
 
 /** Inverted fill: the one primary action in each view. */
 const primary = 'border-text bg-text text-background hover:border-text hover:bg-text/85 active:bg-text/85'
 
+const TABS: { value: ChooseMode; label: string }[] = [
+  { value: 'stack', label: 'Whole stack' },
+  { value: 'piece', label: 'One piece' },
+]
+
+function Notice({ children }: { children: ReactNode }) {
+  return (
+    <p role="status" className="flex gap-2.5 rounded-[var(--radius-sm)] bg-raised px-3 py-2.5 text-xs leading-[1.5] text-text">
+      <InfoIcon aria-hidden="true" className="mt-px size-3.5 shrink-0 text-text-muted" />
+      <span>{children}</span>
+    </p>
+  )
+}
+
 /**
- * Help me choose. On the left from 1024px, not modal, so the lit stack and
- * a tool's panel stay usable on the map; full height and modal below.
- * The describe box and questions turn into the result in place.
+ * Help me choose, in two modes. Whole stack: plain questions with the
+ * stack under them, updated on every answer. One piece: pick a part, answer
+ * its questions, see the tools that fit. On the left from 1024px, not
+ * modal, so the lit tools and a tool's panel stay usable on the map; full
+ * height and modal below.
  */
 export function ChooseSheet({
   open,
   onOpenChange,
+  mode,
+  onModeChange,
   chooser,
   results,
-  onShowStack,
+  piece,
+  onPieceChange,
+  matches,
+  pieceNotice,
   onStartOver,
   onFocusTool,
+  focusedTool,
   onRestoreFocus,
   shareUrl,
   litOnMap,
@@ -82,52 +118,71 @@ export function ChooseSheet({
   modal,
 }: ChooseSheetProps) {
   const id = useId()
-  const headingRef = useRef<HTMLHeadingElement>(null)
+  const tabRefs = useRef<Partial<Record<ChooseMode, HTMLButtonElement | null>>>({})
+  const stackRef = useRef<HTMLHeadingElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const typeRef = useRef<HTMLInputElement>(null)
+  const pickerRef = useRef<HTMLUListElement>(null)
+  const questionRef = useRef<HTMLHeadingElement>(null)
+  const countRef = useRef<HTMLHeadingElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
-  const focusNext = useRef<Target | null>(null)
-  const [copied, setCopied] = useState<{ state: CopyState; url: string; answers: unknown } | null>(null)
+  const focusNext = useRef<{ target: Target; scroll: boolean } | null>(null)
+  const [copied, setCopied] = useState<{ state: CopyState; url: string; key: unknown } | null>(null)
   const onCloseAutoFocus = useReturnFocusOnClose(open, onRestoreFocus, contentRef)
 
-  const { view, answers } = chooser
-  const showingResult = view === 'result'
+  const { answers } = chooser
+  const hasStack = Boolean(answers.projectType)
+  const hasPiece = piece.layer !== null
 
   const focusTarget = (target: Target) => {
-    if (target === 'heading') headingRef.current?.focus()
-    else if (target === 'type' && typeRef.current) typeRef.current.focus()
-    else textareaRef.current?.focus()
+    const el: HTMLElement | null | undefined = {
+      tab: tabRefs.current[mode],
+      text: textareaRef.current,
+      picker: pickerRef.current?.querySelector('button'),
+      question: questionRef.current,
+      stack: stackRef.current,
+      count: countRef.current,
+    }[target]
+    el?.focus({ preventScroll: target === 'stack' || target === 'count' })
+    if (target === 'stack' || target === 'count') el?.scrollIntoView?.({ block: 'start' })
   }
 
-  // Focus moves after the view has rendered: the result heading, the
-  // chosen project type, or the description box.
+  // Focus moves after the view has rendered.
   useEffect(() => {
-    const target = focusNext.current
-    if (!target) return
+    const next = focusNext.current
+    if (!next) return
     focusNext.current = null
-    scrollRef.current?.scrollTo?.({ top: 0 })
-    focusTarget(target)
+    if (next.scroll) scrollRef.current?.scrollTo?.({ top: 0 })
+    focusTarget(next.target)
   })
 
-  // A copied link goes stale once the answers change or the result is left.
-  const copy = copied && copied.answers === answers && showingResult ? copied : { state: 'idle' as CopyState, url: '' }
-
-  const go = (target: Target, action: () => void) => {
-    focusNext.current = target
-    action()
+  const go = (target: Target, action?: () => void, scroll = true) => {
+    focusNext.current = { target, scroll }
+    if (action) action()
+    else focusTarget(target)
   }
+
+  // A copied link goes stale once anything it carries changes.
+  const shareKey = mode === 'piece' ? piece : answers
+  const copy = copied && copied.key === shareKey ? copied : { state: 'idle' as CopyState, url: '' }
 
   const copyLink = async () => {
     const url = shareUrl()
     try {
       if (!navigator.clipboard?.writeText) throw new Error('no clipboard')
       await navigator.clipboard.writeText(url)
-      setCopied({ state: 'copied', url, answers })
+      setCopied({ state: 'copied', url, key: shareKey })
     } catch {
-      setCopied({ state: 'manual', url, answers })
+      setCopied({ state: 'manual', url, key: shareKey })
     }
   }
+
+  const ready = mode === 'piece' ? hasPiece : hasStack
+  const jumpLabel =
+    mode === 'piece'
+      ? `${matches.length} ${matches.length === 1 ? 'match' : 'matches'}`
+      : `Your stack (${results.filter((r) => r.pick).length})`
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} modal={modal}>
@@ -137,7 +192,7 @@ export function ChooseSheet({
           aria-describedby={`${id}-about`}
           onOpenAutoFocus={(e) => {
             e.preventDefault()
-            focusTarget(showingResult ? 'heading' : 'text')
+            tabRefs.current[mode]?.focus()
           }}
           // Focus goes back as the sheet starts to close (useReturnFocusOnClose).
           onCloseAutoFocus={onCloseAutoFocus}
@@ -153,114 +208,136 @@ export function ChooseSheet({
             'lg:inset-auto lg:top-[4.5rem] lg:bottom-[4.5rem] lg:left-6 lg:z-20 lg:w-[440px] lg:rounded-[var(--radius-panel)] lg:border lg:border-line lg:shadow-(--shadow-float)',
           )}
         >
-          <div className="flex items-start gap-3 border-b border-line px-5 pt-4 pb-3.5 lg:px-6 lg:pt-5">
-            <div className="grid min-w-0 flex-1 gap-1">
-              <DialogPrimitive.Title className="text-[1rem] leading-tight font-semibold">Help me choose</DialogPrimitive.Title>
-              <DialogPrimitive.Description id={`${id}-about`} className="text-xs leading-[1.5] text-text-muted">
-                One tool per layer for your project, each with its reasons.
-              </DialogPrimitive.Description>
-            </div>
-            <DialogPrimitive.Close asChild>
-              <Button variant="quiet" size="icon-pill" className="-mt-1 -mr-2 shrink-0 touch:size-11">
-                <XIcon aria-hidden="true" />
-                <span className="sr-only">Close</span>
-              </Button>
-            </DialogPrimitive.Close>
-          </div>
-
-          <div ref={scrollRef} className="grid min-h-0 flex-1 content-start gap-6 overflow-y-auto px-5 py-5 lg:px-6">
-            {chooser.notice && (
-              <p role="status" className="flex gap-2.5 rounded-[var(--radius-sm)] bg-raised px-3 py-2.5 text-xs leading-[1.5] text-text">
-                <InfoIcon aria-hidden="true" className="mt-px size-3.5 shrink-0 text-text-muted" />
-                <span>{chooser.notice}</span>
-              </p>
-            )}
-
-            {showingResult ? (
-              <StackList
-                results={results}
-                answers={answers}
-                headingRef={headingRef}
-                litOnMap={litOnMap}
-                onSeeMap={onSeeMap}
-                onFocusTool={onFocusTool}
-              />
-            ) : (
-              <>
-                <div className="grid gap-4">
-                  <Describe
-                    text={chooser.text}
-                    onTextChange={chooser.setText}
-                    onRead={chooser.detectNow}
-                    textareaRef={textareaRef}
-                    detected={
-                      <DetectedChips
-                        chips={chooser.chips}
-                        nothingFound={chooser.nothingFound}
-                        onRemove={chooser.removeChip}
-                      />
-                    }
-                  />
+          <Tabs.Root
+            value={mode}
+            onValueChange={(value) => {
+              setCopied(null)
+              onModeChange(value as ChooseMode)
+              scrollRef.current?.scrollTo?.({ top: 0 })
+            }}
+            className="flex min-h-0 flex-1 flex-col"
+          >
+            <div className="grid gap-3.5 border-b border-line px-5 pt-4 pb-3.5 lg:px-6 lg:pt-5">
+              <div className="flex items-start gap-3">
+                <div className="grid min-w-0 flex-1 gap-1">
+                  <DialogPrimitive.Title className="text-[1rem] leading-tight font-semibold">Help me choose</DialogPrimitive.Title>
+                  <DialogPrimitive.Description id={`${id}-about`} className="text-xs leading-[1.5] text-text-muted">
+                    Get a whole stack for your project, or find one piece, such as a database.
+                  </DialogPrimitive.Description>
                 </div>
+                <DialogPrimitive.Close asChild>
+                  <Button variant="quiet" size="icon-pill" className="-mt-1 -mr-2 shrink-0 touch:size-11">
+                    <XIcon aria-hidden="true" />
+                    <span className="sr-only">Close</span>
+                  </Button>
+                </DialogPrimitive.Close>
+              </div>
+              <Tabs.List
+                aria-label="What do you need?"
+                className="grid grid-cols-2 rounded-full border border-line-strong p-0.5"
+              >
+                {TABS.map((tab) => (
+                  <Tabs.Trigger
+                    key={tab.value}
+                    ref={(el) => {
+                      tabRefs.current[tab.value] = el
+                    }}
+                    value={tab.value}
+                    className={cn(
+                      'motion-colors flex h-8 items-center justify-center rounded-full px-3 text-xs touch:h-11',
+                      'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight',
+                      'data-[state=active]:bg-text data-[state=active]:text-background',
+                      'data-[state=inactive]:text-text-muted data-[state=inactive]:hover:bg-raised data-[state=inactive]:hover:text-text',
+                    )}
+                  >
+                    {tab.label}
+                  </Tabs.Trigger>
+                ))}
+              </Tabs.List>
+            </div>
+
+            <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto px-5 py-5 lg:px-6">
+              <Tabs.Content value="stack" className="grid content-start gap-6 outline-none">
+                {chooser.notice && <Notice>{chooser.notice}</Notice>}
+                <Describe
+                  text={chooser.text}
+                  onTextChange={chooser.setText}
+                  onRead={chooser.detectNow}
+                  textareaRef={textareaRef}
+                  detected={
+                    <DetectedChips chips={chooser.chips} nothingFound={chooser.nothingFound} onRemove={chooser.removeChip} />
+                  }
+                />
                 <div className="border-t border-line pt-6">
                   <Questions answers={answers} onChange={chooser.setAnswers} typeRef={typeRef} />
                 </div>
-              </>
-            )}
-          </div>
+                {hasStack && (
+                  <div className="border-t border-line pt-6">
+                    <StackList
+                      results={results}
+                      answers={answers}
+                      headingRef={stackRef}
+                      litOnMap={litOnMap}
+                      onSeeMap={onSeeMap}
+                      onFocusTool={onFocusTool}
+                    />
+                  </div>
+                )}
+              </Tabs.Content>
 
-          <div className="grid gap-2 border-t border-line bg-surface px-5 py-3.5 lg:rounded-b-[var(--radius-panel)] lg:px-6">
-            {showingResult ? (
-              <>
-                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                  <Button variant="pill" size="pill" className={cn(primary, 'touch:h-11 max-sm:px-3')} onClick={copyLink}>
-                    <LinkIcon aria-hidden="true" className="max-sm:hidden" />
-                    Copy link
-                  </Button>
+              <Tabs.Content value="piece" className="grid content-start gap-6 outline-none">
+                {pieceNotice && <Notice>{pieceNotice}</Notice>}
+                <OnePiece
+                  piece={piece}
+                  onChange={onPieceChange}
+                  matches={matches}
+                  focusedTool={focusedTool}
+                  onFocusTool={onFocusTool}
+                  onPickLayer={(layer: Layer) => go('question', () => onPieceChange({ layer, selection: {} }))}
+                  onChangePart={() => go('picker', () => onPieceChange({ layer: null, selection: {} }))}
+                  questionRef={questionRef}
+                  pickerRef={pickerRef}
+                  countRef={countRef}
+                  onSeeMap={onSeeMap}
+                />
+              </Tabs.Content>
+            </div>
+
+            <div className="grid gap-2 border-t border-line bg-surface px-5 py-3.5 lg:rounded-b-[var(--radius-panel)] lg:px-6">
+              {ready ? (
+                <div className="flex flex-wrap items-center gap-1.5">
                   <Button
                     variant="pill"
                     size="pill"
-                    className="touch:h-11 max-sm:px-3"
-                    onClick={() => go('type', () => chooser.setView('questions'))}
+                    className="touch:h-11 max-sm:w-full max-sm:justify-start"
+                    onClick={() => go(mode === 'piece' ? 'count' : 'stack', undefined, false)}
                   >
-                    Edit answers
+                    {jumpLabel}
+                    <ArrowDownIcon aria-hidden="true" className="ml-auto sm:hidden" />
+                  </Button>
+                  <Button variant="pill" size="pill" className={cn(primary, 'touch:h-11 max-sm:px-3')} onClick={copyLink}>
+                    Copy link
                   </Button>
                   <Button
                     variant="quiet"
                     size="pill"
                     className="ml-auto touch:h-11 max-sm:px-3"
-                    onClick={() => go('text', onStartOver)}
+                    onClick={() => go(mode === 'piece' ? 'picker' : 'text', onStartOver)}
                   >
                     Start over
                   </Button>
                 </div>
-                <p role="status" className={copy.state === 'copied' ? 'text-xs text-text-muted' : 'sr-only'}>
-                  {copy.state === 'copied' ? 'Link copied.' : ''}
+              ) : (
+                <p className="flex min-h-9 items-center text-xs text-text-muted touch:min-h-11">
+                  {mode === 'piece' ? 'Pick a part to see the tools that fit.' : 'Pick what you are building to see your stack.'}
                 </p>
-                {copy.state === 'manual' && (
-                  <CopyFallback id={`${id}-link`} url={copy.url} />
-                )}
-              </>
-            ) : (
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                <Button
-                  variant="pill"
-                  size="pill"
-                  className={cn(primary, 'touch:h-11 disabled:border-line-strong disabled:bg-raised disabled:text-text-muted disabled:opacity-100')}
-                  disabled={!answers.projectType}
-                  aria-describedby={answers.projectType ? undefined : `${id}-why-disabled`}
-                  onClick={() => go('heading', onShowStack)}
-                >
-                  Show my stack
-                </Button>
-                {!answers.projectType && (
-                  <p id={`${id}-why-disabled`} className="text-xs text-text-muted">
-                    Pick what you are building first.
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
+              )}
+              <p role="status" className={copy.state === 'copied' ? 'text-xs text-text-muted' : 'sr-only'}>
+                {copy.state === 'copied' ? 'Link copied.' : ''}
+              </p>
+              {copy.state === 'manual' && <CopyFallback id={`${id}-link`} url={copy.url} />}
+            </div>
+          </Tabs.Root>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>

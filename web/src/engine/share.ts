@@ -1,5 +1,6 @@
-import type { KnowledgeBase } from "../lib/kb";
+import type { KnowledgeBase, Layer } from "../lib/kb";
 import { DEFAULT_ANSWERS, type Answers } from "./answers";
+import { groupsFor } from "./facets";
 
 /**
  * Share links: every answer goes in the query string so opening the link
@@ -36,7 +37,7 @@ export function encode(a: Answers): string {
   return parts.join("&");
 }
 
-type ShareKb = Pick<KnowledgeBase, "tools" | "vocab">;
+type ShareKb = Pick<KnowledgeBase, "tools" | "vocab" | "layers">;
 
 function freshDefaults(): Answers {
   return {
@@ -125,5 +126,81 @@ export function decode(qs: string, kb: ShareKb): Decoded {
     return { answers, ignored };
   } catch {
     return { answers: freshDefaults(), ignored };
+  }
+}
+
+/** The One piece chooser: which layer, and the answers per question (group id to option ids). */
+export type Piece = {
+  layer: Layer | null;
+  selection: Record<string, string[]>;
+};
+
+/**
+ * Keys of a One piece link: m=piece, l the layer, f the answers as
+ * group:option pairs (a question with several answers repeats its group).
+ * Example: m=piece&l=database&f=need:vectors,run:managed
+ */
+export const PIECE_KEYS = ["m", "l", "f"] as const;
+
+export function encodePiece(p: Piece): string {
+  const parts = ["m=piece"];
+  if (!p.layer) return parts[0];
+  parts.push(`l=${encodeURIComponent(p.layer)}`);
+  const pairs = Object.entries(p.selection).flatMap(([group, options]) =>
+    options.map((o) => `${encodeURIComponent(group)}:${encodeURIComponent(o)}`),
+  );
+  if (pairs.length) parts.push(`f=${pairs.join(",")}`);
+  return parts.join("&");
+}
+
+export type DecodedPiece = {
+  piece: Piece;
+  ignored: string[];
+  tooLong?: true;
+};
+
+/**
+ * Reads a One piece link back. Never throws: an unknown layer, an answer
+ * the layer does not ask, or a second answer to a one-answer question is
+ * dropped and described in `ignored`.
+ */
+export function decodePiece(qs: string, kb: ShareKb): DecodedPiece {
+  const empty = (): Piece => ({ layer: null, selection: {} });
+  const ignored: string[] = [];
+  try {
+    if (typeof qs !== "string") return { piece: empty(), ignored };
+    if (qs.length > MAX_QUERY_LENGTH) return { piece: empty(), ignored, tooLong: true };
+    const params = new URLSearchParams(qs);
+    const piece = empty();
+
+    const l = params.get("l");
+    if (l) {
+      if ((kb.layers as readonly string[]).includes(l)) piece.layer = l as Layer;
+      else ignored.push(`part "${show(l)}"`);
+    }
+
+    const groups = piece.layer ? groupsFor(piece.layer, kb) : [];
+    const selection: Record<string, string[]> = Object.create(null);
+    for (const item of (params.get("f") ?? "").split(",").slice(0, MAX_LIST_ITEMS)) {
+      const entry = item.trim();
+      if (!entry) continue;
+      const [groupId, optionId] = entry.split(":");
+      const group = groups.find((g) => g.id === groupId);
+      if (!group || !optionId || !group.options.some((o) => o.id === optionId)) {
+        ignored.push(`answer "${show(entry)}"`);
+        continue;
+      }
+      const current = (selection[groupId] ??= []);
+      if (current.includes(optionId)) continue;
+      if (!group.multi && current.length) {
+        ignored.push(`answer "${show(entry)}" (one answer only)`);
+        continue;
+      }
+      current.push(optionId);
+    }
+    piece.selection = { ...selection };
+    return { piece, ignored };
+  } catch {
+    return { piece: empty(), ignored };
   }
 }

@@ -1,8 +1,9 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import { useLocation, useSearchParams } from 'react-router'
 import { XIcon } from 'lucide-react'
-import { ChooseSheet } from '@/components/choose/ChooseSheet'
-import { useChooser, type ChooseView } from '@/components/choose/useChooser'
+import { ChooseSheet, type ChooseMode } from '@/components/choose/ChooseSheet'
+import { readOpeningLink } from '@/components/choose/link'
+import { useChooser } from '@/components/choose/useChooser'
 import { useWebGL } from '@/components/graph/useWebGL'
 import { FiltersPopover } from '@/components/map/FiltersPopover'
 import { InfoDialog } from '@/components/map/InfoDialog'
@@ -14,10 +15,10 @@ import { CornerLinks } from '@/components/shell/CornerLinks'
 import { FullscreenButton } from '@/components/shell/FullscreenButton'
 import { TopBar } from '@/components/shell/TopBar'
 import { Button } from '@/components/ui/button'
-import { defaultAnswers, type Answers } from '@/engine/answers'
+import { matchTools } from '@/engine/facets'
 import { connect, type Route } from '@/engine/path'
 import { scoreStack } from '@/engine/score'
-import { decode, encode, SHARE_KEYS } from '@/engine/share'
+import { encode, encodePiece, PIECE_KEYS, SHARE_KEYS, type Piece } from '@/engine/share'
 import { kb, toolById, type EdgeType, type Layer } from '@/lib/kb'
 import { useTheme } from '@/lib/theme'
 import { cn } from '@/lib/utils'
@@ -71,21 +72,10 @@ function toggled<T>(set: ReadonlySet<T>, item: T): ReadonlySet<T> {
 
 const none: ReadonlySet<never> = new Set()
 
-/**
- * A share link the page was opened with (`?t=...`): its answers, whether
- * they make a stack, and a note about anything that could not be used.
- */
-function readShareLink(search: string): { answers: Answers; view: ChooseView; notice: string | null } | null {
-  const query = search.startsWith('?') ? search.slice(1) : search
-  if (!new URLSearchParams(query).has('t')) return null
-  const { answers, ignored, tooLong } = decode(query, kb)
-  const notice = tooLong
-    ? 'This link is too long to read, so its answers were not used. Answer the questions to build a stack.'
-    : ignored.length
-      ? `Some parts of this link were ignored: ${ignored.join(', ')}.`
-      : null
-  return { answers, view: answers.projectType ? 'result' : 'questions', notice }
-}
+/** Every key a Help me choose link writes, in both modes. */
+const CHOOSE_KEYS: readonly string[] = [...SHARE_KEYS, ...PIECE_KEYS]
+
+const NO_PIECE: Piece = { layer: null, selection: {} }
 
 /** The Help me choose button the person can see (the bar has a wide and a narrow one). */
 function helpTrigger(): HTMLElement | null {
@@ -96,10 +86,18 @@ function helpTrigger(): HTMLElement | null {
 export default function App() {
   const [theme, toggleTheme] = useTheme()
   const { search } = useLocation()
-  // Read once: a share link opens the sheet straight on its result.
-  const [shareLink] = useState(() => readShareLink(search))
-  const [overlay, setOverlay] = useState<Overlay>(shareLink ? 'help' : null)
-  const chooser = useChooser(shareLink ?? { answers: defaultAnswers(), view: 'questions', notice: null })
+  // Read once: a share link opens the sheet straight on its stack or matches.
+  const [link] = useState(() => readOpeningLink(search))
+  const [overlay, setOverlay] = useState<Overlay>(link.open ? 'help' : null)
+  const chooser = useChooser({ answers: link.answers, notice: link.notice })
+  const [mode, setMode] = useState<ChooseMode>(link.mode)
+  const [piece, setPieceState] = useState<Piece>(link.piece)
+  const [pieceNotice, setPieceNotice] = useState<string | null>(link.pieceNotice)
+  const setPiece = useCallback((next: Piece) => {
+    setPieceState(next)
+    // The note about the opening link goes once the person changes an answer.
+    setPieceNotice(null)
+  }, [])
   const [hiddenLayers, setHiddenLayers] = useState<ReadonlySet<Layer>>(none)
   const [hiddenEdgeTypes, setHiddenEdgeTypes] = useState<ReadonlySet<EdgeType>>(none)
   const searchRef = useRef<HTMLInputElement>(null)
@@ -216,39 +214,36 @@ export default function App() {
 
   const setOpen = (which: Exclude<Overlay, null>) => (open: boolean) => setOverlay(open ? which : null)
 
-  // The recommender. The result is recomputed from the answers on every
-  // change, and while it shows, the URL carries the answers (never the text).
-  const { view: chooseView, answers } = chooser
+  // Whole stack: the stack is recomputed from the answers on every change,
+  // once a project type is chosen. One piece: the chosen part's tools that
+  // fit the answers. Only the open mode lights the map and fills the URL.
+  const { answers } = chooser
   const results = useMemo(
-    () => (chooseView === 'result' && answers.projectType ? scoreStack(answers, kb) : []),
-    [chooseView, answers],
+    () => (mode === 'stack' && answers.projectType ? scoreStack(answers, kb) : []),
+    [mode, answers],
   )
   const picks = useMemo(() => results.flatMap((r) => (r.pick ? [r.pick] : [])), [results])
+  const matches = useMemo(
+    () => (mode === 'piece' && piece.layer ? matchTools(piece.layer, piece.selection, kb) : []),
+    [mode, piece],
+  )
+  const lit = useMemo(() => (mode === 'piece' ? matches.map((t) => t.id) : picks), [mode, matches, picks])
 
-  // Without a result shown (Edit answers, Clear stack), the link carries no
-  // stack, so a reload never brings back a stale one.
-  const hasShareKeys = SHARE_KEYS.some((key) => params.has(key))
+  // The URL carries the open mode's answers (never the description), so a
+  // reload or a copied address brings the same stack or matches back.
+  const shared = mode === 'piece' ? encodePiece(piece) : answers.projectType ? encode(answers) : ''
+  const current = CHOOSE_KEYS.flatMap((key) => (params.has(key) ? [`${key}=${params.get(key)}`] : [])).sort().join('&')
+  const wanted = [...new URLSearchParams(shared)].map(([key, value]) => `${key}=${value}`).sort().join('&')
   useEffect(() => {
-    if (chooseView === 'result' || !hasShareKeys) return
+    if (current === wanted) return
     updateParams(
       (next) => {
-        for (const key of SHARE_KEYS) next.delete(key)
+        for (const key of CHOOSE_KEYS) next.delete(key)
+        for (const [key, value] of new URLSearchParams(shared)) next.set(key, value)
       },
       { replace: true },
     )
-  }, [chooseView, hasShareKeys, updateParams])
-
-  useEffect(() => {
-    if (chooseView !== 'result' || !answers.projectType) return
-    const shared = new URLSearchParams(encode(answers))
-    updateParams(
-      (next) => {
-        for (const key of SHARE_KEYS) next.delete(key)
-        for (const [key, value] of shared) next.set(key, value)
-      },
-      { replace: true },
-    )
-  }, [chooseView, answers, updateParams])
+  }, [current, wanted, shared, updateParams])
 
   const openHelp = () => {
     const active = document.activeElement
@@ -268,15 +263,13 @@ export default function App() {
   }
 
   const startOver = () => {
-    chooser.reset()
-    updateParams((next) => {
-      for (const key of SHARE_KEYS) next.delete(key)
-    })
+    if (mode === 'piece') setPiece(NO_PIECE)
+    else chooser.reset()
   }
 
   const shareUrl = () => {
     const url = new URL(window.location.href)
-    url.search = encode(answers)
+    url.search = shared
     url.hash = ''
     return url.toString()
   }
@@ -342,7 +335,7 @@ export default function App() {
       />
     ) : null
 
-  // A new stack is framed in the map area the sheet and the bars leave free.
+  // New lit tools are framed in the map area the sheet and the bars leave free.
   const highlightInset = wide
     ? {
         top: TOP_BAR_INSET.oneRow,
@@ -402,7 +395,7 @@ export default function App() {
                 }
               >
                 <StackGraph
-                  highlight={picks}
+                  highlight={lit}
                   highlightInset={highlightInset}
                   focus={tool?.id}
                   hiddenLayers={hiddenLayers}
@@ -425,19 +418,19 @@ export default function App() {
                 helpOpen && 'lg:left-[30rem]',
               )}
             >
-              {picks.length > 0 && !helpOpen && (
+              {lit.length > 0 && !helpOpen && (
                 <Button
                   variant="pill"
                   size="pill"
                   className="pointer-events-auto"
                   onClick={() => {
-                    chooser.setView('questions')
-                    // The button goes away with the stack, so focus lands on the map it sat on.
+                    startOver()
+                    // The button goes away with the lit tools, so focus lands on the map it sat on.
                     document.getElementById('map')?.focus()
                   }}
                 >
                   <XIcon aria-hidden="true" />
-                  Clear stack
+                  {mode === 'piece' ? 'Clear matches' : 'Clear stack'}
                 </Button>
               )}
               {routeFloats && routeCard}
@@ -471,11 +464,17 @@ export default function App() {
       <ChooseSheet
         open={helpOpen}
         onOpenChange={setOpen('help')}
+        mode={mode}
+        onModeChange={setMode}
         chooser={chooser}
         results={results}
-        onShowStack={() => chooser.setView('result')}
+        piece={piece}
+        onPieceChange={setPiece}
+        matches={matches}
+        pieceNotice={pieceNotice}
         onStartOver={startOver}
         onFocusTool={focusFromSheet}
+        focusedTool={tool?.id}
         onRestoreFocus={restoreHelpFocus}
         shareUrl={shareUrl}
         litOnMap={view === 'map'}

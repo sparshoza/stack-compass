@@ -245,6 +245,9 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { pickIs: { layer: "orm", tool: "sea-orm" } },
       { pickIs: { layer: "database", tool: "cassandra" } },
       { pickIs: { layer: "testing", tool: "postman" } },
+      // JavaScript-only API tools (apollo-server, graphql-yoga) are excluded.
+      { pickIs: { layer: "api-style", tool: "openapi" } },
+      { noToolWithLanguage: "javascript" },
     ],
   },
   {
@@ -280,6 +283,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { backendLanguage: "python" },
       { pickIs: { layer: "mobile", tool: "expo" } },
       { pickIs: { layer: "testing", tool: "pytest" } },
+      // No frontend pick, so TypeScript-only auth libraries are excluded.
+      { pickIs: { layer: "auth", tool: "clerk" } },
     ],
   },
   {

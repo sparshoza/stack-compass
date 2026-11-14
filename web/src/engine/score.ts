@@ -26,9 +26,10 @@ export type LayerResult = {
  * - hosting-mismatch: only in SERVICE_LAYERS and only when hosting is not
  *   "either". The tool's hosting must include the chosen option.
  * - budget-paid-only: on a free budget, pricing must include oss or free-tier.
- * - language-mismatch-with-pick: an orm or jobs-queue tool must share a
- *   language with the backend pick, and a testing tool with the backend or
- *   the frontend pick, when such a pick exists. Tools with no languages pass.
+ * - language-mismatch-with-pick: an orm, api-style or jobs-queue tool must
+ *   share a language with the backend pick, and an auth or testing tool with
+ *   the backend or the frontend pick, when such a pick exists. Tools with no
+ *   languages pass.
  *
  * Everywhere languages are compared, typescript and javascript count as one.
  * - not-built-on-pick: a meta-framework must be built-on the frontend pick,
@@ -83,7 +84,9 @@ const SOFT_LANGUAGE_LAYERS: ReadonlySet<Layer> = new Set<Layer>([
 /** Layers checked against earlier picks' languages, and which picks. */
 const LANGUAGE_PICK_LAYERS: Partial<Record<Layer, Layer[]>> = {
   orm: ["backend"],
+  "api-style": ["backend"],
   "jobs-queue": ["backend"],
+  auth: ["backend", "frontend"],
   testing: ["backend", "frontend"],
 };
 

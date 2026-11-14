@@ -447,6 +447,77 @@ describe("scoreStack", () => {
     expect(alone.excluded).toEqual([]);
   });
 
+  it("api-style shares a language with the backend pick", () => {
+    const tools = [
+      makeTool("axum", "backend", { languages: ["rust"] }),
+      makeTool("apollo-server", "api-style", { languages: ["javascript"] }),
+      makeTool("grpc", "api-style", { languages: ["go", "rust", "python"] }),
+      makeTool("openapi", "api-style"),
+    ];
+    const r = layerOf(
+      scoreStack(answers(), makeKb(tools, ["backend", "api-style"])),
+      "api-style",
+    );
+    expect(r.pick).toBe("grpc");
+    expect(r.alternatives).toEqual(["openapi"]);
+    expect(r.excluded).toEqual([
+      { toolId: "apollo-server", reason: "language-mismatch-with-pick" },
+    ]);
+    const alone = layerOf(
+      scoreStack(answers(), makeKb(tools, ["api-style"])),
+      "api-style",
+    );
+    expect(alone.pick).toBe("apollo-server");
+    expect(alone.excluded).toEqual([]);
+  });
+
+  it("auth shares a language with the backend or frontend pick", () => {
+    const tools = [
+      makeTool("express", "backend", { languages: ["javascript"] }),
+      makeTool("react", "frontend", { languages: ["javascript", "typescript"] }),
+      makeTool("devise", "auth", { languages: ["ruby"] }),
+      makeTool("clerk", "auth", {
+        languages: ["javascript", "typescript", "python", "ruby", "go"],
+        hosting: ["managed"],
+      }),
+      makeTool("better-auth", "auth", { languages: ["typescript"] }),
+      makeTool("authentik", "auth"),
+    ];
+    // Knowing devise lifts it into the top 3, so its exclusion is listed.
+    const knowsDevise = answers({ knownTools: ["devise"] });
+    const r = layerOf(
+      scoreStack(knowsDevise, makeKb(tools, ["backend", "auth"])),
+      "auth",
+    );
+    expect(r.pick).toBe("authentik");
+    // The hosted multi-language service and the TypeScript library both pass.
+    expect(r.alternatives).toEqual(["better-auth", "clerk"]);
+    expect(r.excluded).toEqual([
+      { toolId: "devise", reason: "language-mismatch-with-pick" },
+    ]);
+
+    // With only a frontend pick, the frontend decides.
+    const frontendOnly = layerOf(
+      scoreStack(knowsDevise, makeKb(tools, ["frontend", "auth"])),
+      "auth",
+    );
+    expect(frontendOnly.excluded).toEqual([
+      { toolId: "devise", reason: "language-mismatch-with-pick" },
+    ]);
+
+    // A Ruby backend keeps devise: it shares a language with the backend pick.
+    const ruby = makeKb(
+      [
+        makeTool("rails", "backend", { languages: ["ruby"] }),
+        ...tools.filter((t) => t.layer === "auth"),
+      ],
+      ["backend", "auth"],
+    );
+    expect(layerOf(scoreStack(knowsDevise, ruby), "auth").excluded).toEqual([
+      { toolId: "better-auth", reason: "language-mismatch-with-pick" },
+    ]);
+  });
+
   it("testing shares a language with the backend or frontend pick", () => {
     const tools = [
       makeTool("django", "backend", { languages: ["python"] }),

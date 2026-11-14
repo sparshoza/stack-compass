@@ -1,28 +1,43 @@
-import type { KeywordEntry, KnowledgeBase, Tool } from '../lib/kb'
+import type { KeywordEntry, KnowledgeBase, Tool } from "../lib/kb";
 
 export type Detected = {
-  projectType: string | null
-  capabilities: string[]
-  languagesPrefer: string[]
-  languagesAvoid: string[]
-  knownTools: string[]
+  projectType: string | null;
+  capabilities: string[];
+  languagesPrefer: string[];
+  languagesAvoid: string[];
+  knownTools: string[];
   /**
    * Things the text mentioned but negated ("don't need auth"). Capabilities and
    * tools are recorded by id (capability id, tool id), not by the typed phrase,
    * because the consumer works in ids.
    */
-  droppedByNegation: string[]
-}
+  droppedByNegation: string[];
+};
 
 /** A word within this many tokens before a match can negate it. */
-const NEGATION_WINDOW = 3
+const NEGATION_WINDOW = 3;
 
 /**
  * Single-token negators. Apostrophes are removed during normalization, so
  * "don't" arrives as "dont". "do not" and "no need for" are covered by "not"
  * and "no" because the window is counted in tokens.
  */
-const NEGATORS = new Set(['no', 'not', 'without', 'avoid', 'except', 'dont', 'never'])
+const NEGATORS = new Set([
+  "no",
+  "not",
+  "without",
+  "avoid",
+  "except",
+  "dont",
+  "doesnt",
+  "wont",
+  "cant",
+  "isnt",
+  "arent",
+  "shouldnt",
+  "nor",
+  "never",
+]);
 
 /**
  * Normalize to a list of tokens: NFKC, lowercase, apostrophes dropped, every
@@ -31,64 +46,93 @@ const NEGATORS = new Set(['no', 'not', 'without', 'avoid', 'except', 'dont', 'ne
  * (".net"); a trailing dot is sentence punctuation. "+" and "#" survive at the
  * end of a word ("c++", "c#") and inside one, never at the start.
  */
-export function tokenize(text: string): string[] {
+const BARRIER = "\uE000";
+const BARRIER_WORDS = new Set(["but", "however"]);
+
+/**
+ * Like tokenize, but clause breaks (, ; : ! ? newline, sentence-final dots,
+ * ellipses, and the words "but" and "however") appear as BARRIER tokens that
+ * negation look-back does not cross. "and" is not a barrier.
+ */
+function tokenizeWithBarriers(text: string): string[] {
   const cleaned = text
-    .normalize('NFKC')
+    .normalize("NFKC")
     .toLowerCase()
-    .replace(/['‘’ʼ]/g, '')
-    .replace(/[^\p{L}\p{N}\p{M}.+#]/gu, ' ')
-    .replace(/\.{2,}/g, ' ')
-  const tokens: string[] = []
+    .replace(/['‘’ʼ]/g, "")
+    .replace(/[,;:!?\n\r]+|\.{2,}/g, " \uE000 ")
+    .replace(/[^\p{L}\p{N}\p{M}.+#\uE000]/gu, " ");
+  const tokens: string[] = [];
   for (const raw of cleaned.split(/\s+/)) {
-    if (!raw) continue
-    const leadingDot = raw.startsWith('.')
-    let token = raw.replace(/^[.+#]+/, '').replace(/\.+$/, '')
-    if (!token) continue
-    if (leadingDot && raw.charAt(1) !== '.' && raw.charAt(1) !== '+' && raw.charAt(1) !== '#') {
-      token = '.' + token
+    if (!raw) continue;
+    if (raw === BARRIER) {
+      tokens.push(BARRIER);
+      continue;
     }
-    tokens.push(token)
+    const leadingDot = raw.startsWith(".");
+    const sentenceEnd = raw.endsWith(".");
+    let token = raw.replace(/^[.+#]+/, "").replace(/\.+$/, "");
+    if (!token) {
+      if (sentenceEnd) tokens.push(BARRIER);
+      continue;
+    }
+    if (
+      leadingDot &&
+      raw.charAt(1) !== "." &&
+      raw.charAt(1) !== "+" &&
+      raw.charAt(1) !== "#"
+    ) {
+      token = "." + token;
+    }
+    if (BARRIER_WORDS.has(token)) tokens.push(BARRIER);
+    else tokens.push(token);
+    if (sentenceEnd) tokens.push(BARRIER);
   }
-  return tokens
+  return tokens;
 }
 
-type Target = { kind: 'keyword'; entry: KeywordEntry } | { kind: 'tool'; tool: Tool }
+/** Plain tokens with clause breaks removed; used for phrases and tool names. */
+export function tokenize(text: string): string[] {
+  return tokenizeWithBarriers(text).filter((t) => t !== BARRIER);
+}
 
-type Index = { phrases: Map<string, Target[]>; maxLength: number }
+type Target =
+  { kind: "keyword"; entry: KeywordEntry } | { kind: "tool"; tool: Tool };
 
-const indexes = new WeakMap<KnowledgeBase, Index>()
+type Index = { phrases: Map<string, Target[]>; maxLength: number };
+
+const indexes = new WeakMap<KnowledgeBase, Index>();
 
 function buildIndex(kb: KnowledgeBase): Index {
-  const phrases = new Map<string, Target[]>()
-  let maxLength = 1
+  const phrases = new Map<string, Target[]>();
+  let maxLength = 1;
   const add = (phrase: string, target: Target) => {
-    const tokens = tokenize(phrase)
-    if (tokens.length === 0) return
-    const key = tokens.join(' ')
-    maxLength = Math.max(maxLength, tokens.length)
-    const list = phrases.get(key)
-    if (list) list.push(target)
-    else phrases.set(key, [target])
-  }
+    const tokens = tokenize(phrase);
+    if (tokens.length === 0) return;
+    const key = tokens.join(" ");
+    maxLength = Math.max(maxLength, tokens.length);
+    const list = phrases.get(key);
+    if (list) list.push(target);
+    else phrases.set(key, [target]);
+  };
   for (const entry of kb.keywords) {
-    for (const phrase of entry.phrases) add(phrase, { kind: 'keyword', entry })
+    for (const phrase of entry.phrases) add(phrase, { kind: "keyword", entry });
   }
   for (const tool of kb.tools) {
-    const target: Target = { kind: 'tool', tool }
+    const target: Target = { kind: "tool", tool };
     // A tool whose name is an ordinary word (match_name false) is reachable by aliases only.
-    if (tool.match_name) add(tool.name, target)
-    for (const alias of tool.aliases) add(alias, target)
+    if (tool.match_name) add(tool.name, target);
+    for (const alias of tool.aliases) add(alias, target);
   }
-  return { phrases, maxLength }
+  return { phrases, maxLength };
 }
 
 function indexFor(kb: KnowledgeBase): Index {
-  let index = indexes.get(kb)
+  let index = indexes.get(kb);
   if (!index) {
-    index = buildIndex(kb)
-    indexes.set(kb, index)
+    index = buildIndex(kb);
+    indexes.set(kb, index);
   }
-  return index
+  return index;
 }
 
 /**
@@ -97,63 +141,73 @@ function indexFor(kb: KnowledgeBase): Index {
  * implies neither, and a hosted service with many SDK languages implies none.
  */
 function impliedLanguage(tool: Tool): string | null {
-  return tool.languages.length === 1 ? tool.languages[0] : null
+  return tool.languages.length === 1 ? tool.languages[0] : null;
 }
 
 function isNegated(tokens: string[], position: number): boolean {
-  for (let i = Math.max(0, position - NEGATION_WINDOW); i < position; i++) {
-    if (NEGATORS.has(tokens[i])) return true
+  for (
+    let i = position - 1;
+    i >= Math.max(0, position - NEGATION_WINDOW);
+    i--
+  ) {
+    if (tokens[i] === BARRIER) return false;
+    if (NEGATORS.has(tokens[i])) return true;
   }
-  return false
+  return false;
 }
 
 export function match(text: string, kb: KnowledgeBase): Detected {
-  const tokens = tokenize(text)
-  const { phrases, maxLength } = indexFor(kb)
+  const tokens = tokenizeWithBarriers(text);
+  const { phrases, maxLength } = indexFor(kb);
 
-  let projectType: string | null = null
-  const capabilities = new Set<string>()
-  const prefer = new Set<string>()
-  const avoid = new Set<string>()
-  const knownTools = new Set<string>()
-  const droppedCapabilities = new Set<string>()
-  const droppedTools = new Set<string>()
-  const dropped = new Set<string>()
+  let projectType: string | null = null;
+  const capabilities = new Set<string>();
+  const prefer = new Set<string>();
+  const avoid = new Set<string>();
+  const knownTools = new Set<string>();
+  const droppedCapabilities = new Set<string>();
+  const droppedTools = new Set<string>();
+  const dropped = new Set<string>();
 
-  let i = 0
+  let i = 0;
   while (i < tokens.length) {
-    let matched = 0
+    let matched = 0;
     for (let n = Math.min(maxLength, tokens.length - i); n >= 1; n--) {
-      const targets = phrases.get(tokens.slice(i, i + n).join(' '))
-      if (!targets) continue
-      matched = n
-      const negated = isNegated(tokens, i)
+      const targets = phrases.get(tokens.slice(i, i + n).join(" "));
+      if (!targets) continue;
+      matched = n;
+      const negated = isNegated(tokens, i);
       for (const target of targets) {
-        if (target.kind === 'keyword') {
-          const { project_type, capabilities: caps, languages } = target.entry.sets
+        if (target.kind === "keyword") {
+          const {
+            project_type,
+            capabilities: caps,
+            languages,
+          } = target.entry.sets;
           if (negated) {
             for (const cap of caps) {
-              droppedCapabilities.add(cap)
-              dropped.add(cap)
+              droppedCapabilities.add(cap);
+              dropped.add(cap);
             }
-            for (const language of languages) avoid.add(language)
+            for (const language of languages) avoid.add(language);
           } else {
-            if (project_type && projectType === null) projectType = project_type
-            for (const cap of caps) capabilities.add(cap)
-            for (const language of languages) prefer.add(language)
+            if (project_type && projectType === null)
+              projectType = project_type;
+            for (const cap of caps) capabilities.add(cap);
+            for (const language of languages) prefer.add(language);
           }
         } else if (negated) {
-          droppedTools.add(target.tool.id)
-          dropped.add(target.tool.id)
+          droppedTools.add(target.tool.id);
+          dropped.add(target.tool.id);
         } else {
-          knownTools.add(target.tool.id)
-          const language = impliedLanguage(target.tool)
-          if (language) prefer.add(language)
+          knownTools.add(target.tool.id);
+          const language = impliedLanguage(target.tool);
+          if (language) prefer.add(language);
         }
       }
-      break
+      break;
     }
-    i += matched || 1
+    i += matched || 1;
   }
 
   // Negation wins over a positive mention elsewhere in the text.
@@ -164,5 +218,5 @@ export function match(text: string, kb: KnowledgeBase): Detected {
     languagesAvoid: [...avoid],
     knownTools: [...knownTools].filter((t) => !droppedTools.has(t)),
     droppedByNegation: [...dropped],
-  }
+  };
 }

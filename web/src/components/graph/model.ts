@@ -308,6 +308,51 @@ export class LabelPlacer {
   }
 }
 
+export type Side = 'right' | 'left'
+
+/**
+ * A label candidate. rank 0: the focused tool or a pick (always drawn);
+ * 1: a neighbour of the focused tool; 2: everything else.
+ */
+export interface LabelCandidate {
+  id: string
+  rank: number
+  size: number
+  right: Box
+  left: Box
+}
+
+/**
+ * Decides which labels to draw and on which side of the dot. Lit labels
+ * (rank 0) are placed first and only dodge each other, right of the dot,
+ * else left, else right regardless. Neighbours of a focused tool (rank 1)
+ * then avoid only lit dots, so the dimmed dots around them never hide a
+ * related tool's name. Everything else avoids every dot, bigger dots first.
+ */
+export function placeLabels(placer: LabelPlacer, candidates: readonly LabelCandidate[]): Map<string, Side> {
+  const allowed = new Map<string, Side>()
+  const lit = new Set(candidates.filter((c) => c.rank === 0).map((c) => c.id))
+  const highlighted = new Set(candidates.filter((c) => c.rank <= 1).map((c) => c.id))
+  for (const c of candidates) {
+    if (c.rank !== 0) continue
+    if (placer.place(c.right, c.id, lit)) allowed.set(c.id, 'right')
+    else if (placer.place(c.left, c.id, lit)) allowed.set(c.id, 'left')
+    else {
+      placer.reserve(c.right)
+      allowed.set(c.id, 'right')
+    }
+  }
+  const rest = candidates
+    .filter((c) => c.rank !== 0)
+    .sort((a, b) => a.rank - b.rank || b.size - a.size || (a.id < b.id ? -1 : 1))
+  for (const c of rest) {
+    const among = c.rank === 1 ? highlighted : undefined
+    if (placer.place(c.right, c.id, among)) allowed.set(c.id, 'right')
+    else if (placer.place(c.left, c.id, among)) allowed.set(c.id, 'left')
+  }
+  return allowed
+}
+
 /** Sigma's stage padding, in pixels (StackGraph). */
 export const STAGE_PADDING = 40
 const FIT_MARGIN = 12

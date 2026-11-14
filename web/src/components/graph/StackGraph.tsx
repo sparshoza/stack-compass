@@ -11,15 +11,18 @@ import {
   LabelPlacer,
   makeView,
   neighboursOf,
+  placeLabels,
   nodeStyle,
   portraitFit,
   readPalette,
   STAGE_PADDING,
   type Box,
   type EdgeAttrs,
+  type LabelCandidate,
   type NodeAttrs,
   type Palette,
   type Positions,
+  type Side,
 } from './model'
 
 // sigma and graphology are imported only inside components/graph, so the map
@@ -59,8 +62,6 @@ function drawLabelOnly(context: CanvasRenderingContext2D, data: LabelData, setti
 }
 
 const LABEL_GAP = 3
-
-type Side = 'right' | 'left'
 
 /** Where the text starts: right of the dot by default, or left of it when the right is taken. */
 function labelX(x: number, size: number, width: number, side: Side): number {
@@ -115,9 +116,7 @@ function makeLabelDrawer() {
     placer.resize(sigma.getDimensions())
     context.font = font(settings)
     const dots: { id: string; box: Box }[] = []
-    // rank 0: the focused tool or a pick (always drawn), 1: its neighbours
-    // (placed first), 2: everything else (bigger dots first).
-    const candidates: { id: string; rank: number; size: number; right: Box; left: Box }[] = []
+    const candidates: LabelCandidate[] = []
     sigma.getGraph().forEachNode((id) => {
       const data = sigma.getNodeDisplayData(id)
       if (!data || data.hidden) return
@@ -135,26 +134,7 @@ function makeLabelDrawer() {
       })
     })
     placer.reset(dots)
-    allowed = new Map()
-    // Labels that must show still dodge each other: right of the dot, else
-    // left of it, else right regardless.
-    // Dimmed dots underneath are context, so only lit dots count here.
-    const lit = new Set(candidates.filter((c) => c.rank === 0).map((c) => c.id))
-    for (const c of candidates) {
-      if (c.rank !== 0) continue
-      if (placer.place(c.right, c.id, lit)) allowed.set(c.id, 'right')
-      else if (placer.place(c.left, c.id, lit)) allowed.set(c.id, 'left')
-      else {
-        placer.reserve(c.right)
-        allowed.set(c.id, 'right')
-      }
-    }
-    candidates.sort((a, b) => a.rank - b.rank || b.size - a.size || (a.id < b.id ? -1 : 1))
-    for (const c of candidates) {
-      if (c.rank === 0) continue
-      if (placer.place(c.right, c.id)) allowed.set(c.id, 'right')
-      else if (placer.place(c.left, c.id)) allowed.set(c.id, 'left')
-    }
+    allowed = placeLabels(placer, candidates)
     fresh = true
   }
 

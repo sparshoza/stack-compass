@@ -6,6 +6,7 @@ import {
   edgeStyle,
   FALLBACK_PALETTE,
   LabelPlacer,
+  placeLabels,
   makeView,
   neighboursOf,
   nodeStyle,
@@ -254,6 +255,41 @@ describe('LabelPlacer', () => {
     expect(placer.place(box(20, 12, 60, 20))).toBe(false)
     placer.reset([])
     expect(placer.place(box(20, 12, 60, 20))).toBe(true)
+  })
+})
+
+describe('placeLabels', () => {
+  const box = (x0: number, y0: number, x1: number, y1: number) => ({ x0, y0, x1, y1 })
+  const at = (x: number) => ({ right: box(x + 6, 10, x + 80, 22), left: box(x - 80, 10, x - 6, 22) })
+
+  it('names every neighbour of a focused tool even between dimmed dots', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    // The neighbour at x=200 has dimmed dots on both sides of it.
+    placer.reset([
+      { id: 'focus', box: box(16, 12, 24, 20) },
+      { id: 'near', box: box(196, 12, 204, 20) },
+      { id: 'dim-left', box: box(150, 12, 158, 20) },
+      { id: 'dim-right', box: box(240, 12, 248, 20) },
+    ])
+    const sides = placeLabels(placer, [
+      { id: 'focus', rank: 0, size: 6, ...at(20) },
+      { id: 'near', rank: 1, size: 4, ...at(200) },
+      { id: 'dim-left', rank: 2, size: 4, ...at(154) },
+    ])
+    expect(sides.get('focus')).toBe('right')
+    expect(sides.get('near')).toBe('right')
+    expect(sides.has('dim-left')).toBe(false)
+  })
+
+  it('in browse mode labels still avoid every dot', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    placer.reset([
+      { id: 'a', box: box(196, 12, 204, 20) },
+      { id: 'b', box: box(240, 12, 248, 20) },
+      { id: 'c', box: box(150, 12, 158, 20) },
+    ])
+    const sides = placeLabels(placer, [{ id: 'a', rank: 2, size: 4, ...at(200) }])
+    expect(sides.has('a')).toBe(false)
   })
 })
 

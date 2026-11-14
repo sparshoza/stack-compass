@@ -126,6 +126,13 @@ describe('app shell', () => {
     expect(screen.getByRole('button', { name: 'Switch to dark theme' })).toBeInTheDocument()
   })
 
+  it('every Help me choose button carries its words, so the main action is labelled on phones too', () => {
+    renderApp()
+    const buttons = screen.getAllByRole('button', { name: 'Help me choose' })
+    expect(buttons.length).toBeGreaterThan(0)
+    for (const button of buttons) expect(button).toHaveTextContent('Help me choose')
+  })
+
   it('opens the Help me choose sheet from the top bar', async () => {
     const user = userEvent.setup()
     renderApp()

@@ -72,6 +72,18 @@ export function TopBar({
           <h1 className="text-[0.9375rem] leading-none font-semibold tracking-[-0.01em] whitespace-nowrap">
             Stack Compass
           </h1>
+          {/* On phones the main action sits on the title row, with its words. */}
+          <Button
+            variant="pill"
+            size="pill"
+            className="ml-auto md:hidden"
+            aria-expanded={helpOpen}
+            data-help-trigger
+            onClick={onHelp}
+          >
+            <CompassIcon aria-hidden="true" />
+            Help me choose
+          </Button>
         </div>
 
         <div className="pointer-events-auto flex w-full items-center gap-2 md:w-auto md:gap-1.5">
@@ -87,17 +99,6 @@ export function TopBar({
           >
             <CompassIcon aria-hidden="true" />
             Help me choose
-          </Button>
-          <Button
-            variant="pill"
-            size="icon-pill"
-            className="md:hidden"
-            aria-label="Help me choose"
-            aria-expanded={helpOpen}
-            data-help-trigger
-            onClick={onHelp}
-          >
-            <CompassIcon aria-hidden="true" />
           </Button>
 
           {filters}

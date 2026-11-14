@@ -14,6 +14,7 @@ from .models import (
     NEED_GROUP,
     SCALE_GROUP,
     SCALE_OPTIONS,
+    SHARED_FACET_MULTI,
     SHARED_FACET_OPTIONS,
     SYMMETRIC_EDGE_TYPES,
     FacetGroup,
@@ -65,9 +66,24 @@ def _match_key(text: str) -> str:
     return " ".join(tokens)
 
 
+class _UniqueKeyLoader(yaml.SafeLoader):
+    """A safe loader that rejects a mapping with the same key twice (PyYAML keeps the last)."""
+
+    def construct_mapping(self, node: yaml.MappingNode, deep: bool = False) -> dict:
+        seen: set[Any] = set()
+        for key_node, _ in node.value:
+            key = self.construct_object(key_node, deep=deep)
+            if key in seen:
+                raise yaml.constructor.ConstructorError(
+                    None, None, f"found duplicate key '{key}'", key_node.start_mark
+                )
+            seen.add(key)
+        return super().construct_mapping(node, deep=deep)
+
+
 def _read_yaml(path: Path, rel: str, errors: list[str]) -> Any:
     try:
-        return yaml.safe_load(path.read_text(encoding="utf-8"))
+        return yaml.load(path.read_text(encoding="utf-8"), Loader=_UniqueKeyLoader)
     except OSError as e:
         errors.append(f"{rel}: cannot read file ({e.strerror or e})")
     except yaml.YAMLError as e:
@@ -140,22 +156,40 @@ def _check_facets(vocab: Vocab, errors: list[str]) -> None:
         errors.append(
             f"{rel}: shared_facets must be exactly {list(SHARED_FACET_OPTIONS)}, got {shared_ids}"
         )
+    service: set[str] = set()
+    for layer in vocab.service_layers:
+        if layer not in layers:
+            errors.append(f"{rel}: service_layers has unknown layer '{layer}'")
+        if layer in service:
+            errors.append(f"{rel}: service_layers lists '{layer}' twice")
+        service.add(layer)
     for shared in vocab.shared_facets:
+        where = f"shared_facets '{shared.id}'"
         expected = SHARED_FACET_OPTIONS.get(shared.id)
         got = [o.id for o in shared.options]
         if expected is not None and got != expected:
-            errors.append(
-                f"{rel}: shared_facets '{shared.id}' options must be {expected}, got {got}"
-            )
-        _check_facet_text(shared, f"shared_facets '{shared.id}'", errors)
-        for layer in shared.layers:
+            errors.append(f"{rel}: {where} options must be {expected}, got {got}")
+        multi = SHARED_FACET_MULTI.get(shared.id)
+        if multi is not None and shared.multi != multi:
+            errors.append(f"{rel}: {where} must have multi: {str(multi).lower()}")
+        _check_facet_text(shared, where, errors)
+        for layer, shown in shared.layers.items():
             if layer not in layers:
-                errors.append(f"{rel}: shared_facets '{shared.id}' has unknown layer '{layer}'")
-            elif layer not in vocab.facets:
-                errors.append(
-                    f"{rel}: shared_facets '{shared.id}' lists layer '{layer}' "
-                    f"which has no facets"
-                )
+                errors.append(f"{rel}: {where} has unknown layer '{layer}'")
+                continue
+            if layer not in service:
+                errors.append(f"{rel}: {where} lists '{layer}', which is not in service_layers")
+            if layer not in vocab.facets:
+                errors.append(f"{rel}: {where} lists layer '{layer}' which has no facets")
+            if len(shown) < 2:
+                errors.append(f"{rel}: {where} '{layer}' must show at least 2 options")
+            if len(set(shown)) != len(shown):
+                errors.append(f"{rel}: {where} '{layer}' has a duplicate option")
+            unknown = [o for o in shown if o not in got]
+            for o in unknown:
+                errors.append(f"{rel}: {where} '{layer}' shows unknown option '{o}'")
+            if not unknown and shown != sorted(shown, key=got.index):
+                errors.append(f"{rel}: {where} '{layer}' must keep the option order {got}")
     for layer, groups in vocab.facets.items():
         where = f"facets '{layer}'"
         if layer not in layers:
@@ -165,6 +199,10 @@ def _check_facets(vocab: Vocab, errors: list[str]) -> None:
             errors.append(f"{rel}: {where} must have 1 to 3 groups, has {len(groups)}")
         if NEED_GROUP not in [g.id for g in groups]:
             errors.append(f"{rel}: {where} has no '{NEED_GROUP}' group (What do you need it for?)")
+        elif groups[0].id != NEED_GROUP:
+            errors.append(f"{rel}: {where} must list the '{NEED_GROUP}' group first")
+        elif not groups[0].multi:
+            errors.append(f"{rel}: {where} group '{NEED_GROUP}' must have multi: true")
         group_ids: set[str] = set()
         option_ids: set[str] = set()
         for group in groups:

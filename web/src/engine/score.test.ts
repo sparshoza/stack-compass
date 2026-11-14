@@ -3,7 +3,7 @@ import { kb, type Layer } from "../lib/kb";
 import { DEFAULT_ANSWERS, fromDetected, type Answers } from "./answers";
 import { match } from "./match";
 import { makeKb, makeTool } from "./fixture";
-import { scoreStack, type LayerResult } from "./score";
+import { SERVICE_LAYERS, scoreStack, type LayerResult } from "./score";
 
 const answers = (over: Partial<Answers> = {}): Answers => ({
   ...DEFAULT_ANSWERS,
@@ -1138,5 +1138,43 @@ describe("scoreStack on the real catalog", () => {
         ),
     );
     expect(compatible).toEqual([]);
+  });
+});
+
+describe("service layers and embedded databases", () => {
+  it("SERVICE_LAYERS mirrors vocab service_layers", () => {
+    expect([...SERVICE_LAYERS]).toEqual(kb.vocab.service_layers);
+  });
+
+  it("an embedded database is still excluded when managed hosting is chosen", () => {
+    const fx = makeKb(
+      [
+        makeTool("embedded", "database", { runs_in_app: true, hosting: ["self-hosted"] }),
+        makeTool("cloud", "database", { hosting: ["managed"] }),
+      ],
+      ["database"],
+    );
+    const r = layerOf(
+      scoreStack(answers({ hosting: "managed", knownTools: ["embedded"] }), fx),
+      "database",
+    );
+    expect(r.pick).toBe("cloud");
+    expect(r.excluded).toEqual([{ toolId: "embedded", reason: "no-managed-service" }]);
+  });
+
+  it("managed hosting for a web app never picks SQLite, even marked as running in the app", () => {
+    const real = {
+      ...kb,
+      tools: kb.tools.map((t) => (t.id === "sqlite" ? { ...t, runs_in_app: true } : t)),
+    };
+    const r = layerOf(
+      scoreStack(
+        answers({ projectType: "web-app", hosting: "managed", knownTools: ["sqlite"] }),
+        real,
+      ),
+      "database",
+    );
+    expect(r.pick).not.toBe("sqlite");
+    expect(r.excluded).toContainEqual({ toolId: "sqlite", reason: "no-managed-service" });
   });
 });

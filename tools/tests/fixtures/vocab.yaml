@@ -16,6 +16,7 @@ project_types:
 capability_layers:
   full-text-search: [search]
 tooling_layers: [testing]
+service_layers: [database]
 shared_facets:
   - id: run
     question: Where should it run?
@@ -24,14 +25,16 @@ shared_facets:
       - {id: in-app, label: Inside my app, hint: A library or a local file with no server of its own}
       - {id: self-hosted, label: My own servers, hint: You install it and keep it running}
       - {id: managed, label: Managed for me, hint: A cloud service runs it for you}
-    layers: [database]
+    layers:
+      database: [in-app, self-hosted, managed]
   - id: license
     question: License
     multi: false
     options:
       - {id: oss, label: Open source only, hint: Free to use and change the code}
       - {id: any, label: Anything, hint: Paid and closed source tools too}
-    layers: [database]
+    layers:
+      database: [oss, any]
 facets:
   frontend:
     - id: need

@@ -41,6 +41,7 @@ export interface Tool {
   id: string
   name: string
   aliases: string[]
+  /** False when the name is an ordinary word: the matcher then uses aliases only. */
   match_name: boolean
   /** A library that runs inside your app (auth, email, search libraries): no server of its own to host. */
   runs_in_app: boolean
@@ -60,9 +61,9 @@ export interface Tool {
   avoid_when: string[]
   edges: Edge[]
   /** Option ids of this layer's own facet groups (not scale, not shared facets). */
-  uses?: string[]
+  uses: string[]
   /** Set only on layers with a scale facet group. */
-  scale?: Scale | null
+  scale: Scale | null
   verified: string
   sources: string[]
 }
@@ -101,7 +102,8 @@ export interface FacetGroup {
  */
 export interface SharedFacet extends FacetGroup {
   id: 'run' | 'license'
-  layers: Layer[]
+  /** Layer to the option ids shown there (no option that no tool on it can match). */
+  layers: Partial<Record<Layer, string[]>>
 }
 
 export interface Vocab {
@@ -110,9 +112,11 @@ export interface Vocab {
   project_types: ProjectType[]
   capability_layers: Record<string, Layer[]>
   tooling_layers: Layer[]
-  shared_facets?: SharedFacet[]
+  /** Layers that run as a service; score.ts SERVICE_LAYERS mirrors it. */
+  service_layers: Layer[]
+  shared_facets: SharedFacet[]
   /** Facet groups per layer; the first is always "What do you need it for?". */
-  facets?: Partial<Record<Layer, FacetGroup[]>>
+  facets: Partial<Record<Layer, FacetGroup[]>>
 }
 
 export interface KeywordEntry {
@@ -133,7 +137,25 @@ export interface KnowledgeBase {
   keywords: KeywordEntry[]
 }
 
-export const kb = catalog as unknown as KnowledgeBase
+/** Tool fields the compiler leaves out when they hold their default value. */
+type DefaultedField = 'match_name' | 'runs_in_app' | 'needs_web_frontend' | 'uses' | 'scale'
+export type CatalogTool = Omit<Tool, DefaultedField> & Partial<Pick<Tool, DefaultedField>>
+
+/** Puts back the defaults catalog.json omits (see OMIT_DEFAULTS in compile.py). */
+export function withDefaults(tool: CatalogTool): Tool {
+  return {
+    match_name: true,
+    runs_in_app: false,
+    needs_web_frontend: false,
+    uses: [],
+    scale: null,
+    ...tool,
+  }
+}
+
+const raw = catalog as unknown as Omit<KnowledgeBase, 'tools'> & { tools: CatalogTool[] }
+
+export const kb: KnowledgeBase = { ...raw, tools: raw.tools.map(withDefaults) }
 
 const byId = new Map(kb.tools.map((tool) => [tool.id, tool]))
 

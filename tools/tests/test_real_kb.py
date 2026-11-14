@@ -1,6 +1,8 @@
 from collections import Counter
 from pathlib import Path
 
+import pytest
+
 from compassdata.compile import compile_catalog, render
 from compassdata.load import load_kb
 from compassdata.models import LAYERS
@@ -318,11 +320,80 @@ def test_scale_groups_only_where_size_splits_the_layer():
     assert with_scale == {"database", "cache", "search"}
 
 
-def test_shared_facets_cover_the_service_layers():
+SERVICE_LAYERS = [
+    "database", "cache", "jobs-queue", "search", "storage", "auth", "payments",
+    "email", "cms", "hosting", "ci-cd", "observability",
+]  # fmt: skip
+
+
+def test_service_layers_are_the_scorer_service_layers():
+    # web/src/engine/score.test.ts checks SERVICE_LAYERS in score.ts against this list.
+    assert load_kb(DATA).vocab.service_layers == SERVICE_LAYERS
+
+
+def test_run_is_shown_on_service_layers_except_jobs_queue():
     shared = {s.id: s for s in load_kb(DATA).vocab.shared_facets}
-    service = {
-        "database", "cache", "jobs-queue", "search", "storage", "auth", "payments",
-        "email", "cms", "hosting", "ci-cd", "observability",
-    }
-    assert set(shared["run"].layers) == service
-    assert set(shared["license"].layers) == service - {"jobs-queue"}
+    assert list(shared["run"].layers) == [x for x in SERVICE_LAYERS if x != "jobs-queue"]
+
+
+def test_license_is_shown_wherever_it_can_narrow_the_list():
+    kb = load_kb(DATA)
+    license_layers = {s.id: s for s in kb.vocab.shared_facets}["license"].layers
+    for layer in SERVICE_LAYERS:
+        tools = [t for t in kb.tools.values() if t.layer == layer]
+        all_oss = all("oss" in t.pricing for t in tools)
+        # Hidden only where every tool is open source (jobs-queue today).
+        assert (layer not in license_layers) == all_oss, layer
+
+
+def _shared_match(facet: str, option: str, tool) -> bool:
+    if facet == "run":
+        return {
+            "in-app": tool.runs_in_app,
+            "self-hosted": "self-hosted" in tool.hosting and not tool.runs_in_app,
+            "managed": "managed" in tool.hosting,
+        }[option]
+    return option == "any" or "oss" in tool.pricing
+
+
+# Shared options whose matching tool only exists once part B tags the catalog.
+PENDING_PART_B = {("run", "database", "in-app")}  # sqlite gets runs_in_app in part B
+
+
+def _shared_cases():
+    kb = load_kb(DATA)
+    for shared in kb.vocab.shared_facets:
+        for layer, options in shared.layers.items():
+            for option in options:
+                case = (shared.id, layer, option)
+                marks = (
+                    [pytest.mark.skip(reason="part B sets runs_in_app on embedded databases")]
+                    if case in PENDING_PART_B
+                    else []
+                )
+                yield pytest.param(*case, marks=marks, id="-".join(case))
+
+
+@pytest.mark.parametrize(("facet", "layer", "option"), list(_shared_cases()))
+def test_every_shown_shared_option_matches_a_tool(facet, layer, option):
+    tools = [t for t in load_kb(DATA).tools.values() if t.layer == layer]
+    assert any(_shared_match(facet, option, t) for t in tools)
+
+
+@pytest.mark.skip(reason="part B tags `uses` and `scale`; the integrator removes this skip")
+def test_every_facet_option_matches_a_tool_and_every_tool_has_a_need():
+    kb = load_kb(DATA)
+    for layer, groups in kb.vocab.facets.items():
+        tools = [t for t in kb.tools.values() if t.layer == layer]
+        for group in groups:
+            for opt in group.options:
+                if group.id == "scale":
+                    hit = any(t.scale in (opt.id, "both") for t in tools)
+                else:
+                    hit = any(opt.id in t.uses for t in tools)
+                assert hit, f"{layer} {group.id} {opt.id} matches no tool"
+        need = {o.id for o in groups[0].options}
+        for t in tools:
+            assert need & set(t.uses), f"{t.id} has no need option"
+            if any(g.id == "scale" for g in groups):
+                assert t.scale is not None, f"{t.id} has no scale"

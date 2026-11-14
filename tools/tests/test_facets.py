@@ -10,6 +10,7 @@ import yaml
 from compassdata.load import KbError, load_kb
 
 FIXTURES = Path(__file__).parent / "fixtures"
+NL = chr(10)
 
 
 @pytest.fixture
@@ -57,7 +58,9 @@ def test_fixture_facets_load():
     assert [o.id for o in groups[0].options] == ["app-data", "analytics", "vectors"]
     assert groups[0].multi is True and groups[1].multi is False
     assert [s.id for s in kb.vocab.shared_facets] == ["run", "license"]
-    assert kb.vocab.shared_facets[0].layers == ["database"]
+    assert kb.vocab.shared_facets[0].layers == {"database": ["in-app", "self-hosted", "managed"]}
+    assert kb.vocab.shared_facets[1].layers == {"database": ["oss", "any"]}
+    assert kb.vocab.service_layers == ["database"]
 
 
 def test_uses_and_scale_default_to_empty(kb_dir):
@@ -273,10 +276,79 @@ def test_shared_license_options_are_fixed(kb_dir):
 
 
 def test_rejects_shared_facet_on_unknown_layer(kb_dir):
-    edit_vocab(kb_dir, lambda d: d["shared_facets"][0]["layers"].append("warehouse"))
+    edit_vocab(kb_dir, lambda d: d["shared_facets"][0]["layers"].update(warehouse=["managed"]))
     assert vocab_errors(kb_dir, "warehouse")
 
 
 def test_rejects_shared_facet_on_layer_without_facets(kb_dir):
-    edit_vocab(kb_dir, lambda d: d["shared_facets"][1]["layers"].append("testing"))
+    def add(d):
+        d["service_layers"].append("testing")
+        d["shared_facets"][1]["layers"]["testing"] = ["oss", "any"]
+    edit_vocab(kb_dir, add)
     assert vocab_errors(kb_dir, "testing")
+
+
+def test_rejects_shared_layer_option_not_in_the_facet(kb_dir):
+    edit_vocab(kb_dir, lambda d: d["shared_facets"][0]["layers"].update(
+        database=["in-app", "embedded"]))
+    assert vocab_errors(kb_dir, "'embedded'")
+
+
+def test_rejects_shared_layer_with_fewer_than_two_options(kb_dir):
+    edit_vocab(kb_dir, lambda d: d["shared_facets"][0]["layers"].update(database=["managed"]))
+    assert vocab_errors(kb_dir, "at least 2")
+
+
+def test_rejects_duplicate_option_in_a_shared_layer(kb_dir):
+    edit_vocab(kb_dir, lambda d: d["shared_facets"][0]["layers"].update(
+        database=["managed", "managed", "in-app"]))
+    assert vocab_errors(kb_dir, "duplicate")
+
+
+def test_shared_layer_options_keep_the_facet_order(kb_dir):
+    edit_vocab(kb_dir, lambda d: d["shared_facets"][0]["layers"].update(
+        database=["managed", "in-app"]))
+    assert vocab_errors(kb_dir, "order")
+
+
+def test_rejects_duplicate_shared_layer_key(kb_dir):
+    path = kb_dir / "vocab.yaml"
+    text = path.read_text(encoding="utf-8")
+    text = text.replace(
+        "      database: [oss, any]", "      database: [oss, any]" + NL + "      database: [oss, any]"
+    )
+    path.write_text(text, encoding="utf-8")
+    assert vocab_errors(kb_dir, "duplicate key")
+
+
+def test_rejects_duplicate_key_in_a_tool_file(kb_dir):
+    path = kb_dir / "tools" / "frontend" / "react.yaml"
+    path.write_text(path.read_text(encoding="utf-8") + "name: React again" + NL, encoding="utf-8")
+    errs = errors_of(kb_dir)
+    assert any(e.startswith("tools/frontend/react.yaml") and "duplicate key" in e for e in errs)
+
+
+@pytest.mark.parametrize(("index", "multi"), [(0, False), (1, True)])
+def test_shared_facet_multi_is_fixed(kb_dir, index, multi):
+    edit_vocab(kb_dir, lambda d: d["shared_facets"][index].update(multi=multi))
+    assert vocab_errors(kb_dir, "multi")
+
+
+def test_rejects_shared_layer_outside_service_layers(kb_dir):
+    edit_vocab(kb_dir, lambda d: d["service_layers"].clear())
+    assert vocab_errors(kb_dir, "service_layers")
+
+
+def test_rejects_unknown_service_layer(kb_dir):
+    edit_vocab(kb_dir, lambda d: d["service_layers"].append("warehouse"))
+    assert vocab_errors(kb_dir, "warehouse")
+
+
+def test_need_group_must_come_first(kb_dir):
+    edit_vocab(kb_dir, lambda d: d["facets"]["database"].reverse())
+    assert vocab_errors(kb_dir, "first")
+
+
+def test_need_group_must_be_multi(kb_dir):
+    edit_vocab(kb_dir, lambda d: d["facets"]["frontend"][0].update(multi=False))
+    assert vocab_errors(kb_dir, "multi")

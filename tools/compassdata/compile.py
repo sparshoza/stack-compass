@@ -14,6 +14,22 @@ DEFAULT_DATA = ROOT / "data"
 DEFAULT_OUT = ROOT / "catalog" / "catalog.json"
 
 
+# Tool fields left out of the catalog when they hold their default; web/src/lib/kb.ts
+# puts the same defaults back.
+OMIT_DEFAULTS: dict[str, Any] = {
+    "uses": [],
+    "scale": None,
+    "runs_in_app": False,
+    "needs_web_frontend": False,
+    "match_name": True,
+}
+
+
+def _tool_json(tool: Any) -> dict[str, Any]:
+    data = tool.model_dump(mode="json")
+    return {k: v for k, v in data.items() if k not in OMIT_DEFAULTS or v != OMIT_DEFAULTS[k]}
+
+
 def compile_catalog(data_dir: Path) -> dict[str, Any]:
     kb = load_kb(data_dir)
     return {
@@ -21,7 +37,7 @@ def compile_catalog(data_dir: Path) -> dict[str, Any]:
         "edgeTypes": list(EDGE_TYPES),
         "vocab": kb.vocab.model_dump(mode="json"),
         "keywords": [k.model_dump(mode="json") for k in kb.keywords],
-        "tools": [kb.tools[i].model_dump(mode="json") for i in sorted(kb.tools)],
+        "tools": [_tool_json(kb.tools[i]) for i in sorted(kb.tools)],
     }
 
 

@@ -52,6 +52,8 @@ SHARED_FACET_OPTIONS: dict[str, list[str]] = {
     "run": ["in-app", "self-hosted", "managed"],
     "license": ["oss", "any"],
 }
+# Where should it run: pick several. Does it have to be open source: pick one.
+SHARED_FACET_MULTI: dict[str, bool] = {"run": True, "license": False}
 
 
 class Strict(BaseModel):
@@ -168,7 +170,8 @@ class FacetGroup(Strict):
 
 
 class SharedFacet(FacetGroup):
-    layers: list[str] = Field(min_length=1)
+    # Layer -> the options shown there, so no layer offers an option no tool can match.
+    layers: dict[str, list[str]] = Field(min_length=1)
 
 
 class Vocab(Strict):
@@ -177,6 +180,8 @@ class Vocab(Strict):
     project_types: list[ProjectType]
     capability_layers: dict[str, list[str]]
     tooling_layers: list[str]
+    # Layers that run as a service (score.ts SERVICE_LAYERS mirrors this list).
+    service_layers: list[str]
     shared_facets: list[SharedFacet]
     facets: dict[str, list[FacetGroup]]
 

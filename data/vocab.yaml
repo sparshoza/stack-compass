@@ -117,6 +117,12 @@ tooling_layers: [state, build-tool, ci-cd, observability, testing]
 #   run: in-app = runs_in_app; self-hosted = hosting has self-hosted and the tool
 #        does not run in the app; managed = hosting has managed.
 #   license: oss = pricing has oss; any = every tool.
+# Each shared facet maps a layer to the options shown there, so no layer offers an
+# option that no tool can match. Layers must be service layers.
+#
+# Layers that run as a service: where they run can be filtered. score.ts
+# SERVICE_LAYERS mirrors this list (score.test.ts checks it).
+service_layers: [database, cache, jobs-queue, search, storage, auth, payments, email, cms, hosting, ci-cd, observability]
 shared_facets:
   - id: run
     question: Where should it run?
@@ -125,14 +131,36 @@ shared_facets:
       - {id: in-app, label: Inside my app, hint: A library or a local file with no server of its own}
       - {id: self-hosted, label: My own servers, hint: You install it and keep it running}
       - {id: managed, label: Managed for me, hint: A cloud service runs it for you}
-    layers: [database, cache, jobs-queue, search, storage, auth, payments, email, cms, hosting, ci-cd, observability]
+    layers:
+      database: [in-app, self-hosted, managed]
+      cache: [in-app, self-hosted, managed]
+      search: [in-app, self-hosted, managed]
+      storage: [in-app, self-hosted, managed]
+      auth: [in-app, self-hosted, managed]
+      payments: [self-hosted, managed]
+      email: [in-app, self-hosted, managed]
+      cms: [self-hosted, managed]
+      hosting: [self-hosted, managed]
+      ci-cd: [self-hosted, managed]
+      observability: [self-hosted, managed]
   - id: license
-    question: License
+    question: Does it have to be open source?
     multi: false
     options:
       - {id: oss, label: Open source only, hint: Code you can read and run yourself for free}
       - {id: any, label: Anything, hint: Paid and closed source tools too}
-    layers: [database, cache, search, storage, auth, payments, email, cms, hosting, ci-cd, observability]
+    layers:
+      database: [oss, any]
+      cache: [oss, any]
+      search: [oss, any]
+      storage: [oss, any]
+      auth: [oss, any]
+      payments: [oss, any]
+      email: [oss, any]
+      cms: [oss, any]
+      hosting: [oss, any]
+      ci-cd: [oss, any]
+      observability: [oss, any]
 facets:
   backend:
     - id: need
@@ -143,7 +171,7 @@ facets:
         - {id: apis, label: APIs, hint: Data for a website or a phone app}
         - {id: lightweight, label: Small and simple, hint: A small core you add pieces to as you go}
         - {id: live, label: Live features, hint: "Chat, notifications and live updates"}
-        - {id: edge, label: Runs anywhere, hint: Also runs on serverless and edge platforms}
+        - {id: edge, label: Cheap pay per use hosting, hint: Runs on serverless platforms that bill only when used}
   frontend:
     - id: need
       question: What do you need it for?
@@ -162,7 +190,7 @@ facets:
         - {id: web-apps, label: Full web apps, hint: "Pages, logins and server code in one project"}
         - {id: content, label: Content sites, hint: "Blogs, marketing pages and portfolios"}
         - {id: docs, label: Documentation, hint: Docs sites with navigation and search}
-        - {id: static-export, label: Plain files, hint: Builds a site you can host anywhere as plain files}
+        - {id: static-export, label: Host as plain files, hint: Builds files that any simple web host can serve}
   mobile:
     - id: need
       question: What do you need it for?
@@ -182,7 +210,7 @@ facets:
         - {id: flexible-data, label: Flexible records, hint: Data without a fixed shape such as JSON documents}
         - {id: analytics, label: Analytics, hint: Reports and dashboards over many rows}
         - {id: text-search, label: Text search, hint: Find records by the words inside them}
-        - {id: vectors, label: AI and vectors, hint: Embeddings for similarity search and RAG}
+        - {id: vectors, label: AI and vectors, hint: Power AI features that find similar things}
         - {id: time-series, label: Metrics and events, hint: "Time series, logs and sensor readings"}
     - id: scale
       question: How big will it get?
@@ -208,7 +236,7 @@ facets:
         - {id: typed-calls, label: Typed calls from my frontend, hint: Shared types between your web app and server}
         - {id: flexible-queries, label: Flexible queries, hint: Clients ask for exactly the data they need}
         - {id: service-calls, label: Calls between services, hint: Fast calls from one server to another}
-        - {id: events, label: Events and messages, hint: Describe messages sent through a broker}
+        - {id: events, label: Events and messages, hint: Describe the messages your services send each other}
         - {id: from-database, label: API from my database, hint: An instant API made from your tables}
   auth:
     - id: need
@@ -217,7 +245,7 @@ facets:
       options:
         - {id: login, label: Sign up and log in, hint: Email and password or magic links}
         - {id: social, label: Social login, hint: "Sign in with Google, GitHub and similar"}
-        - {id: company-sso, label: Company sign in, hint: SAML or OIDC single sign on for business customers}
+        - {id: company-sso, label: Company sign in, hint: "Employees sign in with their work account (Okta, Microsoft)"}
         - {id: second-factor, label: Extra security, hint: Passkeys or a second step such as a code}
         - {id: teams, label: Teams and organisations, hint: Users grouped into companies with roles}
         - {id: ready-screens, label: Ready made screens, hint: Login and profile pages you do not have to build}
@@ -246,12 +274,12 @@ facets:
         - {id: scheduled, label: Scheduled jobs, hint: Run tasks on a timer such as nightly reports}
         - {id: workflows, label: Long workflows, hint: Many step processes that survive crashes and restarts}
     - id: store
-      question: Where should it keep jobs?
+      question: What else does it need?
       multi: true
       options:
-        - {id: my-database, label: My existing database, hint: "Postgres, MySQL or SQLite, no extra server"}
+        - {id: my-database, label: Just my database, hint: "Keeps jobs in Postgres, MySQL or SQLite, no extra server"}
         - {id: redis, label: Redis, hint: A fast in memory store you run next to the app}
-        - {id: own-service, label: Its own service, hint: A message broker or a server made for jobs}
+        - {id: own-service, label: A separate server or cloud service, hint: A message broker or a service made for jobs}
   search:
     - id: need
       question: What do you need it for?
@@ -260,7 +288,7 @@ facets:
         - {id: site-search, label: Search my site or docs, hint: Find pages on a website or docs site}
         - {id: app-search, label: Search products or records, hint: Fast search with typo tolerance and filters}
         - {id: logs, label: Logs and analytics, hint: Search and chart large amounts of logs}
-        - {id: by-meaning, label: Search by meaning, hint: Finds similar items using AI embeddings}
+        - {id: by-meaning, label: Search by meaning, hint: "Finds results that mean the same thing, not just the same words"}
         - {id: in-browser, label: Search in the browser, hint: Runs on the page with no search server}
     - id: scale
       question: How big will it get?
@@ -345,9 +373,9 @@ facets:
       question: What do you need it for?
       multi: true
       options:
-        - {id: static-sites, label: Static sites, hint: "Blogs, docs and landing pages"}
+        - {id: static-sites, label: A simple website, hint: "Blogs, docs and landing pages"}
         - {id: web-apps, label: Full web apps, hint: Sites with server rendering such as Next.js or Nuxt}
-        - {id: backends, label: Backends and APIs, hint: Long running servers in any language}
+        - {id: backends, label: An app with a server, hint: Long running servers and APIs in any language}
         - {id: containers, label: Containers, hint: Runs any app packaged as a container image}
         - {id: databases, label: Databases included, hint: Postgres or Redis next to your app}
         - {id: near-users, label: Close to users, hint: Runs code in many regions near your visitors}

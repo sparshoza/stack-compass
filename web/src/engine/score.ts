@@ -29,6 +29,8 @@ export type LayerResult = {
  *   option: no-managed-service when the person chose managed, hosting-mismatch
  *   when they chose self-hosted. A runs_in_app tool (a library inside your
  *   app) is never excluded this way: there is no server of its own to host.
+ *   Except on the database layer: an embedded database (SQLite) still keeps
+ *   durable data on a disk someone has to host, so hosting applies to it.
  * - budget-paid-only: on a free budget, pricing must include oss or free-tier.
  * - missing-capability: a chosen capability whose capability_layers entry
  *   names this layer is required here when at least one tool in the layer
@@ -261,7 +263,7 @@ function failedCheck(
   }
   if (
     SERVICE_LAYERS.has(layer) &&
-    !tool.runs_in_app &&
+    (!tool.runs_in_app || layer === "database") &&
     a.hosting !== "either" &&
     !tool.hosting.includes(a.hosting)
   ) {

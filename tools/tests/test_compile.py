@@ -5,6 +5,7 @@ from pathlib import Path
 from compassdata.compile import compile_catalog, main, render
 
 FIXTURES = Path(__file__).parent / "fixtures"
+NL = chr(10)
 
 
 def test_catalog_shape_and_order():
@@ -31,3 +32,27 @@ def test_check_flags_stale(tmp_path: Path):
     assert main(["--check", "--data", str(data), "--out", str(out)]) == 0
     out.write_text("{}\n", encoding="utf-8")
     assert main(["--check", "--data", str(data), "--out", str(out)]) == 1
+
+
+def test_catalog_omits_tool_defaults(tmp_path: Path):
+    data = tmp_path / "data"
+    shutil.copytree(FIXTURES, data)
+    cat = compile_catalog(data)
+    react = next(t for t in cat["tools"] if t["id"] == "react")
+    for key in ("uses", "scale", "runs_in_app", "needs_web_frontend", "match_name"):
+        assert key not in react, key
+    assert react["edges"] and "repo" in react
+
+
+def test_catalog_keeps_values_that_differ_from_defaults(tmp_path: Path):
+    data = tmp_path / "data"
+    shutil.copytree(FIXTURES, data)
+    path = data / "tools" / "database" / "postgres.yaml"
+    path.write_text(
+        path.read_text(encoding="utf-8")
+        + NL.join(["uses: [app-data]", "scale: single", "runs_in_app: true", "match_name: false", ""]),
+        encoding="utf-8",
+    )
+    pg = next(t for t in compile_catalog(data)["tools"] if t["id"] == "postgres")
+    assert pg["uses"] == ["app-data"] and pg["scale"] == "single"
+    assert pg["runs_in_app"] is True and pg["match_name"] is False

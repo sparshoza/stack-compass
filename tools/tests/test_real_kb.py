@@ -291,3 +291,13 @@ def test_required_capabilities_leave_out_only_reviewed_tools():
             t.id for t in kb.tools.values() if t.layer in layers and cap not in t.tags
         }
     assert gaps == CAPABILITY_GAPS
+
+
+def test_swift_testing_tool():
+    tools = load_kb(DATA).tools
+    t = tools["swift-testing"]
+    assert (t.layer, t.languages, t.license, t.pricing) == (
+        "testing", ["swift"], "Apache-2.0", ["oss"]
+    )
+    assert "swift-testing" in _pairs(tools, "vapor")
+    assert "https://docs.vapor.codes/advanced/testing/" in t.sources

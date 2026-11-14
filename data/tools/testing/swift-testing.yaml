@@ -1,0 +1,19 @@
+id: swift-testing
+name: Swift Testing
+aliases: [swift-testing, apple swift testing]
+layer: testing
+summary: Apple's open source library for writing and running tests in Swift, in Xcode projects and Swift packages.
+url: https://developer.apple.com/documentation/testing
+repo: https://github.com/swiftlang/swift-testing
+license: Apache-2.0
+languages: [swift]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Tests for Swift packages and Xcode projects, Vapor apps through VaporTesting]
+avoid_when: [Your toolchain is older than Swift 6 or Xcode 16]
+edges:
+- {type: pairs-with, target: vapor}
+verified: 2026-11-14
+sources: ['https://developer.apple.com/documentation/testing', 'https://github.com/swiftlang/swift-testing', 'https://www.swift.org/packages/testing.html', 'https://docs.vapor.codes/advanced/testing/']

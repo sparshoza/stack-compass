@@ -19901,6 +19901,53 @@
     },
     {
       "aliases": [
+        "swift-testing",
+        "apple swift testing"
+      ],
+      "avoid_when": [
+        "Your toolchain is older than Swift 6 or Xcode 16"
+      ],
+      "edges": [
+        {
+          "target": "vapor",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Tests for Swift packages and Xcode projects",
+        "Vapor apps through VaporTesting"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "swift-testing",
+      "languages": [
+        "swift"
+      ],
+      "layer": "testing",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Swift Testing",
+      "needs_web_frontend": false,
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/swiftlang/swift-testing",
+      "runs_in_app": false,
+      "sources": [
+        "https://developer.apple.com/documentation/testing",
+        "https://github.com/swiftlang/swift-testing",
+        "https://www.swift.org/packages/testing.html",
+        "https://docs.vapor.codes/advanced/testing/"
+      ],
+      "summary": "Apple's open source library for writing and running tests in Swift, in Xcode projects and Swift packages.",
+      "tags": [],
+      "url": "https://developer.apple.com/documentation/testing",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "swift ui",
         "apple swiftui"
       ],
@@ -21493,6 +21540,10 @@
         {
           "target": "flyio",
           "type": "pairs-with"
+        },
+        {
+          "target": "swift-testing",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -21519,7 +21570,8 @@
       "sources": [
         "https://vapor.codes",
         "https://docs.vapor.codes/",
-        "https://github.com/vapor/vapor"
+        "https://github.com/vapor/vapor",
+        "https://docs.vapor.codes/advanced/testing/"
       ],
       "summary": "A Swift web framework for writing backends, web apps, APIs and HTTP servers, built on SwiftNIO.",
       "tags": [],

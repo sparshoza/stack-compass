@@ -408,6 +408,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { pickIs: { layer: "backend", tool: "vapor" } },
       { pickIs: { layer: "orm", tool: "fluent" } },
       { pickIs: { layer: "mobile", tool: "swiftui" } },
+      // A Swift test library, not an HTTP client, for a Swift stack.
+      { pickIs: { layer: "testing", tool: "swift-testing" } },
     ],
   },
   {

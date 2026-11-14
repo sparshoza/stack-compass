@@ -321,7 +321,8 @@ export default function App() {
     : {
         top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone,
         right: 0,
-        bottom: Math.round(window.innerHeight * 0.6),
+        // The panel shrinks to half the screen while it shows a route (ToolPanel).
+        bottom: Math.round(window.innerHeight * 0.5),
         left: 0,
       }
 

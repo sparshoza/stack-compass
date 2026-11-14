@@ -514,6 +514,8 @@ export interface LabelCandidate {
   id: string
   rank: number
   size: number
+  /** The focused tool: its name shows even when it has to cover another. */
+  keep?: boolean
   below: Box
   above: Box
   right: Box
@@ -523,7 +525,9 @@ export interface LabelCandidate {
  * Decides which labels to draw and where. Every name is centred under its
  * dot, else over it, and is dropped only when both places collide. Lit labels
  * (rank 0) are placed first and only dodge each other and the lit dots; when
- * both places are taken they try right of the dot, then go under it regardless. Neighbours of a focused tool
+ * both places are taken they try right of the dot; with no room there either
+ * the name is left out, except the focused tool's, which goes under its dot
+ * regardless. Neighbours of a focused tool
  * (rank 1) then avoid only lit dots, so the dimmed dots around them never
  * hide a related tool's name. Everything else avoids every dot, bigger dots
  * (better-connected tools) first.
@@ -537,10 +541,11 @@ export function placeLabels(placer: LabelPlacer, candidates: readonly LabelCandi
     if (placer.place(c.below, c.id, lit)) allowed.set(c.id, 'below')
     else if (placer.place(c.above, c.id, lit)) allowed.set(c.id, 'above')
     else if (placer.place(c.right, c.id, lit)) allowed.set(c.id, 'right')
-    else {
+    else if (c.keep) {
       placer.reserve(c.below)
       allowed.set(c.id, 'below')
     }
+    // Any other crowded lit name is left out rather than drawn over another.
   }
   const rest = candidates
     .filter((c) => c.rank !== 0)

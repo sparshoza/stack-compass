@@ -129,7 +129,9 @@ export function ToolPanel({ tool: current, onClose, onFocusTool, onFindRoute, ro
           }}
           className={cn(
             'motion-sheet-end fixed z-20 flex flex-col border-line bg-surface text-[0.8125rem] text-text shadow-(--shadow-float) outline-none',
-            'inset-x-0 bottom-0 max-h-[60dvh] rounded-t-[var(--radius-panel)] border-t',
+            // On phones a route needs more of the map, so the panel takes half the screen.
+            'inset-x-0 bottom-0 rounded-t-[var(--radius-panel)] border-t',
+            route ? 'max-h-[50dvh]' : 'max-h-[60dvh]',
             'lg:top-[4.5rem] lg:right-6 lg:bottom-[4.5rem] lg:left-auto lg:max-h-none lg:w-[400px] lg:rounded-[var(--radius-panel)] lg:border',
           )}
         >

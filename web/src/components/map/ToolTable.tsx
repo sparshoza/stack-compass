@@ -176,7 +176,7 @@ export function ToolTable({ onOpen, onBackToMap, footer }: ToolTableProps) {
                 <button
                   type="button"
                   onClick={() => onOpen(tool.id)}
-                  className="-mx-1 inline-flex min-h-6 items-center gap-2 rounded-sm px-1 text-left font-medium text-text hover:underline hover:decoration-line-strong hover:underline-offset-4"
+                  className="-mx-1 inline-flex min-h-6 items-center gap-2 rounded-sm px-1 text-left font-medium text-text touch:min-h-11 hover:underline hover:decoration-line-strong hover:underline-offset-4"
                 >
                   <span
                     aria-hidden="true"

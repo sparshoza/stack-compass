@@ -86,13 +86,14 @@ type LabelData = PartialButFor<NodeDisplayData, 'x' | 'y' | 'size' | 'label' | '
  * or another tool's dot or runs off the map. The focused tool and any picks
  * are reserved first, then its neighbours claim space, then the
  * best-connected tools claim space before the rest. Each name is centred
- * under its dot, else over it (a lit name may also go right of it). Labels
+ * under its dot, else over it (a lit name may also go right of it; a lit
+ * name with no room is left out, except the focused tool's). Labels
  * keep out from under the top bar (`area().top`). Lit names (focus, picks,
  * neighbours, hover) get a solid halo in the map colour (`area().halo`) so
  * accent edges do not cut them. Sigma offers every node as a candidate (tiny
  * label grid) and this decides.
  */
-function makeLabelDrawer(area: () => { top: number; halo: string }) {
+function makeLabelDrawer(area: () => { top: number; halo: string; keep: string | null }) {
   const placer = new LabelPlacer({ width: 0, height: 0 })
   const widths = new Map<string, number>()
   let allowed = new Map<string, Side>()
@@ -140,6 +141,7 @@ function makeLabelDrawer(area: () => { top: number; halo: string }) {
         id,
         size: data.size,
         rank: data.forceLabel ? ((data.zIndex ?? 0) >= 2 ? 0 : 1) : 2,
+        keep: id === area().keep,
         ...labelBoxes(at.x, at.y, r, width, settings.labelSize),
       })
     })
@@ -435,6 +437,7 @@ export function StackGraph({
     const labels = makeLabelDrawer(() => ({
       top: frameInsetRef.current?.top ?? 0,
       halo: paletteRef.current.background,
+      keep: focusRef.current ?? null,
     }))
     const sigma = new Sigma<NodeAttrs, EdgeAttrs>(graph, container, {
       allowInvalidContainer: true,

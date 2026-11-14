@@ -590,6 +590,13 @@ describe('map screen', () => {
       expect(graph.props?.routeInset?.left).toBe(0)
     })
 
+    it('on a phone the panel gives half the screen back to the map while it shows a route', async () => {
+      renderApp('/?focus=django&to=postgresql')
+      await screen.findByTestId('stack-graph')
+      expect(graph.props?.routeInset?.bottom).toBe(Math.round(window.innerHeight * 0.5))
+      expect(screen.getByRole('dialog', { name: 'Django' }).className).toContain('max-h-[50dvh]')
+    })
+
     it('ignores a route to the same tool or to an unknown one', async () => {
       const first = renderApp('/?focus=django&to=django')
       expect(card()).not.toBeInTheDocument()

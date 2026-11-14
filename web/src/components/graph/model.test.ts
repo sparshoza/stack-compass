@@ -381,6 +381,22 @@ describe('placeLabels', () => {
     expect(sides.get('p')).toBe('right')
   })
 
+  it('a crowded pick drops its name instead of drawing over another, unless it is the focused tool', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    // Picks packed in a column: no room under, over or right of the middle one.
+    const column = () => [dot('p', 200), dot('under', 200, 114), dot('over', 200, 86), dot('right', 236), dot('left', 164)]
+    const picks = (keep?: boolean) => [
+      { id: 'under', rank: 0, size: 5, ...at(200, 114) },
+      { id: 'over', rank: 0, size: 5, ...at(200, 86) },
+      { id: 'right', rank: 0, size: 5, ...at(236) },
+      { id: 'p', rank: 0, size: 5, keep, ...at(200) },
+    ]
+    placer.reset(column())
+    expect(placeLabels(placer, picks()).has('p')).toBe(false)
+    placer.reset(column())
+    expect(placeLabels(placer, picks(true)).get('p')).toBe('below')
+  })
+
   it('in browse mode labels still avoid every dot', () => {
     const placer = new LabelPlacer({ width: 400, height: 300 })
     placer.reset([dot('a', 200), dot('b', 200, 112), dot('c', 200, 88)])

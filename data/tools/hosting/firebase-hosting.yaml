@@ -24,7 +24,7 @@ edges:
   target: github-pages
 - type: alternative-to
   target: netlify
-uses: [static-sites, web-apps]
+uses: [static-sites]
 verified: '2026-11-14'
 sources:
 - https://firebase.google.com/products/hosting

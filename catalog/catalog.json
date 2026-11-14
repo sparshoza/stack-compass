@@ -5088,7 +5088,8 @@
       ],
       "url": "https://cassandra.apache.org",
       "uses": [
-        "time-series"
+        "time-series",
+        "vectors"
       ],
       "verified": "2026-11-14"
     },
@@ -8357,8 +8358,7 @@
       ],
       "url": "https://firebase.google.com/products/hosting",
       "uses": [
-        "static-sites",
-        "web-apps"
+        "static-sites"
       ],
       "verified": "2026-11-14"
     },

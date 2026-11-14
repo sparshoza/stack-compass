@@ -17,7 +17,7 @@ edges:
 - {type: alternative-to, target: dynamodb}
 - {type: pairs-with, target: spring-boot}
 - {type: pairs-with, target: express}
-uses: [time-series]
+uses: [time-series, vectors]
 scale: scale-out
 verified: 2026-11-14
 sources: ['https://cassandra.apache.org', 'https://github.com/apache/cassandra', 'https://cassandra.apache.org/doc/latest/cassandra/vector-search/overview.html', 'https://cassandra.apache.org/_/cassandra-basics.html']

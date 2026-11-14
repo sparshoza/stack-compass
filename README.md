@@ -61,6 +61,12 @@ flowchart LR
 
 More detail, including what each part does and what the tests cover: [docs/architecture.md](docs/architecture.md).
 
+## The map
+
+- **Layout.** `web/scripts/layout.mjs` places every tool once, at build time, so the map looks the same on every visit. Tools start from positions seeded by their id, then ForceAtlas2 settles them along the catalog's edges into one round tangle. Edges between layer families pull harder than edges inside a family, so families mix through the map instead of gathering in sectors. Tools whose names would overlap are nudged apart. `npm --prefix web run layout -- --check` fails CI when the committed file is stale.
+- **Drawing.** Small dots coloured by layer family, a name centred under nearly every dot at the default zoom on a desktop screen, and thin grey edges. Hovering or opening a tool brightens its neighbours and dims the rest. A recommended stack is drawn in the accent colour with heavier edges between the picks.
+- **Motion.** Short and quiet, using transform and opacity only. When a result appears, the picks light up one after another in the order they were scored, all within 480 ms, changing only colour, size and label. The camera glides for 280 ms to a tool you open or to frame a new stack, and stops as soon as you touch the map. The tool panel and the Help me choose sheet slide in from their own side in 200 ms and leave in 160 ms; the filters popover grows from its button; buttons give slightly when pressed. Typing, arrow keys, wheel and pinch zoom never animate. With reduced motion turned on in the system settings, every one of these changes happens at once. All durations live in `web/src/styles/tokens.css`, and a test fails on a duration written anywhere else.
+
 ## How recommendations work
 
 1. **Describe (optional).** Your text is lowercased and split into words, and phrases from a fixed list of 162 keyword entries are found on word boundaries, longest match first. Tool names and their aliases count too, also inside a longer phrase ("a Flutter app" names Flutter). Only a backend, ORM, API-style or job-queue tool sets languages, and only when it uses at most two language families ("django" means Python, "Spring Boot" means Java and Kotlin, "NestJS" means TypeScript and JavaScript; a service with SDKs in many languages sets none); naming any other tool, such as Flutter or React, only marks it as a tool you know. A language you type yourself ("in Swift") always counts. A match with "no", "not", "without", "avoid", "except", "nothing", "don't" or a similar word up to three words before it becomes an exclusion. Filler words such as "want", "to", "use" and "in" are not counted, so "I don't want to use Node" avoids JavaScript and "nothing in Java" avoids Java. The look-back stops at commas, full stops and the words "but" and "however", so "no PHP but Python" avoids PHP and still prefers Python. An API project ("a REST API", "build an API in Go") also gets the REST API feature, unless the text names GraphQL or an API-style tool; picking API only by hand ticks it too, and you can untick it. You see what was picked up as removable chips. The text stays in the page: it is never sent anywhere and never goes into a link.
@@ -110,9 +116,9 @@ Measured on 2026-11-14 on Windows 11 Pro, Intel Core i7-12700H, 16 GB RAM, Pytho
 
 **Golden set**: 36 of 36 cases pass (100%). Each case is a written project description with checks on the result, for example "backend language is Python", "payments pick is Stripe", "no PHP tool picked". Cases are in `web/src/engine/golden.cases.ts`. Command: `npm --prefix web run golden` (40 tests: the 36 cases plus 4 checks on the set itself).
 
-**Tests**: 65 Python tests (`uv run pytest`) and 330 web tests in 23 files (`npm --prefix web test -- --run`), all passing.
+**Tests**: 65 Python tests (`uv run pytest`) and 374 web tests in 27 files (`npm --prefix web test -- --run`), all passing.
 
-**Links**: 1017 URLs checked, 0 failed. Command: `uv run python -m compassdata.check_links`
+**Links**: 1031 URLs checked, 0 failed. Command: `uv run python -m compassdata.check_links`
 
 ## Suggest an edit
 
@@ -131,7 +137,6 @@ Open a tool on the map and choose **Suggest an edit**, or use **Report an issue*
 
 Planned, not built yet:
 
-- Motion: camera glides on the map, a sliding panel and picks lighting up in layer order, all off when the system asks for reduced motion.
 - Live GitHub stars and latest versions, fetched at build time with a weekly scheduled rebuild.
 - More tools in every layer.
 - A preview image for each shared result, so a link shows the stack it holds.

@@ -52,9 +52,10 @@ flowchart LR
 | Engine | `web/src/engine/` | Pure TypeScript: matcher, layer selection, scoring, explanations, share-link encoding. No React, fully unit tested. |
 | Map | `web/src/components/graph/` | sigma.js and graphology, loaded in their own chunk after the shell paints. Falls back to the table view without WebGL. |
 | Screens | `web/src/components/` | Top bar, search, filters, tool panel, table view, Help me choose sheet. |
+| Motion | `web/src/styles/tokens.css`, `web/src/styles/motion.css`, `web/src/lib/motion.ts` | Duration and easing tokens, the CSS classes for sheets, popovers and presses, and the frame loop for the map camera and the pick sequence. Reduced motion sets every duration to 0. |
 
 ## Tests
 
 - `uv run pytest`: the validator against fixtures (every rule), the real catalog (valid, fresh, per-layer counts, total), the stats module.
-- `npm --prefix web test -- --run`: the engine (every scoring rule, negation, round trips of share links including tampered ones), the golden set of 36 written project descriptions, the screens through Testing Library, and a scan of `web/src` and `data/` for banned UI patterns and dash characters.
+- `npm --prefix web test -- --run`: the engine (every scoring rule, negation, round trips of share links including tampered ones), the golden set of 36 written project descriptions, the screens through Testing Library, the motion helpers (stagger timing, reduced motion), and a scan of `web/src` and `data/` for banned UI patterns and dash characters.
 - CI (`.github/workflows/ci.yml`) runs both, plus lint, the catalog and layout freshness checks, and the production build.

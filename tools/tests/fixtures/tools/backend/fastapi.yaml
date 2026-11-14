@@ -1,0 +1,18 @@
+id: fastapi
+name: FastAPI
+aliases: [fast api]
+layer: backend
+summary: A Python web framework for building APIs with type hints.
+url: https://fastapi.tiangolo.com
+license: MIT
+languages: [python]
+tags: [type-safety, realtime]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Typed JSON APIs]
+avoid_when: []
+edges:
+  - {type: pairs-with, target: postgres}
+verified: 2026-11-14
+sources: [https://fastapi.tiangolo.com]

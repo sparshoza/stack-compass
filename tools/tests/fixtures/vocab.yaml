@@ -1,0 +1,18 @@
+languages: [python, typescript, javascript]
+capabilities:
+  - id: realtime
+    label: Realtime
+    explain: Pushes changes to users as they happen.
+  - id: full-text-search
+    label: Full-text search
+    explain: Searches inside text with ranking and typo tolerance.
+  - id: type-safety
+    label: Type safety
+    explain: Catches type mistakes before the code runs.
+project_types:
+  - id: web-app
+    label: Web app
+    core_layers: [frontend, backend, database]
+capability_layers:
+  full-text-search: [search]
+tooling_layers: [testing]

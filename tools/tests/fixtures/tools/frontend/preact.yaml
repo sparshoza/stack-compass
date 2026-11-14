@@ -1,0 +1,18 @@
+id: preact
+name: Preact
+aliases: [preactjs]
+layer: frontend
+summary: A small React-compatible library for building user interfaces.
+url: https://preactjs.com
+license: MIT
+languages: [javascript, typescript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Small bundles]
+avoid_when: []
+edges:
+  - {type: alternative-to, target: react}
+verified: 2026-11-14
+sources: [https://preactjs.com]

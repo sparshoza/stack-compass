@@ -1,0 +1,9 @@
+- phrases: [chat, live updates, websocket]
+  sets:
+    capabilities: [realtime]
+- phrases: [blog, dashboard]
+  sets:
+    project_type: web-app
+- phrases: [python]
+  sets:
+    languages: [python]

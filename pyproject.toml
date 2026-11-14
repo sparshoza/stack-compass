@@ -1,0 +1,23 @@
+[project]
+name = "stack-compass"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "pydantic>=2.14.3",
+    "pyyaml>=6.0.3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.5",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["tools"]
+testpaths = ["tools/tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["tools"]

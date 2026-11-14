@@ -1,0 +1,19 @@
+id: react
+name: React
+aliases: [reactjs, react.js]
+layer: frontend
+summary: A library for building user interfaces from components.
+url: https://react.dev
+repo: https://github.com/facebook/react
+license: MIT
+languages: [javascript, typescript]
+tags: [type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Interactive apps with a large ecosystem]
+avoid_when: [A mostly static page needs no client code]
+edges:
+  - {type: alternative-to, target: preact}
+verified: 2026-11-14
+sources: [https://react.dev]

@@ -1,0 +1,18 @@
+id: postgres
+name: PostgreSQL
+aliases: [postgres, pg]
+layer: database
+summary: An open source relational database.
+url: https://www.postgresql.org
+license: PostgreSQL
+languages: []
+tags: [full-text-search]
+hosting: [managed, self-hosted]
+pricing: [oss, free-tier, paid]
+maturity: established
+good_for: [Relational data]
+avoid_when: []
+edges:
+  - {type: pairs-with, target: fastapi}
+verified: 2026-11-14
+sources: [https://www.postgresql.org]

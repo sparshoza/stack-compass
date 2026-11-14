@@ -957,6 +957,52 @@ describe("scoreStack", () => {
     expect(layerOf(scoreStack(answers(), fx), "api-style").pick).toBe("rpc");
   });
 
+  it("the capability is only required when a tool that passes the other filters has it", () => {
+    const fx = makeKb(
+      [
+        // Has the tag but fails the free budget.
+        makeTool("paid", "jobs-queue", { tags: ["background-jobs"], pricing: ["paid"] }),
+        makeTool("plain", "jobs-queue"),
+      ],
+      ["jobs-queue"],
+    );
+    fx.vocab = { ...fx.vocab, capability_layers: { "background-jobs": ["jobs-queue"] } };
+    const r = layerOf(
+      scoreStack(answers({ capabilities: ["background-jobs"], budget: "free" }), fx),
+      "jobs-queue",
+    );
+    expect(r.pick).toBe("plain");
+    expect(r.excluded).toEqual([{ toolId: "paid", reason: "budget-paid-only" }]);
+  });
+
+  it("a tool built on a same-layer tool with the tag has the capability via it", () => {
+    const fx = makeKb(
+      [
+        makeTool("plain", "database"),
+        makeTool("pg", "database", { name: "Pg" }),
+        makeTool("vec", "database", {
+          name: "Vec",
+          tags: ["vector-search"],
+          edges: [{ type: "built-on", target: "pg" }],
+        }),
+      ],
+      ["database"],
+    );
+    fx.vocab = { ...fx.vocab, capability_layers: { "vector-search": ["database"] } };
+    const r = layerOf(
+      scoreStack(answers({ capabilities: ["vector-search"], knownTools: ["pg"] }), fx),
+      "database",
+    );
+    expect(r.pick).toBe("pg");
+    expect(r.breakdown).toContainEqual({
+      code: "capability:vector-search:via:vec",
+      points: 3,
+    });
+    expect(r.excluded).toEqual([
+      { toolId: "plain", reason: "missing-capability:vector-search" },
+    ]);
+  });
+
   it("every chosen capability for the layer is required on its own", () => {
     const fx = makeKb(
       [

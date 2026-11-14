@@ -95,6 +95,7 @@ describe("label", () => {
     expect(codes).toContain("known");
     expect(codes).toContain("capability:realtime");
     expect(codes).toContain("pairs-with:django");
+    expect(codes).toContain("capability:vector-search:via:pgvector");
     expect(codes).toContain("language-mismatch-with-pick");
     expect(codes).toContain("no-web-frontend");
     expect(codes).toContain("missing-capability:rest-api");
@@ -115,6 +116,9 @@ describe("label", () => {
     );
     // An acronym at the start keeps its capitals.
     expect(label("capability:rest-api", kb)).toBe("supports REST API");
+    expect(label("capability:vector-search:via:pgvector", kb)).toBe(
+      "supports vector search via pgvector",
+    );
     expect(label("pairs-with:django", kb)).toBe(
       "pairs with Django, your backend pick",
     );

@@ -73,8 +73,6 @@
   sets: {project_type: api-only, languages: [go]}
 - phrases: [go web app]
   sets: {project_type: web-app, languages: [go]}
-- phrases: [go app, go server]
-  sets: {languages: [go]}
 - phrases: [java, jvm, jdk]
   sets: {languages: [java]}
 - phrases: [kotlin, android kotlin]

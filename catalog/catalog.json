@@ -615,19 +615,6 @@
     },
     {
       "phrases": [
-        "go app",
-        "go server"
-      ],
-      "sets": {
-        "capabilities": [],
-        "languages": [
-          "go"
-        ],
-        "project_type": null
-      }
-    },
-    {
-      "phrases": [
         "java",
         "jvm",
         "jdk"
@@ -14592,6 +14579,10 @@
         {
           "target": "qdrant",
           "type": "alternative-to"
+        },
+        {
+          "target": "postgresql",
+          "type": "built-on"
         },
         {
           "target": "postgresql",

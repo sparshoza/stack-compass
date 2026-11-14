@@ -15,6 +15,7 @@ good_for: [Embeddings next to your relational data]
 avoid_when: [Billions of vectors with strict latency targets]
 edges:
 - {type: alternative-to, target: qdrant}
+- {type: built-on, target: postgresql}
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: supabase}
 verified: 2026-11-14

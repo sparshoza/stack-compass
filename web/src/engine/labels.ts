@@ -58,7 +58,12 @@ export function label(code: string, kb: KnowledgeBase): string {
   const fixed = FIXED[code];
   if (fixed) return fixed;
   if (code.startsWith("capability:")) {
-    const id = code.slice("capability:".length);
+    const [id, , viaId] = code.slice("capability:".length).split(":");
+    if (viaId) {
+      const cap = kb.vocab.capabilities.find((c) => c.id === id);
+      const via = kb.tools.find((t) => t.id === viaId);
+      return `supports ${cap ? lowerFirst(cap.label) : id} via ${via ? via.name : viaId}`;
+    }
     const cap = kb.vocab.capabilities.find((c) => c.id === id);
     return `supports ${cap ? lowerFirst(cap.label) : id}`;
   }

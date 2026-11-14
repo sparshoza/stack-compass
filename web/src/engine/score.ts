@@ -32,8 +32,10 @@ export type LayerResult = {
  * - budget-paid-only: on a free budget, pricing must include oss or free-tier.
  * - missing-capability: a chosen capability whose capability_layers entry
  *   names this layer is required here when at least one tool in the layer
- *   has its tag (soft, like the frontend language rule: a layer where no
- *   tool has it keeps every tool). The code carries the capability id
+ *   that passes the other filters has it (soft, like the frontend language rule: a layer where no
+ *   tool that passes the other filters has it keeps every tool). A tool
+ *   has a capability when it carries the tag or a same-layer tool built on
+ *   it does. The code carries the capability id
  *   ("missing-capability:rest-api"), like the capability score codes.
  * - language-mismatch-with-pick: an orm, api-style or jobs-queue tool must
  *   share a language with the backend pick, and a testing tool with the
@@ -125,6 +127,7 @@ const FRONTEND_RULE_LAYERS: ReadonlySet<Layer> = new Set<Layer>([
 /** Fixed score codes. Capability and pairs-with codes carry an id suffix. */
 export const SCORE_CODES = {
   capability: (tag: string) => `capability:${tag}`,
+  capabilityVia: (tag: string, toolId: string) => `capability:${tag}:via:${toolId}`,
   known: "known",
   pairsWith: (id: string) => `pairs-with:${id}`,
   established: "maturity-established",
@@ -150,10 +153,20 @@ export function emittableReasons(kb: KnowledgeBase): string[] {
   );
 }
 
+const sameLayer = (kb: KnowledgeBase, tool: Tool, targetId: string) =>
+  kb.tools.some((o) => o.id === targetId && o.layer === tool.layer);
+
 /** Every score code the scorer can emit for this catalog. */
 export function emittableCodes(kb: KnowledgeBase): string[] {
   return [
     ...kb.vocab.capabilities.map((c) => SCORE_CODES.capability(c.id)),
+    ...kb.tools
+      .filter((t) => t.edges.some((e) => e.type === "built-on" && sameLayer(kb, t, e.target)))
+      .flatMap((t) =>
+        kb.vocab.capabilities
+          .filter((c) => t.tags.includes(c.id))
+          .map((c) => SCORE_CODES.capabilityVia(c.id, t.id)),
+      ),
     SCORE_CODES.known,
     ...kb.tools.map((t) => SCORE_CODES.pairsWith(t.id)),
     SCORE_CODES.established,
@@ -182,7 +195,35 @@ function hasEdge(tool: Tool, types: string[], target: string): boolean {
 type Picks = Map<Layer, Tool>;
 
 /** Facts about the layer being scored that the filters need. */
-type LayerContext = { preferApplies: boolean; requiredCapabilities: string[] };
+type LayerContext = {
+  preferApplies: boolean;
+  requiredCapabilities: string[];
+  /** Every tool in the layer, for capabilities a tool has through another. */
+  layerTools: Tool[];
+};
+
+/**
+ * How a tool has a capability: directly (via is null), or through a tool in
+ * its layer that is built on it and carries the tag ("PostgreSQL via
+ * pgvector"). Null when it has neither.
+ */
+function capabilityVia(
+  tool: Tool,
+  cap: string,
+  layerTools: Tool[],
+): { via: string | null } | null {
+  if (tool.tags.includes(cap)) return { via: null };
+  const carrier = layerTools
+    .filter(
+      (t) =>
+        t.id !== tool.id &&
+        t.layer === tool.layer &&
+        t.tags.includes(cap) &&
+        hasEdge(t, ["built-on"], tool.id),
+    )
+    .sort((x, y) => (x.id < y.id ? -1 : 1))[0];
+  return carrier ? { via: carrier.id } : null;
+}
 
 /**
  * True when every other layer the tool is built-on, and that has a pick,
@@ -233,7 +274,9 @@ function failedCheck(
   ) {
     return "budget-paid-only";
   }
-  const missing = ctx.requiredCapabilities.find((cap) => !tool.tags.includes(cap));
+  const missing = ctx.requiredCapabilities.find(
+    (cap) => !capabilityVia(tool, cap, ctx.layerTools),
+  );
   if (missing) return missingCapability(missing);
   let pickLayers = LANGUAGE_PICK_LAYERS[layer] ?? [];
   // An in-app auth library runs in the backend when there is one.
@@ -278,11 +321,22 @@ function failedCheck(
   return null;
 }
 
-function breakdownFor(tool: Tool, a: Answers, picks: Picks): ScoreItem[] {
+function breakdownFor(
+  tool: Tool,
+  a: Answers,
+  picks: Picks,
+  layerTools: Tool[],
+): ScoreItem[] {
   const items: ScoreItem[] = [];
   for (const cap of new Set(a.capabilities)) {
-    if (tool.tags.includes(cap)) {
-      items.push({ code: SCORE_CODES.capability(cap), points: CAPABILITY_POINTS });
+    const has = capabilityVia(tool, cap, layerTools);
+    if (has) {
+      items.push({
+        code: has.via
+          ? SCORE_CODES.capabilityVia(cap, has.via)
+          : SCORE_CODES.capability(cap),
+        points: CAPABILITY_POINTS,
+      });
     }
   }
   if (a.knownTools.includes(tool.id)) {
@@ -352,19 +406,21 @@ function preferApplies(layer: Layer, tools: Tool[], a: Answers): boolean {
 }
 
 /**
- * Chosen capabilities that add this layer and that at least one of its tools
- * provides, in the order they were chosen.
+ * Chosen capabilities that add this layer and that at least one tool passing
+ * the other filters provides, in the order they were chosen. A capability no
+ * such tool provides is not required, so the layer still gets a pick.
  */
 function requiredCapabilities(
   layer: Layer,
   tools: Tool[],
   a: Answers,
   capabilityLayers: Record<string, Layer[]>,
+  passing: Tool[],
 ): string[] {
   return [...new Set(a.capabilities)].filter(
     (cap) =>
       (capabilityLayers[cap] ?? []).includes(layer) &&
-      tools.some((t) => t.tags.includes(cap)),
+      passing.some((t) => capabilityVia(t, cap, tools)),
   );
 }
 
@@ -376,13 +432,19 @@ function scoreLayer(
   layers: Map<string, Layer>,
   capabilityLayers: Record<string, Layer[]>,
 ): LayerResult {
-  const ctx: LayerContext = {
+  const base: LayerContext = {
     preferApplies: preferApplies(layer, tools, a),
-    requiredCapabilities: requiredCapabilities(layer, tools, a, capabilityLayers),
+    requiredCapabilities: [],
+    layerTools: tools,
+  };
+  const passing = tools.filter((t) => failedCheck(t, a, picks, base, layers) === null);
+  const ctx: LayerContext = {
+    ...base,
+    requiredCapabilities: requiredCapabilities(layer, tools, a, capabilityLayers, passing),
   };
   const ranked: Ranked[] = tools
     .map((tool) => {
-      const breakdown = breakdownFor(tool, a, picks);
+      const breakdown = breakdownFor(tool, a, picks, tools);
       return {
         tool,
         breakdown,
@@ -393,12 +455,12 @@ function scoreLayer(
       };
     })
     .sort(byRank);
-  const passing = ranked.filter((r) => r.reason === null);
-  const best = passing[0];
+  const passed = ranked.filter((r) => r.reason === null);
+  const best = passed[0];
   return {
     layer,
     pick: best ? best.tool.id : null,
-    alternatives: passing.slice(1, 1 + ALTERNATIVES).map((r) => r.tool.id),
+    alternatives: passed.slice(1, 1 + ALTERNATIVES).map((r) => r.tool.id),
     breakdown: best ? best.breakdown : [],
     excluded: ranked
       .slice(0, EXCLUDED_WINDOW)

@@ -104,6 +104,17 @@ describe("match", () => {
     expect(match("I know c++ and c++.", cpp).languagesPrefer).toEqual(["cpp"]);
   });
 
+  it("go as an ordinary word sets no language preference", () => {
+    for (const text of [
+      "an on the go app for commuters",
+      "a pay as you go app for parking",
+      "a grab and go app for a cafe",
+    ]) {
+      expect(match(text, kb).languagesPrefer).toEqual([]);
+    }
+    expect(match("a go web app", kb).languagesPrefer).toContain("go");
+  });
+
   it("tool alias sets known tool and its language", () => {
     const d = match("a django app", base);
     expect(d.knownTools).toEqual(["django"]);
@@ -210,7 +221,7 @@ describe("match", () => {
       expect(d.languagesPrefer).toEqual(["go"]);
     }
     for (const text of ["a Go app", "a Go server"]) {
-      expect(match(text, kb).languagesPrefer).toEqual(["go"]);
+      expect(match(text, kb).languagesPrefer).toEqual([]);
     }
     // "go" alone is an ordinary verb.
     expect(match("ready to go live with an app", kb).languagesPrefer).toEqual([]);

@@ -252,8 +252,8 @@ def test_go_project_phrases():
     assert (web.project_type, web.languages) == ("web-app", ["go"])
     for phrase in ("go web service", "go microservice"):
         assert (_kw_sets(phrase).project_type, _kw_sets(phrase).languages) == ("api-only", ["go"])
-    for phrase in ("go app", "go server"):
-        assert (_kw_sets(phrase).project_type, _kw_sets(phrase).languages) == (None, ["go"])
+    # "go app" and "go server" also match "on the go app", so they are not phrases.
+    assert not {"go app", "go server"} & _kw_phrases()
 
 
 def test_vapor_aliases():

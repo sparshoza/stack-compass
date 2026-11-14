@@ -521,6 +521,25 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { pickIs: { layer: "testing", tool: "testify" } },
     ],
   },
+  {
+    // Only Temporal lists C#; it lacks the background-jobs tag, so the tag is not required.
+    id: "saas-csharp-background-jobs",
+    text: "a SaaS in C# with background jobs",
+    checks: [
+      { projectType: "saas" },
+      { backendLanguage: "csharp" },
+      { pickIs: { layer: "jobs-queue", tool: "temporal" } },
+    ],
+  },
+  {
+    // pgvector is built on PostgreSQL, so PostgreSQL counts as having vector search.
+    id: "python-rag-vector-search",
+    text: "a Python RAG web app with vector search",
+    checks: [
+      { backendLanguage: "python" },
+      { pickIs: { layer: "database", tool: "postgresql" } },
+    ],
+  },
 ];
 
 /**

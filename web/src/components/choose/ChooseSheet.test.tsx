@@ -372,8 +372,11 @@ describe('Help me choose', () => {
     expect(payments).toHaveAccessibleDescription(explain)
     const note = document.getElementById(payments.getAttribute('aria-describedby')!)!
     expect(note).toHaveClass('sr-only')
+    // With nothing to show, the group's explanation list takes no space either.
+    expect(note.parentElement).toHaveClass('sr-only')
     await user.click(payments)
     expect(note).not.toHaveClass('sr-only')
+    expect(note.parentElement).not.toHaveClass('sr-only')
 
     const realtime = within(dialog).getByRole('checkbox', { name: 'Realtime' })
     const realtimeNote = document.getElementById(realtime.getAttribute('aria-describedby')!)!

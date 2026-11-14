@@ -73,7 +73,7 @@ export function FiltersPopover({
             <Button
               variant="quiet"
               size="pill"
-              className="-mr-2 h-8 px-3 text-xs max-md:h-11"
+              className="-mr-2 h-8 px-3 text-xs touch:h-11"
               disabled={nothingHidden}
               onClick={onShowAll}
             >
@@ -104,7 +104,7 @@ export function FiltersPopover({
                           aria-pressed={shown}
                           onClick={() => onToggleLayer(layer)}
                           className={cn(
-                            'inline-flex h-8 items-center gap-1.5 rounded-full border px-2.5 text-xs max-md:h-11 max-md:px-3.5',
+                            'inline-flex h-8 items-center gap-1.5 rounded-full border px-2.5 text-xs touch:h-11 touch:px-3.5',
                             shown
                               ? 'border-line-strong bg-raised text-text hover:border-text-faint'
                               : 'border-line text-text-muted hover:border-line-strong hover:text-text',
@@ -142,7 +142,7 @@ export function FiltersPopover({
                     type="button"
                     aria-pressed={shown}
                     onClick={() => onToggleEdgeType(type)}
-                    className="-mx-2 flex h-9 items-center gap-3 rounded-lg px-2 text-left hover:bg-raised max-md:h-11"
+                    className="-mx-2 flex h-9 items-center gap-3 rounded-lg px-2 text-left hover:bg-raised touch:h-11"
                   >
                     <span
                       aria-hidden="true"

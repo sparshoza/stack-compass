@@ -351,7 +351,12 @@ function Features({ selected, onToggle }: { selected: string[]; onToggle: (id: s
               )
             })}
           </ul>
-          <ul className="grid gap-1 empty:hidden">
+          {/* Hidden notes stay in the DOM for aria-describedby; the list takes no space until one shows. */}
+          <ul
+            className={
+              group.capabilities.some((cap) => explainAll || selected.includes(cap.id)) ? 'grid gap-1' : 'sr-only'
+            }
+          >
             {group.capabilities.map((cap) => {
               const shown = explainAll || selected.includes(cap.id)
               return (

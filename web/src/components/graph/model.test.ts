@@ -14,8 +14,16 @@ import {
   areaFit,
   readPalette,
   mix,
+  labelBoxes,
+  labelOrigin,
+  mapStretch,
+  STAGE_PADDING,
+  type Box,
+  type LabelCandidate,
   type Palette,
 } from './model'
+import layout from '@catalog/layout.json'
+import { kb } from '@/lib/kb'
 
 const palette: Palette = {
   ...FALLBACK_PALETTE,
@@ -89,6 +97,19 @@ describe('buildGraph', () => {
   it('sizes better-connected tools a little larger', () => {
     const g = buildGraph(tools(), positions)
     expect(g.getNodeAttribute('fastapi', 'size')).toBeGreaterThan(g.getNodeAttribute('mysql', 'size'))
+  })
+
+  it('keeps every dot small and near-uniform at rest (about 5px across)', () => {
+    const g = buildGraph(kb.tools, layout)
+    const sizes = g.mapNodes((_, attrs) => attrs.size)
+    expect(Math.min(...sizes)).toBeGreaterThanOrEqual(2)
+    expect(Math.max(...sizes)).toBeLessThanOrEqual(3.5)
+    expect(Math.max(...sizes) / Math.min(...sizes)).toBeLessThanOrEqual(1.4)
+  })
+
+  it('stretches the map to the screen shape', () => {
+    const g = buildGraph(tools(), positions, { x: 1.5, y: 2 })
+    expect(g.getNodeAttributes('react')).toMatchObject({ x: 1.5, y: 4 })
   })
 
   it('places a tool without a position at the origin instead of failing', () => {
@@ -258,38 +279,162 @@ describe('LabelPlacer', () => {
   })
 })
 
+describe('labelOrigin and labelBoxes', () => {
+  it('centres the name under the dot', () => {
+    const at = labelOrigin(100, 50, 3, 40, 10, 'below')
+    expect(at.x).toBe(80)
+    expect(at.y).toBeGreaterThan(50 + 3 + 10 * 0.6)
+    const { below } = labelBoxes(100, 50, 3, 40, 10)
+    expect((below.x0 + below.x1) / 2).toBe(100)
+    expect(below.y0).toBeGreaterThanOrEqual(50 + 3)
+    expect(below.y1 - below.y0).toBeLessThanOrEqual(14)
+  })
+
+  it('puts the name centred over the dot when it goes above', () => {
+    const at = labelOrigin(100, 50, 3, 40, 10, 'above')
+    expect(at.x).toBe(80)
+    expect(at.y).toBeLessThan(50 - 3)
+    const { above } = labelBoxes(100, 50, 3, 40, 10)
+    expect((above.x0 + above.x1) / 2).toBe(100)
+    expect(above.y1).toBeLessThanOrEqual(50 - 3)
+  })
+})
+
 describe('placeLabels', () => {
   const box = (x0: number, y0: number, x1: number, y1: number) => ({ x0, y0, x1, y1 })
-  const at = (x: number) => ({ right: box(x + 6, 10, x + 80, 22), left: box(x - 80, 10, x - 6, 22) })
+  const at = (x: number, y = 100) => labelBoxes(x, y, 3, 60, 10)
+  const dot = (id: string, x: number, y = 100) => ({ id, box: box(x - 3, y - 3, x + 3, y + 3) })
+
+  it('names a tool under its dot when there is room', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    placer.reset([dot('a', 200)])
+    const sides = placeLabels(placer, [{ id: 'a', rank: 2, size: 3, ...at(200) }])
+    expect(sides.get('a')).toBe('below')
+  })
+
+  it('moves a name above its dot when the space below is taken, and drops it only when both are', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    // b sits just under a, so the name of a cannot go below. The name of b
+    // fills the space over d, and the dot of e fills the space under it.
+    placer.reset([dot('a', 200, 100), dot('b', 200, 116), dot('d', 200, 134), dot('e', 200, 150)])
+    const sides = placeLabels(placer, [
+      { id: 'b', rank: 2, size: 4, ...at(200, 116) },
+      { id: 'a', rank: 2, size: 3, ...at(200, 100) },
+      { id: 'd', rank: 2, size: 3, ...at(200, 134) },
+    ])
+    expect(sides.get('b')).toBe('below')
+    expect(sides.get('a')).toBe('above')
+    expect(sides.has('d')).toBe(false)
+  })
 
   it('names every neighbour of a focused tool even between dimmed dots', () => {
     const placer = new LabelPlacer({ width: 400, height: 300 })
-    // The neighbour at x=200 has dimmed dots on both sides of it.
-    placer.reset([
-      { id: 'focus', box: box(16, 12, 24, 20) },
-      { id: 'near', box: box(196, 12, 204, 20) },
-      { id: 'dim-left', box: box(150, 12, 158, 20) },
-      { id: 'dim-right', box: box(240, 12, 248, 20) },
-    ])
+    // The neighbour at x=200 has dimmed dots just under and over it.
+    placer.reset([dot('focus', 40), dot('near', 200), dot('dim-below', 200, 108), dot('dim-above', 200, 88)])
     const sides = placeLabels(placer, [
-      { id: 'focus', rank: 0, size: 6, ...at(20) },
+      { id: 'focus', rank: 0, size: 6, ...at(40) },
       { id: 'near', rank: 1, size: 4, ...at(200) },
-      { id: 'dim-left', rank: 2, size: 4, ...at(154) },
+      { id: 'dim-below', rank: 2, size: 4, ...at(200, 108) },
     ])
-    expect(sides.get('focus')).toBe('right')
-    expect(sides.get('near')).toBe('right')
-    expect(sides.has('dim-left')).toBe(false)
+    expect(sides.get('focus')).toBe('below')
+    expect(sides.get('near')).toBe('below')
+    expect(sides.has('dim-below')).toBe(false)
   })
 
   it('in browse mode labels still avoid every dot', () => {
     const placer = new LabelPlacer({ width: 400, height: 300 })
-    placer.reset([
-      { id: 'a', box: box(196, 12, 204, 20) },
-      { id: 'b', box: box(240, 12, 248, 20) },
-      { id: 'c', box: box(150, 12, 158, 20) },
-    ])
+    placer.reset([dot('a', 200), dot('b', 200, 112), dot('c', 200, 88)])
     const sides = placeLabels(placer, [{ id: 'a', rank: 2, size: 4, ...at(200) }])
     expect(sides.has('a')).toBe(false)
+  })
+})
+
+/**
+ * Where sigma draws every tool at rest, in pixels, at its starting camera:
+ * the layout normalised by its larger side, fitted to the shorter screen side
+ * less the stage padding (sigma's correction ratio included), then on a
+ * portrait screen moved by portraitFit as StackGraph does.
+ */
+function atRest(viewport: { width: number; height: number }, free = { top: 124, bottom: 64 }) {
+  const graph = buildGraph(kb.tools, layout, mapStretch(viewport))
+  const nodes = graph.mapNodes((id, attrs) => ({ id, ...attrs }))
+  const xs = nodes.map((n) => n.x)
+  const ys = nodes.map((n) => n.y)
+  const [minX, maxX, minY, maxY] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)]
+  const extent = Math.max(maxX - minX, maxY - minY)
+  const graphRatio = (maxY - minY) / (maxX - minX)
+  const screenRatio = viewport.height / viewport.width
+  const correction =
+    (screenRatio < 1 && graphRatio > 1) || (screenRatio > 1 && graphRatio < 1)
+      ? 1
+      : Math.min(Math.max(graphRatio, 1 / graphRatio), Math.max(1 / screenRatio, screenRatio))
+  let scale = ((Math.min(viewport.width, viewport.height) - 2 * STAGE_PADDING) * correction) / extent
+  let centre = { x: viewport.width / 2, y: viewport.height / 2 }
+  const drawn: Box = {
+    x0: centre.x - ((maxX - minX) / 2) * scale,
+    x1: centre.x + ((maxX - minX) / 2) * scale,
+    y0: centre.y - ((maxY - minY) / 2) * scale,
+    y1: centre.y + ((maxY - minY) / 2) * scale,
+  }
+  const fit = portraitFit(drawn, viewport, free)
+  if (fit) {
+    scale /= fit.ratio
+    centre = fit.to
+  }
+  return nodes.map((n) => ({
+    id: n.id,
+    label: n.label,
+    size: n.size,
+    x: centre.x + (n.x - (minX + maxX) / 2) * scale,
+    // Graph y points up, screen y points down.
+    y: centre.y - (n.y - (minY + maxY) / 2) * scale,
+  }))
+}
+
+/** How many names the label pass draws at rest; names are 10px JetBrains Mono, 0.6em per character. */
+function labelsAtRest(viewport: { width: number; height: number }): number {
+  const nodes = atRest(viewport)
+  const placer = new LabelPlacer(viewport)
+  placer.reset(
+    nodes.map((n) => ({ id: n.id, box: { x0: n.x - n.size, y0: n.y - n.size, x1: n.x + n.size, y1: n.y + n.size } })),
+  )
+  const candidates: LabelCandidate[] = nodes.map((n) => ({
+    id: n.id,
+    rank: 2,
+    size: n.size,
+    ...labelBoxes(n.x, n.y, n.size, n.label.length * 6, 10),
+  }))
+  return placeLabels(placer, candidates).size
+}
+
+describe('labels at rest', () => {
+  it('names nearly every tool on a 1440x900 screen', () => {
+    expect(labelsAtRest({ width: 1440, height: 900 }) / kb.tools.length).toBeGreaterThanOrEqual(0.9)
+  })
+
+  it('names a good share of tools on a 390x844 phone', () => {
+    expect(labelsAtRest({ width: 390, height: 844 })).toBeGreaterThanOrEqual(60)
+  })
+})
+
+describe('mapStretch', () => {
+  it('widens the map a little on a landscape screen', () => {
+    const s = mapStretch({ width: 1440, height: 900 })
+    expect(s.y).toBe(1)
+    expect(s.x).toBeGreaterThan(1)
+    expect(s.x).toBeLessThanOrEqual(1.2)
+  })
+
+  it('makes the map taller on a portrait phone', () => {
+    const s = mapStretch({ width: 390, height: 844 })
+    expect(s.x).toBe(1)
+    expect(s.y).toBeGreaterThan(1.3)
+    expect(s.y).toBeLessThanOrEqual(1.7)
+  })
+
+  it('leaves a square screen alone', () => {
+    expect(mapStretch({ width: 800, height: 800 })).toEqual({ x: 1, y: 1 })
+    expect(mapStretch({ width: 0, height: 0 })).toEqual({ x: 1, y: 1 })
   })
 })
 

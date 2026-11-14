@@ -71,7 +71,9 @@ const DIM_NODE = 0.75
 const DIM_LABEL = 0.65
 const DIM_EDGE = 0.6
 const SPOT_EDGE_SIZE = 1.5
-const BASE_SIZE = 3
+/** Dot radius in pixels at rest: small and near-uniform, a touch larger for hubs. */
+const BASE_SIZE = 2.5
+const HUB_EXTRA = 1
 const empty = new Set<never>()
 
 export function makeView(opts: {
@@ -92,18 +94,45 @@ export function makeView(opts: {
   }
 }
 
+export interface Stretch {
+  x: number
+  y: number
+}
+
+/** The widest a landscape screen stretches the round map. */
+const MAX_WIDEN = 1.15
+/** The tallest a portrait screen stretches it. */
+const MAX_HEIGHTEN = 1.6
+
+/**
+ * How much to stretch the round layout so it fills the screen it opens on:
+ * a little wider on a landscape screen, taller on a portrait phone (names are
+ * wide, so rows need the height more than the width).
+ */
+export function mapStretch(viewport: { width: number; height: number }): Stretch {
+  const { width, height } = viewport
+  if (width <= 0 || height <= 0 || width === height) return { x: 1, y: 1 }
+  if (width > height) return { x: Math.min(MAX_WIDEN, width / height), y: 1 }
+  return { x: 1, y: Math.min(MAX_HEIGHTEN, height / width) }
+}
+
 /**
  * One node per tool and one undirected edge per pair and edge type (the
  * catalog often lists a relation from both ends). Edges to tools that are not
  * in the list are skipped. Better-connected tools get slightly bigger dots.
+ * Positions are scaled by `stretch` (see mapStretch).
  */
-export function buildGraph(tools: readonly Tool[], positions: Positions): Graph<NodeAttrs, EdgeAttrs> {
+export function buildGraph(
+  tools: readonly Tool[],
+  positions: Positions,
+  stretch: Stretch = { x: 1, y: 1 },
+): Graph<NodeAttrs, EdgeAttrs> {
   const graph = new Graph<NodeAttrs, EdgeAttrs>({ type: 'undirected', multi: true })
   for (const tool of tools) {
     const at = positions[tool.id] ?? { x: 0, y: 0 }
     graph.addNode(tool.id, {
-      x: at.x,
-      y: at.y,
+      x: at.x * stretch.x,
+      y: at.y * stretch.y,
       label: tool.name,
       size: BASE_SIZE,
       layer: tool.layer,
@@ -126,7 +155,7 @@ export function buildGraph(tools: readonly Tool[], positions: Positions): Graph<
     }
   }
   graph.forEachNode((id) => {
-    graph.setNodeAttribute(id, 'size', BASE_SIZE + Math.min(3, Math.sqrt(graph.degree(id)) * 0.6))
+    graph.setNodeAttribute(id, 'size', BASE_SIZE + Math.min(HUB_EXTRA, Math.sqrt(graph.degree(id)) * 0.15))
   })
   return graph
 }
@@ -308,7 +337,46 @@ export class LabelPlacer {
   }
 }
 
-export type Side = 'right' | 'left'
+export type Side = 'below' | 'above'
+
+/** Pixels between a dot's edge and its name. */
+const LABEL_GAP = 2
+/** Share of the font size above the baseline (JetBrains Mono caps sit at about 0.73em). */
+const ASCENT = 0.78
+const DESCENT = 0.22
+
+/**
+ * Where the text of a name starts (left end, alphabetic baseline): centred
+ * under the dot, or centred over it when the space below is taken.
+ */
+export function labelOrigin(
+  x: number,
+  y: number,
+  size: number,
+  width: number,
+  labelSize: number,
+  side: Side,
+): { x: number; y: number } {
+  const baseline =
+    side === 'below' ? y + size + LABEL_GAP + labelSize * ASCENT : y - size - LABEL_GAP - labelSize * DESCENT
+  return { x: x - width / 2, y: baseline }
+}
+
+/** The boxes a name takes under and over its dot, a pixel wider than the text. */
+export function labelBoxes(
+  x: number,
+  y: number,
+  size: number,
+  width: number,
+  labelSize: number,
+): { below: Box; above: Box } {
+  const x0 = x - width / 2 - 1
+  const x1 = x + width / 2 + 1
+  return {
+    below: { x0, y0: y + size + LABEL_GAP - 1, x1, y1: y + size + LABEL_GAP + labelSize },
+    above: { x0, y0: y - size - LABEL_GAP - labelSize, x1, y1: y - size - LABEL_GAP + 1 },
+  }
+}
 
 /**
  * A label candidate. rank 0: the focused tool or a pick (always drawn);
@@ -318,16 +386,18 @@ export interface LabelCandidate {
   id: string
   rank: number
   size: number
-  right: Box
-  left: Box
+  below: Box
+  above: Box
 }
 
 /**
- * Decides which labels to draw and on which side of the dot. Lit labels
- * (rank 0) are placed first and only dodge each other, right of the dot,
- * else left, else right regardless. Neighbours of a focused tool (rank 1)
- * then avoid only lit dots, so the dimmed dots around them never hide a
- * related tool's name. Everything else avoids every dot, bigger dots first.
+ * Decides which labels to draw and where. Every name is centred under its
+ * dot, else over it, and is dropped only when both places collide. Lit labels
+ * (rank 0) are placed first and only dodge each other; when both places are
+ * taken they go under the dot regardless. Neighbours of a focused tool
+ * (rank 1) then avoid only lit dots, so the dimmed dots around them never
+ * hide a related tool's name. Everything else avoids every dot, bigger dots
+ * (better-connected tools) first.
  */
 export function placeLabels(placer: LabelPlacer, candidates: readonly LabelCandidate[]): Map<string, Side> {
   const allowed = new Map<string, Side>()
@@ -335,11 +405,11 @@ export function placeLabels(placer: LabelPlacer, candidates: readonly LabelCandi
   const highlighted = new Set(candidates.filter((c) => c.rank <= 1).map((c) => c.id))
   for (const c of candidates) {
     if (c.rank !== 0) continue
-    if (placer.place(c.right, c.id, lit)) allowed.set(c.id, 'right')
-    else if (placer.place(c.left, c.id, lit)) allowed.set(c.id, 'left')
+    if (placer.place(c.below, c.id, lit)) allowed.set(c.id, 'below')
+    else if (placer.place(c.above, c.id, lit)) allowed.set(c.id, 'above')
     else {
-      placer.reserve(c.right)
-      allowed.set(c.id, 'right')
+      placer.reserve(c.below)
+      allowed.set(c.id, 'below')
     }
   }
   const rest = candidates
@@ -347,8 +417,8 @@ export function placeLabels(placer: LabelPlacer, candidates: readonly LabelCandi
     .sort((a, b) => a.rank - b.rank || b.size - a.size || (a.id < b.id ? -1 : 1))
   for (const c of rest) {
     const among = c.rank === 1 ? highlighted : undefined
-    if (placer.place(c.right, c.id, among)) allowed.set(c.id, 'right')
-    else if (placer.place(c.left, c.id, among)) allowed.set(c.id, 'left')
+    if (placer.place(c.below, c.id, among)) allowed.set(c.id, 'below')
+    else if (placer.place(c.above, c.id, among)) allowed.set(c.id, 'above')
   }
   return allowed
 }
@@ -384,7 +454,7 @@ export function portraitFit(
   }
 }
 
-/** Room around fitted picks, so the labels drawn right of the dots stay on screen. */
+/** Room around fitted picks, so the names drawn under the dots stay on screen. */
 const PICK_MARGIN = 48
 /** The closest a fit may zoom in, as a share of the current zoom. */
 const MIN_FIT_RATIO = 0.5

@@ -8,8 +8,11 @@ import {
   areaFit,
   buildGraph,
   edgeStyle,
+  labelBoxes,
+  labelOrigin,
   LabelPlacer,
   makeView,
+  mapStretch,
   neighboursOf,
   placeLabels,
   nodeStyle,
@@ -55,33 +58,23 @@ function setKey(set: ReadonlySet<string> | undefined): string {
 
 type LabelData = PartialButFor<NodeDisplayData, 'x' | 'y' | 'size' | 'label' | 'color'>
 
-/** The hovered label in the text colour: no box, no shadow. */
+/** The hovered name in the text colour, centred under the dot: no box, no shadow. */
 function drawLabelOnly(context: CanvasRenderingContext2D, data: LabelData, settings: Settings<NodeAttrs, EdgeAttrs>) {
   if (!data.label) return
   context.fillStyle = settings.labelColor.color ?? '#000'
   context.font = `${settings.labelWeight} ${settings.labelSize}px ${settings.labelFont}`
-  context.fillText(data.label, data.x + data.size + 3, data.y + settings.labelSize / 3)
-}
-
-const LABEL_GAP = 3
-
-/** Where the text starts: right of the dot by default, or left of it when the right is taken. */
-function labelX(x: number, size: number, width: number, side: Side): number {
-  return side === 'right' ? x + size + LABEL_GAP : x - size - LABEL_GAP - width
-}
-
-function labelBox(x: number, y: number, size: number, width: number, labelSize: number, side: Side = 'right'): Box {
-  const x0 = labelX(x, size, width, side)
-  return { x0: x0 - 1, y0: y - labelSize * 0.55, x1: x0 + width + 1, y1: y + labelSize * 0.6 }
+  const width = context.measureText(data.label).width
+  const at = labelOrigin(data.x, data.y, data.size, width, settings.labelSize, 'below')
+  context.fillText(data.label, at.x, at.y)
 }
 
 /**
  * Picks which labels to draw, once per frame, so none touches another label
  * or another tool's dot or runs off the map. The focused tool and any picks
- * are reserved first, then its neighbours claim space, then the best-connected tools
- * (biggest dots) claim space before smaller ones, right of the dot or else
- * left of it. Sigma offers every node as
- * a candidate (tiny label grid) and this decides.
+ * are reserved first, then its neighbours claim space, then the
+ * best-connected tools claim space before the rest. Each name is centred
+ * under its dot, else over it. Sigma offers every node as a candidate (tiny
+ * label grid) and this decides.
  */
 function makeLabelDrawer() {
   const placer = new LabelPlacer({ width: 0, height: 0 })
@@ -131,8 +124,7 @@ function makeLabelDrawer() {
         id,
         size: data.size,
         rank: data.forceLabel ? ((data.zIndex ?? 0) >= 2 ? 0 : 1) : 2,
-        right: labelBox(at.x, at.y, r, width, settings.labelSize, 'right'),
-        left: labelBox(at.x, at.y, r, width, settings.labelSize, 'left'),
+        ...labelBoxes(at.x, at.y, r, width, settings.labelSize),
       })
     })
     placer.reset(dots)
@@ -151,8 +143,8 @@ function makeLabelDrawer() {
     if (!side) return
     context.font = font(settings)
     context.fillStyle = data.labelColor ?? settings.labelColor.color ?? '#000'
-    const x = labelX(data.x, data.size, widthOf(context, data.label), side)
-    context.fillText(data.label, x, data.y + settings.labelSize / 3)
+    const at = labelOrigin(data.x, data.y, data.size, widthOf(context, data.label), settings.labelSize, side)
+    context.fillText(data.label, at.x, at.y)
   }
 
   return { attach, draw }
@@ -271,7 +263,12 @@ export function StackGraph({
     highlightInsetRef.current = highlightInset
   }, [onSelect, onContextLost, focusInset, frameInset, highlightInset])
 
-  const graph = useMemo(() => buildGraph(kb.tools, layout as Positions), [])
+  // The round layout is stretched once to the shape of the screen the map
+  // opens on (wider on desktop, taller on a phone); see mapStretch.
+  const graph = useMemo(
+    () => buildGraph(kb.tools, layout as Positions, mapStretch({ width: window.innerWidth, height: window.innerHeight })),
+    [],
+  )
 
   // A hover remembers the focus it happened under, so a hover left behind
   // (touch screens never send leaveNode) never outlives a change of focus.
@@ -312,12 +309,12 @@ export function StackGraph({
       zIndex: true,
       stagePadding: STAGE_PADDING,
       labelFont: readFont(),
-      labelSize: 11,
+      labelSize: 10,
       labelWeight: '400',
       // Every dot is a label candidate (a grid cell per few pixels); the label
       // drawer keeps only those that fit without touching anything.
       labelDensity: 1,
-      labelGridCellSize: 24,
+      labelGridCellSize: 10,
       labelRenderedSizeThreshold: 0,
       defaultDrawNodeLabel: labels.draw,
       defaultDrawNodeHover: drawLabelOnly,

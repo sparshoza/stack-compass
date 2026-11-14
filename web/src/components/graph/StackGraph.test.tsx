@@ -186,10 +186,10 @@ describe('StackGraph', () => {
     expect(latest().settings).toMatchObject({ cameraPanBoundaries: true, enableCameraRotation: false })
   })
 
-  it('draws labels through its own collision check at 11px', () => {
+  it('draws labels through its own collision check at 10px', () => {
     render(<StackGraph />)
     const settings = latest().settings
-    expect(settings.labelSize).toBe(11)
+    expect(settings.labelSize).toBe(10)
     expect(typeof settings.defaultDrawNodeLabel).toBe('function')
   })
 

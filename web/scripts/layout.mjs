@@ -3,14 +3,20 @@
 //   npm run layout             write the file
 //   npm run layout -- --check  exit 1 when the file is missing or stale
 //
-// Each of the 22 layers gets a fixed anchor on a circle, grouped by the five
-// families in src/lib/families.json with a gap between families. Tools start
-// near their layer's anchor (jitter from a PRNG seeded by the tool id), are
-// tied to it by an extra edge, and ForceAtlas2 settles them for 500
-// iterations together with the catalog edges. A final pass pushes apart any
-// two tools closer than MIN_GAP of the map's width, so leaf tools do not sit
-// on top of each other. Everything is deterministic, so the same catalog
-// always gives the same file.
+// Positions come from the catalog edges, not from layer anchors, so the map
+// is one round tangle with the families mixed through it:
+//
+// 1. Tools start scattered over a disc (a PRNG seeded by the tool id).
+// 2. ForceAtlas2 settles them with strong gravity, which holds the whole graph
+//    in one disc. Edges between families pull hardest and edges inside a
+//    family barely pull, so a family never gathers into its own sector.
+// 3. Distances from the centre are evened out by rank, so the disc is filled
+//    from a slightly denser core to its rim with no empty ring or stray leaf.
+// 4. Tools whose names would overlap, each name centred under its dot as the
+//    map draws it at rest on a desktop screen, are nudged apart, then any two
+//    dots closer than MIN_GAP of the map's width are pushed apart.
+//
+// Everything is deterministic, so the same catalog always gives the same file.
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -22,14 +28,31 @@ const catalogPath = resolve(here, '../../catalog/catalog.json')
 const familiesPath = resolve(here, '../src/lib/families.json')
 export const layoutPath = resolve(here, '../../catalog/layout.json')
 
-export const ITERATIONS = 500
+export const ITERATIONS = 600
 const RADIUS = 1000
-const FAMILY_GAP = 1 // empty anchor slots between two families
-const JITTER = 260
-const ANCHOR_WEIGHT = 0.35
+const EDGE_WEIGHT = { 'built-on': 0.15, extends: 0.15, 'pairs-with': 0.1, 'alternative-to': 0.05, replaces: 0.05 }
+/** Edges inside one family pull this much as hard as edges between families. */
+const SAME_FAMILY = 0.05
+const FA2_SETTINGS = {
+  scalingRatio: 10,
+  gravity: 1,
+  strongGravityMode: true,
+  slowDown: 5,
+  edgeWeightInfluence: 1,
+  linLogMode: false,
+  outboundAttractionDistribution: false,
+  barnesHutOptimize: false,
+  adjustSizes: false,
+}
+/** Share of tools within a distance r of the centre grows as r^(1 / RADIAL_POWER); 0.5 is an even disc. */
+const RADIAL_POWER = 0.6
+/** Label boxes are sized for a map this many pixels across with names in a 10px monospace face. */
+const LABEL_MAP_PX = 700
+const LABEL_CHAR_PX = 6
+const LABEL_BOX_PX = 17 // dot, gap and one line of text
+const LABEL_ROUNDS = 60
 const MIN_GAP = 0.03 // of the map's larger side
 const SPREAD_ROUNDS = 80
-const EDGE_WEIGHT = { 'built-on': 0.6, extends: 0.6, 'pairs-with': 0.15, 'alternative-to': 0.4, replaces: 0.4 }
 
 export function readInputs() {
   return {
@@ -58,22 +81,6 @@ function mulberry32(seed) {
   }
 }
 
-/** One anchor per layer, in family order, with a gap between families. */
-export function layerAnchors(families) {
-  const slots = []
-  families.forEach((family, i) => {
-    if (i > 0) for (let g = 0; g < FAMILY_GAP; g++) slots.push(null)
-    for (const layer of family.layers) slots.push(layer)
-  })
-  const anchors = {}
-  slots.forEach((layer, i) => {
-    if (layer === null) return
-    const angle = (2 * Math.PI * i) / slots.length
-    anchors[layer] = { x: RADIUS * Math.cos(angle), y: RADIUS * Math.sin(angle) }
-  })
-  return anchors
-}
-
 const round = (n) => {
   const r = Math.round(n * 100) / 100
   return r === 0 ? 0 : r // no -0 in the file
@@ -81,46 +88,35 @@ const round = (n) => {
 
 /** Returns `{ [toolId]: { x, y } }` with keys sorted and values rounded to 2 decimals. */
 export function computeLayout(catalog, families) {
-  const anchors = layerAnchors(families)
+  const familyOf = new Map()
+  for (const family of families) for (const layer of family.layers) familyOf.set(layer, family.id)
+  const layerOf = new Map(catalog.tools.map((tool) => [tool.id, tool.layer]))
   const graph = new Graph({ type: 'undirected' })
-
-  for (const [layer, { x, y }] of Object.entries(anchors)) {
-    graph.addNode(`layer:${layer}`, { x, y, fixed: true })
-  }
-
   const tools = [...catalog.tools].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
   for (const tool of tools) {
-    const anchor = anchors[tool.layer]
-    if (!anchor) throw new Error(`layer "${tool.layer}" of ${tool.id} is in no family`)
+    // Uniform over the disc: the square root keeps the centre from crowding.
     const rand = mulberry32(hash(tool.id))
-    graph.addNode(tool.id, {
-      x: anchor.x + (rand() - 0.5) * 2 * JITTER,
-      y: anchor.y + (rand() - 0.5) * 2 * JITTER,
-    })
-    graph.addEdge(tool.id, `layer:${tool.layer}`, { weight: ANCHOR_WEIGHT })
+    const angle = rand() * 2 * Math.PI
+    const r = RADIUS * Math.sqrt(rand())
+    graph.addNode(tool.id, { x: r * Math.cos(angle), y: r * Math.sin(angle) })
   }
 
   for (const tool of tools) {
     for (const edge of tool.edges) {
       if (!graph.hasNode(edge.target) || graph.hasEdge(tool.id, edge.target)) continue
-      graph.addEdge(tool.id, edge.target, { weight: EDGE_WEIGHT[edge.type] ?? 0.2 })
+      const a = layerOf.get(tool.id)
+      const b = layerOf.get(edge.target)
+      const scale = familyOf.get(a) === familyOf.get(b) ? SAME_FAMILY : 1
+      graph.addEdge(tool.id, edge.target, { weight: (EDGE_WEIGHT[edge.type] ?? 0.05) * scale })
     }
   }
 
-  const positions = forceAtlas2(graph, {
-    iterations: ITERATIONS,
-    getEdgeWeight: 'weight',
-    settings: {
-      scalingRatio: 120,
-      gravity: 0.05,
-      slowDown: 5,
-      edgeWeightInfluence: 1,
-      barnesHutOptimize: false,
-      adjustSizes: false,
-    },
-  })
+  const positions = forceAtlas2(graph, { iterations: ITERATIONS, getEdgeWeight: 'weight', settings: FA2_SETTINGS })
 
-  spreadApart(tools.map((tool) => positions[tool.id]), tools.map((tool) => tool.id))
+  const points = tools.map((tool) => positions[tool.id])
+  evenRadii(points)
+  separateLabels(points, tools.map((tool) => tool.name))
+  spreadApart(points, tools.map((tool) => tool.id))
 
   const out = {}
   for (const tool of tools) {
@@ -163,6 +159,63 @@ export function spreadApart(points, ids) {
         a.y -= (dy / d) * push
         b.x += (dx / d) * push
         b.y += (dy / d) * push
+        moved = true
+      }
+    }
+    if (!moved) break
+  }
+}
+
+/**
+ * Keeps each tool's direction from the centre and its rank by distance, and
+ * sets the distance to RADIUS * ((rank + 0.5) / n) ^ RADIAL_POWER. Mutates `points`.
+ */
+export function evenRadii(points) {
+  const n = points.length
+  const cx = points.reduce((s, p) => s + p.x, 0) / n
+  const cy = points.reduce((s, p) => s + p.y, 0) / n
+  const order = points
+    .map((p, i) => ({ i, r: Math.hypot(p.x - cx, p.y - cy) }))
+    .sort((a, b) => a.r - b.r || a.i - b.i)
+  order.forEach(({ i, r }, rank) => {
+    // exp and log rather than **, which V8 has not always computed the same way on every platform.
+    const target = RADIUS * Math.exp(RADIAL_POWER * Math.log((rank + 0.5) / n))
+    const k = r === 0 ? 0 : target / r
+    points[i].x = cx + (points[i].x - cx) * k
+    points[i].y = cy + (points[i].y - cy) * k
+  })
+}
+
+/**
+ * Pushes apart tools whose dot-and-name boxes overlap, along the axis that
+ * needs the shorter move (names are wide, so that is mostly up or down),
+ * half each. Pairs are visited in a fixed order. Mutates `points`.
+ */
+export function separateLabels(points, names) {
+  const xs = points.map((p) => p.x)
+  const ys = points.map((p) => p.y)
+  const extent = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys))
+  const unit = extent / LABEL_MAP_PX
+  const half = names.map((name) => ((name.length * LABEL_CHAR_PX) / 2 + 2) * unit)
+  const height = LABEL_BOX_PX * unit
+  for (let round = 0; round < LABEL_ROUNDS; round++) {
+    let moved = false
+    for (let i = 0; i < points.length; i++) {
+      for (let j = i + 1; j < points.length; j++) {
+        const a = points[i]
+        const b = points[j]
+        const ox = half[i] + half[j] - Math.abs(b.x - a.x)
+        const oy = height - Math.abs(b.y - a.y)
+        if (ox <= 0 || oy <= 0) continue
+        if (oy <= ox) {
+          const push = ((b.y >= a.y ? 1 : -1) * oy) / 2
+          a.y -= push
+          b.y += push
+        } else {
+          const push = ((b.x >= a.x ? 1 : -1) * ox) / 2
+          a.x -= push
+          b.x += push
+        }
         moved = true
       }
     }

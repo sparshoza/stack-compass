@@ -1,0 +1,20 @@
+id: firebase-storage
+name: Cloud Storage for Firebase
+aliases: [firebase storage]
+layer: storage
+summary: File storage for mobile and web apps, backed by Google Cloud Storage buckets, with SDKs for Apple, Android, web and Flutter.
+url: https://firebase.google.com/docs/storage
+license: Proprietary
+languages: [swift, kotlin, java, javascript, dart]
+tags: [file-uploads]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Uploading user files straight from mobile and web clients]
+avoid_when: [You need a provider-neutral S3-style API]
+edges:
+- {type: alternative-to, target: supabase-storage}
+- {type: alternative-to, target: vercel-blob}
+- {type: built-on, target: google-cloud-storage}
+verified: '2026-11-14'
+sources: ['https://firebase.google.com/docs/storage', 'https://firebase.google.com/docs/storage/admin/start', 'https://firebase.google.com/pricing']

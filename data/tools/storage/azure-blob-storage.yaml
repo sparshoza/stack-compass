@@ -1,0 +1,22 @@
+id: azure-blob-storage
+name: Azure Blob Storage
+aliases: [azure blob]
+layer: storage
+summary: Microsoft Azure object storage for unstructured data such as files, media and backups.
+url: https://azure.microsoft.com/products/storage/blobs
+license: Proprietary
+languages: [java, csharp, python, javascript, typescript, go]
+tags: [file-uploads]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Object storage in Azure-centred stacks]
+avoid_when: [You do not otherwise use Azure]
+edges:
+- {type: alternative-to, target: amazon-s3}
+- {type: alternative-to, target: backblaze-b2}
+- {type: alternative-to, target: cloudflare-r2}
+- {type: alternative-to, target: google-cloud-storage}
+- {type: alternative-to, target: wasabi}
+verified: '2026-11-14'
+sources: ['https://azure.microsoft.com/products/storage/blobs', 'https://github.com/Azure/azure-sdk-for-go']

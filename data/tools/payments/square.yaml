@@ -1,0 +1,22 @@
+id: square
+name: Square
+aliases: [square payments]
+match_name: false
+layer: payments
+summary: Payment processing with APIs and SDKs for online and in-person payments, charged per transaction with no monthly fee.
+url: https://developer.squareup.com
+license: Proprietary
+languages: [java, csharp, javascript, typescript, php, python, ruby, go]
+tags: [payments]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Selling both online and in person with one account]
+avoid_when: [You need a merchant of record that handles sales tax]
+edges:
+- {type: alternative-to, target: adyen}
+- {type: alternative-to, target: braintree}
+- {type: alternative-to, target: paypal}
+- {type: alternative-to, target: stripe}
+verified: '2026-11-14'
+sources: ['https://developer.squareup.com', 'https://developer.squareup.com/docs/sdks', 'https://developer.squareup.com/docs/payments-pricing', 'https://squareup.com/us/en/payments/our-fees']

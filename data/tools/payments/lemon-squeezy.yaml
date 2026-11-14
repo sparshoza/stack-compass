@@ -1,0 +1,19 @@
+id: lemon-squeezy
+name: Lemon Squeezy
+aliases: [lemonsqueezy]
+layer: payments
+summary: A merchant-of-record platform for selling digital products and subscriptions.
+url: https://www.lemonsqueezy.com
+license: Proprietary
+languages: [javascript, typescript]
+tags: [payments]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Indie products that want tax handled for them]
+avoid_when: [You need marketplaces or complex invoicing]
+edges:
+- {type: alternative-to, target: paddle}
+- {type: alternative-to, target: polar}
+verified: '2026-11-14'
+sources: ['https://www.lemonsqueezy.com', 'https://www.lemonsqueezy.com/pricing', 'https://github.com/lmsqueezy/lemonsqueezy.js']

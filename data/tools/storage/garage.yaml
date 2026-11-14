@@ -1,0 +1,21 @@
+id: garage
+name: Garage
+aliases: [garage s3]
+match_name: false
+layer: storage
+summary: A lightweight, self-hosted, S3-compatible distributed object store.
+url: https://garagehq.deuxfleurs.fr
+license: AGPL-3.0-only
+languages: []
+tags: [file-uploads]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Small self-hosted clusters on modest hardware]
+avoid_when: [You need the full S3 feature set]
+edges:
+- {type: alternative-to, target: amazon-s3}
+- {type: alternative-to, target: cloudflare-r2}
+- {type: alternative-to, target: seaweedfs}
+verified: '2026-11-14'
+sources: ['https://garagehq.deuxfleurs.fr', 'https://github.com/deuxfleurs-org/garage']

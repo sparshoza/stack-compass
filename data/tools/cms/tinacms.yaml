@@ -1,0 +1,22 @@
+id: tinacms
+name: TinaCMS
+aliases: [tina cms]
+layer: cms
+summary: An open-source Git-backed CMS with visual editing for Markdown and MDX content.
+url: https://tina.io
+license: Apache-2.0
+languages: [typescript]
+tags: [content-editing]
+hosting: [managed, self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Visual editing for Git-based sites]
+avoid_when: [You need a classic database-backed CMS]
+edges:
+- {type: alternative-to, target: decap-cms}
+- {type: alternative-to, target: keystonejs}
+- {type: alternative-to, target: payload}
+- {type: alternative-to, target: strapi}
+- {type: alternative-to, target: wagtail}
+verified: '2026-11-14'
+sources: ['https://tina.io', 'https://github.com/TinaCMS/tinacms']

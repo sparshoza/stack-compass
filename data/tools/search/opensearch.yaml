@@ -1,0 +1,25 @@
+id: opensearch
+name: OpenSearch
+aliases: [open search]
+layer: search
+summary: A community-driven fork of Elasticsearch for search, analytics and vector search.
+url: https://opensearch.org
+license: Apache-2.0
+languages: [python, java, javascript, go, ruby, php, csharp, rust]
+tags: [full-text-search, vector-search]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Elasticsearch-style search under a permissive licence]
+avoid_when: [You want a small footprint and instant setup]
+edges:
+- {type: alternative-to, target: algolia}
+- {type: alternative-to, target: apache-solr}
+- {type: alternative-to, target: elasticsearch}
+- {type: alternative-to, target: manticore-search}
+- {type: alternative-to, target: meilisearch}
+- {type: alternative-to, target: tantivy}
+- {type: alternative-to, target: typesense}
+- {type: alternative-to, target: vespa}
+verified: '2026-11-14'
+sources: ['https://opensearch.org', 'https://opensearch.org/docs/latest/clients/']

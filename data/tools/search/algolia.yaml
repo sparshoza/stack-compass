@@ -1,0 +1,22 @@
+id: algolia
+name: Algolia
+aliases: []
+layer: search
+summary: Hosted search API with typo tolerance, filters and ranking, plus InstantSearch UI libraries.
+url: https://www.algolia.com
+license: Proprietary
+languages: [javascript, python, php, ruby, java, kotlin, csharp, go, dart, swift]
+tags: [full-text-search]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Hosted search-as-you-type with ready-made UI libraries]
+avoid_when: [You need to self-host or avoid per-request pricing]
+edges:
+- {type: alternative-to, target: elasticsearch}
+- {type: alternative-to, target: manticore-search}
+- {type: alternative-to, target: meilisearch}
+- {type: alternative-to, target: opensearch}
+- {type: alternative-to, target: typesense}
+verified: '2026-11-14'
+sources: ['https://www.algolia.com', 'https://www.algolia.com/pricing/', 'https://www.algolia.com/doc/libraries/']

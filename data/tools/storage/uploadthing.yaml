@@ -1,0 +1,19 @@
+id: uploadthing
+name: UploadThing
+aliases: [upload thing]
+layer: storage
+summary: A file upload service and SDK for TypeScript full-stack apps, with type-safe routes.
+url: https://uploadthing.com
+license: MIT
+languages: [typescript]
+tags: [file-uploads]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: emerging
+good_for: ['Quick, type-safe uploads in Next.js style apps']
+avoid_when: [You need uploads from non-JavaScript backends]
+edges:
+- {type: alternative-to, target: cloudinary}
+- {type: alternative-to, target: uppy}
+verified: '2026-11-14'
+sources: ['https://uploadthing.com', 'https://github.com/pingdotgg/uploadthing']

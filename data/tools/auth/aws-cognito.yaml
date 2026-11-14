@@ -1,0 +1,19 @@
+id: aws-cognito
+name: Amazon Cognito
+aliases: [cognito, aws cognito]
+layer: auth
+summary: AWS user pools and identity pools for sign-up, sign-in, federation and access control.
+url: https://aws.amazon.com/cognito/
+license: Proprietary
+languages: [javascript, typescript, python, java, csharp, go, ruby, php, rust, kotlin, swift]
+tags: [social-login, enterprise-sso]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Auth in AWS-centred stacks with SAML and social federation]
+avoid_when: [You want a polished developer experience out of the box]
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: firebase-authentication}
+verified: '2026-11-14'
+sources: ['https://aws.amazon.com/cognito/', 'https://aws.amazon.com/cognito/pricing/', 'https://github.com/aws/aws-sdk-go-v2']

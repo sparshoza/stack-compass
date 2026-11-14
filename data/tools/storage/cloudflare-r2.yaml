@@ -1,0 +1,24 @@
+id: cloudflare-r2
+name: Cloudflare R2
+aliases: []
+layer: storage
+summary: S3-compatible object storage from Cloudflare with no egress fees.
+url: https://developers.cloudflare.com/r2/
+license: Proprietary
+languages: [javascript, typescript]
+tags: [file-uploads]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [S3-compatible storage with zero egress charges]
+avoid_when: [You depend on S3-only features]
+edges:
+- {type: alternative-to, target: amazon-s3}
+- {type: alternative-to, target: azure-blob-storage}
+- {type: alternative-to, target: backblaze-b2}
+- {type: alternative-to, target: garage}
+- {type: alternative-to, target: google-cloud-storage}
+- {type: alternative-to, target: seaweedfs}
+- {type: alternative-to, target: wasabi}
+verified: '2026-11-14'
+sources: ['https://developers.cloudflare.com/r2/', 'https://developers.cloudflare.com/r2/pricing/']

@@ -1,0 +1,21 @@
+id: razorpay
+name: Razorpay
+aliases: []
+layer: payments
+summary: An Indian payments platform for UPI, cards, netbanking and subscriptions.
+url: https://razorpay.com
+license: Proprietary
+languages: [javascript, python, php, ruby, java, go]
+tags: [payments]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Accepting payments from customers in India]
+avoid_when: [Customers are mostly outside India]
+edges:
+- {type: alternative-to, target: adyen}
+- {type: alternative-to, target: gocardless}
+- {type: alternative-to, target: mollie}
+- {type: alternative-to, target: stripe}
+verified: '2026-11-14'
+sources: ['https://razorpay.com', 'https://razorpay.com/pricing/', 'https://github.com/razorpay']

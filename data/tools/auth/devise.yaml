@@ -1,0 +1,21 @@
+id: devise
+name: Devise
+aliases: [devise gem]
+match_name: false
+layer: auth
+summary: Flexible authentication solution for Rails built on Warden, with modules for passwords, confirmation and OmniAuth.
+url: https://github.com/heartcombo/devise
+license: MIT
+languages: [ruby]
+tags: [social-login]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Adding user accounts to a Ruby on Rails app]
+avoid_when: [Your app is not built on Rails]
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: clerk}
+- {type: alternative-to, target: workos}
+verified: '2026-11-14'
+sources: ['https://github.com/heartcombo/devise']

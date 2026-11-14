@@ -1,0 +1,21 @@
+id: hygraph
+name: Hygraph
+aliases: [graphcms]
+layer: cms
+summary: Hosted headless CMS that serves content through a GraphQL API, with a free Hobby plan and a JavaScript management SDK.
+url: https://hygraph.com
+license: Proprietary
+languages: [javascript, typescript]
+tags: [content-editing]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [GraphQL-first content delivery to any frontend]
+avoid_when: [You need to self-host your CMS]
+edges:
+- {type: alternative-to, target: contentful}
+- {type: alternative-to, target: prismic}
+- {type: alternative-to, target: sanity}
+- {type: alternative-to, target: storyblok}
+verified: '2026-11-14'
+sources: ['https://hygraph.com', 'https://hygraph.com/pricing', 'https://hygraph.com/docs', 'https://github.com/hygraph/management-sdk']

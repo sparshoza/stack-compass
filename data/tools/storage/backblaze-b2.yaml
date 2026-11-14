@@ -1,0 +1,22 @@
+id: backblaze-b2
+name: Backblaze B2
+aliases: [backblaze]
+layer: storage
+summary: Low-cost S3-compatible cloud object storage from Backblaze.
+url: https://www.backblaze.com/cloud-storage
+license: Proprietary
+languages: [python, java]
+tags: [file-uploads]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Cheap storage for backups and large media]
+avoid_when: [You need a deep suite of surrounding cloud services]
+edges:
+- {type: alternative-to, target: amazon-s3}
+- {type: alternative-to, target: azure-blob-storage}
+- {type: alternative-to, target: cloudflare-r2}
+- {type: alternative-to, target: google-cloud-storage}
+- {type: alternative-to, target: wasabi}
+verified: '2026-11-14'
+sources: ['https://www.backblaze.com/cloud-storage', 'https://github.com/Backblaze/b2-sdk-python', 'https://www.backblaze.com/cloud-storage/pricing']

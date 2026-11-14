@@ -1,0 +1,19 @@
+id: react-email
+name: React Email
+aliases: [react.email]
+layer: email
+summary: A collection of React components for building and rendering HTML emails.
+url: https://react.email
+license: MIT
+languages: [typescript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Writing email templates as React components]
+avoid_when: [The backend is not JavaScript]
+edges:
+- {type: alternative-to, target: mjml}
+- {type: pairs-with, target: resend}
+verified: '2026-11-14'
+sources: ['https://react.email', 'https://github.com/resend/react-email']

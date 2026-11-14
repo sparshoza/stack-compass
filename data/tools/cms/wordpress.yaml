@@ -1,0 +1,18 @@
+id: wordpress
+name: WordPress
+aliases: []
+layer: cms
+summary: The open-source CMS and publishing platform that powers a large share of the web.
+url: https://wordpress.org
+license: GPL-2.0-or-later
+languages: [php]
+tags: [content-editing]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Content sites with a huge plugin and theme ecosystem]
+avoid_when: [You want a modern JavaScript-only stack]
+edges:
+- {type: alternative-to, target: ghost}
+verified: '2026-11-14'
+sources: ['https://wordpress.org', 'https://wordpress.org/about/license/']

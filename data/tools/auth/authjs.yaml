@@ -1,0 +1,19 @@
+id: authjs
+name: Auth.js
+aliases: [next-auth, nextauth]
+layer: auth
+summary: An open-source authentication library for web frameworks with many OAuth and credential providers.
+url: https://authjs.dev
+license: ISC
+languages: [javascript]
+tags: [social-login]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Social login in Next.js and similar frameworks]
+avoid_when: [You need ready-made enterprise SSO or a user admin console]
+edges:
+- {type: alternative-to, target: better-auth}
+- {type: alternative-to, target: passportjs}
+verified: '2026-11-14'
+sources: ['https://authjs.dev', 'https://github.com/nextauthjs/next-auth']

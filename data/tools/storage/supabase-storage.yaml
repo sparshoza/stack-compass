@@ -1,0 +1,21 @@
+id: supabase-storage
+name: Supabase Storage
+aliases: [supabase files]
+layer: storage
+summary: File storage in Supabase with access rules tied to Postgres policies and Supabase Auth.
+url: https://supabase.com/docs/guides/storage
+license: Apache-2.0
+languages: [javascript, typescript, dart, swift, python, csharp, kotlin]
+tags: [file-uploads]
+hosting: [managed, self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: [File storage protected by the same row-level policies as your data]
+avoid_when: [You are not using Supabase]
+edges:
+- {type: alternative-to, target: amazon-s3}
+- {type: alternative-to, target: firebase-storage}
+- {type: alternative-to, target: vercel-blob}
+- {type: pairs-with, target: uppy}
+verified: '2026-11-14'
+sources: ['https://supabase.com/docs/guides/storage', 'https://github.com/supabase/storage']

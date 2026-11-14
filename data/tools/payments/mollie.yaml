@@ -1,0 +1,22 @@
+id: mollie
+name: Mollie
+aliases: []
+layer: payments
+summary: A European payment service with many local methods such as iDEAL and Bancontact.
+url: https://www.mollie.com
+license: Proprietary
+languages: [php, python, javascript, typescript, ruby, java]
+tags: [payments]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Shops selling mainly to European customers]
+avoid_when: [Most of your customers are outside Europe]
+edges:
+- {type: alternative-to, target: adyen}
+- {type: alternative-to, target: gocardless}
+- {type: alternative-to, target: paypal}
+- {type: alternative-to, target: razorpay}
+- {type: alternative-to, target: stripe}
+verified: '2026-11-14'
+sources: ['https://www.mollie.com', 'https://github.com/mollie']

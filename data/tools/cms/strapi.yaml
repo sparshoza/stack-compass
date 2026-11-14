@@ -1,0 +1,21 @@
+id: strapi
+name: Strapi
+aliases: []
+layer: cms
+summary: An open-source headless CMS built in Node.js with a content builder and REST and GraphQL APIs.
+url: https://strapi.io
+license: MIT
+languages: [typescript, javascript]
+tags: [content-editing, admin-ui]
+hosting: [managed, self-hosted]
+pricing: [oss, free-tier, paid]
+maturity: established
+good_for: [Self-hosted headless CMS with an admin panel]
+avoid_when: [You need real-time collaborative editing]
+edges:
+- {type: alternative-to, target: decap-cms}
+- {type: alternative-to, target: keystonejs}
+- {type: alternative-to, target: payload}
+- {type: alternative-to, target: tinacms}
+verified: '2026-11-14'
+sources: ['https://strapi.io', 'https://github.com/strapi/strapi']

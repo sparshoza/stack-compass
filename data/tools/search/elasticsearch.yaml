@@ -1,0 +1,25 @@
+id: elasticsearch
+name: Elasticsearch
+aliases: [elastic search]
+layer: search
+summary: A distributed search and analytics engine built on Lucene with a REST API.
+url: https://www.elastic.co/elasticsearch
+license: AGPL-3.0-only OR SSPL-1.0 OR Elastic-2.0
+languages: [java, javascript, typescript, python, csharp, php, ruby, rust, go]
+tags: [full-text-search, vector-search, analytics]
+hosting: [managed, self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: [Large-scale full-text search and log analytics]
+avoid_when: [A small site where a lightweight engine is enough]
+edges:
+- {type: alternative-to, target: algolia}
+- {type: alternative-to, target: apache-solr}
+- {type: alternative-to, target: manticore-search}
+- {type: alternative-to, target: meilisearch}
+- {type: alternative-to, target: opensearch}
+- {type: alternative-to, target: tantivy}
+- {type: alternative-to, target: typesense}
+- {type: alternative-to, target: vespa}
+verified: '2026-11-14'
+sources: ['https://www.elastic.co/elasticsearch', 'https://www.elastic.co/blog/elasticsearch-is-open-source-again', 'https://github.com/elastic/elasticsearch/blob/main/LICENSE.txt', 'https://github.com/elastic']

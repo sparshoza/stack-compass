@@ -1,0 +1,18 @@
+id: nodemailer
+name: Nodemailer
+aliases: []
+layer: email
+summary: A Node.js module for sending email over SMTP and other transports.
+url: https://nodemailer.com
+license: MIT-0
+languages: [javascript]
+tags: [transactional-email]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Sending email from Node with any SMTP provider]
+avoid_when: ['You want deliverability tooling, which needs a provider']
+edges:
+- {type: pairs-with, target: amazon-ses}
+verified: '2026-11-14'
+sources: ['https://nodemailer.com', 'https://github.com/nodemailer/nodemailer']

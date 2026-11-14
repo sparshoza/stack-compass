@@ -1,0 +1,21 @@
+id: gocardless
+name: GoCardless
+aliases: []
+layer: payments
+summary: A service for bank-to-bank payments such as direct debit and recurring collections.
+url: https://gocardless.com
+license: Proprietary
+languages: [python, javascript, typescript, php, ruby, java, csharp, go]
+tags: [payments]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Recurring payments with low fees through bank debits]
+avoid_when: [Customers must pay instantly by card]
+edges:
+- {type: alternative-to, target: adyen}
+- {type: alternative-to, target: mollie}
+- {type: alternative-to, target: razorpay}
+- {type: alternative-to, target: stripe}
+verified: '2026-11-14'
+sources: ['https://gocardless.com', 'https://gocardless.com/pricing/', 'https://github.com/gocardless']

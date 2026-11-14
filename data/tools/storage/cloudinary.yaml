@@ -1,0 +1,19 @@
+id: cloudinary
+name: Cloudinary
+aliases: []
+layer: storage
+summary: A hosted media platform for storing, transforming and delivering images and video.
+url: https://cloudinary.com
+license: Proprietary
+languages: [javascript, python, php, ruby, java, csharp, go, swift, kotlin]
+tags: [file-uploads]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Image and video transformations delivered over a CDN]
+avoid_when: [Raw file storage is all you need]
+edges:
+- {type: alternative-to, target: uploadthing}
+- {type: alternative-to, target: uppy}
+verified: '2026-11-14'
+sources: ['https://cloudinary.com', 'https://github.com/cloudinary', 'https://cloudinary.com/pricing']

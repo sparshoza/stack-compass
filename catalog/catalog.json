@@ -1244,6 +1244,120 @@
         "languages": [],
         "project_type": null
       }
+    },
+    {
+      "phrases": [
+        "site search",
+        "search box",
+        "typo tolerant search"
+      ],
+      "sets": {
+        "capabilities": [
+          "full-text-search"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "embeddings search"
+      ],
+      "sets": {
+        "capabilities": [
+          "full-text-search",
+          "vector-search"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "image uploads",
+        "upload photos",
+        "object storage",
+        "file storage",
+        "s3 compatible"
+      ],
+      "sets": {
+        "capabilities": [
+          "file-uploads"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "login with github",
+        "oauth login"
+      ],
+      "sets": {
+        "capabilities": [
+          "social-login"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "enterprise login",
+        "okta login"
+      ],
+      "sets": {
+        "capabilities": [
+          "enterprise-sso"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "accept payments",
+        "usage based billing",
+        "invoicing",
+        "merchant of record"
+      ],
+      "sets": {
+        "capabilities": [
+          "payments"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "send emails",
+        "email api",
+        "password reset emails",
+        "receipts by email",
+        "welcome emails"
+      ],
+      "sets": {
+        "capabilities": [
+          "transactional-email"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "editors can edit",
+        "blog editor",
+        "wysiwyg editor"
+      ],
+      "sets": {
+        "capabilities": [
+          "content-editing"
+        ],
+        "languages": [],
+        "project_type": null
+      }
     }
   ],
   "layers": [
@@ -1329,6 +1443,147 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [],
+      "avoid_when": [
+        "A small project with low volume"
+      ],
+      "edges": [
+        {
+          "target": "braintree",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gocardless",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mollie",
+          "type": "alternative-to"
+        },
+        {
+          "target": "paypal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "razorpay",
+          "type": "alternative-to"
+        },
+        {
+          "target": "square",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stripe",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Enterprise payments across many countries and methods"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "adyen",
+      "languages": [
+        "python",
+        "javascript",
+        "typescript",
+        "java",
+        "php",
+        "ruby",
+        "csharp",
+        "go"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Adyen",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.adyen.com",
+        "https://www.adyen.com/pricing",
+        "https://github.com/Adyen"
+      ],
+      "summary": "A global payments platform that unifies online and in-person acquiring and processing.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://www.adyen.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need to self-host or avoid per-request pricing"
+      ],
+      "edges": [
+        {
+          "target": "elasticsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "manticore-search",
+          "type": "alternative-to"
+        },
+        {
+          "target": "meilisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "opensearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typesense",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Hosted search-as-you-type with ready-made UI libraries"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "algolia",
+      "languages": [
+        "javascript",
+        "python",
+        "php",
+        "ruby",
+        "java",
+        "kotlin",
+        "csharp",
+        "go",
+        "dart",
+        "swift"
+      ],
+      "layer": "search",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Algolia",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.algolia.com",
+        "https://www.algolia.com/pricing/",
+        "https://www.algolia.com/doc/libraries/"
+      ],
+      "summary": "Hosted search API with typo tolerance, filters and ranking, plus InstantSearch UI libraries.",
+      "tags": [
+        "full-text-search"
+      ],
+      "url": "https://www.algolia.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [
         "alpine-js"
       ],
@@ -1377,6 +1632,175 @@
       "summary": "A lightweight JavaScript framework for adding behavior directly in HTML markup.",
       "tags": [],
       "url": "https://alpinejs.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "s3",
+        "aws s3"
+      ],
+      "avoid_when": [
+        "Egress fees would dominate your costs"
+      ],
+      "edges": [
+        {
+          "target": "azure-blob-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "backblaze-b2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "cloudflare-r2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "garage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "google-cloud-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "seaweedfs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "supabase-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vercel-blob",
+          "type": "alternative-to"
+        },
+        {
+          "target": "wasabi",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Durable object storage with the broadest ecosystem"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "amazon-s3",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "rust",
+        "kotlin",
+        "swift"
+      ],
+      "layer": "storage",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Amazon S3",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://aws.amazon.com/s3/",
+        "https://github.com/aws/aws-sdk-go-v2"
+      ],
+      "summary": "Object storage from AWS with a widely copied API, used for files, media and backups.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://aws.amazon.com/s3/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "aws ses"
+      ],
+      "avoid_when": [
+        "You want a friendly UI and hand-holding"
+      ],
+      "edges": [
+        {
+          "target": "brevo",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailersend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailgun",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postmark",
+          "type": "alternative-to"
+        },
+        {
+          "target": "resend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sendgrid",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nodemailer",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Very cheap sending at large volume"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "amazon-ses",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "rust",
+        "kotlin",
+        "swift"
+      ],
+      "layer": "email",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Amazon SES",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://aws.amazon.com/ses/",
+        "https://aws.amazon.com/ses/pricing/",
+        "https://github.com/aws/aws-sdk-go-v2"
+      ],
+      "summary": "AWS low-cost email service for sending transactional and marketing email.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://aws.amazon.com/ses/",
       "verified": "2026-11-14"
     },
     {
@@ -1609,6 +2033,73 @@
         "type-safety"
       ],
       "url": "https://ant.design",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "solr"
+      ],
+      "avoid_when": [
+        "You want a hosted option with minimal operations"
+      ],
+      "edges": [
+        {
+          "target": "elasticsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "manticore-search",
+          "type": "alternative-to"
+        },
+        {
+          "target": "meilisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "opensearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tantivy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typesense",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vespa",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Mature faceted search for large document sets"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "apache-solr",
+      "languages": [
+        "java"
+      ],
+      "layer": "search",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Apache Solr",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://solr.apache.org"
+      ],
+      "summary": "An open-source enterprise search platform built on Apache Lucene.",
+      "tags": [
+        "full-text-search",
+        "vector-search"
+      ],
+      "url": "https://solr.apache.org",
       "verified": "2026-11-14"
     },
     {
@@ -1887,6 +2378,261 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "auth0 by okta"
+      ],
+      "avoid_when": [
+        "Per-user pricing would grow too fast"
+      ],
+      "edges": [
+        {
+          "target": "authentik",
+          "type": "alternative-to"
+        },
+        {
+          "target": "aws-cognito",
+          "type": "alternative-to"
+        },
+        {
+          "target": "clerk",
+          "type": "alternative-to"
+        },
+        {
+          "target": "devise",
+          "type": "alternative-to"
+        },
+        {
+          "target": "firebase-authentication",
+          "type": "alternative-to"
+        },
+        {
+          "target": "keycloak",
+          "type": "alternative-to"
+        },
+        {
+          "target": "spring-security",
+          "type": "alternative-to"
+        },
+        {
+          "target": "supabase-auth",
+          "type": "alternative-to"
+        },
+        {
+          "target": "supertokens",
+          "type": "alternative-to"
+        },
+        {
+          "target": "workos",
+          "type": "alternative-to"
+        },
+        {
+          "target": "zitadel",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Full-featured login with enterprise SSO"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "auth0",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "java",
+        "kotlin",
+        "csharp",
+        "ruby",
+        "php",
+        "go",
+        "swift"
+      ],
+      "layer": "auth",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Auth0",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://auth0.com",
+        "https://auth0.com/docs/libraries"
+      ],
+      "summary": "A hosted identity platform for login, social sign-in, SSO and MFA, owned by Okta.",
+      "tags": [
+        "social-login",
+        "enterprise-sso"
+      ],
+      "url": "https://auth0.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need a fully managed service"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "keycloak",
+          "type": "alternative-to"
+        },
+        {
+          "target": "zitadel",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Self-hosted identity provider with easy-to-edit flows"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "authentik",
+      "languages": [
+        "go",
+        "rust",
+        "typescript",
+        "python"
+      ],
+      "layer": "auth",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "authentik",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://goauthentik.io",
+        "https://github.com/goauthentik/authentik"
+      ],
+      "summary": "An open-source identity provider with SSO, social login and flexible flows.",
+      "tags": [
+        "enterprise-sso"
+      ],
+      "url": "https://goauthentik.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "next-auth",
+        "nextauth"
+      ],
+      "avoid_when": [
+        "You need ready-made enterprise SSO or a user admin console"
+      ],
+      "edges": [
+        {
+          "target": "better-auth",
+          "type": "alternative-to"
+        },
+        {
+          "target": "passportjs",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Social login in Next.js and similar frameworks"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "authjs",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "auth",
+      "license": "ISC",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Auth.js",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://authjs.dev",
+        "https://github.com/nextauthjs/next-auth"
+      ],
+      "summary": "An open-source authentication library for web frameworks with many OAuth and credential providers.",
+      "tags": [
+        "social-login"
+      ],
+      "url": "https://authjs.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "cognito",
+        "aws cognito"
+      ],
+      "avoid_when": [
+        "You want a polished developer experience out of the box"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "firebase-authentication",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Auth in AWS-centred stacks with SAML and social federation"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "aws-cognito",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "rust",
+        "kotlin",
+        "swift"
+      ],
+      "layer": "auth",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Amazon Cognito",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://aws.amazon.com/cognito/",
+        "https://aws.amazon.com/cognito/pricing/",
+        "https://github.com/aws/aws-sdk-go-v2"
+      ],
+      "summary": "AWS user pools and identity pools for sign-up, sign-in, federation and access control.",
+      "tags": [
+        "social-login",
+        "enterprise-sso"
+      ],
+      "url": "https://aws.amazon.com/cognito/",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "Rapid prototyping with a small team new to Rust"
@@ -1923,6 +2669,71 @@
       "summary": "A Rust web framework focused on ergonomics and modularity, built on Tokio and Tower.",
       "tags": [],
       "url": "https://docs.rs/axum",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "azure blob"
+      ],
+      "avoid_when": [
+        "You do not otherwise use Azure"
+      ],
+      "edges": [
+        {
+          "target": "amazon-s3",
+          "type": "alternative-to"
+        },
+        {
+          "target": "backblaze-b2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "cloudflare-r2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "google-cloud-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "wasabi",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Object storage in Azure-centred stacks"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "azure-blob-storage",
+      "languages": [
+        "java",
+        "csharp",
+        "python",
+        "javascript",
+        "typescript",
+        "go"
+      ],
+      "layer": "storage",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Azure Blob Storage",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://azure.microsoft.com/products/storage/blobs",
+        "https://github.com/Azure/azure-sdk-for-go"
+      ],
+      "summary": "Microsoft Azure object storage for unstructured data such as files, media and backups.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://azure.microsoft.com/products/storage/blobs",
       "verified": "2026-11-14"
     },
     {
@@ -1970,6 +2781,249 @@
       "summary": "A JavaScript compiler that converts modern syntax into backward-compatible code.",
       "tags": [],
       "url": "https://babeljs.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "backblaze"
+      ],
+      "avoid_when": [
+        "You need a deep suite of surrounding cloud services"
+      ],
+      "edges": [
+        {
+          "target": "amazon-s3",
+          "type": "alternative-to"
+        },
+        {
+          "target": "azure-blob-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "cloudflare-r2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "google-cloud-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "wasabi",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Cheap storage for backups and large media"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "backblaze-b2",
+      "languages": [
+        "python",
+        "java"
+      ],
+      "layer": "storage",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Backblaze B2",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.backblaze.com/cloud-storage",
+        "https://github.com/Backblaze/b2-sdk-python",
+        "https://www.backblaze.com/cloud-storage/pricing"
+      ],
+      "summary": "Low-cost S3-compatible cloud object storage from Backblaze.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://www.backblaze.com/cloud-storage",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "betterauth"
+      ],
+      "avoid_when": [
+        "You need a decade of proven production history"
+      ],
+      "edges": [
+        {
+          "target": "authjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "passportjs",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Type-safe auth with plugins for 2FA, organisations and SSO"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "better-auth",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "auth",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Better Auth",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.better-auth.com",
+        "https://github.com/better-auth/better-auth"
+      ],
+      "summary": "A framework-agnostic TypeScript authentication library with a plugin system.",
+      "tags": [
+        "social-login",
+        "enterprise-sso"
+      ],
+      "url": "https://www.better-auth.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need a merchant of record that handles sales tax"
+      ],
+      "edges": [
+        {
+          "target": "adyen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "paypal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "square",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stripe",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Cards plus PayPal and Venmo through one gateway"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "braintree",
+      "languages": [
+        "java",
+        "csharp",
+        "javascript",
+        "php",
+        "python",
+        "ruby"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Braintree",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://developer.paypal.com/braintree/docs",
+        "https://developer.paypal.com/braintree/docs/start/hello-server",
+        "https://www.paypal.com/us/enterprise/paypal-braintree-fees"
+      ],
+      "summary": "PayPal-owned payment gateway for cards, wallets and local methods, with server SDKs for six languages.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://developer.paypal.com/braintree/docs",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "sendinblue"
+      ],
+      "avoid_when": [
+        "You want a developer-only email API without marketing features"
+      ],
+      "edges": [
+        {
+          "target": "amazon-ses",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailersend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailgun",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postmark",
+          "type": "alternative-to"
+        },
+        {
+          "target": "resend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sendgrid",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "One tool for transactional and marketing email"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "brevo",
+      "languages": [
+        "javascript",
+        "typescript",
+        "php",
+        "python",
+        "java",
+        "csharp",
+        "go",
+        "ruby"
+      ],
+      "layer": "email",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Brevo",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.brevo.com",
+        "https://www.brevo.com/pricing/",
+        "https://developers.brevo.com/docs/send-a-transactional-email",
+        "https://developers.brevo.com/docs/api-clients"
+      ],
+      "summary": "Email and marketing platform that also sends transactional email through an SMTP relay and API, with seven official SDKs.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://www.brevo.com",
       "verified": "2026-11-14"
     },
     {
@@ -2334,6 +3388,123 @@
     {
       "aliases": [],
       "avoid_when": [
+        "A simple single-price checkout"
+      ],
+      "edges": [
+        {
+          "target": "kill-bill",
+          "type": "alternative-to"
+        },
+        {
+          "target": "lago",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Complex plans, trials and dunning on top of a gateway"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "chargebee",
+      "languages": [
+        "typescript",
+        "python",
+        "php",
+        "java",
+        "ruby",
+        "csharp",
+        "go"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Chargebee",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.chargebee.com",
+        "https://www.chargebee.com/pricing/"
+      ],
+      "summary": "A hosted subscription billing and revenue management platform that works with payment gateways.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://www.chargebee.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need to host identity data yourself"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "devise",
+          "type": "alternative-to"
+        },
+        {
+          "target": "supabase-auth",
+          "type": "alternative-to"
+        },
+        {
+          "target": "workos",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Drop-in sign-in UI and user management for React apps"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "clerk",
+      "languages": [
+        "javascript",
+        "typescript",
+        "go",
+        "python",
+        "ruby",
+        "java",
+        "csharp",
+        "php",
+        "swift",
+        "kotlin"
+      ],
+      "layer": "auth",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Clerk",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://clerk.com",
+        "https://clerk.com/docs/references/overview",
+        "https://github.com/clerk"
+      ],
+      "summary": "A hosted authentication and user management service with prebuilt components.",
+      "tags": [
+        "social-login",
+        "enterprise-sso"
+      ],
+      "url": "https://clerk.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
         "Row-level transactional workloads"
       ],
       "edges": [
@@ -2370,6 +3541,128 @@
         "analytics"
       ],
       "url": "https://clickhouse.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You depend on S3-only features"
+      ],
+      "edges": [
+        {
+          "target": "amazon-s3",
+          "type": "alternative-to"
+        },
+        {
+          "target": "azure-blob-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "backblaze-b2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "garage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "google-cloud-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "seaweedfs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "wasabi",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "S3-compatible storage with zero egress charges"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "cloudflare-r2",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "storage",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Cloudflare R2",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://developers.cloudflare.com/r2/",
+        "https://developers.cloudflare.com/r2/pricing/"
+      ],
+      "summary": "S3-compatible object storage from Cloudflare with no egress fees.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://developers.cloudflare.com/r2/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Raw file storage is all you need"
+      ],
+      "edges": [
+        {
+          "target": "uploadthing",
+          "type": "alternative-to"
+        },
+        {
+          "target": "uppy",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Image and video transformations delivered over a CDN"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "cloudinary",
+      "languages": [
+        "javascript",
+        "python",
+        "php",
+        "ruby",
+        "java",
+        "csharp",
+        "go",
+        "swift",
+        "kotlin"
+      ],
+      "layer": "storage",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Cloudinary",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://cloudinary.com",
+        "https://github.com/cloudinary",
+        "https://cloudinary.com/pricing"
+      ],
+      "summary": "A hosted media platform for storing, transforming and delivering images and video.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://cloudinary.com",
       "verified": "2026-11-14"
     },
     {
@@ -2470,6 +3763,177 @@
       "summary": "Protobuf RPC that works over plain HTTP, so browsers and gRPC clients can both call it.",
       "tags": [],
       "url": "https://connectrpc.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need to self-host your CMS"
+      ],
+      "edges": [
+        {
+          "target": "hygraph",
+          "type": "alternative-to"
+        },
+        {
+          "target": "prismic",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sanity",
+          "type": "alternative-to"
+        },
+        {
+          "target": "storyblok",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Structured content shared across web and mobile apps"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "contentful",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "ruby",
+        "php",
+        "java",
+        "swift",
+        "csharp"
+      ],
+      "layer": "cms",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Contentful",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.contentful.com",
+        "https://www.contentful.com/pricing/",
+        "https://www.contentful.com/help/admin/billing-subscription/contentful-free-plan/",
+        "https://github.com/contentful"
+      ],
+      "summary": "Hosted headless content platform with content APIs and official SDKs for JavaScript, Python, Ruby, PHP, Java, Swift and .NET.",
+      "tags": [
+        "content-editing"
+      ],
+      "url": "https://www.contentful.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "netlify cms",
+        "decap"
+      ],
+      "avoid_when": [
+        "Content needs relations or a database"
+      ],
+      "edges": [
+        {
+          "target": "keystonejs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "payload",
+          "type": "alternative-to"
+        },
+        {
+          "target": "strapi",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tinacms",
+          "type": "alternative-to"
+        },
+        {
+          "target": "wagtail",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Editing static site content stored in Git"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "decap-cms",
+      "languages": [],
+      "layer": "cms",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Decap CMS",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://decapcms.org",
+        "https://github.com/decaporg/decap-cms"
+      ],
+      "summary": "An open-source Git-based CMS that edits Markdown and data files in your repository.",
+      "tags": [
+        "content-editing"
+      ],
+      "url": "https://decapcms.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "devise gem"
+      ],
+      "avoid_when": [
+        "Your app is not built on Rails"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "clerk",
+          "type": "alternative-to"
+        },
+        {
+          "target": "workos",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Adding user accounts to a Ruby on Rails app"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "devise",
+      "languages": [
+        "ruby"
+      ],
+      "layer": "auth",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Devise",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://github.com/heartcombo/devise"
+      ],
+      "summary": "Flexible authentication solution for Rails built on Warden, with modules for passwords, confirmation and OmniAuth.",
+      "tags": [
+        "social-login"
+      ],
+      "url": "https://github.com/heartcombo/devise",
       "verified": "2026-11-14"
     },
     {
@@ -3109,6 +4573,91 @@
     },
     {
       "aliases": [
+        "elastic search"
+      ],
+      "avoid_when": [
+        "A small site where a lightweight engine is enough"
+      ],
+      "edges": [
+        {
+          "target": "algolia",
+          "type": "alternative-to"
+        },
+        {
+          "target": "apache-solr",
+          "type": "alternative-to"
+        },
+        {
+          "target": "manticore-search",
+          "type": "alternative-to"
+        },
+        {
+          "target": "meilisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "opensearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tantivy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typesense",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vespa",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Large-scale full-text search and log analytics"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "elasticsearch",
+      "languages": [
+        "java",
+        "javascript",
+        "typescript",
+        "python",
+        "csharp",
+        "php",
+        "ruby",
+        "rust",
+        "go"
+      ],
+      "layer": "search",
+      "license": "AGPL-3.0-only OR SSPL-1.0 OR Elastic-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Elasticsearch",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.elastic.co/elasticsearch",
+        "https://www.elastic.co/blog/elasticsearch-is-open-source-again",
+        "https://github.com/elastic/elasticsearch/blob/main/LICENSE.txt",
+        "https://github.com/elastic"
+      ],
+      "summary": "A distributed search and analytics engine built on Lucene with a REST API.",
+      "tags": [
+        "full-text-search",
+        "vector-search",
+        "analytics"
+      ],
+      "url": "https://www.elastic.co/elasticsearch",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "elementplus"
       ],
       "avoid_when": [
@@ -3635,6 +5184,120 @@
     },
     {
       "aliases": [
+        "firebase auth"
+      ],
+      "avoid_when": [
+        "You need self-hosted identity"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "aws-cognito",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Fast sign-in for mobile and web apps"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "firebase-authentication",
+      "languages": [
+        "javascript",
+        "typescript",
+        "java",
+        "kotlin",
+        "swift",
+        "dart",
+        "python",
+        "go",
+        "csharp"
+      ],
+      "layer": "auth",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Firebase Authentication",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://firebase.google.com/docs/auth",
+        "https://firebase.google.com/docs/admin/setup",
+        "https://firebase.google.com/pricing"
+      ],
+      "summary": "A hosted sign-in service from Firebase supporting email, phone and social providers.",
+      "tags": [
+        "social-login"
+      ],
+      "url": "https://firebase.google.com/docs/auth",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "firebase storage"
+      ],
+      "avoid_when": [
+        "You need a provider-neutral S3-style API"
+      ],
+      "edges": [
+        {
+          "target": "supabase-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vercel-blob",
+          "type": "alternative-to"
+        },
+        {
+          "target": "google-cloud-storage",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Uploading user files straight from mobile and web clients"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "firebase-storage",
+      "languages": [
+        "swift",
+        "kotlin",
+        "java",
+        "javascript",
+        "dart"
+      ],
+      "layer": "storage",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Cloud Storage for Firebase",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://firebase.google.com/docs/storage",
+        "https://firebase.google.com/docs/storage/admin/start",
+        "https://firebase.google.com/pricing"
+      ],
+      "summary": "File storage for mobile and web apps, backed by Google Cloud Storage buckets, with SDKs for Apple, Android, web and Flutter.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://firebase.google.com/docs/storage",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "flask framework",
         "flask python"
       ],
@@ -3685,6 +5348,57 @@
       "summary": "A lightweight Python web framework you extend with the libraries you choose.",
       "tags": [],
       "url": "https://flask.palletsprojects.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "flex search"
+      ],
+      "avoid_when": [
+        "You need server-side clustering or analytics"
+      ],
+      "edges": [
+        {
+          "target": "fusejs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "minisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "pagefind",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Fast in-memory search in the browser or Node"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "flexsearch",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "search",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "FlexSearch",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://github.com/nextapps-de/flexsearch",
+        "https://github.com/nextapps-de/flexsearch"
+      ],
+      "summary": "A fast, memory-flexible full-text search library for browsers and Node.js.",
+      "tags": [
+        "full-text-search"
+      ],
+      "url": "https://github.com/nextapps-de/flexsearch",
       "verified": "2026-11-14"
     },
     {
@@ -3802,6 +5516,104 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [],
+      "avoid_when": [
+        "You need ranking over large corpora"
+      ],
+      "edges": [
+        {
+          "target": "flexsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "minisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "pagefind",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Quick fuzzy search over small lists"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "fusejs",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "search",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Fuse.js",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.fusejs.io",
+        "https://github.com/krisk/Fuse"
+      ],
+      "summary": "A lightweight fuzzy-search library for JavaScript with no dependencies.",
+      "tags": [
+        "full-text-search"
+      ],
+      "url": "https://www.fusejs.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "garage s3"
+      ],
+      "avoid_when": [
+        "You need the full S3 feature set"
+      ],
+      "edges": [
+        {
+          "target": "amazon-s3",
+          "type": "alternative-to"
+        },
+        {
+          "target": "cloudflare-r2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "seaweedfs",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Small self-hosted clusters on modest hardware"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "garage",
+      "languages": [],
+      "layer": "storage",
+      "license": "AGPL-3.0-only",
+      "match_name": false,
+      "maturity": "emerging",
+      "name": "Garage",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://garagehq.deuxfleurs.fr",
+        "https://github.com/deuxfleurs-org/garage"
+      ],
+      "summary": "A lightweight, self-hosted, S3-compatible distributed object store.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://garagehq.deuxfleurs.fr",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [
         "microsoft garnet",
         "garnet cache"
@@ -3904,6 +5716,52 @@
     },
     {
       "aliases": [
+        "ghost cms"
+      ],
+      "avoid_when": [
+        "You need custom content models for an app"
+      ],
+      "edges": [
+        {
+          "target": "wordpress",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Publications with newsletters and memberships"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "ghost",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "cms",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Ghost",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://ghost.org",
+        "https://github.com/TryGhost/Ghost",
+        "https://ghost.org/docs/content-api/"
+      ],
+      "summary": "An open-source publishing platform for blogs, newsletters and paid memberships.",
+      "tags": [
+        "content-editing"
+      ],
+      "url": "https://ghost.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "gin-gonic",
         "gin web framework"
       ],
@@ -3948,6 +5806,134 @@
       "summary": "A high-performance Go web framework with radix tree routing and middleware.",
       "tags": [],
       "url": "https://gin-gonic.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Customers must pay instantly by card"
+      ],
+      "edges": [
+        {
+          "target": "adyen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mollie",
+          "type": "alternative-to"
+        },
+        {
+          "target": "razorpay",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stripe",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Recurring payments with low fees through bank debits"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "gocardless",
+      "languages": [
+        "python",
+        "javascript",
+        "typescript",
+        "php",
+        "ruby",
+        "java",
+        "csharp",
+        "go"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "GoCardless",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://gocardless.com",
+        "https://gocardless.com/pricing/",
+        "https://github.com/gocardless"
+      ],
+      "summary": "A service for bank-to-bank payments such as direct debit and recurring collections.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://gocardless.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "gcs"
+      ],
+      "avoid_when": [
+        "You want to avoid per-operation and egress charges"
+      ],
+      "edges": [
+        {
+          "target": "amazon-s3",
+          "type": "alternative-to"
+        },
+        {
+          "target": "azure-blob-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "backblaze-b2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "cloudflare-r2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "wasabi",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Durable object storage inside the Google Cloud ecosystem"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "google-cloud-storage",
+      "languages": [
+        "csharp",
+        "go",
+        "java",
+        "javascript",
+        "php",
+        "python",
+        "ruby"
+      ],
+      "layer": "storage",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Google Cloud Storage",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://cloud.google.com/storage",
+        "https://docs.cloud.google.com/storage/docs/reference/libraries",
+        "https://cloud.google.com/free/docs/free-cloud-features"
+      ],
+      "summary": "Managed object storage from Google Cloud with client libraries in many languages.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://cloud.google.com/storage",
       "verified": "2026-11-14"
     },
     {
@@ -4502,6 +6488,65 @@
     },
     {
       "aliases": [
+        "graphcms"
+      ],
+      "avoid_when": [
+        "You need to self-host your CMS"
+      ],
+      "edges": [
+        {
+          "target": "contentful",
+          "type": "alternative-to"
+        },
+        {
+          "target": "prismic",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sanity",
+          "type": "alternative-to"
+        },
+        {
+          "target": "storyblok",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "GraphQL-first content delivery to any frontend"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "hygraph",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "cms",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Hygraph",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://hygraph.com",
+        "https://hygraph.com/pricing",
+        "https://hygraph.com/docs",
+        "https://github.com/hygraph/management-sdk"
+      ],
+      "summary": "Hosted headless CMS that serves content through a GraphQL API, with a free Hobby plan and a JavaScript management SDK.",
+      "tags": [
+        "content-editing"
+      ],
+      "url": "https://hygraph.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "ionic-framework"
       ],
       "avoid_when": [
@@ -4665,6 +6710,178 @@
       "summary": "A lightweight, cross-browser JavaScript library for DOM handling, events and Ajax.",
       "tags": [],
       "url": "https://jquery.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "A small team without operations time"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "authentik",
+          "type": "alternative-to"
+        },
+        {
+          "target": "spring-security",
+          "type": "alternative-to"
+        },
+        {
+          "target": "supertokens",
+          "type": "alternative-to"
+        },
+        {
+          "target": "zitadel",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Self-hosted SSO and identity brokering"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "keycloak",
+      "languages": [
+        "java",
+        "javascript"
+      ],
+      "layer": "auth",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Keycloak",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.keycloak.org",
+        "https://github.com/keycloak/keycloak",
+        "https://www.keycloak.org/securing-apps/overview"
+      ],
+      "summary": "An open-source identity and access management server with SSO, social login and federation.",
+      "tags": [
+        "social-login",
+        "enterprise-sso"
+      ],
+      "url": "https://www.keycloak.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "keystone 6"
+      ],
+      "avoid_when": [
+        "You want a hosted service"
+      ],
+      "edges": [
+        {
+          "target": "decap-cms",
+          "type": "alternative-to"
+        },
+        {
+          "target": "payload",
+          "type": "alternative-to"
+        },
+        {
+          "target": "strapi",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tinacms",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Code-first content models with an admin UI"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "keystonejs",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "cms",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "KeystoneJS",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://keystonejs.com",
+        "https://github.com/keystonejs/keystone"
+      ],
+      "summary": "An open-source headless CMS and GraphQL API for Node.js, defined in TypeScript.",
+      "tags": [
+        "content-editing",
+        "admin-ui",
+        "type-safety"
+      ],
+      "url": "https://keystonejs.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "killbill"
+      ],
+      "avoid_when": [
+        "You do not want to run a Java service"
+      ],
+      "edges": [
+        {
+          "target": "chargebee",
+          "type": "alternative-to"
+        },
+        {
+          "target": "lago",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stripe",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Self-hosted subscription billing and invoicing"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "kill-bill",
+      "languages": [
+        "ruby",
+        "python",
+        "php"
+      ],
+      "layer": "payments",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Kill Bill",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://killbill.io",
+        "https://github.com/killbill/killbill",
+        "https://github.com/killbill"
+      ],
+      "summary": "An open-source subscription billing and payments platform.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://killbill.io",
       "verified": "2026-11-14"
     },
     {
@@ -4836,6 +7053,62 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "getlago"
+      ],
+      "avoid_when": [
+        "Plain one-off checkout is enough"
+      ],
+      "edges": [
+        {
+          "target": "chargebee",
+          "type": "alternative-to"
+        },
+        {
+          "target": "kill-bill",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Usage-based billing and invoicing you can self-host"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "lago",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "ruby",
+        "go",
+        "php"
+      ],
+      "layer": "payments",
+      "license": "AGPL-3.0-only",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Lago",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.getlago.com",
+        "https://github.com/getlago/lago",
+        "https://github.com/getlago",
+        "https://www.getlago.com/pricing"
+      ],
+      "summary": "An open-source metering and usage-based billing engine, self-hosted or cloud.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://www.getlago.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "Your team avoids PHP"
@@ -4942,6 +7215,94 @@
     },
     {
       "aliases": [
+        "lemonsqueezy"
+      ],
+      "avoid_when": [
+        "You need marketplaces or complex invoicing"
+      ],
+      "edges": [
+        {
+          "target": "paddle",
+          "type": "alternative-to"
+        },
+        {
+          "target": "polar",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Indie products that want tax handled for them"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "lemon-squeezy",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Lemon Squeezy",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.lemonsqueezy.com",
+        "https://www.lemonsqueezy.com/pricing",
+        "https://github.com/lmsqueezy/lemonsqueezy.js"
+      ],
+      "summary": "A merchant-of-record platform for selling digital products and subscriptions.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://www.lemonsqueezy.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You mainly send per-user transactional email"
+      ],
+      "edges": [
+        {
+          "target": "postal",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Self-hosted newsletters and mailing lists"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "listmonk",
+      "languages": [],
+      "layer": "email",
+      "license": "AGPL-3.0-only",
+      "match_name": true,
+      "maturity": "established",
+      "name": "listmonk",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://listmonk.app",
+        "https://github.com/knadh/listmonk"
+      ],
+      "summary": "A self-hosted newsletter and mailing list manager shipped as a single binary.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://listmonk.app",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "lit-element",
         "lit-html"
       ],
@@ -4983,6 +7344,301 @@
       "summary": "A small library for building fast, framework-agnostic web components.",
       "tags": [],
       "url": "https://lit.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need a long record at very large scale"
+      ],
+      "edges": [
+        {
+          "target": "amazon-ses",
+          "type": "alternative-to"
+        },
+        {
+          "target": "brevo",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailgun",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postmark",
+          "type": "alternative-to"
+        },
+        {
+          "target": "resend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sendgrid",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Transactional email with a simple template builder"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "mailersend",
+      "languages": [
+        "javascript",
+        "php",
+        "python",
+        "ruby",
+        "go",
+        "java"
+      ],
+      "layer": "email",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "MailerSend",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.mailersend.com",
+        "https://www.mailersend.com/pricing"
+      ],
+      "summary": "A transactional email service with SMTP, an API and template tools.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://www.mailersend.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need a generous permanent free tier"
+      ],
+      "edges": [
+        {
+          "target": "amazon-ses",
+          "type": "alternative-to"
+        },
+        {
+          "target": "brevo",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailersend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postmark",
+          "type": "alternative-to"
+        },
+        {
+          "target": "resend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sendgrid",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Programmable email with inbound routing"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "mailgun",
+      "languages": [
+        "javascript",
+        "php",
+        "ruby",
+        "go",
+        "python",
+        "java"
+      ],
+      "layer": "email",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Mailgun",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.mailgun.com",
+        "https://github.com/mailgun"
+      ],
+      "summary": "An email API for sending, receiving and tracking transactional email.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://www.mailgun.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You want an actively maintained tool"
+      ],
+      "edges": [
+        {
+          "target": "mailpit",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Quickly catching dev emails in older setups"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "mailhog",
+      "languages": [],
+      "layer": "email",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "legacy",
+      "name": "MailHog",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://github.com/mailhog/MailHog"
+      ],
+      "summary": "A local email testing tool that catches SMTP traffic and shows it in a web UI.",
+      "tags": [],
+      "url": "https://github.com/mailhog/MailHog",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need real delivery"
+      ],
+      "edges": [
+        {
+          "target": "mailhog",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Testing email locally without sending anything"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "mailpit",
+      "languages": [],
+      "layer": "email",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Mailpit",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://mailpit.axllent.org",
+        "https://github.com/axllent/mailpit"
+      ],
+      "summary": "A local SMTP server and web UI for catching and inspecting email during development.",
+      "tags": [],
+      "url": "https://mailpit.axllent.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "manticore",
+        "manticoresearch"
+      ],
+      "avoid_when": [
+        "You need a large managed ecosystem around it"
+      ],
+      "edges": [
+        {
+          "target": "algolia",
+          "type": "alternative-to"
+        },
+        {
+          "target": "apache-solr",
+          "type": "alternative-to"
+        },
+        {
+          "target": "elasticsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "meilisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "opensearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tantivy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typesense",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vespa",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "A fast Sphinx-style engine with a SQL interface"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "manticore-search",
+      "languages": [
+        "python",
+        "typescript",
+        "javascript",
+        "go",
+        "java",
+        "csharp",
+        "php",
+        "rust"
+      ],
+      "layer": "search",
+      "license": "GPL-3.0-only",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Manticore Search",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://manticoresearch.com",
+        "https://github.com/manticoresoftware/manticoresearch"
+      ],
+      "summary": "An open-source search database written in C++, with SQL and full-text and vector search.",
+      "tags": [
+        "full-text-search",
+        "vector-search"
+      ],
+      "url": "https://manticoresearch.com",
       "verified": "2026-11-14"
     },
     {
@@ -5168,6 +7824,91 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "meili"
+      ],
+      "avoid_when": [
+        "You need heavy analytics or complex aggregations"
+      ],
+      "edges": [
+        {
+          "target": "algolia",
+          "type": "alternative-to"
+        },
+        {
+          "target": "apache-solr",
+          "type": "alternative-to"
+        },
+        {
+          "target": "elasticsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "manticore-search",
+          "type": "alternative-to"
+        },
+        {
+          "target": "opensearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tantivy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typesense",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vespa",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Instant search-as-you-type with little configuration"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "meilisearch",
+      "languages": [
+        "javascript",
+        "typescript",
+        "php",
+        "python",
+        "ruby",
+        "java",
+        "go",
+        "csharp",
+        "dart",
+        "rust",
+        "swift"
+      ],
+      "layer": "search",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Meilisearch",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.meilisearch.com",
+        "https://github.com/meilisearch/meilisearch",
+        "https://github.com/meilisearch"
+      ],
+      "summary": "A fast search engine with typo tolerance, filters and hybrid semantic search.",
+      "tags": [
+        "full-text-search",
+        "vector-search"
+      ],
+      "url": "https://www.meilisearch.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "Pub/sub, persistence or data structures"
@@ -5289,6 +8030,96 @@
     },
     {
       "aliases": [
+        "mini search"
+      ],
+      "avoid_when": [
+        "Datasets reach hundreds of thousands of documents"
+      ],
+      "edges": [
+        {
+          "target": "flexsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "fusejs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "pagefind",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Small client-side or Node search over modest data"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "minisearch",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "search",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "MiniSearch",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://lucaong.github.io/minisearch/",
+        "https://github.com/lucaong/minisearch"
+      ],
+      "summary": "A tiny in-memory full-text search engine for JavaScript with fuzzy and prefix search.",
+      "tags": [
+        "full-text-search"
+      ],
+      "url": "https://lucaong.github.io/minisearch/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You prefer components in React"
+      ],
+      "edges": [
+        {
+          "target": "react-email",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Responsive email templates without table hacks"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "mjml",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "email",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "MJML",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://mjml.io",
+        "https://github.com/mjmlio/mjml"
+      ],
+      "summary": "A markup language that compiles responsive email layouts to HTML.",
+      "tags": [],
+      "url": "https://mjml.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "mobx-react"
       ],
       "avoid_when": [
@@ -5337,6 +8168,68 @@
       "summary": "A library that makes state management simple through transparent reactive programming.",
       "tags": [],
       "url": "https://mobx.js.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Most of your customers are outside Europe"
+      ],
+      "edges": [
+        {
+          "target": "adyen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gocardless",
+          "type": "alternative-to"
+        },
+        {
+          "target": "paypal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "razorpay",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stripe",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Shops selling mainly to European customers"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "mollie",
+      "languages": [
+        "php",
+        "python",
+        "javascript",
+        "typescript",
+        "ruby",
+        "java"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Mollie",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.mollie.com",
+        "https://github.com/mollie"
+      ],
+      "summary": "A European payment service with many local methods such as iDEAL and Bancontact.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://www.mollie.com",
       "verified": "2026-11-14"
     },
     {
@@ -5899,6 +8792,47 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [],
+      "avoid_when": [
+        "You want deliverability tooling, which needs a provider"
+      ],
+      "edges": [
+        {
+          "target": "amazon-ses",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Sending email from Node with any SMTP provider"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "nodemailer",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "email",
+      "license": "MIT-0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Nodemailer",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://nodemailer.com",
+        "https://github.com/nodemailer/nodemailer"
+      ],
+      "summary": "A Node.js module for sending email over SMTP and other transports.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://nodemailer.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [
         "nuxt.js",
         "nuxt3",
@@ -6104,6 +9038,85 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "open search"
+      ],
+      "avoid_when": [
+        "You want a small footprint and instant setup"
+      ],
+      "edges": [
+        {
+          "target": "algolia",
+          "type": "alternative-to"
+        },
+        {
+          "target": "apache-solr",
+          "type": "alternative-to"
+        },
+        {
+          "target": "elasticsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "manticore-search",
+          "type": "alternative-to"
+        },
+        {
+          "target": "meilisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tantivy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typesense",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vespa",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Elasticsearch-style search under a permissive licence"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "opensearch",
+      "languages": [
+        "python",
+        "java",
+        "javascript",
+        "go",
+        "ruby",
+        "php",
+        "csharp",
+        "rust"
+      ],
+      "layer": "search",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "OpenSearch",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://opensearch.org",
+        "https://opensearch.org/docs/latest/clients/"
+      ],
+      "summary": "A community-driven fork of Elasticsearch for search, analytics and vector search.",
+      "tags": [
+        "full-text-search",
+        "vector-search"
+      ],
+      "url": "https://opensearch.org",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "You need a long track record"
@@ -6146,6 +9159,108 @@
         "type-safety"
       ],
       "url": "https://orpc.dev/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "paddle billing"
+      ],
+      "avoid_when": [
+        "You want direct control of the payment flow"
+      ],
+      "edges": [
+        {
+          "target": "lemon-squeezy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "polar",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Selling SaaS globally without handling sales tax yourself"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "paddle",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "go",
+        "php"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Paddle",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.paddle.com",
+        "https://github.com/PaddleHQ"
+      ],
+      "summary": "A merchant of record that handles payments, tax and subscriptions for software sellers.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://www.paddle.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Content changes constantly or lives in a database"
+      ],
+      "edges": [
+        {
+          "target": "flexsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "fusejs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "minisearch",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Search for static sites with no server"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "pagefind",
+      "languages": [
+        "javascript",
+        "python"
+      ],
+      "layer": "search",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Pagefind",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://pagefind.app",
+        "https://github.com/CloudCannon/pagefind"
+      ],
+      "summary": "A static search library that indexes a built site and runs search fully in the browser.",
+      "tags": [
+        "full-text-search",
+        "static-content"
+      ],
+      "url": "https://pagefind.app",
       "verified": "2026-11-14"
     },
     {
@@ -6196,6 +9311,175 @@
       "summary": "A zero-configuration web application bundler.",
       "tags": [],
       "url": "https://parceljs.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "passport.js"
+      ],
+      "avoid_when": [
+        "You want hosted users and prebuilt screens"
+      ],
+      "edges": [
+        {
+          "target": "authjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "better-auth",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Flexible authentication in Express apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "passportjs",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "auth",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Passport",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.passportjs.org",
+        "https://github.com/jaredhanson/passport"
+      ],
+      "summary": "Express-compatible authentication middleware for Node.js with hundreds of strategies.",
+      "tags": [
+        "social-login"
+      ],
+      "url": "https://www.passportjs.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "payload cms",
+        "payloadcms"
+      ],
+      "avoid_when": [
+        "You need a non-JavaScript stack"
+      ],
+      "edges": [
+        {
+          "target": "decap-cms",
+          "type": "alternative-to"
+        },
+        {
+          "target": "keystonejs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "strapi",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tinacms",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Code-defined content with a built-in admin inside your Next.js app"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "payload",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "cms",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Payload",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://payloadcms.com",
+        "https://github.com/payloadcms/payload"
+      ],
+      "summary": "An open-source, TypeScript-first headless CMS and app framework that installs inside Next.js.",
+      "tags": [
+        "content-editing",
+        "admin-ui",
+        "type-safety"
+      ],
+      "url": "https://payloadcms.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You want one flat fee with no per-transaction fixed charge"
+      ],
+      "edges": [
+        {
+          "target": "adyen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "braintree",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mollie",
+          "type": "alternative-to"
+        },
+        {
+          "target": "square",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stripe",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Offering the PayPal wallet at checkout"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "paypal",
+      "languages": [
+        "csharp",
+        "java",
+        "php",
+        "python",
+        "ruby",
+        "typescript",
+        "javascript"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "PayPal",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://developer.paypal.com",
+        "https://github.com/paypal/PayPal-Server-SDKs",
+        "https://www.paypal.com/us/business/paypal-business-fees"
+      ],
+      "summary": "PayPal Checkout and REST APIs for accepting PayPal and card payments, with server SDKs in six languages.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://developer.paypal.com",
       "verified": "2026-11-14"
     },
     {
@@ -6392,6 +9676,122 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "polar.sh"
+      ],
+      "avoid_when": [
+        "You need an established long-running processor"
+      ],
+      "edges": [
+        {
+          "target": "lemon-squeezy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "paddle",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Developer products and open-source monetisation"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "polar",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "go",
+        "php",
+        "ruby"
+      ],
+      "layer": "payments",
+      "license": "Apache-2.0",
+      "match_name": false,
+      "maturity": "emerging",
+      "name": "Polar",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://polar.sh",
+        "https://github.com/polarsource/polar",
+        "https://polar.sh/docs/merchant-of-record/fees",
+        "https://github.com/polarsource"
+      ],
+      "summary": "A merchant-of-record platform for software with subscriptions, licence keys and benefits.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://polar.sh",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "postal server"
+      ],
+      "avoid_when": [
+        "You do not want to manage IP reputation"
+      ],
+      "edges": [
+        {
+          "target": "amazon-ses",
+          "type": "alternative-to"
+        },
+        {
+          "target": "listmonk",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailersend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailgun",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postmark",
+          "type": "alternative-to"
+        },
+        {
+          "target": "resend",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Running your own sending infrastructure"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "postal",
+      "languages": [],
+      "layer": "email",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Postal",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://docs.postalserver.io",
+        "https://github.com/postalserver/postal"
+      ],
+      "summary": "A self-hosted mail delivery platform for sending and tracking email.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://docs.postalserver.io",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "You do not use PostgreSQL"
@@ -6569,6 +9969,76 @@
         "full-text-search"
       ],
       "url": "https://www.postgresql.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You also send bulk marketing campaigns"
+      ],
+      "edges": [
+        {
+          "target": "amazon-ses",
+          "type": "alternative-to"
+        },
+        {
+          "target": "brevo",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailersend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailgun",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "resend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sendgrid",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "High deliverability for app notifications and receipts"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "postmark",
+      "languages": [
+        "javascript",
+        "python",
+        "ruby",
+        "php",
+        "csharp"
+      ],
+      "layer": "email",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Postmark",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://postmarkapp.com",
+        "https://postmarkapp.com/pricing"
+      ],
+      "summary": "An email delivery service focused on fast, reliable transactional email.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://postmarkapp.com",
       "verified": "2026-11-14"
     },
     {
@@ -6777,6 +10247,61 @@
         "type-safety"
       ],
       "url": "https://www.prisma.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Self-hosting is a requirement"
+      ],
+      "edges": [
+        {
+          "target": "contentful",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hygraph",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sanity",
+          "type": "alternative-to"
+        },
+        {
+          "target": "storyblok",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Page building with reusable slices"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "prismic",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "cms",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Prismic",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://prismic.io",
+        "https://prismic.io/pricing"
+      ],
+      "summary": "A hosted headless CMS with slices for building pages from reusable sections.",
+      "tags": [
+        "content-editing"
+      ],
+      "url": "https://prismic.io",
       "verified": "2026-11-14"
     },
     {
@@ -7073,6 +10598,65 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [],
+      "avoid_when": [
+        "Customers are mostly outside India"
+      ],
+      "edges": [
+        {
+          "target": "adyen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gocardless",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mollie",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stripe",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Accepting payments from customers in India"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "razorpay",
+      "languages": [
+        "javascript",
+        "python",
+        "php",
+        "ruby",
+        "java",
+        "go"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Razorpay",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://razorpay.com",
+        "https://razorpay.com/pricing/",
+        "https://github.com/razorpay"
+      ],
+      "summary": "An Indian payments platform for UPI, cards, netbanking and subscriptions.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://razorpay.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [
         "reactjs",
         "react.js"
@@ -7198,6 +10782,51 @@
         "ssr-seo"
       ],
       "url": "https://react.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "react.email"
+      ],
+      "avoid_when": [
+        "The backend is not JavaScript"
+      ],
+      "edges": [
+        {
+          "target": "mjml",
+          "type": "alternative-to"
+        },
+        {
+          "target": "resend",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Writing email templates as React components"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "react-email",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "email",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "React Email",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://react.email",
+        "https://github.com/resend/react-email"
+      ],
+      "summary": "A collection of React components for building and rendering HTML emails.",
+      "tags": [],
+      "url": "https://react.email",
       "verified": "2026-11-14"
     },
     {
@@ -7471,6 +11100,85 @@
     },
     {
       "aliases": [
+        "resend.com"
+      ],
+      "avoid_when": [
+        "You need very high volume at the lowest cost"
+      ],
+      "edges": [
+        {
+          "target": "amazon-ses",
+          "type": "alternative-to"
+        },
+        {
+          "target": "brevo",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailersend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailgun",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postmark",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sendgrid",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react-email",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Developer-friendly transactional email"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "resend",
+      "languages": [
+        "javascript",
+        "python",
+        "php",
+        "ruby",
+        "go",
+        "java",
+        "rust",
+        "csharp"
+      ],
+      "layer": "email",
+      "license": "Proprietary",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Resend",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://resend.com",
+        "https://resend.com/pricing"
+      ],
+      "summary": "An email API for developers with a clean SDK and React Email templates.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://resend.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "river queue",
         "riverqueue"
       ],
@@ -7727,6 +11435,64 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "sanity.io"
+      ],
+      "avoid_when": [
+        "Data must stay on your own servers"
+      ],
+      "edges": [
+        {
+          "target": "contentful",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hygraph",
+          "type": "alternative-to"
+        },
+        {
+          "target": "prismic",
+          "type": "alternative-to"
+        },
+        {
+          "target": "storyblok",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Structured content with collaborative editing"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "sanity",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "cms",
+      "license": "Proprietary",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Sanity",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.sanity.io",
+        "https://www.sanity.io/pricing"
+      ],
+      "summary": "A hosted content platform with a customizable Studio and real-time collaboration.",
+      "tags": [
+        "content-editing",
+        "realtime"
+      ],
+      "url": "https://www.sanity.io",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "Projects not using Rust"
@@ -7772,6 +11538,125 @@
       "summary": "An async, dynamic ORM for Rust for building web services, with relations and migrations.",
       "tags": [],
       "url": "https://www.sea-ql.org/SeaORM/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "seaweed fs"
+      ],
+      "avoid_when": [
+        "You want a managed service"
+      ],
+      "edges": [
+        {
+          "target": "amazon-s3",
+          "type": "alternative-to"
+        },
+        {
+          "target": "cloudflare-r2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "garage",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Self-hosted storage for billions of small files"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "seaweedfs",
+      "languages": [],
+      "layer": "storage",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "SeaweedFS",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://github.com/seaweedfs/seaweedfs"
+      ],
+      "summary": "A distributed storage system for blobs, objects and files with an S3-compatible API.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://github.com/seaweedfs/seaweedfs",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "twilio sendgrid"
+      ],
+      "avoid_when": [
+        "You want a permanent free plan, only a time-limited trial is offered"
+      ],
+      "edges": [
+        {
+          "target": "amazon-ses",
+          "type": "alternative-to"
+        },
+        {
+          "target": "brevo",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailersend",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mailgun",
+          "type": "alternative-to"
+        },
+        {
+          "target": "postmark",
+          "type": "alternative-to"
+        },
+        {
+          "target": "resend",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "High-volume transactional email through an API or SMTP"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "sendgrid",
+      "languages": [
+        "javascript",
+        "python",
+        "ruby",
+        "php",
+        "java",
+        "csharp",
+        "go"
+      ],
+      "layer": "email",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "SendGrid",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://sendgrid.com",
+        "https://www.twilio.com/docs/sendgrid/for-developers/sending-email/libraries",
+        "https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send",
+        "https://github.com/sendgrid/sendgrid-nodejs"
+      ],
+      "summary": "Twilio SendGrid email API and SMTP relay for transactional email, with official libraries in seven languages.",
+      "tags": [
+        "transactional-email"
+      ],
+      "url": "https://sendgrid.com",
       "verified": "2026-11-14"
     },
     {
@@ -8195,6 +12080,58 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [],
+      "avoid_when": [
+        "Your backend is not on the JVM"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "keycloak",
+          "type": "alternative-to"
+        },
+        {
+          "target": "zitadel",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Securing Spring Boot and other Spring-based applications"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "spring-security",
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "layer": "auth",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Spring Security",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://spring.io/projects/spring-security",
+        "https://docs.spring.io/spring-security/reference/index.html",
+        "https://github.com/spring-projects/spring-security"
+      ],
+      "summary": "Authentication and access-control framework for Java and Spring applications, with OAuth 2.0 login and SAML 2.0 support.",
+      "tags": [
+        "social-login",
+        "enterprise-sso"
+      ],
+      "url": "https://spring.io/projects/spring-security",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [
         "sql alchemy"
       ],
@@ -8377,6 +12314,70 @@
     },
     {
       "aliases": [
+        "square payments"
+      ],
+      "avoid_when": [
+        "You need a merchant of record that handles sales tax"
+      ],
+      "edges": [
+        {
+          "target": "adyen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "braintree",
+          "type": "alternative-to"
+        },
+        {
+          "target": "paypal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stripe",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Selling both online and in person with one account"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "square",
+      "languages": [
+        "java",
+        "csharp",
+        "javascript",
+        "typescript",
+        "php",
+        "python",
+        "ruby",
+        "go"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Square",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://developer.squareup.com",
+        "https://developer.squareup.com/docs/sdks",
+        "https://developer.squareup.com/docs/payments-pricing",
+        "https://squareup.com/us/en/payments/our-fees"
+      ],
+      "summary": "Payment processing with APIs and SDKs for online and in-person payments, charged per transaction with no monthly fee.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://developer.squareup.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "stimulusjs",
         "hotwire-stimulus"
       ],
@@ -8429,6 +12430,123 @@
     {
       "aliases": [],
       "avoid_when": [
+        "You want a self-hosted CMS"
+      ],
+      "edges": [
+        {
+          "target": "contentful",
+          "type": "alternative-to"
+        },
+        {
+          "target": "hygraph",
+          "type": "alternative-to"
+        },
+        {
+          "target": "prismic",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sanity",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Marketers editing pages visually"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "storyblok",
+      "languages": [
+        "javascript",
+        "typescript",
+        "php",
+        "swift",
+        "kotlin"
+      ],
+      "layer": "cms",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Storyblok",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://www.storyblok.com",
+        "https://www.storyblok.com/docs/packages",
+        "https://www.storyblok.com/pricing"
+      ],
+      "summary": "A hosted headless CMS with a visual editor for page building.",
+      "tags": [
+        "content-editing"
+      ],
+      "url": "https://www.storyblok.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need real-time collaborative editing"
+      ],
+      "edges": [
+        {
+          "target": "decap-cms",
+          "type": "alternative-to"
+        },
+        {
+          "target": "keystonejs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "payload",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tinacms",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Self-hosted headless CMS with an admin panel"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "strapi",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "cms",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Strapi",
+      "pricing": [
+        "oss",
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://strapi.io",
+        "https://github.com/strapi/strapi"
+      ],
+      "summary": "An open-source headless CMS built in Node.js with a content builder and REST and GraphQL APIs.",
+      "tags": [
+        "content-editing",
+        "admin-ui"
+      ],
+      "url": "https://strapi.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
         "You want a REST-only API"
       ],
       "edges": [
@@ -8471,6 +12589,81 @@
       "summary": "A Python GraphQL library that uses type hints to build schemas.",
       "tags": [],
       "url": "https://strawberry.rocks",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need a merchant of record to handle global tax"
+      ],
+      "edges": [
+        {
+          "target": "adyen",
+          "type": "alternative-to"
+        },
+        {
+          "target": "braintree",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gocardless",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mollie",
+          "type": "alternative-to"
+        },
+        {
+          "target": "paypal",
+          "type": "alternative-to"
+        },
+        {
+          "target": "razorpay",
+          "type": "alternative-to"
+        },
+        {
+          "target": "square",
+          "type": "alternative-to"
+        },
+        {
+          "target": "kill-bill",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Online payments and subscriptions with strong APIs"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "stripe",
+      "languages": [
+        "ruby",
+        "python",
+        "go",
+        "java",
+        "javascript",
+        "php",
+        "csharp"
+      ],
+      "layer": "payments",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Stripe",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://stripe.com",
+        "https://docs.stripe.com/sdks"
+      ],
+      "summary": "A payments platform with APIs for cards, subscriptions, invoices and marketplaces.",
+      "tags": [
+        "payments"
+      ],
+      "url": "https://stripe.com",
       "verified": "2026-11-14"
     },
     {
@@ -8523,6 +12716,188 @@
         "vector-search"
       ],
       "url": "https://supabase.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "gotrue"
+      ],
+      "avoid_when": [
+        "You are not using Supabase"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "clerk",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Auth that ties users to Postgres row-level policies"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "supabase-auth",
+      "languages": [
+        "javascript",
+        "typescript",
+        "dart",
+        "swift",
+        "python",
+        "csharp",
+        "kotlin"
+      ],
+      "layer": "auth",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Supabase Auth",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://supabase.com/docs/guides/auth",
+        "https://github.com/supabase/auth"
+      ],
+      "summary": "An open-source auth service from Supabase covering email, social providers and SAML SSO.",
+      "tags": [
+        "social-login",
+        "enterprise-sso"
+      ],
+      "url": "https://supabase.com/docs/guides/auth",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "supabase files"
+      ],
+      "avoid_when": [
+        "You are not using Supabase"
+      ],
+      "edges": [
+        {
+          "target": "amazon-s3",
+          "type": "alternative-to"
+        },
+        {
+          "target": "firebase-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vercel-blob",
+          "type": "alternative-to"
+        },
+        {
+          "target": "uppy",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "File storage protected by the same row-level policies as your data"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "supabase-storage",
+      "languages": [
+        "javascript",
+        "typescript",
+        "dart",
+        "swift",
+        "python",
+        "csharp",
+        "kotlin"
+      ],
+      "layer": "storage",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Supabase Storage",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://supabase.com/docs/guides/storage",
+        "https://github.com/supabase/storage"
+      ],
+      "summary": "File storage in Supabase with access rules tied to Postgres policies and Supabase Auth.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://supabase.com/docs/guides/storage",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Your backend is not Node.js, Python or Go and you want a native SDK"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "keycloak",
+          "type": "alternative-to"
+        },
+        {
+          "target": "workos",
+          "type": "alternative-to"
+        },
+        {
+          "target": "zitadel",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Self-hosted login with ready-made frontend UI components"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "supertokens",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "go"
+      ],
+      "layer": "auth",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "SuperTokens",
+      "pricing": [
+        "oss",
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://supertokens.com",
+        "https://supertokens.com/pricing",
+        "https://supertokens.com/docs/quickstart/introduction",
+        "https://github.com/supertokens/supertokens-core"
+      ],
+      "summary": "Open-source authentication with backend SDKs for Node.js, Python and Go, self-hosted or as a managed service.",
+      "tags": [
+        "social-login",
+        "enterprise-sso",
+        "multi-tenant"
+      ],
+      "url": "https://supertokens.com",
       "verified": "2026-11-14"
     },
     {
@@ -8981,6 +13356,72 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [],
+      "avoid_when": [
+        "You need a ready-made server with a REST API"
+      ],
+      "edges": [
+        {
+          "target": "apache-solr",
+          "type": "alternative-to"
+        },
+        {
+          "target": "elasticsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "manticore-search",
+          "type": "alternative-to"
+        },
+        {
+          "target": "meilisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "opensearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typesense",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vespa",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Embedding fast full-text search in a Rust program"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "tantivy",
+      "languages": [
+        "rust",
+        "python"
+      ],
+      "layer": "search",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Tantivy",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://github.com/quickwit-oss/tantivy",
+        "https://github.com/quickwit-oss/tantivy-py"
+      ],
+      "summary": "A full-text search engine library written in Rust, inspired by Apache Lucene.",
+      "tags": [
+        "full-text-search"
+      ],
+      "url": "https://github.com/quickwit-oss/tantivy",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [
         "tauri-app",
         "tauri2"
@@ -9085,6 +13526,66 @@
       "summary": "A durable execution platform that resumes workflows after crashes, with SDKs in many languages.",
       "tags": [],
       "url": "https://temporal.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "tina cms"
+      ],
+      "avoid_when": [
+        "You need a classic database-backed CMS"
+      ],
+      "edges": [
+        {
+          "target": "decap-cms",
+          "type": "alternative-to"
+        },
+        {
+          "target": "keystonejs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "payload",
+          "type": "alternative-to"
+        },
+        {
+          "target": "strapi",
+          "type": "alternative-to"
+        },
+        {
+          "target": "wagtail",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Visual editing for Git-based sites"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "tinacms",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "cms",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "TinaCMS",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://tina.io",
+        "https://github.com/TinaCMS/tinacms"
+      ],
+      "summary": "An open-source Git-backed CMS with visual editing for Markdown and MDX content.",
+      "tags": [
+        "content-editing"
+      ],
+      "url": "https://tina.io",
       "verified": "2026-11-14"
     },
     {
@@ -9422,6 +13923,89 @@
     },
     {
       "aliases": [
+        "type sense"
+      ],
+      "avoid_when": [
+        "The whole index cannot fit in RAM"
+      ],
+      "edges": [
+        {
+          "target": "algolia",
+          "type": "alternative-to"
+        },
+        {
+          "target": "apache-solr",
+          "type": "alternative-to"
+        },
+        {
+          "target": "elasticsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "manticore-search",
+          "type": "alternative-to"
+        },
+        {
+          "target": "meilisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "opensearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tantivy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vespa",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Fast typo-tolerant search with an in-memory index"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "typesense",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "go",
+        "java",
+        "ruby",
+        "php",
+        "dart",
+        "swift",
+        "rust"
+      ],
+      "layer": "search",
+      "license": "GPL-3.0-only",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Typesense",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://typesense.org",
+        "https://github.com/typesense/typesense",
+        "https://github.com/typesense"
+      ],
+      "summary": "An open-source typo-tolerant search engine with vector search, built for speed.",
+      "tags": [
+        "full-text-search",
+        "vector-search"
+      ],
+      "url": "https://typesense.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "unoplatform"
       ],
       "avoid_when": [
@@ -9463,6 +14047,103 @@
         "native-mobile"
       ],
       "url": "https://platform.uno",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "upload thing"
+      ],
+      "avoid_when": [
+        "You need uploads from non-JavaScript backends"
+      ],
+      "edges": [
+        {
+          "target": "cloudinary",
+          "type": "alternative-to"
+        },
+        {
+          "target": "uppy",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Quick, type-safe uploads in Next.js style apps"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "uploadthing",
+      "languages": [
+        "typescript"
+      ],
+      "layer": "storage",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "UploadThing",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://uploadthing.com",
+        "https://github.com/pingdotgg/uploadthing"
+      ],
+      "summary": "A file upload service and SDK for TypeScript full-stack apps, with type-safe routes.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://uploadthing.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You only need a plain file input"
+      ],
+      "edges": [
+        {
+          "target": "cloudinary",
+          "type": "alternative-to"
+        },
+        {
+          "target": "uploadthing",
+          "type": "alternative-to"
+        },
+        {
+          "target": "supabase-storage",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "A polished upload dialog with resumable uploads"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "uppy",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "storage",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Uppy",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://uppy.io",
+        "https://github.com/transloadit/uppy"
+      ],
+      "summary": "A modular open-source file uploader for the browser with resumable uploads and many sources.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://uppy.io",
       "verified": "2026-11-14"
     },
     {
@@ -9605,6 +14286,131 @@
       "summary": "A proxy-based state library that makes mutable state work with React rendering.",
       "tags": [],
       "url": "https://valtio.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "vercel blob storage"
+      ],
+      "avoid_when": [
+        "You run outside Vercel or need S3 compatibility"
+      ],
+      "edges": [
+        {
+          "target": "amazon-s3",
+          "type": "alternative-to"
+        },
+        {
+          "target": "firebase-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "supabase-storage",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Simple file storage for apps hosted on Vercel"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "vercel-blob",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "storage",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Vercel Blob",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://vercel.com/docs/storage/vercel-blob",
+        "https://vercel.com/docs/vercel-blob/using-blob-sdk"
+      ],
+      "summary": "Object storage from Vercel with a simple SDK for uploading and serving files.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://vercel.com/docs/storage/vercel-blob",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "vespa.ai"
+      ],
+      "avoid_when": [
+        "A simple site search is all you need"
+      ],
+      "edges": [
+        {
+          "target": "apache-solr",
+          "type": "alternative-to"
+        },
+        {
+          "target": "elasticsearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "manticore-search",
+          "type": "alternative-to"
+        },
+        {
+          "target": "meilisearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "opensearch",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tantivy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "typesense",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Search that combines text, vectors and ranking models at scale"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "vespa",
+      "languages": [
+        "java",
+        "python"
+      ],
+      "layer": "search",
+      "license": "Apache-2.0",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Vespa",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://vespa.ai",
+        "https://github.com/vespa-engine/vespa",
+        "https://github.com/vespa-engine/pyvespa"
+      ],
+      "summary": "An open-source engine for large-scale search, recommendation and vector retrieval.",
+      "tags": [
+        "full-text-search",
+        "vector-search"
+      ],
+      "url": "https://vespa.ai",
       "verified": "2026-11-14"
     },
     {
@@ -9953,6 +14759,107 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [],
+      "avoid_when": [
+        "The backend is not Python"
+      ],
+      "edges": [
+        {
+          "target": "decap-cms",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tinacms",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Django projects needing a strong editor experience"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "wagtail",
+      "languages": [
+        "python"
+      ],
+      "layer": "cms",
+      "license": "BSD-3-Clause",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Wagtail",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://wagtail.org",
+        "https://github.com/wagtail/wagtail"
+      ],
+      "summary": "An open-source CMS built on Django with a flexible editing interface.",
+      "tags": [
+        "content-editing"
+      ],
+      "url": "https://wagtail.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "wasabi cloud storage"
+      ],
+      "avoid_when": [
+        "Data is deleted within a short period"
+      ],
+      "edges": [
+        {
+          "target": "amazon-s3",
+          "type": "alternative-to"
+        },
+        {
+          "target": "azure-blob-storage",
+          "type": "alternative-to"
+        },
+        {
+          "target": "backblaze-b2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "cloudflare-r2",
+          "type": "alternative-to"
+        },
+        {
+          "target": "google-cloud-storage",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Predictable pricing for large stored volumes"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "wasabi",
+      "languages": [],
+      "layer": "storage",
+      "license": "Proprietary",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Wasabi",
+      "pricing": [
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://wasabi.com"
+      ],
+      "summary": "S3-compatible hot cloud storage sold at a flat per-terabyte price.",
+      "tags": [
+        "file-uploads"
+      ],
+      "url": "https://wasabi.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [
         "webpack5"
       ],
@@ -10006,6 +14913,114 @@
       "summary": "A static module bundler for JavaScript applications.",
       "tags": [],
       "url": "https://webpack.js.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You want a modern JavaScript-only stack"
+      ],
+      "edges": [
+        {
+          "target": "ghost",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Content sites with a huge plugin and theme ecosystem"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "wordpress",
+      "languages": [
+        "php"
+      ],
+      "layer": "cms",
+      "license": "GPL-2.0-or-later",
+      "match_name": true,
+      "maturity": "established",
+      "name": "WordPress",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://wordpress.org",
+        "https://wordpress.org/about/license/"
+      ],
+      "summary": "The open-source CMS and publishing platform that powers a large share of the web.",
+      "tags": [
+        "content-editing"
+      ],
+      "url": "https://wordpress.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need to self-host your identity provider"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "clerk",
+          "type": "alternative-to"
+        },
+        {
+          "target": "devise",
+          "type": "alternative-to"
+        },
+        {
+          "target": "supertokens",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Adding SAML and OIDC single sign-on for business customers"
+      ],
+      "hosting": [
+        "managed"
+      ],
+      "id": "workos",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "ruby",
+        "go",
+        "java",
+        "kotlin",
+        "php",
+        "csharp",
+        "elixir",
+        "rust"
+      ],
+      "layer": "auth",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "WorkOS",
+      "pricing": [
+        "free-tier",
+        "paid"
+      ],
+      "repo": null,
+      "sources": [
+        "https://workos.com",
+        "https://workos.com/docs",
+        "https://workos.com/docs/sdks",
+        "https://workos.com/pricing"
+      ],
+      "summary": "Hosted auth APIs for enterprise SSO, directory sync and user management, with backend SDKs in many languages.",
+      "tags": [
+        "social-login",
+        "enterprise-sso"
+      ],
+      "url": "https://workos.com",
       "verified": "2026-11-14"
     },
     {
@@ -10102,6 +15117,73 @@
         "type-safety"
       ],
       "url": "https://stately.ai/docs/xstate",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "Your policy bans AGPL software"
+      ],
+      "edges": [
+        {
+          "target": "auth0",
+          "type": "alternative-to"
+        },
+        {
+          "target": "authentik",
+          "type": "alternative-to"
+        },
+        {
+          "target": "keycloak",
+          "type": "alternative-to"
+        },
+        {
+          "target": "spring-security",
+          "type": "alternative-to"
+        },
+        {
+          "target": "supertokens",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "B2B apps that need organisations and SSO"
+      ],
+      "hosting": [
+        "managed",
+        "self-hosted"
+      ],
+      "id": "zitadel",
+      "languages": [
+        "go",
+        "javascript",
+        "typescript",
+        "java",
+        "php",
+        "python",
+        "ruby"
+      ],
+      "layer": "auth",
+      "license": "AGPL-3.0-only",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "ZITADEL",
+      "pricing": [
+        "oss"
+      ],
+      "repo": null,
+      "sources": [
+        "https://zitadel.com",
+        "https://github.com/zitadel/zitadel",
+        "https://github.com/zitadel"
+      ],
+      "summary": "An open-source identity platform with multi-tenancy, SSO and social login, hosted or self-hosted.",
+      "tags": [
+        "social-login",
+        "enterprise-sso",
+        "multi-tenant"
+      ],
+      "url": "https://zitadel.com",
       "verified": "2026-11-14"
     },
     {

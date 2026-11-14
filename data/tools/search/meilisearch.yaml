@@ -1,0 +1,25 @@
+id: meilisearch
+name: Meilisearch
+aliases: [meili]
+layer: search
+summary: A fast search engine with typo tolerance, filters and hybrid semantic search.
+url: https://www.meilisearch.com
+license: MIT
+languages: [javascript, typescript, php, python, ruby, java, go, csharp, dart, rust, swift]
+tags: [full-text-search, vector-search]
+hosting: [managed, self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: [Instant search-as-you-type with little configuration]
+avoid_when: [You need heavy analytics or complex aggregations]
+edges:
+- {type: alternative-to, target: algolia}
+- {type: alternative-to, target: apache-solr}
+- {type: alternative-to, target: elasticsearch}
+- {type: alternative-to, target: manticore-search}
+- {type: alternative-to, target: opensearch}
+- {type: alternative-to, target: tantivy}
+- {type: alternative-to, target: typesense}
+- {type: alternative-to, target: vespa}
+verified: '2026-11-14'
+sources: ['https://www.meilisearch.com', 'https://github.com/meilisearch/meilisearch', 'https://github.com/meilisearch']

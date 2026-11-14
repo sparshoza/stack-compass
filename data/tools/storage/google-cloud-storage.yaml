@@ -1,0 +1,22 @@
+id: google-cloud-storage
+name: Google Cloud Storage
+aliases: [gcs]
+layer: storage
+summary: Managed object storage from Google Cloud with client libraries in many languages.
+url: https://cloud.google.com/storage
+license: Proprietary
+languages: [csharp, go, java, javascript, php, python, ruby]
+tags: [file-uploads]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Durable object storage inside the Google Cloud ecosystem]
+avoid_when: [You want to avoid per-operation and egress charges]
+edges:
+- {type: alternative-to, target: amazon-s3}
+- {type: alternative-to, target: azure-blob-storage}
+- {type: alternative-to, target: backblaze-b2}
+- {type: alternative-to, target: cloudflare-r2}
+- {type: alternative-to, target: wasabi}
+verified: '2026-11-14'
+sources: ['https://cloud.google.com/storage', 'https://docs.cloud.google.com/storage/docs/reference/libraries', 'https://cloud.google.com/free/docs/free-cloud-features']

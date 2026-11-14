@@ -1,0 +1,21 @@
+id: prismic
+name: Prismic
+aliases: []
+layer: cms
+summary: A hosted headless CMS with slices for building pages from reusable sections.
+url: https://prismic.io
+license: Proprietary
+languages: [typescript, javascript]
+tags: [content-editing]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Page building with reusable slices]
+avoid_when: [Self-hosting is a requirement]
+edges:
+- {type: alternative-to, target: contentful}
+- {type: alternative-to, target: hygraph}
+- {type: alternative-to, target: sanity}
+- {type: alternative-to, target: storyblok}
+verified: '2026-11-14'
+sources: ['https://prismic.io', 'https://prismic.io/pricing']

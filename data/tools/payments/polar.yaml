@@ -1,0 +1,20 @@
+id: polar
+name: Polar
+aliases: [polar.sh]
+match_name: false
+layer: payments
+summary: A merchant-of-record platform for software with subscriptions, licence keys and benefits.
+url: https://polar.sh
+license: Apache-2.0
+languages: [javascript, typescript, python, go, php, ruby]
+tags: [payments]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: emerging
+good_for: [Developer products and open-source monetisation]
+avoid_when: [You need an established long-running processor]
+edges:
+- {type: alternative-to, target: lemon-squeezy}
+- {type: alternative-to, target: paddle}
+verified: '2026-11-14'
+sources: ['https://polar.sh', 'https://github.com/polarsource/polar', 'https://polar.sh/docs/merchant-of-record/fees', 'https://github.com/polarsource']

@@ -1,0 +1,22 @@
+id: zitadel
+name: ZITADEL
+aliases: []
+layer: auth
+summary: An open-source identity platform with multi-tenancy, SSO and social login, hosted or self-hosted.
+url: https://zitadel.com
+license: AGPL-3.0-only
+languages: [go, javascript, typescript, java, php, python, ruby]
+tags: [social-login, enterprise-sso, multi-tenant]
+hosting: [managed, self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [B2B apps that need organisations and SSO]
+avoid_when: [Your policy bans AGPL software]
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: authentik}
+- {type: alternative-to, target: keycloak}
+- {type: alternative-to, target: spring-security}
+- {type: alternative-to, target: supertokens}
+verified: '2026-11-14'
+sources: ['https://zitadel.com', 'https://github.com/zitadel/zitadel', 'https://github.com/zitadel']

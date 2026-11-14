@@ -1,0 +1,20 @@
+id: passportjs
+name: Passport
+aliases: [passport.js]
+match_name: false
+layer: auth
+summary: Express-compatible authentication middleware for Node.js with hundreds of strategies.
+url: https://www.passportjs.org
+license: MIT
+languages: [javascript]
+tags: [social-login]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Flexible authentication in Express apps]
+avoid_when: [You want hosted users and prebuilt screens]
+edges:
+- {type: alternative-to, target: authjs}
+- {type: alternative-to, target: better-auth}
+verified: '2026-11-14'
+sources: ['https://www.passportjs.org', 'https://github.com/jaredhanson/passport']

@@ -1,0 +1,19 @@
+id: chargebee
+name: Chargebee
+aliases: []
+layer: payments
+summary: A hosted subscription billing and revenue management platform that works with payment gateways.
+url: https://www.chargebee.com
+license: Proprietary
+languages: [typescript, python, php, java, ruby, csharp, go]
+tags: [payments]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: ['Complex plans, trials and dunning on top of a gateway']
+avoid_when: [A simple single-price checkout]
+edges:
+- {type: alternative-to, target: kill-bill}
+- {type: alternative-to, target: lago}
+verified: '2026-11-14'
+sources: ['https://www.chargebee.com', 'https://www.chargebee.com/pricing/']

@@ -1,0 +1,22 @@
+id: decap-cms
+name: Decap CMS
+aliases: [netlify cms, decap]
+layer: cms
+summary: An open-source Git-based CMS that edits Markdown and data files in your repository.
+url: https://decapcms.org
+license: MIT
+languages: []
+tags: [content-editing]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Editing static site content stored in Git]
+avoid_when: [Content needs relations or a database]
+edges:
+- {type: alternative-to, target: keystonejs}
+- {type: alternative-to, target: payload}
+- {type: alternative-to, target: strapi}
+- {type: alternative-to, target: tinacms}
+- {type: alternative-to, target: wagtail}
+verified: '2026-11-14'
+sources: ['https://decapcms.org', 'https://github.com/decaporg/decap-cms']

@@ -1,0 +1,23 @@
+id: wasabi
+name: Wasabi
+aliases: [wasabi cloud storage]
+match_name: false
+layer: storage
+summary: S3-compatible hot cloud storage sold at a flat per-terabyte price.
+url: https://wasabi.com
+license: Proprietary
+languages: []
+tags: [file-uploads]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Predictable pricing for large stored volumes]
+avoid_when: [Data is deleted within a short period]
+edges:
+- {type: alternative-to, target: amazon-s3}
+- {type: alternative-to, target: azure-blob-storage}
+- {type: alternative-to, target: backblaze-b2}
+- {type: alternative-to, target: cloudflare-r2}
+- {type: alternative-to, target: google-cloud-storage}
+verified: '2026-11-14'
+sources: ['https://wasabi.com']

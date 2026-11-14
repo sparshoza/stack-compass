@@ -1,0 +1,20 @@
+id: vercel-blob
+name: Vercel Blob
+aliases: [vercel blob storage]
+layer: storage
+summary: Object storage from Vercel with a simple SDK for uploading and serving files.
+url: https://vercel.com/docs/storage/vercel-blob
+license: Proprietary
+languages: [javascript, typescript]
+tags: [file-uploads]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Simple file storage for apps hosted on Vercel]
+avoid_when: [You run outside Vercel or need S3 compatibility]
+edges:
+- {type: alternative-to, target: amazon-s3}
+- {type: alternative-to, target: firebase-storage}
+- {type: alternative-to, target: supabase-storage}
+verified: '2026-11-14'
+sources: ['https://vercel.com/docs/storage/vercel-blob', 'https://vercel.com/docs/vercel-blob/using-blob-sdk']

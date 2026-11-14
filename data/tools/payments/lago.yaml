@@ -1,0 +1,19 @@
+id: lago
+name: Lago
+aliases: [getlago]
+layer: payments
+summary: An open-source metering and usage-based billing engine, self-hosted or cloud.
+url: https://www.getlago.com
+license: AGPL-3.0-only
+languages: [javascript, typescript, python, ruby, go, php]
+tags: [payments]
+hosting: [managed, self-hosted]
+pricing: [oss, paid]
+maturity: emerging
+good_for: [Usage-based billing and invoicing you can self-host]
+avoid_when: [Plain one-off checkout is enough]
+edges:
+- {type: alternative-to, target: chargebee}
+- {type: alternative-to, target: kill-bill}
+verified: '2026-11-14'
+sources: ['https://www.getlago.com', 'https://github.com/getlago/lago', 'https://github.com/getlago', 'https://www.getlago.com/pricing']

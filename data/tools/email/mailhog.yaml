@@ -1,0 +1,18 @@
+id: mailhog
+name: MailHog
+aliases: []
+layer: email
+summary: A local email testing tool that catches SMTP traffic and shows it in a web UI.
+url: https://github.com/mailhog/MailHog
+license: MIT
+languages: []
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: legacy
+good_for: [Quickly catching dev emails in older setups]
+avoid_when: [You want an actively maintained tool]
+edges:
+- {type: alternative-to, target: mailpit}
+verified: '2026-11-14'
+sources: ['https://github.com/mailhog/MailHog']

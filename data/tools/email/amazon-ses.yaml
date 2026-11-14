@@ -1,0 +1,25 @@
+id: amazon-ses
+name: Amazon SES
+aliases: [aws ses]
+layer: email
+summary: AWS low-cost email service for sending transactional and marketing email.
+url: https://aws.amazon.com/ses/
+license: Proprietary
+languages: [javascript, typescript, python, java, csharp, go, ruby, php, rust, kotlin, swift]
+tags: [transactional-email]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Very cheap sending at large volume]
+avoid_when: [You want a friendly UI and hand-holding]
+edges:
+- {type: alternative-to, target: brevo}
+- {type: alternative-to, target: mailersend}
+- {type: alternative-to, target: mailgun}
+- {type: alternative-to, target: postal}
+- {type: alternative-to, target: postmark}
+- {type: alternative-to, target: resend}
+- {type: alternative-to, target: sendgrid}
+- {type: pairs-with, target: nodemailer}
+verified: '2026-11-14'
+sources: ['https://aws.amazon.com/ses/', 'https://aws.amazon.com/ses/pricing/', 'https://github.com/aws/aws-sdk-go-v2']

@@ -1,0 +1,21 @@
+id: payload
+name: Payload
+aliases: [payload cms, payloadcms]
+layer: cms
+summary: An open-source, TypeScript-first headless CMS and app framework that installs inside Next.js.
+url: https://payloadcms.com
+license: MIT
+languages: [typescript]
+tags: [content-editing, admin-ui, type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Code-defined content with a built-in admin inside your Next.js app]
+avoid_when: [You need a non-JavaScript stack]
+edges:
+- {type: alternative-to, target: decap-cms}
+- {type: alternative-to, target: keystonejs}
+- {type: alternative-to, target: strapi}
+- {type: alternative-to, target: tinacms}
+verified: '2026-11-14'
+sources: ['https://payloadcms.com', 'https://github.com/payloadcms/payload']

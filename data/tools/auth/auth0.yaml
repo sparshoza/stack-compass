@@ -1,0 +1,28 @@
+id: auth0
+name: Auth0
+aliases: [auth0 by okta]
+layer: auth
+summary: A hosted identity platform for login, social sign-in, SSO and MFA, owned by Okta.
+url: https://auth0.com
+license: Proprietary
+languages: [javascript, typescript, python, java, kotlin, csharp, ruby, php, go, swift]
+tags: [social-login, enterprise-sso]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Full-featured login with enterprise SSO]
+avoid_when: [Per-user pricing would grow too fast]
+edges:
+- {type: alternative-to, target: authentik}
+- {type: alternative-to, target: aws-cognito}
+- {type: alternative-to, target: clerk}
+- {type: alternative-to, target: devise}
+- {type: alternative-to, target: firebase-authentication}
+- {type: alternative-to, target: keycloak}
+- {type: alternative-to, target: spring-security}
+- {type: alternative-to, target: supabase-auth}
+- {type: alternative-to, target: supertokens}
+- {type: alternative-to, target: workos}
+- {type: alternative-to, target: zitadel}
+verified: '2026-11-14'
+sources: ['https://auth0.com', 'https://auth0.com/docs/libraries']

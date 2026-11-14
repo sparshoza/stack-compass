@@ -1,0 +1,18 @@
+id: mailpit
+name: Mailpit
+aliases: []
+layer: email
+summary: A local SMTP server and web UI for catching and inspecting email during development.
+url: https://mailpit.axllent.org
+license: MIT
+languages: []
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Testing email locally without sending anything]
+avoid_when: [You need real delivery]
+edges:
+- {type: alternative-to, target: mailhog}
+verified: '2026-11-14'
+sources: ['https://mailpit.axllent.org', 'https://github.com/axllent/mailpit']

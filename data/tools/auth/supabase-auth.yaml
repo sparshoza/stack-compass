@@ -1,0 +1,19 @@
+id: supabase-auth
+name: Supabase Auth
+aliases: [gotrue]
+layer: auth
+summary: An open-source auth service from Supabase covering email, social providers and SAML SSO.
+url: https://supabase.com/docs/guides/auth
+license: MIT
+languages: [javascript, typescript, dart, swift, python, csharp, kotlin]
+tags: [social-login, enterprise-sso]
+hosting: [managed, self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: [Auth that ties users to Postgres row-level policies]
+avoid_when: [You are not using Supabase]
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: clerk}
+verified: '2026-11-14'
+sources: ['https://supabase.com/docs/guides/auth', 'https://github.com/supabase/auth']

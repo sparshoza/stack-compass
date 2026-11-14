@@ -1,0 +1,21 @@
+id: contentful
+name: Contentful
+aliases: []
+layer: cms
+summary: Hosted headless content platform with content APIs and official SDKs for JavaScript, Python, Ruby, PHP, Java, Swift and .NET.
+url: https://www.contentful.com
+license: Proprietary
+languages: [javascript, typescript, python, ruby, php, java, swift, csharp]
+tags: [content-editing]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Structured content shared across web and mobile apps]
+avoid_when: [You need to self-host your CMS]
+edges:
+- {type: alternative-to, target: hygraph}
+- {type: alternative-to, target: prismic}
+- {type: alternative-to, target: sanity}
+- {type: alternative-to, target: storyblok}
+verified: '2026-11-14'
+sources: ['https://www.contentful.com', 'https://www.contentful.com/pricing/', 'https://www.contentful.com/help/admin/billing-subscription/contentful-free-plan/', 'https://github.com/contentful']

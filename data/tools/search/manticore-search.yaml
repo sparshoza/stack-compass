@@ -1,0 +1,25 @@
+id: manticore-search
+name: Manticore Search
+aliases: [manticore, manticoresearch]
+layer: search
+summary: An open-source search database written in C++, with SQL and full-text and vector search.
+url: https://manticoresearch.com
+license: GPL-3.0-only
+languages: [python, typescript, javascript, go, java, csharp, php, rust]
+tags: [full-text-search, vector-search]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [A fast Sphinx-style engine with a SQL interface]
+avoid_when: [You need a large managed ecosystem around it]
+edges:
+- {type: alternative-to, target: algolia}
+- {type: alternative-to, target: apache-solr}
+- {type: alternative-to, target: elasticsearch}
+- {type: alternative-to, target: meilisearch}
+- {type: alternative-to, target: opensearch}
+- {type: alternative-to, target: tantivy}
+- {type: alternative-to, target: typesense}
+- {type: alternative-to, target: vespa}
+verified: '2026-11-14'
+sources: ['https://manticoresearch.com', 'https://github.com/manticoresoftware/manticoresearch']

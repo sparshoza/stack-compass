@@ -1,0 +1,24 @@
+id: mailgun
+name: Mailgun
+aliases: []
+layer: email
+summary: An email API for sending, receiving and tracking transactional email.
+url: https://www.mailgun.com
+license: Proprietary
+languages: [javascript, php, ruby, go, python, java]
+tags: [transactional-email]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Programmable email with inbound routing]
+avoid_when: [You need a generous permanent free tier]
+edges:
+- {type: alternative-to, target: amazon-ses}
+- {type: alternative-to, target: brevo}
+- {type: alternative-to, target: mailersend}
+- {type: alternative-to, target: postal}
+- {type: alternative-to, target: postmark}
+- {type: alternative-to, target: resend}
+- {type: alternative-to, target: sendgrid}
+verified: '2026-11-14'
+sources: ['https://www.mailgun.com', 'https://github.com/mailgun']

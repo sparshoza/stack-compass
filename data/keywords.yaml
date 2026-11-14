@@ -166,3 +166,20 @@
   sets: {project_type: saas}
 - phrases: [html over the wire, server rendered html, progressive enhancement]
   sets: {capabilities: [ssr-seo]}
+# Product-service layers (Task 4)
+- phrases: [site search, search box, typo tolerant search]
+  sets: {capabilities: [full-text-search]}
+- phrases: [embeddings search]
+  sets: {capabilities: [full-text-search, vector-search]}
+- phrases: [image uploads, upload photos, object storage, file storage, s3 compatible]
+  sets: {capabilities: [file-uploads]}
+- phrases: [login with github, oauth login]
+  sets: {capabilities: [social-login]}
+- phrases: [enterprise login, okta login]
+  sets: {capabilities: [enterprise-sso]}
+- phrases: [accept payments, usage based billing, invoicing, merchant of record]
+  sets: {capabilities: [payments]}
+- phrases: [send emails, email api, password reset emails, receipts by email, welcome emails]
+  sets: {capabilities: [transactional-email]}
+- phrases: [editors can edit, blog editor, wysiwyg editor]
+  sets: {capabilities: [content-editing]}

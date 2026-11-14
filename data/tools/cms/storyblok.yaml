@@ -1,0 +1,21 @@
+id: storyblok
+name: Storyblok
+aliases: []
+layer: cms
+summary: A hosted headless CMS with a visual editor for page building.
+url: https://www.storyblok.com
+license: Proprietary
+languages: [javascript, typescript, php, swift, kotlin]
+tags: [content-editing]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Marketers editing pages visually]
+avoid_when: [You want a self-hosted CMS]
+edges:
+- {type: alternative-to, target: contentful}
+- {type: alternative-to, target: hygraph}
+- {type: alternative-to, target: prismic}
+- {type: alternative-to, target: sanity}
+verified: '2026-11-14'
+sources: ['https://www.storyblok.com', 'https://www.storyblok.com/docs/packages', 'https://www.storyblok.com/pricing']

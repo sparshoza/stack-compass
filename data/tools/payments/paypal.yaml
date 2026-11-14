@@ -1,0 +1,22 @@
+id: paypal
+name: PayPal
+aliases: []
+layer: payments
+summary: PayPal Checkout and REST APIs for accepting PayPal and card payments, with server SDKs in six languages.
+url: https://developer.paypal.com
+license: Proprietary
+languages: [csharp, java, php, python, ruby, typescript, javascript]
+tags: [payments]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Offering the PayPal wallet at checkout]
+avoid_when: [You want one flat fee with no per-transaction fixed charge]
+edges:
+- {type: alternative-to, target: adyen}
+- {type: alternative-to, target: braintree}
+- {type: alternative-to, target: mollie}
+- {type: alternative-to, target: square}
+- {type: alternative-to, target: stripe}
+verified: '2026-11-14'
+sources: ['https://developer.paypal.com', 'https://github.com/paypal/PayPal-Server-SDKs', 'https://www.paypal.com/us/business/paypal-business-fees']

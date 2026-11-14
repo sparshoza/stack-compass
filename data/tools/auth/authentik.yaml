@@ -1,0 +1,20 @@
+id: authentik
+name: authentik
+aliases: []
+layer: auth
+summary: An open-source identity provider with SSO, social login and flexible flows.
+url: https://goauthentik.io
+license: MIT
+languages: [go, rust, typescript, python]
+tags: [enterprise-sso]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Self-hosted identity provider with easy-to-edit flows]
+avoid_when: [You need a fully managed service]
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: keycloak}
+- {type: alternative-to, target: zitadel}
+verified: '2026-11-14'
+sources: ['https://goauthentik.io', 'https://github.com/goauthentik/authentik']

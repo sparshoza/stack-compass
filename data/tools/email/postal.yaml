@@ -1,0 +1,24 @@
+id: postal
+name: Postal
+aliases: [postal server]
+match_name: false
+layer: email
+summary: A self-hosted mail delivery platform for sending and tracking email.
+url: https://docs.postalserver.io
+license: MIT
+languages: []
+tags: [transactional-email]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Running your own sending infrastructure]
+avoid_when: [You do not want to manage IP reputation]
+edges:
+- {type: alternative-to, target: amazon-ses}
+- {type: alternative-to, target: listmonk}
+- {type: alternative-to, target: mailersend}
+- {type: alternative-to, target: mailgun}
+- {type: alternative-to, target: postmark}
+- {type: alternative-to, target: resend}
+verified: '2026-11-14'
+sources: ['https://docs.postalserver.io', 'https://github.com/postalserver/postal']

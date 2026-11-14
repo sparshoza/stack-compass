@@ -1,0 +1,20 @@
+id: seaweedfs
+name: SeaweedFS
+aliases: [seaweed fs]
+layer: storage
+summary: A distributed storage system for blobs, objects and files with an S3-compatible API.
+url: https://github.com/seaweedfs/seaweedfs
+license: Apache-2.0
+languages: []
+tags: [file-uploads]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Self-hosted storage for billions of small files]
+avoid_when: [You want a managed service]
+edges:
+- {type: alternative-to, target: amazon-s3}
+- {type: alternative-to, target: cloudflare-r2}
+- {type: alternative-to, target: garage}
+verified: '2026-11-14'
+sources: ['https://github.com/seaweedfs/seaweedfs']

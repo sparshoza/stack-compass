@@ -1,0 +1,21 @@
+id: clerk
+name: Clerk
+aliases: []
+layer: auth
+summary: A hosted authentication and user management service with prebuilt components.
+url: https://clerk.com
+license: Proprietary
+languages: [javascript, typescript, go, python, ruby, java, csharp, php, swift, kotlin]
+tags: [social-login, enterprise-sso]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Drop-in sign-in UI and user management for React apps]
+avoid_when: [You need to host identity data yourself]
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: devise}
+- {type: alternative-to, target: supabase-auth}
+- {type: alternative-to, target: workos}
+verified: '2026-11-14'
+sources: ['https://clerk.com', 'https://clerk.com/docs/references/overview', 'https://github.com/clerk']

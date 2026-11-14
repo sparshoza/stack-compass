@@ -1,0 +1,24 @@
+id: apache-solr
+name: Apache Solr
+aliases: [solr]
+layer: search
+summary: An open-source enterprise search platform built on Apache Lucene.
+url: https://solr.apache.org
+license: Apache-2.0
+languages: [java]
+tags: [full-text-search, vector-search]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Mature faceted search for large document sets]
+avoid_when: [You want a hosted option with minimal operations]
+edges:
+- {type: alternative-to, target: elasticsearch}
+- {type: alternative-to, target: manticore-search}
+- {type: alternative-to, target: meilisearch}
+- {type: alternative-to, target: opensearch}
+- {type: alternative-to, target: tantivy}
+- {type: alternative-to, target: typesense}
+- {type: alternative-to, target: vespa}
+verified: '2026-11-14'
+sources: ['https://solr.apache.org']

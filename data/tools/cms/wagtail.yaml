@@ -1,0 +1,19 @@
+id: wagtail
+name: Wagtail
+aliases: []
+layer: cms
+summary: An open-source CMS built on Django with a flexible editing interface.
+url: https://wagtail.org
+license: BSD-3-Clause
+languages: [python]
+tags: [content-editing]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Django projects needing a strong editor experience]
+avoid_when: [The backend is not Python]
+edges:
+- {type: alternative-to, target: decap-cms}
+- {type: alternative-to, target: tinacms}
+verified: '2026-11-14'
+sources: ['https://wagtail.org', 'https://github.com/wagtail/wagtail']

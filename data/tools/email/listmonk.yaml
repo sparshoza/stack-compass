@@ -1,0 +1,18 @@
+id: listmonk
+name: listmonk
+aliases: []
+layer: email
+summary: A self-hosted newsletter and mailing list manager shipped as a single binary.
+url: https://listmonk.app
+license: AGPL-3.0-only
+languages: []
+tags: [transactional-email]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Self-hosted newsletters and mailing lists]
+avoid_when: [You mainly send per-user transactional email]
+edges:
+- {type: alternative-to, target: postal}
+verified: '2026-11-14'
+sources: ['https://listmonk.app', 'https://github.com/knadh/listmonk']

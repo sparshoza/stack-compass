@@ -1,0 +1,21 @@
+id: supertokens
+name: SuperTokens
+aliases: []
+layer: auth
+summary: Open-source authentication with backend SDKs for Node.js, Python and Go, self-hosted or as a managed service.
+url: https://supertokens.com
+license: Apache-2.0
+languages: [javascript, typescript, python, go]
+tags: [social-login, enterprise-sso, multi-tenant]
+hosting: [managed, self-hosted]
+pricing: [oss, free-tier, paid]
+maturity: established
+good_for: [Self-hosted login with ready-made frontend UI components]
+avoid_when: ['Your backend is not Node.js, Python or Go and you want a native SDK']
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: keycloak}
+- {type: alternative-to, target: workos}
+- {type: alternative-to, target: zitadel}
+verified: '2026-11-14'
+sources: ['https://supertokens.com', 'https://supertokens.com/pricing', 'https://supertokens.com/docs/quickstart/introduction', 'https://github.com/supertokens/supertokens-core']

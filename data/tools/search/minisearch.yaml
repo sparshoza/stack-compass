@@ -1,0 +1,20 @@
+id: minisearch
+name: MiniSearch
+aliases: [mini search]
+layer: search
+summary: A tiny in-memory full-text search engine for JavaScript with fuzzy and prefix search.
+url: https://lucaong.github.io/minisearch/
+license: MIT
+languages: [javascript]
+tags: [full-text-search]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Small client-side or Node search over modest data]
+avoid_when: [Datasets reach hundreds of thousands of documents]
+edges:
+- {type: alternative-to, target: flexsearch}
+- {type: alternative-to, target: fusejs}
+- {type: alternative-to, target: pagefind}
+verified: '2026-11-14'
+sources: ['https://lucaong.github.io/minisearch/', 'https://github.com/lucaong/minisearch']

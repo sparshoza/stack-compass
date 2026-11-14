@@ -1,0 +1,23 @@
+id: brevo
+name: Brevo
+aliases: [sendinblue]
+layer: email
+summary: Email and marketing platform that also sends transactional email through an SMTP relay and API, with seven official SDKs.
+url: https://www.brevo.com
+license: Proprietary
+languages: [javascript, typescript, php, python, java, csharp, go, ruby]
+tags: [transactional-email]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [One tool for transactional and marketing email]
+avoid_when: [You want a developer-only email API without marketing features]
+edges:
+- {type: alternative-to, target: amazon-ses}
+- {type: alternative-to, target: mailersend}
+- {type: alternative-to, target: mailgun}
+- {type: alternative-to, target: postmark}
+- {type: alternative-to, target: resend}
+- {type: alternative-to, target: sendgrid}
+verified: '2026-11-14'
+sources: ['https://www.brevo.com', 'https://www.brevo.com/pricing/', 'https://developers.brevo.com/docs/send-a-transactional-email', 'https://developers.brevo.com/docs/api-clients']

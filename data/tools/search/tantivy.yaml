@@ -1,0 +1,24 @@
+id: tantivy
+name: Tantivy
+aliases: []
+layer: search
+summary: A full-text search engine library written in Rust, inspired by Apache Lucene.
+url: https://github.com/quickwit-oss/tantivy
+license: MIT
+languages: [rust, python]
+tags: [full-text-search]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Embedding fast full-text search in a Rust program]
+avoid_when: [You need a ready-made server with a REST API]
+edges:
+- {type: alternative-to, target: apache-solr}
+- {type: alternative-to, target: elasticsearch}
+- {type: alternative-to, target: manticore-search}
+- {type: alternative-to, target: meilisearch}
+- {type: alternative-to, target: opensearch}
+- {type: alternative-to, target: typesense}
+- {type: alternative-to, target: vespa}
+verified: '2026-11-14'
+sources: ['https://github.com/quickwit-oss/tantivy', 'https://github.com/quickwit-oss/tantivy-py']

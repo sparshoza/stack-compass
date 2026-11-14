@@ -1,0 +1,24 @@
+id: mailersend
+name: MailerSend
+aliases: []
+layer: email
+summary: A transactional email service with SMTP, an API and template tools.
+url: https://www.mailersend.com
+license: Proprietary
+languages: [javascript, php, python, ruby, go, java]
+tags: [transactional-email]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Transactional email with a simple template builder]
+avoid_when: [You need a long record at very large scale]
+edges:
+- {type: alternative-to, target: amazon-ses}
+- {type: alternative-to, target: brevo}
+- {type: alternative-to, target: mailgun}
+- {type: alternative-to, target: postal}
+- {type: alternative-to, target: postmark}
+- {type: alternative-to, target: resend}
+- {type: alternative-to, target: sendgrid}
+verified: '2026-11-14'
+sources: ['https://www.mailersend.com', 'https://www.mailersend.com/pricing']

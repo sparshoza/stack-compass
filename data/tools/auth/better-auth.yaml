@@ -1,0 +1,19 @@
+id: better-auth
+name: Better Auth
+aliases: [betterauth]
+layer: auth
+summary: A framework-agnostic TypeScript authentication library with a plugin system.
+url: https://www.better-auth.com
+license: MIT
+languages: [typescript]
+tags: [social-login, enterprise-sso]
+hosting: [self-hosted]
+pricing: [oss, paid]
+maturity: emerging
+good_for: ['Type-safe auth with plugins for 2FA, organisations and SSO']
+avoid_when: [You need a decade of proven production history]
+edges:
+- {type: alternative-to, target: authjs}
+- {type: alternative-to, target: passportjs}
+verified: '2026-11-14'
+sources: ['https://www.better-auth.com', 'https://github.com/better-auth/better-auth']

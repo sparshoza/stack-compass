@@ -1,0 +1,21 @@
+id: keystonejs
+name: KeystoneJS
+aliases: [keystone 6]
+layer: cms
+summary: An open-source headless CMS and GraphQL API for Node.js, defined in TypeScript.
+url: https://keystonejs.com
+license: MIT
+languages: [typescript, javascript]
+tags: [content-editing, admin-ui, type-safety]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Code-first content models with an admin UI]
+avoid_when: [You want a hosted service]
+edges:
+- {type: alternative-to, target: decap-cms}
+- {type: alternative-to, target: payload}
+- {type: alternative-to, target: strapi}
+- {type: alternative-to, target: tinacms}
+verified: '2026-11-14'
+sources: ['https://keystonejs.com', 'https://github.com/keystonejs/keystone']

@@ -1,0 +1,24 @@
+id: adyen
+name: Adyen
+aliases: []
+layer: payments
+summary: A global payments platform that unifies online and in-person acquiring and processing.
+url: https://www.adyen.com
+license: Proprietary
+languages: [python, javascript, typescript, java, php, ruby, csharp, go]
+tags: [payments]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Enterprise payments across many countries and methods]
+avoid_when: [A small project with low volume]
+edges:
+- {type: alternative-to, target: braintree}
+- {type: alternative-to, target: gocardless}
+- {type: alternative-to, target: mollie}
+- {type: alternative-to, target: paypal}
+- {type: alternative-to, target: razorpay}
+- {type: alternative-to, target: square}
+- {type: alternative-to, target: stripe}
+verified: '2026-11-14'
+sources: ['https://www.adyen.com', 'https://www.adyen.com/pricing', 'https://github.com/Adyen']

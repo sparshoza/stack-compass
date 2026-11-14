@@ -1,0 +1,22 @@
+id: keycloak
+name: Keycloak
+aliases: []
+layer: auth
+summary: An open-source identity and access management server with SSO, social login and federation.
+url: https://www.keycloak.org
+license: Apache-2.0
+languages: [java, javascript]
+tags: [social-login, enterprise-sso]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Self-hosted SSO and identity brokering]
+avoid_when: [A small team without operations time]
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: authentik}
+- {type: alternative-to, target: spring-security}
+- {type: alternative-to, target: supertokens}
+- {type: alternative-to, target: zitadel}
+verified: '2026-11-14'
+sources: ['https://www.keycloak.org', 'https://github.com/keycloak/keycloak', 'https://www.keycloak.org/securing-apps/overview']

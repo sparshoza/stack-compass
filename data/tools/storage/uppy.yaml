@@ -1,0 +1,20 @@
+id: uppy
+name: Uppy
+aliases: []
+layer: storage
+summary: A modular open-source file uploader for the browser with resumable uploads and many sources.
+url: https://uppy.io
+license: MIT
+languages: [javascript]
+tags: [file-uploads]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [A polished upload dialog with resumable uploads]
+avoid_when: [You only need a plain file input]
+edges:
+- {type: alternative-to, target: cloudinary}
+- {type: alternative-to, target: uploadthing}
+- {type: pairs-with, target: supabase-storage}
+verified: '2026-11-14'
+sources: ['https://uppy.io', 'https://github.com/transloadit/uppy']

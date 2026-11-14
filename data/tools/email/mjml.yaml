@@ -1,0 +1,18 @@
+id: mjml
+name: MJML
+aliases: []
+layer: email
+summary: A markup language that compiles responsive email layouts to HTML.
+url: https://mjml.io
+license: MIT
+languages: [javascript]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Responsive email templates without table hacks]
+avoid_when: [You prefer components in React]
+edges:
+- {type: alternative-to, target: react-email}
+verified: '2026-11-14'
+sources: ['https://mjml.io', 'https://github.com/mjmlio/mjml']

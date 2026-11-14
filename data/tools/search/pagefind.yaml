@@ -1,0 +1,20 @@
+id: pagefind
+name: Pagefind
+aliases: []
+layer: search
+summary: A static search library that indexes a built site and runs search fully in the browser.
+url: https://pagefind.app
+license: MIT
+languages: [javascript, python]
+tags: [full-text-search, static-content]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: emerging
+good_for: [Search for static sites with no server]
+avoid_when: [Content changes constantly or lives in a database]
+edges:
+- {type: alternative-to, target: flexsearch}
+- {type: alternative-to, target: fusejs}
+- {type: alternative-to, target: minisearch}
+verified: '2026-11-14'
+sources: ['https://pagefind.app', 'https://github.com/CloudCannon/pagefind']

@@ -1,0 +1,20 @@
+id: paddle
+name: Paddle
+aliases: [paddle billing]
+match_name: false
+layer: payments
+summary: A merchant of record that handles payments, tax and subscriptions for software sellers.
+url: https://www.paddle.com
+license: Proprietary
+languages: [javascript, typescript, python, go, php]
+tags: [payments]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [Selling SaaS globally without handling sales tax yourself]
+avoid_when: [You want direct control of the payment flow]
+edges:
+- {type: alternative-to, target: lemon-squeezy}
+- {type: alternative-to, target: polar}
+verified: '2026-11-14'
+sources: ['https://www.paddle.com', 'https://github.com/PaddleHQ']

@@ -1,0 +1,25 @@
+id: vespa
+name: Vespa
+aliases: [vespa.ai]
+match_name: false
+layer: search
+summary: An open-source engine for large-scale search, recommendation and vector retrieval.
+url: https://vespa.ai
+license: Apache-2.0
+languages: [java, python]
+tags: [full-text-search, vector-search]
+hosting: [managed, self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: ['Search that combines text, vectors and ranking models at scale']
+avoid_when: [A simple site search is all you need]
+edges:
+- {type: alternative-to, target: apache-solr}
+- {type: alternative-to, target: elasticsearch}
+- {type: alternative-to, target: manticore-search}
+- {type: alternative-to, target: meilisearch}
+- {type: alternative-to, target: opensearch}
+- {type: alternative-to, target: tantivy}
+- {type: alternative-to, target: typesense}
+verified: '2026-11-14'
+sources: ['https://vespa.ai', 'https://github.com/vespa-engine/vespa', 'https://github.com/vespa-engine/pyvespa']

@@ -21,6 +21,9 @@ BOT_BLOCKED: dict[str, set[int]] = {
     # Oracle answers 403 to automated clients; the pages load in a browser.
     "https://www.mysql.com": {403},
     "https://dev.mysql.com": {403},
+    # Mailgun and OpenSearch answer 403 to automated clients; the official pages load in a browser.
+    "https://www.mailgun.com": {403},
+    "https://opensearch.org": {403},
     # GitHub rate limits bursts of requests with 429.
     "https://github.com/": {429},
 }

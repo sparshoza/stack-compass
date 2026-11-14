@@ -1,0 +1,19 @@
+id: firebase-authentication
+name: Firebase Authentication
+aliases: [firebase auth]
+layer: auth
+summary: A hosted sign-in service from Firebase supporting email, phone and social providers.
+url: https://firebase.google.com/docs/auth
+license: Proprietary
+languages: [javascript, typescript, java, kotlin, swift, dart, python, go, csharp]
+tags: [social-login]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Fast sign-in for mobile and web apps]
+avoid_when: [You need self-hosted identity]
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: aws-cognito}
+verified: '2026-11-14'
+sources: ['https://firebase.google.com/docs/auth', 'https://firebase.google.com/docs/admin/setup', 'https://firebase.google.com/pricing']

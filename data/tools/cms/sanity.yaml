@@ -1,0 +1,22 @@
+id: sanity
+name: Sanity
+aliases: [sanity.io]
+match_name: false
+layer: cms
+summary: A hosted content platform with a customizable Studio and real-time collaboration.
+url: https://www.sanity.io
+license: Proprietary
+languages: [typescript, javascript]
+tags: [content-editing, realtime]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Structured content with collaborative editing]
+avoid_when: [Data must stay on your own servers]
+edges:
+- {type: alternative-to, target: contentful}
+- {type: alternative-to, target: hygraph}
+- {type: alternative-to, target: prismic}
+- {type: alternative-to, target: storyblok}
+verified: '2026-11-14'
+sources: ['https://www.sanity.io', 'https://www.sanity.io/pricing']

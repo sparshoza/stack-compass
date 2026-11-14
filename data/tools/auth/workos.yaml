@@ -1,0 +1,21 @@
+id: workos
+name: WorkOS
+aliases: []
+layer: auth
+summary: Hosted auth APIs for enterprise SSO, directory sync and user management, with backend SDKs in many languages.
+url: https://workos.com
+license: Proprietary
+languages: [javascript, typescript, python, ruby, go, java, kotlin, php, csharp, elixir, rust]
+tags: [social-login, enterprise-sso]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Adding SAML and OIDC single sign-on for business customers]
+avoid_when: [You need to self-host your identity provider]
+edges:
+- {type: alternative-to, target: auth0}
+- {type: alternative-to, target: clerk}
+- {type: alternative-to, target: devise}
+- {type: alternative-to, target: supertokens}
+verified: '2026-11-14'
+sources: ['https://workos.com', 'https://workos.com/docs', 'https://workos.com/docs/sdks', 'https://workos.com/pricing']

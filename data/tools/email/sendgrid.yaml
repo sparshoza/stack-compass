@@ -1,0 +1,23 @@
+id: sendgrid
+name: SendGrid
+aliases: [twilio sendgrid]
+layer: email
+summary: Twilio SendGrid email API and SMTP relay for transactional email, with official libraries in seven languages.
+url: https://sendgrid.com
+license: Proprietary
+languages: [javascript, python, ruby, php, java, csharp, go]
+tags: [transactional-email]
+hosting: [managed]
+pricing: [paid]
+maturity: established
+good_for: [High-volume transactional email through an API or SMTP]
+avoid_when: ['You want a permanent free plan, only a time-limited trial is offered']
+edges:
+- {type: alternative-to, target: amazon-ses}
+- {type: alternative-to, target: brevo}
+- {type: alternative-to, target: mailersend}
+- {type: alternative-to, target: mailgun}
+- {type: alternative-to, target: postmark}
+- {type: alternative-to, target: resend}
+verified: '2026-11-14'
+sources: ['https://sendgrid.com', 'https://www.twilio.com/docs/sendgrid/for-developers/sending-email/libraries', 'https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send', 'https://github.com/sendgrid/sendgrid-nodejs']

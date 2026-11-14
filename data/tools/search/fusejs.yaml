@@ -1,0 +1,20 @@
+id: fusejs
+name: Fuse.js
+aliases: []
+layer: search
+summary: A lightweight fuzzy-search library for JavaScript with no dependencies.
+url: https://www.fusejs.io
+license: Apache-2.0
+languages: [javascript]
+tags: [full-text-search]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Quick fuzzy search over small lists]
+avoid_when: [You need ranking over large corpora]
+edges:
+- {type: alternative-to, target: flexsearch}
+- {type: alternative-to, target: minisearch}
+- {type: alternative-to, target: pagefind}
+verified: '2026-11-14'
+sources: ['https://www.fusejs.io', 'https://github.com/krisk/Fuse']

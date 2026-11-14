@@ -1,0 +1,26 @@
+id: resend
+name: Resend
+aliases: [resend.com]
+match_name: false
+layer: email
+summary: An email API for developers with a clean SDK and React Email templates.
+url: https://resend.com
+license: Proprietary
+languages: [javascript, python, php, ruby, go, java, rust, csharp]
+tags: [transactional-email]
+hosting: [managed]
+pricing: [free-tier, paid]
+maturity: established
+good_for: [Developer-friendly transactional email]
+avoid_when: [You need very high volume at the lowest cost]
+edges:
+- {type: alternative-to, target: amazon-ses}
+- {type: alternative-to, target: brevo}
+- {type: alternative-to, target: mailersend}
+- {type: alternative-to, target: mailgun}
+- {type: alternative-to, target: postal}
+- {type: alternative-to, target: postmark}
+- {type: alternative-to, target: sendgrid}
+- {type: pairs-with, target: react-email}
+verified: '2026-11-14'
+sources: ['https://resend.com', 'https://resend.com/pricing']

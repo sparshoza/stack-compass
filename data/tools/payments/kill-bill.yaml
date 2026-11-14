@@ -1,0 +1,20 @@
+id: kill-bill
+name: Kill Bill
+aliases: [killbill]
+layer: payments
+summary: An open-source subscription billing and payments platform.
+url: https://killbill.io
+license: Apache-2.0
+languages: [ruby, python, php]
+tags: [payments]
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Self-hosted subscription billing and invoicing]
+avoid_when: [You do not want to run a Java service]
+edges:
+- {type: alternative-to, target: chargebee}
+- {type: alternative-to, target: lago}
+- {type: pairs-with, target: stripe}
+verified: '2026-11-14'
+sources: ['https://killbill.io', 'https://github.com/killbill/killbill', 'https://github.com/killbill']

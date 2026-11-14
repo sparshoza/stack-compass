@@ -1,0 +1,18 @@
+id: ghost
+name: Ghost
+aliases: [ghost cms]
+layer: cms
+summary: An open-source publishing platform for blogs, newsletters and paid memberships.
+url: https://ghost.org
+license: MIT
+languages: [javascript]
+tags: [content-editing]
+hosting: [managed, self-hosted]
+pricing: [oss, paid]
+maturity: established
+good_for: [Publications with newsletters and memberships]
+avoid_when: [You need custom content models for an app]
+edges:
+- {type: alternative-to, target: wordpress}
+verified: '2026-11-14'
+sources: ['https://ghost.org', 'https://github.com/TryGhost/Ghost', 'https://ghost.org/docs/content-api/']

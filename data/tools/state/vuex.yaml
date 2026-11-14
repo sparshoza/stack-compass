@@ -1,0 +1,31 @@
+id: vuex
+name: Vuex
+aliases: []
+layer: state
+summary: The previous official state management pattern and library for Vue, now in maintenance.
+url: https://vuex.vuejs.org
+repo: https://github.com/vuejs/vuex
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: legacy
+good_for:
+- Maintaining existing Vue 2 apps
+avoid_when:
+- You are starting a new Vue app, where Pinia is recommended
+edges:
+- type: alternative-to
+  target: pinia
+- type: pairs-with
+  target: vue
+verified: '2026-11-14'
+sources:
+- https://vuex.vuejs.org
+- https://github.com/vuejs/vuex
+- https://vuex.vuejs.org/

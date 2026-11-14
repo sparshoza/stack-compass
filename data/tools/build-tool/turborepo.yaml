@@ -1,0 +1,32 @@
+id: turborepo
+name: Turborepo
+aliases:
+- turbo-repo
+layer: build-tool
+summary: A high-performance build system for JavaScript and TypeScript monorepos with caching.
+url: https://turborepo.com
+repo: https://github.com/vercel/turborepo
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+- managed
+pricing:
+- oss
+- free-tier
+maturity: established
+good_for:
+- Monorepos that need cached, parallel task runs
+avoid_when:
+- A single small package
+edges:
+- type: alternative-to
+  target: nx
+verified: '2026-11-14'
+sources:
+- https://turborepo.com
+- https://github.com/vercel/turborepo
+- https://turborepo.com/docs/core-concepts/remote-caching

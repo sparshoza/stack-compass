@@ -1,0 +1,42 @@
+id: material-ui
+name: Material UI
+aliases:
+- mui
+- mui-material
+layer: ui-kit
+summary: A React component library implementing Google's Material Design.
+url: https://mui.com/material-ui/
+repo: https://github.com/mui/material-ui
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+- paid
+maturity: established
+good_for:
+- React apps that want Material Design
+- Data-heavy apps with mature form and table components
+avoid_when:
+- You want a design that looks different from Material
+- You need a tiny runtime
+edges:
+- type: alternative-to
+  target: shadcn-ui
+- type: alternative-to
+  target: chakra-ui
+- type: alternative-to
+  target: ant-design
+- type: built-on
+  target: react
+verified: '2026-11-14'
+sources:
+- https://mui.com/material-ui/
+- https://github.com/mui/material-ui
+- https://mui.com/pricing/
+- https://mui.com/material-ui/guides/typescript/

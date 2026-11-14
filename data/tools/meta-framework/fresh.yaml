@@ -1,0 +1,38 @@
+id: fresh
+name: Fresh
+aliases:
+- deno-fresh
+match_name: false
+layer: meta-framework
+summary: A full-stack web framework for Deno that renders on the server and hydrates islands with Preact.
+url: https://fresh.deno.dev
+repo: https://github.com/denoland/fresh
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+- edge-runtime
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Deno projects with little client JavaScript
+- Island-based server rendering
+avoid_when:
+- You need to run on Node.js
+- You need a large ecosystem
+edges:
+- type: alternative-to
+  target: astro
+- type: built-on
+  target: preact
+verified: '2026-11-14'
+sources:
+- https://fresh.deno.dev
+- https://github.com/denoland/fresh
+- https://fresh.deno.dev/docs/introduction

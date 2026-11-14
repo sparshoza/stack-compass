@@ -1,0 +1,30 @@
+id: jquery
+name: jQuery
+aliases:
+- jquery.js
+layer: frontend
+summary: A lightweight, cross-browser JavaScript library for DOM handling, events and Ajax.
+url: https://jquery.com
+repo: https://github.com/jquery/jquery
+license: MIT
+languages:
+- javascript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Maintaining existing sites that already use it
+- Adding simple DOM behavior with a plain script tag
+avoid_when:
+- You need component-based UI structure
+edges:
+- type: alternative-to
+  target: alpinejs
+verified: '2026-11-14'
+sources:
+- https://jquery.com
+- https://github.com/jquery/jquery
+- https://jquery.com/download/

@@ -1,0 +1,35 @@
+id: gatsby
+name: Gatsby
+aliases:
+- gatsbyjs
+layer: meta-framework
+summary: A React framework for building static sites with a GraphQL data layer.
+url: https://www.gatsbyjs.com
+repo: https://github.com/gatsbyjs/gatsby
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- static-content
+- ssr-seo
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Existing content sites already built on it
+avoid_when:
+- You want to avoid a GraphQL data layer
+edges:
+- type: alternative-to
+  target: astro
+- type: alternative-to
+  target: nextjs
+- type: built-on
+  target: react
+verified: '2026-11-14'
+sources:
+- https://www.gatsbyjs.com
+- https://github.com/gatsbyjs/gatsby

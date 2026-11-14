@@ -1,0 +1,29 @@
+id: xamarin
+name: Xamarin
+aliases:
+- xamarin-forms
+layer: mobile
+summary: The legacy .NET framework for iOS and Android apps, with support ended in favor of .NET MAUI.
+url: https://dotnet.microsoft.com/apps/xamarin
+repo: https://github.com/xamarin/xamarin-android
+license: MIT
+languages:
+- csharp
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: legacy
+good_for:
+- Maintaining existing Xamarin apps
+avoid_when:
+- You are starting a new app, where .NET MAUI replaces it
+edges:
+- type: alternative-to
+  target: dotnet-maui
+verified: '2026-11-14'
+sources:
+- https://dotnet.microsoft.com/apps/xamarin
+- https://github.com/xamarin/xamarin-android

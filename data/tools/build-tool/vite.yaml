@@ -1,0 +1,56 @@
+id: vite
+name: Vite
+aliases:
+- vitejs
+layer: build-tool
+summary: A frontend build tool with a fast dev server and a production build that bundles with Rolldown.
+url: https://vite.dev
+repo: https://github.com/vitejs/vite
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Fast dev server and hot updates for most frameworks
+- New projects of any framework
+avoid_when:
+- You need very custom legacy bundling pipelines
+edges:
+- type: alternative-to
+  target: webpack
+- type: alternative-to
+  target: parcel
+- type: alternative-to
+  target: rspack
+- type: alternative-to
+  target: turbopack
+- type: built-on
+  target: rollup
+- type: built-on
+  target: esbuild
+- type: pairs-with
+  target: rolldown
+- type: pairs-with
+  target: vitepress
+- type: pairs-with
+  target: sveltekit
+- type: pairs-with
+  target: react
+- type: pairs-with
+  target: vue
+- type: pairs-with
+  target: tanstack-start
+- type: pairs-with
+  target: solidstart
+verified: '2026-11-14'
+sources:
+- https://vite.dev
+- https://github.com/vitejs/vite
+- https://vite.dev/guide/
+- https://vite.dev/guide/why

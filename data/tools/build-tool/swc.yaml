@@ -1,0 +1,31 @@
+id: swc
+name: SWC
+aliases:
+- speedy-web-compiler
+layer: build-tool
+summary: A Rust-based platform for fast compiling, minifying and bundling JavaScript and TypeScript.
+url: https://swc.rs
+repo: https://github.com/swc-project/swc
+license: Apache-2.0
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Fast compiling in place of Babel
+avoid_when:
+- You rely on many custom Babel plugins
+edges:
+- type: alternative-to
+  target: esbuild
+- type: alternative-to
+  target: babel
+verified: '2026-11-14'
+sources:
+- https://swc.rs
+- https://github.com/swc-project/swc

@@ -1,0 +1,36 @@
+id: analog
+name: Analog
+aliases:
+- analogjs
+match_name: false
+layer: meta-framework
+summary: A full-stack meta-framework for Angular with file routing, API routes and server rendering.
+url: https://analogjs.org
+repo: https://github.com/analogjs/analog
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+- static-content
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Angular apps that want file-based routing and SSR
+avoid_when:
+- You want a first-party Angular tool only
+edges:
+- type: alternative-to
+  target: nuxt
+- type: built-on
+  target: angular
+verified: '2026-11-14'
+sources:
+- https://analogjs.org
+- https://github.com/analogjs/analog
+- https://analogjs.org/docs
+- https://analogjs.org/docs/features/api/overview

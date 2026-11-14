@@ -1,0 +1,35 @@
+id: pinia
+name: Pinia
+aliases:
+- vue-pinia
+layer: state
+summary: The official state management library for Vue with TypeScript support and devtools.
+url: https://pinia.vuejs.org
+repo: https://github.com/vuejs/pinia
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Vue 3 apps that need shared state
+avoid_when:
+- You do not use Vue
+edges:
+- type: alternative-to
+  target: vuex
+- type: replaces
+  target: vuex
+- type: pairs-with
+  target: vue
+verified: '2026-11-14'
+sources:
+- https://pinia.vuejs.org
+- https://github.com/vuejs/pinia
+- https://pinia.vuejs.org/introduction.html

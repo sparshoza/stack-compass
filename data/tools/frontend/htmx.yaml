@@ -1,0 +1,33 @@
+id: htmx
+name: htmx
+aliases:
+- htmx.org
+layer: frontend
+summary: A library that gives HTML attributes access to AJAX, WebSockets and server-sent events.
+url: https://htmx.org
+repo: https://github.com/bigskysoftware/htmx
+license: 0BSD
+languages:
+- javascript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Server-rendered apps with partial page updates
+- Teams that want to stay in their backend language
+avoid_when:
+- You need heavy client-side state or offline behavior
+- The UI is a highly interactive canvas or editor
+edges:
+- type: alternative-to
+  target: alpinejs
+- type: alternative-to
+  target: stimulus
+verified: '2026-11-14'
+sources:
+- https://htmx.org
+- https://github.com/bigskysoftware/htmx
+- https://htmx.org/docs/

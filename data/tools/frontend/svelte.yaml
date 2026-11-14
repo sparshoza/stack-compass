@@ -1,0 +1,52 @@
+id: svelte
+name: Svelte
+aliases:
+- sveltejs
+- svelte5
+layer: frontend
+summary: A compiler-based UI framework that turns components into small, fast JavaScript.
+url: https://svelte.dev
+repo: https://github.com/sveltejs/svelte
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Small bundles and little boilerplate
+- Fast interactive widgets and apps
+avoid_when:
+- You need the largest pool of third-party component libraries
+edges:
+- type: alternative-to
+  target: react
+- type: alternative-to
+  target: vue
+- type: alternative-to
+  target: angular
+- type: alternative-to
+  target: solidjs
+- type: alternative-to
+  target: lit
+- type: pairs-with
+  target: tailwindcss
+- type: pairs-with
+  target: tanstack-query
+- type: pairs-with
+  target: xstate
+- type: pairs-with
+  target: nanostores
+- type: pairs-with
+  target: tauri
+- type: pairs-with
+  target: nativescript
+verified: '2026-11-14'
+sources:
+- https://svelte.dev
+- https://github.com/sveltejs/svelte
+- https://svelte.dev/docs/svelte/typescript

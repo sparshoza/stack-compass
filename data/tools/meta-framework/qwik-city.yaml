@@ -1,0 +1,37 @@
+id: qwik-city
+name: Qwik City
+aliases:
+- qwikcity
+layer: meta-framework
+summary: The official Qwik meta-framework with directory routing, endpoints and server rendering.
+url: https://qwik.dev/docs/qwikcity/
+repo: https://github.com/QwikDev/qwik
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+- edge-runtime
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Qwik apps that need routing and SSR
+avoid_when:
+- You want a mature ecosystem
+- You want to avoid Qwik
+edges:
+- type: alternative-to
+  target: solidstart
+- type: alternative-to
+  target: nextjs
+- type: built-on
+  target: qwik
+verified: '2026-11-14'
+sources:
+- https://qwik.dev/docs/qwikcity/
+- https://github.com/QwikDev/qwik
+- https://qwik.dev/docs/deployments/

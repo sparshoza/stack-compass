@@ -1,0 +1,38 @@
+id: nativescript
+name: NativeScript
+aliases:
+- native-script
+layer: mobile
+summary: An open source framework for building native iOS and Android apps with JavaScript or TypeScript.
+url: https://nativescript.org
+repo: https://github.com/NativeScript/NativeScript
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Direct access to native APIs from JavaScript
+avoid_when:
+- You want the biggest community
+edges:
+- type: alternative-to
+  target: react-native
+- type: alternative-to
+  target: capacitor
+- type: pairs-with
+  target: angular
+- type: pairs-with
+  target: vue
+- type: pairs-with
+  target: svelte
+verified: '2026-11-14'
+sources:
+- https://nativescript.org
+- https://github.com/NativeScript/NativeScript

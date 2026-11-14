@@ -1,0 +1,35 @@
+id: mobx
+name: MobX
+aliases:
+- mobx-react
+layer: state
+summary: A library that makes state management simple through transparent reactive programming.
+url: https://mobx.js.org
+repo: https://github.com/mobxjs/mobx
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Object-oriented, observable state
+- Automatic tracking of derived values
+avoid_when:
+- You want strictly explicit, immutable data flow
+edges:
+- type: alternative-to
+  target: redux-toolkit
+- type: alternative-to
+  target: valtio
+- type: pairs-with
+  target: react
+verified: '2026-11-14'
+sources:
+- https://mobx.js.org
+- https://github.com/mobxjs/mobx
+- https://mobx.js.org/README.html

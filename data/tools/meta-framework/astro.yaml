@@ -1,0 +1,54 @@
+id: astro
+name: Astro
+aliases:
+- astrojs
+layer: meta-framework
+summary: A web framework for content-driven sites that ships minimal JavaScript and mixes UI libraries.
+url: https://astro.build
+repo: https://github.com/withastro/astro
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- static-content
+- ssr-seo
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Blogs, docs and marketing sites
+- Mixing React, Vue or Svelte components on one site
+avoid_when:
+- Highly interactive app-like products with heavy client state
+edges:
+- type: alternative-to
+  target: nextjs
+- type: alternative-to
+  target: gatsby
+- type: alternative-to
+  target: docusaurus
+- type: alternative-to
+  target: vitepress
+- type: alternative-to
+  target: fresh
+- type: built-on
+  target: react
+- type: built-on
+  target: vue
+- type: built-on
+  target: svelte
+- type: built-on
+  target: solidjs
+- type: pairs-with
+  target: tailwindcss
+verified: '2026-11-14'
+sources:
+- https://astro.build
+- https://github.com/withastro/astro
+- https://docs.astro.build/en/guides/typescript/
+- https://docs.astro.build/en/guides/on-demand-rendering/
+- https://docs.astro.build/en/guides/framework-components/

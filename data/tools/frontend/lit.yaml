@@ -1,0 +1,33 @@
+id: lit
+name: Lit
+aliases:
+- lit-element
+- lit-html
+match_name: false
+layer: frontend
+summary: A small library for building fast, framework-agnostic web components.
+url: https://lit.dev
+repo: https://github.com/lit/lit
+license: BSD-3-Clause
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Components that work in any framework
+- Design systems shared across several apps
+avoid_when:
+- You need routing and app structure out of the box
+edges:
+- type: alternative-to
+  target: svelte
+verified: '2026-11-14'
+sources:
+- https://lit.dev
+- https://github.com/lit/lit
+- https://lit.dev/docs/

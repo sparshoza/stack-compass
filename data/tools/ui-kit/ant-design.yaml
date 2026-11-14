@@ -1,0 +1,37 @@
+id: ant-design
+name: Ant Design
+aliases:
+- antd
+layer: ui-kit
+summary: An enterprise-grade React UI design language and component library.
+url: https://ant.design
+repo: https://github.com/ant-design/ant-design
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Admin dashboards and internal tools
+- Complex tables and forms
+avoid_when:
+- You want a distinctive custom look
+- You need a small bundle
+edges:
+- type: alternative-to
+  target: mantine
+- type: alternative-to
+  target: material-ui
+- type: built-on
+  target: react
+verified: '2026-11-14'
+sources:
+- https://ant.design
+- https://github.com/ant-design/ant-design
+- https://ant.design/docs/react/introduce

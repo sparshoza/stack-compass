@@ -1,0 +1,37 @@
+id: tauri
+name: Tauri
+aliases:
+- tauri-app
+- tauri2
+layer: mobile
+summary: A framework for building desktop and mobile apps with a web frontend, a Rust core and the system webview.
+url: https://tauri.app
+repo: https://github.com/tauri-apps/tauri
+license: Apache-2.0 OR MIT
+languages:
+- rust
+- javascript
+- typescript
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Small apps with a web UI and Rust backend
+avoid_when:
+- You need the same rendering engine on every platform, since Tauri uses the system webview
+edges:
+- type: alternative-to
+  target: capacitor
+- type: pairs-with
+  target: svelte
+- type: pairs-with
+  target: react
+verified: '2026-11-14'
+sources:
+- https://tauri.app
+- https://github.com/tauri-apps/tauri
+- https://tauri.app/blog/tauri-20/

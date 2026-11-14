@@ -1,0 +1,64 @@
+id: vue
+name: Vue
+aliases:
+- vuejs
+- vue.js
+- vue3
+layer: frontend
+summary: A progressive JavaScript framework for building web user interfaces.
+url: https://vuejs.org
+repo: https://github.com/vuejs/core
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+- ssr-seo
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Gentle learning curve with single-file components
+- Adding interactivity to existing pages step by step
+avoid_when:
+- You need first-party native mobile support
+edges:
+- type: alternative-to
+  target: react
+- type: alternative-to
+  target: angular
+- type: alternative-to
+  target: svelte
+- type: alternative-to
+  target: ember
+- type: pairs-with
+  target: tailwindcss
+- type: pairs-with
+  target: tanstack-query
+- type: pairs-with
+  target: pinia
+- type: pairs-with
+  target: vuex
+- type: pairs-with
+  target: xstate
+- type: pairs-with
+  target: nanostores
+- type: pairs-with
+  target: effector
+- type: pairs-with
+  target: vite
+- type: pairs-with
+  target: capacitor
+- type: pairs-with
+  target: ionic
+- type: pairs-with
+  target: nativescript
+verified: '2026-11-14'
+sources:
+- https://vuejs.org
+- https://github.com/vuejs/core
+- https://vuejs.org/guide/typescript/overview
+- https://vuejs.org/guide/scaling-up/ssr.html

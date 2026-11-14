@@ -1,0 +1,32 @@
+id: swr
+name: SWR
+aliases:
+- vercel-swr
+layer: state
+summary: A React hooks library for data fetching based on stale-while-revalidate.
+url: https://swr.vercel.app
+repo: https://github.com/vercel/swr
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Simple remote data fetching in React
+avoid_when:
+- You need complex mutation workflows or offline sync
+edges:
+- type: alternative-to
+  target: tanstack-query
+- type: pairs-with
+  target: react
+verified: '2026-11-14'
+sources:
+- https://swr.vercel.app
+- https://github.com/vercel/swr

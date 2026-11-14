@@ -1,0 +1,32 @@
+id: valtio
+name: Valtio
+aliases: []
+layer: state
+summary: A proxy-based state library that makes mutable state work with React rendering.
+url: https://valtio.dev
+repo: https://github.com/pmndrs/valtio
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Mutating state directly with automatic re-renders
+avoid_when:
+- You want immutable update patterns
+edges:
+- type: alternative-to
+  target: zustand
+- type: alternative-to
+  target: mobx
+- type: pairs-with
+  target: react
+verified: '2026-11-14'
+sources:
+- https://valtio.dev
+- https://github.com/pmndrs/valtio

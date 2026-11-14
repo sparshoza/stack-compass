@@ -1,0 +1,36 @@
+id: rspack
+name: Rspack
+aliases:
+- rspackjs
+layer: build-tool
+summary: A fast Rust-based JavaScript bundler that is compatible with the webpack ecosystem.
+url: https://rspack.dev
+repo: https://github.com/web-infra-dev/rspack
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Speeding up existing webpack projects
+avoid_when:
+- You need every webpack plugin to work unchanged
+edges:
+- type: alternative-to
+  target: webpack
+- type: alternative-to
+  target: vite
+- type: alternative-to
+  target: turbopack
+- type: alternative-to
+  target: parcel
+verified: '2026-11-14'
+sources:
+- https://rspack.dev
+- https://github.com/web-infra-dev/rspack
+- https://rspack.dev/guide/start/introduction

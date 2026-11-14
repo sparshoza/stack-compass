@@ -1,0 +1,38 @@
+id: dotnet-maui
+name: .NET MAUI
+aliases:
+- maui
+- net-maui
+layer: mobile
+summary: A .NET framework for building native mobile and desktop apps from one C# codebase.
+url: https://dotnet.microsoft.com/apps/maui
+repo: https://github.com/dotnet/maui
+license: MIT
+languages:
+- csharp
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- C# and .NET teams building cross-platform apps
+avoid_when:
+- Your team does not use .NET
+edges:
+- type: alternative-to
+  target: uno-platform
+- type: alternative-to
+  target: react-native
+- type: alternative-to
+  target: flutter
+- type: replaces
+  target: xamarin
+- type: alternative-to
+  target: xamarin
+verified: '2026-11-14'
+sources:
+- https://dotnet.microsoft.com/apps/maui
+- https://github.com/dotnet/maui

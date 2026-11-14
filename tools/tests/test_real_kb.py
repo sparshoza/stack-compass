@@ -112,3 +112,21 @@ def test_no_dashes_in_data():
     for p in DATA.rglob("*.yaml"):
         text = p.read_text(encoding="utf-8")
         assert chr(0x2014) not in text and chr(0x2013) not in text, p
+
+
+def test_every_meta_framework_built_on_a_frontend():
+    tools = load_kb(DATA).tools
+    metas = [t for t in tools.values() if t.layer == "meta-framework"]
+    assert metas
+    for t in metas:
+        built = [e.target for e in t.edges if e.type == "built-on"]
+        assert any(tools[x].layer == "frontend" for x in built), t.id
+
+
+def test_every_state_and_ui_kit_built_on_or_pairs_with_a_frontend():
+    tools = load_kb(DATA).tools
+    subjects = [t for t in tools.values() if t.layer in ("state", "ui-kit")]
+    assert subjects
+    for t in subjects:
+        linked = [e.target for e in t.edges if e.type in ("built-on", "pairs-with")]
+        assert any(tools[x].layer == "frontend" for x in linked), t.id

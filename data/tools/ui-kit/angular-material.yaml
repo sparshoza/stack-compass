@@ -1,0 +1,31 @@
+id: angular-material
+name: Angular Material
+aliases:
+- ng-material
+layer: ui-kit
+summary: The official Material Design component library for Angular.
+url: https://material.angular.dev
+repo: https://github.com/angular/components
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Angular apps that want first-party components
+avoid_when:
+- You do not use Angular
+edges:
+- type: alternative-to
+  target: primeng
+- type: built-on
+  target: angular
+verified: '2026-11-14'
+sources:
+- https://material.angular.dev
+- https://github.com/angular/components

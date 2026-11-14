@@ -1,0 +1,35 @@
+id: headless-ui
+name: Headless UI
+aliases:
+- headlessui
+layer: ui-kit
+summary: Unstyled, accessible UI components designed to work with Tailwind CSS, for React and Vue.
+url: https://headlessui.com
+repo: https://github.com/tailwindlabs/headlessui
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Accessible dropdowns, dialogs and menus styled with Tailwind
+avoid_when:
+- You want a full set of styled components
+edges:
+- type: alternative-to
+  target: radix-ui
+- type: built-on
+  target: react
+- type: built-on
+  target: vue
+- type: pairs-with
+  target: tailwindcss
+verified: '2026-11-14'
+sources:
+- https://headlessui.com
+- https://github.com/tailwindlabs/headlessui

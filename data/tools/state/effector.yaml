@@ -1,0 +1,33 @@
+id: effector
+name: Effector
+aliases: []
+layer: state
+summary: A reactive state manager built around stores, events and effects, with bindings for React, Vue and Solid.
+url: https://effector.dev
+repo: https://github.com/effector/effector
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Explicit business logic split from the UI
+avoid_when:
+- You want the simplest possible store
+edges:
+- type: alternative-to
+  target: redux-toolkit
+- type: pairs-with
+  target: react
+- type: pairs-with
+  target: vue
+verified: '2026-11-14'
+sources:
+- https://effector.dev
+- https://github.com/effector/effector

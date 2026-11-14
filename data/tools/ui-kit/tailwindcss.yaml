@@ -1,0 +1,50 @@
+id: tailwindcss
+name: Tailwind CSS
+aliases:
+- tailwind
+- tailwind-css
+layer: ui-kit
+summary: A utility-first CSS framework for building custom designs directly in markup.
+url: https://tailwindcss.com
+repo: https://github.com/tailwindlabs/tailwindcss
+license: MIT
+languages:
+- javascript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Custom designs without writing much CSS
+- Consistent spacing and color through a design scale
+avoid_when:
+- You want ready-made components out of the box
+edges:
+- type: alternative-to
+  target: chakra-ui
+- type: pairs-with
+  target: react
+- type: pairs-with
+  target: vue
+- type: pairs-with
+  target: svelte
+- type: pairs-with
+  target: angular
+- type: pairs-with
+  target: solidjs
+- type: pairs-with
+  target: headless-ui
+- type: pairs-with
+  target: shadcn-ui
+- type: pairs-with
+  target: heroui
+- type: pairs-with
+  target: astro
+- type: pairs-with
+  target: nextjs
+verified: '2026-11-14'
+sources:
+- https://tailwindcss.com
+- https://github.com/tailwindlabs/tailwindcss

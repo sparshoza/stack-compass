@@ -1,0 +1,36 @@
+id: heroui
+name: HeroUI
+aliases:
+- nextui
+- hero-ui
+layer: ui-kit
+summary: A React component library built on Tailwind CSS and React Aria (formerly NextUI).
+url: https://www.heroui.com
+repo: https://github.com/heroui-inc/heroui
+license: Apache-2.0
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- React apps with Tailwind that want polished components
+avoid_when:
+- You do not use Tailwind or React
+edges:
+- type: alternative-to
+  target: chakra-ui
+- type: alternative-to
+  target: shadcn-ui
+- type: built-on
+  target: react
+- type: pairs-with
+  target: tailwindcss
+verified: '2026-11-14'
+sources:
+- https://www.heroui.com
+- https://github.com/heroui-inc/heroui

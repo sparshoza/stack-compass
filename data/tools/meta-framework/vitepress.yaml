@@ -1,0 +1,39 @@
+id: vitepress
+name: VitePress
+aliases:
+- vite-press
+layer: meta-framework
+summary: A static site generator built on Vite and Vue, made for documentation sites.
+url: https://vitepress.dev
+repo: https://github.com/vuejs/vitepress
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- static-content
+- ssr-seo
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Documentation sites and technical blogs
+- Markdown-first content with Vue components
+avoid_when:
+- You need a dynamic, server-rendered application
+edges:
+- type: alternative-to
+  target: astro
+- type: alternative-to
+  target: docusaurus
+- type: built-on
+  target: vue
+- type: pairs-with
+  target: vite
+verified: '2026-11-14'
+sources:
+- https://vitepress.dev
+- https://github.com/vuejs/vitepress
+- https://vitepress.dev/guide/what-is-vitepress

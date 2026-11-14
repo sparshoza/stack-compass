@@ -1,0 +1,44 @@
+id: capacitor
+name: Capacitor
+aliases:
+- capacitorjs
+match_name: false
+layer: mobile
+summary: A cross-platform native runtime that turns web apps into iOS and Android apps.
+url: https://capacitorjs.com
+repo: https://github.com/ionic-team/capacitor
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Wrapping an existing web app as a native app
+avoid_when:
+- You need fully native UI rendering
+edges:
+- type: alternative-to
+  target: react-native
+- type: alternative-to
+  target: tauri
+- type: alternative-to
+  target: nativescript
+- type: pairs-with
+  target: ionic
+- type: pairs-with
+  target: react
+- type: pairs-with
+  target: vue
+- type: pairs-with
+  target: angular
+verified: '2026-11-14'
+sources:
+- https://capacitorjs.com
+- https://github.com/ionic-team/capacitor
+- https://capacitorjs.com/docs

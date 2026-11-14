@@ -1,0 +1,41 @@
+id: react-router
+name: React Router
+aliases:
+- react-router-dom
+- react-router-v7
+layer: meta-framework
+summary: A routing library for React with a framework mode for data loading, server rendering and actions.
+url: https://reactrouter.com
+repo: https://github.com/remix-run/react-router
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+- static-content
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- React apps that want routing and data loading together
+- Choosing between SPA, SSR or static rendering per app
+avoid_when:
+- You do not use React
+edges:
+- type: alternative-to
+  target: nextjs
+- type: alternative-to
+  target: tanstack-start
+- type: built-on
+  target: react
+verified: '2026-11-14'
+sources:
+- https://reactrouter.com
+- https://github.com/remix-run/react-router
+- https://reactrouter.com/start/modes
+- https://reactrouter.com/how-to/pre-rendering
+- https://reactrouter.com/explanation/type-safety

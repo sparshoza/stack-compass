@@ -1,0 +1,52 @@
+id: angular
+name: Angular
+aliases:
+- angular2
+layer: frontend
+summary: A TypeScript platform and framework for building web applications.
+url: https://angular.dev
+repo: https://github.com/angular/angular
+license: MIT
+languages:
+- typescript
+- javascript
+tags:
+- ssr-seo
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Large teams that want one opinionated structure
+- Enterprise apps with forms, routing and DI built in
+avoid_when:
+- A small site where the framework weight is not worth it
+- You prefer a minimal library over a full framework
+edges:
+- type: alternative-to
+  target: react
+- type: alternative-to
+  target: vue
+- type: alternative-to
+  target: svelte
+- type: alternative-to
+  target: ember
+- type: pairs-with
+  target: tailwindcss
+- type: pairs-with
+  target: tanstack-query
+- type: pairs-with
+  target: ngrx
+- type: pairs-with
+  target: capacitor
+- type: pairs-with
+  target: ionic
+- type: pairs-with
+  target: nativescript
+verified: '2026-11-14'
+sources:
+- https://angular.dev
+- https://github.com/angular/angular
+- https://angular.dev/guide/ssr

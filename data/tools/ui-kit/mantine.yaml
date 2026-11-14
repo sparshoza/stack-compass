@@ -1,0 +1,37 @@
+id: mantine
+name: Mantine
+aliases:
+- mantinedev
+layer: ui-kit
+summary: A React component library with many components and hooks.
+url: https://mantine.dev
+repo: https://github.com/mantinedev/mantine
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Apps that need many ready-made components and hooks
+avoid_when:
+- You do not use React
+edges:
+- type: alternative-to
+  target: chakra-ui
+- type: alternative-to
+  target: ant-design
+- type: alternative-to
+  target: shadcn-ui
+- type: built-on
+  target: react
+verified: '2026-11-14'
+sources:
+- https://mantine.dev
+- https://github.com/mantinedev/mantine
+- https://mantine.dev/guides/typescript/

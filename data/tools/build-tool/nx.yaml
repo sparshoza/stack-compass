@@ -1,0 +1,34 @@
+id: nx
+name: Nx
+aliases:
+- nrwl-nx
+layer: build-tool
+summary: A build system and monorepo toolkit with task caching and project graph analysis.
+url: https://nx.dev
+repo: https://github.com/nrwl/nx
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+- managed
+pricing:
+- oss
+- free-tier
+- paid
+maturity: established
+good_for:
+- Large monorepos with many projects
+- Affected-only builds and tests
+avoid_when:
+- A single small package
+edges:
+- type: alternative-to
+  target: turborepo
+verified: '2026-11-14'
+sources:
+- https://nx.dev
+- https://github.com/nrwl/nx
+- https://nx.dev/pricing

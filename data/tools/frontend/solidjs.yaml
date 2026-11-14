@@ -1,0 +1,39 @@
+id: solidjs
+name: SolidJS
+aliases:
+- solid-js
+layer: frontend
+summary: A declarative UI library built on fine-grained reactivity without a virtual DOM.
+url: https://www.solidjs.com
+repo: https://github.com/solidjs/solid
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Very fast updates with a React-like syntax
+- Fine-grained reactive state without hooks rules
+avoid_when:
+- You need a huge ecosystem of ready-made components
+edges:
+- type: alternative-to
+  target: react
+- type: alternative-to
+  target: svelte
+- type: alternative-to
+  target: qwik
+- type: pairs-with
+  target: tailwindcss
+- type: pairs-with
+  target: tanstack-query
+verified: '2026-11-14'
+sources:
+- https://www.solidjs.com
+- https://github.com/solidjs/solid

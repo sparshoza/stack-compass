@@ -1,0 +1,34 @@
+id: element-plus
+name: Element Plus
+aliases:
+- elementplus
+layer: ui-kit
+summary: A Vue 3 component library for building desktop web interfaces.
+url: https://element-plus.org
+repo: https://github.com/element-plus/element-plus
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Vue admin apps and dashboards
+avoid_when:
+- You need a mobile-first UI
+edges:
+- type: alternative-to
+  target: vuetify
+- type: alternative-to
+  target: primevue
+- type: built-on
+  target: vue
+verified: '2026-11-14'
+sources:
+- https://element-plus.org
+- https://github.com/element-plus/element-plus

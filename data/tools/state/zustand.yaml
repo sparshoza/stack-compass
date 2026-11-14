@@ -1,0 +1,35 @@
+id: zustand
+name: Zustand
+aliases: []
+layer: state
+summary: A small, fast state management library for React using simple hooks.
+url: https://zustand.docs.pmnd.rs
+repo: https://github.com/pmndrs/zustand
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Simple global state with little boilerplate
+avoid_when:
+- You need strict structure across a large team
+edges:
+- type: alternative-to
+  target: redux-toolkit
+- type: alternative-to
+  target: valtio
+- type: alternative-to
+  target: nanostores
+- type: pairs-with
+  target: react
+verified: '2026-11-14'
+sources:
+- https://zustand.docs.pmnd.rs
+- https://github.com/pmndrs/zustand

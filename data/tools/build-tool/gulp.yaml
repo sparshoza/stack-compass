@@ -1,0 +1,29 @@
+id: gulp
+name: Gulp
+aliases:
+- gulpjs
+layer: build-tool
+summary: A toolkit for automating slow, repetitive tasks in a development workflow.
+url: https://gulpjs.com
+repo: https://github.com/gulpjs/gulp
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Automating repetitive build and file tasks in JavaScript
+avoid_when:
+- You want built-in module bundling, since gulp is a task runner
+edges:
+- type: alternative-to
+  target: webpack
+verified: '2026-11-14'
+sources:
+- https://gulpjs.com
+- https://github.com/gulpjs/gulp

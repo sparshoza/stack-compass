@@ -1,0 +1,37 @@
+id: xstate
+name: XState
+aliases:
+- statecharts
+layer: state
+summary: A library for state machines, statecharts and actors for modeling complex logic.
+url: https://stately.ai/docs/xstate
+repo: https://github.com/statelyai/xstate
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Complex flows with many states and transitions
+- Visualizable, testable logic
+avoid_when:
+- Simple state that a plain store handles well
+edges:
+- type: alternative-to
+  target: redux-toolkit
+- type: pairs-with
+  target: react
+- type: pairs-with
+  target: vue
+- type: pairs-with
+  target: svelte
+verified: '2026-11-14'
+sources:
+- https://stately.ai/docs/xstate
+- https://github.com/statelyai/xstate

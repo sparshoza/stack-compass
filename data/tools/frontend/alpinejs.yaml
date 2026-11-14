@@ -1,0 +1,34 @@
+id: alpinejs
+name: Alpine.js
+aliases:
+- alpine-js
+layer: frontend
+summary: A lightweight JavaScript framework for adding behavior directly in HTML markup.
+url: https://alpinejs.dev
+repo: https://github.com/alpinejs/alpine
+license: MIT
+languages:
+- javascript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Sprinkling interactivity on server-rendered pages
+- No build step
+avoid_when:
+- You are building a large single-page app
+edges:
+- type: alternative-to
+  target: htmx
+- type: alternative-to
+  target: stimulus
+- type: alternative-to
+  target: jquery
+verified: '2026-11-14'
+sources:
+- https://alpinejs.dev
+- https://github.com/alpinejs/alpine
+- https://alpinejs.dev/start-here

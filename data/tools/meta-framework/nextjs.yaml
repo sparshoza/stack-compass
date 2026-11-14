@@ -1,0 +1,54 @@
+id: nextjs
+name: Next.js
+layer: meta-framework
+summary: A React framework for full-stack web apps with routing, server rendering and server functions.
+url: https://nextjs.org
+repo: https://github.com/vercel/next.js
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+- static-content
+- edge-runtime
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- React apps that need SEO and server rendering
+- Full-stack apps with server components and API routes
+avoid_when:
+- You want to avoid React
+edges:
+- type: alternative-to
+  target: react-router
+- type: alternative-to
+  target: nuxt
+- type: alternative-to
+  target: sveltekit
+- type: alternative-to
+  target: tanstack-start
+- type: alternative-to
+  target: astro
+- type: alternative-to
+  target: gatsby
+- type: alternative-to
+  target: qwik-city
+- type: built-on
+  target: react
+- type: pairs-with
+  target: tailwindcss
+- type: pairs-with
+  target: turbopack
+verified: '2026-11-14'
+sources:
+- https://nextjs.org
+- https://github.com/vercel/next.js
+- https://nextjs.org/docs/app/api-reference/edge
+- https://nextjs.org/docs/app/guides/static-exports
+- https://nextjs.org/docs/app/api-reference/config/typescript
+- https://nextjs.org/docs/app/guides/self-hosting

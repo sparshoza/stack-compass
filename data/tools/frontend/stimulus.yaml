@@ -1,0 +1,36 @@
+id: stimulus
+name: Stimulus
+aliases:
+- stimulusjs
+- hotwire-stimulus
+match_name: false
+layer: frontend
+summary: A modest JavaScript framework that adds behavior to server-rendered HTML.
+url: https://stimulus.hotwired.dev
+repo: https://github.com/hotwired/stimulus
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Rails-style apps with HTML over the wire
+- Small, reusable behaviors on server-rendered pages
+avoid_when:
+- You need a client-side rendered single-page app
+edges:
+- type: alternative-to
+  target: htmx
+- type: alternative-to
+  target: alpinejs
+verified: '2026-11-14'
+sources:
+- https://stimulus.hotwired.dev
+- https://github.com/hotwired/stimulus
+- https://stimulus.hotwired.dev/reference/using-typescript

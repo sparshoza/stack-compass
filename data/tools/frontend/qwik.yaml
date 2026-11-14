@@ -1,0 +1,34 @@
+id: qwik
+name: Qwik
+aliases:
+- qwikjs
+layer: frontend
+summary: A framework that resumes server-rendered apps on the client without hydration.
+url: https://qwik.dev
+repo: https://github.com/QwikDev/qwik
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Fast start on content-heavy pages
+- Apps where time to interactive matters most
+avoid_when:
+- You need a long-proven stable major version, since Qwik v2 is still in beta
+edges:
+- type: alternative-to
+  target: solidjs
+- type: alternative-to
+  target: react
+verified: '2026-11-14'
+sources:
+- https://qwik.dev
+- https://github.com/QwikDev/qwik
+- https://qwik.dev/docs/faq/

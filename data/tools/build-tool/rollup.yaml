@@ -1,0 +1,32 @@
+id: rollup
+name: Rollup
+aliases:
+- rollupjs
+layer: build-tool
+summary: A module bundler for JavaScript that compiles small pieces into larger libraries.
+url: https://rollupjs.org
+repo: https://github.com/rollup/rollup
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Bundling libraries with clean ES module output
+avoid_when:
+- Large apps needing a dev server out of the box
+edges:
+- type: alternative-to
+  target: esbuild
+- type: alternative-to
+  target: rolldown
+verified: '2026-11-14'
+sources:
+- https://rollupjs.org
+- https://github.com/rollup/rollup
+- https://rollupjs.org/introduction/

@@ -1,0 +1,33 @@
+id: vuetify
+name: Vuetify
+aliases:
+- vuetify3
+layer: ui-kit
+summary: A Vue component framework implementing Material Design.
+url: https://vuetifyjs.com
+repo: https://github.com/vuetifyjs/vuetify
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Vue apps that want Material Design components
+avoid_when:
+- You want a custom visual style from scratch
+edges:
+- type: alternative-to
+  target: primevue
+- type: alternative-to
+  target: element-plus
+- type: built-on
+  target: vue
+verified: '2026-11-14'
+sources:
+- https://vuetifyjs.com
+- https://github.com/vuetifyjs/vuetify

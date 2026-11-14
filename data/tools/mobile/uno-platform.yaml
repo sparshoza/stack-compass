@@ -1,0 +1,31 @@
+id: uno-platform
+name: Uno Platform
+aliases:
+- unoplatform
+layer: mobile
+summary: An open source platform for building mobile, web and desktop apps with C# and XAML from one codebase.
+url: https://platform.uno
+repo: https://github.com/unoplatform/uno
+license: Apache-2.0
+languages:
+- csharp
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+- paid
+maturity: established
+good_for:
+- WinUI and XAML developers targeting many platforms
+avoid_when:
+- You do not know C# or XAML
+edges:
+- type: alternative-to
+  target: dotnet-maui
+verified: '2026-11-14'
+sources:
+- https://platform.uno
+- https://github.com/unoplatform/uno
+- https://platform.uno/pricing/

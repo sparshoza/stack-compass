@@ -1,0 +1,34 @@
+id: turbopack
+name: Turbopack
+aliases: []
+layer: build-tool
+summary: A Rust-based incremental bundler for JavaScript and TypeScript, built into Next.js as its default bundler.
+url: https://nextjs.org/docs/app/api-reference/turbopack
+repo: https://github.com/vercel/next.js
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Fast dev and builds inside Next.js
+avoid_when:
+- You are not using Next.js
+edges:
+- type: alternative-to
+  target: vite
+- type: alternative-to
+  target: webpack
+- type: alternative-to
+  target: rspack
+- type: pairs-with
+  target: nextjs
+verified: '2026-11-14'
+sources:
+- https://nextjs.org/docs/app/api-reference/turbopack
+- https://github.com/vercel/next.js

@@ -1,0 +1,44 @@
+id: sveltekit
+name: SvelteKit
+aliases:
+- svelte-kit
+layer: meta-framework
+summary: The official Svelte application framework with routing, server rendering and adapters.
+url: https://svelte.dev/docs/kit
+repo: https://github.com/sveltejs/kit
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+- static-content
+- edge-runtime
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Svelte apps that need routing and SSR
+- Deploying to many targets through adapters
+avoid_when:
+- You want to avoid Svelte
+edges:
+- type: alternative-to
+  target: nextjs
+- type: alternative-to
+  target: nuxt
+- type: alternative-to
+  target: solidstart
+- type: built-on
+  target: svelte
+- type: pairs-with
+  target: vite
+verified: '2026-11-14'
+sources:
+- https://svelte.dev/docs/kit
+- https://github.com/sveltejs/kit
+- https://svelte.dev/docs/kit/adapters
+- https://svelte.dev/docs/kit/types

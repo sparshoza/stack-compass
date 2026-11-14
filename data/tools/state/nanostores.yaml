@@ -1,0 +1,36 @@
+id: nanostores
+name: Nano Stores
+aliases:
+- nano-stores
+layer: state
+summary: A tiny state manager with many atomic stores and bindings for React, Vue, Svelte and more.
+url: https://github.com/nanostores/nanostores
+repo: https://github.com/nanostores/nanostores
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Sharing state across several frameworks
+- Very small bundles
+avoid_when:
+- You need a large devtools ecosystem
+edges:
+- type: alternative-to
+  target: zustand
+- type: pairs-with
+  target: react
+- type: pairs-with
+  target: vue
+- type: pairs-with
+  target: svelte
+verified: '2026-11-14'
+sources:
+- https://github.com/nanostores/nanostores

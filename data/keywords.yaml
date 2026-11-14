@@ -121,3 +121,58 @@
   sets: {capabilities: [native-mobile]}
 - phrases: [appointment scheduling, subscription box, membership site]
   sets: {project_type: saas}
+# Client-side layers (Task 3)
+- phrases: [marketing page, portfolio site, personal site]
+  sets: {project_type: content-site}
+- phrases: [docs website, knowledge base site]
+  sets: {capabilities: [static-content], project_type: content-site}
+- phrases: [server rendering]
+  sets: {capabilities: [ssr-seo]}
+- phrases: [static website, static pages, static site generator]
+  sets: {capabilities: [static-content]}
+- phrases: [offline support]
+  sets: {capabilities: [offline]}
+- phrases: [edge rendering, run at the edge]
+  sets: {capabilities: [edge-runtime]}
+- phrases: [type checking]
+  sets: {capabilities: [type-safety]}
+- phrases: [internal dashboard]
+  sets: {capabilities: [admin-ui], project_type: internal-tool}
+- phrases: [crud app]
+  sets: {project_type: internal-tool}
+- phrases: [iphone app]
+  sets: {capabilities: [native-mobile], project_type: mobile-app}
+- phrases: [single page app]
+  sets: {project_type: web-app}
+- phrases: [component library, design system, ui components, ui library]
+  sets: {project_type: web-app}
+- phrases: [state management, global state]
+  sets: {project_type: web-app}
+- phrases: [data fetching, server state, client cache]
+  sets: {project_type: web-app}
+- phrases: [desktop app, desktop application]
+  sets: {capabilities: [native-mobile]}
+- phrases: [web components, custom elements]
+  sets: {languages: [javascript]}
+- phrases: [react native app, expo app]
+  sets: {capabilities: [native-mobile], project_type: mobile-app}
+- phrases: [dart app, flutter app]
+  sets: {languages: [dart], project_type: mobile-app}
+- phrases: [swift app, ios native]
+  sets: {capabilities: [native-mobile], languages: [swift]}
+- phrases: [kotlin app, android native]
+  sets: {capabilities: [native-mobile], languages: [kotlin]}
+- phrases: [c# frontend, dotnet frontend, csharp frontend]
+  sets: {languages: [csharp]}
+- phrases: [javascript frontend, js frontend]
+  sets: {languages: [javascript]}
+- phrases: [typescript frontend, ts frontend]
+  sets: {languages: [typescript]}
+- phrases: [realtime ui, live ui]
+  sets: {capabilities: [realtime], project_type: realtime-app}
+- phrases: [blog engine, personal blog]
+  sets: {project_type: content-site}
+- phrases: [saas app, saas product]
+  sets: {project_type: saas}
+- phrases: [html over the wire, server rendered html, progressive enhancement]
+  sets: {capabilities: [ssr-seo]}

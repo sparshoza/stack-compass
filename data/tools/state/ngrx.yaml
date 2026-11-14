@@ -1,0 +1,32 @@
+id: ngrx
+name: NgRx
+aliases:
+- angular-ngrx
+layer: state
+summary: Reactive state management for Angular, with a global Store and a signals-based SignalStore.
+url: https://ngrx.io
+repo: https://github.com/ngrx/platform
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Large Angular apps with complex shared state
+avoid_when:
+- A small Angular app where signals and services are enough
+edges:
+- type: alternative-to
+  target: redux-toolkit
+- type: pairs-with
+  target: angular
+verified: '2026-11-14'
+sources:
+- https://ngrx.io
+- https://github.com/ngrx/platform
+- https://ngrx.io/

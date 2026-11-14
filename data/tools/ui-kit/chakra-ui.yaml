@@ -1,0 +1,40 @@
+id: chakra-ui
+name: Chakra UI
+aliases:
+- chakraui
+layer: ui-kit
+summary: A React component library with accessible, composable components and style props.
+url: https://chakra-ui.com
+repo: https://github.com/chakra-ui/chakra-ui
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- React apps that want accessible components with theming
+avoid_when:
+- You want zero runtime styling
+edges:
+- type: alternative-to
+  target: material-ui
+- type: alternative-to
+  target: mantine
+- type: alternative-to
+  target: shadcn-ui
+- type: alternative-to
+  target: heroui
+- type: alternative-to
+  target: tailwindcss
+- type: built-on
+  target: react
+verified: '2026-11-14'
+sources:
+- https://chakra-ui.com
+- https://github.com/chakra-ui/chakra-ui
+- https://chakra-ui.com/docs/get-started/installation

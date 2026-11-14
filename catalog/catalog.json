@@ -967,6 +967,345 @@
         "languages": [],
         "project_type": "saas"
       }
+    },
+    {
+      "phrases": [
+        "marketing page",
+        "portfolio site",
+        "personal site"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "content-site"
+      }
+    },
+    {
+      "phrases": [
+        "docs website",
+        "knowledge base site"
+      ],
+      "sets": {
+        "capabilities": [
+          "static-content"
+        ],
+        "languages": [],
+        "project_type": "content-site"
+      }
+    },
+    {
+      "phrases": [
+        "server rendering"
+      ],
+      "sets": {
+        "capabilities": [
+          "ssr-seo"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "static website",
+        "static pages",
+        "static site generator"
+      ],
+      "sets": {
+        "capabilities": [
+          "static-content"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "offline support"
+      ],
+      "sets": {
+        "capabilities": [
+          "offline"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "edge rendering",
+        "run at the edge"
+      ],
+      "sets": {
+        "capabilities": [
+          "edge-runtime"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "type checking"
+      ],
+      "sets": {
+        "capabilities": [
+          "type-safety"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "internal dashboard"
+      ],
+      "sets": {
+        "capabilities": [
+          "admin-ui"
+        ],
+        "languages": [],
+        "project_type": "internal-tool"
+      }
+    },
+    {
+      "phrases": [
+        "crud app"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "internal-tool"
+      }
+    },
+    {
+      "phrases": [
+        "iphone app"
+      ],
+      "sets": {
+        "capabilities": [
+          "native-mobile"
+        ],
+        "languages": [],
+        "project_type": "mobile-app"
+      }
+    },
+    {
+      "phrases": [
+        "single page app"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "component library",
+        "design system",
+        "ui components",
+        "ui library"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "state management",
+        "global state"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "data fetching",
+        "server state",
+        "client cache"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "desktop app",
+        "desktop application"
+      ],
+      "sets": {
+        "capabilities": [
+          "native-mobile"
+        ],
+        "languages": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "web components",
+        "custom elements"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "javascript"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "react native app",
+        "expo app"
+      ],
+      "sets": {
+        "capabilities": [
+          "native-mobile"
+        ],
+        "languages": [],
+        "project_type": "mobile-app"
+      }
+    },
+    {
+      "phrases": [
+        "dart app",
+        "flutter app"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "dart"
+        ],
+        "project_type": "mobile-app"
+      }
+    },
+    {
+      "phrases": [
+        "swift app",
+        "ios native"
+      ],
+      "sets": {
+        "capabilities": [
+          "native-mobile"
+        ],
+        "languages": [
+          "swift"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "kotlin app",
+        "android native"
+      ],
+      "sets": {
+        "capabilities": [
+          "native-mobile"
+        ],
+        "languages": [
+          "kotlin"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "c# frontend",
+        "dotnet frontend",
+        "csharp frontend"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "csharp"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "javascript frontend",
+        "js frontend"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "javascript"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "typescript frontend",
+        "ts frontend"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "typescript"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "realtime ui",
+        "live ui"
+      ],
+      "sets": {
+        "capabilities": [
+          "realtime"
+        ],
+        "languages": [],
+        "project_type": "realtime-app"
+      }
+    },
+    {
+      "phrases": [
+        "blog engine",
+        "personal blog"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "content-site"
+      }
+    },
+    {
+      "phrases": [
+        "saas app",
+        "saas product"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "project_type": "saas"
+      }
+    },
+    {
+      "phrases": [
+        "html over the wire",
+        "server rendered html",
+        "progressive enhancement"
+      ],
+      "sets": {
+        "capabilities": [
+          "ssr-seo"
+        ],
+        "languages": [],
+        "project_type": null
+      }
     }
   ],
   "layers": [
@@ -1049,6 +1388,293 @@
       "summary": "The ORM of Ruby on Rails, mapping tables to Ruby classes with migrations.",
       "tags": [],
       "url": "https://guides.rubyonrails.org/active_record_basics.html",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "alpine-js"
+      ],
+      "avoid_when": [
+        "You are building a large single-page app"
+      ],
+      "edges": [
+        {
+          "target": "htmx",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stimulus",
+          "type": "alternative-to"
+        },
+        {
+          "target": "jquery",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Sprinkling interactivity on server-rendered pages",
+        "No build step"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "alpinejs",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Alpine.js",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/alpinejs/alpine",
+      "sources": [
+        "https://alpinejs.dev",
+        "https://github.com/alpinejs/alpine",
+        "https://alpinejs.dev/start-here"
+      ],
+      "summary": "A lightweight JavaScript framework for adding behavior directly in HTML markup.",
+      "tags": [],
+      "url": "https://alpinejs.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "analogjs"
+      ],
+      "avoid_when": [
+        "You want a first-party Angular tool only"
+      ],
+      "edges": [
+        {
+          "target": "nuxt",
+          "type": "alternative-to"
+        },
+        {
+          "target": "angular",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Angular apps that want file-based routing and SSR"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "analog",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "emerging",
+      "name": "Analog",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/analogjs/analog",
+      "sources": [
+        "https://analogjs.org",
+        "https://github.com/analogjs/analog",
+        "https://analogjs.org/docs",
+        "https://analogjs.org/docs/features/api/overview"
+      ],
+      "summary": "A full-stack meta-framework for Angular with file routing, API routes and server rendering.",
+      "tags": [
+        "ssr-seo",
+        "static-content"
+      ],
+      "url": "https://analogjs.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "angular2"
+      ],
+      "avoid_when": [
+        "A small site where the framework weight is not worth it",
+        "You prefer a minimal library over a full framework"
+      ],
+      "edges": [
+        {
+          "target": "react",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vue",
+          "type": "alternative-to"
+        },
+        {
+          "target": "svelte",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ember",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        },
+        {
+          "target": "tanstack-query",
+          "type": "pairs-with"
+        },
+        {
+          "target": "ngrx",
+          "type": "pairs-with"
+        },
+        {
+          "target": "capacitor",
+          "type": "pairs-with"
+        },
+        {
+          "target": "ionic",
+          "type": "pairs-with"
+        },
+        {
+          "target": "nativescript",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Large teams that want one opinionated structure",
+        "Enterprise apps with forms, routing and DI built in"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "angular",
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Angular",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/angular/angular",
+      "sources": [
+        "https://angular.dev",
+        "https://github.com/angular/angular",
+        "https://angular.dev/guide/ssr"
+      ],
+      "summary": "A TypeScript platform and framework for building web applications.",
+      "tags": [
+        "ssr-seo",
+        "type-safety"
+      ],
+      "url": "https://angular.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "ng-material"
+      ],
+      "avoid_when": [
+        "You do not use Angular"
+      ],
+      "edges": [
+        {
+          "target": "primeng",
+          "type": "alternative-to"
+        },
+        {
+          "target": "angular",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Angular apps that want first-party components"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "angular-material",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Angular Material",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/angular/components",
+      "sources": [
+        "https://material.angular.dev",
+        "https://github.com/angular/components"
+      ],
+      "summary": "The official Material Design component library for Angular.",
+      "tags": [],
+      "url": "https://material.angular.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "antd"
+      ],
+      "avoid_when": [
+        "You want a distinctive custom look",
+        "You need a small bundle"
+      ],
+      "edges": [
+        {
+          "target": "mantine",
+          "type": "alternative-to"
+        },
+        {
+          "target": "material-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Admin dashboards and internal tools",
+        "Complex tables and forms"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "ant-design",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Ant Design",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/ant-design/ant-design",
+      "sources": [
+        "https://ant.design",
+        "https://github.com/ant-design/ant-design",
+        "https://ant.design/docs/react/introduce"
+      ],
+      "summary": "An enterprise-grade React UI design language and component library.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://ant.design",
       "verified": "2026-11-14"
     },
     {
@@ -1154,6 +1780,92 @@
         "realtime"
       ],
       "url": "https://dotnet.microsoft.com/apps/aspnet",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "astrojs"
+      ],
+      "avoid_when": [
+        "Highly interactive app-like products with heavy client state"
+      ],
+      "edges": [
+        {
+          "target": "nextjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gatsby",
+          "type": "alternative-to"
+        },
+        {
+          "target": "docusaurus",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vitepress",
+          "type": "alternative-to"
+        },
+        {
+          "target": "fresh",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        },
+        {
+          "target": "vue",
+          "type": "built-on"
+        },
+        {
+          "target": "svelte",
+          "type": "built-on"
+        },
+        {
+          "target": "solidjs",
+          "type": "built-on"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Blogs, docs and marketing sites",
+        "Mixing React, Vue or Svelte components on one site"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "astro",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Astro",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/withastro/astro",
+      "sources": [
+        "https://astro.build",
+        "https://github.com/withastro/astro",
+        "https://docs.astro.build/en/guides/typescript/",
+        "https://docs.astro.build/en/guides/on-demand-rendering/",
+        "https://docs.astro.build/en/guides/framework-components/"
+      ],
+      "summary": "A web framework for content-driven sites that ships minimal JavaScript and mixes UI libraries.",
+      "tags": [
+        "static-content",
+        "ssr-seo",
+        "type-safety"
+      ],
+      "url": "https://astro.build",
       "verified": "2026-11-14"
     },
     {
@@ -1281,6 +1993,49 @@
     },
     {
       "aliases": [
+        "babeljs"
+      ],
+      "avoid_when": [
+        "You only need fast transpiling, where SWC or esbuild are quicker"
+      ],
+      "edges": [
+        {
+          "target": "swc",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Custom syntax transforms through plugins"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "babel",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Babel",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/babel/babel",
+      "sources": [
+        "https://babeljs.io",
+        "https://github.com/babel/babel",
+        "https://babeljs.io/docs/"
+      ],
+      "summary": "A JavaScript compiler that converts modern syntax into backward-compatible code.",
+      "tags": [],
+      "url": "https://babeljs.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "bull mq",
         "bull"
       ],
@@ -1374,6 +2129,75 @@
       "summary": "A high-performance, near-optimal in-memory caching library for Java.",
       "tags": [],
       "url": "https://github.com/ben-manes/caffeine",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "capacitorjs"
+      ],
+      "avoid_when": [
+        "You need fully native UI rendering"
+      ],
+      "edges": [
+        {
+          "target": "react-native",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tauri",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nativescript",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ionic",
+          "type": "pairs-with"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "angular",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Wrapping an existing web app as a native app"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "capacitor",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "mobile",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Capacitor",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/ionic-team/capacitor",
+      "sources": [
+        "https://capacitorjs.com",
+        "https://github.com/ionic-team/capacitor",
+        "https://capacitorjs.com/docs"
+      ],
+      "summary": "A cross-platform native runtime that turns web apps into iOS and Android apps.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://capacitorjs.com",
       "verified": "2026-11-14"
     },
     {
@@ -1511,6 +2335,69 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "chakraui"
+      ],
+      "avoid_when": [
+        "You want zero runtime styling"
+      ],
+      "edges": [
+        {
+          "target": "material-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mantine",
+          "type": "alternative-to"
+        },
+        {
+          "target": "shadcn-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "heroui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "React apps that want accessible components with theming"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "chakra-ui",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Chakra UI",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/chakra-ui/chakra-ui",
+      "sources": [
+        "https://chakra-ui.com",
+        "https://github.com/chakra-ui/chakra-ui",
+        "https://chakra-ui.com/docs/get-started/installation"
+      ],
+      "summary": "A React component library with accessible, composable components and style props.",
+      "tags": [],
+      "url": "https://chakra-ui.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "Row-level transactional workloads"
@@ -1549,6 +2436,53 @@
         "analytics"
       ],
       "url": "https://clickhouse.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "jetbrains-compose"
+      ],
+      "avoid_when": [
+        "You need fully native iOS widgets"
+      ],
+      "edges": [
+        {
+          "target": "flutter",
+          "type": "alternative-to"
+        },
+        {
+          "target": "kotlin-multiplatform",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Sharing UI code across platforms in Kotlin"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "compose-multiplatform",
+      "languages": [
+        "kotlin"
+      ],
+      "layer": "mobile",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Compose Multiplatform",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/JetBrains/compose-multiplatform",
+      "sources": [
+        "https://www.jetbrains.com/compose-multiplatform/",
+        "https://github.com/JetBrains/compose-multiplatform"
+      ],
+      "summary": "A declarative UI framework from JetBrains for sharing Kotlin UI across Android, iOS, desktop and web.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://www.jetbrains.com/compose-multiplatform/",
       "verified": "2026-11-14"
     },
     {
@@ -1757,6 +2691,123 @@
       "summary": "A PHP object-relational mapper built on DBAL, integrated with Symfony, Laravel and Laminas.",
       "tags": [],
       "url": "https://www.doctrine-project.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "docusaurus-v3"
+      ],
+      "avoid_when": [
+        "You need a dynamic web application"
+      ],
+      "edges": [
+        {
+          "target": "astro",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vitepress",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Versioned product documentation",
+        "Content sites written in Markdown and MDX"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "docusaurus",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Docusaurus",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/facebook/docusaurus",
+      "sources": [
+        "https://docusaurus.io",
+        "https://github.com/facebook/docusaurus",
+        "https://docusaurus.io/docs",
+        "https://docusaurus.io/docs/typescript-support"
+      ],
+      "summary": "A React-based static site generator for documentation with versioning and search.",
+      "tags": [
+        "static-content",
+        "ssr-seo",
+        "type-safety"
+      ],
+      "url": "https://docusaurus.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "maui",
+        "net-maui"
+      ],
+      "avoid_when": [
+        "Your team does not use .NET"
+      ],
+      "edges": [
+        {
+          "target": "uno-platform",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react-native",
+          "type": "alternative-to"
+        },
+        {
+          "target": "flutter",
+          "type": "alternative-to"
+        },
+        {
+          "target": "xamarin",
+          "type": "replaces"
+        },
+        {
+          "target": "xamarin",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "C# and .NET teams building cross-platform apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "dotnet-maui",
+      "languages": [
+        "csharp"
+      ],
+      "layer": "mobile",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": ".NET MAUI",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/dotnet/maui",
+      "sources": [
+        "https://dotnet.microsoft.com/apps/maui",
+        "https://github.com/dotnet/maui"
+      ],
+      "summary": "A .NET framework for building native mobile and desktop apps from one C# codebase.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://dotnet.microsoft.com/apps/maui",
       "verified": "2026-11-14"
     },
     {
@@ -1990,6 +3041,56 @@
     {
       "aliases": [],
       "avoid_when": [
+        "You want the simplest possible store"
+      ],
+      "edges": [
+        {
+          "target": "redux-toolkit",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Explicit business logic split from the UI"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "effector",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Effector",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/effector/effector",
+      "sources": [
+        "https://effector.dev",
+        "https://github.com/effector/effector"
+      ],
+      "summary": "A reactive state manager built around stores, events and effects, with bindings for React, Vue and Solid.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://effector.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
         "A cache shared between many services"
       ],
       "edges": [
@@ -2074,6 +3175,58 @@
     },
     {
       "aliases": [
+        "elementplus"
+      ],
+      "avoid_when": [
+        "You need a mobile-first UI"
+      ],
+      "edges": [
+        {
+          "target": "vuetify",
+          "type": "alternative-to"
+        },
+        {
+          "target": "primevue",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vue",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Vue admin apps and dashboards"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "element-plus",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Element Plus",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/element-plus/element-plus",
+      "sources": [
+        "https://element-plus.org",
+        "https://github.com/element-plus/element-plus"
+      ],
+      "summary": "A Vue 3 component library for building desktop web interfaces.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://element-plus.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "laravel eloquent"
       ],
       "avoid_when": [
@@ -2115,6 +3268,58 @@
       "summary": "Laravel's Active Record ORM for working with databases using PHP models.",
       "tags": [],
       "url": "https://laravel.com/docs/eloquent",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "emberjs"
+      ],
+      "avoid_when": [
+        "You want a small library rather than a full framework"
+      ],
+      "edges": [
+        {
+          "target": "angular",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vue",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Long-lived apps that value convention and stability",
+        "Teams that want routing and data layers included"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "ember",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Ember.js",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/emberjs/ember.js",
+      "sources": [
+        "https://emberjs.com",
+        "https://github.com/emberjs/ember.js",
+        "https://guides.emberjs.com/release/typescript/"
+      ],
+      "summary": "An opinionated JavaScript framework for ambitious web applications.",
+      "tags": [],
+      "url": "https://emberjs.com",
       "verified": "2026-11-14"
     },
     {
@@ -2163,6 +3368,106 @@
       "summary": "Microsoft's object-database mapper for .NET, with LINQ queries and migrations.",
       "tags": [],
       "url": "https://learn.microsoft.com/ef/core",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need type checking from the bundler, since esbuild only strips types"
+      ],
+      "edges": [
+        {
+          "target": "rollup",
+          "type": "alternative-to"
+        },
+        {
+          "target": "swc",
+          "type": "alternative-to"
+        },
+        {
+          "target": "rolldown",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Very fast builds and transforms"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "esbuild",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "esbuild",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/evanw/esbuild",
+      "sources": [
+        "https://esbuild.github.io",
+        "https://github.com/evanw/esbuild",
+        "https://esbuild.github.io/faq/"
+      ],
+      "summary": "An extremely fast JavaScript and TypeScript bundler and minifier written in Go.",
+      "tags": [],
+      "url": "https://esbuild.github.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "expo-go",
+        "expo-sdk"
+      ],
+      "avoid_when": [
+        "You need unusual native code with no Expo support"
+      ],
+      "edges": [
+        {
+          "target": "react-native",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Starting React Native apps quickly",
+        "Over-the-air updates and cloud builds"
+      ],
+      "hosting": [
+        "self-hosted",
+        "managed"
+      ],
+      "id": "expo",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "mobile",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Expo",
+      "pricing": [
+        "oss",
+        "free-tier",
+        "paid"
+      ],
+      "repo": "https://github.com/expo/expo",
+      "sources": [
+        "https://expo.dev",
+        "https://github.com/expo/expo",
+        "https://docs.expo.dev/",
+        "https://expo.dev/pricing"
+      ],
+      "summary": "A framework and platform for universal React Native apps with managed tooling and cloud builds.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://expo.dev",
       "verified": "2026-11-14"
     },
     {
@@ -2450,6 +3755,120 @@
     },
     {
       "aliases": [
+        "flutter-sdk"
+      ],
+      "avoid_when": [
+        "You want fully platform-native widgets",
+        "Your team does not know Dart"
+      ],
+      "edges": [
+        {
+          "target": "react-native",
+          "type": "alternative-to"
+        },
+        {
+          "target": "kotlin-multiplatform",
+          "type": "alternative-to"
+        },
+        {
+          "target": "compose-multiplatform",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ionic",
+          "type": "alternative-to"
+        },
+        {
+          "target": "dotnet-maui",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "One codebase with custom, consistent UI on all platforms"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "flutter",
+      "languages": [
+        "dart"
+      ],
+      "layer": "mobile",
+      "license": "BSD-3-Clause",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Flutter",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/flutter/flutter",
+      "sources": [
+        "https://flutter.dev",
+        "https://github.com/flutter/flutter",
+        "https://flutter.dev/"
+      ],
+      "summary": "A UI toolkit for building natively compiled apps for mobile, web and desktop from one codebase.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://flutter.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "deno-fresh"
+      ],
+      "avoid_when": [
+        "You need to run on Node.js",
+        "You need a large ecosystem"
+      ],
+      "edges": [
+        {
+          "target": "astro",
+          "type": "alternative-to"
+        },
+        {
+          "target": "preact",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Deno projects with little client JavaScript",
+        "Island-based server rendering"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "fresh",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "emerging",
+      "name": "Fresh",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/denoland/fresh",
+      "sources": [
+        "https://fresh.deno.dev",
+        "https://github.com/denoland/fresh",
+        "https://fresh.deno.dev/docs/introduction"
+      ],
+      "summary": "A full-stack web framework for Deno that renders on the server and hydrates islands with Preact.",
+      "tags": [
+        "ssr-seo",
+        "edge-runtime",
+        "type-safety"
+      ],
+      "url": "https://fresh.deno.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "microsoft garnet",
         "garnet cache"
       ],
@@ -2494,6 +3913,59 @@
       "summary": "A cache-store from Microsoft Research that speaks the RESP protocol, so Redis clients connect unchanged.",
       "tags": [],
       "url": "https://microsoft.github.io/garnet",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "gatsbyjs"
+      ],
+      "avoid_when": [
+        "You want to avoid a GraphQL data layer"
+      ],
+      "edges": [
+        {
+          "target": "astro",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nextjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Existing content sites already built on it"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "gatsby",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Gatsby",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/gatsbyjs/gatsby",
+      "sources": [
+        "https://www.gatsbyjs.com",
+        "https://github.com/gatsbyjs/gatsby"
+      ],
+      "summary": "A React framework for building static sites with a GraphQL data layer.",
+      "tags": [
+        "static-content",
+        "ssr-seo"
+      ],
+      "url": "https://www.gatsbyjs.com",
       "verified": "2026-11-14"
     },
     {
@@ -2750,6 +4222,157 @@
     },
     {
       "aliases": [
+        "gulpjs"
+      ],
+      "avoid_when": [
+        "You want built-in module bundling, since gulp is a task runner"
+      ],
+      "edges": [
+        {
+          "target": "webpack",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Automating repetitive build and file tasks in JavaScript"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "gulp",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Gulp",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/gulpjs/gulp",
+      "sources": [
+        "https://gulpjs.com",
+        "https://github.com/gulpjs/gulp"
+      ],
+      "summary": "A toolkit for automating slow, repetitive tasks in a development workflow.",
+      "tags": [],
+      "url": "https://gulpjs.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "headlessui"
+      ],
+      "avoid_when": [
+        "You want a full set of styled components"
+      ],
+      "edges": [
+        {
+          "target": "radix-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        },
+        {
+          "target": "vue",
+          "type": "built-on"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Accessible dropdowns, dialogs and menus styled with Tailwind"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "headless-ui",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Headless UI",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/tailwindlabs/headlessui",
+      "sources": [
+        "https://headlessui.com",
+        "https://github.com/tailwindlabs/headlessui"
+      ],
+      "summary": "Unstyled, accessible UI components designed to work with Tailwind CSS, for React and Vue.",
+      "tags": [],
+      "url": "https://headlessui.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "nextui",
+        "hero-ui"
+      ],
+      "avoid_when": [
+        "You do not use Tailwind or React"
+      ],
+      "edges": [
+        {
+          "target": "chakra-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "shadcn-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "React apps with Tailwind that want polished components"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "heroui",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "HeroUI",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/heroui-inc/heroui",
+      "sources": [
+        "https://www.heroui.com",
+        "https://github.com/heroui-inc/heroui"
+      ],
+      "summary": "A React component library built on Tailwind CSS and React Aria (formerly NextUI).",
+      "tags": [],
+      "url": "https://www.heroui.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "hibernate",
         "jpa"
       ],
@@ -2895,6 +4518,120 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "htmx.org"
+      ],
+      "avoid_when": [
+        "You need heavy client-side state or offline behavior",
+        "The UI is a highly interactive canvas or editor"
+      ],
+      "edges": [
+        {
+          "target": "alpinejs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "stimulus",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Server-rendered apps with partial page updates",
+        "Teams that want to stay in their backend language"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "htmx",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "frontend",
+      "license": "0BSD",
+      "match_name": true,
+      "maturity": "established",
+      "name": "htmx",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/bigskysoftware/htmx",
+      "sources": [
+        "https://htmx.org",
+        "https://github.com/bigskysoftware/htmx",
+        "https://htmx.org/docs/"
+      ],
+      "summary": "A library that gives HTML attributes access to AJAX, WebSockets and server-sent events.",
+      "tags": [],
+      "url": "https://htmx.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "ionic-framework"
+      ],
+      "avoid_when": [
+        "You need highly native-feeling, graphics-heavy apps"
+      ],
+      "edges": [
+        {
+          "target": "react-native",
+          "type": "alternative-to"
+        },
+        {
+          "target": "flutter",
+          "type": "alternative-to"
+        },
+        {
+          "target": "capacitor",
+          "type": "pairs-with"
+        },
+        {
+          "target": "angular",
+          "type": "pairs-with"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Web teams shipping mobile apps and PWAs"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "ionic",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "mobile",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Ionic",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/ionic-team/ionic-framework",
+      "sources": [
+        "https://ionicframework.com",
+        "https://github.com/ionic-team/ionic-framework",
+        "https://ionicframework.com/docs"
+      ],
+      "summary": "An open source UI toolkit for building mobile and web apps with web technologies on Angular, React or Vue.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://ionicframework.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "Your policy forbids LGPL"
@@ -2950,6 +4687,101 @@
         "scheduled-jobs"
       ],
       "url": "https://www.jobrunr.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "jquery.js"
+      ],
+      "avoid_when": [
+        "You need component-based UI structure"
+      ],
+      "edges": [
+        {
+          "target": "alpinejs",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Maintaining existing sites that already use it",
+        "Adding simple DOM behavior with a plain script tag"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "jquery",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "jQuery",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/jquery/jquery",
+      "sources": [
+        "https://jquery.com",
+        "https://github.com/jquery/jquery",
+        "https://jquery.com/download/"
+      ],
+      "summary": "A lightweight, cross-browser JavaScript library for DOM handling, events and Ajax.",
+      "tags": [],
+      "url": "https://jquery.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "kmp",
+        "kmm"
+      ],
+      "avoid_when": [
+        "You want one UI codebase with no platform code"
+      ],
+      "edges": [
+        {
+          "target": "react-native",
+          "type": "alternative-to"
+        },
+        {
+          "target": "flutter",
+          "type": "alternative-to"
+        },
+        {
+          "target": "compose-multiplatform",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Sharing business logic while keeping native UI"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "kotlin-multiplatform",
+      "languages": [
+        "kotlin"
+      ],
+      "layer": "mobile",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Kotlin Multiplatform",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/JetBrains/kotlin",
+      "sources": [
+        "https://kotlinlang.org/docs/multiplatform.html",
+        "https://github.com/JetBrains/kotlin"
+      ],
+      "summary": "A technology for sharing Kotlin code across Android, iOS, web and desktop.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://kotlinlang.org/docs/multiplatform.html",
       "verified": "2026-11-14"
     },
     {
@@ -3174,6 +5006,108 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "lit-element",
+        "lit-html"
+      ],
+      "avoid_when": [
+        "You need routing and app structure out of the box"
+      ],
+      "edges": [
+        {
+          "target": "svelte",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Components that work in any framework",
+        "Design systems shared across several apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "lit",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "frontend",
+      "license": "BSD-3-Clause",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Lit",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/lit/lit",
+      "sources": [
+        "https://lit.dev",
+        "https://github.com/lit/lit",
+        "https://lit.dev/docs/"
+      ],
+      "summary": "A small library for building fast, framework-agnostic web components.",
+      "tags": [],
+      "url": "https://lit.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "mantinedev"
+      ],
+      "avoid_when": [
+        "You do not use React"
+      ],
+      "edges": [
+        {
+          "target": "chakra-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ant-design",
+          "type": "alternative-to"
+        },
+        {
+          "target": "shadcn-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Apps that need many ready-made components and hooks"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "mantine",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Mantine",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/mantinedev/mantine",
+      "sources": [
+        "https://mantine.dev",
+        "https://github.com/mantinedev/mantine",
+        "https://mantine.dev/guides/typescript/"
+      ],
+      "summary": "A React component library with many components and hooks.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://mantine.dev",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "You need Postgres features"
@@ -3234,6 +5168,68 @@
       "summary": "An open source relational database server developed by the MariaDB Foundation.",
       "tags": [],
       "url": "https://mariadb.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "mui",
+        "mui-material"
+      ],
+      "avoid_when": [
+        "You want a design that looks different from Material",
+        "You need a tiny runtime"
+      ],
+      "edges": [
+        {
+          "target": "shadcn-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "chakra-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ant-design",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "React apps that want Material Design",
+        "Data-heavy apps with mature form and table components"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "material-ui",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Material UI",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/mui/material-ui",
+      "sources": [
+        "https://mui.com/material-ui/",
+        "https://github.com/mui/material-ui",
+        "https://mui.com/pricing/",
+        "https://mui.com/material-ui/guides/typescript/"
+      ],
+      "summary": "A React component library implementing Google's Material Design.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://mui.com/material-ui/",
       "verified": "2026-11-14"
     },
     {
@@ -3354,6 +5350,58 @@
       "summary": "A TypeScript ORM based on Data Mapper, Unit of Work and Identity Map patterns.",
       "tags": [],
       "url": "https://mikro-orm.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "mobx-react"
+      ],
+      "avoid_when": [
+        "You want strictly explicit, immutable data flow"
+      ],
+      "edges": [
+        {
+          "target": "redux-toolkit",
+          "type": "alternative-to"
+        },
+        {
+          "target": "valtio",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Object-oriented, observable state",
+        "Automatic tracking of derived values"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "mobx",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "MobX",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/mobxjs/mobx",
+      "sources": [
+        "https://mobx.js.org",
+        "https://github.com/mobxjs/mobx",
+        "https://mobx.js.org/README.html"
+      ],
+      "summary": "A library that makes state management simple through transparent reactive programming.",
+      "tags": [],
+      "url": "https://mobx.js.org",
       "verified": "2026-11-14"
     },
     {
@@ -3517,6 +5565,122 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "nano-stores"
+      ],
+      "avoid_when": [
+        "You need a large devtools ecosystem"
+      ],
+      "edges": [
+        {
+          "target": "zustand",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "svelte",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Sharing state across several frameworks",
+        "Very small bundles"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "nanostores",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Nano Stores",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/nanostores/nanostores",
+      "sources": [
+        "https://github.com/nanostores/nanostores"
+      ],
+      "summary": "A tiny state manager with many atomic stores and bindings for React, Vue, Svelte and more.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://github.com/nanostores/nanostores",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "native-script"
+      ],
+      "avoid_when": [
+        "You want the biggest community"
+      ],
+      "edges": [
+        {
+          "target": "react-native",
+          "type": "alternative-to"
+        },
+        {
+          "target": "capacitor",
+          "type": "alternative-to"
+        },
+        {
+          "target": "angular",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "svelte",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Direct access to native APIs from JavaScript"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "nativescript",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "mobile",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "NativeScript",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/NativeScript/NativeScript",
+      "sources": [
+        "https://nativescript.org",
+        "https://github.com/NativeScript/NativeScript"
+      ],
+      "summary": "An open source framework for building native iOS and Android apps with JavaScript or TypeScript.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://nativescript.org",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "Plain key-value caching"
@@ -3673,6 +5837,251 @@
     {
       "aliases": [],
       "avoid_when": [
+        "You want to avoid React"
+      ],
+      "edges": [
+        {
+          "target": "react-router",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nuxt",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sveltekit",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tanstack-start",
+          "type": "alternative-to"
+        },
+        {
+          "target": "astro",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gatsby",
+          "type": "alternative-to"
+        },
+        {
+          "target": "qwik-city",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        },
+        {
+          "target": "turbopack",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "React apps that need SEO and server rendering",
+        "Full-stack apps with server components and API routes"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "nextjs",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Next.js",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vercel/next.js",
+      "sources": [
+        "https://nextjs.org",
+        "https://github.com/vercel/next.js",
+        "https://nextjs.org/docs/app/api-reference/edge",
+        "https://nextjs.org/docs/app/guides/static-exports",
+        "https://nextjs.org/docs/app/api-reference/config/typescript",
+        "https://nextjs.org/docs/app/guides/self-hosting"
+      ],
+      "summary": "A React framework for full-stack web apps with routing, server rendering and server functions.",
+      "tags": [
+        "ssr-seo",
+        "static-content",
+        "edge-runtime",
+        "type-safety"
+      ],
+      "url": "https://nextjs.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "angular-ngrx"
+      ],
+      "avoid_when": [
+        "A small Angular app where signals and services are enough"
+      ],
+      "edges": [
+        {
+          "target": "redux-toolkit",
+          "type": "alternative-to"
+        },
+        {
+          "target": "angular",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Large Angular apps with complex shared state"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "ngrx",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "NgRx",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/ngrx/platform",
+      "sources": [
+        "https://ngrx.io",
+        "https://github.com/ngrx/platform",
+        "https://ngrx.io/"
+      ],
+      "summary": "Reactive state management for Angular, with a global Store and a signals-based SignalStore.",
+      "tags": [],
+      "url": "https://ngrx.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "nuxt.js",
+        "nuxt3",
+        "nuxtjs"
+      ],
+      "avoid_when": [
+        "You want to avoid Vue"
+      ],
+      "edges": [
+        {
+          "target": "nextjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "sveltekit",
+          "type": "alternative-to"
+        },
+        {
+          "target": "analog",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vue",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Vue apps that need SEO and server rendering",
+        "Full-stack Vue apps with the Nitro server"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "nuxt",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Nuxt",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/nuxt/nuxt",
+      "sources": [
+        "https://nuxt.com",
+        "https://github.com/nuxt/nuxt",
+        "https://nuxt.com/docs/guide/concepts/rendering",
+        "https://nuxt.com/docs/guide/concepts/typescript",
+        "https://nuxt.com/docs/getting-started/deployment"
+      ],
+      "summary": "A Vue framework for full-stack web apps with server rendering, file routing and modules.",
+      "tags": [
+        "ssr-seo",
+        "static-content",
+        "edge-runtime",
+        "type-safety"
+      ],
+      "url": "https://nuxt.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "nrwl-nx"
+      ],
+      "avoid_when": [
+        "A single small package"
+      ],
+      "edges": [
+        {
+          "target": "turborepo",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Large monorepos with many projects",
+        "Affected-only builds and tests"
+      ],
+      "hosting": [
+        "self-hosted",
+        "managed"
+      ],
+      "id": "nx",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Nx",
+      "pricing": [
+        "oss",
+        "free-tier",
+        "paid"
+      ],
+      "repo": "https://github.com/nrwl/nx",
+      "sources": [
+        "https://nx.dev",
+        "https://github.com/nrwl/nx",
+        "https://nx.dev/pricing"
+      ],
+      "summary": "A build system and monorepo toolkit with task caching and project graph analysis.",
+      "tags": [],
+      "url": "https://nx.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
         "Projects not using Elixir"
       ],
       "edges": [
@@ -3814,6 +6223,56 @@
     },
     {
       "aliases": [
+        "parceljs"
+      ],
+      "avoid_when": [
+        "You need fine control over the build"
+      ],
+      "edges": [
+        {
+          "target": "vite",
+          "type": "alternative-to"
+        },
+        {
+          "target": "webpack",
+          "type": "alternative-to"
+        },
+        {
+          "target": "rspack",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Quick setups with no config"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "parcel",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Parcel",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/parcel-bundler/parcel",
+      "sources": [
+        "https://parceljs.org",
+        "https://github.com/parcel-bundler/parcel"
+      ],
+      "summary": "A zero-configuration web application bundler.",
+      "tags": [],
+      "url": "https://parceljs.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "pgboss"
       ],
       "avoid_when": [
@@ -3950,6 +6409,59 @@
         "realtime"
       ],
       "url": "https://www.phoenixframework.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "vue-pinia"
+      ],
+      "avoid_when": [
+        "You do not use Vue"
+      ],
+      "edges": [
+        {
+          "target": "vuex",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vuex",
+          "type": "replaces"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Vue 3 apps that need shared state"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "pinia",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Pinia",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vuejs/pinia",
+      "sources": [
+        "https://pinia.vuejs.org",
+        "https://github.com/vuejs/pinia",
+        "https://pinia.vuejs.org/introduction.html"
+      ],
+      "summary": "The official state management library for Vue with TypeScript support and devtools.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://pinia.vuejs.org",
       "verified": "2026-11-14"
     },
     {
@@ -4134,6 +6646,154 @@
     },
     {
       "aliases": [
+        "preactjs"
+      ],
+      "avoid_when": [
+        "You depend on React-only libraries that break under the compat layer"
+      ],
+      "edges": [
+        {
+          "target": "react",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Small bundles with the React API",
+        "Embedded widgets and performance-sensitive pages"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "preact",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Preact",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/preactjs/preact",
+      "sources": [
+        "https://preactjs.com",
+        "https://github.com/preactjs/preact",
+        "https://preactjs.com/guide/v10/server-side-rendering"
+      ],
+      "summary": "A small React-compatible library for building user interfaces.",
+      "tags": [
+        "ssr-seo"
+      ],
+      "url": "https://preactjs.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "prime-ng"
+      ],
+      "avoid_when": [
+        "You do not use Angular"
+      ],
+      "edges": [
+        {
+          "target": "angular-material",
+          "type": "alternative-to"
+        },
+        {
+          "target": "angular",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Angular apps needing tables, forms and charts"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "primeng",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "PrimeNG",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/primefaces/primeng",
+      "sources": [
+        "https://primeng.org",
+        "https://github.com/primefaces/primeng"
+      ],
+      "summary": "A rich set of UI components for Angular.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://primeng.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "prime-vue"
+      ],
+      "avoid_when": [
+        "You want the smallest dependency footprint"
+      ],
+      "edges": [
+        {
+          "target": "vuetify",
+          "type": "alternative-to"
+        },
+        {
+          "target": "element-plus",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vue",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Vue apps needing data tables and many components"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "primevue",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "PrimeVue",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/primefaces/primevue",
+      "sources": [
+        "https://primevue.dev",
+        "https://github.com/primefaces/primevue"
+      ],
+      "summary": "A Vue UI component library with a large set of components and themes.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://primevue.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "prisma orm"
       ],
       "avoid_when": [
@@ -4276,6 +6936,162 @@
     },
     {
       "aliases": [
+        "qwikjs"
+      ],
+      "avoid_when": [
+        "You need a long-proven stable major version, since Qwik v2 is still in beta"
+      ],
+      "edges": [
+        {
+          "target": "solidjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Fast start on content-heavy pages",
+        "Apps where time to interactive matters most"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "qwik",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Qwik",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/QwikDev/qwik",
+      "sources": [
+        "https://qwik.dev",
+        "https://github.com/QwikDev/qwik",
+        "https://qwik.dev/docs/faq/"
+      ],
+      "summary": "A framework that resumes server-rendered apps on the client without hydration.",
+      "tags": [
+        "ssr-seo"
+      ],
+      "url": "https://qwik.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "qwikcity"
+      ],
+      "avoid_when": [
+        "You want a mature ecosystem",
+        "You want to avoid Qwik"
+      ],
+      "edges": [
+        {
+          "target": "solidstart",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nextjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "qwik",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Qwik apps that need routing and SSR"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "qwik-city",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Qwik City",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/QwikDev/qwik",
+      "sources": [
+        "https://qwik.dev/docs/qwikcity/",
+        "https://github.com/QwikDev/qwik",
+        "https://qwik.dev/docs/deployments/"
+      ],
+      "summary": "The official Qwik meta-framework with directory routing, endpoints and server rendering.",
+      "tags": [
+        "ssr-seo",
+        "edge-runtime"
+      ],
+      "url": "https://qwik.dev/docs/qwikcity/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "radix-primitives"
+      ],
+      "avoid_when": [
+        "You want styled components out of the box"
+      ],
+      "edges": [
+        {
+          "target": "headless-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        },
+        {
+          "target": "shadcn-ui",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Building your own design system with accessible behavior"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "radix-ui",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Radix UI",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/radix-ui/primitives",
+      "sources": [
+        "https://www.radix-ui.com",
+        "https://github.com/radix-ui/primitives",
+        "https://www.radix-ui.com/primitives/docs/overview/introduction"
+      ],
+      "summary": "Unstyled, accessible React primitives for building design systems.",
+      "tags": [],
+      "url": "https://www.radix-ui.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "rails",
         "ror"
       ],
@@ -4327,6 +7143,259 @@
         "transactional-email"
       ],
       "url": "https://rubyonrails.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "reactjs",
+        "react.js"
+      ],
+      "avoid_when": [
+        "A mostly static page needs no client code",
+        "You want routing and data loading built in without extra libraries"
+      ],
+      "edges": [
+        {
+          "target": "vue",
+          "type": "alternative-to"
+        },
+        {
+          "target": "angular",
+          "type": "alternative-to"
+        },
+        {
+          "target": "svelte",
+          "type": "alternative-to"
+        },
+        {
+          "target": "solidjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "preact",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ember",
+          "type": "alternative-to"
+        },
+        {
+          "target": "qwik",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        },
+        {
+          "target": "redux-toolkit",
+          "type": "pairs-with"
+        },
+        {
+          "target": "zustand",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mobx",
+          "type": "pairs-with"
+        },
+        {
+          "target": "valtio",
+          "type": "pairs-with"
+        },
+        {
+          "target": "tanstack-query",
+          "type": "pairs-with"
+        },
+        {
+          "target": "swr",
+          "type": "pairs-with"
+        },
+        {
+          "target": "xstate",
+          "type": "pairs-with"
+        },
+        {
+          "target": "nanostores",
+          "type": "pairs-with"
+        },
+        {
+          "target": "effector",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vite",
+          "type": "pairs-with"
+        },
+        {
+          "target": "capacitor",
+          "type": "pairs-with"
+        },
+        {
+          "target": "ionic",
+          "type": "pairs-with"
+        },
+        {
+          "target": "tauri",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Interactive apps with a very large ecosystem",
+        "Teams that want one UI model on web and native"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "react",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "React",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/facebook/react",
+      "sources": [
+        "https://react.dev",
+        "https://github.com/facebook/react"
+      ],
+      "summary": "A JavaScript library for building user interfaces from components.",
+      "tags": [],
+      "url": "https://react.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "reactnative"
+      ],
+      "avoid_when": [
+        "You need top-end custom native graphics performance"
+      ],
+      "edges": [
+        {
+          "target": "flutter",
+          "type": "alternative-to"
+        },
+        {
+          "target": "kotlin-multiplatform",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nativescript",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ionic",
+          "type": "alternative-to"
+        },
+        {
+          "target": "dotnet-maui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "capacitor",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "React teams building iOS and Android apps",
+        "Sharing code between web and mobile"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "react-native",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "mobile",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "React Native",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/facebook/react-native",
+      "sources": [
+        "https://reactnative.dev",
+        "https://github.com/facebook/react-native"
+      ],
+      "summary": "A framework for building native iOS and Android apps with React.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://reactnative.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "react-router-dom",
+        "react-router-v7"
+      ],
+      "avoid_when": [
+        "You do not use React"
+      ],
+      "edges": [
+        {
+          "target": "nextjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tanstack-start",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "React apps that want routing and data loading together",
+        "Choosing between SPA, SSR or static rendering per app"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "react-router",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "React Router",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/remix-run/react-router",
+      "sources": [
+        "https://reactrouter.com",
+        "https://github.com/remix-run/react-router",
+        "https://reactrouter.com/start/modes",
+        "https://reactrouter.com/how-to/pre-rendering",
+        "https://reactrouter.com/explanation/type-safety"
+      ],
+      "summary": "A routing library for React with a framework mode for data loading, server rendering and actions.",
+      "tags": [
+        "ssr-seo",
+        "static-content",
+        "type-safety"
+      ],
+      "url": "https://reactrouter.com",
       "verified": "2026-11-14"
     },
     {
@@ -4414,6 +7483,72 @@
     },
     {
       "aliases": [
+        "redux",
+        "reduxjs-toolkit"
+      ],
+      "avoid_when": [
+        "A small app where simple local state is enough"
+      ],
+      "edges": [
+        {
+          "target": "zustand",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mobx",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ngrx",
+          "type": "alternative-to"
+        },
+        {
+          "target": "effector",
+          "type": "alternative-to"
+        },
+        {
+          "target": "xstate",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Large apps that need predictable state and devtools"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "redux-toolkit",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Redux Toolkit",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/reduxjs/redux-toolkit",
+      "sources": [
+        "https://redux-toolkit.js.org",
+        "https://github.com/reduxjs/redux-toolkit",
+        "https://redux-toolkit.js.org/usage/usage-with-typescript"
+      ],
+      "summary": "The official, opinionated toolset for efficient Redux development, with RTK Query for data fetching.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://redux-toolkit.js.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "river queue",
         "riverqueue"
       ],
@@ -4471,6 +7606,101 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [],
+      "avoid_when": [
+        "You need a fully stable, long-proven bundler"
+      ],
+      "edges": [
+        {
+          "target": "rollup",
+          "type": "alternative-to"
+        },
+        {
+          "target": "esbuild",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Fast Rollup-style bundling"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "rolldown",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Rolldown",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/rolldown/rolldown",
+      "sources": [
+        "https://rolldown.rs",
+        "https://github.com/rolldown/rolldown"
+      ],
+      "summary": "A Rust-based JavaScript bundler with a Rollup-compatible API, the bundler powering Vite 8 and later.",
+      "tags": [],
+      "url": "https://rolldown.rs",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "rollupjs"
+      ],
+      "avoid_when": [
+        "Large apps needing a dev server out of the box"
+      ],
+      "edges": [
+        {
+          "target": "esbuild",
+          "type": "alternative-to"
+        },
+        {
+          "target": "rolldown",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Bundling libraries with clean ES module output"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "rollup",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Rollup",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/rollup/rollup",
+      "sources": [
+        "https://rollupjs.org",
+        "https://github.com/rollup/rollup",
+        "https://rollupjs.org/introduction/"
+      ],
+      "summary": "A module bundler for JavaScript that compiles small pieces into larger libraries.",
+      "tags": [],
+      "url": "https://rollupjs.org",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [
         "python-rq",
         "redis queue"
@@ -4521,6 +7751,61 @@
         "background-jobs"
       ],
       "url": "https://python-rq.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "rspackjs"
+      ],
+      "avoid_when": [
+        "You need every webpack plugin to work unchanged"
+      ],
+      "edges": [
+        {
+          "target": "webpack",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vite",
+          "type": "alternative-to"
+        },
+        {
+          "target": "turbopack",
+          "type": "alternative-to"
+        },
+        {
+          "target": "parcel",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Speeding up existing webpack projects"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "rspack",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Rspack",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/web-infra-dev/rspack",
+      "sources": [
+        "https://rspack.dev",
+        "https://github.com/web-infra-dev/rspack",
+        "https://rspack.dev/guide/start/introduction"
+      ],
+      "summary": "A fast Rust-based JavaScript bundler that is compatible with the webpack ecosystem.",
+      "tags": [],
+      "url": "https://rspack.dev",
       "verified": "2026-11-14"
     },
     {
@@ -4644,6 +7929,75 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "shadcn",
+        "shadcnui"
+      ],
+      "avoid_when": [
+        "You want a versioned package that updates itself"
+      ],
+      "edges": [
+        {
+          "target": "material-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "chakra-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mantine",
+          "type": "alternative-to"
+        },
+        {
+          "target": "heroui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        },
+        {
+          "target": "radix-ui",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Owning component code instead of a dependency",
+        "React apps with Tailwind"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "shadcn-ui",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "shadcn/ui",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/shadcn-ui/ui",
+      "sources": [
+        "https://ui.shadcn.com",
+        "https://github.com/shadcn-ui/ui",
+        "https://ui.shadcn.com/docs"
+      ],
+      "summary": "A set of accessible, customizable components you copy into your project, built on Radix UI and Tailwind.",
+      "tags": [],
+      "url": "https://ui.shadcn.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "You do not run Redis"
@@ -4746,6 +8100,128 @@
         "scheduled-jobs"
       ],
       "url": "https://github.com/rails/solid_queue",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "solid-js"
+      ],
+      "avoid_when": [
+        "You need a huge ecosystem of ready-made components"
+      ],
+      "edges": [
+        {
+          "target": "react",
+          "type": "alternative-to"
+        },
+        {
+          "target": "svelte",
+          "type": "alternative-to"
+        },
+        {
+          "target": "qwik",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        },
+        {
+          "target": "tanstack-query",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Very fast updates with a React-like syntax",
+        "Fine-grained reactive state without hooks rules"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "solidjs",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "SolidJS",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/solidjs/solid",
+      "sources": [
+        "https://www.solidjs.com",
+        "https://github.com/solidjs/solid"
+      ],
+      "summary": "A declarative UI library built on fine-grained reactivity without a virtual DOM.",
+      "tags": [
+        "ssr-seo"
+      ],
+      "url": "https://www.solidjs.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "solid-start"
+      ],
+      "avoid_when": [
+        "You need a large set of ready-made integrations",
+        "You want to avoid Solid"
+      ],
+      "edges": [
+        {
+          "target": "sveltekit",
+          "type": "alternative-to"
+        },
+        {
+          "target": "qwik-city",
+          "type": "alternative-to"
+        },
+        {
+          "target": "solidjs",
+          "type": "built-on"
+        },
+        {
+          "target": "vite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Solid apps that need SSR and server functions"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "solidstart",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "SolidStart",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/solidjs/solid-start",
+      "sources": [
+        "https://start.solidjs.com",
+        "https://github.com/solidjs/solid-start",
+        "https://docs.solidjs.com/solid-start",
+        "https://docs.solidjs.com/solid-start/building-your-application/routing",
+        "https://docs.solidjs.com/solid-start/building-your-application/route-prerendering"
+      ],
+      "summary": "A meta-framework for SolidJS with file routing, server functions and actions, and a Vite and Nitro based build.",
+      "tags": [
+        "ssr-seo",
+        "static-content"
+      ],
+      "url": "https://start.solidjs.com",
       "verified": "2026-11-14"
     },
     {
@@ -4982,6 +8458,57 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "stimulusjs",
+        "hotwire-stimulus"
+      ],
+      "avoid_when": [
+        "You need a client-side rendered single-page app"
+      ],
+      "edges": [
+        {
+          "target": "htmx",
+          "type": "alternative-to"
+        },
+        {
+          "target": "alpinejs",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Rails-style apps with HTML over the wire",
+        "Small, reusable behaviors on server-rendered pages"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "stimulus",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Stimulus",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/hotwired/stimulus",
+      "sources": [
+        "https://stimulus.hotwired.dev",
+        "https://github.com/hotwired/stimulus",
+        "https://stimulus.hotwired.dev/reference/using-typescript"
+      ],
+      "summary": "A modest JavaScript framework that adds behavior to server-rendered HTML.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://stimulus.hotwired.dev",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "You want a REST-only API"
@@ -5078,6 +8605,516 @@
         "vector-search"
       ],
       "url": "https://supabase.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "sveltejs",
+        "svelte5"
+      ],
+      "avoid_when": [
+        "You need the largest pool of third-party component libraries"
+      ],
+      "edges": [
+        {
+          "target": "react",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vue",
+          "type": "alternative-to"
+        },
+        {
+          "target": "angular",
+          "type": "alternative-to"
+        },
+        {
+          "target": "solidjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "lit",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        },
+        {
+          "target": "tanstack-query",
+          "type": "pairs-with"
+        },
+        {
+          "target": "xstate",
+          "type": "pairs-with"
+        },
+        {
+          "target": "nanostores",
+          "type": "pairs-with"
+        },
+        {
+          "target": "tauri",
+          "type": "pairs-with"
+        },
+        {
+          "target": "nativescript",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Small bundles and little boilerplate",
+        "Fast interactive widgets and apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "svelte",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Svelte",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/sveltejs/svelte",
+      "sources": [
+        "https://svelte.dev",
+        "https://github.com/sveltejs/svelte",
+        "https://svelte.dev/docs/svelte/typescript"
+      ],
+      "summary": "A compiler-based UI framework that turns components into small, fast JavaScript.",
+      "tags": [],
+      "url": "https://svelte.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "svelte-kit"
+      ],
+      "avoid_when": [
+        "You want to avoid Svelte"
+      ],
+      "edges": [
+        {
+          "target": "nextjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nuxt",
+          "type": "alternative-to"
+        },
+        {
+          "target": "solidstart",
+          "type": "alternative-to"
+        },
+        {
+          "target": "svelte",
+          "type": "built-on"
+        },
+        {
+          "target": "vite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Svelte apps that need routing and SSR",
+        "Deploying to many targets through adapters"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "sveltekit",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "SvelteKit",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/sveltejs/kit",
+      "sources": [
+        "https://svelte.dev/docs/kit",
+        "https://github.com/sveltejs/kit",
+        "https://svelte.dev/docs/kit/adapters",
+        "https://svelte.dev/docs/kit/types"
+      ],
+      "summary": "The official Svelte application framework with routing, server rendering and adapters.",
+      "tags": [
+        "ssr-seo",
+        "static-content",
+        "edge-runtime",
+        "type-safety"
+      ],
+      "url": "https://svelte.dev/docs/kit",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "speedy-web-compiler"
+      ],
+      "avoid_when": [
+        "You rely on many custom Babel plugins"
+      ],
+      "edges": [
+        {
+          "target": "esbuild",
+          "type": "alternative-to"
+        },
+        {
+          "target": "babel",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Fast compiling in place of Babel"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "swc",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "SWC",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/swc-project/swc",
+      "sources": [
+        "https://swc.rs",
+        "https://github.com/swc-project/swc"
+      ],
+      "summary": "A Rust-based platform for fast compiling, minifying and bundling JavaScript and TypeScript.",
+      "tags": [],
+      "url": "https://swc.rs",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "vercel-swr"
+      ],
+      "avoid_when": [
+        "You need complex mutation workflows or offline sync"
+      ],
+      "edges": [
+        {
+          "target": "tanstack-query",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Simple remote data fetching in React"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "swr",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "SWR",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vercel/swr",
+      "sources": [
+        "https://swr.vercel.app",
+        "https://github.com/vercel/swr"
+      ],
+      "summary": "A React hooks library for data fetching based on stale-while-revalidate.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://swr.vercel.app",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "tailwind",
+        "tailwind-css"
+      ],
+      "avoid_when": [
+        "You want ready-made components out of the box"
+      ],
+      "edges": [
+        {
+          "target": "chakra-ui",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "svelte",
+          "type": "pairs-with"
+        },
+        {
+          "target": "angular",
+          "type": "pairs-with"
+        },
+        {
+          "target": "solidjs",
+          "type": "pairs-with"
+        },
+        {
+          "target": "headless-ui",
+          "type": "pairs-with"
+        },
+        {
+          "target": "shadcn-ui",
+          "type": "pairs-with"
+        },
+        {
+          "target": "heroui",
+          "type": "pairs-with"
+        },
+        {
+          "target": "astro",
+          "type": "pairs-with"
+        },
+        {
+          "target": "nextjs",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Custom designs without writing much CSS",
+        "Consistent spacing and color through a design scale"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "tailwindcss",
+      "languages": [
+        "javascript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Tailwind CSS",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/tailwindlabs/tailwindcss",
+      "sources": [
+        "https://tailwindcss.com",
+        "https://github.com/tailwindlabs/tailwindcss"
+      ],
+      "summary": "A utility-first CSS framework for building custom designs directly in markup.",
+      "tags": [],
+      "url": "https://tailwindcss.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "react-query",
+        "tanstack-react-query",
+        "vue-query"
+      ],
+      "avoid_when": [
+        "The app has almost no server data"
+      ],
+      "edges": [
+        {
+          "target": "swr",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "solidjs",
+          "type": "pairs-with"
+        },
+        {
+          "target": "svelte",
+          "type": "pairs-with"
+        },
+        {
+          "target": "angular",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Caching and syncing server data",
+        "Replacing hand-written loading and error state"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "tanstack-query",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "TanStack Query",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/TanStack/query",
+      "sources": [
+        "https://tanstack.com/query",
+        "https://github.com/TanStack/query",
+        "https://tanstack.com/query/latest/docs/framework/react/typescript"
+      ],
+      "summary": "A data-fetching and server-state library with caching, background updates and mutations.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://tanstack.com/query",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "tanstack-router-start"
+      ],
+      "avoid_when": [
+        "You want a long-established framework with a large ecosystem"
+      ],
+      "edges": [
+        {
+          "target": "nextjs",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react-router",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "built-on"
+        },
+        {
+          "target": "vite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Type-safe routing with full-stack features",
+        "Apps already using TanStack libraries"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "tanstack-start",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "TanStack Start",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/TanStack/router",
+      "sources": [
+        "https://tanstack.com/start",
+        "https://github.com/TanStack/router",
+        "https://tanstack.com/start/latest/docs/framework/react/overview"
+      ],
+      "summary": "A full-stack framework built on TanStack Router with server rendering and server functions.",
+      "tags": [
+        "ssr-seo",
+        "type-safety"
+      ],
+      "url": "https://tanstack.com/start",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "tauri-app",
+        "tauri2"
+      ],
+      "avoid_when": [
+        "You need the same rendering engine on every platform, since Tauri uses the system webview"
+      ],
+      "edges": [
+        {
+          "target": "capacitor",
+          "type": "alternative-to"
+        },
+        {
+          "target": "svelte",
+          "type": "pairs-with"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Small apps with a web UI and Rust backend"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "tauri",
+      "languages": [
+        "rust",
+        "javascript",
+        "typescript"
+      ],
+      "layer": "mobile",
+      "license": "Apache-2.0 OR MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Tauri",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/tauri-apps/tauri",
+      "sources": [
+        "https://tauri.app",
+        "https://github.com/tauri-apps/tauri",
+        "https://tauri.app/blog/tauri-20/"
+      ],
+      "summary": "A framework for building desktop and mobile apps with a web frontend, a Rust core and the system webview.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://tauri.app",
       "verified": "2026-11-14"
     },
     {
@@ -5238,6 +9275,103 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [],
+      "avoid_when": [
+        "You are not using Next.js"
+      ],
+      "edges": [
+        {
+          "target": "vite",
+          "type": "alternative-to"
+        },
+        {
+          "target": "webpack",
+          "type": "alternative-to"
+        },
+        {
+          "target": "rspack",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nextjs",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Fast dev and builds inside Next.js"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "turbopack",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "emerging",
+      "name": "Turbopack",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vercel/next.js",
+      "sources": [
+        "https://nextjs.org/docs/app/api-reference/turbopack",
+        "https://github.com/vercel/next.js"
+      ],
+      "summary": "A Rust-based incremental bundler for JavaScript and TypeScript, built into Next.js as its default bundler.",
+      "tags": [],
+      "url": "https://nextjs.org/docs/app/api-reference/turbopack",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "turbo-repo"
+      ],
+      "avoid_when": [
+        "A single small package"
+      ],
+      "edges": [
+        {
+          "target": "nx",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Monorepos that need cached, parallel task runs"
+      ],
+      "hosting": [
+        "self-hosted",
+        "managed"
+      ],
+      "id": "turborepo",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Turborepo",
+      "pricing": [
+        "oss",
+        "free-tier"
+      ],
+      "repo": "https://github.com/vercel/turborepo",
+      "sources": [
+        "https://turborepo.com",
+        "https://github.com/vercel/turborepo",
+        "https://turborepo.com/docs/core-concepts/remote-caching"
+      ],
+      "summary": "A high-performance build system for JavaScript and TypeScript monorepos with caching.",
+      "tags": [],
+      "url": "https://turborepo.com",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [
         "libsql"
       ],
@@ -5370,6 +9504,51 @@
     },
     {
       "aliases": [
+        "unoplatform"
+      ],
+      "avoid_when": [
+        "You do not know C# or XAML"
+      ],
+      "edges": [
+        {
+          "target": "dotnet-maui",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "WinUI and XAML developers targeting many platforms"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "uno-platform",
+      "languages": [
+        "csharp"
+      ],
+      "layer": "mobile",
+      "license": "Apache-2.0",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Uno Platform",
+      "pricing": [
+        "oss",
+        "paid"
+      ],
+      "repo": "https://github.com/unoplatform/uno",
+      "sources": [
+        "https://platform.uno",
+        "https://github.com/unoplatform/uno",
+        "https://platform.uno/pricing/"
+      ],
+      "summary": "An open source platform for building mobile, web and desktop apps with C# and XAML from one codebase.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://platform.uno",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "upstash"
       ],
       "avoid_when": [
@@ -5460,6 +9639,621 @@
       "summary": "A BSD-licensed key/value store backed by the Linux Foundation, for caching, queues and primary data.",
       "tags": [],
       "url": "https://valkey.io",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You want immutable update patterns"
+      ],
+      "edges": [
+        {
+          "target": "zustand",
+          "type": "alternative-to"
+        },
+        {
+          "target": "mobx",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Mutating state directly with automatic re-renders"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "valtio",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Valtio",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/pmndrs/valtio",
+      "sources": [
+        "https://valtio.dev",
+        "https://github.com/pmndrs/valtio"
+      ],
+      "summary": "A proxy-based state library that makes mutable state work with React rendering.",
+      "tags": [],
+      "url": "https://valtio.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "vitejs"
+      ],
+      "avoid_when": [
+        "You need very custom legacy bundling pipelines"
+      ],
+      "edges": [
+        {
+          "target": "webpack",
+          "type": "alternative-to"
+        },
+        {
+          "target": "parcel",
+          "type": "alternative-to"
+        },
+        {
+          "target": "rspack",
+          "type": "alternative-to"
+        },
+        {
+          "target": "turbopack",
+          "type": "alternative-to"
+        },
+        {
+          "target": "rollup",
+          "type": "built-on"
+        },
+        {
+          "target": "esbuild",
+          "type": "built-on"
+        },
+        {
+          "target": "rolldown",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vitepress",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sveltekit",
+          "type": "pairs-with"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "tanstack-start",
+          "type": "pairs-with"
+        },
+        {
+          "target": "solidstart",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Fast dev server and hot updates for most frameworks",
+        "New projects of any framework"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "vite",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Vite",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vitejs/vite",
+      "sources": [
+        "https://vite.dev",
+        "https://github.com/vitejs/vite",
+        "https://vite.dev/guide/",
+        "https://vite.dev/guide/why"
+      ],
+      "summary": "A frontend build tool with a fast dev server and a production build that bundles with Rolldown.",
+      "tags": [],
+      "url": "https://vite.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "vite-press"
+      ],
+      "avoid_when": [
+        "You need a dynamic, server-rendered application"
+      ],
+      "edges": [
+        {
+          "target": "astro",
+          "type": "alternative-to"
+        },
+        {
+          "target": "docusaurus",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vue",
+          "type": "built-on"
+        },
+        {
+          "target": "vite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Documentation sites and technical blogs",
+        "Markdown-first content with Vue components"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "vitepress",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "meta-framework",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "VitePress",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vuejs/vitepress",
+      "sources": [
+        "https://vitepress.dev",
+        "https://github.com/vuejs/vitepress",
+        "https://vitepress.dev/guide/what-is-vitepress"
+      ],
+      "summary": "A static site generator built on Vite and Vue, made for documentation sites.",
+      "tags": [
+        "static-content",
+        "ssr-seo"
+      ],
+      "url": "https://vitepress.dev",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "vuejs",
+        "vue.js",
+        "vue3"
+      ],
+      "avoid_when": [
+        "You need first-party native mobile support"
+      ],
+      "edges": [
+        {
+          "target": "react",
+          "type": "alternative-to"
+        },
+        {
+          "target": "angular",
+          "type": "alternative-to"
+        },
+        {
+          "target": "svelte",
+          "type": "alternative-to"
+        },
+        {
+          "target": "ember",
+          "type": "alternative-to"
+        },
+        {
+          "target": "tailwindcss",
+          "type": "pairs-with"
+        },
+        {
+          "target": "tanstack-query",
+          "type": "pairs-with"
+        },
+        {
+          "target": "pinia",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vuex",
+          "type": "pairs-with"
+        },
+        {
+          "target": "xstate",
+          "type": "pairs-with"
+        },
+        {
+          "target": "nanostores",
+          "type": "pairs-with"
+        },
+        {
+          "target": "effector",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vite",
+          "type": "pairs-with"
+        },
+        {
+          "target": "capacitor",
+          "type": "pairs-with"
+        },
+        {
+          "target": "ionic",
+          "type": "pairs-with"
+        },
+        {
+          "target": "nativescript",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Gentle learning curve with single-file components",
+        "Adding interactivity to existing pages step by step"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "vue",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "frontend",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Vue",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vuejs/core",
+      "sources": [
+        "https://vuejs.org",
+        "https://github.com/vuejs/core",
+        "https://vuejs.org/guide/typescript/overview",
+        "https://vuejs.org/guide/scaling-up/ssr.html"
+      ],
+      "summary": "A progressive JavaScript framework for building web user interfaces.",
+      "tags": [
+        "type-safety",
+        "ssr-seo"
+      ],
+      "url": "https://vuejs.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "vuetify3"
+      ],
+      "avoid_when": [
+        "You want a custom visual style from scratch"
+      ],
+      "edges": [
+        {
+          "target": "primevue",
+          "type": "alternative-to"
+        },
+        {
+          "target": "element-plus",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vue",
+          "type": "built-on"
+        }
+      ],
+      "good_for": [
+        "Vue apps that want Material Design components"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "vuetify",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "ui-kit",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Vuetify",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vuetifyjs/vuetify",
+      "sources": [
+        "https://vuetifyjs.com",
+        "https://github.com/vuetifyjs/vuetify"
+      ],
+      "summary": "A Vue component framework implementing Material Design.",
+      "tags": [],
+      "url": "https://vuetifyjs.com",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You are starting a new Vue app, where Pinia is recommended"
+      ],
+      "edges": [
+        {
+          "target": "pinia",
+          "type": "alternative-to"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Maintaining existing Vue 2 apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "vuex",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "legacy",
+      "name": "Vuex",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vuejs/vuex",
+      "sources": [
+        "https://vuex.vuejs.org",
+        "https://github.com/vuejs/vuex",
+        "https://vuex.vuejs.org/"
+      ],
+      "summary": "The previous official state management pattern and library for Vue, now in maintenance.",
+      "tags": [],
+      "url": "https://vuex.vuejs.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "webpack5"
+      ],
+      "avoid_when": [
+        "You want fast startup and little config on a new project"
+      ],
+      "edges": [
+        {
+          "target": "vite",
+          "type": "alternative-to"
+        },
+        {
+          "target": "rspack",
+          "type": "alternative-to"
+        },
+        {
+          "target": "parcel",
+          "type": "alternative-to"
+        },
+        {
+          "target": "gulp",
+          "type": "alternative-to"
+        },
+        {
+          "target": "turbopack",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Complex pipelines and module federation",
+        "Existing large projects"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "webpack",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "build-tool",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "webpack",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/webpack/webpack",
+      "sources": [
+        "https://webpack.js.org",
+        "https://github.com/webpack/webpack",
+        "https://webpack.js.org/concepts/"
+      ],
+      "summary": "A static module bundler for JavaScript applications.",
+      "tags": [],
+      "url": "https://webpack.js.org",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "xamarin-forms"
+      ],
+      "avoid_when": [
+        "You are starting a new app, where .NET MAUI replaces it"
+      ],
+      "edges": [
+        {
+          "target": "dotnet-maui",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Maintaining existing Xamarin apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "xamarin",
+      "languages": [
+        "csharp"
+      ],
+      "layer": "mobile",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "legacy",
+      "name": "Xamarin",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/xamarin/xamarin-android",
+      "sources": [
+        "https://dotnet.microsoft.com/apps/xamarin",
+        "https://github.com/xamarin/xamarin-android"
+      ],
+      "summary": "The legacy .NET framework for iOS and Android apps, with support ended in favor of .NET MAUI.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://dotnet.microsoft.com/apps/xamarin",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "statecharts"
+      ],
+      "avoid_when": [
+        "Simple state that a plain store handles well"
+      ],
+      "edges": [
+        {
+          "target": "redux-toolkit",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vue",
+          "type": "pairs-with"
+        },
+        {
+          "target": "svelte",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Complex flows with many states and transitions",
+        "Visualizable, testable logic"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "xstate",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "XState",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/statelyai/xstate",
+      "sources": [
+        "https://stately.ai/docs/xstate",
+        "https://github.com/statelyai/xstate"
+      ],
+      "summary": "A library for state machines, statecharts and actors for modeling complex logic.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://stately.ai/docs/xstate",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [],
+      "avoid_when": [
+        "You need strict structure across a large team"
+      ],
+      "edges": [
+        {
+          "target": "redux-toolkit",
+          "type": "alternative-to"
+        },
+        {
+          "target": "valtio",
+          "type": "alternative-to"
+        },
+        {
+          "target": "nanostores",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Simple global state with little boilerplate"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "zustand",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "layer": "state",
+      "license": "MIT",
+      "match_name": true,
+      "maturity": "established",
+      "name": "Zustand",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/pmndrs/zustand",
+      "sources": [
+        "https://zustand.docs.pmnd.rs",
+        "https://github.com/pmndrs/zustand"
+      ],
+      "summary": "A small, fast state management library for React using simple hooks.",
+      "tags": [
+        "type-safety"
+      ],
+      "url": "https://zustand.docs.pmnd.rs",
       "verified": "2026-11-14"
     }
   ],

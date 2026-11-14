@@ -1,0 +1,39 @@
+id: flutter
+name: Flutter
+aliases:
+- flutter-sdk
+layer: mobile
+summary: A UI toolkit for building natively compiled apps for mobile, web and desktop from one codebase.
+url: https://flutter.dev
+repo: https://github.com/flutter/flutter
+license: BSD-3-Clause
+languages:
+- dart
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- One codebase with custom, consistent UI on all platforms
+avoid_when:
+- You want fully platform-native widgets
+- Your team does not know Dart
+edges:
+- type: alternative-to
+  target: react-native
+- type: alternative-to
+  target: kotlin-multiplatform
+- type: alternative-to
+  target: compose-multiplatform
+- type: alternative-to
+  target: ionic
+- type: alternative-to
+  target: dotnet-maui
+verified: '2026-11-14'
+sources:
+- https://flutter.dev
+- https://github.com/flutter/flutter
+- https://flutter.dev/

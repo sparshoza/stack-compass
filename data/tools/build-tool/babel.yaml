@@ -1,0 +1,30 @@
+id: babel
+name: Babel
+aliases:
+- babeljs
+layer: build-tool
+summary: A JavaScript compiler that converts modern syntax into backward-compatible code.
+url: https://babeljs.io
+repo: https://github.com/babel/babel
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Custom syntax transforms through plugins
+avoid_when:
+- You only need fast transpiling, where SWC or esbuild are quicker
+edges:
+- type: alternative-to
+  target: swc
+verified: '2026-11-14'
+sources:
+- https://babeljs.io
+- https://github.com/babel/babel
+- https://babeljs.io/docs/

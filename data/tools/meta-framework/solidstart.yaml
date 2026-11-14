@@ -1,0 +1,41 @@
+id: solidstart
+name: SolidStart
+aliases:
+- solid-start
+layer: meta-framework
+summary: A meta-framework for SolidJS with file routing, server functions and actions, and a Vite and Nitro based build.
+url: https://start.solidjs.com
+repo: https://github.com/solidjs/solid-start
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+- static-content
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Solid apps that need SSR and server functions
+avoid_when:
+- You need a large set of ready-made integrations
+- You want to avoid Solid
+edges:
+- type: alternative-to
+  target: sveltekit
+- type: alternative-to
+  target: qwik-city
+- type: built-on
+  target: solidjs
+- type: pairs-with
+  target: vite
+verified: '2026-11-14'
+sources:
+- https://start.solidjs.com
+- https://github.com/solidjs/solid-start
+- https://docs.solidjs.com/solid-start
+- https://docs.solidjs.com/solid-start/building-your-application/routing
+- https://docs.solidjs.com/solid-start/building-your-application/route-prerendering

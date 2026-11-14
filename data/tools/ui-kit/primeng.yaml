@@ -1,0 +1,33 @@
+id: primeng
+name: PrimeNG
+aliases:
+- prime-ng
+layer: ui-kit
+summary: A rich set of UI components for Angular.
+url: https://primeng.org
+repo: https://github.com/primefaces/primeng
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+- paid
+maturity: established
+good_for:
+- Angular apps needing tables, forms and charts
+avoid_when:
+- You do not use Angular
+edges:
+- type: alternative-to
+  target: angular-material
+- type: built-on
+  target: angular
+verified: '2026-11-14'
+sources:
+- https://primeng.org
+- https://github.com/primefaces/primeng

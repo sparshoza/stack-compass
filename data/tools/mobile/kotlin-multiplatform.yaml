@@ -1,0 +1,34 @@
+id: kotlin-multiplatform
+name: Kotlin Multiplatform
+aliases:
+- kmp
+- kmm
+layer: mobile
+summary: A technology for sharing Kotlin code across Android, iOS, web and desktop.
+url: https://kotlinlang.org/docs/multiplatform.html
+repo: https://github.com/JetBrains/kotlin
+license: Apache-2.0
+languages:
+- kotlin
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Sharing business logic while keeping native UI
+avoid_when:
+- You want one UI codebase with no platform code
+edges:
+- type: alternative-to
+  target: react-native
+- type: alternative-to
+  target: flutter
+- type: pairs-with
+  target: compose-multiplatform
+verified: '2026-11-14'
+sources:
+- https://kotlinlang.org/docs/multiplatform.html
+- https://github.com/JetBrains/kotlin

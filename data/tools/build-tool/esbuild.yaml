@@ -1,0 +1,33 @@
+id: esbuild
+name: esbuild
+aliases: []
+layer: build-tool
+summary: An extremely fast JavaScript and TypeScript bundler and minifier written in Go.
+url: https://esbuild.github.io
+repo: https://github.com/evanw/esbuild
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Very fast builds and transforms
+avoid_when:
+- You need type checking from the bundler, since esbuild only strips types
+edges:
+- type: alternative-to
+  target: rollup
+- type: alternative-to
+  target: swc
+- type: alternative-to
+  target: rolldown
+verified: '2026-11-14'
+sources:
+- https://esbuild.github.io
+- https://github.com/evanw/esbuild
+- https://esbuild.github.io/faq/

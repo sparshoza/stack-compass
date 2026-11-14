@@ -1,0 +1,34 @@
+id: parcel
+name: Parcel
+aliases:
+- parceljs
+match_name: false
+layer: build-tool
+summary: A zero-configuration web application bundler.
+url: https://parceljs.org
+repo: https://github.com/parcel-bundler/parcel
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Quick setups with no config
+avoid_when:
+- You need fine control over the build
+edges:
+- type: alternative-to
+  target: vite
+- type: alternative-to
+  target: webpack
+- type: alternative-to
+  target: rspack
+verified: '2026-11-14'
+sources:
+- https://parceljs.org
+- https://github.com/parcel-bundler/parcel

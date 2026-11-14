@@ -1,0 +1,43 @@
+id: react-native
+name: React Native
+aliases:
+- reactnative
+layer: mobile
+summary: A framework for building native iOS and Android apps with React.
+url: https://reactnative.dev
+repo: https://github.com/facebook/react-native
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- React teams building iOS and Android apps
+- Sharing code between web and mobile
+avoid_when:
+- You need top-end custom native graphics performance
+edges:
+- type: alternative-to
+  target: flutter
+- type: alternative-to
+  target: kotlin-multiplatform
+- type: alternative-to
+  target: nativescript
+- type: alternative-to
+  target: ionic
+- type: alternative-to
+  target: dotnet-maui
+- type: alternative-to
+  target: capacitor
+- type: built-on
+  target: react
+verified: '2026-11-14'
+sources:
+- https://reactnative.dev
+- https://github.com/facebook/react-native

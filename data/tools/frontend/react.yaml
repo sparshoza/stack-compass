@@ -1,0 +1,72 @@
+id: react
+name: React
+aliases:
+- reactjs
+- react.js
+layer: frontend
+summary: A JavaScript library for building user interfaces from components.
+url: https://react.dev
+repo: https://github.com/facebook/react
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Interactive apps with a very large ecosystem
+- Teams that want one UI model on web and native
+avoid_when:
+- A mostly static page needs no client code
+- You want routing and data loading built in without extra libraries
+edges:
+- type: alternative-to
+  target: vue
+- type: alternative-to
+  target: angular
+- type: alternative-to
+  target: svelte
+- type: alternative-to
+  target: solidjs
+- type: alternative-to
+  target: preact
+- type: alternative-to
+  target: ember
+- type: alternative-to
+  target: qwik
+- type: pairs-with
+  target: tailwindcss
+- type: pairs-with
+  target: redux-toolkit
+- type: pairs-with
+  target: zustand
+- type: pairs-with
+  target: mobx
+- type: pairs-with
+  target: valtio
+- type: pairs-with
+  target: tanstack-query
+- type: pairs-with
+  target: swr
+- type: pairs-with
+  target: xstate
+- type: pairs-with
+  target: nanostores
+- type: pairs-with
+  target: effector
+- type: pairs-with
+  target: vite
+- type: pairs-with
+  target: capacitor
+- type: pairs-with
+  target: ionic
+- type: pairs-with
+  target: tauri
+verified: '2026-11-14'
+sources:
+- https://react.dev
+- https://github.com/facebook/react

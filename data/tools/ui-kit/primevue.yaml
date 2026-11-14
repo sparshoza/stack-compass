@@ -1,0 +1,35 @@
+id: primevue
+name: PrimeVue
+aliases:
+- prime-vue
+layer: ui-kit
+summary: A Vue UI component library with a large set of components and themes.
+url: https://primevue.dev
+repo: https://github.com/primefaces/primevue
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+- paid
+maturity: established
+good_for:
+- Vue apps needing data tables and many components
+avoid_when:
+- You want the smallest dependency footprint
+edges:
+- type: alternative-to
+  target: vuetify
+- type: alternative-to
+  target: element-plus
+- type: built-on
+  target: vue
+verified: '2026-11-14'
+sources:
+- https://primevue.dev
+- https://github.com/primefaces/primevue

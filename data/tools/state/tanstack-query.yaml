@@ -1,0 +1,44 @@
+id: tanstack-query
+name: TanStack Query
+aliases:
+- react-query
+- tanstack-react-query
+- vue-query
+layer: state
+summary: A data-fetching and server-state library with caching, background updates and mutations.
+url: https://tanstack.com/query
+repo: https://github.com/TanStack/query
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Caching and syncing server data
+- Replacing hand-written loading and error state
+avoid_when:
+- The app has almost no server data
+edges:
+- type: alternative-to
+  target: swr
+- type: pairs-with
+  target: react
+- type: pairs-with
+  target: vue
+- type: pairs-with
+  target: solidjs
+- type: pairs-with
+  target: svelte
+- type: pairs-with
+  target: angular
+verified: '2026-11-14'
+sources:
+- https://tanstack.com/query
+- https://github.com/TanStack/query
+- https://tanstack.com/query/latest/docs/framework/react/typescript

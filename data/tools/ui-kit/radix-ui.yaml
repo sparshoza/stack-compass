@@ -1,0 +1,34 @@
+id: radix-ui
+name: Radix UI
+aliases:
+- radix-primitives
+layer: ui-kit
+summary: Unstyled, accessible React primitives for building design systems.
+url: https://www.radix-ui.com
+repo: https://github.com/radix-ui/primitives
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Building your own design system with accessible behavior
+avoid_when:
+- You want styled components out of the box
+edges:
+- type: alternative-to
+  target: headless-ui
+- type: built-on
+  target: react
+- type: pairs-with
+  target: shadcn-ui
+verified: '2026-11-14'
+sources:
+- https://www.radix-ui.com
+- https://github.com/radix-ui/primitives
+- https://www.radix-ui.com/primitives/docs/overview/introduction

@@ -1,0 +1,44 @@
+id: shadcn-ui
+name: shadcn/ui
+aliases:
+- shadcn
+- shadcnui
+layer: ui-kit
+summary: A set of accessible, customizable components you copy into your project, built on Radix UI and Tailwind.
+url: https://ui.shadcn.com
+repo: https://github.com/shadcn-ui/ui
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Owning component code instead of a dependency
+- React apps with Tailwind
+avoid_when:
+- You want a versioned package that updates itself
+edges:
+- type: alternative-to
+  target: material-ui
+- type: alternative-to
+  target: chakra-ui
+- type: alternative-to
+  target: mantine
+- type: alternative-to
+  target: heroui
+- type: built-on
+  target: react
+- type: pairs-with
+  target: tailwindcss
+- type: pairs-with
+  target: radix-ui
+verified: '2026-11-14'
+sources:
+- https://ui.shadcn.com
+- https://github.com/shadcn-ui/ui
+- https://ui.shadcn.com/docs

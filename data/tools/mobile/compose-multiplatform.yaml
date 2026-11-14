@@ -1,0 +1,31 @@
+id: compose-multiplatform
+name: Compose Multiplatform
+aliases:
+- jetbrains-compose
+layer: mobile
+summary: A declarative UI framework from JetBrains for sharing Kotlin UI across Android, iOS, desktop and web.
+url: https://www.jetbrains.com/compose-multiplatform/
+repo: https://github.com/JetBrains/compose-multiplatform
+license: Apache-2.0
+languages:
+- kotlin
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Sharing UI code across platforms in Kotlin
+avoid_when:
+- You need fully native iOS widgets
+edges:
+- type: alternative-to
+  target: flutter
+- type: pairs-with
+  target: kotlin-multiplatform
+verified: '2026-11-14'
+sources:
+- https://www.jetbrains.com/compose-multiplatform/
+- https://github.com/JetBrains/compose-multiplatform

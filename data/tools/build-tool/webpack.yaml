@@ -1,0 +1,39 @@
+id: webpack
+name: webpack
+aliases:
+- webpack5
+layer: build-tool
+summary: A static module bundler for JavaScript applications.
+url: https://webpack.js.org
+repo: https://github.com/webpack/webpack
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Complex pipelines and module federation
+- Existing large projects
+avoid_when:
+- You want fast startup and little config on a new project
+edges:
+- type: alternative-to
+  target: vite
+- type: alternative-to
+  target: rspack
+- type: alternative-to
+  target: parcel
+- type: alternative-to
+  target: gulp
+- type: alternative-to
+  target: turbopack
+verified: '2026-11-14'
+sources:
+- https://webpack.js.org
+- https://github.com/webpack/webpack
+- https://webpack.js.org/concepts/

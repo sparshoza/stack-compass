@@ -1,0 +1,39 @@
+id: tanstack-start
+name: TanStack Start
+aliases:
+- tanstack-router-start
+layer: meta-framework
+summary: A full-stack framework built on TanStack Router with server rendering and server functions.
+url: https://tanstack.com/start
+repo: https://github.com/TanStack/router
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- ssr-seo
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: emerging
+good_for:
+- Type-safe routing with full-stack features
+- Apps already using TanStack libraries
+avoid_when:
+- You want a long-established framework with a large ecosystem
+edges:
+- type: alternative-to
+  target: nextjs
+- type: alternative-to
+  target: react-router
+- type: built-on
+  target: react
+- type: pairs-with
+  target: vite
+verified: '2026-11-14'
+sources:
+- https://tanstack.com/start
+- https://github.com/TanStack/router
+- https://tanstack.com/start/latest/docs/framework/react/overview

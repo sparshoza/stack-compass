@@ -1,0 +1,39 @@
+id: docusaurus
+name: Docusaurus
+aliases:
+- docusaurus-v3
+layer: meta-framework
+summary: A React-based static site generator for documentation with versioning and search.
+url: https://docusaurus.io
+repo: https://github.com/facebook/docusaurus
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- static-content
+- ssr-seo
+- type-safety
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Versioned product documentation
+- Content sites written in Markdown and MDX
+avoid_when:
+- You need a dynamic web application
+edges:
+- type: alternative-to
+  target: astro
+- type: alternative-to
+  target: vitepress
+- type: built-on
+  target: react
+verified: '2026-11-14'
+sources:
+- https://docusaurus.io
+- https://github.com/facebook/docusaurus
+- https://docusaurus.io/docs
+- https://docusaurus.io/docs/typescript-support

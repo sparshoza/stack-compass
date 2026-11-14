@@ -1,0 +1,37 @@
+id: expo
+name: Expo
+aliases:
+- expo-go
+- expo-sdk
+layer: mobile
+summary: A framework and platform for universal React Native apps with managed tooling and cloud builds.
+url: https://expo.dev
+repo: https://github.com/expo/expo
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- native-mobile
+hosting:
+- self-hosted
+- managed
+pricing:
+- oss
+- free-tier
+- paid
+maturity: established
+good_for:
+- Starting React Native apps quickly
+- Over-the-air updates and cloud builds
+avoid_when:
+- You need unusual native code with no Expo support
+edges:
+- type: built-on
+  target: react-native
+verified: '2026-11-14'
+sources:
+- https://expo.dev
+- https://github.com/expo/expo
+- https://docs.expo.dev/
+- https://expo.dev/pricing

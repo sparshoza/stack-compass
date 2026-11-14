@@ -1,0 +1,42 @@
+id: ionic
+name: Ionic
+aliases:
+- ionic-framework
+layer: mobile
+summary: An open source UI toolkit for building mobile and web apps with web technologies on Angular, React or Vue.
+url: https://ionicframework.com
+repo: https://github.com/ionic-team/ionic-framework
+license: MIT
+languages:
+- javascript
+- typescript
+tags:
+- native-mobile
+hosting:
+- self-hosted
+pricing:
+- oss
+- paid
+maturity: established
+good_for:
+- Web teams shipping mobile apps and PWAs
+avoid_when:
+- You need highly native-feeling, graphics-heavy apps
+edges:
+- type: alternative-to
+  target: react-native
+- type: alternative-to
+  target: flutter
+- type: pairs-with
+  target: capacitor
+- type: pairs-with
+  target: angular
+- type: pairs-with
+  target: react
+- type: pairs-with
+  target: vue
+verified: '2026-11-14'
+sources:
+- https://ionicframework.com
+- https://github.com/ionic-team/ionic-framework
+- https://ionicframework.com/docs

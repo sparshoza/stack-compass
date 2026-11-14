@@ -1,0 +1,35 @@
+id: ember
+name: Ember.js
+aliases:
+- emberjs
+layer: frontend
+summary: An opinionated JavaScript framework for ambitious web applications.
+url: https://emberjs.com
+repo: https://github.com/emberjs/ember.js
+license: MIT
+languages:
+- javascript
+- typescript
+tags: []
+hosting:
+- self-hosted
+pricing:
+- oss
+maturity: established
+good_for:
+- Long-lived apps that value convention and stability
+- Teams that want routing and data layers included
+avoid_when:
+- You want a small library rather than a full framework
+edges:
+- type: alternative-to
+  target: angular
+- type: alternative-to
+  target: react
+- type: alternative-to
+  target: vue
+verified: '2026-11-14'
+sources:
+- https://emberjs.com
+- https://github.com/emberjs/ember.js
+- https://guides.emberjs.com/release/typescript/

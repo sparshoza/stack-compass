@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "layout": "node scripts/layout.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest"
@@ -16,6 +17,7 @@
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
     "cn": "^0.5.2",
+    "graphology": "^0.26.0",
     "lucide-react": "^1.73.0",
     "radix-ui": "^1.8.1",
     "react": "^19.3.1",
@@ -23,6 +25,7 @@
     "react-icons": "^5.7.0",
     "react-router": "^7.18.5",
     "shadcn": "^4.23.0",
+    "sigma": "^3.0.3",
     "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
@@ -33,6 +36,8 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "graphology-layout-forceatlas2": "^0.10.1",
+    "graphology-types": "^0.24.8",
     "jsdom": "^29.1.1",
     "oxlint": "^1.90.0",
     "typescript": "~7.0.2",

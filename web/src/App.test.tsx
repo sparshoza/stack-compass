@@ -51,7 +51,27 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.restoreAllMocks()
+  // @ts-expect-error restore jsdom's missing matchMedia
+  delete window.matchMedia
 })
+
+/**
+ * jsdom has no matchMedia, so the app renders its phone layout, where the
+ * Help me choose sheet is modal. Tests that use the map beside an open sheet
+ * set the wide layout.
+ */
+function setWide() {
+  window.matchMedia = vi.fn((query: string) => ({
+    matches: query.includes('min-width'),
+    media: query,
+    onchange: null,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => false,
+  })) as unknown as typeof window.matchMedia
+}
 
 describe('app shell', () => {
   it('names the product in the only h1', () => {
@@ -258,6 +278,7 @@ describe('map screen', () => {
   })
 
   it('panel shows relations grouped by type, each focusing that tool', async () => {
+    setWide()
     const user = userEvent.setup()
     renderApp('/?focus=express&t=saas')
     const dialog = toolPanel('Express')
@@ -284,6 +305,7 @@ describe('map screen', () => {
   })
 
   it('closing the panel removes focus from the URL and keeps other params', async () => {
+    setWide()
     const user = userEvent.setup()
     renderApp('/?focus=express&t=saas')
     await user.click(within(toolPanel('Express')).getByRole('button', { name: 'Close' }))
@@ -294,6 +316,7 @@ describe('map screen', () => {
   })
 
   it('table view filters by text and layer; rows keyboard reachable', async () => {
+    setWide()
     const user = userEvent.setup()
     renderApp('/?t=saas')
     await user.click(screen.getByRole('button', { name: 'Filters' }))
@@ -355,6 +378,15 @@ describe('map screen', () => {
     expect(screen.getByRole('table', { name: /tools/i })).toBeInTheDocument()
     expect(screen.queryByTestId('stack-graph')).not.toBeInTheDocument()
     expect(screen.getByText(/needs WebGL/)).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Back to the map' })).not.toBeInTheDocument()
+  })
+
+  it('a lost WebGL context on the map falls back to the table view', async () => {
+    renderApp()
+    await waitFor(() => expect(graph.props).not.toBeNull())
+    act(() => graph.props?.onContextLost?.())
+    expect(screen.getByRole('table', { name: /tools/i })).toBeInTheDocument()
+    expect(screen.queryByTestId('stack-graph')).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Back to the map' })).not.toBeInTheDocument()
   })
 

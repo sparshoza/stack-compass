@@ -118,6 +118,18 @@ describe('StackGraph', () => {
     expect(onSelect).toHaveBeenCalledWith(database.id)
   })
 
+  it('reports a lost WebGL context on the map canvas', () => {
+    const onContextLost = vi.fn()
+    render(<StackGraph onContextLost={onContextLost} />)
+    const canvas = document.createElement('canvas')
+    latest().container.appendChild(canvas)
+    // The event does not bubble; the graph listens in the capture phase.
+    act(() => {
+      canvas.dispatchEvent(new Event('webglcontextlost', { bubbles: false }))
+    })
+    expect(onContextLost).toHaveBeenCalledTimes(1)
+  })
+
   it('uses the newest onSelect without rebuilding sigma', () => {
     const first = vi.fn()
     const second = vi.fn()

@@ -248,7 +248,7 @@ function KnownTools({ selected, onChange }: { selected: string[]; onChange: (ids
               setOpen(false)
             }
           }}
-          className="h-9 w-full rounded-full border border-line-strong bg-background px-3.5 text-[1rem] text-text placeholder:text-text-faint hover:border-text-faint focus-visible:border-text-faint md:text-[0.8125rem] touch:h-11"
+          className="h-9 w-full rounded-full border border-line-field bg-background px-3.5 text-[1rem] text-text placeholder:text-text-faint hover:border-text-faint focus-visible:border-text-faint md:text-[0.8125rem] touch:h-11"
         />
         <ul
           id={`${id}-list`}

@@ -13,6 +13,8 @@
   --raised: #1e2227;
   --line: #262a30;
   --line-strong: #3d434c;
+  /* Text field borders: 3:1 or more on bg, surface and raised (WCAG 1.4.11) */
+  --line-field: #6b727c;
   --scrim: rgb(5 6 8 / 0.6);
 
   /* Text */
@@ -74,6 +76,7 @@
   --raised: #eef0f3;
   --line: #e1e4e8;
   --line-strong: #b6bcc4;
+  --line-field: #80868f;
   --scrim: rgb(17 20 24 / 0.18);
 
   --text: #111418;

@@ -1,7 +1,7 @@
 import { act, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, useLocation } from 'react-router'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { StackGraphProps } from '@/components/graph/StackGraph'
 import App from '@/App'
 import { match } from '@/engine/match'
@@ -68,6 +68,25 @@ const rows = () => within(screen.getByRole('list', { name: 'Your stack by layer'
 
 beforeEach(() => {
   graph.props = null
+})
+
+/** jsdom has no matchMedia, so the app renders its phone layout unless a test sets one. */
+function setWide(wide: boolean) {
+  window.matchMedia = vi.fn((query: string) => ({
+    matches: wide && query.includes('min-width'),
+    media: query,
+    onchange: null,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => false,
+  })) as unknown as typeof window.matchMedia
+}
+
+afterEach(() => {
+  // @ts-expect-error restore jsdom's missing matchMedia
+  delete window.matchMedia
 })
 
 describe('Help me choose', () => {
@@ -434,6 +453,57 @@ describe('Help me choose', () => {
     expect(dialog).toHaveClass('lg:w-[440px]')
     // No scrim: the map stays visible beside the sheet from 1024 px.
     expect(document.querySelector('[data-slot="sheet-overlay"]')).toBeNull()
+  })
+
+  it('below 1024 px the sheet is modal: the page behind it is hidden and out of reach', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    const map = document.getElementById('map')!
+    expect(map.closest('[aria-hidden="true"]')).not.toBeNull()
+    // Tab cycles inside the sheet and never reaches the search field behind it.
+    const searchBox = screen.getAllByRole('combobox', { hidden: true })[0]
+    for (let i = 0; i < 60; i++) {
+      await user.tab()
+      expect(searchBox).not.toHaveFocus()
+      expect(sheet().contains(document.activeElement)).toBe(true)
+    }
+  })
+
+  it('from 1024 px the sheet is not modal: the map stays reachable beside it', async () => {
+    setWide(true)
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    expect(document.getElementById('map')!.closest('[aria-hidden="true"]')).toBeNull()
+  })
+
+  it('closing the sheet keeps the stack lit and offers Clear stack on the map', async () => {
+    const user = userEvent.setup()
+    renderApp('/?t=saas&focus=express')
+    await waitFor(() => expect(graph.props?.highlight?.length).toBeGreaterThan(0))
+    // While the sheet is open, the sheet has its own Start over.
+    expect(screen.queryByRole('button', { name: 'Clear stack' })).not.toBeInTheDocument()
+    await user.click(within(sheet()).getByRole('button', { name: 'Close' }))
+    expect(screen.queryByRole('dialog', { name: 'Help me choose' })).not.toBeInTheDocument()
+    expect(graph.props?.highlight?.length).toBeGreaterThan(0)
+    expect(params().get('t')).toBe('saas')
+
+    await user.click(screen.getByRole('button', { name: 'Clear stack' }))
+    expect(graph.props?.highlight ?? []).toEqual([])
+    for (const key of SHARE_KEYS) expect(params().has(key)).toBe(false)
+    expect(params().get('focus')).toBe('express')
+    expect(screen.queryByRole('button', { name: 'Clear stack' })).not.toBeInTheDocument()
+  })
+
+  it('Edit answers takes the stack out of the URL until Show my stack is pressed again', async () => {
+    const user = userEvent.setup()
+    renderApp('/?t=api-only&lp=go')
+    await user.click(screen.getByRole('button', { name: 'Edit answers' }))
+    for (const key of SHARE_KEYS) expect(params().has(key)).toBe(false)
+    await user.click(within(sheet()).getByRole('button', { name: 'Show my stack' }))
+    expect(params().get('t')).toBe('api-only')
+    expect(params().get('lp')).toBe('go')
   })
 
   it('free text never reaches storage', async () => {

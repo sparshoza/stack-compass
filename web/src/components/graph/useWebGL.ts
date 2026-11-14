@@ -1,10 +1,17 @@
 import { useState } from 'react'
 
-/** True when this browser can create a WebGL context (the map needs one). */
+/**
+ * True when this browser can create a WebGL context (the map needs one).
+ * The probe context is released at once, so it does not count against the
+ * browser's limit on live contexts while the map makes its own.
+ */
 export function hasWebGL(): boolean {
   try {
     const canvas = document.createElement('canvas')
-    return Boolean(canvas.getContext('webgl2') ?? canvas.getContext('webgl'))
+    const gl = (canvas.getContext('webgl2') ?? canvas.getContext('webgl')) as WebGLRenderingContext | null
+    if (!gl) return false
+    gl.getExtension?.('WEBGL_lose_context')?.loseContext()
+    return true
   } catch {
     return false
   }

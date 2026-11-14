@@ -38,7 +38,7 @@ export function Describe({ text, onTextChange, onRead, textareaRef, detected }: 
         aria-describedby={`${id}-note`}
         placeholder="What are you building, and what must it do?"
         onChange={(e) => onTextChange(e.target.value)}
-        className="min-h-[5.5rem] resize-y rounded-[var(--radius-sm)] border-line-strong bg-background px-3 py-2.5 text-[1rem] leading-[1.5] text-text placeholder:text-text-faint hover:border-text-faint focus-visible:border-text-faint focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight md:text-[0.875rem] dark:bg-background"
+        className="min-h-[5.5rem] resize-y rounded-[var(--radius-sm)] border-line-field bg-background px-3 py-2.5 text-[1rem] leading-[1.5] text-text placeholder:text-text-faint hover:border-text-faint focus-visible:border-text-faint focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight md:text-[0.875rem] dark:bg-background"
       />
       <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
         <p id={`${id}-note`} className="text-xs text-text-muted">

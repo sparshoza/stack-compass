@@ -38,7 +38,7 @@ function Missing() {
 }
 
 const field =
-  'h-11 w-full rounded-full border border-line-strong bg-surface text-[1rem] text-text hover:border-text-faint md:h-9 md:text-[0.8125rem]'
+  'h-11 w-full rounded-full border border-line-field bg-surface text-[1rem] text-text hover:border-text-faint md:h-9 md:text-[0.8125rem]'
 
 /**
  * Every tool in a real table: the route for keyboard and screen-reader users

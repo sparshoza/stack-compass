@@ -34,7 +34,7 @@ export function SearchBox({ inputRef, onPick }: SearchBoxProps) {
 
   return (
     <form role="search" className="relative min-w-0 flex-1 md:mr-1.5 md:flex-none" onSubmit={(e) => e.preventDefault()}>
-      <label className="flex h-11 items-center gap-2 rounded-full border border-line-strong bg-surface px-3.5 focus-within:border-text-faint focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-highlight hover:border-text-faint md:h-9 md:w-56 lg:w-64">
+      <label className="flex h-11 items-center gap-2 rounded-full border border-line-field bg-surface px-3.5 focus-within:border-text-faint focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-highlight hover:border-text-faint md:h-9 md:w-56 lg:w-64">
         <SearchIcon aria-hidden="true" className="size-4 shrink-0 text-text-muted" />
         <input
           ref={inputRef}

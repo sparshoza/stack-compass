@@ -22,6 +22,15 @@ describe('useWebGL', () => {
     expect(renderHook(() => useWebGL()).result.current).toBe(true)
   })
 
+  it('releases the probe context once it has answered', () => {
+    const loseContext = vi.fn()
+    const getExtension = vi.fn((name: string) => (name === 'WEBGL_lose_context' ? { loseContext } : null))
+    stubCanvas(() => ({ getExtension }))
+    expect(hasWebGL()).toBe(true)
+    expect(getExtension).toHaveBeenCalledWith('WEBGL_lose_context')
+    expect(loseContext).toHaveBeenCalledTimes(1)
+  })
+
   it('is false when the browser returns no context', () => {
     stubCanvas(() => null)
     expect(hasWebGL()).toBe(false)

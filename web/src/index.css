@@ -42,13 +42,14 @@
   --color-accent-foreground: var(--text);
   --color-destructive: var(--family-services);
   --color-border: var(--line);
-  --color-input: var(--line-strong);
+  --color-input: var(--line-field);
   --color-ring: var(--accent);
 
   --color-surface: var(--surface);
   --color-raised: var(--raised);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
+  --color-line-field: var(--line-field);
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-text-faint: var(--text-faint);

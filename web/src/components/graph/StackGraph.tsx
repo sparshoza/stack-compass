@@ -42,6 +42,8 @@ export interface StackGraphProps {
   highlightInset?: { top: number; right: number; bottom: number; left: number }
   /** Pixels covered at rest by the top bar and the corner links; a portrait screen fits the map between them. */
   frameInset?: { top: number; bottom: number }
+  /** The browser dropped the map's WebGL context (GPU reset, too many contexts). */
+  onContextLost?: () => void
 }
 
 /** A touch is followed by emulated mouse events; hover from those is ignored for this long. */
@@ -249,10 +251,12 @@ export function StackGraph({
   focusInset,
   highlightInset,
   frameInset,
+  onContextLost,
 }: StackGraphProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const sigmaRef = useRef<Sigma<NodeAttrs, EdgeAttrs> | null>(null)
   const onSelectRef = useRef(onSelect)
+  const onContextLostRef = useRef(onContextLost)
   const palette = usePalette()
 
   const focusInsetRef = useRef(focusInset)
@@ -261,10 +265,11 @@ export function StackGraph({
 
   useEffect(() => {
     onSelectRef.current = onSelect
+    onContextLostRef.current = onContextLost
     focusInsetRef.current = focusInset
     frameInsetRef.current = frameInset
     highlightInsetRef.current = highlightInset
-  }, [onSelect, focusInset, frameInset, highlightInset])
+  }, [onSelect, onContextLost, focusInset, frameInset, highlightInset])
 
   const graph = useMemo(() => buildGraph(kb.tools, layout as Positions), [])
 
@@ -335,6 +340,9 @@ export function StackGraph({
       setHover(null)
     }
     container.addEventListener('touchstart', onTouch, { passive: true })
+    // Context events fire on sigma's canvases and do not bubble, so listen in the capture phase.
+    const onLost = () => onContextLostRef.current?.()
+    container.addEventListener('webglcontextlost', onLost, true)
     sigma.on('clickNode', ({ node }) => onSelectRef.current?.(node))
     sigma.on('clickStage', () => setHover(null))
     sigma.on('enterNode', ({ node }) => {
@@ -349,6 +357,7 @@ export function StackGraph({
     sigmaRef.current = sigma
     return () => {
       container.removeEventListener('touchstart', onTouch)
+      container.removeEventListener('webglcontextlost', onLost, true)
       sigma.kill()
       sigmaRef.current = null
     }

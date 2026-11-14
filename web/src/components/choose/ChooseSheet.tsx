@@ -26,6 +26,12 @@ interface ChooseSheetProps {
   litOnMap: boolean
   /** Where the sheet covers the map: closes it so the lit stack shows. */
   onSeeMap?: () => void
+  /**
+   * True below 1024 px, where the sheet covers the whole screen: focus stays
+   * in it and the hidden page behind is out of reach for keyboard and screen
+   * readers. From 1024 px it sits beside the map and is not modal.
+   */
+  modal: boolean
 }
 
 /** The link in a field, selected once when it appears, for copying by hand. */
@@ -43,7 +49,7 @@ function CopyFallback({ id, url }: { id: string; url: string }) {
         readOnly
         value={url}
         onFocus={(e) => e.currentTarget.select()}
-        className="h-9 w-full rounded-[var(--radius-sm)] border border-line-strong bg-background px-3 text-xs text-text touch:h-11"
+        className="h-9 w-full rounded-[var(--radius-sm)] border border-line-field bg-background px-3 text-xs text-text touch:h-11"
       />
     </div>
   )
@@ -56,8 +62,8 @@ type CopyState = 'idle' | 'copied' | 'manual'
 const primary = 'border-text bg-text text-background hover:border-text hover:bg-text/85 active:bg-text/85'
 
 /**
- * Help me choose. A non-modal sheet: on the left from 1024px so the lit
- * stack and a tool's panel stay visible on the map; full height below.
+ * Help me choose. On the left from 1024px, not modal, so the lit stack and
+ * a tool's panel stay usable on the map; full height and modal below.
  * The describe box and questions turn into the result in place.
  */
 export function ChooseSheet({
@@ -72,6 +78,7 @@ export function ChooseSheet({
   shareUrl,
   litOnMap,
   onSeeMap,
+  modal,
 }: ChooseSheetProps) {
   const id = useId()
   const headingRef = useRef<HTMLHeadingElement>(null)
@@ -120,7 +127,7 @@ export function ChooseSheet({
   }
 
   return (
-    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} modal={false}>
+    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} modal={modal}>
       <DialogPrimitive.Portal>
         <DialogPrimitive.Content
           aria-describedby={`${id}-about`}

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import { useLocation, useSearchParams } from 'react-router'
+import { XIcon } from 'lucide-react'
 import { ChooseSheet } from '@/components/choose/ChooseSheet'
 import { useChooser, type ChooseView } from '@/components/choose/useChooser'
 import { useWebGL } from '@/components/graph/useWebGL'
@@ -11,6 +12,7 @@ import { ToolTable } from '@/components/map/ToolTable'
 import { CornerLinks } from '@/components/shell/CornerLinks'
 import { FullscreenButton } from '@/components/shell/FullscreenButton'
 import { TopBar } from '@/components/shell/TopBar'
+import { Button } from '@/components/ui/button'
 import { defaultAnswers, type Answers } from '@/engine/answers'
 import { scoreStack } from '@/engine/score'
 import { decode, encode, SHARE_KEYS } from '@/engine/share'
@@ -97,7 +99,11 @@ export default function App() {
   const skipHelpRestoreRef = useRef(false)
   const wide = useMediaQuery(WIDE)
   const oneRowBar = useMediaQuery('(min-width: 768px)')
-  const webgl = useWebGL()
+  // The map needs WebGL: without it, or once the browser drops the map's
+  // context, the table view takes over.
+  const webglSupported = useWebGL()
+  const [contextLost, setContextLost] = useState(false)
+  const webgl = webglSupported && !contextLost
 
   // URL state: ?focus=<id> opens the tool panel, ?view=table shows the table.
   // Other params (the recommender's answers) are always kept.
@@ -168,6 +174,19 @@ export default function App() {
     [chooseView, answers],
   )
   const picks = useMemo(() => results.flatMap((r) => (r.pick ? [r.pick] : [])), [results])
+
+  // Without a result shown (Edit answers, Clear stack), the link carries no
+  // stack, so a reload never brings back a stale one.
+  const hasShareKeys = SHARE_KEYS.some((key) => params.has(key))
+  useEffect(() => {
+    if (chooseView === 'result' || !hasShareKeys) return
+    updateParams(
+      (next) => {
+        for (const key of SHARE_KEYS) next.delete(key)
+      },
+      { replace: true },
+    )
+  }, [chooseView, hasShareKeys, updateParams])
 
   useEffect(() => {
     if (chooseView !== 'result' || !answers.projectType) return
@@ -304,10 +323,22 @@ export default function App() {
                   onSelect={openTool}
                   focusInset={focusInset}
                   frameInset={{ top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone, bottom: CORNER_INSET }}
+                  onContextLost={() => setContextLost(true)}
                 />
               </Suspense>
             </MapBoundary>
             <FullscreenButton />
+            {picks.length > 0 && !helpOpen && (
+              <Button
+                variant="pill"
+                size="pill"
+                className="absolute top-36 left-4 md:top-[4.75rem] md:left-6"
+                onClick={() => chooser.setView('questions')}
+              >
+                <XIcon aria-hidden="true" />
+                Clear stack
+              </Button>
+            )}
           </main>
           <CornerLinks />
         </>
@@ -339,6 +370,7 @@ export default function App() {
         shareUrl={shareUrl}
         litOnMap={view === 'map'}
         onSeeMap={!wide && view === 'map' ? () => setOverlay(null) : undefined}
+        modal={!wide}
       />
       <InfoDialog open={overlay === 'info'} onOpenChange={setOpen('info')} />
     </>

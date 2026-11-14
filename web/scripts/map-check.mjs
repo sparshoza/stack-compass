@@ -10,6 +10,9 @@
 // 2. On a 390px phone, every tool of a route must land in the strip of map
 //    between the top bar and the tool panel. The panel is hidden for the
 //    screenshot and the accent pixels (route dots and edges) are measured.
+// 3. At 1440px with Help me choose open, every lit tool of a stack and of
+//    One piece matches must sit right of the sheet with room for its label
+//    (accent pixels measured the same way).
 // Exits 1 on any failure.
 import { spawn } from 'node:child_process'
 import { existsSync, mkdtempSync } from 'node:fs'
@@ -183,6 +186,35 @@ for (const [from, to] of routes) {
   const inside = box && box.y0 >= strip.top && box.y1 <= strip.bottom && box.x0 >= 0 && box.x1 < png.width
   console.log(`route ${from} to ${to}: strip ${strip.top}..${strip.bottom}, route drawn ${box ? `${box.y0}..${box.y1}` : 'nowhere'}`)
   if (!inside) failures.push(`route ${from} to ${to} is not inside the open strip on a phone`)
+  page.close()
+}
+
+// 3. At 1440px, lit tools are framed beside the open Help me choose sheet, not under it.
+const SHEET_RIGHT = 464
+const LABEL_ROOM = 40
+const lit = (process.env.MAP_CHECK_LIT ?? 't=saas&c=payments,transactional-email|t=saas|m=piece&l=auth|m=piece&l=database&f=need:vectors,run:managed').split('|')
+for (const query of lit) {
+  const page = await openPage(`${base}/?${query}`, 1440, 900)
+  await sleep(1500)
+  await page.evaluate(`(() => {
+    for (const el of document.querySelectorAll('header, [role=dialog], footer, button, a')) el.style.visibility = 'hidden'
+  })()`)
+  await sleep(300)
+  const shot = await page.send('Page.captureScreenshot', { format: 'png' })
+  const png = decodePng(Buffer.from(shot.data, 'base64'))
+  let box = null
+  for (let y = 0; y < png.height; y++) {
+    for (let x = 0; x < png.width; x++) {
+      const [r, g, b] = png.pixel(x, y)
+      if (Math.abs(r - ACCENT[0]) + Math.abs(g - ACCENT[1]) + Math.abs(b - ACCENT[2]) > 24) continue
+      box = box
+        ? { x0: Math.min(box.x0, x), y0: Math.min(box.y0, y), x1: Math.max(box.x1, x), y1: Math.max(box.y1, y) }
+        : { x0: x, y0: y, x1: x, y1: y }
+    }
+  }
+  const ok = box && box.x0 >= SHEET_RIGHT + LABEL_ROOM && box.x1 < png.width
+  console.log(`lit ${query}: drawn ${box ? `x ${box.x0}..${box.x1}, y ${box.y0}..${box.y1}` : 'nowhere'}`)
+  if (!ok) failures.push(`lit tools for ${query} are not all right of the sheet at 1440px`)
   page.close()
 }
 

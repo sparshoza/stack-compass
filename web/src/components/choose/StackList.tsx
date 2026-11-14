@@ -1,18 +1,17 @@
-import type { RefObject } from 'react'
+import type { Ref } from 'react'
 import { MapIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { Answers } from '@/engine/answers'
 import type { LayerResult } from '@/engine/score'
-import { layerName } from '@/lib/display'
 import { familyColor, LAYER_FAMILY } from '@/lib/families'
 import { kb, toolById } from '@/lib/kb'
 import { LayerRow } from './LayerRow'
-import { projectTypeLabel } from './plain'
+import { plainLayerName, projectTypeLabel } from './plain'
 
 interface StackListProps {
   results: LayerResult[]
   answers: Answers
-  headingRef: RefObject<HTMLHeadingElement | null>
+  headingRef: Ref<HTMLHeadingElement>
   /** True when the map is on screen behind the sheet (not the table view). */
   litOnMap: boolean
   /** Set where the sheet covers the map: closes it so the lit stack can be seen. */
@@ -36,7 +35,7 @@ export function StackList({ results, answers, headingRef, litOnMap, onSeeMap, on
   const missing = results.filter((r) => r.pick === null).length
   const facts = [
     type && projectTypeLabel(type.id, type.label),
-    `${results.length} ${results.length === 1 ? 'layer' : 'layers'}`,
+    `${results.length} ${results.length === 1 ? 'part' : 'parts'}`,
     missing ? `${missing} without a match` : null,
   ].filter(Boolean)
 
@@ -71,17 +70,17 @@ export function StackList({ results, answers, headingRef, litOnMap, onSeeMap, on
               <li key={result.layer}>
                 <button
                   type="button"
-                  aria-label={`${layerName(result.layer)}: ${pick ? pick.name : 'No match'}`}
+                  aria-label={`${plainLayerName(result.layer)}: ${pick ? pick.name : 'No match'}`}
                   onClick={() => jumpTo(result.layer)}
                   className="flex h-8 w-full items-center gap-3 rounded-md px-2 text-left hover:bg-surface touch:h-11"
                 >
-                  <span className="inline-flex w-[9.5rem] shrink-0 items-center gap-2 text-xs text-text-muted">
+                  <span className="inline-flex w-[11rem] shrink-0 items-center gap-2 text-xs text-text-muted">
                     <span
                       aria-hidden="true"
                       className="size-2 shrink-0 rounded-full"
                       style={{ background: familyColor(LAYER_FAMILY[result.layer]) }}
                     />
-                    <span className="truncate">{layerName(result.layer)}</span>
+                    <span className="truncate">{plainLayerName(result.layer)}</span>
                   </span>
                   <span className={pick ? 'min-w-0 truncate text-[0.8125rem] text-text' : 'text-[0.8125rem] text-text-muted'}>
                     {pick ? pick.name : 'No match'}

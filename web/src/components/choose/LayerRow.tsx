@@ -4,10 +4,10 @@ import type { Answers } from '@/engine/answers'
 import { explain } from '@/engine/explain'
 import { label } from '@/engine/labels'
 import type { LayerResult } from '@/engine/score'
-import { layerName } from '@/lib/display'
 import { familyColor, LAYER_FAMILY } from '@/lib/families'
 import { kb, toolById } from '@/lib/kb'
 import { cn } from '@/lib/utils'
+import { plainLayerName } from './plain'
 
 interface LayerRowProps {
   /** Id on the row, so the summary can jump to it. */
@@ -48,7 +48,7 @@ export function LayerRow({ anchorId, result, answers, onFocusTool }: LayerRowPro
             className="size-2 rounded-full"
             style={{ background: familyColor(LAYER_FAMILY[result.layer]) }}
           />
-          {layerName(result.layer)}
+          {plainLayerName(result.layer)}
         </span>
         <span aria-hidden="true" className="text-text-faint">
           ·

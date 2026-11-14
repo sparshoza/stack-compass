@@ -43,8 +43,8 @@ export function InfoDialog({ open, onOpenChange }: InfoDialogProps) {
         <DialogHeader className="gap-2 pr-8">
           <DialogTitle className="text-[1rem] font-semibold text-text">About Stack Compass</DialogTitle>
           <DialogDescription className="text-[0.8125rem] text-text-muted">
-            A map of {kb.tools.length} tools across {kb.layers.length} layers, and a recommender that picks one tool
-            per layer for the project you describe.
+            A map of {kb.tools.length} tools across {kb.layers.length} layers. Help me choose builds a whole stack for
+            your project, or finds one piece, such as a database.
           </DialogDescription>
         </DialogHeader>
 
@@ -60,6 +60,11 @@ export function InfoDialog({ open, onOpenChange }: InfoDialogProps) {
             can't use, a paid-only tool on a free budget, or no fit with an earlier pick. The rest earn points for the features you asked for, for
             tools you already know, for pairing with earlier picks and for maturity. The same answers always give the
             same stack.
+          </p>
+          <p>
+            One piece: pick a part, answer a few questions, and every tool that fits all your answers stays lit. Within
+            a question any answer counts; across questions all must fit. Answers that would not change the list are not
+            shown.
           </p>
           <p>
             Every pick shows why it won, its score and the close tools that were ruled out. Copy link puts your

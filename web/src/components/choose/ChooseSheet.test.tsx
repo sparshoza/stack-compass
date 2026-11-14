@@ -4,14 +4,13 @@ import { MemoryRouter, useLocation } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { StackGraphProps } from '@/components/graph/StackGraph'
 import App from '@/App'
-import { matchLabel, matchTools, narrowingOptions } from '@/engine/facets'
+import { groupsFor, hasOption, matchLabel, matchTools, narrowingOptions } from '@/engine/facets'
 import { match } from '@/engine/match'
 import { scoreStack } from '@/engine/score'
 import { decode } from '@/engine/share'
-import { layerName } from '@/lib/display'
-import { kb, toolById } from '@/lib/kb'
+import { kb, toolById, type Layer } from '@/lib/kb'
 import { EXAMPLES } from './examples'
-import { CAPABILITY_LABELS, PIECES, PROJECT_TYPES } from './plain'
+import { CAPABILITY_LABELS, PIECES, plainLayerName, PROJECT_TYPES } from './plain'
 
 // The map is a stub that records the props the app passes (see App.test.tsx).
 const graph = vi.hoisted(() => ({ props: null as StackGraphProps | null }))
@@ -53,11 +52,11 @@ async function openSheet(user: ReturnType<typeof userEvent.setup>) {
 }
 
 async function describeProject(user: ReturnType<typeof userEvent.setup>, text: string) {
-  const box = within(sheet()).getByRole('textbox', { name: /Describe it in your own words/ })
+  const box = within(sheet()).getByRole('textbox', { name: /describe it in your own words/i })
   await user.clear(box)
   await user.type(box, text)
   // Detection runs on a typing pause; Read description runs it at once.
-  await user.click(within(sheet()).getByRole('button', { name: 'Read description' }))
+  await user.click(within(sheet()).getByRole('button', { name: 'Fill in from my description' }))
 }
 
 /** Picks a project type; the stack shows at once, with no button to press. */
@@ -117,7 +116,7 @@ describe('Help me choose', () => {
     const examples = within(within(dialog).getByRole('group', { name: 'Examples' })).getAllByRole('button')
     expect(examples).toHaveLength(3)
     await user.click(examples[0])
-    expect(within(dialog).getByRole('textbox', { name: /Describe it in your own words/ })).toHaveValue(examples[0].textContent)
+    expect(within(dialog).getByRole('textbox', { name: /describe it in your own words/i })).toHaveValue(examples[0].textContent)
     // Each example is picked up straight away.
     expect(within(dialog).getByRole('list', { name: 'Picked up from your description' })).toBeInTheDocument()
   })
@@ -135,7 +134,7 @@ describe('Help me choose', () => {
     const user = userEvent.setup()
     renderApp()
     const dialog = await openSheet(user)
-    const box = within(dialog).getByRole('textbox', { name: /Describe it in your own words/ })
+    const box = within(dialog).getByRole('textbox', { name: /describe it in your own words/i })
     await user.type(box, 'A saas with payments and realtime chat in python, no php')
     // Picked up on the typing pause, with no button press.
     const chips = await within(dialog).findByRole('list', { name: 'Picked up from your description' })
@@ -307,7 +306,7 @@ describe('Help me choose', () => {
     expect(empty.length).toBeGreaterThan(0)
 
     renderApp('/?t=web-app&la=javascript,typescript')
-    const row = screen.getByRole('listitem', { name: layerName(empty[0].layer) })
+    const row = screen.getByRole('listitem', { name: plainLayerName(empty[0].layer) })
     expect(within(row).getByText('No match')).toBeInTheDocument()
     expect(within(row).getByText(/^Each tool that came close uses only languages you want to avoid/)).toBeInTheDocument()
     expect(within(row).queryByRole('button', { name: /show on the map/ })).not.toBeInTheDocument()
@@ -424,8 +423,8 @@ describe('Help me choose', () => {
     expect(within(dialog).getByText('Pick what you are building to see your stack.')).toBeInTheDocument()
     await openPreferences(user)
     expect(within(dialog).getByRole('button', { name: 'Python: no preference' })).toBeInTheDocument()
-    expect(within(dialog).getByRole('textbox', { name: /Describe it in your own words/ })).toHaveValue('')
-    expect(within(dialog).getByRole('textbox', { name: /Describe it in your own words/ })).toHaveFocus()
+    expect(within(dialog).getByRole('textbox', { name: /describe it in your own words/i })).toHaveValue('')
+    expect(within(dialog).getByRole('textbox', { name: /describe it in your own words/i })).toHaveFocus()
   })
 
   it('features come in labelled groups; an explanation shows once checked or with the toggle', async () => {
@@ -463,9 +462,9 @@ describe('Help me choose', () => {
     const summary = screen.getByRole('navigation', { name: 'Jump to a layer' })
     const jumps = within(summary).getAllByRole('button')
     expect(jumps).toHaveLength(rows().length)
-    expect(within(summary).getByRole('button', { name: 'Frontend: No match' })).toBeInTheDocument()
-    await user.click(within(summary).getByRole('button', { name: 'Frontend: No match' }))
-    const row = screen.getByRole('listitem', { name: 'Frontend' })
+    expect(within(summary).getByRole('button', { name: 'Screens (frontend): No match' })).toBeInTheDocument()
+    await user.click(within(summary).getByRole('button', { name: 'Screens (frontend): No match' }))
+    const row = screen.getByRole('listitem', { name: 'Screens (frontend)' })
     expect(within(row).getByRole('heading', { level: 4 })).toHaveFocus()
   })
 
@@ -597,7 +596,11 @@ describe('Help me choose, One piece', () => {
     expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
     expect(within(piece()).getByRole('heading', { name: 'Which part do you need help with?' })).toBeInTheDocument()
     const parts = within(within(piece()).getByRole('list', { name: 'Which part do you need help with?' })).getAllByRole('button')
-    expect(parts.slice(0, 5).map((b) => b.textContent)).toEqual(['Database', 'Hosting', 'Sign-in', 'Payments', 'Email'])
+    expect(parts.slice(0, 11).map((b) => b.textContent)).toEqual([
+      'Database', 'Hosting', 'Sign-in', 'Payments', 'Email', 'File storage', 'Search', 'Content editing', 'Mobile app', 'Background jobs', 'Cache',
+    ])
+    expect(parts.map((b) => b.textContent)).toContain('Screens (frontend)')
+    expect(parts.map((b) => b.textContent)).toContain('Server code (backend)')
     expect(parts).toHaveLength(kb.layers.length)
     await waitFor(() => expect(params().get('m')).toBe('piece'))
     expect(within(dialog).getByText('Pick a part to see the tools that fit.')).toBeInTheDocument()
@@ -638,7 +641,9 @@ describe('Help me choose, One piece', () => {
     const expected = matchTools('database', { need: ['vectors'], run: ['managed'] }, kb)
     expect(expected.length).toBeGreaterThan(0)
     expect(status()).toHaveTextContent(`${expected.length} ${expected.length === 1 ? 'match' : 'matches'}`)
-    expect(matchRows().map((r) => r.textContent)).toEqual(expected.map((t) => `${t.name}AI and vectors${priceTag(t)}`))
+    const selection = { need: ['vectors'], run: ['managed'] }
+    expect(matchRows().map((r) => r.textContent)).toEqual(expected.map((t) => `${t.name}${matchLabel(t, selection, kb)}${priceTag(t)}`))
+    expect(matchRows().some((r) => r.textContent?.includes('AI and vectors'))).toBe(false)
     expect(graph.props?.highlight).toEqual(expected.map((t) => t.id))
     expect(params().get('f')).toBe('need:vectors,run:managed')
   })
@@ -657,10 +662,6 @@ describe('Help me choose, One piece', () => {
     // Some sign-in uses are on every tool: they never show as a filter.
     expect(visible.length).toBeLessThan(need.options.length)
 
-    // A chosen option stays even once the others make it narrow nothing.
-    const first = need.options.find((o) => visible.includes(o.id))!
-    await user.click(within(piece()).getByRole('checkbox', { name: first.label }))
-    expect(within(piece()).getByRole('checkbox', { name: first.label })).toBeChecked()
   })
 
   it('a one-answer question has a no-preference answer that clears it', async () => {
@@ -723,7 +724,7 @@ describe('Help me choose, One piece', () => {
     const user = userEvent.setup()
     renderApp('/?m=piece&l=database&f=need:analytics')
     const count = matchTools('database', { need: ['analytics'] }, kb).length
-    expect(within(sheet()).getByRole('button', { name: `${count} ${count === 1 ? 'match' : 'matches'}` })).toBeInTheDocument()
+    expect(within(sheet()).getByRole('button', { name: `See ${count} ${count === 1 ? 'match' : 'matches'}` })).toBeInTheDocument()
     await user.click(within(sheet()).getByRole('button', { name: 'Copy link' }))
     const url = new URL(await navigator.clipboard.readText())
     expect(url.searchParams.get('m')).toBe('piece')
@@ -752,5 +753,160 @@ describe('Help me choose, One piece', () => {
     await user.click(screen.getByRole('button', { name: 'Clear matches' }))
     expect(graph.props?.highlight ?? []).toEqual([])
     expect(params().has('l')).toBe(false)
+  })
+})
+
+describe('Help me choose, fix round 1', () => {
+  const piece = () => within(sheet()).getByRole('tabpanel', { name: 'One piece' })
+  const description = () => within(sheet()).getByText('Get a whole stack for your project, or find one piece, such as a database.')
+  const visibleText = (text: string) => screen.queryByText(text, { ignore: '.sr-only, script, style' })
+
+  /** IntersectionObserver that reports every observed element as in view (jsdom has none). */
+  function everythingInView() {
+    class InView {
+      callback: IntersectionObserverCallback
+      constructor(callback: IntersectionObserverCallback) {
+        this.callback = callback
+      }
+      observe(target: Element) {
+        this.callback([{ target, isIntersecting: true } as IntersectionObserverEntry], this as unknown as IntersectionObserver)
+      }
+      unobserve() {}
+      disconnect() {}
+    }
+    vi.stubGlobal('IntersectionObserver', InView)
+  }
+  afterEach(() => vi.unstubAllGlobals())
+
+  it('One piece: where it runs, size and licence are one-line chips; the chosen answer explains itself under the group', async () => {
+    const user = userEvent.setup()
+    renderApp('/?m=piece&l=database')
+    const managed = within(piece()).getByRole('checkbox', { name: 'Managed for me' })
+    expect(managed).toHaveAccessibleDescription('A cloud service runs it for you')
+    expect(visibleText('A cloud service runs it for you')).toBeNull()
+    // The part's own question keeps its two-line chips.
+    expect(visibleText('Power AI features that find similar things')).not.toBeNull()
+    await user.click(managed)
+    expect(visibleText('A cloud service runs it for you')).not.toBeNull()
+  })
+
+  it('One piece: Start over sits next to the match count, once', () => {
+    renderApp('/?m=piece&l=database')
+    const starts = within(sheet()).getAllByRole('button', { name: 'Start over' })
+    expect(starts).toHaveLength(1)
+    expect(piece().contains(starts[0])).toBe(true)
+    const count = within(piece()).getByRole('heading', { name: /\d+ matches/ })
+    expect(count.parentElement!.contains(starts[0])).toBe(true)
+  })
+
+  it('the footer jump reads "See N matches" and hides once the list is in view', () => {
+    const count = matchTools('database', {}, kb).length
+    const first = renderApp('/?m=piece&l=database')
+    expect(within(sheet()).getByRole('button', { name: `See ${count} matches` })).toBeInTheDocument()
+    first.unmount()
+    everythingInView()
+    renderApp('/?m=piece&l=database')
+    expect(within(sheet()).queryByRole('button', { name: `See ${count} matches` })).not.toBeInTheDocument()
+  })
+
+  it('the stack jump hides once the stack is in view', () => {
+    everythingInView()
+    renderApp('/?t=saas')
+    expect(within(sheet()).queryByRole('button', { name: /^Your stack \(\d+\)$/ })).not.toBeInTheDocument()
+    expect(within(sheet()).getByRole('button', { name: 'Copy link' })).toBeInTheDocument()
+  })
+
+  it('the sheet description steps aside once a part or a project type is chosen', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    expect(description()).not.toHaveClass('sr-only')
+    expect(description()).toHaveClass('max-sm:sr-only')
+    await user.click(within(sheet()).getByRole('radio', { name: 'Web app' }))
+    expect(description()).toHaveClass('sr-only')
+  })
+
+  it('the result names parts in plain words, the same as One piece', () => {
+    renderApp('/?t=saas')
+    const summary = screen.getByRole('navigation', { name: 'Jump to a layer' })
+    expect(within(summary).getByRole('button', { name: /^Sign-in: / })).toBeInTheDocument()
+    expect(within(summary).queryByRole('button', { name: /Auth provider/ })).not.toBeInTheDocument()
+    expect(screen.getByRole('listitem', { name: 'Sign-in' })).toBeInTheDocument()
+    expect(within(sheet()).getByText(/\d+ parts/)).toBeInTheDocument()
+    expect(within(sheet()).queryByText(/\d+ layers/)).not.toBeInTheDocument()
+  })
+
+  it('the description box sits under the first question', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    const types = within(sheet()).getByRole('radiogroup', { name: /What are you building/ })
+    const box = within(sheet()).getByRole('textbox', { name: /Or describe it in your own words/ })
+    expect(types.compareDocumentPosition(box) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it('About explains One piece', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await user.click(screen.getByRole('button', { name: 'About Stack Compass' }))
+    const about = screen.getByRole('dialog', { name: 'About Stack Compass' })
+    expect(about).toHaveTextContent(/Help me choose builds a whole stack for your project, or finds one piece, such as a database\./)
+    expect(about).toHaveTextContent(/One piece: pick a part, answer a few questions, and every tool that fits all your answers stays lit\./)
+    expect(about).toHaveTextContent(/Answers that would not change the list are not shown\./)
+  })
+
+  it('on a phone the lit tools are framed below the Clear stack button', async () => {
+    const user = userEvent.setup()
+    renderApp('/?t=saas')
+    await user.click(within(sheet()).getByRole('button', { name: 'Close' }))
+    expect(screen.getByRole('button', { name: 'Clear stack' })).toBeInTheDocument()
+    expect(graph.props?.highlightInset?.top).toBe(188)
+  })
+
+  it('a chosen answer stays once other answers make it narrow nothing; an unchosen one like it is hidden', async () => {
+    // Find a part, a chosen answer a, and an answer b in another question that
+    // leaves only tools with a, plus an unchosen sibling of a that then fits all or none.
+    let found: { layer: Layer; a: [string, string]; b: [string, string]; sibling: [string, string] } | null = null
+    for (const layer of kb.layers) {
+      const groups = groupsFor(layer, kb)
+      const shown = narrowingOptions(layer, {}, kb)
+      for (const ga of groups) for (const a of shown[ga.id] ?? []) for (const gb of groups) {
+        if (gb.id === ga.id || found) continue
+        for (const b of narrowingOptions(layer, { [ga.id]: [a] }, kb)[gb.id] ?? []) {
+          if (found) break
+          const sel = { [ga.id]: [a], [gb.id]: [b] }
+          const base = matchTools(layer, { [gb.id]: [b] }, kb)
+          if (!base.every((t) => hasOption(t, ga, a))) continue
+          const visible = narrowingOptions(layer, sel, kb)[ga.id]
+          const sibling = ga.options.find((o) => o.id !== a && !visible.includes(o.id) && (shown[ga.id] ?? []).includes(o.id))
+          if (sibling) found = { layer, a: [ga.id, a], b: [gb.id, b], sibling: [ga.id, sibling.id] }
+        }
+      }
+      if (found) break
+    }
+    expect(found).not.toBeNull()
+    const { layer, a, b, sibling } = found!
+    const label = (group: string, option: string) =>
+      groupsFor(layer, kb).find((g) => g.id === group)!.options.find((o) => o.id === option)!.label
+    const user = userEvent.setup()
+    renderApp(`/?m=piece&l=${layer}`)
+    const chip = (group: string, option: string) =>
+      within(within(piece()).getByRole(groupsFor(layer, kb).find((g) => g.id === group)!.multi ? 'group' : 'radiogroup', {
+        name: groupsFor(layer, kb).find((g) => g.id === group)!.question,
+      })).queryByRole(groupsFor(layer, kb).find((g) => g.id === group)!.multi ? 'checkbox' : 'radio', { name: label(group, option) })
+    await user.click(chip(a[0], a[1])!)
+    await user.click(chip(b[0], b[1])!)
+    expect(chip(a[0], a[1])).toBeChecked()
+    expect(chip(sibling[0], sibling[1])).toBeNull()
+  })
+
+  it('I have preferences opens when the description picks up a language later', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    await openSheet(user)
+    const toggle = within(sheet()).getByRole('button', { name: /I have preferences/ })
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    await describeProject(user, 'a saas in python')
+    expect(toggle).toHaveAttribute('aria-expanded', 'true')
   })
 })

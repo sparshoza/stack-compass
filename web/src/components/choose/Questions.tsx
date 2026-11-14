@@ -16,6 +16,8 @@ interface QuestionsProps {
   onChange: (change: (answers: Answers) => Answers) => void
   /** The checked project type radio. */
   typeRef: RefObject<HTMLInputElement | null>
+  /** The optional description box, shown right under the first question. */
+  describe?: ReactNode
 }
 
 const legend = legendClass
@@ -337,8 +339,13 @@ function preferenceCount(a: Answers): number {
 function Preferences({ answers, onChange }: Pick<QuestionsProps, 'answers' | 'onChange'>) {
   const id = useId()
   const count = preferenceCount(answers)
-  // Opens by itself when a link or the description already set some.
+  // Opens by itself when a link or the description sets some, also later on.
   const [open, setOpen] = useState(() => count > 0)
+  const [seen, setSeen] = useState(count)
+  if (count !== seen) {
+    setSeen(count)
+    if (seen === 0 && count > 0) setOpen(true)
+  }
   const set = <K extends keyof Answers>(key: K) => (value: Answers[K]) => onChange((a) => ({ ...a, [key]: value }))
 
   return (
@@ -429,7 +436,7 @@ const TYPES = [
 ]
 
 /** The Whole stack questions in plain words, filled in from the description where it said something. */
-export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
+export function Questions({ answers, onChange, typeRef, describe }: QuestionsProps) {
   const id = useId()
   const set = <K extends keyof Answers>(key: K) => (value: Answers[K]) => onChange((a) => ({ ...a, [key]: value }))
 
@@ -452,6 +459,8 @@ export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
           ))}
         </div>
       </Question>
+
+      {describe}
 
       <Features
         selected={answers.capabilities}

@@ -9,6 +9,7 @@ import { instantCamera } from './camera'
 import { easeOut, readDuration, staggerSchedule, tween, useReducedMotion } from '@/lib/motion'
 import {
   areaFit,
+  keepsCamera,
   buildGraph,
   drawName,
   edgeStyle,
@@ -550,6 +551,8 @@ export function StackGraph({
     0,
     ...(routeNodesKey ? sides(routeInset) : []),
     ...(focus && !routeNodesKey ? sides(focusInset) : []),
+    // Lit tools (a stack or One piece matches) are framed beside the sheet.
+    ...(highlightKey && !focus && !routeNodesKey ? sides(highlightInset) : []),
   )
   useEffect(() => {
     sigmaRef.current?.setSetting('cameraPanBoundaries', panTolerance > 0 ? { tolerance: panTolerance } : true)
@@ -703,8 +706,11 @@ export function StackGraph({
     })
   }, [focus, focusHidden])
 
-  // A new stack glides to frame its picks in the area the sheet
-  // and the bars leave free. A focused tool takes the camera instead.
+  // New lit tools glide into the area the sheet and the bars leave free,
+  // again when that area changes. When they all already sit there at about
+  // the same scale, the map keeps still, so each answer does not move it.
+  // A focused tool takes the camera instead.
+  const highlightInsetKey = highlightInset ? sides(highlightInset).join(',') : ''
   useEffect(() => {
     const sigma = sigmaRef.current
     if (!sigma || !highlightKey || focusRef.current) return
@@ -713,8 +719,11 @@ export function StackGraph({
     const box = drawnBox(sigma, highlightKey.split('\n'))
     if (!box) return
     const inset = highlightInsetRef.current ?? { top: 0, right: 0, bottom: 0, left: 0 }
+    // Judged only at rest: part way through a glide the tools are not where they will be.
+    if (!glideRef.current && keepsCamera(box, sigma.getDimensions(), inset)) return
     moveCamera(glideRef, sigma, () => applyFit(sigma, areaFit(box, sigma.getDimensions(), inset)))
-  }, [highlightKey])
+    // highlightInsetKey: the sheet or the panel opening or closing frames them again.
+  }, [highlightKey, highlightInsetKey])
 
   const routeInsetKey = routeInset ? sides(routeInset).join(',') : ''
   // A route glides to fit all its tools in the area the panels leave free.

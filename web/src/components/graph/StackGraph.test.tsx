@@ -200,6 +200,52 @@ describe('StackGraph', () => {
     expect(latest().settings.cameraPanBoundaries).toBe(true)
   })
 
+  it('lets the camera pan past the edge by the area the sheet covers while tools are lit', () => {
+    const lit = [database.id, frontend.id]
+    const { rerender } = render(<StackGraph highlight={lit} highlightInset={{ top: 68, right: 0, bottom: 60, left: 464 }} />)
+    expect(latest().settings.cameraPanBoundaries).toEqual({ tolerance: 464 })
+    // A focused tool takes the camera: its own inset counts instead.
+    rerender(<StackGraph highlight={lit} highlightInset={{ top: 68, right: 0, bottom: 60, left: 464 }} focus={database.id} focusInset={{ top: 68, right: 424, bottom: 0 }} />)
+    expect(latest().settings.cameraPanBoundaries).toEqual({ tolerance: 424 })
+  })
+
+  /** Gives the stand-in geometry: tools drawn where `at` says, everything else at the centre. */
+  function withGeometry(at: Record<string, { x: number; y: number }>) {
+    const s = latest() as unknown as Record<string, unknown>
+    s.getDimensions = () => ({ width: 1440, height: 900 })
+    s.getNodeDisplayData = (id: string) => (latest().graph.hasNode(id) ? { ...(at[id] ?? { x: 720, y: 450 }), size: 3 } : undefined)
+    s.framedGraphToViewport = (p: { x: number; y: number }) => ({ x: p.x, y: p.y })
+    s.viewportToFramedGraph = (p: { x: number; y: number }) => ({ x: p.x, y: p.y })
+    return latest().camera
+  }
+
+  it('frames lit tools again when the area the panels leave changes', () => {
+    const inset = { top: 68, right: 0, bottom: 60, left: 464 }
+    const { rerender } = render(<StackGraph />)
+    const camera = withGeometry({ [database.id]: { x: 100, y: 200 }, [frontend.id]: { x: 1300, y: 700 } })
+    rerender(<StackGraph highlight={[database.id, frontend.id]} highlightInset={inset} />)
+    const calls = camera.setState.mock.calls.length
+    expect(calls).toBeGreaterThan(0)
+    rerender(<StackGraph highlight={[database.id, frontend.id]} highlightInset={{ ...inset }} />)
+    expect(camera.setState.mock.calls.length).toBe(calls)
+    rerender(<StackGraph highlight={[database.id, frontend.id]} highlightInset={{ ...inset, right: 424 }} />)
+    expect(camera.setState.mock.calls.length).toBeGreaterThan(calls)
+  })
+
+  it('keeps the camera still when new lit tools already sit in the open area at about the same scale', () => {
+    const inset = { top: 68, right: 0, bottom: 60, left: 464 }
+    const { rerender } = render(<StackGraph />)
+    const camera = withGeometry({
+      [database.id]: { x: 560, y: 160 },
+      [frontend.id]: { x: 1320, y: 740 },
+      [backend.id]: { x: 900, y: 400 },
+    })
+    rerender(<StackGraph highlight={[database.id, frontend.id]} highlightInset={inset} />)
+    const calls = camera.setState.mock.calls.length
+    rerender(<StackGraph highlight={[database.id, frontend.id, backend.id]} highlightInset={inset} />)
+    expect(camera.setState.mock.calls.length).toBe(calls)
+  })
+
   it('reframes a route when the area left for it changes', () => {
     const [a, b] = [backend.id, backend.edges.find((e) => kb.tools.some((t) => t.id === e.target))!.target]
     const type = backend.edges.find((e) => e.target === b)!.type

@@ -14,8 +14,9 @@ interface DescribeProps {
 }
 
 /**
- * The optional description. It is read on a pause in typing, on Read
- * description, or at once when an example fills it.
+ * The optional description, under the first question. It is read on a
+ * pause in typing, on Fill in from my description, or at once when an
+ * example fills it.
  */
 export function Describe({ text, onTextChange, onRead, textareaRef, detected }: DescribeProps) {
   const id = useId()
@@ -29,7 +30,7 @@ export function Describe({ text, onTextChange, onRead, textareaRef, detected }: 
       }}
     >
       <label htmlFor={id} className="text-[0.8125rem] font-semibold text-text">
-        Describe it in your own words <span className="font-normal text-text-muted">(optional)</span>
+        Or describe it in your own words <span className="font-normal text-text-muted">(optional)</span>
       </label>
       <Textarea
         ref={textareaRef}
@@ -47,7 +48,7 @@ export function Describe({ text, onTextChange, onRead, textareaRef, detected }: 
           Read in your browser. It never goes into a link.
         </p>
         <Button type="submit" variant="pill" size="pill" className="h-8 px-3 text-xs touch:h-11">
-          Read description
+          Fill in from my description
         </Button>
       </div>
 

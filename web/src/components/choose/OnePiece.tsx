@@ -1,4 +1,4 @@
-import { useId, useMemo, type RefObject } from 'react'
+import { useId, useMemo, type Ref, type RefObject } from 'react'
 import { ArrowLeftIcon, MapIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { groupsFor, matchLabel, narrowingOptions, type PieceGroup } from '@/engine/facets'
@@ -23,9 +23,10 @@ interface OnePieceProps {
   onChangePart: () => void
   questionRef: RefObject<HTMLHeadingElement | null>
   pickerRef: RefObject<HTMLUListElement | null>
-  countRef: RefObject<HTMLHeadingElement | null>
+  countRef: Ref<HTMLHeadingElement>
   /** Set where the sheet covers the map: closes it so the lit matches can be seen. */
   onSeeMap?: () => void
+  onStartOver: () => void
 }
 
 /** The tag on the right of a match: whether it is open source, has a free tier, or is paid only. */
@@ -54,12 +55,17 @@ function Group({
   const id = useId()
   const options = group.options.filter((o) => visible.includes(o.id))
   const none = NO_PREFERENCE[group.id] ?? { label: 'No preference', hint: 'Show them all' }
+  // The part's own questions read best with their hints; where it runs, size
+  // and licence are short, so they are one-line chips and only the chosen
+  // answer explains itself under the group.
+  const compact = group.kind !== 'uses'
+  const notes = compact ? options.filter((o) => chosen.includes(o.id)) : []
   return (
     <fieldset role={group.multi ? undefined : 'radiogroup'} aria-labelledby={`${id}-legend`} className="grid gap-2.5">
       <legend id={`${id}-legend`} className={cn(legendClass, 'mb-0.5 p-0')}>
         {group.question}
       </legend>
-      <div className="grid grid-cols-2 gap-1.5">
+      <div className={compact ? 'flex flex-wrap gap-1.5' : 'grid grid-cols-2 gap-1.5'}>
         {!group.multi && (
           <OptionChip
             type="radio"
@@ -67,6 +73,7 @@ function Group({
             value=""
             label={none.label}
             hint={none.hint}
+            hideHint={compact}
             checked={chosen.length === 0}
             onChange={() => onChange([])}
           />
@@ -79,11 +86,23 @@ function Group({
             value={option.id}
             label={option.label}
             hint={option.hint}
+            hideHint={compact}
             checked={chosen.includes(option.id)}
             onChange={() => onChange(group.multi ? toggled(chosen, option.id) : [option.id])}
           />
         ))}
       </div>
+      {notes.length > 0 && (
+        // Read already as each chip's description, so hidden from screen readers here.
+        <ul aria-hidden="true" className="grid gap-1 text-xs leading-[1.45] text-text-muted">
+          {notes.map((o) => (
+            <li key={o.id}>
+              <span className="text-text">{o.label}: </span>
+              <span>{o.hint}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </fieldset>
   )
 }
@@ -105,6 +124,7 @@ export function OnePiece({
   pickerRef,
   countRef,
   onSeeMap,
+  onStartOver,
 }: OnePieceProps) {
   const id = useId()
   const { layer, selection } = piece
@@ -143,7 +163,7 @@ export function OnePiece({
   const shown = groups.filter((g) => (visible[g.id] ?? []).length > 0)
 
   return (
-    <div className="grid gap-7">
+    <div className="grid gap-6">
       <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
         <h3
           ref={questionRef}
@@ -177,16 +197,21 @@ export function OnePiece({
       ))}
 
       <section aria-labelledby={`${id}-count`} className="grid gap-2 border-t border-line pt-5">
-        <h3
-          id={`${id}-count`}
-          ref={countRef}
-          tabIndex={-1}
-          className="scroll-mt-5 text-[1rem] leading-tight font-semibold outline-none focus-visible:underline focus-visible:decoration-highlight focus-visible:underline-offset-4"
-        >
-          <span role="status">
-            {count} {count === 1 ? 'match' : 'matches'}
-          </span>
-        </h3>
+        <div className="flex flex-wrap items-center justify-between gap-x-3">
+          <h3
+            id={`${id}-count`}
+            ref={countRef}
+            tabIndex={-1}
+            className="scroll-mt-5 text-[1rem] leading-tight font-semibold outline-none focus-visible:underline focus-visible:decoration-highlight focus-visible:underline-offset-4"
+          >
+            <span role="status">
+              {count} {count === 1 ? 'match' : 'matches'}
+            </span>
+          </h3>
+          <Button variant="quiet" size="pill" className="-mr-2 touch:h-11" onClick={onStartOver}>
+            Start over
+          </Button>
+        </div>
         {onSeeMap && count > 0 && (
           <Button variant="pill" size="pill" className="w-fit touch:h-11" onClick={onSeeMap}>
             <MapIcon aria-hidden="true" />

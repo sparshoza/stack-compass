@@ -16,6 +16,7 @@ import {
   nodeStyle,
   portraitFit,
   areaFit,
+  keepsCamera,
   readPalette,
   mix,
   labelBoxes,
@@ -566,6 +567,26 @@ describe('areaFit', () => {
     expect(squeezed.to.y).toBe(68 + (900 - 68 - 60) / 2)
     const tall = areaFit(picks, screen, { top: 500, right: 0, bottom: 500, left: 0 })
     expect(tall.to.y).toBe(450)
+  })
+})
+
+describe('keepsCamera', () => {
+  const screen = { width: 1440, height: 900 }
+  const free = { top: 68, right: 0, bottom: 60, left: 464 }
+  // The free area less the label margin: x 512..1392, y 116..792.
+
+  it('keeps the camera when every lit tool is already inside and the scale barely changes', () => {
+    expect(keepsCamera({ x0: 560, y0: 160, x1: 1320, y1: 740 }, screen, free)).toBe(true)
+  })
+
+  it('moves when a lit tool falls outside the free area (under the sheet, or off screen)', () => {
+    expect(keepsCamera({ x0: 470, y0: 160, x1: 1320, y1: 740 }, screen, free)).toBe(false)
+    expect(keepsCamera({ x0: 560, y0: 160, x1: 1420, y1: 740 }, screen, free)).toBe(false)
+    expect(keepsCamera({ x0: 560, y0: 90, x1: 1320, y1: 740 }, screen, free)).toBe(false)
+  })
+
+  it('moves when the set is much smaller or larger than the area, so the fit zooms a lot', () => {
+    expect(keepsCamera({ x0: 900, y0: 400, x1: 1000, y1: 460 }, screen, free)).toBe(false)
   })
 })
 

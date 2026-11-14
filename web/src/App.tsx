@@ -36,6 +36,8 @@ const SIDE_PANEL_INSET = 424
 const CHOOSE_SHEET_INSET = 464
 /** Height of the floating top bar: one row on wide screens, two rows and the hint line on phones. */
 const TOP_BAR_INSET = { oneRow: 68, phone: 124 }
+/** Bottom edge of the Clear stack button over the map (top-36 or md:top-[4.75rem], 44px tall on touch). */
+const CLEAR_ROW_BOTTOM = { oneRow: 120, phone: 188 }
 /** Height of the bottom corner links (44px pill plus its 12px inset on phones). */
 const CORNER_INSET = 60
 /** Width of the route card plus its gap from the edge and from the map it frames (RouteCard on wide screens: w-[360px], left-6). */
@@ -335,15 +337,19 @@ export default function App() {
       />
     ) : null
 
-  // New lit tools are framed in the map area the sheet and the bars leave free.
+  // New lit tools are framed in the map area the sheet and the bars leave
+  // free, below the Clear button when it shows over the map.
+  const clearShows = lit.length > 0 && !helpOpen
+  const barInset = oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone
+  const highlightTop = clearShows ? (oneRowBar ? CLEAR_ROW_BOTTOM.oneRow : CLEAR_ROW_BOTTOM.phone) : barInset
   const highlightInset = wide
     ? {
-        top: TOP_BAR_INSET.oneRow,
+        top: clearShows ? CLEAR_ROW_BOTTOM.oneRow : TOP_BAR_INSET.oneRow,
         right: tool ? SIDE_PANEL_INSET : 0,
         bottom: CORNER_INSET,
         left: helpOpen ? CHOOSE_SHEET_INSET : 0,
       }
-    : { top: oneRowBar ? TOP_BAR_INSET.oneRow : TOP_BAR_INSET.phone, right: 0, bottom: CORNER_INSET, left: 0 }
+    : { top: highlightTop, right: 0, bottom: CORNER_INSET, left: 0 }
 
   return (
     <>

@@ -144,14 +144,23 @@ export function narrowingOptions(layer: Layer, selection: Selection, kb: FacetKb
 }
 
 /**
- * A short use for a matching tool: the first chosen use it has, else the
- * first thing it is for, in vocab order. Empty when it lists no uses.
+ * A short use for a matching tool, for its row in the list. With several
+ * answers chosen in a question, the first one the tool covers (vocab order),
+ * so the rows tell them apart. With one answer chosen, every row has it
+ * already, so the tool's first other use in that question, or nothing. With
+ * none chosen, the first thing the tool is for.
  */
 export function matchLabel(tool: Tool, selection: Selection, kb: FacetKb): string {
   const groups = groupsFor(tool.layer, kb).filter((g) => g.kind === "uses");
   for (const group of groups) {
-    const hit = group.options.find((o) => (selection[group.id] ?? []).includes(o.id) && tool.uses.includes(o.id));
-    if (hit) return hit.label;
+    const picked = chosen(group, selection);
+    if (picked.length === 0) continue;
+    if (picked.length > 1) {
+      const hit = group.options.find((o) => picked.includes(o.id) && tool.uses.includes(o.id));
+      if (hit) return hit.label;
+      continue;
+    }
+    return group.options.find((o) => o.id !== picked[0] && tool.uses.includes(o.id))?.label ?? "";
   }
   const need = groups[0];
   return need?.options.find((o) => tool.uses.includes(o.id))?.label ?? "";

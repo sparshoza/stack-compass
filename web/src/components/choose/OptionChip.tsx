@@ -24,6 +24,7 @@ export function OptionChip({
   onChange,
   inputRef,
   dot,
+  hideHint = false,
 }: {
   type: 'checkbox' | 'radio'
   name?: string
@@ -35,6 +36,8 @@ export function OptionChip({
   inputRef?: RefObject<HTMLInputElement | null>
   /** A small coloured mark before the name (family colour). */
   dot?: ReactNode
+  /** One-line chip: the hint stays as the input's description but is not shown. */
+  hideHint?: boolean
 }) {
   const id = useId()
   return (
@@ -42,7 +45,7 @@ export function OptionChip({
       className={cn(
         'motion-colors inline-flex cursor-pointer items-start gap-1.5 border text-left',
         ringWithin,
-        hint
+        hint && !hideHint
           ? 'min-h-11 w-full rounded-[var(--radius-panel)] px-3 py-2'
           : 'h-8 items-center rounded-full px-3 touch:h-11 touch:px-3.5',
         checked
@@ -61,14 +64,17 @@ export function OptionChip({
         onChange={onChange}
         className="sr-only"
       />
-      {checked && <CheckIcon aria-hidden="true" className={cn('-ml-0.5 size-3.5 shrink-0', hint && 'mt-0.5')} />}
+      {checked && <CheckIcon aria-hidden="true" className={cn('-ml-0.5 size-3.5 shrink-0', hint && !hideHint && 'mt-0.5')} />}
       {dot}
       <span className="grid gap-0.5">
-        <span id={`${id}-label`} className={cn('text-xs leading-[1.35]', hint && 'font-semibold')}>
+        <span id={`${id}-label`} className={cn('text-xs leading-[1.35]', hint && !hideHint && 'font-semibold')}>
           {label}
         </span>
         {hint && (
-          <span id={`${id}-hint`} className={cn('text-xs leading-[1.35]', checked ? 'text-background' : 'text-text-muted')}>
+          <span
+            id={`${id}-hint`}
+            className={cn('text-xs leading-[1.35]', hideHint ? 'sr-only' : checked ? 'text-background' : 'text-text-muted')}
+          >
             {hint}
           </span>
         )}

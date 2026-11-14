@@ -617,3 +617,26 @@ export function areaFit(
     },
   }
 }
+
+/** Fit zoom changes inside this band (relative to the current zoom) count as about the same scale. */
+const CALM_RATIO = { min: 0.8, max: 1.25 }
+
+/**
+ * Whether lit tools drawn at `drawn` can stay where they are: every one
+ * already sits in the free area (less the label margin) and fitting them
+ * would barely change the zoom. Then a changed answer keeps the map still.
+ */
+export function keepsCamera(
+  drawn: Box,
+  viewport: { width: number; height: number },
+  free: { top: number; right: number; bottom: number; left: number },
+): boolean {
+  const inside =
+    drawn.x0 >= free.left + PICK_MARGIN &&
+    drawn.x1 <= viewport.width - free.right - PICK_MARGIN &&
+    drawn.y0 >= free.top + PICK_MARGIN &&
+    drawn.y1 <= viewport.height - free.bottom - PICK_MARGIN
+  if (!inside) return false
+  const { ratio } = areaFit(drawn, viewport, free)
+  return ratio >= CALM_RATIO.min && ratio <= CALM_RATIO.max
+}

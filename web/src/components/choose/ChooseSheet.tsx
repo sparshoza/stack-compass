@@ -119,12 +119,13 @@ export function ChooseSheet({
 }: ChooseSheetProps) {
   const id = useId()
   const tabRefs = useRef<Partial<Record<ChooseMode, HTMLButtonElement | null>>>({})
-  const stackRef = useRef<HTMLHeadingElement>(null)
+  // The stack and match count headings, kept as state so the in-view watch follows them as they mount.
+  const [stackEl, setStackEl] = useState<HTMLHeadingElement | null>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const typeRef = useRef<HTMLInputElement>(null)
   const pickerRef = useRef<HTMLUListElement>(null)
   const questionRef = useRef<HTMLHeadingElement>(null)
-  const countRef = useRef<HTMLHeadingElement>(null)
+  const [countEl, setCountEl] = useState<HTMLHeadingElement | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const focusNext = useRef<{ target: Target; scroll: boolean } | null>(null)
@@ -141,8 +142,8 @@ export function ChooseSheet({
       text: textareaRef.current,
       picker: pickerRef.current?.querySelector('button'),
       question: questionRef.current,
-      stack: stackRef.current,
-      count: countRef.current,
+      stack: stackEl,
+      count: countEl,
     }[target]
     el?.focus({ preventScroll: target === 'stack' || target === 'count' })
     if (target === 'stack' || target === 'count') el?.scrollIntoView?.({ block: 'start' })
@@ -181,8 +182,23 @@ export function ChooseSheet({
   const ready = mode === 'piece' ? hasPiece : hasStack
   const jumpLabel =
     mode === 'piece'
-      ? `${matches.length} ${matches.length === 1 ? 'match' : 'matches'}`
+      ? `See ${matches.length} ${matches.length === 1 ? 'match' : 'matches'}`
       : `Your stack (${results.filter((r) => r.pick).length})`
+
+  // The footer jump goes once the stack or the match count is in view. The
+  // answer is kept per element, so a heading that went away never counts.
+  const jumpTarget = mode === 'piece' ? countEl : stackEl
+  const [inView, setInView] = useState<{ el: Element; visible: boolean } | null>(null)
+  const resultInView = inView !== null && inView.el === jumpTarget && inView.visible
+  useEffect(() => {
+    if (!jumpTarget || typeof IntersectionObserver === 'undefined') return
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView({ el: jumpTarget, visible: entry?.isIntersecting ?? false }),
+      { root: scrollRef.current },
+    )
+    observer.observe(jumpTarget)
+    return () => observer.disconnect()
+  }, [jumpTarget])
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} modal={modal}>
@@ -192,7 +208,8 @@ export function ChooseSheet({
           aria-describedby={`${id}-about`}
           onOpenAutoFocus={(e) => {
             e.preventDefault()
-            tabRefs.current[mode]?.focus()
+            // No ring on opening: the ring is for keyboard moves the person makes.
+            tabRefs.current[mode]?.focus({ focusVisible: false } as FocusOptions)
           }}
           // Focus goes back as the sheet starts to close (useReturnFocusOnClose).
           onCloseAutoFocus={onCloseAutoFocus}
@@ -221,7 +238,11 @@ export function ChooseSheet({
               <div className="flex items-start gap-3">
                 <div className="grid min-w-0 flex-1 gap-1">
                   <DialogPrimitive.Title className="text-[1rem] leading-tight font-semibold">Help me choose</DialogPrimitive.Title>
-                  <DialogPrimitive.Description id={`${id}-about`} className="text-xs leading-[1.5] text-text-muted">
+                  <DialogPrimitive.Description
+                    id={`${id}-about`}
+                    // Steps aside once there is an answer to show, and on phones always; screen readers still get it.
+                    className={cn('text-xs leading-[1.5] text-text-muted max-sm:sr-only', ready && 'sr-only')}
+                  >
                     Get a whole stack for your project, or find one piece, such as a database.
                   </DialogPrimitive.Description>
                 </div>
@@ -259,24 +280,30 @@ export function ChooseSheet({
             <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto px-5 py-5 lg:px-6">
               <Tabs.Content value="stack" className="grid content-start gap-6 outline-none">
                 {chooser.notice && <Notice>{chooser.notice}</Notice>}
-                <Describe
-                  text={chooser.text}
-                  onTextChange={chooser.setText}
-                  onRead={chooser.detectNow}
-                  textareaRef={textareaRef}
-                  detected={
-                    <DetectedChips chips={chooser.chips} nothingFound={chooser.nothingFound} onRemove={chooser.removeChip} />
+                <Questions
+                  answers={answers}
+                  onChange={chooser.setAnswers}
+                  typeRef={typeRef}
+                  describe={
+                    <div className="border-y border-line py-6">
+                      <Describe
+                        text={chooser.text}
+                        onTextChange={chooser.setText}
+                        onRead={chooser.detectNow}
+                        textareaRef={textareaRef}
+                        detected={
+                          <DetectedChips chips={chooser.chips} nothingFound={chooser.nothingFound} onRemove={chooser.removeChip} />
+                        }
+                      />
+                    </div>
                   }
                 />
-                <div className="border-t border-line pt-6">
-                  <Questions answers={answers} onChange={chooser.setAnswers} typeRef={typeRef} />
-                </div>
                 {hasStack && (
                   <div className="border-t border-line pt-6">
                     <StackList
                       results={results}
                       answers={answers}
-                      headingRef={stackRef}
+                      headingRef={setStackEl}
                       litOnMap={litOnMap}
                       onSeeMap={onSeeMap}
                       onFocusTool={onFocusTool}
@@ -297,8 +324,9 @@ export function ChooseSheet({
                   onChangePart={() => go('picker', () => onPieceChange({ layer: null, selection: {} }))}
                   questionRef={questionRef}
                   pickerRef={pickerRef}
-                  countRef={countRef}
+                  countRef={setCountEl}
                   onSeeMap={onSeeMap}
+                  onStartOver={() => go('picker', onStartOver)}
                 />
               </Tabs.Content>
             </div>
@@ -306,26 +334,31 @@ export function ChooseSheet({
             <div className="grid gap-2 border-t border-line bg-surface px-5 py-3.5 lg:rounded-b-[var(--radius-panel)] lg:px-6">
               {ready ? (
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <Button
-                    variant="pill"
-                    size="pill"
-                    className="touch:h-11 max-sm:w-full max-sm:justify-start"
-                    onClick={() => go(mode === 'piece' ? 'count' : 'stack', undefined, false)}
-                  >
-                    {jumpLabel}
-                    <ArrowDownIcon aria-hidden="true" className="ml-auto sm:hidden" />
-                  </Button>
+                  {!resultInView && (
+                    <Button
+                      variant="pill"
+                      size="pill"
+                      className="touch:h-11 max-sm:w-full max-sm:justify-start"
+                      onClick={() => go(mode === 'piece' ? 'count' : 'stack', undefined, false)}
+                    >
+                      {jumpLabel}
+                      <ArrowDownIcon aria-hidden="true" className="max-sm:ml-auto" />
+                    </Button>
+                  )}
                   <Button variant="pill" size="pill" className={cn(primary, 'touch:h-11 max-sm:px-3')} onClick={copyLink}>
                     Copy link
                   </Button>
-                  <Button
-                    variant="quiet"
-                    size="pill"
-                    className="ml-auto touch:h-11 max-sm:px-3"
-                    onClick={() => go(mode === 'piece' ? 'picker' : 'text', onStartOver)}
-                  >
-                    Start over
-                  </Button>
+                  {/* One piece has Start over beside its match count. */}
+                  {mode === 'stack' && (
+                    <Button
+                      variant="quiet"
+                      size="pill"
+                      className="ml-auto -mr-2 px-2 touch:h-11"
+                      onClick={() => go('text', onStartOver)}
+                    >
+                      Start over
+                    </Button>
+                  )}
                 </div>
               ) : (
                 <p className="flex min-h-9 items-center text-xs text-text-muted touch:min-h-11">

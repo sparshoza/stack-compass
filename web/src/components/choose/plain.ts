@@ -90,14 +90,14 @@ export const PIECES: { layer: Layer; label: string; question: string }[] = [
   { layer: 'auth', label: 'Sign-in', question: 'Which sign-in service?' },
   { layer: 'payments', label: 'Payments', question: 'Which payments provider?' },
   { layer: 'email', label: 'Email', question: 'Which email service?' },
-  { layer: 'search', label: 'Search', question: 'Which search engine?' },
   { layer: 'storage', label: 'File storage', question: 'Where to keep files?' },
+  { layer: 'search', label: 'Search', question: 'Which search engine?' },
   { layer: 'cms', label: 'Content editing', question: 'Which content editor?' },
+  { layer: 'mobile', label: 'Mobile app', question: 'Which mobile framework?' },
   { layer: 'jobs-queue', label: 'Background jobs', question: 'Which job runner?' },
   { layer: 'cache', label: 'Cache', question: 'Which cache?' },
-  { layer: 'frontend', label: 'Frontend', question: 'Which frontend?' },
-  { layer: 'backend', label: 'Backend', question: 'Which backend?' },
-  { layer: 'mobile', label: 'Mobile app', question: 'Which mobile framework?' },
+  { layer: 'frontend', label: 'Screens (frontend)', question: 'Which frontend?' },
+  { layer: 'backend', label: 'Server code (backend)', question: 'Which backend?' },
   { layer: 'meta-framework', label: 'Web framework', question: 'Which web framework?' },
   { layer: 'ui-kit', label: 'UI components', question: 'Which UI components?' },
   { layer: 'observability', label: 'Monitoring', question: 'Which monitoring tool?' },
@@ -111,6 +111,11 @@ export const PIECES: { layer: Layer; label: string; question: string }[] = [
 
 export function pieceOf(layer: Layer) {
   return PIECES.find((p) => p.layer === layer)!
+}
+
+/** A part's plain name, the same in both modes: "Sign-in", "Screens (frontend)". */
+export function plainLayerName(layer: Layer): string {
+  return pieceOf(layer).label
 }
 
 /** The "no preference" answer of a one-answer question. */

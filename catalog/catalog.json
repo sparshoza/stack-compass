@@ -4964,11 +4964,13 @@
       "runs_in_app": false,
       "sources": [
         "https://cassandra.apache.org",
-        "https://github.com/apache/cassandra"
+        "https://github.com/apache/cassandra",
+        "https://cassandra.apache.org/doc/latest/cassandra/vector-search/overview.html"
       ],
       "summary": "An open source distributed NoSQL database built for scalability and high availability.",
       "tags": [
-        "high-write-throughput"
+        "high-write-throughput",
+        "vector-search"
       ],
       "url": "https://cassandra.apache.org",
       "verified": "2026-11-14"
@@ -5434,11 +5436,13 @@
       "runs_in_app": false,
       "sources": [
         "https://clickhouse.com",
-        "https://github.com/ClickHouse/ClickHouse"
+        "https://github.com/ClickHouse/ClickHouse",
+        "https://clickhouse.com/docs/engines/table-engines/mergetree-family/annindexes"
       ],
       "summary": "A column-oriented database for real-time analytics, open source or as ClickHouse Cloud.",
       "tags": [
-        "analytics"
+        "analytics",
+        "vector-search"
       ],
       "url": "https://clickhouse.com",
       "verified": "2026-11-14"
@@ -6785,10 +6789,13 @@
       "sources": [
         "https://www.dragonflydb.io",
         "https://github.com/dragonflydb/dragonfly/blob/main/LICENSE.md",
-        "https://github.com/dragonflydb/dragonfly"
+        "https://github.com/dragonflydb/dragonfly",
+        "https://www.dragonflydb.io/docs/command-reference/compatibility"
       ],
       "summary": "An in-memory data store with Redis, Valkey and Memcached APIs, self-hosted or as Dragonfly Cloud.",
-      "tags": [],
+      "tags": [
+        "realtime"
+      ],
       "url": "https://www.dragonflydb.io",
       "verified": "2026-11-14"
     },
@@ -7140,10 +7147,13 @@
       "repo": null,
       "runs_in_app": false,
       "sources": [
-        "https://aws.amazon.com/elasticache"
+        "https://aws.amazon.com/elasticache",
+        "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html"
       ],
       "summary": "A managed in-memory cache on AWS compatible with Valkey, Redis OSS and Memcached.",
-      "tags": [],
+      "tags": [
+        "realtime"
+      ],
       "url": "https://aws.amazon.com/elasticache",
       "verified": "2026-11-14"
     },
@@ -8792,10 +8802,13 @@
       "runs_in_app": false,
       "sources": [
         "https://microsoft.github.io/garnet",
-        "https://github.com/microsoft/garnet"
+        "https://github.com/microsoft/garnet",
+        "https://microsoft.github.io/garnet/docs/commands/api-compatibility"
       ],
       "summary": "A cache-store from Microsoft Research that speaks the RESP protocol, so Redis clients connect unchanged.",
-      "tags": [],
+      "tags": [
+        "realtime"
+      ],
       "url": "https://microsoft.github.io/garnet",
       "verified": "2026-11-14"
     },
@@ -12095,10 +12108,13 @@
       "runs_in_app": false,
       "sources": [
         "https://mariadb.org",
-        "https://github.com/MariaDB/server"
+        "https://github.com/MariaDB/server",
+        "https://mariadb.com/docs/server/reference/sql-structure/vectors/vector-overview"
       ],
       "summary": "An open source relational database server developed by the MariaDB Foundation.",
-      "tags": [],
+      "tags": [
+        "vector-search"
+      ],
       "url": "https://mariadb.org",
       "verified": "2026-11-14"
     },
@@ -17331,11 +17347,13 @@
       "sources": [
         "https://python-rq.org",
         "https://raw.githubusercontent.com/rq/rq/master/LICENSE",
-        "https://github.com/rq/rq"
+        "https://github.com/rq/rq",
+        "https://python-rq.org/docs/scheduling/"
       ],
       "summary": "A simple Python library for queueing jobs and processing them in the background with Redis.",
       "tags": [
-        "background-jobs"
+        "background-jobs",
+        "scheduled-jobs"
       ],
       "url": "https://python-rq.org",
       "verified": "2026-11-14"
@@ -18144,11 +18162,13 @@
         "https://sidekiq.org",
         "https://github.com/sidekiq/sidekiq/blob/main/LICENSE.txt",
         "https://github.com/sidekiq/sidekiq/wiki/Getting-Started",
-        "https://github.com/sidekiq/sidekiq"
+        "https://github.com/sidekiq/sidekiq",
+        "https://github.com/sidekiq/sidekiq/wiki/Scheduled-Jobs"
       ],
       "summary": "Simple, efficient background jobs for Ruby, with a free LGPL edition and paid Pro and Enterprise tiers.",
       "tags": [
-        "background-jobs"
+        "background-jobs",
+        "scheduled-jobs"
       ],
       "url": "https://sidekiq.org",
       "verified": "2026-11-14"
@@ -20377,10 +20397,13 @@
       "sources": [
         "https://temporal.io",
         "https://docs.temporal.io/develop",
-        "https://github.com/temporalio/temporal"
+        "https://github.com/temporalio/temporal",
+        "https://docs.temporal.io/schedule"
       ],
       "summary": "A durable execution platform that resumes workflows after crashes, with SDKs in many languages.",
-      "tags": [],
+      "tags": [
+        "scheduled-jobs"
+      ],
       "url": "https://temporal.io",
       "verified": "2026-11-14"
     },
@@ -21230,11 +21253,13 @@
       "repo": null,
       "runs_in_app": false,
       "sources": [
-        "https://upstash.com/docs/redis/overall/getstarted"
+        "https://upstash.com/docs/redis/overall/getstarted",
+        "https://upstash.com/docs/redis/features/restapi"
       ],
       "summary": "Serverless Redis with a per-request pricing model and an HTTP API for edge runtimes.",
       "tags": [
-        "edge-runtime"
+        "edge-runtime",
+        "realtime"
       ],
       "url": "https://upstash.com/docs/redis/overall/getstarted",
       "verified": "2026-11-14"
@@ -21330,10 +21355,13 @@
       "runs_in_app": false,
       "sources": [
         "https://valkey.io",
-        "https://github.com/valkey-io/valkey"
+        "https://github.com/valkey-io/valkey",
+        "https://valkey.io/topics/pubsub/"
       ],
       "summary": "A BSD-licensed key/value store backed by the Linux Foundation, for caching, queues and primary data.",
-      "tags": [],
+      "tags": [
+        "realtime"
+      ],
       "url": "https://valkey.io",
       "verified": "2026-11-14"
     },

@@ -7,7 +7,7 @@ url: https://clickhouse.com
 repo: https://github.com/ClickHouse/ClickHouse
 license: Apache-2.0
 languages: []
-tags: [analytics]
+tags: [analytics, vector-search]
 hosting: [managed, self-hosted]
 pricing: [oss, paid]
 maturity: established
@@ -17,4 +17,4 @@ edges:
 - {type: pairs-with, target: postgresql}
 - {type: pairs-with, target: gorm}
 verified: 2026-11-14
-sources: ['https://clickhouse.com', 'https://github.com/ClickHouse/ClickHouse']
+sources: ['https://clickhouse.com', 'https://github.com/ClickHouse/ClickHouse', 'https://clickhouse.com/docs/engines/table-engines/mergetree-family/annindexes']

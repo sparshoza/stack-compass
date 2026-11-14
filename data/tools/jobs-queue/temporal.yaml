@@ -8,7 +8,7 @@ url: https://temporal.io
 repo: https://github.com/temporalio/temporal
 license: MIT
 languages: [go, java, csharp, php, python, ruby, rust, typescript]
-tags: []
+tags: [scheduled-jobs]
 hosting: [self-hosted, managed]
 pricing: [oss, paid]
 maturity: established
@@ -17,4 +17,4 @@ avoid_when: [A simple fire-and-forget queue]
 edges:
 - {type: alternative-to, target: trigger-dev}
 verified: 2026-11-14
-sources: ['https://temporal.io', 'https://docs.temporal.io/develop', 'https://github.com/temporalio/temporal']
+sources: ['https://temporal.io', 'https://docs.temporal.io/develop', 'https://github.com/temporalio/temporal', 'https://docs.temporal.io/schedule']

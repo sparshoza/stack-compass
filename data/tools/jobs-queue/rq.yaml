@@ -8,7 +8,7 @@ url: https://python-rq.org
 repo: https://github.com/rq/rq
 license: BSD-2-Clause
 languages: [python]
-tags: [background-jobs]
+tags: [background-jobs, scheduled-jobs]
 hosting: [self-hosted]
 pricing: [oss]
 maturity: established
@@ -19,4 +19,4 @@ edges:
 - {type: pairs-with, target: redis}
 - {type: pairs-with, target: valkey}
 verified: 2026-11-14
-sources: ['https://python-rq.org', 'https://raw.githubusercontent.com/rq/rq/master/LICENSE', 'https://github.com/rq/rq']
+sources: ['https://python-rq.org', 'https://raw.githubusercontent.com/rq/rq/master/LICENSE', 'https://github.com/rq/rq', 'https://python-rq.org/docs/scheduling/']

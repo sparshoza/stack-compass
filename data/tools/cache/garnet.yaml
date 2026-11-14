@@ -8,7 +8,7 @@ url: https://microsoft.github.io/garnet
 repo: https://github.com/microsoft/garnet
 license: MIT
 languages: []
-tags: []
+tags: [realtime]
 hosting: [self-hosted]
 pricing: [oss]
 maturity: emerging
@@ -19,4 +19,4 @@ edges:
 - {type: alternative-to, target: redis}
 - {type: alternative-to, target: valkey}
 verified: 2026-11-14
-sources: ['https://microsoft.github.io/garnet', 'https://github.com/microsoft/garnet']
+sources: ['https://microsoft.github.io/garnet', 'https://github.com/microsoft/garnet', 'https://microsoft.github.io/garnet/docs/commands/api-compatibility']

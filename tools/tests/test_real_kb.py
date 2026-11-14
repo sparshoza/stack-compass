@@ -233,3 +233,34 @@ def test_go_phrases_and_no_inner_tool_bias_phrases():
     phrases = _kw_phrases()
     assert {"in go", "using go", "use go", "written in go", "golang"} <= phrases
     assert not {"s3 compatible", "stripe like payments"} & phrases
+
+
+# A chosen capability is required in the layer it adds (when some tool there has
+# it), so these are the tools each one leaves out, each checked against its
+# official docs. PostgreSQL gets vector search from the separate pgvector tool,
+# MySQL keeps DISTANCE() to HeatWave, Temporal and Quartz run workflows and
+# schedules rather than a job queue, and the email gaps send no mail.
+CAPABILITY_GAPS = {
+    "full-text-search": set(),
+    "file-uploads": set(),
+    "payments": set(),
+    "transactional-email": {"mailhog", "mailpit", "mjml", "react-email"},
+    "background-jobs": {"quartz", "temporal"},
+    "scheduled-jobs": set(),
+    "content-editing": set(),
+    "realtime": {"caffeine", "ehcache", "memcached"},
+    "native-mobile": set(),
+    "vector-search": {"dynamodb", "mysql", "postgresql", "sqlite"},
+}
+
+
+def test_required_capabilities_leave_out_only_reviewed_tools():
+    kb = load_kb(DATA)
+    gaps = {}
+    for cap, layers in kb.vocab.capability_layers.items():
+        if cap == "rest-api":
+            continue  # pinned by test_rest_api_tags_only_where_docs_say_so
+        gaps[cap] = {
+            t.id for t in kb.tools.values() if t.layer in layers and cap not in t.tags
+        }
+    assert gaps == CAPABILITY_GAPS

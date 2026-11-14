@@ -7,7 +7,7 @@ url: https://cassandra.apache.org
 repo: https://github.com/apache/cassandra
 license: Apache-2.0
 languages: []
-tags: [high-write-throughput]
+tags: [high-write-throughput, vector-search]
 hosting: [self-hosted]
 pricing: [oss]
 maturity: established
@@ -18,4 +18,4 @@ edges:
 - {type: pairs-with, target: spring-boot}
 - {type: pairs-with, target: express}
 verified: 2026-11-14
-sources: ['https://cassandra.apache.org', 'https://github.com/apache/cassandra']
+sources: ['https://cassandra.apache.org', 'https://github.com/apache/cassandra', 'https://cassandra.apache.org/doc/latest/cassandra/vector-search/overview.html']

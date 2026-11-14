@@ -6,7 +6,7 @@ summary: A managed in-memory cache on AWS compatible with Valkey, Redis OSS and 
 url: https://aws.amazon.com/elasticache
 license: Proprietary
 languages: []
-tags: []
+tags: [realtime]
 hosting: [managed]
 pricing: [paid]
 maturity: established
@@ -17,4 +17,4 @@ edges:
 - {type: pairs-with, target: redis}
 - {type: pairs-with, target: valkey}
 verified: 2026-11-14
-sources: ['https://aws.amazon.com/elasticache']
+sources: ['https://aws.amazon.com/elasticache', 'https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html']

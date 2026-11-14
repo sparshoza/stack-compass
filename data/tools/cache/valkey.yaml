@@ -7,7 +7,7 @@ url: https://valkey.io
 repo: https://github.com/valkey-io/valkey
 license: BSD-3-Clause
 languages: []
-tags: []
+tags: [realtime]
 hosting: [self-hosted]
 pricing: [oss]
 maturity: established
@@ -20,4 +20,4 @@ edges:
 - {type: pairs-with, target: elasticache}
 - {type: pairs-with, target: rq}
 verified: 2026-11-14
-sources: ['https://valkey.io', 'https://github.com/valkey-io/valkey']
+sources: ['https://valkey.io', 'https://github.com/valkey-io/valkey', 'https://valkey.io/topics/pubsub/']

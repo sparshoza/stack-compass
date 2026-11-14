@@ -7,7 +7,7 @@ url: https://mariadb.org
 repo: https://github.com/MariaDB/server
 license: GPL-2.0
 languages: []
-tags: []
+tags: [vector-search]
 hosting: [self-hosted, managed]
 pricing: [oss, paid]
 maturity: established
@@ -28,4 +28,4 @@ edges:
 - {type: pairs-with, target: django-orm}
 - {type: pairs-with, target: eloquent}
 verified: 2026-11-14
-sources: ['https://mariadb.org', 'https://github.com/MariaDB/server']
+sources: ['https://mariadb.org', 'https://github.com/MariaDB/server', 'https://mariadb.com/docs/server/reference/sql-structure/vectors/vector-overview']

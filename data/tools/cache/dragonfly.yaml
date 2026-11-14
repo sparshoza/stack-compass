@@ -8,7 +8,7 @@ url: https://www.dragonflydb.io
 repo: https://github.com/dragonflydb/dragonfly
 license: Dragonfly Source-Available License
 languages: []
-tags: []
+tags: [realtime]
 hosting: [self-hosted, managed]
 pricing: [free-tier, paid]
 maturity: emerging
@@ -19,4 +19,4 @@ edges:
 - {type: alternative-to, target: redis}
 - {type: alternative-to, target: valkey}
 verified: 2026-11-14
-sources: ['https://www.dragonflydb.io', 'https://github.com/dragonflydb/dragonfly/blob/main/LICENSE.md', 'https://github.com/dragonflydb/dragonfly']
+sources: ['https://www.dragonflydb.io', 'https://github.com/dragonflydb/dragonfly/blob/main/LICENSE.md', 'https://github.com/dragonflydb/dragonfly', 'https://www.dragonflydb.io/docs/command-reference/compatibility']

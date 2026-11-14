@@ -42,7 +42,7 @@ const FIXED: Record<string, string> = {
   "hosting-mismatch": "does not offer the hosting you chose",
   "budget-paid-only": "has no free tier or open-source option",
   "language-mismatch-with-pick": "does not share a language with the rest of your stack",
-  "not-built-on-pick": "is not built on your frontend pick",
+  "not-built-on-pick": "is built on a tool you did not pick",
   "not-compatible-with-pick": "does not work with your frontend pick",
 };
 

@@ -333,7 +333,11 @@ export default function App() {
                 variant="pill"
                 size="pill"
                 className="absolute top-36 left-4 md:top-[4.75rem] md:left-6"
-                onClick={() => chooser.setView('questions')}
+                onClick={() => {
+                  chooser.setView('questions')
+                  // The button goes away with the stack, so focus lands on the map it sat on.
+                  document.getElementById('map')?.focus()
+                }}
               >
                 <XIcon aria-hidden="true" />
                 Clear stack

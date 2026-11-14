@@ -436,4 +436,15 @@ describe('map screen', () => {
       Reflect.deleteProperty(document, 'fullscreenEnabled')
     }
   })
+
+  it('Clear stack moves focus to the map region', async () => {
+    const user = userEvent.setup()
+    renderApp('/?t=saas')
+    await waitFor(() => expect(graph.props?.highlight?.length).toBeGreaterThan(0))
+    await user.click(within(screen.getByRole('dialog', { name: 'Help me choose' })).getByRole('button', { name: 'Close' }))
+    const clear = screen.getByRole('button', { name: 'Clear stack' })
+    await user.click(clear)
+    expect(clear).not.toBeInTheDocument()
+    expect(document.activeElement).toBe(document.getElementById('map'))
+  })
 })

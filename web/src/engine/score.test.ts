@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { kb, type Layer } from "../lib/kb";
-import { DEFAULT_ANSWERS, type Answers } from "./answers";
+import { DEFAULT_ANSWERS, fromDetected, type Answers } from "./answers";
+import { match } from "./match";
 import { makeKb, makeTool } from "./fixture";
 import { scoreStack, type LayerResult } from "./score";
 
@@ -199,6 +200,47 @@ describe("scoreStack", () => {
       "meta-framework",
     );
     expect(alone.pick).toBe("astro");
+  });
+
+  it("a tool built on a tool in another layer needs that tool to be the pick there", () => {
+    const tools = [
+      makeTool("django", "backend", { languages: ["python"], maturity: "emerging" }),
+      makeTool("fastapi", "backend", { languages: ["python"] }),
+      makeTool("django-orm", "orm", {
+        languages: ["python"],
+        edges: [
+          { type: "pairs-with", target: "django" },
+          { type: "built-on", target: "django" },
+        ],
+      }),
+      makeTool("sqlalchemy", "orm", { languages: ["python"], maturity: "emerging" }),
+      // Built on another tool in its own layer: no cross-layer requirement.
+      makeTool("sqlmodel", "orm", {
+        languages: ["python"],
+        maturity: "emerging",
+        edges: [{ type: "built-on", target: "sqlalchemy" }],
+      }),
+    ];
+    const other = layerOf(
+      scoreStack(answers(), makeKb(tools, ["backend", "orm"])),
+      "orm",
+    );
+    expect(other.pick).toBe("sqlalchemy");
+    expect(other.alternatives).toEqual(["sqlmodel"]);
+    expect(other.excluded).toEqual([
+      { toolId: "django-orm", reason: "not-built-on-pick" },
+    ]);
+    const djangoPicked = layerOf(
+      scoreStack(
+        answers({ knownTools: ["django"] }),
+        makeKb(tools, ["backend", "orm"]),
+      ),
+      "orm",
+    );
+    expect(djangoPicked.pick).toBe("django-orm");
+    // No backend layer, so nothing to be built on yet.
+    const alone = layerOf(scoreStack(answers(), makeKb(tools, ["orm"])), "orm");
+    expect(alone.pick).toBe("django-orm");
   });
 
   it("state and ui-kit compatible with frontend pick", () => {
@@ -649,6 +691,31 @@ describe("scoreStack", () => {
     expect(none.excluded).toEqual([]);
   });
 
+  it("testing shares a language with the mobile pick too", () => {
+    const tools = [
+      makeTool("flutter", "mobile", { languages: ["dart"] }),
+      makeTool("expo", "mobile", { languages: ["javascript", "typescript"], maturity: "emerging" }),
+      makeTool("playwright", "testing", { languages: ["typescript", "python"] }),
+      makeTool("postman", "testing", { maturity: "emerging" }),
+    ];
+    const flutterOnly = layerOf(
+      scoreStack(answers(), makeKb(tools, ["mobile", "testing"])),
+      "testing",
+    );
+    expect(flutterOnly.pick).toBe("postman");
+    expect(flutterOnly.excluded).toEqual([
+      { toolId: "playwright", reason: "language-mismatch-with-pick" },
+    ]);
+    const expo = layerOf(
+      scoreStack(
+        answers({ knownTools: ["expo"] }),
+        makeKb(tools, ["mobile", "testing"]),
+      ),
+      "testing",
+    );
+    expect(expo.pick).toBe("playwright");
+  });
+
   it("excluded lists filtered tools that would rank top 3", () => {
     const fx = makeKb(
       [
@@ -791,5 +858,79 @@ describe("scoreStack", () => {
     expect(scoreStack(a, kb)).toEqual(first);
     const shuffled = { ...kb, tools: [...kb.tools].reverse() };
     expect(scoreStack(a, shuffled)).toEqual(first);
+  });
+});
+
+describe("scoreStack on the real catalog", () => {
+  const pickOf = (a: Answers, layer: Layer) =>
+    scoreStack(a, kb).find((r) => r.layer === layer)?.pick ?? null;
+  const fromText = (text: string, over: Partial<Answers> = {}): Answers => ({
+    ...fromDetected(match(text, kb)),
+    ...over,
+  });
+
+  it("the Django ORM only goes with a Django backend", () => {
+    // Knowing the Django ORM is not enough without Django as the backend.
+    const flask = fromText("a web app in Python", {
+      knownTools: ["flask", "django-orm"],
+    });
+    expect(pickOf(flask, "backend")).toBe("flask");
+    const orm = scoreStack(flask, kb).find((r) => r.layer === "orm");
+    // The Python ORMs that pass: the Django ORM is filtered out, not ranked.
+    expect([orm?.pick, ...(orm?.alternatives ?? [])]).toEqual(["sqlalchemy", "sqlmodel"]);
+    const django = fromText("a Django app", { projectType: "web-app" });
+    expect(pickOf(django, "backend")).toBe("django");
+    expect(pickOf(django, "orm")).toBe("django-orm");
+  });
+
+  it("\"we use Go\" and \"an api in go\" get a Go backend", () => {
+    for (const text of ["we use Go", "an api in go"]) {
+      const a = fromText(text, { projectType: "api-only" });
+      expect(a.languagesPrefer).toEqual(["go"]);
+      expect(kb.tools.find((t) => t.id === pickOf(a, "backend"))?.languages).toContain("go");
+    }
+  });
+
+  const jobCases: [string, Partial<Answers>, string, string][] = [
+    ["rails", { languagesPrefer: ["ruby"], knownTools: ["rails"] }, "rails", "solid-queue"],
+    ["phoenix", { languagesPrefer: ["elixir"], knownTools: ["phoenix"] }, "phoenix", "oban"],
+    ["laravel", { languagesPrefer: ["php"], knownTools: ["laravel"] }, "laravel", "laravel-queues"],
+    ["spring", { languagesPrefer: ["java"], knownTools: ["spring-boot"] }, "spring-boot", "jobrunr"],
+  ];
+  for (const [name, over, backend, jobs] of jobCases) {
+    it(`a managed ${name} SaaS with background jobs gets its in-app job library`, () => {
+      const a: Answers = {
+        ...DEFAULT_ANSWERS,
+        projectType: "saas",
+        capabilities: ["background-jobs"],
+        hosting: "managed",
+        ...over,
+      };
+      expect(pickOf(a, "backend")).toBe(backend);
+      expect(pickOf(a, "jobs-queue")).toBe(jobs);
+      expect(kb.tools.find((t) => t.id === jobs)?.hosting).not.toContain("managed");
+    });
+  }
+
+  it("a Flutter app with no other language pick gets no Playwright", () => {
+    const a = fromText("a Flutter app", { languagesPrefer: ["dart"] });
+    expect(pickOf(a, "backend")).toBeNull();
+    expect(pickOf(a, "mobile")).toBe("flutter");
+    expect(pickOf(a, "testing")).not.toBe("playwright");
+  });
+
+  it("a Rails web app shows No match for state because nothing in the catalog works with Stimulus", () => {
+    const results = scoreStack(fromText("a web app in Rails"), kb);
+    expect(results.find((r) => r.layer === "frontend")?.pick).toBe("stimulus");
+    const state = results.find((r) => r.layer === "state");
+    expect(state?.pick).toBeNull();
+    const compatible = kb.tools.filter(
+      (t) =>
+        t.layer === "state" &&
+        t.edges.some(
+          (e) => e.target === "stimulus" && ["built-on", "pairs-with"].includes(e.type),
+        ),
+    );
+    expect(compatible).toEqual([]);
   });
 });

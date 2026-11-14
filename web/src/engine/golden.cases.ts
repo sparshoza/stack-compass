@@ -141,7 +141,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { backendLanguage: "php" },
       { pickIs: { layer: "backend", tool: "laravel" } },
       { pickIs: { layer: "frontend", tool: "react" } },
-      { pickIs: { layer: "orm", tool: "doctrine" } },
+      // Laravel's own ORM, which pairs with it.
+      { pickIs: { layer: "orm", tool: "eloquent" } },
       { pickIs: { layer: "payments", tool: "stripe" } },
       { pickIs: { layer: "email", tool: "resend" } },
     ],
@@ -279,7 +280,9 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { backendLanguage: "python" },
       { pickIs: { layer: "frontend", tool: "react" } },
       { pickIs: { layer: "meta-framework", tool: "nextjs" } },
-      { pickIs: { layer: "orm", tool: "sqlalchemy" } },
+      // The backend pick is Django, so its built-in ORM fits.
+      { pickIs: { layer: "backend", tool: "django" } },
+      { pickIs: { layer: "orm", tool: "django-orm" } },
     ],
   },
   {
@@ -348,6 +351,58 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { pickIs: { layer: "jobs-queue", tool: "bullmq" } },
       { pickIs: { layer: "storage", tool: "uploadthing" } },
       { noToolWithLanguage: "php" },
+    ],
+  },
+  {
+    id: "rest-api-short",
+    text: "I need a REST API",
+    checks: [
+      { projectType: "api-only" },
+      { layerPresent: "api-style" },
+      { pickIs: { layer: "api-style", tool: "openapi" } },
+    ],
+  },
+  {
+    // "api" alone sets no project type, so the person picks API only by hand.
+    id: "api-in-go-short",
+    text: "an api in go",
+    answers: { projectType: "api-only" },
+    checks: [
+      { backendLanguage: "go" },
+      { pickIs: { layer: "backend", tool: "gin" } },
+      { pickIs: { layer: "orm", tool: "gorm" } },
+      { pickIs: { layer: "testing", tool: "testify" } },
+    ],
+  },
+  {
+    id: "django-app-short",
+    text: "a Django app",
+    answers: { projectType: "web-app" },
+    checks: [
+      { backendLanguage: "python" },
+      { pickIs: { layer: "backend", tool: "django" } },
+      { pickIs: { layer: "orm", tool: "django-orm" } },
+    ],
+  },
+  {
+    id: "laravel-web-app-short",
+    text: "a web app in Laravel",
+    checks: [
+      { projectType: "web-app" },
+      { pickIs: { layer: "backend", tool: "laravel" } },
+      { pickIs: { layer: "orm", tool: "eloquent" } },
+    ],
+  },
+  {
+    // Swift is typed, so it is preferred: the server and the app share it.
+    id: "ios-swift-short",
+    text: "an iOS app in Swift",
+    checks: [
+      { projectType: "mobile-app" },
+      { backendLanguage: "swift" },
+      { pickIs: { layer: "backend", tool: "vapor" } },
+      { pickIs: { layer: "orm", tool: "fluent" } },
+      { pickIs: { layer: "mobile", tool: "swiftui" } },
     ],
   },
 ];

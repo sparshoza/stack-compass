@@ -71,9 +71,10 @@ More detail, including what each part does and what the tests cover: [docs/archi
    - you prefer languages and none of them is in a backend, ORM, frontend, meta-framework or mobile tool (on frontend, meta-framework and mobile this applies only when some tool in the layer has a preferred language, so a Python web app still gets a frontend; TypeScript and JavaScript count as one);
    - its hosting does not match yours (managed or self-hosted), shown as "has no official managed service" when you chose managed. Libraries that run inside your app (auth libraries such as Better Auth or Devise, email libraries, in-browser search, in-process caches) are never filtered by hosting: there is no server of their own to host;
    - it is paid only and your budget is free tiers;
-   - it shares no language with the backend pick (ORM, API style, job queue) or with the backend or frontend pick (testing);
+   - it shares no language with the backend pick (ORM, API style, job queue) or with the backend, frontend or mobile pick (testing), so a Flutter app with no other language pick gets no browser test tool;
    - it is an auth library that runs in your app and shares no language with the backend pick (or with the frontend pick when there is no backend), or a hosted auth service with no SDK in the backend or frontend language;
-   - it is a meta-framework not built on the frontend pick, or a state library or UI kit that is neither built on nor pairs with it.
+   - it is a meta-framework not built on the frontend pick, or a state library or UI kit that is neither built on nor pairs with it;
+   - it is built on a tool in another layer that is not that layer's pick (the Django ORM needs Django as the backend, Fluent needs Vapor).
 5. **Points.** +3 for each feature you asked for that the tool supports, +2 if you already know it, +2 for each earlier pick it pairs with, +1 for an established tool at startup or high-traffic scale, -1 for an emerging tool at high traffic, -2 for a legacy tool.
 6. **Ties** go to the tool with more pairs-with links in the catalog, then to the alphabetically first id.
 7. **Explanations** are filled-in templates, not generated text: the two biggest score items in plain words plus the tool's first "good for" line, a watch-out from its first "avoid when" line, the full score breakdown, up to two alternatives, and the close tools a hard filter removed with the reason. A layer where nothing fits says "No match" and why.
@@ -106,7 +107,7 @@ Measured on 2026-11-14 on Windows 11 Pro, Intel Core i7-12700H, 16 GB RAM, Pytho
 | jobs-queue | 14 | observability | 14 |
 | search | 13 | testing | 16 |
 
-**Golden set**: 25 of 25 cases pass (100%). Each case is a written project description with checks on the result, for example "backend language is Python", "payments pick is Stripe", "no PHP tool picked". Cases are in `web/src/engine/golden.cases.ts`. Command: `npm --prefix web run golden` (29 tests: the 25 cases plus 4 checks on the set itself).
+**Golden set**: 30 of 30 cases pass (100%). Each case is a written project description with checks on the result, for example "backend language is Python", "payments pick is Stripe", "no PHP tool picked". Cases are in `web/src/engine/golden.cases.ts`. Command: `npm --prefix web run golden` (34 tests: the 30 cases plus 4 checks on the set itself).
 
 **Tests**: 50 Python tests (`uv run pytest`) and 283 web tests in 23 files (`npm --prefix web test -- --run`), all passing.
 
@@ -123,6 +124,15 @@ Open a tool on the map and choose **Suggest an edit**, or use **Report an issue*
 - Scores are simple sums, and ties are broken by how many pairs-with links a tool has in the catalog, which favours well-connected tools over niche ones.
 - There is no live data: no GitHub stars, download counts or latest versions. Facts are as of each tool's `verified` date.
 - The map is built for a desktop screen. On a phone it works with pinch and tap, but the table view is easier to read.
+
+## Roadmap
+
+Planned, not built yet:
+
+- Motion: camera glides on the map, a sliding panel and picks lighting up in layer order, all off when the system asks for reduced motion.
+- Live GitHub stars and latest versions, fetched at build time with a weekly scheduled rebuild.
+- More tools in every layer.
+- A preview image for each shared result, so a link shows the stack it holds.
 
 ## Credit
 

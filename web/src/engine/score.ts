@@ -32,14 +32,16 @@ export type LayerResult = {
  * - budget-paid-only: on a free budget, pricing must include oss or free-tier.
  * - language-mismatch-with-pick: an orm, api-style or jobs-queue tool must
  *   share a language with the backend pick, and a testing tool with the
- *   backend or the frontend pick, when such a pick exists. An auth library
+ *   backend, the frontend or the mobile pick, when such a pick exists. An auth library
  *   that runs in the app must share a language with the backend pick, or
  *   with the frontend pick when there is no backend pick; a hosted auth
  *   service may match either. Tools with no languages pass.
  *
  * Everywhere languages are compared, typescript and javascript count as one.
  * - not-built-on-pick: a meta-framework must be built-on the frontend pick,
- *   when there is one.
+ *   when there is one. Any other tool built-on a tool in another layer
+ *   (the Django ORM on Django) needs that tool to be the pick of its layer,
+ *   when that layer has a pick; state and ui-kit keep the rule below.
  * - not-compatible-with-pick: state and ui-kit tools must be built-on or
  *   pair with the frontend pick, when there is one.
  */
@@ -94,8 +96,15 @@ const LANGUAGE_PICK_LAYERS: Partial<Record<Layer, Layer[]>> = {
   "api-style": ["backend"],
   "jobs-queue": ["backend"],
   auth: ["backend", "frontend"],
-  testing: ["backend", "frontend"],
+  testing: ["backend", "frontend", "mobile"],
 };
+
+/** Layers with their own rule against the frontend pick. */
+const FRONTEND_RULE_LAYERS: ReadonlySet<Layer> = new Set<Layer>([
+  "meta-framework",
+  "state",
+  "ui-kit",
+]);
 
 /** Fixed score codes. Capability and pairs-with codes carry an id suffix. */
 export const SCORE_CODES = {
@@ -147,11 +156,30 @@ type Picks = Map<Layer, Tool>;
 /** Facts about the layer being scored that the filters need. */
 type LayerContext = { preferApplies: boolean };
 
+/**
+ * True when every other layer the tool is built-on, and that has a pick,
+ * has as its pick one of the tools it is built-on there.
+ */
+function builtOnPicks(tool: Tool, picks: Picks, layers: Map<string, Layer>): boolean {
+  const targets = new Map<Layer, string[]>();
+  for (const e of tool.edges) {
+    const layer = layers.get(e.target);
+    if (e.type !== "built-on" || !layer || layer === tool.layer) continue;
+    targets.set(layer, [...(targets.get(layer) ?? []), e.target]);
+  }
+  for (const [layer, ids] of targets) {
+    const pick = picks.get(layer);
+    if (pick && !ids.includes(pick.id)) return false;
+  }
+  return true;
+}
+
 function failedCheck(
   tool: Tool,
   a: Answers,
   picks: Picks,
   ctx: LayerContext,
+  layers: Map<string, Layer>,
 ): ReasonCode | null {
   const { layer, languages } = tool;
   if (avoidsAll(languages, a.languagesAvoid)) return "language-excluded";
@@ -198,6 +226,9 @@ function failedCheck(
     frontend &&
     !hasEdge(tool, ["built-on"], frontend.id)
   ) {
+    return "not-built-on-pick";
+  }
+  if (!FRONTEND_RULE_LAYERS.has(layer) && !builtOnPicks(tool, picks, layers)) {
     return "not-built-on-pick";
   }
   if (
@@ -265,6 +296,7 @@ function scoreLayer(
   tools: Tool[],
   a: Answers,
   picks: Picks,
+  layers: Map<string, Layer>,
 ): LayerResult {
   const ctx: LayerContext = { preferApplies: preferApplies(layer, tools, a) };
   const ranked: Ranked[] = tools
@@ -275,7 +307,7 @@ function scoreLayer(
         breakdown,
         total: breakdown.reduce((sum, item) => sum + item.points, 0),
         pairs: tool.edges.filter((e) => e.type === "pairs-with").length,
-        reason: failedCheck(tool, a, picks, ctx),
+        reason: failedCheck(tool, a, picks, ctx, layers),
       };
     })
     .sort(byRank);
@@ -300,14 +332,16 @@ function scoreLayer(
  */
 export function scoreStack(a: Answers, kb: KnowledgeBase): LayerResult[] {
   const byLayer = new Map<Layer, Tool[]>();
+  const layerOfTool = new Map<string, Layer>();
   for (const tool of kb.tools) {
+    layerOfTool.set(tool.id, tool.layer);
     const list = byLayer.get(tool.layer);
     if (list) list.push(tool);
     else byLayer.set(tool.layer, [tool]);
   }
   const picks: Picks = new Map();
   return selectLayers(a, kb).map((layer) => {
-    const result = scoreLayer(layer, byLayer.get(layer) ?? [], a, picks);
+    const result = scoreLayer(layer, byLayer.get(layer) ?? [], a, picks, layerOfTool);
     const pick = result.pick
       ? byLayer.get(layer)?.find((t) => t.id === result.pick)
       : undefined;

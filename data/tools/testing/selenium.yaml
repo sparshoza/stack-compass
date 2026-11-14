@@ -15,7 +15,6 @@ languages:
 - ruby
 - javascript
 - kotlin
-- rust
 tags: []
 hosting:
 - self-hosted

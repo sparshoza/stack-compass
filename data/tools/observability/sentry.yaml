@@ -2,7 +2,6 @@ id: sentry
 name: Sentry
 aliases:
 - sentry.io
-match_name: false
 layer: observability
 summary: Application monitoring with error tracking and tracing, with SDKs for many platforms, hosted or self-hosted.
 url: https://sentry.io

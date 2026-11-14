@@ -1,7 +1,6 @@
 id: cypress
 name: Cypress
 aliases: []
-match_name: false
 layer: testing
 summary: Quality platform for web apps covering end-to-end and component testing in a real browser, with a paid Cypress Cloud.
 url: https://www.cypress.io

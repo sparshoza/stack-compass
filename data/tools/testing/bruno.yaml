@@ -2,6 +2,7 @@ id: bruno
 name: Bruno
 aliases:
 - usebruno
+- bruno api client
 match_name: false
 layer: testing
 summary: Open-source, offline-only API client that stores collections as plain-text Bru files you can version in Git.

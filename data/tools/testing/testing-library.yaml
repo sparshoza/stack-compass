@@ -3,6 +3,7 @@ name: Testing Library
 aliases:
 - react testing library
 - dom testing library
+match_name: false
 layer: testing
 summary: Family of packages for testing UI components the way users use them, with DOM Testing Library at its core.
 url: https://testing-library.com

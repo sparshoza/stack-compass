@@ -1398,28 +1398,10 @@
     },
     {
       "phrases": [
-        "backend service",
-        "backend api",
-        "rest backend",
-        "data api",
-        "webhook receiver",
-        "api for a mobile app",
-        "api gateway",
-        "graphql api"
-      ],
-      "sets": {
-        "capabilities": [],
-        "languages": [],
-        "project_type": "api-only"
-      }
-    },
-    {
-      "phrases": [
         "cross platform mobile",
         "android and ios",
         "mobile application",
         "app for my phone",
-        "mobile first app",
         "app in the app store"
       ],
       "sets": {
@@ -1878,7 +1860,6 @@
         "written in python",
         "python backend",
         "python api",
-        "python web app",
         "python service"
       ],
       "sets": {
@@ -1991,7 +1972,6 @@
         "written in ruby",
         "ruby backend",
         "ruby developer",
-        "ruby web app",
         "ruby api"
       ],
       "sets": {
@@ -2039,8 +2019,7 @@
         "written in elixir",
         "elixir backend",
         "beam vm",
-        "elixir api",
-        "elixir web app"
+        "elixir api"
       ],
       "sets": {
         "capabilities": [],
@@ -2253,9 +2232,19 @@
     },
     {
       "phrases": [
-        "javascript tests",
-        "typescript tests",
-        "frontend unit tests"
+        "javascript tests"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "javascript"
+        ],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "typescript tests"
       ],
       "sets": {
         "capabilities": [],
@@ -2386,6 +2375,42 @@
         "capabilities": [],
         "languages": [],
         "project_type": "content-site"
+      }
+    },
+    {
+      "phrases": [
+        "python web app"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "python"
+        ],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "ruby web app"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "ruby"
+        ],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "elixir web app"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [
+          "elixir"
+        ],
+        "project_type": "web-app"
       }
     }
   ],
@@ -4022,10 +4047,6 @@
         {
           "target": "github-actions",
           "type": "alternative-to"
-        },
-        {
-          "target": "junit",
-          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -4057,8 +4078,7 @@
       "repo": null,
       "sources": [
         "https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines",
-        "https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/",
-        "https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-test-results-v2"
+        "https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/"
       ],
       "summary": "CI/CD service in Azure DevOps that builds, tests and deploys many languages on Microsoft-hosted or self-hosted agents.",
       "tags": [],
@@ -4470,7 +4490,8 @@
     },
     {
       "aliases": [
-        "usebruno"
+        "usebruno",
+        "bruno api client"
       ],
       "avoid_when": [
         "You need cloud sync, which Bruno does not plan to offer"
@@ -5078,10 +5099,6 @@
         {
           "target": "buildkite",
           "type": "alternative-to"
-        },
-        {
-          "target": "junit",
-          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -5106,8 +5123,7 @@
       "repo": null,
       "sources": [
         "https://circleci.com",
-        "https://circleci.com/pricing/",
-        "https://circleci.com/docs/collect-test-data/"
+        "https://circleci.com/pricing/"
       ],
       "summary": "Hosted CI/CD service with a free plan, usage-based credits and self-hosted runners on every plan.",
       "tags": [],
@@ -5343,9 +5359,7 @@
       "id": "cloudflare-pages",
       "languages": [
         "javascript",
-        "typescript",
-        "python",
-        "rust"
+        "typescript"
       ],
       "layer": "hosting",
       "license": "Proprietary",
@@ -5789,7 +5803,7 @@
       ],
       "layer": "testing",
       "license": "MIT",
-      "match_name": false,
+      "match_name": true,
       "maturity": "established",
       "name": "Cypress",
       "pricing": [
@@ -8734,10 +8748,6 @@
         {
           "target": "cloudflare-pages",
           "type": "pairs-with"
-        },
-        {
-          "target": "junit",
-          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -8766,8 +8776,7 @@
         "https://docs.gitlab.com/ci/",
         "https://about.gitlab.com/pricing/",
         "https://docs.gitlab.com/ci/pipelines/schedules/",
-        "https://gitlab.com/gitlab-org/gitlab/-/blob/master/LICENSE",
-        "https://docs.gitlab.com/ci/testing/unit_test_reports/"
+        "https://gitlab.com/gitlab-org/gitlab/-/blob/master/LICENSE"
       ],
       "summary": "CI/CD built into GitLab, configured with a .gitlab-ci.yml file and run on GitLab-hosted or your own runners.",
       "tags": [
@@ -10024,10 +10033,6 @@
         {
           "target": "woodpecker-ci",
           "type": "alternative-to"
-        },
-        {
-          "target": "junit",
-          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -10053,8 +10058,7 @@
       "sources": [
         "https://www.jenkins.io",
         "https://www.jenkins.io/doc/",
-        "https://github.com/jenkinsci/jenkins",
-        "https://www.jenkins.io/doc/pipeline/steps/junit/"
+        "https://github.com/jenkinsci/jenkins"
       ],
       "summary": "Self-contained, open-source automation server for building, testing and deploying software, extended with plugins.",
       "tags": [],
@@ -10255,22 +10259,6 @@
         },
         {
           "target": "ktor",
-          "type": "pairs-with"
-        },
-        {
-          "target": "jenkins",
-          "type": "pairs-with"
-        },
-        {
-          "target": "gitlab-ci",
-          "type": "pairs-with"
-        },
-        {
-          "target": "circleci",
-          "type": "pairs-with"
-        },
-        {
-          "target": "azure-pipelines",
           "type": "pairs-with"
         }
       ],
@@ -14200,7 +14188,7 @@
       ],
       "layer": "testing",
       "license": "Apache-2.0",
-      "match_name": false,
+      "match_name": true,
       "maturity": "established",
       "name": "Playwright",
       "pricing": [
@@ -16946,8 +16934,7 @@
         "csharp",
         "ruby",
         "javascript",
-        "kotlin",
-        "rust"
+        "kotlin"
       ],
       "layer": "testing",
       "license": "Apache-2.0",
@@ -17194,7 +17181,7 @@
       ],
       "layer": "observability",
       "license": "FSL-1.1-Apache-2.0",
-      "match_name": false,
+      "match_name": true,
       "maturity": "established",
       "name": "Sentry",
       "pricing": [
@@ -19544,7 +19531,8 @@
     },
     {
       "aliases": [
-        "stretchr testify"
+        "stretchr testify",
+        "testify go"
       ],
       "avoid_when": [
         "You prefer only the standard library",
@@ -19615,7 +19603,7 @@
       ],
       "layer": "testing",
       "license": "MIT",
-      "match_name": true,
+      "match_name": false,
       "maturity": "established",
       "name": "Testing Library",
       "pricing": [

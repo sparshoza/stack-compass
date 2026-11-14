@@ -188,9 +188,7 @@
   sets: {project_type: ecommerce}
 - phrases: [company website, small business website, brochure site, restaurant website, photography portfolio, news site, online magazine, marketing website, event website]
   sets: {project_type: content-site, capabilities: [static-content]}
-- phrases: [backend service, backend api, rest backend, data api, webhook receiver, api for a mobile app, api gateway, graphql api]
-  sets: {project_type: api-only}
-- phrases: [cross platform mobile, android and ios, mobile application, app for my phone, mobile first app, app in the app store]
+- phrases: [cross platform mobile, android and ios, mobile application, app for my phone, app in the app store]
   sets: {project_type: mobile-app, capabilities: [native-mobile]}
 - phrases: [chat application, real time chat, online multiplayer, live auction, live scoreboard, collaborative whiteboard, realtime collaboration, live notifications]
   sets: {project_type: realtime-app, capabilities: [realtime]}
@@ -244,7 +242,7 @@
   sets: {capabilities: [high-write-throughput]}
 - phrases: [native ios, native android, app store release, store submission, device sensors, push notifications mobile]
   sets: {capabilities: [native-mobile]}
-- phrases: [written in python, python backend, python api, python web app, python service]
+- phrases: [written in python, python backend, python api, python service]
   sets: {languages: [python]}
 - phrases: [written in typescript, typescript backend, typescript api, node typescript, typescript fullstack]
   sets: {languages: [typescript]}
@@ -258,13 +256,13 @@
   sets: {languages: [kotlin]}
 - phrases: [written in c#, c# backend, csharp backend, dotnet backend, c# api, dotnet api, .net backend]
   sets: {languages: [csharp]}
-- phrases: [written in ruby, ruby backend, ruby developer, ruby web app, ruby api]
+- phrases: [written in ruby, ruby backend, ruby developer, ruby api]
   sets: {languages: [ruby]}
 - phrases: [written in php, php backend, php developer, php website, php api]
   sets: {languages: [php]}
 - phrases: [written in rust, rust backend, rust api, rust service, rust web server]
   sets: {languages: [rust]}
-- phrases: [written in elixir, elixir backend, beam vm, elixir api, elixir web app]
+- phrases: [written in elixir, elixir backend, beam vm, elixir api]
   sets: {languages: [elixir]}
 - phrases: [written in dart, dart backend, dart server, dart developer]
   sets: {languages: [dart]}
@@ -294,7 +292,9 @@
   sets: {languages: [php]}
 - phrases: [elixir tests, elixir unit tests]
   sets: {languages: [elixir]}
-- phrases: [javascript tests, typescript tests, frontend unit tests]
+- phrases: [javascript tests]
+  sets: {languages: [javascript]}
+- phrases: [typescript tests]
   sets: {languages: [typescript]}
 - phrases: [internet of things, smart devices, device telemetry]
   sets: {capabilities: [high-write-throughput]}
@@ -314,3 +314,9 @@
   sets: {capabilities: [transactional-email]}
 - phrases: [jamstack, personal website]
   sets: {project_type: content-site}
+- phrases: [python web app]
+  sets: {project_type: web-app, languages: [python]}
+- phrases: [ruby web app]
+  sets: {project_type: web-app, languages: [ruby]}
+- phrases: [elixir web app]
+  sets: {project_type: web-app, languages: [elixir]}

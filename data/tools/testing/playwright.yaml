@@ -2,7 +2,6 @@ id: playwright
 name: Playwright
 aliases:
 - playwright test
-match_name: false
 layer: testing
 summary: Framework for web testing and automation that drives Chromium, Firefox and WebKit, with Node.js, Python, Java and .NET bindings.
 url: https://playwright.dev

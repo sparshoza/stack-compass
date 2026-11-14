@@ -9,8 +9,6 @@ license: Proprietary
 languages:
 - javascript
 - typescript
-- python
-- rust
 tags: []
 hosting:
 - managed

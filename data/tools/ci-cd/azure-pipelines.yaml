@@ -32,9 +32,7 @@ edges:
   target: bitbucket-pipelines
 - type: alternative-to
   target: github-actions
-- {type: pairs-with, target: junit}
 verified: '2026-11-14'
 sources:
 - https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines
 - https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/
-- https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-test-results-v2

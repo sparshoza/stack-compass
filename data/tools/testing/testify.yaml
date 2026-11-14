@@ -2,6 +2,7 @@ id: testify
 name: Testify
 aliases:
 - stretchr testify
+- testify go
 match_name: false
 layer: testing
 summary: Go toolkit with assertions, mocks and test suites that works with the standard library's testing package.

@@ -60,7 +60,8 @@ export function useChooser(initial: { answers: Answers; view: ChooseView; notice
       const dismissed = raw ? s.dismissed : none
       const before = s.raw ? withoutDismissed(s.raw, s.dismissed) : emptyDetection()
       const after = raw ? withoutDismissed(raw, dismissed) : emptyDetection()
-      return { ...s, raw, dismissed, answers: applyDetection(s.answers, before, after) }
+      const answers = applyDetection(s.answers, before, after)
+      return { ...s, raw, dismissed, answers, notice: raw ? null : s.notice }
     })
   }, [])
 
@@ -90,12 +91,13 @@ export function useChooser(initial: { answers: Answers; view: ChooseView; notice
       if (!s.raw) return s
       const dismissed = new Set(s.dismissed).add(key)
       const answers = applyDetection(s.answers, withoutDismissed(s.raw, s.dismissed), withoutDismissed(s.raw, dismissed))
-      return { ...s, dismissed, answers }
+      return { ...s, dismissed, answers, notice: null }
     })
   }, [])
 
   const setAnswers = useCallback((change: (answers: Answers) => Answers) => {
-    setState((s) => ({ ...s, answers: change(s.answers) }))
+    // The note about the opening link goes once the person starts changing answers.
+    setState((s) => ({ ...s, answers: change(s.answers), notice: null }))
   }, [])
 
   const setView = useCallback((view: ChooseView) => setState((s) => ({ ...s, view })), [])

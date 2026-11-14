@@ -12,7 +12,7 @@ import {
   portraitFit,
   areaFit,
   readPalette,
-  withAlpha,
+  mix,
   type Palette,
 } from './model'
 
@@ -20,6 +20,16 @@ const palette: Palette = {
   ...FALLBACK_PALETTE,
   accent: '#c8f05a',
   families: { client: '#6aa9f5', server: '#e6b450', data: '#45c7a8', services: '#f08a70', ops: '#e286c0' },
+}
+
+const DIM_NODE_MIX = 0.75
+const DIM_EDGE_MIX = 0.6
+
+/** Channel distance between two #rrggbb colours (largest of r, g, b). */
+function distance(a: string, b: string): number {
+  const rgb = (c: string) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16))
+  const [x, y] = [rgb(a), rgb(b)]
+  return Math.max(...x.map((v, i) => Math.abs(v - y[i])))
 }
 
 function tools(): Tool[] {
@@ -108,7 +118,7 @@ describe('nodeStyle and edgeStyle', () => {
     expect(picked.forceLabel).toBe(true)
     expect(picked.zIndex).toBeGreaterThan(other.zIndex ?? 0)
     expect(picked.size).toBeGreaterThan(g.getNodeAttribute('react', 'size'))
-    expect(other.color).toBe(withAlpha(palette.families.data, 0.25))
+    expect(other.color).toBe(mix(palette.families.data, palette.background, DIM_NODE_MIX))
     expect(other.forceLabel).toBeFalsy()
     expect(other.label).toBeNull()
   })
@@ -119,7 +129,7 @@ describe('nodeStyle and edgeStyle', () => {
     const outside = edge('fastapi', 'postgresql', v)
     expect(between.color).toBe(palette.accent)
     expect(between.size).toBeGreaterThan(outside.size ?? 0)
-    expect(outside.color).toBe(withAlpha(palette.edge, 0.4))
+    expect(outside.color).toBe(mix(palette.edge, palette.background, DIM_EDGE_MIX))
   })
 
   it('hides filtered layers and edge types', () => {
@@ -164,7 +174,7 @@ describe('focus neighbourhood', () => {
     expect(node('fastapi', v)).toMatchObject({ color: palette.accent, forceLabel: true })
     expect(node('react', v)).toMatchObject({ color: palette.families.client, forceLabel: true, labelColor: palette.text })
     const other = node('mysql', v)
-    expect(other.color).toBe(withAlpha(palette.families.data, 0.25))
+    expect(other.color).toBe(mix(palette.families.data, palette.background, DIM_NODE_MIX))
     expect(other.forceLabel).toBe(false)
     // dimmed tools keep their dot but lose their label
     expect(other.label).toBeNull()
@@ -176,7 +186,7 @@ describe('focus neighbourhood', () => {
     const away = edge('postgresql', 'mysql', v)
     expect(own).toMatchObject({ color: palette.edgeStrong, zIndex: 2 })
     expect(own.size).toBeGreaterThanOrEqual(1.5)
-    expect(away.color).toBe(withAlpha(palette.edge, 0.4))
+    expect(away.color).toBe(mix(palette.edge, palette.background, DIM_EDGE_MIX))
     expect(away.zIndex).toBe(0)
   })
 
@@ -190,7 +200,7 @@ describe('focus neighbourhood', () => {
     const v = makeView({ spotlight: 'fastapi', neighbours: neighboursOf(g, 'fastapi', new Set()) })
     expect(node('fastapi', v).color).toBe(palette.families.server)
     expect(node('fastapi', v).forceLabel).toBe(true)
-    expect(node('mysql', v).color).toBe(withAlpha(palette.families.data, 0.25))
+    expect(node('mysql', v).color).toBe(mix(palette.families.data, palette.background, DIM_NODE_MIX))
   })
 
   it('draws pairings and alternatives thinner than structural edges at rest', () => {
@@ -301,17 +311,51 @@ describe('areaFit', () => {
   })
 })
 
-describe('withAlpha', () => {
-  it('turns hex colours into rgba', () => {
-    expect(withAlpha('#ff0000', 0.5)).toBe('rgba(255, 0, 0, 0.5)')
-    expect(withAlpha('#0f0', 0.25)).toBe('rgba(0, 255, 0, 0.25)')
-    expect(withAlpha('rgb(1, 2, 3)', 0.4)).toBe('rgba(1, 2, 3, 0.4)')
+describe('mix', () => {
+  it('blends two hex colours into an opaque hex colour', () => {
+    expect(mix('#ffffff', '#000000', 0.5)).toBe('#808080')
+    expect(mix('#ff0000', '#0000ff', 0)).toBe('#ff0000')
+    expect(mix('#0f0', '#000', 1)).toBe('#000000')
   })
 
-  it('leaves colours it cannot parse alone', () => {
-    expect(withAlpha('tomato', 0.5)).toBe('tomato')
+  it('returns the first colour when it cannot parse one', () => {
+    expect(mix('tomato', '#000000', 0.5)).toBe('tomato')
   })
 })
+
+describe('dimming', () => {
+  // sigma blends premultiplied, so an rgba colour with low alpha draws bright
+  // on a dark map. Dimmed colours are opaque mixes toward the background.
+  const light: Palette = {
+    families: { client: '#1d64c4', server: '#8a6100', data: '#0a7a63', services: '#bd4527', ops: '#a8357a' },
+    accent: '#437000',
+    text: '#111418',
+    textMuted: '#4f5661',
+    textFaint: '#646b76',
+    edge: '#d9dde2',
+    edgeStrong: '#8a919b',
+    background: '#f6f7f9',
+  }
+  for (const [theme, p] of [
+    ['dark', palette],
+    ['light', light],
+  ] as const) {
+    it(`dimmed dots, labels and edges are opaque and close to the ${theme} background`, () => {
+      const background = p.background
+      const g = buildGraph(tools(), positions)
+      const v = makeView({ highlight: ['react'] })
+      const dimmed = nodeStyle('mysql', g.getNodeAttributes('mysql'), v, p)
+      const key = g.edges().find((e) => !g.extremities(e).includes('react'))!
+      const edgeColour = edgeStyle(g.getEdgeAttributes(key), v, p).color!
+      for (const colour of [dimmed.color!, dimmed.labelColor, edgeColour]) {
+        expect(colour).toMatch(/^#[0-9a-f]{6}$/)
+        expect(distance(colour, background)).toBeLessThan(80)
+      }
+      expect(distance(dimmed.color!, background)).toBeLessThan(distance(p.families.data, background) / 2)
+    })
+  }
+})
+
 
 describe('readPalette', () => {
   afterEach(() => {

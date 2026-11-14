@@ -356,6 +356,73 @@ describe('Help me choose', () => {
     expect(within(dialog).getByRole('textbox', { name: /Describe your project/ })).toHaveFocus()
   })
 
+  it('features come in labelled groups; an explanation shows once checked or with the toggle', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    const dialog = await openSheet(user)
+    const groups = within(dialog).getAllByRole('group').filter((g) => within(g).queryAllByRole('checkbox').length)
+    expect(groups.length).toBeGreaterThanOrEqual(4)
+    expect(groups.length).toBeLessThanOrEqual(6)
+    const all = groups.flatMap((g) => within(g).getAllByRole('checkbox'))
+    expect(all).toHaveLength(kb.vocab.capabilities.length)
+    for (const group of groups) expect(group).toHaveAccessibleName(/./)
+
+    const payments = within(dialog).getByRole('checkbox', { name: 'Payments' })
+    const explain = kb.vocab.capabilities.find((c) => c.id === 'payments')!.explain
+    expect(payments).toHaveAccessibleDescription(explain)
+    const note = document.getElementById(payments.getAttribute('aria-describedby')!)!
+    expect(note).toHaveClass('sr-only')
+    await user.click(payments)
+    expect(note).not.toHaveClass('sr-only')
+
+    const realtime = within(dialog).getByRole('checkbox', { name: 'Realtime' })
+    const realtimeNote = document.getElementById(realtime.getAttribute('aria-describedby')!)!
+    expect(realtimeNote).toHaveClass('sr-only')
+    await user.click(within(dialog).getByRole('button', { name: 'Show what each one means' }))
+    expect(realtimeNote).not.toHaveClass('sr-only')
+  })
+
+  it('the summary lists every layer and jumps to its row', async () => {
+    const user = userEvent.setup()
+    renderApp('/?t=web-app&la=javascript,typescript')
+    const summary = screen.getByRole('navigation', { name: 'Jump to a layer' })
+    const jumps = within(summary).getAllByRole('button')
+    expect(jumps).toHaveLength(rows().length)
+    expect(within(summary).getByRole('button', { name: 'Frontend: No match' })).toBeInTheDocument()
+    await user.click(within(summary).getByRole('button', { name: 'Frontend: No match' }))
+    const row = screen.getByRole('listitem', { name: 'Frontend' })
+    expect(within(row).getByRole('heading', { level: 4 })).toHaveFocus()
+  })
+
+  it('on a phone, See on the map closes the sheet and keeps the stack lit', async () => {
+    const user = userEvent.setup()
+    renderApp('/?t=saas')
+    await waitFor(() => expect(graph.props?.highlight?.length).toBeGreaterThan(0))
+    expect(screen.queryByText(/Picks are lit on the map/)).not.toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'See on the map' }))
+    expect(screen.queryByRole('dialog', { name: 'Help me choose' })).not.toBeInTheDocument()
+    expect(graph.props?.highlight?.length).toBeGreaterThan(0)
+    expect(params().get('t')).toBe('saas')
+  })
+
+  it('the link notice goes once an answer changes', async () => {
+    const user = userEvent.setup()
+    renderApp('/?t=spaceship')
+    expect(screen.getByText(/Some parts of this link were ignored/)).toBeInTheDocument()
+    await user.click(within(sheet()).getByRole('radio', { name: 'Web app' }))
+    expect(screen.queryByText(/Some parts of this link were ignored/)).not.toBeInTheDocument()
+  })
+
+  it('detected chips sit right under the description, before the examples', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    const dialog = await openSheet(user)
+    await describeProject(user, 'a saas in python')
+    const chips = within(dialog).getByRole('list', { name: 'Picked up from your description' })
+    const examples = within(dialog).getByRole('group', { name: 'Examples' })
+    expect(chips.compareDocumentPosition(examples) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
   it('full-height sheet under 1024 px', async () => {
     const user = userEvent.setup()
     renderApp()

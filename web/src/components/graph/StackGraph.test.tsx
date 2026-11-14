@@ -41,7 +41,13 @@ const fake = vi.hoisted(() => {
 
 vi.mock('sigma', () => ({ default: fake.FakeSigma }))
 
+import { LAYER_FAMILY } from '@/lib/families'
+import { FALLBACK_PALETTE, mix } from './model'
 import { StackGraph } from './StackGraph'
+
+/** A dimmed dot: its family colour mixed most of the way into the map ground. */
+const dimmedOf = (layer: keyof typeof LAYER_FAMILY) =>
+  mix(FALLBACK_PALETTE.families[LAYER_FAMILY[layer]], FALLBACK_PALETTE.background, 0.75)
 
 type NodeReducer = (node: string, data: Record<string, unknown>) => Record<string, unknown>
 type EdgeReducer = (edge: string, data: Record<string, unknown>) => Record<string, unknown>
@@ -92,16 +98,16 @@ describe('StackGraph', () => {
     const accent = nodeOf(frontend.id).color
     expect(nodeOf(backend.id).color).toBe(accent)
     expect(nodeOf(frontend.id).forceLabel).toBe(true)
-    expect(String(nodeOf(database.id).color)).toMatch(/^rgba\(.*, 0\.25\)$/)
+    expect(nodeOf(database.id).color).toBe(dimmedOf(database.layer))
   })
 
   it('updates the reducers when the highlight changes', () => {
     const { rerender } = render(<StackGraph />)
     const s = latest()
-    expect(String(nodeOf(database.id).color)).not.toMatch(/rgba/)
+    expect(nodeOf(database.id).color).not.toBe(dimmedOf(database.layer))
     rerender(<StackGraph highlight={[frontend.id]} />)
     expect(fake.FakeSigma.instances).toHaveLength(1)
-    expect(String(nodeOf(database.id).color)).toMatch(/^rgba\(/)
+    expect(nodeOf(database.id).color).toBe(dimmedOf(database.layer))
     expect(s.kill).not.toHaveBeenCalled()
   })
 
@@ -185,7 +191,7 @@ describe('StackGraph', () => {
         !backend.edges.some((e) => e.target === t.id) &&
         !t.edges.some((e) => e.target === backend.id),
     )!
-    expect(String(nodeOf(stranger.id).color)).toMatch(/^rgba\(.*, 0\.25\)$/)
+    expect(nodeOf(stranger.id).color).toBe(dimmedOf(stranger.layer))
   })
 
   it('hovering a dot lights its neighbourhood without moving the camera', () => {

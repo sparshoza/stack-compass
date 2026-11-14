@@ -338,6 +338,7 @@ export default function App() {
         onRestoreFocus={restoreHelpFocus}
         shareUrl={shareUrl}
         litOnMap={view === 'map'}
+        onSeeMap={!wide && view === 'map' ? () => setOverlay(null) : undefined}
       />
       <InfoDialog open={overlay === 'info'} onOpenChange={setOpen('info')} />
     </>

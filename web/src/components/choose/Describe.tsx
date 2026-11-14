@@ -1,4 +1,4 @@
-import { useId, type RefObject } from 'react'
+import { useId, type ReactNode, type RefObject } from 'react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { EXAMPLES } from './examples'
@@ -8,13 +8,15 @@ interface DescribeProps {
   onTextChange: (text: string) => void
   onRead: (text?: string) => void
   textareaRef: RefObject<HTMLTextAreaElement | null>
+  /** What was picked up, shown right under the box and above the examples. */
+  detected: ReactNode
 }
 
 /**
  * The optional description. It is read on a pause in typing, on Read
  * description, or at once when an example fills it.
  */
-export function Describe({ text, onTextChange, onRead, textareaRef }: DescribeProps) {
+export function Describe({ text, onTextChange, onRead, textareaRef, detected }: DescribeProps) {
   const id = useId()
   return (
     <form
@@ -42,10 +44,12 @@ export function Describe({ text, onTextChange, onRead, textareaRef }: DescribePr
         <p id={`${id}-note`} className="text-xs text-text-muted">
           Read in your browser. It never goes into a link.
         </p>
-        <Button type="submit" variant="pill" size="pill" className="h-8 px-3 text-xs max-md:h-11">
+        <Button type="submit" variant="pill" size="pill" className="h-8 px-3 text-xs touch:h-11">
           Read description
         </Button>
       </div>
+
+      {detected}
 
       <div role="group" aria-labelledby={`${id}-examples`} className="mt-1 grid gap-1.5">
         <p id={`${id}-examples`} className="text-xs text-text-muted">
@@ -57,7 +61,7 @@ export function Describe({ text, onTextChange, onRead, textareaRef }: DescribePr
               <button
                 type="button"
                 onClick={() => onRead(example)}
-                className="w-full rounded-[var(--radius-sm)] border border-line px-3 py-2 text-left text-[0.8125rem] leading-[1.45] text-text-muted hover:border-line-strong hover:bg-raised hover:text-text active:bg-raised max-md:min-h-11"
+                className="w-full rounded-[var(--radius-sm)] border border-line px-3 py-2 text-left text-[0.8125rem] leading-[1.45] text-text-muted hover:border-line-strong hover:bg-raised hover:text-text active:bg-raised touch:min-h-11"
               >
                 {example}
               </button>

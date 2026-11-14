@@ -46,6 +46,8 @@ export interface Palette {
   textFaint: string
   edge: string
   edgeStrong: string
+  /** The map ground; dimmed colours are mixed toward it. */
+  background: string
 }
 
 /** The dark tokens from styles/tokens.css, used when a variable cannot be read. */
@@ -57,11 +59,17 @@ export const FALLBACK_PALETTE: Palette = {
   textFaint: '#8b929b',
   edge: '#2b3037',
   edgeStrong: '#59616c',
+  background: '#0d0f12',
 }
 
-const DIM_NODE = 0.25
-const DIM_LABEL = 0.35
-const DIM_EDGE = 0.4
+/**
+ * How far dimmed colours move toward the background. They are opaque mixes,
+ * not alpha: sigma's WebGL blends premultiplied, so a low-alpha colour still
+ * draws bright on a dark map.
+ */
+const DIM_NODE = 0.75
+const DIM_LABEL = 0.65
+const DIM_EDGE = 0.6
 const SPOT_EDGE_SIZE = 1.5
 const BASE_SIZE = 3
 const empty = new Set<never>()
@@ -153,11 +161,11 @@ export function nodeStyle(id: string, attrs: NodeAttrs, view: GraphView, palette
     // The dot stays as context; its label goes, so only the lit tools read.
     return {
       hidden,
-      color: withAlpha(family, DIM_NODE),
+      color: mix(family, palette.background, DIM_NODE),
       size: attrs.size,
       forceLabel: false,
       label: null,
-      labelColor: withAlpha(palette.textFaint, DIM_LABEL),
+      labelColor: mix(palette.textFaint, palette.background, DIM_LABEL),
       zIndex: 0,
     }
   }
@@ -185,27 +193,34 @@ export function edgeStyle(attrs: EdgeAttrs, view: GraphView, palette: Palette): 
     if (attrs.source === spot || attrs.target === spot) {
       return { hidden, color: palette.edgeStrong, size: SPOT_EDGE_SIZE, zIndex: 2 }
     }
-    return { hidden, color: withAlpha(palette.edge, DIM_EDGE), size, zIndex: 0 }
+    return { hidden, color: mix(palette.edge, palette.background, DIM_EDGE), size, zIndex: 0 }
   }
   if (view.highlight.has(attrs.source) && view.highlight.has(attrs.target)) {
     return { hidden, color: palette.accent, size: 2, zIndex: 2 }
   }
-  return { hidden, color: withAlpha(palette.edge, DIM_EDGE), size, zIndex: 0 }
+  return { hidden, color: mix(palette.edge, palette.background, DIM_EDGE), size, zIndex: 0 }
 }
 
-/** `#rgb`, `#rrggbb` or `rgb(r, g, b)` to `rgba(r, g, b, alpha)`; anything else is returned as is. */
-export function withAlpha(color: string, alpha: number): string {
+function parseRgb(color: string): number[] | null {
   const c = color.trim()
-  let rgb: number[] | null = null
   const hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(c)
   if (hex) {
     const h = hex[1].length === 3 ? [...hex[1]].map((d) => d + d).join('') : hex[1]
-    rgb = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16))
-  } else {
-    const fn = /^rgba?\(\s*(\d+)[\s,]+(\d+)[\s,]+(\d+)/i.exec(c)
-    if (fn) rgb = [fn[1], fn[2], fn[3]].map(Number)
+    return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16))
   }
-  return rgb ? `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})` : color
+  const fn = /^rgba?\(\s*(\d+)[\s,]+(\d+)[\s,]+(\d+)/i.exec(c)
+  return fn ? [fn[1], fn[2], fn[3]].map(Number) : null
+}
+
+/**
+ * An opaque `#rrggbb` that is `amount` of the way from `color` to `toward`
+ * (0 keeps the colour, 1 is the target). Unparseable input comes back as is.
+ */
+export function mix(color: string, toward: string, amount: number): string {
+  const a = parseRgb(color)
+  const b = parseRgb(toward)
+  if (!a || !b) return color
+  return `#${a.map((v, i) => Math.round(v + (b[i] - v) * amount).toString(16).padStart(2, '0')).join('')}`
 }
 
 /** Reads the map colours from the CSS tokens on `root`, falling back per token. */
@@ -227,6 +242,7 @@ export function readPalette(root: HTMLElement = document.documentElement): Palet
     textFaint: read('--text-faint', FALLBACK_PALETTE.textFaint),
     edge: read('--edge', FALLBACK_PALETTE.edge),
     edgeStrong: read('--edge-strong', FALLBACK_PALETTE.edgeStrong),
+    background: read('--bg', FALLBACK_PALETTE.background),
   }
 }
 

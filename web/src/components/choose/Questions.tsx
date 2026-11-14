@@ -7,6 +7,7 @@ import { familyColor, LAYER_FAMILY } from '@/lib/families'
 import { kb, toolById } from '@/lib/kb'
 import { searchTools } from '@/lib/search'
 import { cn } from '@/lib/utils'
+import { featureGroups } from './features'
 
 interface QuestionsProps {
   answers: Answers
@@ -95,7 +96,7 @@ function RadioPill<T extends string>({
   return (
     <label
       className={cn(
-        'inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs max-md:h-11 max-md:px-3.5',
+        'inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
         ringWithin,
         checked
           ? 'border-text bg-text text-background'
@@ -137,7 +138,7 @@ function Segmented<T extends string>({
           <label
             key={option.value}
             className={cn(
-              'flex h-8 items-center justify-center rounded-full px-2 text-center text-xs leading-tight max-md:h-10',
+              'flex h-8 items-center justify-center rounded-full px-2 text-center text-xs leading-tight touch:h-11',
               ringWithin,
               checked ? 'bg-text text-background' : 'text-text-muted hover:bg-raised hover:text-text',
             )}
@@ -188,7 +189,7 @@ function KnownTools({ selected, onChange }: { selected: string[]; onChange: (ids
             return (
               <li
                 key={toolId}
-                className="inline-flex h-8 items-center gap-1.5 rounded-full border border-line-strong bg-raised pl-3 text-xs text-text max-md:h-11"
+                className="inline-flex h-8 items-center gap-1.5 rounded-full border border-line-strong bg-raised pl-3 text-xs text-text touch:h-11"
               >
                 {tool && (
                   <span
@@ -202,7 +203,7 @@ function KnownTools({ selected, onChange }: { selected: string[]; onChange: (ids
                   type="button"
                   aria-label={`Remove ${name}`}
                   onClick={() => onChange(selected.filter((x) => x !== toolId))}
-                  className="grid size-8 place-items-center rounded-full text-text-muted hover:bg-surface hover:text-text max-md:size-11"
+                  className="grid size-8 place-items-center rounded-full text-text-muted hover:bg-surface hover:text-text touch:size-11"
                 >
                   <XIcon aria-hidden="true" className="size-3.5" />
                 </button>
@@ -247,7 +248,7 @@ function KnownTools({ selected, onChange }: { selected: string[]; onChange: (ids
               setOpen(false)
             }
           }}
-          className="h-9 w-full rounded-full border border-line-strong bg-background px-3.5 text-[1rem] text-text placeholder:text-text-faint hover:border-text-faint focus-visible:border-text-faint md:text-[0.8125rem] max-md:h-11"
+          className="h-9 w-full rounded-full border border-line-strong bg-background px-3.5 text-[1rem] text-text placeholder:text-text-faint hover:border-text-faint focus-visible:border-text-faint md:text-[0.8125rem] touch:h-11"
         />
         <ul
           id={`${id}-list`}
@@ -264,7 +265,7 @@ function KnownTools({ selected, onChange }: { selected: string[]; onChange: (ids
                 role="option"
                 aria-selected={i === active}
                 className={cn(
-                  'flex h-9 cursor-pointer items-center gap-2.5 rounded-lg px-2.5 text-[0.8125rem] max-md:h-11',
+                  'flex h-9 cursor-pointer items-center gap-2.5 rounded-lg px-2.5 text-[0.8125rem] touch:h-11',
                   i === active && 'bg-raised',
                 )}
                 onMouseDown={(e) => e.preventDefault()}
@@ -289,11 +290,87 @@ function KnownTools({ selected, onChange }: { selected: string[]; onChange: (ids
   )
 }
 
-function joinWords(words: string[]): string {
-  return words.length < 2 ? words.join('') : `${words.slice(0, -1).join(', ')} and ${words.at(-1)}`
-}
+const TOOLING_NOTE = `Adds ${LAYER_LABELS['ci-cd']}, an ${LAYER_LABELS.observability} and a ${LAYER_LABELS.testing}, plus a ${LAYER_LABELS.state} and ${LAYER_LABELS['build-tool']} when there is a frontend or mobile app.`
 
-const TOOLING_NOTE = `Adds a ${joinWords(kb.vocab.tooling_layers.map((l) => LAYER_LABELS[l]))} to the stack.`
+const GROUPS = featureGroups()
+
+/**
+ * Must-have features in labelled groups, each a checkbox chip. An
+ * explanation shows under its group once the feature is chosen, or for all
+ * of them with the toggle; hidden ones stay in the DOM for screen readers.
+ */
+function Features({ selected, onToggle }: { selected: string[]; onToggle: (id: string) => void }) {
+  const id = useId()
+  const [explainAll, setExplainAll] = useState(false)
+  return (
+    <section aria-labelledby={`${id}-title`} className="grid gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+        <h3 id={`${id}-title`} className={legend}>
+          Must-have features
+        </h3>
+        <button
+          type="button"
+          aria-pressed={explainAll}
+          onClick={() => setExplainAll((on) => !on)}
+          className="-mr-2 inline-flex h-8 items-center rounded-full px-2 text-xs text-text-muted underline decoration-line-strong underline-offset-4 hover:text-text hover:decoration-text touch:h-11"
+        >
+          {explainAll ? 'Hide what each one means' : 'Show what each one means'}
+        </button>
+      </div>
+      {GROUPS.map((group, g) => (
+        <fieldset key={group.title} aria-labelledby={`${id}-g${g}`} className="grid gap-2">
+          <legend id={`${id}-g${g}`} className="mb-0.5 p-0 text-xs text-text-muted">
+            {group.title}
+          </legend>
+          <ul className="flex flex-wrap gap-1.5">
+            {group.capabilities.map((cap) => {
+              const checked = selected.includes(cap.id)
+              return (
+                <li key={cap.id}>
+                  <label
+                    className={cn(
+                      'inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
+                      ringWithin,
+                      checked
+                        ? 'border-text bg-text text-background'
+                        : 'border-line-strong text-text hover:border-text-faint hover:bg-raised',
+                    )}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      aria-labelledby={`${id}-${cap.id}`}
+                      aria-describedby={`${id}-${cap.id}-explain`}
+                      onChange={() => onToggle(cap.id)}
+                      className="sr-only"
+                    />
+                    {checked && <CheckIcon aria-hidden="true" className="-ml-0.5 size-3.5" />}
+                    <span id={`${id}-${cap.id}`}>{cap.label}</span>
+                  </label>
+                </li>
+              )
+            })}
+          </ul>
+          <ul className="grid gap-1 empty:hidden">
+            {group.capabilities.map((cap) => {
+              const shown = explainAll || selected.includes(cap.id)
+              return (
+                <li
+                  key={cap.id}
+                  id={`${id}-${cap.id}-explain`}
+                  className={shown ? 'text-xs leading-[1.45] text-text-muted' : 'sr-only'}
+                >
+                  {shown && <span aria-hidden="true" className="text-text">{cap.label}: </span>}
+                  {cap.explain}
+                </li>
+              )
+            })}
+          </ul>
+        </fieldset>
+      ))}
+    </section>
+  )
+}
 
 /** The eight one-click questions, filled in from the description where it said something. */
 export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
@@ -329,7 +406,7 @@ export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
                   type="button"
                   onClick={() => onChange((a) => cycleLanguage(a, lang))}
                   className={cn(
-                    'inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs max-md:h-11 max-md:px-3.5',
+                    'inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs touch:h-11 touch:px-3.5',
                     state === 'none' && 'border-line-strong text-text hover:border-text-faint hover:bg-raised',
                     state === 'prefer' && 'border-text bg-text text-background',
                     state === 'avoid' && 'border-dashed border-text-faint text-text-muted hover:bg-raised',
@@ -346,54 +423,10 @@ export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
         </ul>
       </Question>
 
-      <Question id={`${id}-caps`} title="Must-have features">
-        <ul className="-mx-2 grid gap-px">
-          {kb.vocab.capabilities.map((cap) => {
-            const checked = answers.capabilities.includes(cap.id)
-            return (
-              <li key={cap.id}>
-                <label
-                  className={cn(
-                    'flex items-start gap-3 rounded-lg px-2 py-2 hover:bg-raised',
-                    ringWithin,
-                    'has-[:focus-visible]:outline-offset-0',
-                  )}
-                >
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    aria-labelledby={`${id}-${cap.id}`}
-                    aria-describedby={`${id}-${cap.id}-explain`}
-                    onChange={() => onChange((a) => ({ ...a, capabilities: toggle(a.capabilities, cap.id) }))}
-                    className="peer sr-only"
-                  />
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      'mt-0.5 grid size-4 shrink-0 place-items-center rounded-[4px] border',
-                      checked ? 'border-text bg-text' : 'border-line-strong',
-                    )}
-                  >
-                    {checked && (
-                      <svg viewBox="0 0 12 12" className="size-3" fill="none" stroke="var(--bg)" strokeWidth="2">
-                        <path d="M2.5 6.2 5 8.5l4.5-5" />
-                      </svg>
-                    )}
-                  </span>
-                  <span className="grid gap-0.5">
-                    <span id={`${id}-${cap.id}`} className="text-[0.8125rem] text-text">
-                      {cap.label}
-                    </span>
-                    <span id={`${id}-${cap.id}-explain`} className="text-xs leading-[1.45] text-text-muted">
-                      {cap.explain}
-                    </span>
-                  </span>
-                </label>
-              </li>
-            )
-          })}
-        </ul>
-      </Question>
+      <Features
+        selected={answers.capabilities}
+        onToggle={(capId) => onChange((a) => ({ ...a, capabilities: toggle(a.capabilities, capId) }))}
+      />
 
       <Question id={`${id}-hosting`} role="radiogroup" title="Hosting">
         <Segmented name={`${id}-hosting`} options={HOSTING} value={answers.hosting} onSelect={set('hosting')} />
@@ -425,7 +458,7 @@ export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
           aria-labelledby={`${id}-tooling`}
           aria-describedby={`${id}-tooling-note`}
           onClick={() => onChange((a) => ({ ...a, tooling: !a.tooling }))}
-          className="-my-1.5 grid h-8 w-12 shrink-0 place-items-center max-md:h-11"
+          className="-my-1.5 grid h-8 w-12 shrink-0 place-items-center touch:h-11"
         >
           <span
             aria-hidden="true"

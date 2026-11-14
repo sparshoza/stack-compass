@@ -24,6 +24,29 @@ interface ChooseSheetProps {
   /** The link that reopens this stack. */
   shareUrl: () => string
   litOnMap: boolean
+  /** Where the sheet covers the map: closes it so the lit stack shows. */
+  onSeeMap?: () => void
+}
+
+/** The link in a field, selected once when it appears, for copying by hand. */
+function CopyFallback({ id, url }: { id: string; url: string }) {
+  const ref = useRef<HTMLInputElement>(null)
+  useEffect(() => ref.current?.select(), [])
+  return (
+    <div className="grid gap-1.5">
+      <label htmlFor={id} className="text-xs text-text-muted">
+        Copying is blocked here. Select the link and copy it:
+      </label>
+      <input
+        ref={ref}
+        id={id}
+        readOnly
+        value={url}
+        onFocus={(e) => e.currentTarget.select()}
+        className="h-9 w-full rounded-[var(--radius-sm)] border border-line-strong bg-background px-3 text-xs text-text touch:h-11"
+      />
+    </div>
+  )
 }
 
 type Target = 'heading' | 'type' | 'text'
@@ -48,6 +71,7 @@ export function ChooseSheet({
   onRestoreFocus,
   shareUrl,
   litOnMap,
+  onSeeMap,
 }: ChooseSheetProps) {
   const id = useId()
   const headingRef = useRef<HTMLHeadingElement>(null)
@@ -128,7 +152,7 @@ export function ChooseSheet({
               </DialogPrimitive.Description>
             </div>
             <DialogPrimitive.Close asChild>
-              <Button variant="quiet" size="icon-pill" className="-mt-1 -mr-2 shrink-0">
+              <Button variant="quiet" size="icon-pill" className="-mt-1 -mr-2 shrink-0 touch:size-11">
                 <XIcon aria-hidden="true" />
                 <span className="sr-only">Close</span>
               </Button>
@@ -149,6 +173,7 @@ export function ChooseSheet({
                 answers={answers}
                 headingRef={headingRef}
                 litOnMap={litOnMap}
+                onSeeMap={onSeeMap}
                 onFocusTool={onFocusTool}
               />
             ) : (
@@ -159,8 +184,14 @@ export function ChooseSheet({
                     onTextChange={chooser.setText}
                     onRead={chooser.detectNow}
                     textareaRef={textareaRef}
+                    detected={
+                      <DetectedChips
+                        chips={chooser.chips}
+                        nothingFound={chooser.nothingFound}
+                        onRemove={chooser.removeChip}
+                      />
+                    }
                   />
-                  <DetectedChips chips={chooser.chips} nothingFound={chooser.nothingFound} onRemove={chooser.removeChip} />
                 </div>
                 <div className="border-t border-line pt-6">
                   <Questions answers={answers} onChange={chooser.setAnswers} typeRef={typeRef} />
@@ -173,14 +204,14 @@ export function ChooseSheet({
             {showingResult ? (
               <>
                 <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                  <Button variant="pill" size="pill" className={cn(primary, 'max-sm:px-3')} onClick={copyLink}>
+                  <Button variant="pill" size="pill" className={cn(primary, 'touch:h-11 max-sm:px-3')} onClick={copyLink}>
                     <LinkIcon aria-hidden="true" className="max-sm:hidden" />
                     Copy link
                   </Button>
                   <Button
                     variant="pill"
                     size="pill"
-                    className="max-sm:px-3"
+                    className="touch:h-11 max-sm:px-3"
                     onClick={() => go('type', () => chooser.setView('questions'))}
                   >
                     Edit answers
@@ -188,7 +219,7 @@ export function ChooseSheet({
                   <Button
                     variant="quiet"
                     size="pill"
-                    className="ml-auto max-sm:px-3"
+                    className="ml-auto touch:h-11 max-sm:px-3"
                     onClick={() => go('text', onStartOver)}
                   >
                     Start over
@@ -198,19 +229,7 @@ export function ChooseSheet({
                   {copy.state === 'copied' ? 'Link copied.' : ''}
                 </p>
                 {copy.state === 'manual' && (
-                  <div className="grid gap-1.5">
-                    <label htmlFor={`${id}-link`} className="text-xs text-text-muted">
-                      Copying is blocked here. Select the link and copy it:
-                    </label>
-                    <input
-                      id={`${id}-link`}
-                      readOnly
-                      value={copy.url}
-                      onFocus={(e) => e.currentTarget.select()}
-                      ref={(el) => el?.select()}
-                      className="h-9 w-full rounded-[var(--radius-sm)] border border-line-strong bg-background px-3 text-xs text-text max-md:h-11"
-                    />
-                  </div>
+                  <CopyFallback id={`${id}-link`} url={copy.url} />
                 )}
               </>
             ) : (
@@ -218,7 +237,7 @@ export function ChooseSheet({
                 <Button
                   variant="pill"
                   size="pill"
-                  className={cn(primary, 'disabled:border-line-strong disabled:bg-raised disabled:text-text-muted disabled:opacity-100')}
+                  className={cn(primary, 'touch:h-11 disabled:border-line-strong disabled:bg-raised disabled:text-text-muted disabled:opacity-100')}
                   disabled={!answers.projectType}
                   aria-describedby={answers.projectType ? undefined : `${id}-why-disabled`}
                   onClick={() => go('heading', onShowStack)}

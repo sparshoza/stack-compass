@@ -20,14 +20,14 @@ export function DetectedChips({ chips, nothingFound, onRemove }: DetectedChipsPr
             {chips.map((chip) => (
               <li
                 key={chip.key}
-                className="inline-flex h-8 items-center gap-0.5 rounded-full border border-line-strong bg-raised pl-3 text-xs text-text max-md:h-11"
+                className="inline-flex h-8 items-center gap-0.5 rounded-full border border-line-strong bg-raised pl-3 text-xs text-text touch:h-11"
               >
                 <span>{chip.label}</span>
                 <button
                   type="button"
                   aria-label={`Remove ${chip.label}`}
                   onClick={() => onRemove(chip.key)}
-                  className="grid size-8 place-items-center rounded-full text-text-muted hover:bg-surface hover:text-text active:bg-surface max-md:size-11"
+                  className="grid size-8 place-items-center rounded-full text-text-muted hover:bg-surface hover:text-text active:bg-surface touch:size-11"
                 >
                   <XIcon aria-hidden="true" className="size-3.5" />
                 </button>

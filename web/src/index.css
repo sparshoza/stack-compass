@@ -3,6 +3,16 @@
 @import "@fontsource-variable/jetbrains-mono";
 @import "./styles/tokens.css";
 
+/* Touch-size targets (44px): below 1024px, and on any coarse pointer. */
+@custom-variant touch {
+  @media (width < 64rem) {
+    @slot;
+  }
+  @media (pointer: coarse) {
+    @slot;
+  }
+}
+
 /* shadcn's `dark:` classes follow our data-theme attribute */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, :root:not([data-theme="light"]) *));
 

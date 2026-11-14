@@ -106,6 +106,11 @@ export function ToolPanel({ tool, onClose, onFocusTool, onRestoreFocus }: ToolPa
           }}
           // Clicks and focus elsewhere (the map, search) leave the panel open.
           onInteractOutside={(e) => e.preventDefault()}
+          // Escape in a field with text clears the field first (search does).
+          onEscapeKeyDown={(e) => {
+            const target = e.target
+            if (target instanceof HTMLInputElement && target.value !== '') e.preventDefault()
+          }}
           className={cn(
             'fixed z-20 flex flex-col border-line bg-surface text-[0.8125rem] text-text shadow-(--shadow-float) outline-none',
             'inset-x-0 bottom-0 max-h-[60dvh] rounded-t-[var(--radius-panel)] border-t',

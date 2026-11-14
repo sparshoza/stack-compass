@@ -2,6 +2,7 @@ import Graph from 'graphology'
 import type { EdgeDisplayData, NodeDisplayData } from 'sigma/types'
 import { LAYER_FAMILY, type FamilyId } from '@/lib/families'
 import type { EdgeType, Layer, Tool } from '@/lib/kb'
+import { EDGE_SIZE } from './edgeSizes'
 
 export type Positions = Record<string, { x: number; y: number }>
 
@@ -29,6 +30,10 @@ export interface EdgeAttrs {
 export interface GraphView {
   highlight: ReadonlySet<string>
   focus: string | null
+  /** The tool whose neighbourhood is lit: the hovered one, else the focused one. */
+  spotlight: string | null
+  /** Tools joined to the spotlight by a shown edge. */
+  neighbours: ReadonlySet<string>
   hiddenLayers: ReadonlySet<Layer>
   hiddenEdgeTypes: ReadonlySet<EdgeType>
 }
@@ -57,26 +62,23 @@ export const FALLBACK_PALETTE: Palette = {
 const DIM_NODE = 0.25
 const DIM_LABEL = 0.35
 const DIM_EDGE = 0.4
+const SPOT_EDGE_SIZE = 1.5
 const BASE_SIZE = 3
-const EDGE_SIZE: Record<EdgeType, number> = {
-  'built-on': 1,
-  extends: 1,
-  'pairs-with': 0.7,
-  'alternative-to': 0.5,
-  replaces: 0.5,
-}
-
 const empty = new Set<never>()
 
 export function makeView(opts: {
   highlight?: readonly string[]
   focus?: string | null
+  spotlight?: string | null
+  neighbours?: ReadonlySet<string>
   hiddenLayers?: ReadonlySet<Layer>
   hiddenEdgeTypes?: ReadonlySet<EdgeType>
 }): GraphView {
   return {
     highlight: new Set(opts.highlight ?? []),
     focus: opts.focus ?? null,
+    spotlight: opts.spotlight ?? opts.focus ?? null,
+    neighbours: opts.neighbours ?? empty,
     hiddenLayers: opts.hiddenLayers ?? empty,
     hiddenEdgeTypes: opts.hiddenEdgeTypes ?? empty,
   }
@@ -128,7 +130,10 @@ export function nodeStyle(id: string, attrs: NodeAttrs, view: GraphView, palette
   const hidden = view.hiddenLayers.has(attrs.layer)
   const picked = view.highlight.has(id)
   const focused = view.focus === id
-  const dimmed = view.highlight.size > 0 && !picked && !focused
+  // A spotlight (focus or hover) only applies while no stack is highlighted.
+  const spot = view.highlight.size === 0 ? view.spotlight : null
+  const lit = spot !== null && (id === spot || view.neighbours.has(id))
+  const dimmed = view.highlight.size > 0 ? !picked && !focused : spot !== null && !lit
   const family = palette.families[attrs.family]
 
   if (picked || focused) {
@@ -140,6 +145,9 @@ export function nodeStyle(id: string, attrs: NodeAttrs, view: GraphView, palette
       labelColor: palette.text,
       zIndex: 2,
     }
+  }
+  if (lit) {
+    return { hidden, color: family, size: attrs.size, forceLabel: true, labelColor: palette.text, zIndex: 1 }
   }
   return {
     hidden,
@@ -160,7 +168,12 @@ export function edgeStyle(attrs: EdgeAttrs, view: GraphView, palette: Palette): 
   const size = EDGE_SIZE[attrs.kind]
 
   if (view.highlight.size === 0) {
-    return { hidden, color: palette.edge, size, zIndex: 0 }
+    const spot = view.spotlight
+    if (spot === null) return { hidden, color: palette.edge, size, zIndex: 0 }
+    if (attrs.source === spot || attrs.target === spot) {
+      return { hidden, color: palette.edgeStrong, size: SPOT_EDGE_SIZE, zIndex: 2 }
+    }
+    return { hidden, color: withAlpha(palette.edge, DIM_EDGE), size, zIndex: 0 }
   }
   if (view.highlight.has(attrs.source) && view.highlight.has(attrs.target)) {
     return { hidden, color: palette.accent, size: 2, zIndex: 2 }
@@ -203,4 +216,80 @@ export function readPalette(root: HTMLElement = document.documentElement): Palet
     edge: read('--edge', FALLBACK_PALETTE.edge),
     edgeStrong: read('--edge-strong', FALLBACK_PALETTE.edgeStrong),
   }
+}
+
+/** Tools joined to `id` by an edge whose type is shown. */
+export function neighboursOf(
+  graph: Graph<NodeAttrs, EdgeAttrs>,
+  id: string,
+  hiddenEdgeTypes: ReadonlySet<EdgeType>,
+): Set<string> {
+  const out = new Set<string>()
+  if (!graph.hasNode(id)) return out
+  graph.forEachEdge(id, (_edge, attrs, source, target) => {
+    if (!hiddenEdgeTypes.has(attrs.kind)) out.add(source === id ? target : source)
+  })
+  return out
+}
+
+export interface Box {
+  x0: number
+  y0: number
+  x1: number
+  y1: number
+}
+
+const overlaps = (a: Box, b: Box) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1
+
+/**
+ * Keeps map labels from touching each other or another tool's dot, and from
+ * being cut off at the edge of the map. Sigma picks which labels to try; this
+ * says no to the ones that would collide. Reset once per frame.
+ */
+export class LabelPlacer {
+  private placed: Box[] = []
+  private dots: { id: string; box: Box }[] = []
+  private size: { width: number; height: number }
+
+  constructor(size: { width: number; height: number }) {
+    this.size = size
+  }
+
+  resize(size: { width: number; height: number }) {
+    this.size = size
+  }
+
+  reset(dots: { id: string; box: Box }[]) {
+    this.placed = []
+    this.dots = dots
+  }
+
+  /** A label that must show (focused or lit); later labels make way for it. */
+  reserve(box: Box) {
+    this.placed.push(box)
+  }
+
+  place(box: Box, ownDot?: string): boolean {
+    const { width, height } = this.size
+    if (box.x0 < 0 || box.y0 < 0 || box.x1 > width || box.y1 > height) return false
+    if (this.placed.some((other) => overlaps(box, other))) return false
+    if (this.dots.some((dot) => dot.id !== ownDot && overlaps(box, dot.box))) return false
+    this.placed.push(box)
+    return true
+  }
+}
+
+/** Sigma's stage padding, in pixels (StackGraph). */
+export const STAGE_PADDING = 40
+const MIN_PORTRAIT_RATIO = 0.7
+
+/**
+ * Sigma fits the round map into the shorter side of the screen, which leaves
+ * a portrait phone mostly empty above and below. Zoom in on tall screens so
+ * the map uses more of the height. The sides spill over slightly (labels that
+ * would be cut off are not drawn, and the map pans).
+ */
+export function portraitCamera(width: number, height: number): { ratio: number } {
+  if (height <= width || width === 0) return { ratio: 1 }
+  return { ratio: Math.min(1, Math.max(MIN_PORTRAIT_RATIO, (width / height) * 1.5)) }
 }

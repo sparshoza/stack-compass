@@ -41,6 +41,18 @@ describe('graph layout', () => {
     expect(seen.size).toBe(Object.keys(first).length)
   })
 
+  it('spreads dots: no two tools closer than 2.5% of the map width', () => {
+    const points = Object.values(first)
+    const xs = points.map((p) => p.x)
+    const ys = points.map((p) => p.y)
+    const extent = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys))
+    let closest = Infinity
+    for (let i = 0; i < points.length; i++)
+      for (let j = i + 1; j < points.length; j++)
+        closest = Math.min(closest, Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y))
+    expect(closest / extent).toBeGreaterThanOrEqual(0.025)
+  })
+
   it('keeps each layer together: tools sit nearer their own layer than the map average', () => {
     const byLayer = new Map()
     for (const tool of inputs.catalog.tools) {

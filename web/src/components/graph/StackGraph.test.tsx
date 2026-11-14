@@ -168,6 +168,36 @@ describe('StackGraph', () => {
     expect(latest().settings).toMatchObject({ cameraPanBoundaries: true, enableCameraRotation: false })
   })
 
+  it('draws labels through its own collision check at 11px', () => {
+    render(<StackGraph />)
+    const settings = latest().settings
+    expect(settings.labelSize).toBe(11)
+    expect(typeof settings.defaultDrawNodeLabel).toBe('function')
+  })
+
+  it('labels the neighbours of the focused tool and dims the rest', () => {
+    const neighbour = backend.edges.find((e) => kb.tools.some((t) => t.id === e.target))!.target
+    render(<StackGraph focus={backend.id} />)
+    expect(nodeOf(neighbour).forceLabel).toBe(true)
+    const stranger = kb.tools.find(
+      (t) =>
+        t.id !== backend.id &&
+        !backend.edges.some((e) => e.target === t.id) &&
+        !t.edges.some((e) => e.target === backend.id),
+    )!
+    expect(String(nodeOf(stranger.id).color)).toMatch(/^rgba\(.*, 0\.25\)$/)
+  })
+
+  it('hovering a dot lights its neighbourhood without moving the camera', () => {
+    render(<StackGraph />)
+    const s = latest()
+    act(() => s.handlers.enterNode({ node: backend.id }))
+    expect(nodeOf(backend.id).forceLabel).toBe(true)
+    expect(s.camera.setState).not.toHaveBeenCalled()
+    act(() => s.handlers.leaveNode({ node: backend.id }))
+    expect(nodeOf(backend.id).forceLabel).toBe(false)
+  })
+
   it('re-reads colours when the theme changes', async () => {
     render(<StackGraph highlight={[frontend.id]} />)
     const before = nodeOf(frontend.id).color

@@ -141,23 +141,23 @@ export function ToolTable({ onOpen, onBackToMap, footer }: ToolTableProps) {
       <table className="w-full border-collapse text-left text-[0.8125rem]">
         <caption className="sr-only">All tools in the catalog. Choose a name to see its details.</caption>
         <thead>
-          <tr className="border-b border-line-strong text-xs text-text-muted">
-            <th scope="col" className="h-10 pr-4 font-normal">
+          <tr className="text-xs text-text-muted [&>th]:shadow-[inset_0_-1px_0_var(--line-strong)]">
+            <th scope="col" className="sticky top-(--bar-h,4.25rem) z-[1] bg-background h-10 pr-4 font-normal">
               Tool
             </th>
-            <th scope="col" className="hidden h-10 pr-4 font-normal sm:table-cell">
+            <th scope="col" className="sticky top-(--bar-h,4.25rem) z-[1] bg-background hidden h-10 pr-4 font-normal sm:table-cell">
               Layer
             </th>
-            <th scope="col" className="hidden h-10 pr-4 font-normal md:table-cell">
+            <th scope="col" className="sticky top-(--bar-h,4.25rem) z-[1] bg-background hidden h-10 pr-4 font-normal md:table-cell">
               Languages
             </th>
-            <th scope="col" className="hidden h-10 pr-4 font-normal sm:table-cell">
+            <th scope="col" className="sticky top-(--bar-h,4.25rem) z-[1] bg-background hidden h-10 pr-4 font-normal sm:table-cell">
               Pricing
             </th>
-            <th scope="col" className="hidden h-10 pr-4 font-normal lg:table-cell">
+            <th scope="col" className="sticky top-(--bar-h,4.25rem) z-[1] bg-background hidden h-10 pr-4 font-normal lg:table-cell">
               Hosting
             </th>
-            <th scope="col" className="hidden h-10 font-normal lg:table-cell">
+            <th scope="col" className="sticky top-(--bar-h,4.25rem) z-[1] bg-background hidden h-10 font-normal lg:table-cell">
               Licence
             </th>
           </tr>

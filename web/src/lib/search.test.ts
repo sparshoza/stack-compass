@@ -19,6 +19,10 @@ describe('searchTools', () => {
     expect(ids).toContain('upstash-redis')
   })
 
+  it('breaks ties between equal matches by how connected a tool is', () => {
+    expect(searchTools('post')[0]?.id).toBe('postgresql')
+  })
+
   it('does not match on summaries or other fields', () => {
     const express = kb.tools.find((t) => t.id === 'express')!
     expect(searchTools('unopinionated').map((t) => t.id)).not.toContain(express.id)

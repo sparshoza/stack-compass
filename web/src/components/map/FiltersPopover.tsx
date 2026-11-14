@@ -1,5 +1,7 @@
 import { useId } from 'react'
 import { MapIcon, SlidersHorizontalIcon, TableIcon } from 'lucide-react'
+import { EDGE_SIZE } from '@/components/graph/edgeSizes'
+import { quietOverMap } from '@/components/shell/TopBar'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { layerName } from '@/lib/display'
@@ -7,14 +9,15 @@ import { FAMILIES, familyColor } from '@/lib/families'
 import type { EdgeType, Layer } from '@/lib/kb'
 import { cn } from '@/lib/utils'
 
-/** Relation names and the stroke each is drawn with on the map (see graph/model.ts EDGE_SIZE). */
-const EDGE_TYPES: { type: EdgeType; label: string; stroke: number }[] = [
-  { type: 'built-on', label: 'Built on', stroke: 2 },
-  { type: 'extends', label: 'Extends', stroke: 2 },
-  { type: 'pairs-with', label: 'Pairs with', stroke: 1.5 },
-  { type: 'alternative-to', label: 'Alternative to', stroke: 1 },
-  { type: 'replaces', label: 'Replaces', stroke: 1 },
+/** Relation names. The legend line is the map's edge width (graph/edgeSizes.ts) doubled so it reads at legend size. */
+const EDGE_TYPES: { type: EdgeType; label: string }[] = [
+  { type: 'built-on', label: 'Built on' },
+  { type: 'extends', label: 'Extends' },
+  { type: 'pairs-with', label: 'Pairs with' },
+  { type: 'alternative-to', label: 'Alternative to' },
+  { type: 'replaces', label: 'Replaces' },
 ]
+const LEGEND_SCALE = 2
 
 interface FiltersPopoverProps {
   view: 'map' | 'table'
@@ -51,7 +54,7 @@ export function FiltersPopover({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="quiet" size="icon-pill" aria-label="Filters">
+        <Button variant="quiet" size="icon-pill" className={quietOverMap} aria-label="Filters">
           <SlidersHorizontalIcon aria-hidden="true" />
         </Button>
       </PopoverTrigger>
@@ -131,7 +134,7 @@ export function FiltersPopover({
               <h3 id={`${titleId}-relations`} className={cn(groupTitle, 'mb-1')}>
                 Relations
               </h3>
-              {EDGE_TYPES.map(({ type, label, stroke }) => {
+              {EDGE_TYPES.map(({ type, label }) => {
                 const shown = !hiddenEdgeTypes.has(type)
                 return (
                   <button
@@ -161,7 +164,7 @@ export function FiltersPopover({
                         x2="27"
                         y2="4"
                         stroke={shown ? 'var(--edge-strong)' : 'var(--line)'}
-                        strokeWidth={stroke}
+                        strokeWidth={EDGE_SIZE[type] * LEGEND_SCALE}
                         strokeLinecap="round"
                       />
                     </svg>

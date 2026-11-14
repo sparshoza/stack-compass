@@ -26,9 +26,11 @@ export function CornerLinks({ docked = false }: CornerLinksProps) {
         href={WHICHDB_URL}
         target="_blank"
         rel="noreferrer"
-        className="pointer-events-auto inline-flex min-h-11 items-center gap-[0.5ch] text-xs text-text-muted hover:text-text md:min-h-9"
+        className="pointer-events-auto inline-flex min-h-11 items-center md:min-h-9"
       >
-        Inspired by <span className="underline decoration-line-strong underline-offset-4">WhichDB</span>
+        <span className="inline-flex items-center gap-[0.5ch] rounded-full bg-background/85 px-2 py-1 text-xs text-text-muted hover:text-text">
+          Inspired by <span className="underline decoration-line-strong underline-offset-4">WhichDB</span>
+        </span>
       </a>
       <a
         href={newIssueUrl('Catalog correction', REPORT_ISSUE_BODY)}

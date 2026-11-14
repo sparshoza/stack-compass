@@ -5,8 +5,11 @@ import {
   buildGraph,
   edgeStyle,
   FALLBACK_PALETTE,
+  LabelPlacer,
   makeView,
+  neighboursOf,
   nodeStyle,
+  portraitCamera,
   readPalette,
   withAlpha,
   type Palette,
@@ -129,9 +132,118 @@ describe('nodeStyle and edgeStyle', () => {
   })
 
   it('marks the focused tool in the accent with its label', () => {
-    const focused = node('postgresql', view({ focus: 'postgresql' }))
+    const v = makeView({ focus: 'postgresql', neighbours: neighboursOf(g, 'postgresql', new Set()) })
+    const focused = node('postgresql', v)
     expect(focused).toMatchObject({ color: palette.accent, forceLabel: true })
-    expect(node('mysql', view({ focus: 'postgresql' })).color).toBe(palette.families.data)
+    expect(node('mysql', v).color).toBe(palette.families.data)
+  })
+})
+
+describe('focus neighbourhood', () => {
+  const g = buildGraph(tools(), positions)
+  const spot = (id: string, hiddenEdgeTypes?: EdgeType[]) =>
+    makeView({
+      focus: id,
+      neighbours: neighboursOf(g, id, new Set(hiddenEdgeTypes ?? [])),
+      hiddenEdgeTypes: hiddenEdgeTypes ? new Set(hiddenEdgeTypes) : undefined,
+    })
+  const node = (id: string, v: ReturnType<typeof makeView>) => nodeStyle(id, g.getNodeAttributes(id), v, palette)
+  const edge = (source: string, target: string, v: ReturnType<typeof makeView>) =>
+    edgeStyle(g.getEdgeAttributes(g.edges(source, target)[0]), v, palette)
+
+  it('lists neighbours over shown edge types only', () => {
+    expect([...neighboursOf(g, 'fastapi', new Set())].sort()).toEqual(['postgresql', 'react'])
+    expect([...neighboursOf(g, 'fastapi', new Set(['pairs-with']))]).toEqual([])
+    expect(neighboursOf(g, 'not-a-tool', new Set()).size).toBe(0)
+  })
+
+  it('keeps neighbours in their colour with labels on and dims the rest', () => {
+    const v = spot('fastapi')
+    expect(node('fastapi', v)).toMatchObject({ color: palette.accent, forceLabel: true })
+    expect(node('react', v)).toMatchObject({ color: palette.families.client, forceLabel: true, labelColor: palette.text })
+    const other = node('mysql', v)
+    expect(other.color).toBe(withAlpha(palette.families.data, 0.25))
+    expect(other.forceLabel).toBe(false)
+    expect(other.labelColor).toBe(withAlpha(palette.textFaint, 0.35))
+  })
+
+  it('draws the focused tool edges stronger and dims the others', () => {
+    const v = spot('fastapi')
+    const own = edge('fastapi', 'postgresql', v)
+    const away = edge('postgresql', 'mysql', v)
+    expect(own).toMatchObject({ color: palette.edgeStrong, zIndex: 2 })
+    expect(own.size).toBeGreaterThanOrEqual(1.5)
+    expect(away.color).toBe(withAlpha(palette.edge, 0.4))
+    expect(away.zIndex).toBe(0)
+  })
+
+  it('leaves the map as it is when nothing is focused', () => {
+    const v = makeView({})
+    expect(node('mysql', v).color).toBe(palette.families.data)
+    expect(edge('postgresql', 'mysql', v).color).toBe(palette.edge)
+  })
+
+  it('a hovered tool lights its neighbourhood without taking the accent', () => {
+    const v = makeView({ spotlight: 'fastapi', neighbours: neighboursOf(g, 'fastapi', new Set()) })
+    expect(node('fastapi', v).color).toBe(palette.families.server)
+    expect(node('fastapi', v).forceLabel).toBe(true)
+    expect(node('mysql', v).color).toBe(withAlpha(palette.families.data, 0.25))
+  })
+
+  it('draws pairings and alternatives thinner than structural edges at rest', () => {
+    const v = makeView({})
+    expect(edge('react', 'fastapi', v).size).toBeLessThan(1)
+    expect(edge('postgresql', 'mysql', v).size).toBeLessThan(edge('react', 'fastapi', v).size ?? 0)
+  })
+})
+
+describe('LabelPlacer', () => {
+  const box = (x0: number, y0: number, x1: number, y1: number) => ({ x0, y0, x1, y1 })
+
+  it('places a label in free space and refuses one that overlaps a placed label', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    expect(placer.place(box(10, 10, 80, 24))).toBe(true)
+    expect(placer.place(box(60, 18, 120, 32))).toBe(false)
+    expect(placer.place(box(90, 10, 150, 24))).toBe(true)
+  })
+
+  it('refuses a label over another dot but not over its own', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    placer.reset([
+      { id: 'a', box: box(0, 0, 8, 8) },
+      { id: 'b', box: box(30, 0, 38, 8) },
+    ])
+    expect(placer.place(box(4, 0, 28, 8), 'a')).toBe(true)
+    expect(placer.place(box(4, 20, 50, 28), 'a')).toBe(true)
+    expect(placer.place(box(10, 2, 40, 8), 'a')).toBe(false)
+  })
+
+  it('refuses a label that would be cut off at the edge of the map', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    expect(placer.place(box(360, 10, 420, 24))).toBe(false)
+    expect(placer.place(box(-5, 10, 40, 24))).toBe(false)
+  })
+
+  it('reserved labels always win and clear on reset', () => {
+    const placer = new LabelPlacer({ width: 400, height: 300 })
+    placer.reserve(box(10, 10, 80, 24))
+    expect(placer.place(box(20, 12, 60, 20))).toBe(false)
+    placer.reset([])
+    expect(placer.place(box(20, 12, 60, 20))).toBe(true)
+  })
+})
+
+describe('portraitCamera', () => {
+  it('leaves landscape screens at the fitted view', () => {
+    expect(portraitCamera(1440, 900)).toEqual({ ratio: 1 })
+    expect(portraitCamera(900, 900)).toEqual({ ratio: 1 })
+  })
+
+  it('zooms in on portrait screens so the map uses more of the height', () => {
+    const { ratio } = portraitCamera(390, 844)
+    expect(ratio).toBeLessThan(1)
+    expect(ratio).toBeGreaterThanOrEqual(0.7)
+    expect(portraitCamera(390, 844).ratio).toBeLessThan(portraitCamera(768, 1024).ratio)
   })
 })
 

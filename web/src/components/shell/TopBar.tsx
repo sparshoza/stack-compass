@@ -1,10 +1,13 @@
-import type { ReactNode, RefObject } from 'react'
+import { useEffect, useRef, type ReactNode, type RefObject } from 'react'
 import { CompassIcon, InfoIcon, MoonIcon, SunIcon } from 'lucide-react'
 import { SearchBox } from '@/components/map/SearchBox'
 import { Button } from '@/components/ui/button'
 import type { Theme } from '@/lib/theme'
 import { cn } from '@/lib/utils'
 import { Mark } from './Mark'
+
+/** Icon buttons over the map get a backing so dots and labels never show through. */
+export const quietOverMap = 'bg-background/85'
 
 interface TopBarProps {
   toolCount: number
@@ -38,12 +41,26 @@ export function TopBar({
   filters,
 }: TopBarProps) {
   const nextTheme = theme === 'dark' ? 'light' : 'dark'
+  const headerRef = useRef<HTMLElement>(null)
+
+  // Publishes the bar's height as --bar-h so the table header can stick under it.
+  useEffect(() => {
+    const header = headerRef.current
+    if (!header || typeof ResizeObserver === 'undefined') return
+    const root = document.documentElement
+    const observer = new ResizeObserver(() => root.style.setProperty('--bar-h', `${header.offsetHeight}px`))
+    observer.observe(header)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <header
+      ref={headerRef}
       className={cn(
-        'pointer-events-none fixed inset-x-0 top-0 z-30 px-4 pt-3 md:px-6 md:pt-4',
-        view === 'table' && 'border-b border-line bg-background pb-3 md:pb-4',
+        'fixed inset-x-0 top-0 z-30 px-4 pt-3 md:px-6 md:pt-4',
+        view === 'table'
+          ? 'pointer-events-auto border-b border-line bg-background pb-3 md:pb-4'
+          : 'pointer-events-none',
       )}
     >
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2.5 md:flex-nowrap md:justify-between">
@@ -67,17 +84,25 @@ export function TopBar({
 
           {filters}
 
-          <Button variant="quiet" size="icon-pill" aria-label={`Switch to ${nextTheme} theme`} onClick={onToggleTheme}>
+          <Button
+            variant="quiet"
+            size="icon-pill"
+            className={quietOverMap}
+            aria-label={`Switch to ${nextTheme} theme`}
+            onClick={onToggleTheme}
+          >
             {theme === 'dark' ? <SunIcon aria-hidden="true" /> : <MoonIcon aria-hidden="true" />}
           </Button>
-          <Button variant="quiet" size="icon-pill" aria-label="About Stack Compass" onClick={onInfo}>
+          <Button variant="quiet" size="icon-pill" className={quietOverMap} aria-label="About Stack Compass" onClick={onInfo}>
             <InfoIcon aria-hidden="true" />
           </Button>
         </div>
 
         {view === 'map' && (
-          <p className="pointer-events-auto w-full text-xs text-text-muted md:hidden">
-            {toolCount} tools · pinch to zoom, tap to explore
+          <p className="w-full md:hidden">
+            <span className="pointer-events-auto rounded-full bg-background/85 px-2 py-1 text-xs text-text-muted">
+              {toolCount} tools · pinch to zoom, tap to explore
+            </span>
           </p>
         )}
       </div>

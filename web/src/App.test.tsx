@@ -150,6 +150,25 @@ describe('map screen', () => {
     expect(screen.getByText('No tool matches "zzzz"')).toBeInTheDocument()
   })
 
+  it('Escape in search with a query clears it and keeps the panel open', async () => {
+    const user = userEvent.setup()
+    renderApp('/?focus=express')
+    const search = screen.getByRole('combobox', { name: 'Search tools' })
+    await user.type(search, 'red')
+    await user.keyboard('{Escape}')
+    expect(search).toHaveValue('')
+    expect(toolPanel('Express')).toBeInTheDocument()
+  })
+
+  it('keeps one live region for search status mounted', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    const status = within(screen.getByRole('banner')).getByRole('status')
+    expect(status).toBeEmptyDOMElement()
+    await user.type(screen.getByRole('combobox', { name: 'Search tools' }), 'zzzz')
+    expect(status).toHaveTextContent('No tool matches "zzzz"')
+  })
+
   it('"/" focuses search unless typing in a field', async () => {
     const user = userEvent.setup()
     renderApp('/?view=table')
@@ -309,6 +328,18 @@ describe('map screen', () => {
     expect(screen.getAllByRole('row')).toHaveLength(kb.tools.length + 1)
   })
 
+  it('the top bar is a solid band over the table that catches clicks', () => {
+    renderApp('/?view=table')
+    const bar = screen.getByRole('banner')
+    expect(bar).toHaveClass('pointer-events-auto', 'bg-background')
+    expect(bar).not.toHaveClass('pointer-events-none')
+  })
+
+  it('table header stays in view under the bar', () => {
+    renderApp('/?view=table')
+    for (const th of screen.getAllByRole('columnheader')) expect(th).toHaveClass('sticky')
+  })
+
   it('table view switches back to the map', async () => {
     const user = userEvent.setup()
     renderApp('/?view=table')
@@ -364,7 +395,8 @@ describe('map screen', () => {
         'w-full',
       )
       const hint = within(bar).getByText(`${kb.tools.length} tools · pinch to zoom, tap to explore`)
-      expect(hint).toHaveClass('md:hidden')
+      expect(hint.closest('p')).toHaveClass('md:hidden')
+      expect(hint).toHaveClass('bg-background/85')
       const fullscreen = screen.getByRole('button', { name: 'Fullscreen' })
       expect(fullscreen).toHaveClass('md:hidden')
     } finally {

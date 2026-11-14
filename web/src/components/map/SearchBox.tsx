@@ -120,14 +120,17 @@ export function SearchBox({ inputRef, onPick }: SearchBoxProps) {
           ))}
       </ul>
 
-      {showEmpty && (
-        <p
-          role="status"
-          className="absolute top-full left-0 z-10 mt-2 w-[calc(100vw-2rem)] rounded-xl border border-line bg-surface px-4 py-3 text-[0.8125rem] text-text-muted shadow-(--shadow-float) md:w-80"
-        >
-          No tool matches "{query.trim()}"
-        </p>
-      )}
+      {/* Always mounted so screen readers hear the message when it appears. */}
+      <p
+        role="status"
+        className={
+          showEmpty
+            ? 'absolute top-full left-0 z-10 mt-2 w-[calc(100vw-2rem)] rounded-xl border border-line bg-surface px-4 py-3 text-[0.8125rem] text-text-muted shadow-(--shadow-float) md:w-80'
+            : 'sr-only'
+        }
+      >
+        {showEmpty ? `No tool matches "${query.trim()}"` : ''}
+      </p>
     </form>
   )
 }

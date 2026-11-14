@@ -7,8 +7,10 @@
 // families in src/lib/families.json with a gap between families. Tools start
 // near their layer's anchor (jitter from a PRNG seeded by the tool id), are
 // tied to it by an extra edge, and ForceAtlas2 settles them for 500
-// iterations together with the catalog edges. Everything is deterministic,
-// so the same catalog always gives the same file.
+// iterations together with the catalog edges. A final pass pushes apart any
+// two tools closer than MIN_GAP of the map's width, so leaf tools do not sit
+// on top of each other. Everything is deterministic, so the same catalog
+// always gives the same file.
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -23,8 +25,10 @@ export const layoutPath = resolve(here, '../../catalog/layout.json')
 export const ITERATIONS = 500
 const RADIUS = 1000
 const FAMILY_GAP = 1 // empty anchor slots between two families
-const JITTER = 120
-const ANCHOR_WEIGHT = 1
+const JITTER = 260
+const ANCHOR_WEIGHT = 0.35
+const MIN_GAP = 0.03 // of the map's larger side
+const SPREAD_ROUNDS = 80
 const EDGE_WEIGHT = { 'built-on': 0.6, extends: 0.6, 'pairs-with': 0.15, 'alternative-to': 0.4, replaces: 0.4 }
 
 export function readInputs() {
@@ -116,12 +120,54 @@ export function computeLayout(catalog, families) {
     },
   })
 
+  spreadApart(tools.map((tool) => positions[tool.id]), tools.map((tool) => tool.id))
+
   const out = {}
   for (const tool of tools) {
     const { x, y } = positions[tool.id]
     out[tool.id] = { x: round(x), y: round(y) }
   }
   return out
+}
+
+/**
+ * Pushes every pair of points closer than MIN_GAP of the map size apart,
+ * half each, along the line between them (a direction from the ids when
+ * they coincide). Pairs are visited in a fixed order, so the result is
+ * deterministic. Mutates `points`.
+ */
+export function spreadApart(points, ids) {
+  const xs = points.map((p) => p.x)
+  const ys = points.map((p) => p.y)
+  const extent = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys))
+  // Aim a little past the target so rounding never lands just under it.
+  const gap = extent * MIN_GAP * 1.05
+  for (let round = 0; round < SPREAD_ROUNDS; round++) {
+    let moved = false
+    for (let i = 0; i < points.length; i++) {
+      for (let j = i + 1; j < points.length; j++) {
+        const a = points[i]
+        const b = points[j]
+        let dx = b.x - a.x
+        let dy = b.y - a.y
+        let d = Math.hypot(dx, dy)
+        if (d >= gap) continue
+        if (d === 0) {
+          const angle = (hash(ids[i] + '|' + ids[j]) / 4294967296) * 2 * Math.PI
+          dx = Math.cos(angle)
+          dy = Math.sin(angle)
+          d = 1
+        }
+        const push = (gap - d) / 2
+        a.x -= (dx / d) * push
+        a.y -= (dy / d) * push
+        b.x += (dx / d) * push
+        b.y += (dy / d) * push
+        moved = true
+      }
+    }
+    if (!moved) break
+  }
 }
 
 /** One tool per line so diffs stay readable; LF and a trailing newline. */

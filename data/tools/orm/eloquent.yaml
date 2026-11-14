@@ -17,5 +17,10 @@ avoid_when: [Projects not using Laravel]
 edges:
 - {type: alternative-to, target: doctrine}
 - {type: pairs-with, target: laravel}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: sqlite}
+- {type: pairs-with, target: mongodb}
 verified: 2026-11-14
-sources: ['https://laravel.com/docs/eloquent', 'https://github.com/laravel/framework']
+sources: ['https://laravel.com/docs/eloquent', 'https://laravel.com/docs/database', 'https://github.com/laravel/framework']

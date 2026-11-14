@@ -413,9 +413,24 @@
         "microservices"
       ],
       "sets": {
-        "capabilities": [],
+        "capabilities": [
+          "rest-api"
+        ],
         "languages": [],
         "project_type": "api-only"
+      }
+    },
+    {
+      "phrases": [
+        "restful",
+        "rest endpoints"
+      ],
+      "sets": {
+        "capabilities": [
+          "rest-api"
+        ],
+        "languages": [],
+        "project_type": null
       }
     },
     {
@@ -529,7 +544,10 @@
       "phrases": [
         "golang",
         "go language",
-        "go lang"
+        "go lang",
+        "in go",
+        "using go",
+        "use go"
       ],
       "sets": {
         "capabilities": [],
@@ -648,8 +666,7 @@
     },
     {
       "phrases": [
-        "swift",
-        "swiftui"
+        "swift"
       ],
       "sets": {
         "capabilities": [],
@@ -742,7 +759,6 @@
     },
     {
       "phrases": [
-        "stripe like payments",
         "recurring billing",
         "paywall",
         "pay per use",
@@ -1285,8 +1301,7 @@
         "image uploads",
         "upload photos",
         "object storage",
-        "file storage",
-        "s3 compatible"
+        "file storage"
       ],
       "sets": {
         "capabilities": [
@@ -3599,7 +3614,7 @@
         "oss"
       ],
       "repo": "https://github.com/hibiken/asynq",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://github.com/hibiken/asynq"
       ],
@@ -4722,7 +4737,7 @@
         "oss"
       ],
       "repo": "https://github.com/taskforcesh/bullmq",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://bullmq.io",
         "https://github.com/taskforcesh/bullmq"
@@ -6295,6 +6310,10 @@
         {
           "target": "pytest",
           "type": "pairs-with"
+        },
+        {
+          "target": "django-orm",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -6332,6 +6351,70 @@
       "verified": "2026-11-14"
     },
     {
+      "aliases": [
+        "django orm"
+      ],
+      "avoid_when": [
+        "Projects not using Django"
+      ],
+      "edges": [
+        {
+          "target": "sqlalchemy",
+          "type": "alternative-to"
+        },
+        {
+          "target": "django",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mariadb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Django projects",
+        "Models and queries without extra setup"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "django-orm",
+      "languages": [
+        "python"
+      ],
+      "layer": "orm",
+      "license": "BSD-3-Clause",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Django ORM",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/django/django",
+      "runs_in_app": true,
+      "sources": [
+        "https://docs.djangoproject.com/en/stable/topics/db/",
+        "https://docs.djangoproject.com/en/stable/ref/databases/",
+        "https://github.com/django/django"
+      ],
+      "summary": "Django's built-in object-relational mapper that maps models to tables, with a query API.",
+      "tags": [],
+      "url": "https://docs.djangoproject.com/en/stable/topics/db/",
+      "verified": "2026-11-14"
+    },
+    {
       "aliases": [],
       "avoid_when": [
         "You prefer Active Record style"
@@ -6340,10 +6423,6 @@
         {
           "target": "eloquent",
           "type": "alternative-to"
-        },
-        {
-          "target": "laravel",
-          "type": "pairs-with"
         },
         {
           "target": "mysql",
@@ -6384,10 +6463,11 @@
       "runs_in_app": false,
       "sources": [
         "https://www.doctrine-project.org",
+        "https://www.doctrine-project.org/projects/orm.html",
         "https://github.com/doctrine/orm",
         "https://www.doctrine-project.org/projects/dbal.html"
       ],
-      "summary": "A PHP object-relational mapper built on DBAL, integrated with Symfony, Laravel and Laminas.",
+      "summary": "A PHP object-relational mapper built on DBAL, with integrations for Symfony and Laminas.",
       "tags": [],
       "url": "https://www.doctrine-project.org",
       "verified": "2026-11-14"
@@ -7133,6 +7213,26 @@
         {
           "target": "laravel",
           "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mariadb",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mongodb",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -7157,6 +7257,7 @@
       "runs_in_app": false,
       "sources": [
         "https://laravel.com/docs/eloquent",
+        "https://laravel.com/docs/database",
         "https://github.com/laravel/framework"
       ],
       "summary": "Laravel's Active Record ORM for working with databases using PHP models.",
@@ -8118,6 +8219,65 @@
     },
     {
       "aliases": [
+        "fluent orm",
+        "vapor fluent"
+      ],
+      "avoid_when": [
+        "Projects not using Vapor"
+      ],
+      "edges": [
+        {
+          "target": "vapor",
+          "type": "pairs-with"
+        },
+        {
+          "target": "postgresql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mysql",
+          "type": "pairs-with"
+        },
+        {
+          "target": "sqlite",
+          "type": "pairs-with"
+        },
+        {
+          "target": "mongodb",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Vapor apps"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "fluent",
+      "languages": [
+        "swift"
+      ],
+      "layer": "orm",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Fluent",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vapor/fluent",
+      "runs_in_app": true,
+      "sources": [
+        "https://docs.vapor.codes/fluent/overview/",
+        "https://github.com/vapor/fluent"
+      ],
+      "summary": "Vapor's ORM for Swift, with model types for creating, reading, updating and deleting rows.",
+      "tags": [],
+      "url": "https://docs.vapor.codes/fluent/overview/",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "flutter-sdk"
       ],
       "avoid_when": [
@@ -8156,6 +8316,10 @@
         {
           "target": "sqlite",
           "type": "pairs-with"
+        },
+        {
+          "target": "swiftui",
+          "type": "alternative-to"
         }
       ],
       "good_for": [
@@ -8262,6 +8426,10 @@
         },
         {
           "target": "phoenix",
+          "type": "pairs-with"
+        },
+        {
+          "target": "vapor",
           "type": "pairs-with"
         }
       ],
@@ -9586,6 +9754,10 @@
         {
           "target": "aspnet-core",
           "type": "pairs-with"
+        },
+        {
+          "target": "vapor",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -10324,7 +10496,7 @@
         "oss"
       ],
       "repo": "https://github.com/jobrunr/jobrunr",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://www.jobrunr.io",
         "https://github.com/jobrunr/jobrunr"
@@ -10949,10 +11121,6 @@
       ],
       "edges": [
         {
-          "target": "doctrine",
-          "type": "pairs-with"
-        },
-        {
           "target": "eloquent",
           "type": "pairs-with"
         },
@@ -11109,7 +11277,7 @@
         "oss"
       ],
       "repo": "https://github.com/laravel/framework",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://laravel.com/docs/queues",
         "https://laravel.com/docs/scheduling",
@@ -11716,6 +11884,14 @@
         {
           "target": "doctrine",
           "type": "pairs-with"
+        },
+        {
+          "target": "django-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "eloquent",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -12287,6 +12463,14 @@
         {
           "target": "prisma",
           "type": "pairs-with"
+        },
+        {
+          "target": "fluent",
+          "type": "pairs-with"
+        },
+        {
+          "target": "eloquent",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -12444,6 +12628,18 @@
         },
         {
           "target": "entity-framework-core",
+          "type": "pairs-with"
+        },
+        {
+          "target": "django-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "fluent",
+          "type": "pairs-with"
+        },
+        {
+          "target": "eloquent",
           "type": "pairs-with"
         }
       ],
@@ -13455,7 +13651,7 @@
         "paid"
       ],
       "repo": "https://github.com/oban-bg/oban",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://oban.pro",
         "https://github.com/oban-bg/oban",
@@ -13508,10 +13704,13 @@
       "runs_in_app": false,
       "sources": [
         "https://www.openapis.org",
+        "https://spec.openapis.org/oas/latest.html",
         "https://github.com/OAI/OpenAPI-Specification"
       ],
       "summary": "A formal standard for describing HTTP APIs, used to understand APIs, generate client code and create tests.",
-      "tags": [],
+      "tags": [
+        "rest-api"
+      ],
       "url": "https://www.openapis.org",
       "verified": "2026-11-14"
     },
@@ -14091,7 +14290,7 @@
         "oss"
       ],
       "repo": "https://github.com/timgit/pg-boss",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://github.com/timgit/pg-boss"
       ],
@@ -14738,6 +14937,18 @@
         },
         {
           "target": "entity-framework-core",
+          "type": "pairs-with"
+        },
+        {
+          "target": "django-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "fluent",
+          "type": "pairs-with"
+        },
+        {
+          "target": "eloquent",
           "type": "pairs-with"
         }
       ],
@@ -15437,7 +15648,7 @@
         "oss"
       ],
       "repo": "https://github.com/quartz-scheduler/quartz",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://www.quartz-scheduler.org",
         "https://github.com/quartz-scheduler/quartz"
@@ -15713,6 +15924,7 @@
       "runs_in_app": false,
       "sources": [
         "https://rubyonrails.org",
+        "https://guides.rubyonrails.org/api_app.html",
         "https://guides.rubyonrails.org/configuring.html",
         "https://guides.rubyonrails.org/caching_with_rails.html",
         "https://guides.rubyonrails.org/active_storage_overview.html",
@@ -15720,6 +15932,7 @@
       ],
       "summary": "A full-stack Ruby framework with jobs, mailers, file storage and websockets built in.",
       "tags": [
+        "rest-api",
         "background-jobs",
         "realtime",
         "file-uploads",
@@ -16098,6 +16311,10 @@
         {
           "target": "supabase",
           "type": "pairs-with"
+        },
+        {
+          "target": "swiftui",
+          "type": "alternative-to"
         }
       ],
       "good_for": [
@@ -16647,7 +16864,7 @@
         "paid"
       ],
       "repo": "https://github.com/riverqueue/river",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://riverqueue.com",
         "https://github.com/riverqueue/river"
@@ -16855,7 +17072,7 @@
         "oss"
       ],
       "repo": "https://github.com/rq/rq",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://python-rq.org",
         "https://raw.githubusercontent.com/rq/rq/master/LICENSE",
@@ -17656,7 +17873,7 @@
         "paid"
       ],
       "repo": "https://github.com/sidekiq/sidekiq",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://sidekiq.org",
         "https://github.com/sidekiq/sidekiq/blob/main/LICENSE.txt",
@@ -17773,7 +17990,7 @@
         "oss"
       ],
       "repo": "https://github.com/rails/solid_queue",
-      "runs_in_app": false,
+      "runs_in_app": true,
       "sources": [
         "https://github.com/rails/solid_queue"
       ],
@@ -18026,6 +18243,7 @@
       "runs_in_app": false,
       "sources": [
         "https://spring.io/projects/spring-boot",
+        "https://spring.io/guides/gs/rest-service",
         "https://docs.spring.io/spring-boot/reference/features/kotlin.html",
         "https://github.com/spring-projects/spring-boot",
         "https://docs.spring.io/spring-boot/reference/data/sql.html",
@@ -18036,7 +18254,9 @@
         "https://docs.spring.io/spring-boot/reference/testing/index.html"
       ],
       "summary": "A Java and Kotlin framework for production-grade Spring applications with minimal setup.",
-      "tags": [],
+      "tags": [
+        "rest-api"
+      ],
       "url": "https://spring.io/projects/spring-boot",
       "verified": "2026-11-14"
     },
@@ -18128,6 +18348,10 @@
         {
           "target": "sqlite",
           "type": "pairs-with"
+        },
+        {
+          "target": "django-orm",
+          "type": "alternative-to"
         }
       ],
       "good_for": [
@@ -18275,6 +18499,18 @@
         },
         {
           "target": "doctrine",
+          "type": "pairs-with"
+        },
+        {
+          "target": "django-orm",
+          "type": "pairs-with"
+        },
+        {
+          "target": "fluent",
+          "type": "pairs-with"
+        },
+        {
+          "target": "eloquent",
           "type": "pairs-with"
         }
       ],
@@ -19304,6 +19540,57 @@
       "summary": "A Rust-based platform for fast compiling, minifying and bundling JavaScript and TypeScript.",
       "tags": [],
       "url": "https://swc.rs",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
+        "swift ui",
+        "apple swiftui"
+      ],
+      "avoid_when": [
+        "You need Android too",
+        "You are not on a Mac"
+      ],
+      "edges": [
+        {
+          "target": "flutter",
+          "type": "alternative-to"
+        },
+        {
+          "target": "react-native",
+          "type": "alternative-to"
+        }
+      ],
+      "good_for": [
+        "Native iOS apps with Apple's own look and feel"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "swiftui",
+      "languages": [
+        "swift"
+      ],
+      "layer": "mobile",
+      "license": "Proprietary",
+      "match_name": true,
+      "maturity": "established",
+      "name": "SwiftUI",
+      "pricing": [
+        "free-tier"
+      ],
+      "repo": null,
+      "runs_in_app": false,
+      "sources": [
+        "https://developer.apple.com/swiftui/",
+        "https://apps.apple.com/us/app/xcode/id497799835",
+        "https://developer.apple.com/programs/"
+      ],
+      "summary": "Apple's declarative framework for building native iOS and other Apple platform apps in Swift.",
+      "tags": [
+        "native-mobile"
+      ],
+      "url": "https://developer.apple.com/swiftui/",
       "verified": "2026-11-14"
     },
     {
@@ -20791,6 +21078,58 @@
     },
     {
       "aliases": [
+        "vapor swift",
+        "vapor.codes"
+      ],
+      "avoid_when": [
+        "Your team does not know Swift"
+      ],
+      "edges": [
+        {
+          "target": "fluent",
+          "type": "pairs-with"
+        },
+        {
+          "target": "heroku",
+          "type": "pairs-with"
+        },
+        {
+          "target": "flyio",
+          "type": "pairs-with"
+        }
+      ],
+      "good_for": [
+        "Swift teams that want the same language on server and iOS"
+      ],
+      "hosting": [
+        "self-hosted"
+      ],
+      "id": "vapor",
+      "languages": [
+        "swift"
+      ],
+      "layer": "backend",
+      "license": "MIT",
+      "match_name": false,
+      "maturity": "established",
+      "name": "Vapor",
+      "pricing": [
+        "oss"
+      ],
+      "repo": "https://github.com/vapor/vapor",
+      "runs_in_app": false,
+      "sources": [
+        "https://vapor.codes",
+        "https://docs.vapor.codes/",
+        "https://github.com/vapor/vapor"
+      ],
+      "summary": "A Swift web framework for writing backends, web apps, APIs and HTTP servers, built on SwiftNIO.",
+      "tags": [],
+      "url": "https://vapor.codes",
+      "verified": "2026-11-14"
+    },
+    {
+      "aliases": [
         "vercel.com"
       ],
       "avoid_when": [
@@ -22247,6 +22586,11 @@
         "explain": "Ships an app for iOS and Android app stores.",
         "id": "native-mobile",
         "label": "Native mobile app"
+      },
+      {
+        "explain": "Exposes your data to other programs over plain HTTP and JSON, so apps and partners can call it.",
+        "id": "rest-api",
+        "label": "REST API"
       }
     ],
     "capability_layers": {
@@ -22270,6 +22614,9 @@
       ],
       "realtime": [
         "cache"
+      ],
+      "rest-api": [
+        "api-style"
       ],
       "scheduled-jobs": [
         "jobs-queue"

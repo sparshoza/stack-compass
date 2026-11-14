@@ -1,5 +1,7 @@
 """Load and strictly validate data/vocab.yaml, data/keywords.yaml and data/tools/**."""
 
+import re
+import unicodedata
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -27,6 +29,35 @@ class KbError(Exception):
 
 def _norm(s: str) -> str:
     return s.strip().lower()
+
+
+_BARRIER_WORDS = {"but", "however"}
+_CLAUSE_BREAK = re.compile(r"[,;:!?\n\r]+|\.{2,}")
+
+
+def _match_key(text: str) -> str:
+    """Normalise a phrase, name or alias the way web/src/engine/match.ts `tokenize`
+    does, so the collision checks agree with the matcher: NFKC, lowercase, apostrophes
+    dropped, anything that is not a letter, digit, mark or one of . + # becomes a
+    space, leading . + # and trailing dots are stripped from each word, and a single
+    leading dot before a word survives (".net"). Clause breaks and the words "but" and
+    "however" vanish."""
+    cleaned = unicodedata.normalize("NFKC", text).lower()
+    cleaned = re.sub("['‘’ʼ]", "", cleaned)
+    cleaned = _CLAUSE_BREAK.sub(" ", cleaned)
+    cleaned = "".join(
+        ch if (unicodedata.category(ch)[0] in "LNM" or ch in ".+#") else " " for ch in cleaned
+    )
+    tokens: list[str] = []
+    for raw in cleaned.split():
+        token = re.sub(r"\.+$", "", re.sub(r"^[.+#]+", "", raw))
+        if not token:
+            continue
+        if raw.startswith(".") and raw[1:2] not in (".", "+", "#"):
+            token = "." + token
+        if token not in _BARRIER_WORDS:
+            tokens.append(token)
+    return " ".join(tokens)
 
 
 def _read_yaml(path: Path, rel: str, errors: list[str]) -> Any:
@@ -169,10 +200,10 @@ def _check_aliases(tools: dict[str, tuple[Tool, str]], errors: list[str]) -> Non
     owners: dict[str, set[str]] = {}
     for tool_id, (tool, _) in tools.items():
         for term in [tool.id, tool.name, *tool.aliases]:
-            owners.setdefault(_norm(term), set()).add(tool_id)
+            owners.setdefault(_match_key(term), set()).add(tool_id)
     for tool_id, (tool, rel) in tools.items():
         for alias in tool.aliases:
-            others = sorted(owners[_norm(alias)] - {tool_id})
+            others = sorted(owners[_match_key(alias)] - {tool_id})
             if others:
                 errors.append(
                     f"{rel}: alias '{alias}' collides with id, name or alias of "
@@ -183,19 +214,19 @@ def _check_aliases(tools: dict[str, tuple[Tool, str]], errors: list[str]) -> Non
 def _check_keyword_tool_collisions(
     keywords: list[KeywordEntry], tools: dict[str, tuple[Tool, str]], errors: list[str]
 ) -> None:
-    """A keyword phrase may not equal a matched tool name or an alias: the
-    longest-match scan would read it as both."""
+    """A keyword phrase may not equal a matched tool name or an alias once both are
+    normalised like the web matcher: the longest-match scan would read it as both."""
     terms: dict[str, set[str]] = {}
     for tool_id, (tool, _) in tools.items():
         names = [tool.name] if tool.match_name else []
         for term in [*names, *tool.aliases]:
-            terms.setdefault(_norm(term), set()).add(tool_id)
+            terms.setdefault(_match_key(term), set()).add(tool_id)
     for i, entry in enumerate(keywords):
         for phrase in entry.phrases:
-            owners = terms.get(_norm(phrase))
+            owners = terms.get(_match_key(phrase))
             if owners:
                 errors.append(
-                    f"keywords.yaml: entry {i} phrase '{_norm(phrase)}' equals the name or "
+                    f"keywords.yaml: entry {i} phrase '{_match_key(phrase)}' equals the name or "
                     f"an alias of {', '.join(sorted(owners))}"
                 )
 

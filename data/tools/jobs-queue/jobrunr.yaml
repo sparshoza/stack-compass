@@ -1,6 +1,7 @@
 id: jobrunr
 name: JobRunr
 aliases: []
+runs_in_app: true
 layer: jobs-queue
 summary: A Java library for fire-and-forget, delayed and recurring background jobs, with a Spring Boot starter.
 url: https://www.jobrunr.io

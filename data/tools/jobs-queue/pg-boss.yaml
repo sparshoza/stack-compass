@@ -1,6 +1,7 @@
 id: pg-boss
 name: pg-boss
 aliases: [pgboss]
+runs_in_app: true
 layer: jobs-queue
 summary: A job queue for Node.js built on PostgreSQL, with delayed and cron-scheduled jobs.
 url: https://github.com/timgit/pg-boss

@@ -66,6 +66,9 @@ capabilities:
   - id: native-mobile
     label: Native mobile app
     explain: Ships an app for iOS and Android app stores.
+  - id: rest-api
+    label: REST API
+    explain: Exposes your data to other programs over plain HTTP and JSON, so apps and partners can call it.
 project_types:
   - id: web-app
     label: Web app
@@ -102,4 +105,5 @@ capability_layers:
   realtime: [cache]
   native-mobile: [mobile]
   vector-search: [database]
+  rest-api: [api-style]
 tooling_layers: [state, build-tool, ci-cd, observability, testing]

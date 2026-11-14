@@ -1,6 +1,7 @@
 id: solid-queue
 name: Solid Queue
 aliases: []
+runs_in_app: true
 layer: jobs-queue
 summary: A database-backed Active Job queue for Rails with delayed and recurring jobs.
 url: https://github.com/rails/solid_queue

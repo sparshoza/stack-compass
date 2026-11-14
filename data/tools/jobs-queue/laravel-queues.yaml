@@ -1,6 +1,7 @@
 id: laravel-queues
 name: Laravel Queues
 aliases: [laravel horizon]
+runs_in_app: true
 layer: jobs-queue
 summary: Laravel's queue API with database, Redis, SQS and Beanstalkd drivers, plus delayed jobs.
 url: https://laravel.com/docs/queues

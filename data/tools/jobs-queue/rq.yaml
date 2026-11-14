@@ -1,6 +1,7 @@
 id: rq
 name: RQ
 aliases: [python-rq, redis queue]
+runs_in_app: true
 layer: jobs-queue
 summary: A simple Python library for queueing jobs and processing them in the background with Redis.
 url: https://python-rq.org

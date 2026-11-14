@@ -1,6 +1,7 @@
 id: quartz
 name: Quartz Scheduler
 aliases: []
+runs_in_app: true
 layer: jobs-queue
 summary: A Java job scheduling library that embeds in nearly any Java application.
 url: https://www.quartz-scheduler.org

@@ -6,7 +6,7 @@ summary: A full-stack Ruby framework with jobs, mailers, file storage and websoc
 url: https://rubyonrails.org
 license: MIT
 languages: [ruby]
-tags: [background-jobs, realtime, file-uploads, transactional-email]
+tags: [rest-api, background-jobs, realtime, file-uploads, transactional-email]
 hosting: [self-hosted]
 pricing: [oss]
 maturity: established
@@ -31,4 +31,4 @@ edges:
 - {type: pairs-with, target: algolia}
 - {type: pairs-with, target: rspec}
 verified: 2026-11-14
-sources: ['https://rubyonrails.org', 'https://guides.rubyonrails.org/configuring.html', 'https://guides.rubyonrails.org/caching_with_rails.html', 'https://guides.rubyonrails.org/active_storage_overview.html', 'https://stimulus.hotwired.dev/handbook/installing']
+sources: ['https://rubyonrails.org', 'https://guides.rubyonrails.org/api_app.html', 'https://guides.rubyonrails.org/configuring.html', 'https://guides.rubyonrails.org/caching_with_rails.html', 'https://guides.rubyonrails.org/active_storage_overview.html', 'https://stimulus.hotwired.dev/handbook/installing']

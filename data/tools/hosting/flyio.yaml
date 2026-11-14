@@ -34,6 +34,7 @@ edges:
   target: google-cloud-run
 - {type: pairs-with, target: laravel}
 - {type: pairs-with, target: phoenix}
+- {type: pairs-with, target: vapor}
 verified: '2026-11-14'
 sources:
 - https://fly.io

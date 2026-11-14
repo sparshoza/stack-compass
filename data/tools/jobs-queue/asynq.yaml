@@ -1,6 +1,7 @@
 id: asynq
 name: Asynq
 aliases: []
+runs_in_app: true
 layer: jobs-queue
 summary: A Go library for queueing tasks and processing them asynchronously with Redis.
 url: https://github.com/hibiken/asynq

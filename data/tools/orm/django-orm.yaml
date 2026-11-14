@@ -1,0 +1,26 @@
+id: django-orm
+name: Django ORM
+aliases: [django orm]
+match_name: false
+runs_in_app: true
+layer: orm
+summary: Django's built-in object-relational mapper that maps models to tables, with a query API.
+url: https://docs.djangoproject.com/en/stable/topics/db/
+repo: https://github.com/django/django
+license: BSD-3-Clause
+languages: [python]
+tags: []
+hosting: [self-hosted]
+pricing: [oss]
+maturity: established
+good_for: [Django projects, Models and queries without extra setup]
+avoid_when: [Projects not using Django]
+edges:
+- {type: alternative-to, target: sqlalchemy}
+- {type: pairs-with, target: django}
+- {type: pairs-with, target: postgresql}
+- {type: pairs-with, target: mariadb}
+- {type: pairs-with, target: mysql}
+- {type: pairs-with, target: sqlite}
+verified: 2026-11-14
+sources: ['https://docs.djangoproject.com/en/stable/topics/db/', 'https://docs.djangoproject.com/en/stable/ref/databases/', 'https://github.com/django/django']

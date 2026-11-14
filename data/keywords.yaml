@@ -46,7 +46,9 @@
 - phrases: [web app, web application, webapp, portal, customer portal]
   sets: {project_type: web-app}
 - phrases: [api only, rest api, json api, backend only, headless api, public api, microservice, microservices]
-  sets: {project_type: api-only}
+  sets: {project_type: api-only, capabilities: [rest-api]}
+- phrases: [restful, rest endpoints]
+  sets: {capabilities: [rest-api]}
 - phrases: [realtime app, live app, collaboration tool, live chat app, multiplayer game, live feed]
   sets: {project_type: realtime-app, capabilities: [realtime]}
 - phrases: [internal tool, internal app, admin tool, ops tool, employee tool, staff portal, back office tool]
@@ -61,7 +63,7 @@
   sets: {languages: [typescript]}
 - phrases: [javascript, js, node, nodejs, node.js, npm]
   sets: {languages: [javascript]}
-- phrases: [golang, go language, go lang]
+- phrases: [golang, go language, go lang, in go, using go, use go]
   sets: {languages: [go]}
 - phrases: [java, jvm, jdk]
   sets: {languages: [java]}
@@ -79,7 +81,7 @@
   sets: {languages: [elixir]}
 - phrases: [dart]
   sets: {languages: [dart]}
-- phrases: [swift, swiftui]
+- phrases: [swift]
   sets: {languages: [swift]}
 - phrases: [instant messaging, notifications push, who is online, live comments, live score]
   sets: {capabilities: [realtime]}
@@ -91,7 +93,7 @@
   sets: {capabilities: [background-jobs]}
 - phrases: [weekly digest, daily report, scheduled email, expiry reminders, cleanup job]
   sets: {capabilities: [scheduled-jobs]}
-- phrases: [stripe like payments, recurring billing, paywall, pay per use, tips and donations]
+- phrases: [recurring billing, paywall, pay per use, tips and donations]
   sets: {capabilities: [payments]}
 - phrases: [welcome email, order confirmation, magic link, email verification]
   sets: {capabilities: [transactional-email]}
@@ -173,7 +175,7 @@
   sets: {capabilities: [full-text-search]}
 - phrases: [embeddings search]
   sets: {capabilities: [full-text-search, vector-search]}
-- phrases: [image uploads, upload photos, object storage, file storage, s3 compatible]
+- phrases: [image uploads, upload photos, object storage, file storage]
   sets: {capabilities: [file-uploads]}
 - phrases: [login with github, oauth login]
   sets: {capabilities: [social-login]}

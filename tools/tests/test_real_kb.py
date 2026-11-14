@@ -33,6 +33,7 @@ SPEC_CAP_LAYERS = {
     "realtime": ["cache"],
     "native-mobile": ["mobile"],
     "vector-search": ["database"],
+    "rest-api": ["api-style"],
 }
 
 
@@ -64,7 +65,7 @@ def test_vocab_matches_spec():
         "transactional-email", "content-editing", "multi-tenant", "geospatial",
         "analytics", "vector-search", "social-login", "enterprise-sso",
         "edge-runtime", "type-safety", "admin-ui", "high-write-throughput",
-        "native-mobile",
+        "native-mobile", "rest-api",
     ]  # fmt: skip
     assert all(c.label and c.explain for c in v.capabilities)
     assert {p.id: p.core_layers for p in v.project_types} == {
@@ -157,3 +158,73 @@ def test_runs_in_app_marks_libraries_not_services():
     services = {"keycloak", "authentik", "zitadel", "meilisearch", "celery", "postgresql", "clerk"}
     assert {t for t in libraries if not tools[t].runs_in_app} == set()
     assert {t for t in services if tools[t].runs_in_app} == set()
+
+
+def _kw_phrases():
+    return {p for e in load_kb(DATA).keywords for p in e.phrases}
+
+
+def test_rest_api_capability_and_keywords():
+    kb = load_kb(DATA)
+    cap = next(c for c in kb.vocab.capabilities if c.id == "rest-api")
+    assert cap.label == "REST API" and cap.explain
+    assert len(kb.vocab.capabilities) == 23
+    assert kb.vocab.capability_layers["rest-api"] == ["api-style"]
+    setting = {p for e in kb.keywords if "rest-api" in e.sets.capabilities for p in e.phrases}
+    assert {"rest api", "restful", "rest endpoints", "json api"} <= setting
+
+
+def test_rest_api_tags_only_where_docs_say_so():
+    tools = load_kb(DATA).tools
+    tagged = {t.id for t in tools.values() if "rest-api" in t.tags}
+    assert {"openapi", "spring-boot", "rails"} <= tagged
+    assert tagged <= {"openapi", "spring-boot", "rails"}
+
+
+def test_new_tools_exist_with_official_sources():
+    tools = load_kb(DATA).tools
+    expect = {
+        "django-orm": ("orm", "python", "docs.djangoproject.com"),
+        "vapor": ("backend", "swift", "vapor.codes"),
+        "fluent": ("orm", "swift", "docs.vapor.codes"),
+        "swiftui": ("mobile", "swift", "developer.apple.com"),
+    }
+    for tid, (layer, lang, host) in expect.items():
+        t = tools[tid]
+        assert t.layer == layer and t.languages == [lang], tid
+        assert host in t.url and all(host in s or "github.com" in s or "apple.com" in s
+                                     for s in t.sources), tid
+    assert tools["django-orm"].match_name is False
+    assert tools["fluent"].match_name is False
+    assert tools["vapor"].match_name is False
+    assert tools["swiftui"].license == "Proprietary"
+
+
+def _pairs(tools, tid):
+    return {e.target for e in tools[tid].edges if e.type == "pairs-with"}
+
+
+def test_new_tool_edges():
+    tools = load_kb(DATA).tools
+    assert {"django", "postgresql", "mariadb", "mysql", "sqlite"} <= _pairs(tools, "django-orm")
+    assert {"vapor", "postgresql", "mysql", "sqlite", "mongodb"} <= _pairs(tools, "fluent")
+    assert "fluent" in _pairs(tools, "vapor")
+    assert {"mariadb", "mysql", "postgresql", "sqlite", "mongodb", "laravel"} <= _pairs(
+        tools, "eloquent"
+    )
+    for db in ("postgresql", "mysql", "mariadb", "sqlite"):
+        assert "eloquent" in _pairs(tools, db) and "django-orm" in _pairs(tools, db)
+
+
+def test_job_queue_in_app_libraries_run_in_app():
+    tools = load_kb(DATA).tools
+    in_app = {"oban", "solid-queue", "laravel-queues", "river", "pg-boss", "jobrunr",
+              "quartz", "bullmq", "sidekiq", "rq", "asynq"}  # fmt: skip
+    assert {t for t in in_app if not tools[t].runs_in_app} == set()
+    assert {t for t in ("celery", "temporal", "trigger-dev") if tools[t].runs_in_app} == set()
+
+
+def test_go_phrases_and_no_inner_tool_bias_phrases():
+    phrases = _kw_phrases()
+    assert {"in go", "using go", "use go", "written in go", "golang"} <= phrases
+    assert not {"s3 compatible", "stripe like payments"} & phrases

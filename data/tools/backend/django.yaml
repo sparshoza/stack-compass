@@ -29,5 +29,6 @@ edges:
 - {type: pairs-with, target: heroku}
 - {type: pairs-with, target: memcached}
 - {type: pairs-with, target: pytest}
+- {type: pairs-with, target: django-orm}
 verified: 2026-11-14
 sources: ['https://www.djangoproject.com', 'https://github.com/django/django', 'https://docs.djangoproject.com/en/stable/ref/databases/', 'https://docs.djangoproject.com/en/stable/topics/cache/']

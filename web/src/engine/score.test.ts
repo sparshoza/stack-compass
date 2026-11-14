@@ -759,13 +759,13 @@ describe("scoreStack", () => {
     expect(meta.breakdown).toContainEqual({ code: "known", points: 2 });
     expect(layerOf(results, "backend").pick).toBe("django");
 
-    // Swift has no backend in the catalog: backend and orm are No match.
-    const swift = scoreStack(
-      { ...DEFAULT_ANSWERS, projectType: "web-app", languagesPrefer: ["swift"] },
+    // Dart has no backend in the catalog: backend and orm are No match.
+    const dart = scoreStack(
+      { ...DEFAULT_ANSWERS, projectType: "web-app", languagesPrefer: ["dart"] },
       kb,
     );
     for (const layer of ["backend", "orm"] as Layer[]) {
-      const r = layerOf(swift, layer);
+      const r = layerOf(dart, layer);
       expect(r.pick).toBeNull();
       expect(r.excluded.length).toBeGreaterThan(0);
       expect(new Set(r.excluded.map((e) => e.reason))).toEqual(

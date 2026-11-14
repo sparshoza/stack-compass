@@ -43,5 +43,8 @@ edges:
 - {type: pairs-with, target: doctrine}
 - {type: pairs-with, target: sea-orm}
 - {type: pairs-with, target: entity-framework-core}
+- {type: pairs-with, target: django-orm}
+- {type: pairs-with, target: fluent}
+- {type: pairs-with, target: eloquent}
 verified: 2026-11-14
 sources: ['https://www.mysql.com', 'https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html', 'https://dev.mysql.com/doc/refman/8.4/en/spatial-types.html', 'https://github.com/mysql/mysql-server']

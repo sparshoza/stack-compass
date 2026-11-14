@@ -1,6 +1,7 @@
 id: sidekiq
 name: Sidekiq
 aliases: []
+runs_in_app: true
 layer: jobs-queue
 summary: Simple, efficient background jobs for Ruby, with a free LGPL edition and paid Pro and Enterprise tiers.
 url: https://sidekiq.org

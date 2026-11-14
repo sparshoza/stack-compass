@@ -241,3 +241,25 @@ def test_keyword_phrase_may_equal_a_name_that_is_not_matched(kb_dir):
     edit_yaml(kb_dir / "keywords.yaml", lambda doc: doc[2]["phrases"].append("react"))
     edit_tool(kb_dir, "frontend", "react", lambda d: d.update(match_name=False))
     load_kb(kb_dir)
+
+
+@pytest.mark.parametrize("phrase", ["Fast-API", "fast_api", "FAST  API!", "fast, api", "ｆａｓｔ api"])
+def test_keyword_collision_uses_the_web_matcher_normalisation(kb_dir, phrase):
+    edit_yaml(kb_dir / "keywords.yaml", lambda doc: doc[2]["phrases"].append(phrase))
+    errs = errors_of(kb_dir)
+    assert any(e.startswith("keywords.yaml") and "fastapi" in e for e in errs)
+
+
+def test_keyword_collision_keeps_dots_inside_words_like_the_matcher(kb_dir):
+    # match.ts keeps "." inside a word, so "node.js" and "nodejs" are different tokens.
+    edit_tool(kb_dir, "backend", "fastapi", lambda d: d["aliases"].append("node.js"))
+    edit_yaml(kb_dir / "keywords.yaml", lambda doc: doc[2]["phrases"].append("nodejs"))
+    load_kb(kb_dir)
+    edit_yaml(kb_dir / "keywords.yaml", lambda doc: doc[2]["phrases"].append("Node.JS"))
+    assert any("node.js" in e for e in errors_of(kb_dir))
+
+
+def test_alias_collision_uses_the_web_matcher_normalisation(kb_dir):
+    edit_tool(kb_dir, "frontend", "preact", lambda d: d["aliases"].append("Re-Act"))
+    edit_tool(kb_dir, "frontend", "react", lambda d: d["aliases"].append("re act"))
+    assert any("collides" in e for e in errors_of(kb_dir))

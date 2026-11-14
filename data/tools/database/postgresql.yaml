@@ -50,5 +50,8 @@ edges:
 - {type: pairs-with, target: doctrine}
 - {type: pairs-with, target: sea-orm}
 - {type: pairs-with, target: entity-framework-core}
+- {type: pairs-with, target: django-orm}
+- {type: pairs-with, target: fluent}
+- {type: pairs-with, target: eloquent}
 verified: 2026-11-14
 sources: ['https://www.postgresql.org', 'https://www.postgresql.org/about/license/', 'https://www.postgresql.org/docs/current/textsearch-intro.html']

@@ -1,0 +1,19 @@
+id: swiftui
+name: SwiftUI
+aliases: [swift ui, apple swiftui]
+layer: mobile
+summary: Apple's declarative framework for building native iOS and other Apple platform apps in Swift.
+url: https://developer.apple.com/swiftui/
+license: Proprietary
+languages: [swift]
+tags: [native-mobile]
+hosting: [self-hosted]
+pricing: [free-tier]
+maturity: established
+good_for: [Native iOS apps with Apple's own look and feel]
+avoid_when: [You need Android too, You are not on a Mac]
+edges:
+- {type: alternative-to, target: flutter}
+- {type: alternative-to, target: react-native}
+verified: 2026-11-14
+sources: ['https://developer.apple.com/swiftui/', 'https://apps.apple.com/us/app/xcode/id497799835', 'https://developer.apple.com/programs/']

@@ -1,6 +1,7 @@
 id: bullmq
 name: BullMQ
 aliases: [bull mq, bull]
+runs_in_app: true
 layer: jobs-queue
 summary: A Node.js and Bun job queue built on Redis, with delayed and recurring jobs.
 url: https://bullmq.io

@@ -7,7 +7,7 @@ url: https://spring.io/projects/spring-boot
 repo: https://github.com/spring-projects/spring-boot
 license: Apache-2.0
 languages: [java, kotlin]
-tags: []
+tags: [rest-api]
 hosting: [self-hosted]
 pricing: [oss]
 maturity: established
@@ -33,4 +33,4 @@ edges:
 - {type: pairs-with, target: google-cloud-run}
 - {type: pairs-with, target: junit}
 verified: 2026-11-14
-sources: ['https://spring.io/projects/spring-boot', 'https://docs.spring.io/spring-boot/reference/features/kotlin.html', 'https://github.com/spring-projects/spring-boot', 'https://docs.spring.io/spring-boot/reference/data/sql.html', 'https://docs.spring.io/spring-boot/reference/data/nosql.html', 'https://docs.spring.io/spring-boot/reference/io/caching.html', 'https://docs.spring.io/spring-boot/reference/web/spring-security.html', 'https://docs.spring.io/spring-boot/reference/io/quartz.html', 'https://docs.spring.io/spring-boot/reference/testing/index.html']
+sources: ['https://spring.io/projects/spring-boot', 'https://spring.io/guides/gs/rest-service', 'https://docs.spring.io/spring-boot/reference/features/kotlin.html', 'https://github.com/spring-projects/spring-boot', 'https://docs.spring.io/spring-boot/reference/data/sql.html', 'https://docs.spring.io/spring-boot/reference/data/nosql.html', 'https://docs.spring.io/spring-boot/reference/io/caching.html', 'https://docs.spring.io/spring-boot/reference/web/spring-security.html', 'https://docs.spring.io/spring-boot/reference/io/quartz.html', 'https://docs.spring.io/spring-boot/reference/testing/index.html']

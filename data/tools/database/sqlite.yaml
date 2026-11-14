@@ -40,5 +40,8 @@ edges:
 - {type: pairs-with, target: sqlalchemy}
 - {type: pairs-with, target: sqlmodel}
 - {type: pairs-with, target: doctrine}
+- {type: pairs-with, target: django-orm}
+- {type: pairs-with, target: fluent}
+- {type: pairs-with, target: eloquent}
 verified: 2026-11-14
 sources: ['https://www.sqlite.org']

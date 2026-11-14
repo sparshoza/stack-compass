@@ -14,7 +14,6 @@ maturity: established
 good_for: [Full products in PHP, Built-in queues and scheduling]
 avoid_when: [Your team avoids PHP]
 edges:
-- {type: pairs-with, target: doctrine}
 - {type: pairs-with, target: eloquent}
 - {type: pairs-with, target: laravel-queues}
 - {type: pairs-with, target: postgresql}

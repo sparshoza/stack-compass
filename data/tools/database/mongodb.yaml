@@ -25,5 +25,7 @@ edges:
 - {type: pairs-with, target: fastify}
 - {type: pairs-with, target: payload}
 - {type: pairs-with, target: prisma}
+- {type: pairs-with, target: fluent}
+- {type: pairs-with, target: eloquent}
 verified: 2026-11-14
 sources: ['https://www.mongodb.com', 'https://www.mongodb.com/docs/manual/geospatial-queries/', 'https://github.com/mongodb/mongo']

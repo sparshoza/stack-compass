@@ -25,5 +25,7 @@ edges:
 - {type: pairs-with, target: laravel}
 - {type: pairs-with, target: sqlalchemy}
 - {type: pairs-with, target: doctrine}
+- {type: pairs-with, target: django-orm}
+- {type: pairs-with, target: eloquent}
 verified: 2026-11-14
 sources: ['https://mariadb.org', 'https://github.com/MariaDB/server']

@@ -1,6 +1,7 @@
 id: oban
 name: Oban
 aliases: []
+runs_in_app: true
 layer: jobs-queue
 summary: Robust job processing for Elixir, stored in PostgreSQL, MySQL or SQLite, with cron-style periodic jobs.
 url: https://oban.pro

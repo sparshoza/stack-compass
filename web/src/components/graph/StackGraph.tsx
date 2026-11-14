@@ -27,6 +27,12 @@ export interface StackGraphProps {
   hiddenLayers?: ReadonlySet<Layer>
   hiddenEdgeTypes?: ReadonlySet<EdgeType>
   onSelect?: (id: string) => void
+  /** Pixels covered by the top bar and by a panel on the right or bottom; the focused tool is centred in the rest. */
+  focusInset?: { top: number; right: number; bottom: number }
+}
+
+function setKey(set: ReadonlySet<string> | undefined): string {
+  return set?.size ? [...set].sort().join('\n') : ''
 }
 
 type LabelData = PartialButFor<NodeDisplayData, 'x' | 'y' | 'size' | 'label' | 'color'>
@@ -56,28 +62,42 @@ function usePalette(): Palette {
   return palette
 }
 
-export function StackGraph({ highlight, focus, hiddenLayers, hiddenEdgeTypes, onSelect }: StackGraphProps) {
+export function StackGraph({
+  highlight,
+  focus,
+  hiddenLayers,
+  hiddenEdgeTypes,
+  onSelect,
+  focusInset,
+}: StackGraphProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const sigmaRef = useRef<Sigma<NodeAttrs, EdgeAttrs> | null>(null)
   const onSelectRef = useRef(onSelect)
   const palette = usePalette()
 
+  const focusInsetRef = useRef(focusInset)
+
   useEffect(() => {
     onSelectRef.current = onSelect
-  }, [onSelect])
+    focusInsetRef.current = focusInset
+  }, [onSelect, focusInset])
 
   const graph = useMemo(() => buildGraph(kb.tools, layout as Positions), [])
 
+  // Props are compared by content, not identity, so a parent that builds new
+  // arrays or Sets on every render does not restyle the whole graph.
   const highlightKey = highlight?.join('\n') ?? ''
+  const layersKey = setKey(hiddenLayers)
+  const edgeTypesKey = setKey(hiddenEdgeTypes)
   const view = useMemo(
     () =>
       makeView({
         highlight: highlightKey ? highlightKey.split('\n') : [],
         focus: focus ?? null,
-        hiddenLayers,
-        hiddenEdgeTypes,
+        hiddenLayers: new Set(layersKey ? (layersKey.split('\n') as Layer[]) : []),
+        hiddenEdgeTypes: new Set(edgeTypesKey ? (edgeTypesKey.split('\n') as EdgeType[]) : []),
       }),
-    [highlightKey, focus, hiddenLayers, hiddenEdgeTypes],
+    [highlightKey, focus, layersKey, edgeTypesKey],
   )
 
   // Create sigma once per mount. Styling is applied by the effect below.
@@ -104,6 +124,9 @@ export function StackGraph({ highlight, focus, hiddenLayers, hiddenEdgeTypes, on
       doubleClickZoomingDuration: 0,
       minCameraRatio: 0.08,
       maxCameraRatio: 3,
+      // The map cannot be dragged out of view or turned on a touch screen.
+      cameraPanBoundaries: true,
+      enableCameraRotation: false,
     })
     sigma.on('clickNode', ({ node }) => onSelectRef.current?.(node))
     sigma.on('enterNode', () => {
@@ -128,15 +151,35 @@ export function StackGraph({ highlight, focus, hiddenLayers, hiddenEdgeTypes, on
     sigma.setSetting('edgeReducer', (_edge, data) => ({ ...data, ...edgeStyle(data, view, palette) }))
   }, [view, palette])
 
-  // Jump (duration 0) to the focused tool.
+  // Jump (duration 0) to the focused tool. A tool in a hidden layer is not
+  // drawn, so the camera stays put. The app shows a tool's layer again before
+  // focusing it; this only guards against a stale focus.
+  const focusHidden =
+    focus !== undefined && graph.hasNode(focus) && view.hiddenLayers.has(graph.getNodeAttribute(focus, 'layer'))
   useEffect(() => {
     const sigma = sigmaRef.current
-    if (!sigma || !focus) return
+    if (!sigma || !focus || focusHidden) return
+    // Display data is only normalised once sigma has processed the graph; a
+    // style change just before (or the first mount) leaves that pending, so
+    // process now rather than read raw layout coordinates.
+    sigma.refresh()
     const at = sigma.getNodeDisplayData(focus)
     if (!at) return
     const camera = sigma.getCamera()
-    camera.setState({ x: at.x, y: at.y, ratio: Math.min(camera.getState().ratio, 0.5) })
-  }, [focus])
+    const ratio = Math.min(camera.getState().ratio, 0.5)
+    camera.setState({ x: at.x, y: at.y, ratio })
+    // Shift so the tool sits in the middle of the area the panel leaves free.
+    const inset = focusInsetRef.current
+    if (inset && typeof sigma.viewportToFramedGraph === 'function') {
+      const { width, height } = sigma.getDimensions()
+      const centre = sigma.viewportToFramedGraph({ x: width / 2, y: height / 2 })
+      const shifted = sigma.viewportToFramedGraph({
+        x: width / 2 + inset.right / 2,
+        y: height / 2 + (inset.bottom - inset.top) / 2,
+      })
+      camera.setState({ x: at.x + shifted.x - centre.x, y: at.y + shifted.y - centre.y, ratio })
+    }
+  }, [focus, focusHidden])
 
   return <div ref={containerRef} className="absolute inset-0" data-testid="stack-graph" />
 }

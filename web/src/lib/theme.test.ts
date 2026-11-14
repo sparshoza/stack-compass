@@ -22,6 +22,11 @@ describe('theme', () => {
     expect(window.localStorage.getItem(THEME_KEY)).toBe('dark')
   })
 
+  it('saves nothing until the visitor picks a theme', () => {
+    renderHook(() => useTheme())
+    expect(window.localStorage.getItem(THEME_KEY)).toBeNull()
+  })
+
   it('starts from the theme already on html', () => {
     document.documentElement.dataset.theme = 'light'
     expect(readTheme()).toBe('light')

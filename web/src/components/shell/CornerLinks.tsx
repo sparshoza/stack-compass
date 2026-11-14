@@ -3,10 +3,25 @@ import { buttonVariants } from '@/components/ui/button'
 import { REPORT_ISSUE_BODY, WHICHDB_URL, newIssueUrl } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
+interface CornerLinksProps {
+  /**
+   * Over the map the links float in the bottom corners. In the table view
+   * they sit after the last row instead, so they never cover a row.
+   */
+  docked?: boolean
+}
+
 /** Bottom corners: the WhichDB credit on the left, "Report an issue" on the right. */
-export function CornerLinks() {
+export function CornerLinks({ docked = false }: CornerLinksProps) {
   return (
-    <footer className="pointer-events-none fixed inset-x-0 bottom-0 z-20 flex items-end justify-between gap-3 px-4 pb-3 md:px-6 md:pb-4">
+    <footer
+      className={cn(
+        'flex items-end justify-between gap-3',
+        docked
+          ? 'pt-6'
+          : 'pointer-events-none fixed inset-x-0 bottom-0 z-10 px-4 pb-3 md:px-6 md:pb-4',
+      )}
+    >
       <a
         href={WHICHDB_URL}
         target="_blank"

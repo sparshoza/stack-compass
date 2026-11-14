@@ -13,7 +13,7 @@ export default defineConfig({
     },
   },
   server: {
-    fs: { allow: ['..'] },
+    fs: { allow: ['.', '../catalog'] },
   },
   test: {
     environment: 'jsdom',

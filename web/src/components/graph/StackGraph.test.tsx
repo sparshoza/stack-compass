@@ -148,6 +148,26 @@ describe('StackGraph', () => {
     expect(latest().camera.setState).not.toHaveBeenCalled()
   })
 
+  it('does not restyle when it gets new filter sets with the same contents', () => {
+    const { rerender } = render(<StackGraph hiddenLayers={new Set(['database'])} hiddenEdgeTypes={new Set(['extends'])} />)
+    const s = latest()
+    const reducer = s.settings.nodeReducer
+    rerender(<StackGraph hiddenLayers={new Set(['database'])} hiddenEdgeTypes={new Set(['extends'])} />)
+    expect(s.settings.nodeReducer).toBe(reducer)
+    rerender(<StackGraph hiddenLayers={new Set(['cache'])} hiddenEdgeTypes={new Set(['extends'])} />)
+    expect(s.settings.nodeReducer).not.toBe(reducer)
+  })
+
+  it('keeps the camera still when the focused tool is in a hidden layer', () => {
+    render(<StackGraph focus={database.id} hiddenLayers={new Set(['database'])} />)
+    expect(latest().camera.setState).not.toHaveBeenCalled()
+  })
+
+  it('keeps the camera inside the map', () => {
+    render(<StackGraph />)
+    expect(latest().settings).toMatchObject({ cameraPanBoundaries: true, enableCameraRotation: false })
+  })
+
   it('re-reads colours when the theme changes', async () => {
     render(<StackGraph highlight={[frontend.id]} />)
     const before = nodeOf(frontend.id).color

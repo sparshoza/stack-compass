@@ -1,0 +1,78 @@
+import type { ReactNode } from 'react'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { kb } from '@/lib/kb'
+import { REPO_URL, WHICHDB_URL } from '@/lib/links'
+
+interface InfoDialogProps {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}
+
+const link = 'text-text underline decoration-line-strong underline-offset-4 hover:decoration-text'
+
+function Section({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="grid gap-1.5">
+      <h3 className="text-[0.8125rem] font-semibold text-text">{title}</h3>
+      {children}
+    </section>
+  )
+}
+
+/** About: how picks are made, where the facts come from, how to correct them, credits. */
+export function InfoDialog({ open, onOpenChange }: InfoDialogProps) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-h-[calc(100dvh-2rem)] gap-5 overflow-y-auto p-6 text-[0.8125rem] leading-[1.6] text-text-muted sm:max-w-lg">
+        <DialogHeader className="gap-2 pr-8">
+          <DialogTitle className="text-[1rem] font-semibold text-text">About Stack Compass</DialogTitle>
+          <DialogDescription className="text-[0.8125rem] text-text-muted">
+            A map of {kb.tools.length} tools across {kb.layers.length} layers, and a recommender that picks one tool
+            per layer for the project you describe.
+          </DialogDescription>
+        </DialogHeader>
+
+        <Section title="How picks are made">
+          <p>
+            Describe your project or answer a few one-click questions. Phrases such as "realtime" or "no PHP" are
+            matched against a fixed keyword list, in your browser. What you type is never sent anywhere and never
+            goes into a shared link.
+          </p>
+          <p>
+            Each layer your project needs is then scored by fixed rules. Tools that fail a hard filter drop out first:
+            a language you want to avoid, hosting you can't use, or a paid-only tool on a free budget. The rest earn
+            points for the features you asked for, for tools you already know and for pairing with earlier picks.
+            The same answers always give the same stack, and every pick shows its reasons.
+          </p>
+        </Section>
+
+        <Section title="Where the facts come from">
+          <p>
+            Licence, languages, pricing and hosting for every tool come from its official site or docs. Open any tool
+            on the map to see a link to that site and the date its facts were checked. Tools whose facts could not be
+            confirmed are left out.
+          </p>
+        </Section>
+
+        <Section title="Spot a mistake?">
+          <p>
+            Open the tool and choose Suggest an edit, or use Report an issue in the corner. Both open a pre-filled
+            issue on GitHub.
+          </p>
+        </Section>
+
+        <p className="border-t border-line pt-4">
+          The map layout is inspired by{' '}
+          <a className={link} href={WHICHDB_URL} target="_blank" rel="noreferrer">
+            WhichDB
+          </a>
+          . The code and catalog are on{' '}
+          <a className={link} href={REPO_URL} target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+          .
+        </p>
+      </DialogContent>
+    </Dialog>
+  )
+}

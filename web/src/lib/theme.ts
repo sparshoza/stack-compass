@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 export type Theme = 'dark' | 'light'
 
@@ -24,21 +24,22 @@ export function readTheme(): Theme {
 
 export function useTheme(): [Theme, () => void] {
   const [theme, setTheme] = useState<Theme>(readTheme)
+  // Saved only once the visitor picks a theme, so a first visit stores nothing.
+  const chosen = useRef(false)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
+    if (!chosen.current) return
+    try {
+      window.localStorage.setItem(THEME_KEY, theme)
+    } catch {
+      // the choice still applies for this visit
+    }
   }, [theme])
 
   const toggle = useCallback(() => {
-    setTheme((prev) => {
-      const next: Theme = prev === 'dark' ? 'light' : 'dark'
-      try {
-        window.localStorage.setItem(THEME_KEY, next)
-      } catch {
-        // the choice still applies for this visit
-      }
-      return next
-    })
+    chosen.current = true
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
   }, [])
 
   return [theme, toggle]

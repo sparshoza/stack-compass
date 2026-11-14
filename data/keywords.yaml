@@ -115,7 +115,7 @@
   sets: {capabilities: [type-safety]}
 - phrases: [data editor, manage records, moderation screen, support dashboard]
   sets: {capabilities: [admin-ui]}
-- phrases: [millions of events, ingest at scale, metrics pipeline, audit log volume]
+- phrases: [millions of events, ingest at scale, metrics pipeline]
   sets: {capabilities: [high-write-throughput]}
 - phrases: [pwa, progressive web app, installable app, cross platform app, ios and android]
   sets: {capabilities: [native-mobile]}
@@ -146,8 +146,10 @@
   sets: {languages: [javascript]}
 - phrases: [react native app, expo app]
   sets: {capabilities: [native-mobile], project_type: mobile-app}
-- phrases: [dart app, flutter app]
+- phrases: [dart app]
   sets: {languages: [dart], project_type: mobile-app}
+- phrases: [flutter app]
+  sets: {project_type: mobile-app}
 - phrases: [swift app, ios native]
   sets: {capabilities: [native-mobile], languages: [swift]}
 - phrases: [kotlin app, android native]
@@ -224,7 +226,7 @@
   sets: {capabilities: [multi-tenant]}
 - phrases: [map view, store finder, proximity search, find places nearby, location search, map markers]
   sets: {capabilities: [geospatial]}
-- phrases: [event analytics, data dashboards, reporting dashboard, olap, usage reports, funnel analysis]
+- phrases: [event analytics, data dashboards, reporting dashboard, olap, funnel analysis]
   sets: {capabilities: [analytics]}
 - phrases: [semantic similarity, nearest neighbor search, vector database, find similar items, ask questions over documents]
   sets: {capabilities: [vector-search]}

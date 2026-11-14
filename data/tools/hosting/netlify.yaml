@@ -11,6 +11,7 @@ languages:
 - typescript
 - go
 tags:
+- static-content
 - edge-runtime
 - scheduled-jobs
 hosting:
@@ -50,3 +51,4 @@ sources:
 - https://docs.netlify.com/build/functions/lambda-compatibility/
 - https://docs.netlify.com/build/edge-functions/overview/
 - https://docs.netlify.com/build/functions/scheduled-functions/
+- https://docs.netlify.com/build/frameworks/overview/

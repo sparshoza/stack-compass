@@ -1,6 +1,7 @@
 id: authjs
 name: Auth.js
 aliases: [next-auth, nextauth]
+runs_in_app: true
 layer: auth
 summary: An open-source authentication library for web frameworks with many OAuth and credential providers.
 url: https://authjs.dev

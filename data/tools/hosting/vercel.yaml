@@ -14,6 +14,8 @@ languages:
 - ruby
 - rust
 tags:
+- static-content
+- ssr-seo
 - edge-runtime
 - scheduled-jobs
 - analytics
@@ -62,3 +64,5 @@ sources:
 - https://vercel.com/guides/how-can-i-use-github-actions-with-vercel
 - https://vercel.com/docs/frameworks/backend/flask
 - https://vercel.com/docs/frameworks/backend/fastify
+- https://vercel.com/docs/cdn
+- https://vercel.com/docs/frameworks/more-frameworks

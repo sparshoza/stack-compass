@@ -1,6 +1,7 @@
 id: tantivy
 name: Tantivy
 aliases: []
+runs_in_app: true
 layer: search
 summary: A full-text search engine library written in Rust, inspired by Apache Lucene.
 url: https://github.com/quickwit-oss/tantivy

@@ -1,6 +1,7 @@
 id: fusejs
 name: Fuse.js
 aliases: []
+runs_in_app: true
 layer: search
 summary: A lightweight fuzzy-search library for JavaScript with no dependencies.
 url: https://www.fusejs.io

@@ -1,6 +1,7 @@
 id: mjml
 name: MJML
 aliases: []
+runs_in_app: true
 layer: email
 summary: A markup language that compiles responsive email layouts to HTML.
 url: https://mjml.io

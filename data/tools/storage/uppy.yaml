@@ -1,6 +1,7 @@
 id: uppy
 name: Uppy
 aliases: []
+runs_in_app: true
 layer: storage
 summary: A modular open-source file uploader for the browser with resumable uploads and many sources.
 url: https://uppy.io

@@ -9,7 +9,7 @@ license: Proprietary
 languages:
 - javascript
 - typescript
-tags: []
+tags: [static-content]
 hosting:
 - managed
 pricing:
@@ -38,3 +38,4 @@ sources:
 - https://developers.cloudflare.com/pages/functions/
 - https://developers.cloudflare.com/workers/languages/
 - https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/
+- https://developers.cloudflare.com/pages/framework-guides/deploy-anything/

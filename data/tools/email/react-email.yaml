@@ -1,6 +1,7 @@
 id: react-email
 name: React Email
 aliases: [react.email]
+runs_in_app: true
 layer: email
 summary: A collection of React components for building and rendering HTML emails.
 url: https://react.email

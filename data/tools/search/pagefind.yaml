@@ -1,6 +1,7 @@
 id: pagefind
 name: Pagefind
 aliases: []
+runs_in_app: true
 layer: search
 summary: A static search library that indexes a built site and runs search fully in the browser.
 url: https://pagefind.app

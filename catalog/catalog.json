@@ -929,8 +929,7 @@
       "phrases": [
         "millions of events",
         "ingest at scale",
-        "metrics pipeline",
-        "audit log volume"
+        "metrics pipeline"
       ],
       "sets": {
         "capabilities": [
@@ -1116,14 +1115,23 @@
     },
     {
       "phrases": [
-        "dart app",
-        "flutter app"
+        "dart app"
       ],
       "sets": {
         "capabilities": [],
         "languages": [
           "dart"
         ],
+        "project_type": "mobile-app"
+      }
+    },
+    {
+      "phrases": [
+        "flutter app"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
         "project_type": "mobile-app"
       }
     },
@@ -1710,7 +1718,6 @@
         "data dashboards",
         "reporting dashboard",
         "olap",
-        "usage reports",
         "funnel analysis"
       ],
       "sets": {
@@ -2487,6 +2494,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://guides.rubyonrails.org/active_record_basics.html",
         "https://rubyonrails.org"
@@ -2557,6 +2565,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.adyen.com",
         "https://www.adyen.com/pricing",
@@ -2633,6 +2642,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.algolia.com",
         "https://www.algolia.com/pricing/",
@@ -2687,6 +2697,7 @@
         "oss"
       ],
       "repo": "https://github.com/alpinejs/alpine",
+      "runs_in_app": false,
       "sources": [
         "https://alpinejs.dev",
         "https://github.com/alpinejs/alpine",
@@ -2781,6 +2792,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://aws.amazon.com/s3/",
         "https://github.com/aws/aws-sdk-go-v2"
@@ -2862,6 +2874,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://aws.amazon.com/ses/",
         "https://aws.amazon.com/ses/pricing/",
@@ -2911,6 +2924,7 @@
         "oss"
       ],
       "repo": "https://github.com/analogjs/analog",
+      "runs_in_app": false,
       "sources": [
         "https://analogjs.org",
         "https://github.com/analogjs/analog",
@@ -3005,6 +3019,7 @@
         "oss"
       ],
       "repo": "https://github.com/angular/angular",
+      "runs_in_app": false,
       "sources": [
         "https://angular.dev",
         "https://github.com/angular/angular",
@@ -3056,6 +3071,7 @@
         "oss"
       ],
       "repo": "https://github.com/angular/components",
+      "runs_in_app": false,
       "sources": [
         "https://material.angular.dev",
         "https://github.com/angular/components"
@@ -3108,6 +3124,7 @@
         "oss"
       ],
       "repo": "https://github.com/ant-design/ant-design",
+      "runs_in_app": false,
       "sources": [
         "https://ant.design",
         "https://github.com/ant-design/ant-design",
@@ -3176,6 +3193,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://solr.apache.org"
       ],
@@ -3237,6 +3255,7 @@
         "oss"
       ],
       "repo": "https://github.com/apollographql/apollo-server",
+      "runs_in_app": false,
       "sources": [
         "https://www.apollographql.com/docs/apollo-server",
         "https://github.com/apollographql/apollo-server"
@@ -3278,6 +3297,7 @@
         "oss"
       ],
       "repo": "https://github.com/argoproj/argo-cd",
+      "runs_in_app": false,
       "sources": [
         "https://argo-cd.readthedocs.io",
         "https://github.com/argoproj/argo-cd"
@@ -3337,6 +3357,7 @@
         "oss"
       ],
       "repo": "https://github.com/dotnet/aspnetcore",
+      "runs_in_app": false,
       "sources": [
         "https://dotnet.microsoft.com/apps/aspnet",
         "https://learn.microsoft.com/aspnet/core/data/ef-rp/intro",
@@ -3481,6 +3502,7 @@
         "oss"
       ],
       "repo": "https://github.com/withastro/astro",
+      "runs_in_app": false,
       "sources": [
         "https://astro.build",
         "https://github.com/withastro/astro",
@@ -3533,6 +3555,7 @@
         "oss"
       ],
       "repo": "https://github.com/asyncapi/spec",
+      "runs_in_app": false,
       "sources": [
         "https://www.asyncapi.com",
         "https://github.com/asyncapi/spec"
@@ -3576,6 +3599,7 @@
         "oss"
       ],
       "repo": "https://github.com/hibiken/asynq",
+      "runs_in_app": false,
       "sources": [
         "https://github.com/hibiken/asynq"
       ],
@@ -3677,6 +3701,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://auth0.com",
         "https://auth0.com/docs/libraries",
@@ -3732,6 +3757,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://goauthentik.io",
         "https://github.com/goauthentik/authentik"
@@ -3804,6 +3830,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://authjs.dev",
         "https://github.com/nextauthjs/next-auth",
@@ -3853,6 +3880,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://aws.amazon.com/amplify/hosting/",
         "https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html",
@@ -3914,6 +3942,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://aws.amazon.com/cognito/",
         "https://aws.amazon.com/cognito/pricing/",
@@ -3958,6 +3987,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://docs.rs/axum"
       ],
@@ -4020,6 +4050,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://azure.microsoft.com/products/storage/blobs",
         "https://github.com/Azure/azure-sdk-for-go"
@@ -4076,6 +4107,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines",
         "https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/"
@@ -4126,6 +4158,7 @@
         "oss"
       ],
       "repo": "https://github.com/babel/babel",
+      "runs_in_app": false,
       "sources": [
         "https://babeljs.io",
         "https://github.com/babel/babel",
@@ -4186,6 +4219,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.backblaze.com/cloud-storage",
         "https://github.com/Backblaze/b2-sdk-python",
@@ -4283,6 +4317,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://www.better-auth.com",
         "https://github.com/better-auth/better-auth",
@@ -4346,6 +4381,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://bitbucket.org/product/features/pipelines",
         "https://www.atlassian.com/software/bitbucket/features/pipelines",
@@ -4403,6 +4439,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://developer.paypal.com/braintree/docs",
         "https://developer.paypal.com/braintree/docs/start/hello-server",
@@ -4475,6 +4512,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.brevo.com",
         "https://www.brevo.com/pricing/",
@@ -4521,6 +4559,7 @@
         "paid"
       ],
       "repo": "https://github.com/usebruno/bruno",
+      "runs_in_app": false,
       "sources": [
         "https://www.usebruno.com",
         "https://github.com/usebruno/bruno",
@@ -4583,6 +4622,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.bugsnag.com",
         "https://www.bugsnag.com/pricing/",
@@ -4626,6 +4666,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://buildkite.com",
         "https://buildkite.com/pricing",
@@ -4681,6 +4722,7 @@
         "oss"
       ],
       "repo": "https://github.com/taskforcesh/bullmq",
+      "runs_in_app": false,
       "sources": [
         "https://bullmq.io",
         "https://github.com/taskforcesh/bullmq"
@@ -4729,6 +4771,7 @@
         "oss"
       ],
       "repo": "https://github.com/ben-manes/caffeine",
+      "runs_in_app": true,
       "sources": [
         "https://github.com/ben-manes/caffeine"
       ],
@@ -4798,6 +4841,7 @@
         "oss"
       ],
       "repo": "https://github.com/ionic-team/capacitor",
+      "runs_in_app": false,
       "sources": [
         "https://capacitorjs.com",
         "https://github.com/ionic-team/capacitor",
@@ -4848,6 +4892,7 @@
         "oss"
       ],
       "repo": "https://github.com/apache/cassandra",
+      "runs_in_app": false,
       "sources": [
         "https://cassandra.apache.org",
         "https://github.com/apache/cassandra"
@@ -4908,6 +4953,7 @@
         "oss"
       ],
       "repo": "https://github.com/celery/celery",
+      "runs_in_app": false,
       "sources": [
         "https://docs.celeryq.dev",
         "https://github.com/celery/celery",
@@ -4954,6 +5000,7 @@
         "paid"
       ],
       "repo": "https://github.com/centrifugal/centrifugo",
+      "runs_in_app": false,
       "sources": [
         "https://centrifugal.dev",
         "https://github.com/centrifugal/centrifugo"
@@ -5014,6 +5061,7 @@
         "oss"
       ],
       "repo": "https://github.com/chakra-ui/chakra-ui",
+      "runs_in_app": false,
       "sources": [
         "https://chakra-ui.com",
         "https://github.com/chakra-ui/chakra-ui",
@@ -5065,6 +5113,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.chargebee.com",
         "https://www.chargebee.com/pricing/"
@@ -5121,6 +5170,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://circleci.com",
         "https://circleci.com/pricing/"
@@ -5245,6 +5295,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://clerk.com",
         "https://clerk.com/docs/references/overview",
@@ -5304,6 +5355,7 @@
         "paid"
       ],
       "repo": "https://github.com/ClickHouse/ClickHouse",
+      "runs_in_app": false,
       "sources": [
         "https://clickhouse.com",
         "https://github.com/ClickHouse/ClickHouse"
@@ -5371,15 +5423,19 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://pages.cloudflare.com",
         "https://developers.cloudflare.com/pages/",
         "https://developers.cloudflare.com/pages/functions/",
         "https://developers.cloudflare.com/workers/languages/",
-        "https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/"
+        "https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/",
+        "https://developers.cloudflare.com/pages/framework-guides/deploy-anything/"
       ],
       "summary": "Git-integrated hosting for full-stack sites on Cloudflare's network, with server-side code in Pages Functions.",
-      "tags": [],
+      "tags": [
+        "static-content"
+      ],
       "url": "https://pages.cloudflare.com",
       "verified": "2026-11-14"
     },
@@ -5439,6 +5495,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://developers.cloudflare.com/r2/",
         "https://developers.cloudflare.com/r2/pricing/"
@@ -5489,6 +5546,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://cloudinary.com",
         "https://github.com/cloudinary",
@@ -5537,6 +5595,7 @@
         "oss"
       ],
       "repo": "https://github.com/JetBrains/compose-multiplatform",
+      "runs_in_app": false,
       "sources": [
         "https://www.jetbrains.com/compose-multiplatform/",
         "https://github.com/JetBrains/compose-multiplatform"
@@ -5581,6 +5640,7 @@
         "oss"
       ],
       "repo": "https://github.com/concourse/concourse",
+      "runs_in_app": false,
       "sources": [
         "https://concourse-ci.org",
         "https://github.com/concourse/concourse"
@@ -5634,6 +5694,7 @@
         "oss"
       ],
       "repo": "https://github.com/connectrpc/connect-es",
+      "runs_in_app": false,
       "sources": [
         "https://connectrpc.com",
         "https://github.com/connectrpc/connect-es"
@@ -5693,6 +5754,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.contentful.com",
         "https://www.contentful.com/pricing/",
@@ -5743,6 +5805,7 @@
         "paid"
       ],
       "repo": "https://github.com/coollabsio/coolify",
+      "runs_in_app": false,
       "sources": [
         "https://coolify.io",
         "https://coolify.io/docs/",
@@ -5811,6 +5874,7 @@
         "paid"
       ],
       "repo": "https://github.com/cypress-io/cypress",
+      "runs_in_app": false,
       "sources": [
         "https://www.cypress.io",
         "https://docs.cypress.io/app/get-started/why-cypress",
@@ -5854,6 +5918,7 @@
         "oss"
       ],
       "repo": "https://github.com/dagger/dagger",
+      "runs_in_app": false,
       "sources": [
         "https://dagger.io",
         "https://docs.dagger.io",
@@ -5918,6 +5983,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.datadoghq.com",
         "https://www.datadoghq.com/pricing/",
@@ -5979,6 +6045,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://decapcms.org",
         "https://github.com/decaporg/decap-cms",
@@ -6035,6 +6102,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://github.com/heartcombo/devise"
       ],
@@ -6090,6 +6158,7 @@
         "oss"
       ],
       "repo": "https://github.com/diesel-rs/diesel",
+      "runs_in_app": false,
       "sources": [
         "https://diesel.rs",
         "https://github.com/diesel-rs/diesel"
@@ -6144,6 +6213,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.digitalocean.com/products/app-platform",
         "https://docs.digitalocean.com/products/app-platform/",
@@ -6247,6 +6317,7 @@
         "oss"
       ],
       "repo": "https://github.com/django/django",
+      "runs_in_app": false,
       "sources": [
         "https://www.djangoproject.com",
         "https://github.com/django/django",
@@ -6310,6 +6381,7 @@
         "oss"
       ],
       "repo": "https://github.com/doctrine/orm",
+      "runs_in_app": false,
       "sources": [
         "https://www.doctrine-project.org",
         "https://github.com/doctrine/orm",
@@ -6370,6 +6442,7 @@
         "oss"
       ],
       "repo": "https://github.com/facebook/docusaurus",
+      "runs_in_app": false,
       "sources": [
         "https://docusaurus.io",
         "https://github.com/facebook/docusaurus",
@@ -6424,6 +6497,7 @@
         "oss"
       ],
       "repo": "https://github.com/dokku/dokku",
+      "runs_in_app": false,
       "sources": [
         "https://dokku.com",
         "https://dokku.com/docs/getting-started/installation/",
@@ -6487,6 +6561,7 @@
         "oss"
       ],
       "repo": "https://github.com/dotnet/maui",
+      "runs_in_app": false,
       "sources": [
         "https://dotnet.microsoft.com/apps/maui",
         "https://github.com/dotnet/maui"
@@ -6538,6 +6613,7 @@
         "paid"
       ],
       "repo": "https://github.com/dragonflydb/dragonfly",
+      "runs_in_app": false,
       "sources": [
         "https://www.dragonflydb.io",
         "https://github.com/dragonflydb/dragonfly/blob/main/LICENSE.md",
@@ -6638,6 +6714,7 @@
         "oss"
       ],
       "repo": "https://github.com/drizzle-team/drizzle-orm",
+      "runs_in_app": false,
       "sources": [
         "https://orm.drizzle.team",
         "https://github.com/drizzle-team/drizzle-orm",
@@ -6687,6 +6764,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://aws.amazon.com/dynamodb"
       ],
@@ -6741,6 +6819,7 @@
         "oss"
       ],
       "repo": "https://github.com/elixir-ecto/ecto",
+      "runs_in_app": false,
       "sources": [
         "https://ecto.hexdocs.pm/",
         "https://phoenix.hexdocs.pm/ecto.html",
@@ -6791,6 +6870,7 @@
         "oss"
       ],
       "repo": "https://github.com/effector/effector",
+      "runs_in_app": false,
       "sources": [
         "https://effector.dev",
         "https://github.com/effector/effector"
@@ -6836,6 +6916,7 @@
         "oss"
       ],
       "repo": "https://github.com/ehcache/ehcache3",
+      "runs_in_app": true,
       "sources": [
         "https://www.ehcache.org",
         "https://github.com/ehcache/ehcache3"
@@ -6883,6 +6964,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://aws.amazon.com/elasticache"
       ],
@@ -6967,6 +7049,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.elastic.co/elasticsearch",
         "https://www.elastic.co/blog/elasticsearch-is-open-source-again",
@@ -7023,6 +7106,7 @@
         "oss"
       ],
       "repo": "https://github.com/element-plus/element-plus",
+      "runs_in_app": false,
       "sources": [
         "https://element-plus.org",
         "https://github.com/element-plus/element-plus"
@@ -7070,6 +7154,7 @@
         "oss"
       ],
       "repo": "https://github.com/laravel/framework",
+      "runs_in_app": false,
       "sources": [
         "https://laravel.com/docs/eloquent",
         "https://github.com/laravel/framework"
@@ -7121,6 +7206,7 @@
         "oss"
       ],
       "repo": "https://github.com/emberjs/ember.js",
+      "runs_in_app": false,
       "sources": [
         "https://emberjs.com",
         "https://github.com/emberjs/ember.js",
@@ -7177,6 +7263,7 @@
         "oss"
       ],
       "repo": "https://github.com/dotnet/efcore",
+      "runs_in_app": false,
       "sources": [
         "https://learn.microsoft.com/ef/core",
         "https://learn.microsoft.com/aspnet/core/data/ef-rp/intro",
@@ -7227,6 +7314,7 @@
         "oss"
       ],
       "repo": "https://github.com/evanw/esbuild",
+      "runs_in_app": false,
       "sources": [
         "https://esbuild.github.io",
         "https://github.com/evanw/esbuild",
@@ -7307,6 +7395,7 @@
         "paid"
       ],
       "repo": "https://github.com/expo/expo",
+      "runs_in_app": false,
       "sources": [
         "https://expo.dev",
         "https://github.com/expo/expo",
@@ -7361,6 +7450,7 @@
         "oss"
       ],
       "repo": "https://github.com/JetBrains/Exposed",
+      "runs_in_app": false,
       "sources": [
         "https://www.jetbrains.com/help/exposed",
         "https://ktor.io/docs/server-integrate-database.html",
@@ -7499,6 +7589,7 @@
         "oss"
       ],
       "repo": "https://github.com/expressjs/express",
+      "runs_in_app": false,
       "sources": [
         "https://expressjs.com",
         "https://github.com/expressjs/express",
@@ -7548,6 +7639,7 @@
         "oss"
       ],
       "repo": "https://github.com/elixir-lang/elixir",
+      "runs_in_app": false,
       "sources": [
         "https://hexdocs.pm/ex_unit/ExUnit.html",
         "https://ex-unit.hexdocs.pm/ExUnit.html",
@@ -7627,6 +7719,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://fastapi.tiangolo.com",
         "https://fastapi.tiangolo.com/tutorial/sql-databases/",
@@ -7709,6 +7802,7 @@
         "oss"
       ],
       "repo": "https://github.com/fastify/fastify",
+      "runs_in_app": false,
       "sources": [
         "https://fastify.dev",
         "https://github.com/fastify/fastify",
@@ -7772,6 +7866,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://firebase.google.com/docs/auth",
         "https://firebase.google.com/docs/admin/setup",
@@ -7818,6 +7913,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://firebase.google.com/products/hosting",
         "https://firebase.google.com/docs/hosting",
@@ -7875,6 +7971,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://firebase.google.com/docs/storage",
         "https://firebase.google.com/docs/storage/admin/start",
@@ -7956,6 +8053,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://flask.palletsprojects.com",
         "https://flask.palletsprojects.com/en/stable/license/",
@@ -8006,6 +8104,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://github.com/nextapps-de/flexsearch",
         "https://github.com/nextapps-de/flexsearch"
@@ -8078,6 +8177,7 @@
         "oss"
       ],
       "repo": "https://github.com/flutter/flutter",
+      "runs_in_app": false,
       "sources": [
         "https://flutter.dev",
         "https://github.com/flutter/flutter",
@@ -8126,6 +8226,7 @@
         "oss"
       ],
       "repo": "https://github.com/fluxcd/flux2",
+      "runs_in_app": false,
       "sources": [
         "https://fluxcd.io",
         "https://github.com/fluxcd/flux2",
@@ -8190,6 +8291,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://fly.io",
         "https://docs.fly.io/",
@@ -8241,6 +8343,7 @@
         "oss"
       ],
       "repo": "https://github.com/denoland/fresh",
+      "runs_in_app": false,
       "sources": [
         "https://fresh.deno.dev",
         "https://github.com/denoland/fresh",
@@ -8293,6 +8396,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://www.fusejs.io",
         "https://github.com/krisk/Fuse"
@@ -8342,6 +8446,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://garagehq.deuxfleurs.fr",
         "https://github.com/deuxfleurs-org/garage"
@@ -8392,6 +8497,7 @@
         "oss"
       ],
       "repo": "https://github.com/microsoft/garnet",
+      "runs_in_app": false,
       "sources": [
         "https://microsoft.github.io/garnet",
         "https://github.com/microsoft/garnet"
@@ -8446,6 +8552,7 @@
         "oss"
       ],
       "repo": "https://github.com/gatsbyjs/gatsby",
+      "runs_in_app": false,
       "sources": [
         "https://www.gatsbyjs.com",
         "https://github.com/gatsbyjs/gatsby",
@@ -8493,6 +8600,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://ghost.org",
         "https://github.com/TryGhost/Ghost",
@@ -8551,6 +8659,7 @@
         "oss"
       ],
       "repo": "https://github.com/gin-gonic/gin",
+      "runs_in_app": false,
       "sources": [
         "https://gin-gonic.com",
         "https://gqlgen.com/recipes/gin/",
@@ -8654,6 +8763,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://github.com/features/actions",
         "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions",
@@ -8711,6 +8821,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://pages.github.com",
         "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages",
@@ -8771,6 +8882,7 @@
         "paid"
       ],
       "repo": "https://gitlab.com/gitlab-org/gitlab",
+      "runs_in_app": false,
       "sources": [
         "https://docs.gitlab.com/ee/ci/",
         "https://docs.gitlab.com/ci/",
@@ -8827,6 +8939,7 @@
         "paid"
       ],
       "repo": "https://gitlab.com/glitchtip/glitchtip-backend",
+      "runs_in_app": false,
       "sources": [
         "https://glitchtip.com",
         "https://glitchtip.com/documentation",
@@ -8887,6 +9000,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://gocardless.com",
         "https://gocardless.com/pricing/",
@@ -8934,6 +9048,7 @@
         "oss"
       ],
       "repo": "https://github.com/gocd/gocd",
+      "runs_in_app": false,
       "sources": [
         "https://www.gocd.org",
         "https://github.com/gocd/gocd"
@@ -8987,6 +9102,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://cloud.google.com/run",
         "https://docs.cloud.google.com/run/docs/overview/what-is-cloud-run",
@@ -9054,6 +9170,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://cloud.google.com/storage",
         "https://docs.cloud.google.com/storage/docs/reference/libraries",
@@ -9114,6 +9231,7 @@
         "oss"
       ],
       "repo": "https://github.com/go-gorm/gorm",
+      "runs_in_app": false,
       "sources": [
         "https://gorm.io",
         "https://gorm.io/docs/connecting_to_the_database.html",
@@ -9154,6 +9272,7 @@
         "oss"
       ],
       "repo": "https://github.com/99designs/gqlgen",
+      "runs_in_app": false,
       "sources": [
         "https://gqlgen.com",
         "https://gqlgen.com/recipes/gin/",
@@ -9213,6 +9332,7 @@
         "paid"
       ],
       "repo": "https://github.com/grafana/grafana",
+      "runs_in_app": false,
       "sources": [
         "https://grafana.com/oss/grafana/",
         "https://github.com/grafana/grafana",
@@ -9271,6 +9391,7 @@
         "oss"
       ],
       "repo": "https://github.com/graphql-hive/graphql-yoga",
+      "runs_in_app": false,
       "sources": [
         "https://the-guild.dev/graphql/yoga-server",
         "https://github.com/graphql-hive/graphql-yoga"
@@ -9321,6 +9442,7 @@
         "oss"
       ],
       "repo": "https://github.com/grpc/grpc",
+      "runs_in_app": false,
       "sources": [
         "https://grpc.io",
         "https://grpc.io/docs/languages/",
@@ -9364,6 +9486,7 @@
         "oss"
       ],
       "repo": "https://github.com/gulpjs/gulp",
+      "runs_in_app": false,
       "sources": [
         "https://gulpjs.com",
         "https://github.com/gulpjs/gulp",
@@ -9419,6 +9542,7 @@
         "oss"
       ],
       "repo": "https://github.com/tailwindlabs/headlessui",
+      "runs_in_app": false,
       "sources": [
         "https://headlessui.com",
         "https://github.com/tailwindlabs/headlessui"
@@ -9490,6 +9614,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.heroku.com",
         "https://devcenter.heroku.com/categories/language-support",
@@ -9552,6 +9677,7 @@
         "oss"
       ],
       "repo": "https://github.com/heroui-inc/heroui",
+      "runs_in_app": false,
       "sources": [
         "https://www.heroui.com",
         "https://github.com/heroui-inc/heroui"
@@ -9607,6 +9733,7 @@
         "oss"
       ],
       "repo": "https://github.com/hibernate/hibernate-orm",
+      "runs_in_app": false,
       "sources": [
         "https://hibernate.org/orm",
         "https://github.com/hibernate/hibernate-orm"
@@ -9659,6 +9786,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.honeycomb.io",
         "https://www.honeycomb.io/pricing",
@@ -9739,6 +9867,7 @@
         "oss"
       ],
       "repo": "https://github.com/honojs/hono",
+      "runs_in_app": false,
       "sources": [
         "https://hono.dev",
         "https://github.com/honojs/hono",
@@ -9787,6 +9916,7 @@
         "oss"
       ],
       "repo": "https://github.com/ChilliCream/graphql-platform",
+      "runs_in_app": false,
       "sources": [
         "https://chillicream.com/docs/hotchocolate",
         "https://github.com/ChilliCream/graphql-platform"
@@ -9834,6 +9964,7 @@
         "oss"
       ],
       "repo": "https://github.com/bigskysoftware/htmx",
+      "runs_in_app": false,
       "sources": [
         "https://htmx.org",
         "https://github.com/bigskysoftware/htmx",
@@ -9890,6 +10021,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://hygraph.com",
         "https://hygraph.com/pricing",
@@ -9957,6 +10089,7 @@
         "paid"
       ],
       "repo": "https://github.com/ionic-team/ionic-framework",
+      "runs_in_app": false,
       "sources": [
         "https://ionicframework.com",
         "https://github.com/ionic-team/ionic-framework",
@@ -10004,6 +10137,7 @@
         "oss"
       ],
       "repo": "https://github.com/jaegertracing/jaeger",
+      "runs_in_app": false,
       "sources": [
         "https://www.jaegertracing.io",
         "https://www.jaegertracing.io/docs/latest/",
@@ -10055,6 +10189,7 @@
         "oss"
       ],
       "repo": "https://github.com/jenkinsci/jenkins",
+      "runs_in_app": false,
       "sources": [
         "https://www.jenkins.io",
         "https://www.jenkins.io/doc/",
@@ -10131,6 +10266,7 @@
         "oss"
       ],
       "repo": "https://github.com/jestjs/jest",
+      "runs_in_app": false,
       "sources": [
         "https://jestjs.io",
         "https://jestjs.io/docs/getting-started",
@@ -10188,6 +10324,7 @@
         "oss"
       ],
       "repo": "https://github.com/jobrunr/jobrunr",
+      "runs_in_app": false,
       "sources": [
         "https://www.jobrunr.io",
         "https://github.com/jobrunr/jobrunr"
@@ -10233,6 +10370,7 @@
         "oss"
       ],
       "repo": "https://github.com/jquery/jquery",
+      "runs_in_app": false,
       "sources": [
         "https://jquery.com",
         "https://github.com/jquery/jquery",
@@ -10282,6 +10420,7 @@
         "oss"
       ],
       "repo": "https://github.com/junit-team/junit5",
+      "runs_in_app": false,
       "sources": [
         "https://junit.org/junit5/",
         "https://github.com/junit-team/junit5"
@@ -10325,6 +10464,7 @@
         "oss"
       ],
       "repo": "https://github.com/grafana/k6",
+      "runs_in_app": false,
       "sources": [
         "https://k6.io",
         "https://grafana.com/docs/k6/latest/",
@@ -10370,6 +10510,7 @@
         "oss"
       ],
       "repo": "https://github.com/basecamp/kamal",
+      "runs_in_app": false,
       "sources": [
         "https://kamal-deploy.org",
         "https://github.com/basecamp/kamal"
@@ -10430,6 +10571,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.keycloak.org",
         "https://github.com/keycloak/keycloak",
@@ -10489,6 +10631,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://keystonejs.com",
         "https://github.com/keystonejs/keystone"
@@ -10544,6 +10687,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://killbill.io",
         "https://github.com/killbill/killbill",
@@ -10601,6 +10745,7 @@
         "oss"
       ],
       "repo": "https://github.com/JetBrains/kotlin",
+      "runs_in_app": false,
       "sources": [
         "https://kotlinlang.org/docs/multiplatform.html",
         "https://github.com/JetBrains/kotlin"
@@ -10655,6 +10800,7 @@
         "oss"
       ],
       "repo": "https://github.com/ktorio/ktor",
+      "runs_in_app": false,
       "sources": [
         "https://ktor.io",
         "https://ktor.io/docs/server-websockets.html",
@@ -10727,6 +10873,7 @@
         "oss"
       ],
       "repo": "https://github.com/kysely-org/kysely",
+      "runs_in_app": false,
       "sources": [
         "https://kysely.dev",
         "https://github.com/kysely-org/kysely"
@@ -10781,6 +10928,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.getlago.com",
         "https://github.com/getlago/lago",
@@ -10897,6 +11045,7 @@
         "oss"
       ],
       "repo": "https://github.com/laravel/laravel",
+      "runs_in_app": false,
       "sources": [
         "https://laravel.com",
         "https://laravel.com/docs/queues",
@@ -10960,6 +11109,7 @@
         "oss"
       ],
       "repo": "https://github.com/laravel/framework",
+      "runs_in_app": false,
       "sources": [
         "https://laravel.com/docs/queues",
         "https://laravel.com/docs/scheduling",
@@ -11010,6 +11160,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.lemonsqueezy.com",
         "https://www.lemonsqueezy.com/pricing",
@@ -11050,6 +11201,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://listmonk.app",
         "https://github.com/knadh/listmonk",
@@ -11098,6 +11250,7 @@
         "oss"
       ],
       "repo": "https://github.com/lit/lit",
+      "runs_in_app": false,
       "sources": [
         "https://lit.dev",
         "https://github.com/lit/lit",
@@ -11145,6 +11298,7 @@
         "oss"
       ],
       "repo": "https://github.com/grafana/loki",
+      "runs_in_app": false,
       "sources": [
         "https://grafana.com/oss/loki/",
         "https://github.com/grafana/loki",
@@ -11215,6 +11369,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.mailersend.com",
         "https://www.mailersend.com/pricing"
@@ -11286,6 +11441,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.mailgun.com",
         "https://github.com/mailgun"
@@ -11325,6 +11481,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://github.com/mailhog/MailHog"
       ],
@@ -11361,6 +11518,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://mailpit.axllent.org",
         "https://github.com/axllent/mailpit"
@@ -11438,6 +11596,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://manticoresearch.com",
         "https://github.com/manticoresoftware/manticoresearch"
@@ -11495,6 +11654,7 @@
         "oss"
       ],
       "repo": "https://github.com/mantinedev/mantine",
+      "runs_in_app": false,
       "sources": [
         "https://mantine.dev",
         "https://github.com/mantinedev/mantine",
@@ -11577,6 +11737,7 @@
         "paid"
       ],
       "repo": "https://github.com/MariaDB/server",
+      "runs_in_app": false,
       "sources": [
         "https://mariadb.org",
         "https://github.com/MariaDB/server"
@@ -11635,6 +11796,7 @@
         "paid"
       ],
       "repo": "https://github.com/mui/material-ui",
+      "runs_in_app": false,
       "sources": [
         "https://mui.com/material-ui/",
         "https://github.com/mui/material-ui",
@@ -11720,6 +11882,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.meilisearch.com",
         "https://github.com/meilisearch/meilisearch",
@@ -11777,6 +11940,7 @@
         "oss"
       ],
       "repo": "https://github.com/memcached/memcached",
+      "runs_in_app": false,
       "sources": [
         "https://memcached.org",
         "https://github.com/memcached/memcached"
@@ -11856,6 +12020,7 @@
         "oss"
       ],
       "repo": "https://github.com/mikro-orm/mikro-orm",
+      "runs_in_app": false,
       "sources": [
         "https://mikro-orm.io",
         "https://github.com/mikro-orm/mikro-orm"
@@ -11903,6 +12068,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://lucaong.github.io/minisearch/",
         "https://github.com/lucaong/minisearch"
@@ -11944,6 +12110,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://mjml.io",
         "https://github.com/mjmlio/mjml"
@@ -11995,6 +12162,7 @@
         "oss"
       ],
       "repo": "https://github.com/mobxjs/mobx",
+      "runs_in_app": false,
       "sources": [
         "https://mobx.js.org",
         "https://github.com/mobxjs/mobx",
@@ -12056,6 +12224,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.mollie.com",
         "https://github.com/mollie"
@@ -12141,6 +12310,7 @@
         "paid"
       ],
       "repo": "https://github.com/mongodb/mongo",
+      "runs_in_app": false,
       "sources": [
         "https://www.mongodb.com",
         "https://www.mongodb.com/docs/manual/geospatial-queries/",
@@ -12297,6 +12467,7 @@
         "paid"
       ],
       "repo": "https://github.com/mysql/mysql-server",
+      "runs_in_app": false,
       "sources": [
         "https://www.mysql.com",
         "https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html",
@@ -12357,6 +12528,7 @@
         "oss"
       ],
       "repo": "https://github.com/nanostores/nanostores",
+      "runs_in_app": false,
       "sources": [
         "https://github.com/nanostores/nanostores"
       ],
@@ -12416,6 +12588,7 @@
         "oss"
       ],
       "repo": "https://github.com/NativeScript/NativeScript",
+      "runs_in_app": false,
       "sources": [
         "https://nativescript.org",
         "https://github.com/NativeScript/NativeScript"
@@ -12459,6 +12632,7 @@
         "oss"
       ],
       "repo": "https://github.com/nats-io/nats-server",
+      "runs_in_app": false,
       "sources": [
         "https://nats.io",
         "https://github.com/nats-io/nats-server"
@@ -12515,6 +12689,7 @@
         "paid"
       ],
       "repo": "https://github.com/neondatabase/neon",
+      "runs_in_app": false,
       "sources": [
         "https://neon.com",
         "https://neon.com/docs/extensions/pgvector",
@@ -12633,6 +12808,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://nestjs.com",
         "https://docs.nestjs.com/websockets/gateways",
@@ -12738,15 +12914,18 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.netlify.com",
         "https://www.netlify.com/pricing/",
         "https://docs.netlify.com/build/functions/lambda-compatibility/",
         "https://docs.netlify.com/build/edge-functions/overview/",
-        "https://docs.netlify.com/build/functions/scheduled-functions/"
+        "https://docs.netlify.com/build/functions/scheduled-functions/",
+        "https://docs.netlify.com/build/frameworks/overview/"
       ],
       "summary": "Web hosting platform with serverless functions, edge functions, scheduled functions and a free plan.",
       "tags": [
+        "static-content",
         "edge-runtime",
         "scheduled-jobs"
       ],
@@ -12798,6 +12977,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://newrelic.com",
         "https://newrelic.com/pricing",
@@ -12964,6 +13144,7 @@
         "oss"
       ],
       "repo": "https://github.com/vercel/next.js",
+      "runs_in_app": false,
       "sources": [
         "https://nextjs.org",
         "https://github.com/vercel/next.js",
@@ -13021,6 +13202,7 @@
         "oss"
       ],
       "repo": "https://github.com/ngrx/platform",
+      "runs_in_app": false,
       "sources": [
         "https://ngrx.io",
         "https://github.com/ngrx/platform",
@@ -13061,6 +13243,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://nodemailer.com",
         "https://github.com/nodemailer/nodemailer"
@@ -13160,6 +13343,7 @@
         "oss"
       ],
       "repo": "https://github.com/nuxt/nuxt",
+      "runs_in_app": false,
       "sources": [
         "https://nuxt.com",
         "https://github.com/nuxt/nuxt",
@@ -13217,6 +13401,7 @@
         "paid"
       ],
       "repo": "https://github.com/nrwl/nx",
+      "runs_in_app": false,
       "sources": [
         "https://nx.dev",
         "https://github.com/nrwl/nx",
@@ -13270,6 +13455,7 @@
         "paid"
       ],
       "repo": "https://github.com/oban-bg/oban",
+      "runs_in_app": false,
       "sources": [
         "https://oban.pro",
         "https://github.com/oban-bg/oban",
@@ -13286,7 +13472,6 @@
     {
       "aliases": [
         "swagger",
-        "rest api",
         "openapi spec"
       ],
       "avoid_when": [
@@ -13320,6 +13505,7 @@
         "oss"
       ],
       "repo": "https://github.com/OAI/OpenAPI-Specification",
+      "runs_in_app": false,
       "sources": [
         "https://www.openapis.org",
         "https://github.com/OAI/OpenAPI-Specification"
@@ -13394,6 +13580,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://opensearch.org",
         "https://opensearch.org/docs/latest/clients/"
@@ -13462,6 +13649,7 @@
         "oss"
       ],
       "repo": "https://github.com/open-telemetry",
+      "runs_in_app": false,
       "sources": [
         "https://opentelemetry.io",
         "https://opentelemetry.io/docs/languages/",
@@ -13506,6 +13694,7 @@
         "oss"
       ],
       "repo": "https://github.com/unnoq/orpc",
+      "runs_in_app": false,
       "sources": [
         "https://orpc.dev/",
         "https://github.com/unnoq/orpc"
@@ -13557,6 +13746,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.paddle.com",
         "https://github.com/PaddleHQ"
@@ -13607,6 +13797,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://pagefind.app",
         "https://github.com/CloudCannon/pagefind"
@@ -13660,6 +13851,7 @@
         "oss"
       ],
       "repo": "https://github.com/parcel-bundler/parcel",
+      "runs_in_app": false,
       "sources": [
         "https://parceljs.org",
         "https://github.com/parcel-bundler/parcel"
@@ -13713,6 +13905,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://www.passportjs.org",
         "https://github.com/jaredhanson/passport"
@@ -13781,6 +13974,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://payloadcms.com",
         "https://github.com/payloadcms/payload",
@@ -13848,6 +14042,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://developer.paypal.com",
         "https://github.com/paypal/PayPal-Server-SDKs",
@@ -13896,6 +14091,7 @@
         "oss"
       ],
       "repo": "https://github.com/timgit/pg-boss",
+      "runs_in_app": false,
       "sources": [
         "https://github.com/timgit/pg-boss"
       ],
@@ -13943,6 +14139,7 @@
         "oss"
       ],
       "repo": "https://github.com/pgvector/pgvector",
+      "runs_in_app": false,
       "sources": [
         "https://github.com/pgvector/pgvector",
         "https://raw.githubusercontent.com/pgvector/pgvector/master/LICENSE"
@@ -14004,6 +14201,7 @@
         "oss"
       ],
       "repo": "https://github.com/phoenixframework/phoenix",
+      "runs_in_app": false,
       "sources": [
         "https://www.phoenixframework.org",
         "https://phoenix.hexdocs.pm/ecto.html",
@@ -14052,6 +14250,7 @@
         "oss"
       ],
       "repo": "https://github.com/sebastianbergmann/phpunit",
+      "runs_in_app": false,
       "sources": [
         "https://phpunit.de",
         "https://github.com/sebastianbergmann/phpunit"
@@ -14102,6 +14301,7 @@
         "oss"
       ],
       "repo": "https://github.com/vuejs/pinia",
+      "runs_in_app": false,
       "sources": [
         "https://pinia.vuejs.org",
         "https://github.com/vuejs/pinia",
@@ -14195,6 +14395,7 @@
         "oss"
       ],
       "repo": "https://github.com/microsoft/playwright",
+      "runs_in_app": false,
       "sources": [
         "https://playwright.dev",
         "https://playwright.dev/docs/intro",
@@ -14256,6 +14457,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://polar.sh",
         "https://github.com/polarsource/polar",
@@ -14320,6 +14522,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://docs.postalserver.io",
         "https://github.com/postalserver/postal"
@@ -14370,6 +14573,7 @@
         "oss"
       ],
       "repo": "https://github.com/graphile/crystal",
+      "runs_in_app": false,
       "sources": [
         "https://postgraphile.org",
         "https://github.com/graphile/crystal"
@@ -14555,6 +14759,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.postgresql.org",
         "https://www.postgresql.org/about/license/",
@@ -14599,6 +14804,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.postman.com",
         "https://www.postman.com/pricing/"
@@ -14667,6 +14873,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://postmarkapp.com",
         "https://postmarkapp.com/pricing"
@@ -14716,6 +14923,7 @@
         "oss"
       ],
       "repo": "https://github.com/preactjs/preact",
+      "runs_in_app": false,
       "sources": [
         "https://preactjs.com",
         "https://github.com/preactjs/preact",
@@ -14766,6 +14974,7 @@
         "paid"
       ],
       "repo": "https://github.com/primefaces/primeng",
+      "runs_in_app": false,
       "sources": [
         "https://primeng.org",
         "https://github.com/primefaces/primeng"
@@ -14819,6 +15028,7 @@
         "paid"
       ],
       "repo": "https://github.com/primefaces/primevue",
+      "runs_in_app": false,
       "sources": [
         "https://primevue.dev",
         "https://github.com/primefaces/primevue"
@@ -14939,6 +15149,7 @@
         "oss"
       ],
       "repo": "https://github.com/prisma/prisma",
+      "runs_in_app": false,
       "sources": [
         "https://www.prisma.io",
         "https://github.com/prisma/prisma",
@@ -15011,6 +15222,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://prismic.io",
         "https://prismic.io/pricing",
@@ -15072,6 +15284,7 @@
         "oss"
       ],
       "repo": "https://github.com/prometheus/prometheus",
+      "runs_in_app": false,
       "sources": [
         "https://prometheus.io",
         "https://prometheus.io/docs/introduction/overview/",
@@ -15136,6 +15349,7 @@
         "oss"
       ],
       "repo": "https://github.com/pytest-dev/pytest",
+      "runs_in_app": false,
       "sources": [
         "https://docs.pytest.org",
         "https://docs.pytest.org/en/stable/",
@@ -15177,6 +15391,7 @@
         "free-tier"
       ],
       "repo": "https://github.com/qdrant/qdrant",
+      "runs_in_app": false,
       "sources": [
         "https://qdrant.tech",
         "https://github.com/qdrant/qdrant"
@@ -15222,6 +15437,7 @@
         "oss"
       ],
       "repo": "https://github.com/quartz-scheduler/quartz",
+      "runs_in_app": false,
       "sources": [
         "https://www.quartz-scheduler.org",
         "https://github.com/quartz-scheduler/quartz"
@@ -15275,6 +15491,7 @@
         "oss"
       ],
       "repo": "https://github.com/QwikDev/qwik",
+      "runs_in_app": false,
       "sources": [
         "https://qwik.dev",
         "https://github.com/QwikDev/qwik",
@@ -15329,6 +15546,7 @@
         "oss"
       ],
       "repo": "https://github.com/QwikDev/qwik",
+      "runs_in_app": false,
       "sources": [
         "https://qwik.dev/docs/qwikcity/",
         "https://github.com/QwikDev/qwik",
@@ -15383,6 +15601,7 @@
         "oss"
       ],
       "repo": "https://github.com/radix-ui/primitives",
+      "runs_in_app": false,
       "sources": [
         "https://www.radix-ui.com",
         "https://github.com/radix-ui/primitives",
@@ -15491,6 +15710,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://rubyonrails.org",
         "https://guides.rubyonrails.org/configuring.html",
@@ -15549,6 +15769,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://railway.com",
         "https://docs.railway.com/overview/about-railway",
@@ -15610,6 +15831,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://razorpay.com",
         "https://razorpay.com/pricing/",
@@ -15770,6 +15992,7 @@
         "oss"
       ],
       "repo": "https://github.com/facebook/react",
+      "runs_in_app": false,
       "sources": [
         "https://react.dev",
         "https://github.com/facebook/react",
@@ -15818,6 +16041,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://react.email",
         "https://github.com/resend/react-email"
@@ -15897,6 +16121,7 @@
         "oss"
       ],
       "repo": "https://github.com/facebook/react-native",
+      "runs_in_app": false,
       "sources": [
         "https://reactnative.dev",
         "https://github.com/facebook/react-native"
@@ -15963,6 +16188,7 @@
         "oss"
       ],
       "repo": "https://github.com/remix-run/react-router",
+      "runs_in_app": false,
       "sources": [
         "https://reactrouter.com",
         "https://github.com/remix-run/react-router",
@@ -16076,6 +16302,7 @@
         "paid"
       ],
       "repo": "https://github.com/redis/redis",
+      "runs_in_app": false,
       "sources": [
         "https://redis.io",
         "https://github.com/redis/redis"
@@ -16133,6 +16360,7 @@
         "oss"
       ],
       "repo": "https://github.com/reduxjs/redux-toolkit",
+      "runs_in_app": false,
       "sources": [
         "https://redux-toolkit.js.org",
         "https://github.com/reduxjs/redux-toolkit",
@@ -16222,6 +16450,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://render.com",
         "https://render.com/docs",
@@ -16351,6 +16580,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://resend.com",
         "https://resend.com/pricing",
@@ -16417,6 +16647,7 @@
         "paid"
       ],
       "repo": "https://github.com/riverqueue/river",
+      "runs_in_app": false,
       "sources": [
         "https://riverqueue.com",
         "https://github.com/riverqueue/river"
@@ -16479,6 +16710,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://rollbar.com",
         "https://rollbar.com/pricing/",
@@ -16524,6 +16756,7 @@
         "oss"
       ],
       "repo": "https://github.com/rolldown/rolldown",
+      "runs_in_app": false,
       "sources": [
         "https://rolldown.rs",
         "https://github.com/rolldown/rolldown"
@@ -16570,6 +16803,7 @@
         "oss"
       ],
       "repo": "https://github.com/rollup/rollup",
+      "runs_in_app": false,
       "sources": [
         "https://rollupjs.org",
         "https://github.com/rollup/rollup",
@@ -16621,6 +16855,7 @@
         "oss"
       ],
       "repo": "https://github.com/rq/rq",
+      "runs_in_app": false,
       "sources": [
         "https://python-rq.org",
         "https://raw.githubusercontent.com/rq/rq/master/LICENSE",
@@ -16678,6 +16913,7 @@
         "oss"
       ],
       "repo": "https://github.com/web-infra-dev/rspack",
+      "runs_in_app": false,
       "sources": [
         "https://rspack.dev",
         "https://github.com/web-infra-dev/rspack",
@@ -16718,6 +16954,7 @@
         "oss"
       ],
       "repo": "https://github.com/rspec/rspec",
+      "runs_in_app": false,
       "sources": [
         "https://rspec.info",
         "https://github.com/rspec/rspec",
@@ -16786,6 +17023,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.sanity.io",
         "https://www.sanity.io/pricing",
@@ -16846,6 +17084,7 @@
         "oss"
       ],
       "repo": "https://github.com/SeaQL/sea-orm",
+      "runs_in_app": false,
       "sources": [
         "https://www.sea-ql.org/SeaORM/",
         "https://github.com/SeaQL/sea-orm/tree/master/examples/axum_example",
@@ -16892,6 +17131,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://github.com/seaweedfs/seaweedfs"
       ],
@@ -16945,6 +17185,7 @@
         "oss"
       ],
       "repo": "https://github.com/SeleniumHQ/selenium",
+      "runs_in_app": false,
       "sources": [
         "https://www.selenium.dev",
         "https://www.selenium.dev/documentation/",
@@ -17013,6 +17254,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://sendgrid.com",
         "https://www.twilio.com/docs/sendgrid/for-developers/sending-email/libraries",
@@ -17189,6 +17431,7 @@
         "paid"
       ],
       "repo": "https://github.com/getsentry/sentry",
+      "runs_in_app": false,
       "sources": [
         "https://sentry.io",
         "https://docs.sentry.io/platforms/",
@@ -17288,6 +17531,7 @@
         "oss"
       ],
       "repo": "https://github.com/sequelize/sequelize",
+      "runs_in_app": false,
       "sources": [
         "https://sequelize.org",
         "https://github.com/sequelize/sequelize"
@@ -17364,6 +17608,7 @@
         "oss"
       ],
       "repo": "https://github.com/shadcn-ui/ui",
+      "runs_in_app": false,
       "sources": [
         "https://ui.shadcn.com",
         "https://github.com/shadcn-ui/ui",
@@ -17411,6 +17656,7 @@
         "paid"
       ],
       "repo": "https://github.com/sidekiq/sidekiq",
+      "runs_in_app": false,
       "sources": [
         "https://sidekiq.org",
         "https://github.com/sidekiq/sidekiq/blob/main/LICENSE.txt",
@@ -17469,6 +17715,7 @@
         "paid"
       ],
       "repo": "https://github.com/SigNoz/signoz",
+      "runs_in_app": false,
       "sources": [
         "https://signoz.io",
         "https://github.com/SigNoz/signoz",
@@ -17526,6 +17773,7 @@
         "oss"
       ],
       "repo": "https://github.com/rails/solid_queue",
+      "runs_in_app": false,
       "sources": [
         "https://github.com/rails/solid_queue"
       ],
@@ -17595,6 +17843,7 @@
         "oss"
       ],
       "repo": "https://github.com/solidjs/solid",
+      "runs_in_app": false,
       "sources": [
         "https://www.solidjs.com",
         "https://github.com/solidjs/solid"
@@ -17656,6 +17905,7 @@
         "oss"
       ],
       "repo": "https://github.com/solidjs/solid-start",
+      "runs_in_app": false,
       "sources": [
         "https://start.solidjs.com",
         "https://github.com/solidjs/solid-start",
@@ -17773,6 +18023,7 @@
         "oss"
       ],
       "repo": "https://github.com/spring-projects/spring-boot",
+      "runs_in_app": false,
       "sources": [
         "https://spring.io/projects/spring-boot",
         "https://docs.spring.io/spring-boot/reference/features/kotlin.html",
@@ -17832,6 +18083,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://spring.io/projects/spring-security",
         "https://docs.spring.io/spring-security/reference/index.html",
@@ -17898,6 +18150,7 @@
         "oss"
       ],
       "repo": "https://github.com/sqlalchemy/sqlalchemy",
+      "runs_in_app": false,
       "sources": [
         "https://www.sqlalchemy.org",
         "https://github.com/sqlalchemy/sqlalchemy",
@@ -18043,6 +18296,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.sqlite.org"
       ],
@@ -18089,6 +18343,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://sqlmodel.tiangolo.com",
         "https://sqlmodel.tiangolo.com/"
@@ -18151,6 +18406,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://developer.squareup.com",
         "https://developer.squareup.com/docs/sdks",
@@ -18207,6 +18463,7 @@
         "oss"
       ],
       "repo": "https://github.com/hotwired/stimulus",
+      "runs_in_app": false,
       "sources": [
         "https://stimulus.hotwired.dev",
         "https://github.com/hotwired/stimulus",
@@ -18266,6 +18523,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.storyblok.com",
         "https://www.storyblok.com/docs/packages",
@@ -18328,6 +18586,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://strapi.io",
         "https://github.com/strapi/strapi",
@@ -18379,6 +18638,7 @@
         "oss"
       ],
       "repo": "https://github.com/strawberry-graphql/strawberry",
+      "runs_in_app": false,
       "sources": [
         "https://strawberry.rocks",
         "https://github.com/strawberry-graphql/strawberry"
@@ -18468,6 +18728,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://stripe.com",
         "https://docs.stripe.com/sdks",
@@ -18555,6 +18816,7 @@
         "paid"
       ],
       "repo": "https://github.com/supabase/supabase",
+      "runs_in_app": false,
       "sources": [
         "https://supabase.com",
         "https://github.com/supabase/supabase",
@@ -18627,6 +18889,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://supabase.com/docs/guides/auth",
         "https://github.com/supabase/auth",
@@ -18692,6 +18955,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://supabase.com/docs/guides/storage",
         "https://github.com/supabase/storage"
@@ -18755,6 +19019,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://supertokens.com",
         "https://supertokens.com/pricing",
@@ -18854,6 +19119,7 @@
         "oss"
       ],
       "repo": "https://github.com/sveltejs/svelte",
+      "runs_in_app": false,
       "sources": [
         "https://svelte.dev",
         "https://github.com/sveltejs/svelte",
@@ -18967,6 +19233,7 @@
         "oss"
       ],
       "repo": "https://github.com/sveltejs/kit",
+      "runs_in_app": false,
       "sources": [
         "https://svelte.dev/docs/kit",
         "https://github.com/sveltejs/kit",
@@ -19029,6 +19296,7 @@
         "oss"
       ],
       "repo": "https://github.com/swc-project/swc",
+      "runs_in_app": false,
       "sources": [
         "https://swc.rs",
         "https://github.com/swc-project/swc"
@@ -19075,6 +19343,7 @@
         "oss"
       ],
       "repo": "https://github.com/vercel/swr",
+      "runs_in_app": false,
       "sources": [
         "https://swr.vercel.app",
         "https://github.com/vercel/swr"
@@ -19176,6 +19445,7 @@
         "oss"
       ],
       "repo": "https://github.com/tailwindlabs/tailwindcss",
+      "runs_in_app": false,
       "sources": [
         "https://tailwindcss.com",
         "https://github.com/tailwindlabs/tailwindcss",
@@ -19247,6 +19517,7 @@
         "oss"
       ],
       "repo": "https://github.com/TanStack/query",
+      "runs_in_app": false,
       "sources": [
         "https://tanstack.com/query",
         "https://github.com/TanStack/query",
@@ -19314,6 +19585,7 @@
         "oss"
       ],
       "repo": "https://github.com/TanStack/router",
+      "runs_in_app": false,
       "sources": [
         "https://tanstack.com/start",
         "https://github.com/TanStack/router",
@@ -19383,6 +19655,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://github.com/quickwit-oss/tantivy",
         "https://github.com/quickwit-oss/tantivy-py"
@@ -19461,6 +19734,7 @@
         "oss"
       ],
       "repo": "https://github.com/tauri-apps/tauri",
+      "runs_in_app": false,
       "sources": [
         "https://tauri.app",
         "https://github.com/tauri-apps/tauri",
@@ -19519,6 +19793,7 @@
         "paid"
       ],
       "repo": "https://github.com/temporalio/temporal",
+      "runs_in_app": false,
       "sources": [
         "https://temporal.io",
         "https://docs.temporal.io/develop",
@@ -19564,6 +19839,7 @@
         "oss"
       ],
       "repo": "https://github.com/stretchr/testify",
+      "runs_in_app": false,
       "sources": [
         "https://github.com/stretchr/testify"
       ],
@@ -19610,6 +19886,7 @@
         "oss"
       ],
       "repo": "https://github.com/testing-library/dom-testing-library",
+      "runs_in_app": false,
       "sources": [
         "https://testing-library.com",
         "https://testing-library.com/docs/",
@@ -19671,6 +19948,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://tina.io",
         "https://github.com/TinaCMS/tinacms",
@@ -19724,6 +20002,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://www.travis-ci.com",
         "https://www.travis-ci.com/pricing/",
@@ -19773,6 +20052,7 @@
         "paid"
       ],
       "repo": "https://github.com/triggerdotdev/trigger.dev",
+      "runs_in_app": false,
       "sources": [
         "https://trigger.dev",
         "https://github.com/triggerdotdev/trigger.dev"
@@ -19832,6 +20112,7 @@
         "oss"
       ],
       "repo": "https://github.com/trpc/trpc",
+      "runs_in_app": false,
       "sources": [
         "https://trpc.io",
         "https://github.com/trpc/trpc",
@@ -19887,6 +20168,7 @@
         "oss"
       ],
       "repo": "https://github.com/vercel/next.js",
+      "runs_in_app": false,
       "sources": [
         "https://nextjs.org/docs/app/api-reference/turbopack",
         "https://github.com/vercel/next.js"
@@ -19931,6 +20213,7 @@
         "free-tier"
       ],
       "repo": "https://github.com/vercel/turborepo",
+      "runs_in_app": false,
       "sources": [
         "https://turborepo.com",
         "https://github.com/vercel/turborepo",
@@ -19987,6 +20270,7 @@
         "paid"
       ],
       "repo": "https://github.com/tursodatabase/libsql",
+      "runs_in_app": false,
       "sources": [
         "https://turso.tech",
         "https://turso.tech/pricing",
@@ -20075,6 +20359,7 @@
         "oss"
       ],
       "repo": "https://github.com/typeorm/typeorm",
+      "runs_in_app": false,
       "sources": [
         "https://typeorm.io",
         "https://github.com/typeorm/typeorm"
@@ -20153,6 +20438,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://typesense.org",
         "https://github.com/typesense/typesense",
@@ -20200,6 +20486,7 @@
         "paid"
       ],
       "repo": "https://github.com/unoplatform/uno",
+      "runs_in_app": false,
       "sources": [
         "https://platform.uno",
         "https://github.com/unoplatform/uno",
@@ -20255,6 +20542,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://uploadthing.com",
         "https://github.com/pingdotgg/uploadthing",
@@ -20302,6 +20590,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": true,
       "sources": [
         "https://uppy.io",
         "https://github.com/transloadit/uppy"
@@ -20344,6 +20633,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://upstash.com/docs/redis/overall/getstarted"
       ],
@@ -20385,6 +20675,7 @@
         "oss"
       ],
       "repo": "https://github.com/louislam/uptime-kuma",
+      "runs_in_app": false,
       "sources": [
         "https://uptime.kuma.pet",
         "https://github.com/louislam/uptime-kuma",
@@ -20439,6 +20730,7 @@
         "oss"
       ],
       "repo": "https://github.com/valkey-io/valkey",
+      "runs_in_app": false,
       "sources": [
         "https://valkey.io",
         "https://github.com/valkey-io/valkey"
@@ -20487,6 +20779,7 @@
         "oss"
       ],
       "repo": "https://github.com/pmndrs/valtio",
+      "runs_in_app": false,
       "sources": [
         "https://valtio.dev",
         "https://github.com/pmndrs/valtio"
@@ -20604,6 +20897,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://vercel.com",
         "https://vercel.com/docs/functions/runtimes",
@@ -20612,10 +20906,14 @@
         "https://vercel.com/docs/frameworks/backend/express",
         "https://vercel.com/guides/how-can-i-use-github-actions-with-vercel",
         "https://vercel.com/docs/frameworks/backend/flask",
-        "https://vercel.com/docs/frameworks/backend/fastify"
+        "https://vercel.com/docs/frameworks/backend/fastify",
+        "https://vercel.com/docs/cdn",
+        "https://vercel.com/docs/frameworks/more-frameworks"
       ],
       "summary": "Cloud platform for deploying web apps with a CDN, functions in several runtimes, cron jobs and web analytics.",
       "tags": [
+        "static-content",
+        "ssr-seo",
         "edge-runtime",
         "scheduled-jobs",
         "analytics"
@@ -20665,6 +20963,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://vercel.com/docs/storage/vercel-blob",
         "https://vercel.com/docs/vercel-blob/using-blob-sdk"
@@ -20735,6 +21034,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://vespa.ai",
         "https://github.com/vespa-engine/vespa",
@@ -20830,6 +21130,7 @@
         "oss"
       ],
       "repo": "https://github.com/vitejs/vite",
+      "runs_in_app": false,
       "sources": [
         "https://vite.dev",
         "https://github.com/vitejs/vite",
@@ -20895,6 +21196,7 @@
         "oss"
       ],
       "repo": "https://github.com/vuejs/vitepress",
+      "runs_in_app": false,
       "sources": [
         "https://vitepress.dev",
         "https://github.com/vuejs/vitepress",
@@ -21001,6 +21303,7 @@
         "oss"
       ],
       "repo": "https://github.com/vitest-dev/vitest",
+      "runs_in_app": false,
       "sources": [
         "https://vitest.dev",
         "https://vitest.dev/guide/",
@@ -21122,6 +21425,7 @@
         "oss"
       ],
       "repo": "https://github.com/vuejs/core",
+      "runs_in_app": false,
       "sources": [
         "https://vuejs.org",
         "https://github.com/vuejs/core",
@@ -21177,6 +21481,7 @@
         "oss"
       ],
       "repo": "https://github.com/vuetifyjs/vuetify",
+      "runs_in_app": false,
       "sources": [
         "https://vuetifyjs.com",
         "https://github.com/vuetifyjs/vuetify"
@@ -21221,6 +21526,7 @@
         "oss"
       ],
       "repo": "https://github.com/vuejs/vuex",
+      "runs_in_app": false,
       "sources": [
         "https://vuex.vuejs.org",
         "https://github.com/vuejs/vuex",
@@ -21265,6 +21571,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://wagtail.org",
         "https://github.com/wagtail/wagtail"
@@ -21322,6 +21629,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://wasabi.com"
       ],
@@ -21378,6 +21686,7 @@
         "oss"
       ],
       "repo": "https://github.com/webpack/webpack",
+      "runs_in_app": false,
       "sources": [
         "https://webpack.js.org",
         "https://github.com/webpack/webpack",
@@ -21421,6 +21730,7 @@
         "oss"
       ],
       "repo": "https://github.com/woodpecker-ci/woodpecker",
+      "runs_in_app": false,
       "sources": [
         "https://woodpecker-ci.org",
         "https://woodpecker-ci.org/docs/intro",
@@ -21469,6 +21779,7 @@
         "oss"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://wordpress.org",
         "https://wordpress.org/about/license/",
@@ -21539,6 +21850,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://workos.com",
         "https://workos.com/docs",
@@ -21586,6 +21898,7 @@
         "oss"
       ],
       "repo": "https://github.com/xamarin/xamarin-android",
+      "runs_in_app": false,
       "sources": [
         "https://dotnet.microsoft.com/apps/xamarin",
         "https://github.com/xamarin/xamarin-android"
@@ -21639,6 +21952,7 @@
         "oss"
       ],
       "repo": "https://github.com/statelyai/xstate",
+      "runs_in_app": false,
       "sources": [
         "https://stately.ai/docs/xstate",
         "https://github.com/statelyai/xstate"
@@ -21686,6 +22000,7 @@
         "oss"
       ],
       "repo": "https://github.com/xunit/xunit",
+      "runs_in_app": false,
       "sources": [
         "https://xunit.net"
       ],
@@ -21749,6 +22064,7 @@
         "paid"
       ],
       "repo": null,
+      "runs_in_app": false,
       "sources": [
         "https://zitadel.com",
         "https://github.com/zitadel/zitadel",
@@ -21807,6 +22123,7 @@
         "oss"
       ],
       "repo": "https://github.com/pmndrs/zustand",
+      "runs_in_app": false,
       "sources": [
         "https://zustand.docs.pmnd.rs",
         "https://github.com/pmndrs/zustand"

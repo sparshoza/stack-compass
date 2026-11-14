@@ -2,6 +2,7 @@ id: passportjs
 name: Passport
 aliases: [passport.js]
 match_name: false
+runs_in_app: true
 layer: auth
 summary: Express-compatible authentication middleware for Node.js with hundreds of strategies.
 url: https://www.passportjs.org

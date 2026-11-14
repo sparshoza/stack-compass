@@ -1,6 +1,7 @@
 id: nodemailer
 name: Nodemailer
 aliases: []
+runs_in_app: true
 layer: email
 summary: A Node.js module for sending email over SMTP and other transports.
 url: https://nodemailer.com

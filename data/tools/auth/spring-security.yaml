@@ -1,6 +1,7 @@
 id: spring-security
 name: Spring Security
 aliases: []
+runs_in_app: true
 layer: auth
 summary: Authentication and access-control framework for Java and Spring applications, with OAuth 2.0 login and SAML 2.0 support.
 url: https://spring.io/projects/spring-security

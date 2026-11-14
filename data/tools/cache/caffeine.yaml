@@ -2,6 +2,7 @@ id: caffeine
 name: Caffeine
 aliases: [caffeine cache]
 match_name: false
+runs_in_app: true
 layer: cache
 summary: A high-performance, near-optimal in-memory caching library for Java.
 url: https://github.com/ben-manes/caffeine

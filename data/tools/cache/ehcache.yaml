@@ -1,6 +1,7 @@
 id: ehcache
 name: Ehcache
 aliases: []
+runs_in_app: true
 layer: cache
 summary: A standards-based Java cache with in-heap, off-heap and disk tiers.
 url: https://www.ehcache.org

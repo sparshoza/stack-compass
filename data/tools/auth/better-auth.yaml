@@ -1,6 +1,7 @@
 id: better-auth
 name: Better Auth
 aliases: [betterauth]
+runs_in_app: true
 layer: auth
 summary: A framework-agnostic TypeScript authentication library with a plugin system.
 url: https://www.better-auth.com

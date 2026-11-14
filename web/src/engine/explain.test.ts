@@ -96,6 +96,8 @@ describe("label", () => {
     expect(codes).toContain("capability:realtime");
     expect(codes).toContain("pairs-with:django");
     expect(codes).toContain("language-mismatch-with-pick");
+    expect(codes).toContain("no-web-frontend");
+    expect(label("no-web-frontend", kb)).toBe("tests web pages, and your stack has none");
     const missing = codes.filter((code) => {
       const text = label(code, kb);
       return !text || text === code;
@@ -107,6 +109,8 @@ describe("label", () => {
     expect(label("capability:ssr-seo", kb)).toBe(
       "supports server rendering and SEO",
     );
+    // An acronym at the start keeps its capitals.
+    expect(label("capability:rest-api", kb)).toBe("supports REST API");
     expect(label("pairs-with:django", kb)).toBe(
       "pairs with Django, your backend pick",
     );

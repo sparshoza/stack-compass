@@ -716,6 +716,32 @@ describe("scoreStack", () => {
     expect(expo.pick).toBe("playwright");
   });
 
+  it("a tool that needs a web frontend drops out of a stack with none", () => {
+    const tools = [
+      makeTool("express", "backend", { languages: ["javascript"] }),
+      makeTool("react", "frontend", { languages: ["javascript"] }),
+      makeTool("nextjs", "meta-framework", { languages: ["javascript"] }),
+      makeTool("playwright", "testing", { languages: ["javascript"], needs_web_frontend: true }),
+      makeTool("jest", "testing", { languages: ["javascript"], maturity: "emerging" }),
+    ];
+    const api = layerOf(
+      scoreStack(answers(), makeKb(tools, ["backend", "testing"])),
+      "testing",
+    );
+    expect(api.pick).toBe("jest");
+    expect(api.excluded).toEqual([{ toolId: "playwright", reason: "no-web-frontend" }]);
+    const web = layerOf(
+      scoreStack(answers(), makeKb(tools, ["backend", "frontend", "testing"])),
+      "testing",
+    );
+    expect(web.pick).toBe("playwright");
+    const metaOnly = layerOf(
+      scoreStack(answers(), makeKb(tools, ["meta-framework", "testing"])),
+      "testing",
+    );
+    expect(metaOnly.pick).toBe("playwright");
+  });
+
   it("excluded lists filtered tools that would rank top 3", () => {
     const fx = makeKb(
       [
@@ -919,7 +945,7 @@ describe("scoreStack on the real catalog", () => {
     expect(pickOf(a, "testing")).not.toBe("playwright");
   });
 
-  it("a Rails web app shows No match for state because nothing in the catalog works with Stimulus", () => {
+  it("pins a data fact: no state tool in the catalog works with Stimulus, so a Rails web app shows No match for state", () => {
     const results = scoreStack(fromText("a web app in Rails"), kb);
     expect(results.find((r) => r.layer === "frontend")?.pick).toBe("stimulus");
     const state = results.find((r) => r.layer === "state");

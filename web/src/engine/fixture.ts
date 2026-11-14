@@ -12,6 +12,7 @@ export function makeTool(
     aliases: [],
     match_name: true,
     runs_in_app: false,
+    needs_web_frontend: false,
     layer,
     summary: "",
     url: "https://example.org",

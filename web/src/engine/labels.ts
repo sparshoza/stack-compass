@@ -44,10 +44,14 @@ const FIXED: Record<string, string> = {
   "language-mismatch-with-pick": "does not share a language with the rest of your stack",
   "not-built-on-pick": "is built on a tool you did not pick",
   "not-compatible-with-pick": "does not work with your frontend pick",
+  "no-web-frontend": "tests web pages, and your stack has none",
 };
 
+/** Lowercases the first letter, unless it starts an acronym ("REST API"). */
 const lowerFirst = (text: string) =>
-  text.charAt(0).toLowerCase() + text.slice(1);
+  /^[A-Z]{2}/.test(text)
+    ? text
+    : text.charAt(0).toLowerCase() + text.slice(1);
 
 /** Plain words for any reason or score code. Unknown codes come back unchanged. */
 export function label(code: string, kb: KnowledgeBase): string {

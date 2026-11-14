@@ -178,16 +178,27 @@ const LANGUAGE_SETTING_LAYERS: ReadonlySet<string> = new Set([
   "jobs-queue",
 ]);
 
+/** Most language families a named tool may list and still set its languages. */
+const MAX_IMPLIED_FAMILIES = 2;
+
 /**
- * The one language a tool implies, or null. Only tools in
- * LANGUAGE_SETTING_LAYERS imply one, and only when they list exactly one
- * language. A tool listing both typescript and javascript (one family)
- * implies neither, and a hosted service with many SDK languages implies none.
+ * The languages a named tool sets as preferred. Only tools in
+ * LANGUAGE_SETTING_LAYERS set any, and only when they list at most
+ * MAX_IMPLIED_FAMILIES language families (typescript and javascript are one):
+ * Spring Boot sets java and kotlin, NestJS sets typescript and javascript. A
+ * service with SDKs in many languages (Temporal, River) sets none.
  */
-function impliedLanguage(tool: Tool): string | null {
-  if (!LANGUAGE_SETTING_LAYERS.has(tool.layer)) return null;
-  return tool.languages.length === 1 ? tool.languages[0] : null;
+function impliedLanguages(tool: Tool): string[] {
+  if (!LANGUAGE_SETTING_LAYERS.has(tool.layer)) return [];
+  const families = new Set(
+    tool.languages.map((l) => (l === "typescript" ? "javascript" : l)),
+  );
+  return families.size <= MAX_IMPLIED_FAMILIES ? tool.languages : [];
 }
+
+/** Project type whose stacks get the rest-api capability unless another API style is named. */
+const REST_DEFAULT_TYPE = "api-only";
+const REST_CAPABILITY = "rest-api";
 
 function isNegated(tokens: string[], position: number): boolean {
   let counted = 0;
@@ -211,6 +222,8 @@ export function match(text: string, kb: KnowledgeBase): Detected {
   const droppedCapabilities = new Set<string>();
   const droppedTools = new Set<string>();
   const dropped = new Set<string>();
+  /** GraphQL or an API-style tool was named, so REST is not assumed. */
+  let otherApiStyle = false;
 
   const applyTool = (tool: Tool, negated: boolean) => {
     if (negated) {
@@ -218,8 +231,8 @@ export function match(text: string, kb: KnowledgeBase): Detected {
       dropped.add(tool.id);
     } else {
       knownTools.add(tool.id);
-      const language = impliedLanguage(tool);
-      if (language) prefer.add(language);
+      for (const language of impliedLanguages(tool)) prefer.add(language);
+      if (tool.layer === "api-style") otherApiStyle = true;
     }
   };
 
@@ -243,6 +256,10 @@ export function match(text: string, kb: KnowledgeBase): Detected {
       j += step;
     }
   };
+
+  tokens.forEach((token, at) => {
+    if (token === "graphql" && !isNegated(tokens, at)) otherApiStyle = true;
+  });
 
   let i = 0;
   while (i < tokens.length) {
@@ -276,6 +293,15 @@ export function match(text: string, kb: KnowledgeBase): Detected {
       break;
     }
     i += matched || 1;
+  }
+
+  // An API project means a REST API unless the text names another style.
+  if (
+    projectType === REST_DEFAULT_TYPE &&
+    !otherApiStyle &&
+    !droppedCapabilities.has(REST_CAPABILITY)
+  ) {
+    capabilities.add(REST_CAPABILITY);
   }
 
   // Negation wins over a positive mention elsewhere in the text.

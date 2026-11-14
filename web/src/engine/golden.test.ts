@@ -90,6 +90,15 @@ function failures(
       })
       .map((r) => `${r.layer} pick ${r.pick} is not ${check.pickHosting}`);
   }
+  if ("ormPairsWithBackend" in check) {
+    const backend = toolOf(byLayer.get("backend")?.pick ?? null);
+    const orm = toolOf(byLayer.get("orm")?.pick ?? null);
+    const pairs = (x: typeof orm, y: typeof orm) =>
+      !!x && !!y && x.edges.some((e) => e.type === "pairs-with" && e.target === y.id);
+    return pairs(orm, backend) || pairs(backend, orm)
+      ? []
+      : [`orm pick ${orm?.id ?? null} does not pair with backend pick ${backend?.id ?? null}`];
+  }
   const { layer, tool } = check.pickIs;
   const r = byLayer.get(layer);
   if (!r) return [`layer ${layer} missing`];
@@ -97,9 +106,9 @@ function failures(
 }
 
 describe("golden set", () => {
-  it("has 30 cases with unique ids", () => {
-    expect(GOLDEN_CASES).toHaveLength(30);
-    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(30);
+  it("has 36 cases with unique ids", () => {
+    expect(GOLDEN_CASES).toHaveLength(36);
+    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(36);
   });
 
   it("every case has at least one check that depends on scoring", () => {

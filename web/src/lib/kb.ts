@@ -42,6 +42,8 @@ export interface Tool {
   match_name: boolean
   /** A library that runs inside your app (auth, email, search libraries): no server of its own to host. */
   runs_in_app: boolean
+  /** A browser test runner: only useful when the stack has a web frontend. */
+  needs_web_frontend: boolean
   layer: Layer
   summary: string
   url: string

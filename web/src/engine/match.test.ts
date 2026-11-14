@@ -110,9 +110,13 @@ describe("match", () => {
     expect(d.languagesPrefer).toEqual(["python"]);
   });
 
-  it("does not prefer a language for multi-language or js family tools", () => {
-    expect(match("next.js", base).languagesPrefer).toEqual([]);
+  it("a server tool sets all its languages when it lists at most two families", () => {
+    // TypeScript and JavaScript are one family, so both are set.
+    expect(match("next.js", base).languagesPrefer).toEqual(["typescript", "javascript"]);
+    // Three families: a multi-language service sets none.
     expect(match("supabase", base).languagesPrefer).toEqual([]);
+    const jvm = fixture([], [tool("spring-boot", "Spring Boot", { languages: ["java", "kotlin"] })]);
+    expect(match("spring boot", jvm).languagesPrefer).toEqual(["java", "kotlin"]);
     expect(match("svelte", base).languagesPrefer).toEqual(["typescript"]);
     expect(match("node.js", base).languagesPrefer).toEqual(["javascript"]);
   });
@@ -162,6 +166,30 @@ describe("match", () => {
     expect(flutter.languagesPrefer).not.toContain("dart");
     expect(match("an iOS app in Swift", kb).languagesPrefer).toContain("swift");
     expect(match("a django app", kb).languagesPrefer).toContain("python");
+  });
+
+  it("real catalog: Spring Boot sets Java and Kotlin, NestJS sets TypeScript and JavaScript", () => {
+    expect(match("a SaaS in Spring Boot", kb).languagesPrefer).toEqual(["java", "kotlin"]);
+    expect(match("built with NestJS", kb).languagesPrefer.sort()).toEqual(["javascript", "typescript"]);
+  });
+
+  it("real catalog: an API project implies a REST API unless GraphQL or an API style is named", () => {
+    const fastapi = match("an api built with FastAPI", kb);
+    expect(fastapi.projectType).toBe("api-only");
+    expect(fastapi.capabilities).toContain("rest-api");
+    const graphql = match("a GraphQL API in Go", kb);
+    expect(graphql.projectType).toBe("api-only");
+    expect(graphql.languagesPrefer).toEqual(["go"]);
+    expect(graphql.capabilities).not.toContain("rest-api");
+    expect(match("an api with tRPC", kb).capabilities).not.toContain("rest-api");
+    // A negated GraphQL does not count.
+    expect(match("an api, no graphql", kb).capabilities).toContain("rest-api");
+  });
+
+  it("real catalog: Phoenix is found in everyday phrasing", () => {
+    for (const text of ["a Phoenix app", "an Elixir Phoenix project", "our phoenix backend"]) {
+      expect(match(text, kb).knownTools).toContain("phoenix");
+    }
   });
 
   it("negation makes language avoided", () => {

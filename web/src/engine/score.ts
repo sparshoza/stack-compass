@@ -44,6 +44,8 @@ export type LayerResult = {
  *   when that layer has a pick; state and ui-kit keep the rule below.
  * - not-compatible-with-pick: state and ui-kit tools must be built-on or
  *   pair with the frontend pick, when there is one.
+ * - no-web-frontend: a tool marked needs_web_frontend (a browser test
+ *   runner) needs a frontend or a meta-framework pick.
  */
 export const REASON_CODES = [
   "language-excluded",
@@ -54,6 +56,7 @@ export const REASON_CODES = [
   "language-mismatch-with-pick",
   "not-built-on-pick",
   "not-compatible-with-pick",
+  "no-web-frontend",
 ] as const;
 
 export type ReasonCode = (typeof REASON_CODES)[number];
@@ -237,6 +240,13 @@ function failedCheck(
     !hasEdge(tool, ["built-on", "pairs-with"], frontend.id)
   ) {
     return "not-compatible-with-pick";
+  }
+  if (
+    tool.needs_web_frontend &&
+    !picks.get("frontend") &&
+    !picks.get("meta-framework")
+  ) {
+    return "no-web-frontend";
   }
   return null;
 }

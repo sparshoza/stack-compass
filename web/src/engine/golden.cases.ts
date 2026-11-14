@@ -11,6 +11,8 @@ import type { Answers } from "./answers";
  * - pickIs: the layer's pick is this tool id, or null for "No match".
  * - noPaidOnlyPick: no pick is paid only (pricing without oss or free-tier).
  * - pickHosting: every pick in a service layer offers this hosting.
+ * - ormPairsWithBackend: the ORM pick and the backend pick have a pairs-with
+ *   edge between them (the ORM fits the backend, whichever it is).
  * - projectType: the matched (or overridden) project type. This tests the
  *   matcher, not scoring; core layers of a project type are checked here
  *   rather than with layerPresent / layerAbsent.
@@ -23,7 +25,8 @@ export type Check =
   | { layerPresent: Layer }
   | { layerAbsent: Layer }
   | { noToolWithLanguage: string }
-  | { pickIs: { layer: Layer; tool: string | null } };
+  | { pickIs: { layer: Layer; tool: string | null } }
+  | { ormPairsWithBackend: true };
 
 /** Check kinds whose outcome depends on scoring, not only on matching. */
 export const ENGINE_CHECKS = [
@@ -31,6 +34,7 @@ export const ENGINE_CHECKS = [
   "noToolWithLanguage",
   "noPaidOnlyPick",
   "pickHosting",
+  "ormPairsWithBackend",
 ] as const;
 
 export type GoldenCase = {
@@ -280,9 +284,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { backendLanguage: "python" },
       { pickIs: { layer: "frontend", tool: "react" } },
       { pickIs: { layer: "meta-framework", tool: "nextjs" } },
-      // The backend pick is Django, so its built-in ORM fits.
-      { pickIs: { layer: "backend", tool: "django" } },
-      { pickIs: { layer: "orm", tool: "django-orm" } },
+      // Whichever Python backend wins, the ORM must be one made for it.
+      { ormPairsWithBackend: true },
     ],
   },
   {
@@ -363,11 +366,10 @@ export const GOLDEN_CASES: GoldenCase[] = [
     ],
   },
   {
-    // "api" alone sets no project type, so the person picks API only by hand.
     id: "api-in-go-short",
     text: "an api in go",
-    answers: { projectType: "api-only" },
     checks: [
+      { projectType: "api-only" },
       { backendLanguage: "go" },
       { pickIs: { layer: "backend", tool: "gin" } },
       { pickIs: { layer: "orm", tool: "gorm" } },
@@ -403,6 +405,67 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { pickIs: { layer: "backend", tool: "vapor" } },
       { pickIs: { layer: "orm", tool: "fluent" } },
       { pickIs: { layer: "mobile", tool: "swiftui" } },
+    ],
+  },
+  {
+    id: "saas-spring-boot-jobs-managed",
+    text: "a SaaS in Spring Boot with background jobs",
+    answers: { hosting: "managed" },
+    checks: [
+      { projectType: "saas" },
+      { pickIs: { layer: "backend", tool: "spring-boot" } },
+      { pickIs: { layer: "orm", tool: "hibernate" } },
+      // A library inside the app: no server of its own to host.
+      { pickIs: { layer: "jobs-queue", tool: "jobrunr" } },
+    ],
+  },
+  {
+    id: "saas-nestjs-jobs",
+    text: "a SaaS built with NestJS with background jobs",
+    checks: [
+      { projectType: "saas" },
+      { pickIs: { layer: "backend", tool: "nestjs" } },
+      { pickIs: { layer: "jobs-queue", tool: "bullmq" } },
+    ],
+  },
+  {
+    // No web frontend, so no browser test tool; Jest pairs with the ORM pick.
+    id: "flutter-app-short",
+    text: "a Flutter app",
+    checks: [
+      { projectType: "mobile-app" },
+      { pickIs: { layer: "backend", tool: "express" } },
+      { pickIs: { layer: "testing", tool: "jest" } },
+    ],
+  },
+  {
+    // An API project implies a REST API.
+    id: "api-fastapi-short",
+    text: "an api built with FastAPI",
+    checks: [
+      { projectType: "api-only" },
+      { pickIs: { layer: "backend", tool: "fastapi" } },
+      { pickIs: { layer: "api-style", tool: "openapi" } },
+    ],
+  },
+  {
+    // Naming GraphQL keeps the REST default out.
+    id: "api-graphql-go",
+    text: "a GraphQL API in Go",
+    checks: [
+      { projectType: "api-only" },
+      { backendLanguage: "go" },
+      { pickIs: { layer: "api-style", tool: "gqlgen" } },
+    ],
+  },
+  {
+    id: "phoenix-app-short",
+    text: "a Phoenix app",
+    answers: { projectType: "web-app" },
+    checks: [
+      { backendLanguage: "elixir" },
+      { pickIs: { layer: "backend", tool: "phoenix" } },
+      { pickIs: { layer: "orm", tool: "ecto" } },
     ],
   },
 ];

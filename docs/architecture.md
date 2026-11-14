@@ -56,5 +56,5 @@ flowchart LR
 ## Tests
 
 - `uv run pytest`: the validator against fixtures (every rule), the real catalog (valid, fresh, per-layer counts, total), the stats module.
-- `npm --prefix web test -- --run`: the engine (every scoring rule, negation, round trips of share links including tampered ones), the golden set of 30 written project descriptions, the screens through Testing Library, and a scan of `web/src` and `data/` for banned UI patterns and dash characters.
+- `npm --prefix web test -- --run`: the engine (every scoring rule, negation, round trips of share links including tampered ones), the golden set of 36 written project descriptions, the screens through Testing Library, and a scan of `web/src` and `data/` for banned UI patterns and dash characters.
 - CI (`.github/workflows/ci.yml`) runs both, plus lint, the catalog and layout freshness checks, and the production build.

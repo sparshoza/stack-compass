@@ -422,7 +422,11 @@
     },
     {
       "phrases": [
-        "an api",
+        "build an api",
+        "building an api",
+        "just an api",
+        "an api built",
+        "an api written",
         "graphql api",
         "graphql server"
       ],

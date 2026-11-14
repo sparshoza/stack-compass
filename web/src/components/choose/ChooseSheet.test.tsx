@@ -201,6 +201,21 @@ describe('Help me choose', () => {
     expect(show).toBeEnabled()
   })
 
+  it('picking API only by hand pre-selects the REST API feature, which stays removable', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    const dialog = await openSheet(user)
+    const rest = within(dialog).getByRole('checkbox', { name: /^REST API/ })
+    expect(rest).not.toBeChecked()
+    await user.click(within(dialog).getByRole('radio', { name: 'API only' }))
+    expect(rest).toBeChecked()
+    await user.click(rest)
+    expect(rest).not.toBeChecked()
+    // Another type does not add it.
+    await user.click(within(dialog).getByRole('radio', { name: 'Web app' }))
+    expect(rest).not.toBeChecked()
+  })
+
   it('result replaces the questions with one row per selected layer (pick, why, watch-out)', async () => {
     const user = userEvent.setup()
     renderApp()

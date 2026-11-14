@@ -366,10 +366,13 @@ export const GOLDEN_CASES: GoldenCase[] = [
     ],
   },
   {
+    // "an api" alone sets no project type (it is often an API the app calls),
+    // and a phrase "an api in" would swallow the "in" of "in go", so the
+    // person picks API only by hand.
     id: "api-in-go-short",
     text: "an api in go",
+    answers: { projectType: "api-only" },
     checks: [
-      { projectType: "api-only" },
       { backendLanguage: "go" },
       { pickIs: { layer: "backend", tool: "gin" } },
       { pickIs: { layer: "orm", tool: "gorm" } },

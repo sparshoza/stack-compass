@@ -47,7 +47,7 @@
   sets: {project_type: web-app}
 - phrases: [api only, rest api, json api, backend only, headless api, public api, microservice, microservices]
   sets: {project_type: api-only, capabilities: [rest-api]}
-- phrases: [an api, graphql api, graphql server]
+- phrases: [build an api, building an api, just an api, an api built, an api written, graphql api, graphql server]
   sets: {project_type: api-only}
 - phrases: [restful, rest endpoints]
   sets: {capabilities: [rest-api]}

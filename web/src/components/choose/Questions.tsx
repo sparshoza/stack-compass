@@ -377,6 +377,15 @@ function Features({ selected, onToggle }: { selected: string[]; onToggle: (id: s
   )
 }
 
+/**
+ * Sets the project type. Picking API only also ticks the REST API feature,
+ * as describing an API does; the person can untick it.
+ */
+function withProjectType(a: Answers, projectType: string): Answers {
+  const addRest = projectType === 'api-only' && a.projectType !== 'api-only' && !a.capabilities.includes('rest-api')
+  return { ...a, projectType, capabilities: addRest ? [...a.capabilities, 'rest-api'] : a.capabilities }
+}
+
 /** The eight one-click questions, filled in from the description where it said something. */
 export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
   const id = useId()
@@ -393,7 +402,7 @@ export function Questions({ answers, onChange, typeRef }: QuestionsProps) {
               value={type.id}
               label={type.label}
               checked={answers.projectType === type.id}
-              onSelect={(value) => onChange((a) => ({ ...a, projectType: value }))}
+              onSelect={(value) => onChange((a) => withProjectType(a, value))}
               inputRef={typeRef}
             />
           ))}

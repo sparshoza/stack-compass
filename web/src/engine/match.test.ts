@@ -182,8 +182,14 @@ describe("match", () => {
     expect(graphql.languagesPrefer).toEqual(["go"]);
     expect(graphql.capabilities).not.toContain("rest-api");
     expect(match("an api with tRPC", kb).capabilities).not.toContain("rest-api");
+    // Calling someone else's API is not building one.
+    expect(match("integrate with an api", kb).projectType).toBeNull();
+    expect(match("a dashboard that pulls data from an api", kb).projectType).not.toBe("api-only");
+    expect(match("we need to call an api from our mobile app", kb).projectType).toBe("mobile-app");
+    expect(match("an app that uses an api to fetch weather", kb).projectType).not.toBe("api-only");
+    expect(match("we are building an api", kb).projectType).toBe("api-only");
     // A negated GraphQL does not count.
-    expect(match("an api, no graphql", kb).capabilities).toContain("rest-api");
+    expect(match("build an api, no graphql", kb).capabilities).toContain("rest-api");
   });
 
   it("real catalog: Phoenix is found in everyday phrasing", () => {

@@ -63,15 +63,16 @@ More detail, including what each part does and what the tests cover: [docs/archi
 
 ## How recommendations work
 
-1. **Describe (optional).** Your text is lowercased and split into words, and phrases from a fixed list of 159 keyword entries are found on word boundaries, longest match first. Tool names and their aliases count too ("django" means Python). A match with "no", "not", "without", "avoid", "except", "don't" or a similar word up to three words before it becomes an exclusion, and the look-back stops at commas, full stops and the words "but" and "however", so "no PHP but Python" avoids PHP and still prefers Python. You see what was picked up as removable chips. The text stays in the page: it is never sent anywhere and never goes into a link.
+1. **Describe (optional).** Your text is lowercased and split into words, and phrases from a fixed list of 160 keyword entries are found on word boundaries, longest match first. Tool names and their aliases count too, also inside a longer phrase ("a Flutter app" names Flutter). Only a backend, ORM, API-style or job-queue tool sets a language ("django" means Python); naming any other tool, such as Flutter or React, only marks it as a tool you know. A language you type yourself ("in Swift") always counts. A match with "no", "not", "without", "avoid", "except", "nothing", "don't" or a similar word up to three words before it becomes an exclusion. Filler words such as "want", "to", "use" and "in" are not counted, so "I don't want to use Node" avoids JavaScript and "nothing in Java" avoids Java. The look-back stops at commas, full stops and the words "but" and "however", so "no PHP but Python" avoids PHP and still prefers Python. You see what was picked up as removable chips. The text stays in the page: it is never sent anywhere and never goes into a link.
 2. **Questions.** Eight one-click questions, pre-filled from step 1: project type, languages to prefer or avoid, must-have features, hosting, budget, scale, tools you already know, and whether to include dev tooling.
-3. **Layers.** The project type sets its core layers (a SaaS gets frontend, meta-framework, UI kit, backend, database, ORM, auth, payments, email, job queue and hosting). Features add layers (file uploads add storage, search adds a search engine), and dev tooling adds state, build tool, CI/CD, observability and testing. A simple project gets a short list.
-4. **Hard filters.** Layers are scored in a fixed order, backend first, so later layers can follow earlier picks. A tool drops out, with the reason shown, when:
-   - every language it uses is one you want to avoid;
+3. **Layers.** The project type sets its core layers (a SaaS gets frontend, meta-framework, UI kit, backend, database, ORM, auth, payments, email, job queue and hosting). Features add layers (file uploads add storage, search adds a search engine), and dev tooling adds CI/CD, observability and testing, plus a state library and a build tool when the stack has a web frontend (a mobile app or an API gets neither). A simple project gets a short list.
+4. **Hard filters.** Layers are scored in a fixed order, backend first, so later layers can follow earlier picks. A tool that lists no languages (a hosted service, a database) always passes the language filters. A tool drops out, with the reason shown, when:
+   - every language it uses is one you want to avoid (avoiding JavaScript also avoids TypeScript-only tools);
    - you prefer languages and none of them is in a backend, ORM, frontend, meta-framework or mobile tool (on frontend, meta-framework and mobile this applies only when some tool in the layer has a preferred language, so a Python web app still gets a frontend; TypeScript and JavaScript count as one);
-   - its hosting does not match yours (managed or self-hosted);
+   - its hosting does not match yours (managed or self-hosted), shown as "has no official managed service" when you chose managed. Libraries that run inside your app (auth libraries such as Better Auth or Devise, email libraries, in-browser search, in-process caches) are never filtered by hosting: there is no server of their own to host;
    - it is paid only and your budget is free tiers;
-   - it shares no language with the backend pick (ORM, API style, job queue) or with the backend or frontend pick (auth, testing);
+   - it shares no language with the backend pick (ORM, API style, job queue) or with the backend or frontend pick (testing);
+   - it is an auth library that runs in your app and shares no language with the backend pick (or with the frontend pick when there is no backend), or a hosted auth service with no SDK in the backend or frontend language;
    - it is a meta-framework not built on the frontend pick, or a state library or UI kit that is neither built on nor pairs with it.
 5. **Points.** +3 for each feature you asked for that the tool supports, +2 if you already know it, +2 for each earlier pick it pairs with, +1 for an established tool at startup or high-traffic scale, -1 for an emerging tool at high traffic, -2 for a legacy tool.
 6. **Ties** go to the tool with more pairs-with links in the catalog, then to the alphabetically first id.
@@ -80,16 +81,16 @@ More detail, including what each part does and what the tests cover: [docs/archi
 
 ## Data method and sources
 
-- One YAML file per tool in `data/tools/<layer>/`, with its summary, licence, languages, hosting, pricing, maturity, what it is good for, when to avoid it, its relations to other tools, a `verified` date and its sources.
+- One YAML file per tool in `data/tools/<layer>/`, with its summary, licence, languages, hosting, whether it is a library that runs inside your app, pricing, maturity, what it is good for, when to avoid it, its relations to other tools, a `verified` date and its sources.
 - Facts come only from each tool's official site or docs. The `verified` field is the date they were checked. When a fact could not be confirmed, the tool was left out rather than guessed.
-- `compassdata.load` rejects the whole catalog, listing every problem with its file, on an unknown tag or layer, a relation to a missing tool, a one-sided "alternative to" or "pairs with" link, an alias two tools share, a duplicate keyword phrase, an overlong summary or a bad date.
+- `compassdata.load` rejects the whole catalog, listing every problem with its file, on an unknown tag or layer, a relation to a missing tool, a one-sided "alternative to" or "pairs with" link, an alias two tools share, a keyword phrase that equals a tool name or alias, a duplicate keyword phrase, an overlong summary or a bad date.
 - `compassdata.check_links` requests every tool URL, repository and source. A few hosts that refuse automated requests are allowed their known status code (listed in the script).
 
 ## Measured numbers
 
 Measured on 2026-11-14 on Windows 11 Pro, Intel Core i7-12700H, 16 GB RAM, Python 3.12.3, Node 22.15. None of these depend on the machine except the link check, which depends on the network that day.
 
-**Catalog size**: 302 tools across 22 layers, 159 keyword entries. Command: `uv run python -m compassdata.stats`
+**Catalog size**: 302 tools across 22 layers, 160 keyword entries. Command: `uv run python -m compassdata.stats`
 
 | Layer | Tools | Layer | Tools |
 | --- | --- | --- | --- |
@@ -105,11 +106,11 @@ Measured on 2026-11-14 on Windows 11 Pro, Intel Core i7-12700H, 16 GB RAM, Pytho
 | jobs-queue | 14 | observability | 14 |
 | search | 13 | testing | 16 |
 
-**Golden set**: 25 of 25 cases pass (100%). Each case is a written project description with checks on the result, for example "backend language is Python", "payments pick is Stripe", "no PHP tool picked". Cases are in `web/src/engine/golden.cases.ts`. Command: `npm --prefix web run golden` (28 tests: the 25 cases plus 3 checks on the set itself).
+**Golden set**: 25 of 25 cases pass (100%). Each case is a written project description with checks on the result, for example "backend language is Python", "payments pick is Stripe", "no PHP tool picked". Cases are in `web/src/engine/golden.cases.ts`. Command: `npm --prefix web run golden` (29 tests: the 25 cases plus 4 checks on the set itself).
 
-**Tests**: 45 Python tests (`uv run pytest`) and 261 web tests in 21 files (`npm --prefix web test -- --run`), all passing.
+**Tests**: 50 Python tests (`uv run pytest`) and 283 web tests in 23 files (`npm --prefix web test -- --run`), all passing.
 
-**Links**: 1013 URLs checked, 0 failed. Command: `uv run python -m compassdata.check_links`
+**Links**: 1017 URLs checked, 0 failed. Command: `uv run python -m compassdata.check_links`
 
 ## Suggest an edit
 

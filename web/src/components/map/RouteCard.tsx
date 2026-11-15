@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import { XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { LAYER_PLURALS } from '@/engine/labels'
 import type { Connection, Route } from '@/engine/path'
 import { toolById, type Tool } from '@/lib/kb'
 import { cn } from '@/lib/utils'
@@ -31,6 +32,16 @@ function via(route: Route): string {
   return `Through ${others} other ${others === 1 ? 'tool' : 'tools'}`
 }
 
+/** Most partners named in "They connect through ...". */
+const JOIN_NAMED = 3
+
+/** "Both are backends; projects usually pick one. They connect through PostgreSQL, MySQL or SQLite." */
+function choiceLine(layer: NonNullable<Connection['sameLayer']>, ids: readonly string[]): string {
+  const names = ids.slice(0, JOIN_NAMED).map((id) => toolById(id)?.name ?? id)
+  const list = names.length > 1 ? `${names.slice(0, -1).join(', ')} or ${names[names.length - 1]}` : names[0]
+  return `Both are ${LAYER_PLURALS[layer]}; projects usually pick one. They connect through ${list}.`
+}
+
 function sharedLine(ids: readonly string[]): string {
   const names = ids.slice(0, SHARED_NAMED).map((id) => toolById(id)?.name ?? id)
   const rest = ids.length - names.length
@@ -48,7 +59,7 @@ export function RouteCard({ from, to, connection, onClose, placement = 'float', 
   const float = placement === 'float'
   const headingId = useId()
   const title = `How ${from.name} connects to ${to.name}`
-  const { alternatives, routes, throughAlternatives, shared } = connection
+  const { alternatives, routes, throughAlternatives, shared, sameLayer } = connection
   const twoSteps = routes.length > 0 && routes[0].steps.length === 2 && !throughAlternatives
   return (
     <section
@@ -75,6 +86,7 @@ export function RouteCard({ from, to, connection, onClose, placement = 'float', 
             {from.name} and {to.name} are alternatives: projects usually pick one.
           </p>
         )}
+        {sameLayer && <p className="leading-snug">{choiceLine(sameLayer, shared)}</p>}
         {!alternatives && routes.length === 0 && (
           <div className="grid gap-1">
             <p className="text-text">
@@ -101,7 +113,7 @@ export function RouteCard({ from, to, connection, onClose, placement = 'float', 
                 ))}
               </ul>
             ))}
-            {twoSteps && shared.length > 0 && (
+            {twoSteps && shared.length > 0 && !sameLayer && (
               <p className="border-t border-line pt-3 text-xs leading-relaxed text-text-muted">{sharedLine(shared)}</p>
             )}
           </>

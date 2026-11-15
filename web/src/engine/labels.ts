@@ -26,6 +26,32 @@ export const LAYER_LABELS: Record<Layer, string> = {
   testing: "testing tool",
 };
 
+/** LAYER_LABELS in the plural, for "Both are backends". */
+export const LAYER_PLURALS: Record<Layer, string> = {
+  frontend: "frontends",
+  "meta-framework": "meta-frameworks",
+  "ui-kit": "UI kits",
+  state: "state libraries",
+  "build-tool": "build tools",
+  mobile: "mobile frameworks",
+  backend: "backends",
+  "api-style": "API styles",
+  orm: "ORMs",
+  database: "databases",
+  cache: "caches",
+  "jobs-queue": "job queues",
+  search: "search engines",
+  storage: "file storage services",
+  auth: "auth providers",
+  payments: "payments providers",
+  email: "email services",
+  cms: "CMSs",
+  hosting: "hosts",
+  "ci-cd": "CI/CD services",
+  observability: "observability tools",
+  testing: "testing tools",
+};
+
 /**
  * Plain names for the part a tool was picked for, used in "works with X, the
  * <name> you got". The map keeps the developer names in LAYER_LABELS.

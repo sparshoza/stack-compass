@@ -13,6 +13,23 @@ const middles = (c: Connection) => c.routes.map((r) => r.nodes.slice(1, -1).join
 const none: Connection = { alternatives: false, routes: [], throughAlternatives: false, shared: [] }
 
 describe('connect', () => {
+  it('two tools in the same layer that share partners say so, unless they are listed as alternatives', () => {
+    const kb = makeKb(
+      [
+        tool('django', [pair('postgresql'), pair('mysql')]),
+        tool('express', [pair('postgresql'), pair('mysql')]),
+        tool('flask', [alt('django'), pair('postgresql')]),
+        tool('postgresql', [pair('django'), pair('express'), pair('flask')], { layer: 'database' }),
+        tool('mysql', [pair('django'), pair('express')], { layer: 'database' }),
+      ],
+      [],
+    )
+    expect(connect('django', 'express', kb).sameLayer).toBe('backend')
+    expect(connect('django', 'postgresql', kb).sameLayer).toBeUndefined()
+    expect(connect('django', 'flask', kb).sameLayer).toBeUndefined()
+    expect(connect('django', 'express', realKb).sameLayer).toBe('backend')
+  })
+
   it('a direct relation is one step, worded the way the relation points', () => {
     const kb = makeKb(
       [

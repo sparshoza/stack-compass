@@ -43,6 +43,16 @@ describe('RouteCard', () => {
     expect(within(card).getByText('Both work with 7 tools: Express, Redis, MySQL, SQLite, Prisma and 2 more.')).toBeInTheDocument()
   })
 
+  it('two tools in the same layer read as a choice, with the tools that join them', () => {
+    const routes = [route(['Django pairs with PostgreSQL', 'PostgreSQL pairs with Express'])]
+    const card = show(conn({ sameLayer: 'backend', routes, shared: ['postgresql', 'mysql', 'sqlite'] }))
+    expect(
+      within(card).getByText('Both are backends; projects usually pick one. They connect through PostgreSQL, MySQL or SQLite.'),
+    ).toBeInTheDocument()
+    expect(within(card).queryByText(/^Both work with/)).not.toBeInTheDocument()
+    expect(within(card).getByText('Django pairs with PostgreSQL')).toBeInTheDocument()
+  })
+
   it('says when two tools are alternatives, without calling it a step', () => {
     const card = show(conn({ alternatives: true, routes: [route(['A pairs with B', 'B pairs with C'])], shared: ['redis'] }))
     expect(within(card).getByText('Django and PostgreSQL are alternatives: projects usually pick one.')).toBeInTheDocument()

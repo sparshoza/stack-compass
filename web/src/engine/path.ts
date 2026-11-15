@@ -29,6 +29,12 @@ export interface Connection {
   throughAlternatives: boolean
   /** Tools both relate to directly (not as alternatives), best first. */
   shared: string[]
+  /**
+   * The layer both tools are in, when they share it and some partner but the
+   * catalog does not list them as alternatives (Django and Express): projects
+   * usually pick one of the two. Absent otherwise.
+   */
+  sameLayer?: Layer
 }
 
 /** A route longer than this is no close route. */
@@ -81,6 +87,7 @@ interface Graph {
 
 interface Index {
   names: Map<string, string>
+  layers: Map<string, Layer>
   /** Sort key of a tool as a go-between: its tier, then the better-connected first. */
   rank: Map<string, [number, number]>
   /** Every relation but alternative-to. */
@@ -126,7 +133,8 @@ function indexOf(kb: KnowledgeBase): Index {
   const rank = new Map(
     kb.tools.map((t) => [t.id, [tierOf(t.layer), -Math.log(1 + (all.adjacent.get(t.id)?.length ?? 0))] as [number, number]]),
   )
-  index = { names, rank, close, all }
+  const layers = new Map(kb.tools.map((t) => [t.id, t.layer]))
+  index = { names, layers, rank, close, all }
   indexes.set(kb, index)
   return index
 }
@@ -247,5 +255,7 @@ export function connect(a: string, b: string, kb: KnowledgeBase, max = 3): Conne
     .sort((x, y) => compareRoutes(index, x, y))
     .slice(0, Math.max(0, max))
     .map((nodes) => toRoute(index, graph, nodes))
-  return { alternatives, routes, throughAlternatives, shared }
+  const layer = index.layers.get(a)
+  const sameLayer = !alternatives && shared.length > 0 && layer === index.layers.get(b) ? layer : undefined
+  return { alternatives, routes, throughAlternatives, shared, ...(sameLayer ? { sameLayer } : {}) }
 }

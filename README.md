@@ -1,5 +1,7 @@
 # Stack Compass
 
+Live site: https://stack-compass-chi.vercel.app
+
 Stack Compass recommends a full stack for the project you describe: one tool per layer your project needs (backend, database, sign-in, payments, hosting and so on), each with the reason it won, the close tools it beat and what to watch for. The answer lights up as a path on an interactive map of 307 tools across 22 layers, which you can also browse on its own. Everything runs in your browser from a hand-checked catalog. There is no backend and no model; the same answers always give the same stack, and a link reproduces it.
 
 It is written for founders and owners who are not developers. You can type "an app for my bakery to take orders" or "a booking site for my salon" and get a stack, or answer plain one-click questions. **Help me choose** has two modes: **Whole stack** picks every part at once, and **One piece** helps you choose a single part (a database, a host, a payments provider) by what you need it for. Language and tool preferences stay in a closed "I have preferences" section for people who have them.

@@ -188,6 +188,29 @@ describe('Help me choose', () => {
     ).toBeInTheDocument()
   })
 
+  it('reading the description scrolls what it picked up, or the nothing-found note, into view', async () => {
+    const scrolled: Element[] = []
+    const original = Element.prototype.scrollIntoView
+    Element.prototype.scrollIntoView = function (this: Element, arg?: boolean | ScrollIntoViewOptions) {
+      expect(arg).toEqual({ block: 'nearest' })
+      scrolled.push(this)
+    }
+    try {
+      const user = userEvent.setup()
+      renderApp()
+      await openSheet(user)
+      await describeProject(user, 'something for my aunt')
+      const note = within(sheet()).getByText(/We did not recognise anything specific/)
+      expect(scrolled.some((el) => el.contains(note))).toBe(true)
+      scrolled.length = 0
+      await describeProject(user, 'an online shop with payments')
+      const chips = within(sheet()).getByRole('list', { name: 'Picked up from your description' })
+      expect(scrolled.some((el) => el.contains(chips))).toBe(true)
+    } finally {
+      Element.prototype.scrollIntoView = original
+    }
+  })
+
   it('a plain description sets a best guess type, shown as a chip that can be removed', async () => {
     const user = userEvent.setup()
     renderApp()

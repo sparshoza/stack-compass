@@ -1,4 +1,4 @@
-import { useId, useState, type ReactNode, type RefObject } from 'react'
+import { useEffect, useId, useRef, useState, type ReactNode, type RefObject } from 'react'
 import { ChevronDownIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
@@ -16,17 +16,28 @@ interface DescribeProps {
 /**
  * The optional description, under the first question. It is read on a
  * pause in typing, on Fill in from my description, or at once when an
- * example fills it.
+ * example fills it. An explicit read scrolls what was picked up (or the
+ * note that nothing was) into view, at once, since it can sit under the
+ * sheet footer.
  */
 export function Describe({ text, onTextChange, onRead, textareaRef, detected }: DescribeProps) {
   const id = useId()
   const [showExamples, setShowExamples] = useState(false)
+  const [reads, setReads] = useState(0)
+  const detectedRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (reads > 0) detectedRef.current?.scrollIntoView?.({ block: 'nearest' })
+  }, [reads])
+  const read = (example?: string) => {
+    onRead(example)
+    setReads((n) => n + 1)
+  }
   return (
     <form
       className="grid gap-2"
       onSubmit={(e) => {
         e.preventDefault()
-        onRead()
+        read()
       }}
     >
       <label htmlFor={id} className="text-[0.8125rem] font-semibold text-text">
@@ -52,7 +63,7 @@ export function Describe({ text, onTextChange, onRead, textareaRef, detected }: 
         </Button>
       </div>
 
-      {detected}
+      <div ref={detectedRef}>{detected}</div>
 
       <div className="grid gap-1.5">
         <button
@@ -71,7 +82,7 @@ export function Describe({ text, onTextChange, onRead, textareaRef, detected }: 
               <li key={example}>
                 <button
                   type="button"
-                  onClick={() => onRead(example)}
+                  onClick={() => read(example)}
                   className="w-full rounded-[var(--radius-sm)] border border-line px-3 py-2 text-left text-[0.8125rem] leading-[1.45] text-text-muted hover:border-line-strong hover:bg-raised hover:text-text active:bg-raised touch:min-h-11"
                 >
                   {example}

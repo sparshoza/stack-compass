@@ -712,14 +712,32 @@ export function StackGraph({
         camera.setState({ x: at.x + shifted.x - centre.x, y: at.y + shifted.y - centre.y, ratio })
       }
       // Zoom out around the tool until every neighbour shown is in the free area too.
-      if (typeof sigma.framedGraphToViewport !== 'function' || typeof sigma.viewportToFramedGraph !== 'function') return
+      // Sigma only updates its drawing matrix on render, so positions here are
+      // worked out from the camera state just set.
+      if (typeof sigma.framedGraphToViewport !== 'function') return
+      const cameraState = camera.getState()
+      const toScreen = (data: { x: number; y: number }) => sigma.framedGraphToViewport(data, { cameraState })
       const hiddenEdges = new Set(edgeTypesKeyRef.current ? (edgeTypesKeyRef.current.split('\n') as EdgeType[]) : [])
-      const box = drawnBox(sigma, [focus, ...neighboursOf(graph, focus, hiddenEdges)])
+      let box: Box | null = null
+      for (const id of [focus, ...neighboursOf(graph, focus, hiddenEdges)]) {
+        const data = sigma.getNodeDisplayData(id)
+        if (!data || data.hidden) continue
+        const p = toScreen(data)
+        box = box
+          ? { x0: Math.min(box.x0, p.x), y0: Math.min(box.y0, p.y), x1: Math.max(box.x1, p.x), y1: Math.max(box.y1, p.y) }
+          : { x0: p.x, y0: p.y, x1: p.x, y1: p.y }
+      }
       if (!box) return
-      const point = sigma.framedGraphToViewport(at)
       const free = { top: inset?.top ?? 0, right: inset?.right ?? 0, bottom: inset?.bottom ?? 0, left: inset?.left ?? 0 }
-      const zoomOut = focusFit(box, point, sigma.getDimensions(), free)
-      if (zoomOut > 1) applyFit(sigma, { ratio: zoomOut, from: point, to: point })
+      const zoomOut = focusFit(box, toScreen(at), sigma.getDimensions(), free)
+      // Zooming about the tool keeps it where it is on screen.
+      if (zoomOut > 1) {
+        camera.setState({
+          x: at.x + (cameraState.x - at.x) * zoomOut,
+          y: at.y + (cameraState.y - at.y) * zoomOut,
+          ratio: cameraState.ratio * zoomOut,
+        })
+      }
     })
   }, [focus, focusHidden, graph])
 

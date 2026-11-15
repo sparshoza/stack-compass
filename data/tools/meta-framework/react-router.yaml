@@ -4,6 +4,7 @@ aliases:
 - react-router-dom
 - react-router-v7
 layer: meta-framework
+serves_backend: true
 summary: A routing library for React with a framework mode for data loading, server rendering and actions.
 url: https://reactrouter.com
 repo: https://github.com/remix-run/react-router
@@ -37,7 +38,7 @@ edges:
 - {type: pairs-with, target: clerk}
 uses:
 - web-apps
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://reactrouter.com
 - https://github.com/remix-run/react-router
@@ -45,3 +46,4 @@ sources:
 - https://reactrouter.com/how-to/pre-rendering
 - https://reactrouter.com/explanation/type-safety
 - https://reactrouter.com/start/framework/deploying
+- https://reactrouter.com/how-to/resource-routes

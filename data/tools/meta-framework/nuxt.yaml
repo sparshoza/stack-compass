@@ -5,6 +5,7 @@ aliases:
 - nuxt3
 - nuxtjs
 layer: meta-framework
+serves_backend: true
 summary: A Vue framework for full-stack web apps with server rendering, file routing
   and modules.
 url: https://nuxt.com
@@ -49,7 +50,7 @@ edges:
 uses:
 - web-apps
 - static-export
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://nuxt.com
 - https://github.com/nuxt/nuxt
@@ -60,3 +61,4 @@ sources:
 - https://nuxt.com/deploy/netlify
 - https://nuxt.com/docs/getting-started/testing
 - https://nuxt.com/docs/getting-started/prerendering
+- https://nuxt.com/docs/4.x/directory-structure/server

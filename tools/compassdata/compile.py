@@ -21,6 +21,7 @@ OMIT_DEFAULTS: dict[str, Any] = {
     "scale": None,
     "runs_in_app": False,
     "needs_web_frontend": False,
+    "serves_backend": False,
     "match_name": True,
 }
 

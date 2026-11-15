@@ -42,6 +42,13 @@ describe("explain", () => {
     );
   });
 
+  it("a framework that runs the backend says so first", () => {
+    const r = result({ servesBackend: true, breakdown: [{ code: "maturity-established", points: 1 }] });
+    expect(explain(r, DEFAULT_ANSWERS, fx).why).toBe(
+      "Also runs your server code, so there is no separate backend. Is mature and widely used. Good for: Chat and live dashboards.",
+    );
+  });
+
   it("why keeps a comma before the second reason when the first has one", () => {
     const r = result({
       breakdown: [

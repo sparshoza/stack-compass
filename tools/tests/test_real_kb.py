@@ -408,3 +408,25 @@ def test_postgresql_does_maps_through_postgis(kb):
     pg = kb.tools["postgresql"]
     assert "geospatial" in pg.tags
     assert "https://postgis.net/" in pg.sources
+
+
+# Meta-frameworks whose own docs show them answering HTTP requests on the server
+# (route handlers, server routes, endpoints), so they run a web app's backend code.
+SERVES_BACKEND = {
+    "analog": "https://analogjs.org/docs/features/api/overview",
+    "astro": "https://docs.astro.build/en/guides/endpoints/",
+    "nextjs": "https://nextjs.org/docs/app/getting-started/route-handlers",
+    "nuxt": "https://nuxt.com/docs/4.x/directory-structure/server",
+    "qwik-city": "https://qwik.dev/docs/endpoints/",
+    "react-router": "https://reactrouter.com/how-to/resource-routes",
+    "solidstart": "https://docs.solidjs.com/solid-start/building-your-application/api-routes",
+    "sveltekit": "https://svelte.dev/docs/kit/routing",
+    "tanstack-start": "https://tanstack.com/start/latest/docs/framework/react/guide/server-routes",
+}
+
+
+def test_serves_backend_only_where_docs_say_so(kb):
+    flagged = {t.id for t in kb.tools.values() if t.serves_backend}
+    assert flagged == set(SERVES_BACKEND)
+    for tool_id, source in SERVES_BACKEND.items():
+        assert source in kb.tools[tool_id].sources, tool_id

@@ -3,6 +3,7 @@ name: SolidStart
 aliases:
 - solid-start
 layer: meta-framework
+serves_backend: true
 summary: A meta-framework for SolidJS with file routing, server functions and actions, and a Vite and Nitro based build.
 url: https://start.solidjs.com
 repo: https://github.com/solidjs/solid-start
@@ -35,10 +36,11 @@ edges:
 - {type: pairs-with, target: sentry}
 uses:
 - web-apps
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://start.solidjs.com
 - https://github.com/solidjs/solid-start
 - https://docs.solidjs.com/solid-start
 - https://docs.solidjs.com/solid-start/building-your-application/routing
 - https://docs.solidjs.com/solid-start/building-your-application/route-prerendering
+- https://docs.solidjs.com/solid-start/building-your-application/api-routes

@@ -3,6 +3,7 @@ name: Qwik City
 aliases:
 - qwikcity
 layer: meta-framework
+serves_backend: true
 summary: The official Qwik meta-framework with directory routing, endpoints and server rendering.
 url: https://qwik.dev/docs/qwikcity/
 repo: https://github.com/QwikDev/qwik
@@ -33,9 +34,10 @@ edges:
 uses:
 - web-apps
 - static-export
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://qwik.dev/docs/qwikcity/
 - https://github.com/QwikDev/qwik
 - https://qwik.dev/docs/deployments/
 - https://qwik.dev/docs/guides/static-site-generation/
+- https://qwik.dev/docs/endpoints/

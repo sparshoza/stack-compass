@@ -50,6 +50,7 @@ export function explain(
       ? [`works with ${paired[0].name} and ${paired[1].name} from your stack`]
       : topItems.map((item) => label(item.code, kb));
   const parts: string[] = [];
+  if (r.servesBackend) parts.push("Also runs your server code, so there is no separate backend.");
   // "Works with FastAPI, the backend you got, and is mature": a comma closes
   // the first reason when it has one of its own.
   const joiner = top[0]?.includes(",") ? ", and " : " and ";

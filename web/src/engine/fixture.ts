@@ -13,6 +13,7 @@ export function makeTool(
     match_name: true,
     runs_in_app: false,
     needs_web_frontend: false,
+    serves_backend: false,
     uses: [],
     scale: null,
     layer,

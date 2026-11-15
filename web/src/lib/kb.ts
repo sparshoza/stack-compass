@@ -47,6 +47,8 @@ export interface Tool {
   runs_in_app: boolean
   /** A browser test runner: only useful when the stack has a web frontend. */
   needs_web_frontend: boolean
+  /** A meta-framework that answers HTTP requests on the server, so a web app on it needs no separate backend. */
+  serves_backend: boolean
   layer: Layer
   summary: string
   url: string
@@ -140,7 +142,7 @@ export interface KnowledgeBase {
 }
 
 /** Tool fields the compiler leaves out when they hold their default value. */
-type DefaultedField = 'match_name' | 'runs_in_app' | 'needs_web_frontend' | 'uses' | 'scale'
+type DefaultedField = 'match_name' | 'runs_in_app' | 'needs_web_frontend' | 'serves_backend' | 'uses' | 'scale'
 export type CatalogTool = Omit<Tool, DefaultedField> & Partial<Pick<Tool, DefaultedField>>
 
 /** Puts back the defaults catalog.json omits (see OMIT_DEFAULTS in compile.py). */
@@ -149,6 +151,7 @@ export function withDefaults(tool: CatalogTool): Tool {
     match_name: true,
     runs_in_app: false,
     needs_web_frontend: false,
+    serves_backend: false,
     uses: [],
     scale: null,
     ...tool,

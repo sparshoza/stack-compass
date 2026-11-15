@@ -4,6 +4,7 @@ aliases:
 - analogjs
 match_name: false
 layer: meta-framework
+serves_backend: true
 summary: A full-stack meta-framework for Angular with file routing, API routes and
   server rendering.
 url: https://analogjs.org
@@ -30,10 +31,11 @@ edges:
 - {type: pairs-with, target: vitest}
 uses:
 - web-apps
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://analogjs.org
 - https://github.com/analogjs/analog
 - https://analogjs.org/docs
 - https://analogjs.org/docs/features/api/overview
 - https://analogjs.org/docs/features/testing/overview
+- https://analogjs.org/docs/features/api/overview

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { kb, type Layer } from "../lib/kb";
+import { kb, type Layer, type Tool } from "../lib/kb";
 import { DEFAULT_ANSWERS, fromDetected, type Answers } from "./answers";
 import { match } from "./match";
 import { makeKb, makeTool } from "./fixture";
@@ -330,6 +330,76 @@ describe("scoreStack", () => {
       "hosting",
     );
     expect(js.pick).toBe("aaa-functions");
+  });
+
+  describe("a full-stack web framework runs the backend code", () => {
+    const tools = [
+      makeTool("express", "backend", { languages: ["javascript", "typescript"] }),
+      makeTool("zzz-django", "backend", { languages: ["python"] }),
+      makeTool("react", "frontend", { languages: ["javascript"] }),
+      makeTool("nextjs", "meta-framework", {
+        languages: ["javascript", "typescript"],
+        serves_backend: true,
+        edges: [{ type: "built-on", target: "react" }],
+      }),
+      makeTool("zzz-gatsby", "meta-framework", {
+        languages: ["javascript"],
+        edges: [{ type: "built-on", target: "react" }],
+      }),
+      makeTool("aaa-django-orm", "orm", { languages: ["python"] }),
+      makeTool("prisma", "orm", {
+        languages: ["typescript"],
+        edges: [{ type: "pairs-with", target: "nextjs" }],
+      }),
+      makeTool("aaa-pages", "hosting", { uses: ["static-sites"] }),
+      makeTool("zzz-apps", "hosting", { uses: ["web-apps"] }),
+    ];
+    const layers: Layer[] = ["backend", "frontend", "meta-framework", "orm", "hosting"];
+    // Only a web app, store or SaaS lets the framework carry the backend.
+    const webAppKb = (list: Tool[], type = "web-app") => {
+      const fx = makeKb(list, layers);
+      return { ...fx, vocab: { ...fx.vocab, project_types: [{ id: type, label: type, core_layers: layers }] } };
+    };
+    const run = (over: Partial<Answers> = {}, list = tools) =>
+      scoreStack(answers({ projectType: "web-app", scale: "prototype", ...over }), webAppKb(list));
+
+    it("leaves out a separate JavaScript backend; later layers follow the framework", () => {
+      const results = run();
+      expect(results.map((r) => r.layer)).toEqual(["frontend", "meta-framework", "orm", "hosting"]);
+      const meta = layerOf(results, "meta-framework");
+      expect(meta.pick).toBe("nextjs");
+      expect(meta.servesBackend).toBe(true);
+      const orm = layerOf(results, "orm");
+      expect(orm.pick).toBe("prisma");
+      expect(orm.breakdown).toEqual([{ code: "pairs-with:nextjs", points: 2 }]);
+      expect(layerOf(results, "hosting").pick).toBe("zzz-apps");
+      expect(layerOf(results, "hosting").excluded).toEqual([
+        { toolId: "aaa-pages", reason: "no-server-runtime" },
+      ]);
+    });
+
+    it("keeps the backend when the person named a backend tool", () => {
+      const results = run({ knownTools: ["express"] });
+      expect(layerOf(results, "backend").pick).toBe("express");
+      expect(layerOf(results, "meta-framework").servesBackend).toBeUndefined();
+    });
+
+    it("keeps the backend when the person prefers a language outside JavaScript", () => {
+      expect(layerOf(run({ languagesPrefer: ["python"] }), "backend").pick).toBe("zzz-django");
+    });
+
+    it("keeps the backend in a realtime app, which needs its own long-lived server", () => {
+      const results = scoreStack(
+        answers({ projectType: "realtime-app", scale: "prototype" }),
+        webAppKb(tools, "realtime-app"),
+      );
+      expect(layerOf(results, "backend").pick).toBe("express");
+    });
+
+    it("keeps the backend when the framework does not run server code", () => {
+      const noServer = tools.filter((t) => t.id !== "nextjs");
+      expect(layerOf(run({}, noServer), "backend").pick).toBe("express");
+    });
   });
 
   it("drops the build tool when a web framework is picked, since it brings its own bundler", () => {

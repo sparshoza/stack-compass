@@ -27,6 +27,14 @@ function languagesOf(id: string | null): string[] {
   return toolOf(id)?.languages ?? [];
 }
 
+/** The pick that runs the server code: the backend, or a framework that serves it. */
+function serverPick(results: LayerResult[]): string | null {
+  const backend = results.find((r) => r.layer === "backend")?.pick ?? null;
+  if (backend) return backend;
+  const framework = results.find((r) => r.layer === "meta-framework");
+  return framework?.servesBackend ? framework.pick : null;
+}
+
 function run(c: GoldenCase): { answers: Answers; results: LayerResult[] } {
   const answers = { ...fromDetected(match(c.text, kb)), ...c.answers };
   return { answers, results: scoreStack(answers, kb) };
@@ -54,7 +62,7 @@ function failures(
       .map((cap) => `capability ${cap} set`);
   }
   if ("hostingRunsBackend" in check) {
-    const backend = toolOf(byLayer.get("backend")?.pick ?? null);
+    const backend = toolOf(serverPick(results));
     const host = toolOf(byLayer.get("hosting")?.pick ?? null);
     if (!backend) return [`no backend pick`];
     if (!host) return [`no hosting pick`];
@@ -66,7 +74,7 @@ function failures(
     return runs ? [] : [`hosting pick ${host.id} cannot run backend pick ${backend.id}`];
   }
   if ("hostingRunsServer" in check) {
-    const backend = toolOf(byLayer.get("backend")?.pick ?? null);
+    const backend = toolOf(serverPick(results));
     const host = toolOf(byLayer.get("hosting")?.pick ?? null);
     if (!backend || !host) return [];
     const js = backend.languages.some((l) => l === "javascript" || l === "typescript");
@@ -77,7 +85,7 @@ function failures(
     return results.filter((r) => r.pick === null).map((r) => `layer ${r.layer} has no match`);
   }
   if ("backendLanguage" in check) {
-    const pick = byLayer.get("backend")?.pick ?? null;
+    const pick = serverPick(results);
     return languagesOf(pick).includes(check.backendLanguage)
       ? []
       : [`backend pick ${pick} does not use ${check.backendLanguage}`];
@@ -124,7 +132,7 @@ function failures(
       .map((r) => `${r.layer} pick ${r.pick} is not ${check.pickHosting}`);
   }
   if ("ormPairsWithBackend" in check) {
-    const backend = toolOf(byLayer.get("backend")?.pick ?? null);
+    const backend = toolOf(serverPick(results));
     const orm = toolOf(byLayer.get("orm")?.pick ?? null);
     const pairs = (x: typeof orm, y: typeof orm) =>
       !!x && !!y && x.edges.some((e) => e.type === "pairs-with" && e.target === y.id);
@@ -139,9 +147,9 @@ function failures(
 }
 
 describe("golden set", () => {
-  it("has 91 cases with unique ids", () => {
-    expect(GOLDEN_CASES).toHaveLength(91);
-    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(91);
+  it("has 94 cases with unique ids", () => {
+    expect(GOLDEN_CASES).toHaveLength(94);
+    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(94);
   });
 
   it("every case has at least one check that depends on scoring", () => {

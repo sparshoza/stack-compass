@@ -3,6 +3,7 @@ name: TanStack Start
 aliases:
 - tanstack-router-start
 layer: meta-framework
+serves_backend: true
 summary: A full-stack framework built on TanStack Router with server rendering and server functions.
 url: https://tanstack.com/start
 repo: https://github.com/TanStack/router
@@ -36,10 +37,11 @@ edges:
 - {type: pairs-with, target: cloudflare-pages}
 uses:
 - web-apps
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://tanstack.com/start
 - https://github.com/TanStack/router
 - https://tanstack.com/start/latest/docs/framework/react/overview
 - https://tanstack.com/start/latest/docs/framework/react/guide/hosting
 - https://raw.githubusercontent.com/TanStack/router/main/docs/start/framework/react/overview.md
+- https://tanstack.com/start/latest/docs/framework/react/guide/server-routes

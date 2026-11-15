@@ -81,10 +81,12 @@ export const GOLDEN_CASES: GoldenCase[] = [
     checks: [
       { projectType: "ecommerce" },
       { backendLanguage: "javascript" },
-      { pickIs: { layer: "backend", tool: "express" } },
+      // Next.js runs the server code, so there is no separate Express.
+      { layerAbsent: "backend" },
+      { pickIs: { layer: "meta-framework", tool: "nextjs" } },
       { pickIs: { layer: "database", tool: "postgresql" } },
       { layerPresent: "search" },
-      { pickIs: { layer: "search", tool: "elasticsearch" } },
+      { pickIs: { layer: "search", tool: "algolia" } },
       { pickIs: { layer: "payments", tool: "stripe" } },
       { pickIs: { layer: "email", tool: "resend" } },
     ],
@@ -176,7 +178,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { backendLanguage: "javascript" },
       { noToolWithLanguage: "php" },
       { noToolWithLanguage: "java" },
-      { pickIs: { layer: "jobs-queue", tool: "pg-boss" } },
+      { layerAbsent: "backend" },
+      { pickIs: { layer: "jobs-queue", tool: "bullmq" } },
     ],
   },
   {
@@ -373,7 +376,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { backendLanguage: "javascript" },
       { layerPresent: "storage" },
       { pickIs: { layer: "jobs-queue", tool: "bullmq" } },
-      { pickIs: { layer: "storage", tool: "uploadthing" } },
+      // UploadThing is emerging, so at high traffic the established S3 wins.
+      { pickIs: { layer: "storage", tool: "amazon-s3" } },
       { noToolWithLanguage: "php" },
     ],
   },
@@ -827,13 +831,13 @@ export const GOLDEN_CASES: GoldenCase[] = [
     ],
   },
   {
-    // pgvector adds vector search to PostgreSQL.
+    // Supabase is PostgreSQL with vector search built in.
     id: "plain-ai-chatbot",
     text: "an AI chatbot that answers questions about my products",
     checks: [
       { projectType: "web-app" },
       { capabilities: ["vector-search"] },
-      { pickIs: { layer: "database", tool: "postgresql" } },
+      { pickIs: { layer: "database", tool: "supabase" } },
       { hostingRunsBackend: true },
       { noEmptyLayer: true },
     ],
@@ -1056,6 +1060,43 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { capabilities: ["file-uploads"] },
       { hostingRunsBackend: true },
       { hostingRunsServer: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // Next.js runs the server code: no second server next to it.
+    id: "plain-dog-grooming-deposit",
+    text: "a website for my dog grooming business where customers can book appointments and pay a deposit",
+    checks: [
+      { projectType: "web-app" },
+      { layerAbsent: "backend" },
+      { pickIs: { layer: "meta-framework", tool: "nextjs" } },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // Next.js runs the server code: no second server next to it.
+    id: "plain-volunteer-shifts",
+    text: "an app so parents at my kids school can sign up for volunteer shifts",
+    checks: [
+      { projectType: "web-app" },
+      { layerAbsent: "backend" },
+      { pickIs: { layer: "meta-framework", tool: "nextjs" } },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // Next.js runs the server code: no second server next to it.
+    id: "plain-nurse-job-board",
+    text: "a job board for nurses in my city",
+    checks: [
+      { projectType: "web-app" },
+      { layerAbsent: "backend" },
+      { pickIs: { layer: "meta-framework", tool: "nextjs" } },
+      { hostingRunsBackend: true },
       { noEmptyLayer: true },
     ],
   },

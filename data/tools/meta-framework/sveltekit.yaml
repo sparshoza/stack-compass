@@ -3,6 +3,7 @@ name: SvelteKit
 aliases:
 - svelte-kit
 layer: meta-framework
+serves_backend: true
 summary: The official Svelte application framework with routing, server rendering and adapters.
 url: https://svelte.dev/docs/kit
 repo: https://github.com/sveltejs/kit
@@ -51,7 +52,7 @@ edges:
 uses:
 - web-apps
 - static-export
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://svelte.dev/docs/kit
 - https://github.com/sveltejs/kit
@@ -63,3 +64,4 @@ sources:
 - https://svelte.dev/docs/cli/vitest
 - https://svelte.dev/docs/cli/tailwind
 - https://svelte.dev/docs/kit/adapter-static
+- https://svelte.dev/docs/kit/routing

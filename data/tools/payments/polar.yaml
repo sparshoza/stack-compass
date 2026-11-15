@@ -17,6 +17,7 @@ edges:
 - {type: alternative-to, target: lemon-squeezy}
 - {type: alternative-to, target: paddle}
 - {type: pairs-with, target: express}
+- {type: pairs-with, target: nextjs}
 uses: [one-time, subscriptions, usage-billing, tax-handled]
-verified: '2026-11-14'
-sources: ['https://polar.sh', 'https://github.com/polarsource/polar', 'https://polar.sh/docs/merchant-of-record/fees', 'https://github.com/polarsource', 'https://docs.polar.sh/integrate/sdk/adapters/express']
+verified: '2026-11-15'
+sources: ['https://polar.sh', 'https://github.com/polarsource/polar', 'https://polar.sh/docs/merchant-of-record/fees', 'https://github.com/polarsource', 'https://docs.polar.sh/integrate/sdk/adapters/express', 'https://polar.sh/docs/integrate/sdk/adapters/nextjs']

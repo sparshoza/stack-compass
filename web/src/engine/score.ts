@@ -10,6 +10,11 @@ export type LayerResult = {
   alternatives: string[];
   breakdown: ScoreItem[];
   excluded: Exclusion[];
+  /**
+   * On the meta-framework result: the pick also runs the backend code, so the
+   * stack has no separate backend layer (see scoreStack). Absent otherwise.
+   */
+  servesBackend?: true;
 };
 
 /**
@@ -395,8 +400,9 @@ function breakdownFor(
   if (a.knownTools.includes(tool.id)) {
     items.push({ code: SCORE_CODES.known, points: KNOWN_POINTS });
   }
-  // Picks are kept in scoring order, so earlier picks come first.
-  for (const pick of picks.values()) {
+  // Picks are kept in scoring order, so earlier picks come first. A framework
+  // that stands in for the backend is in the map twice and counts once.
+  for (const pick of new Set(picks.values())) {
     if (hasEdge(tool, ["pairs-with"], pick.id)) {
       items.push({ code: SCORE_CODES.pairsWith(pick.id), points: PAIRS_WITH_POINTS });
     }
@@ -535,24 +541,32 @@ function skippedAfterPicks(layer: Layer, picks: Picks): boolean {
 }
 
 /**
- * Scores every selected layer in scoring order. Each pick feeds the
- * pairs-with points and pick filters of later layers, and can leave later
- * layers out (skippedAfterPicks). Never throws: a layer where nothing passes
- * gets a null pick and its exclusions.
+ * Project types whose web framework can carry the backend. A realtime app
+ * keeps its own server for long-lived connections.
  */
-export function scoreStack(a: Answers, kb: KnowledgeBase): LayerResult[] {
-  const byLayer = new Map<Layer, Tool[]>();
-  const layerOfTool = new Map<string, Layer>();
-  for (const tool of kb.tools) {
-    layerOfTool.set(tool.id, tool.layer);
-    const list = byLayer.get(tool.layer);
-    if (list) list.push(tool);
-    else byLayer.set(tool.layer, [tool]);
-  }
+const FRAMEWORK_BACKEND_TYPES: ReadonlySet<string> = new Set(["web-app", "ecommerce", "saas"]);
+
+const isJavaScript = (languages: string[]) =>
+  languages.length > 0 && languages.every((l) => family(l) === "javascript");
+
+/**
+ * One scoring pass over the selected layers. With `frameworkServesBackend`,
+ * the backend layer is left out and a meta-framework pick that serves the
+ * backend stands in as the backend pick for every later layer (languages,
+ * hosting, built-on rules).
+ */
+function scorePass(
+  a: Answers,
+  kb: KnowledgeBase,
+  byLayer: Map<Layer, Tool[]>,
+  layerOfTool: Map<string, Layer>,
+  frameworkServesBackend: boolean,
+): { results: LayerResult[]; picks: Picks } {
   const picks: Picks = new Map();
   const results: LayerResult[] = [];
   for (const layer of selectLayers(a, kb)) {
     if (skippedAfterPicks(layer, picks)) continue;
+    if (frameworkServesBackend && layer === "backend") continue;
     const result = scoreLayer(
       layer,
       byLayer.get(layer) ?? [],
@@ -565,7 +579,53 @@ export function scoreStack(a: Answers, kb: KnowledgeBase): LayerResult[] {
       ? byLayer.get(layer)?.find((t) => t.id === result.pick)
       : undefined;
     if (pick) picks.set(layer, pick);
+    if (frameworkServesBackend && layer === "meta-framework" && pick?.serves_backend) {
+      picks.set("backend", pick);
+      result.servesBackend = true;
+    }
     results.push(result);
   }
-  return results;
+  return { results, picks };
+}
+
+/**
+ * Scores every selected layer in scoring order. Each pick feeds the
+ * pairs-with points and pick filters of later layers, and can leave later
+ * layers out (skippedAfterPicks). Never throws: a layer where nothing passes
+ * gets a null pick and its exclusions.
+ *
+ * A full-stack web framework runs the backend code itself (route handlers,
+ * server routes), so the separate backend layer is left out when all of these
+ * hold: the project is a web app, store or SaaS (FRAMEWORK_BACKEND_TYPES);
+ * the meta-framework pick has serves_backend; the backend pick is
+ * JavaScript or TypeScript; the person named no backend tool and prefers no
+ * language outside JavaScript. The stack is then scored again without the
+ * backend, and that result is kept when its framework pick still serves it.
+ */
+export function scoreStack(a: Answers, kb: KnowledgeBase): LayerResult[] {
+  const byLayer = new Map<Layer, Tool[]>();
+  const layerOfTool = new Map<string, Layer>();
+  for (const tool of kb.tools) {
+    layerOfTool.set(tool.id, tool.layer);
+    const list = byLayer.get(tool.layer);
+    if (list) list.push(tool);
+    else byLayer.set(tool.layer, [tool]);
+  }
+  const first = scorePass(a, kb, byLayer, layerOfTool, false);
+  const backend = first.picks.get("backend");
+  const framework = first.picks.get("meta-framework");
+  const namedBackend = a.knownTools.some((id) => layerOfTool.get(id) === "backend");
+  if (
+    a.projectType !== null &&
+    FRAMEWORK_BACKEND_TYPES.has(a.projectType) &&
+    backend &&
+    framework?.serves_backend &&
+    isJavaScript(backend.languages) &&
+    !namedBackend &&
+    a.languagesPrefer.every((l) => family(l) === "javascript")
+  ) {
+    const second = scorePass(a, kb, byLayer, layerOfTool, true);
+    if (second.picks.get("meta-framework")?.serves_backend) return second.results;
+  }
+  return first.results;
 }

@@ -39,7 +39,8 @@ def test_catalog_omits_tool_defaults(tmp_path: Path):
     shutil.copytree(FIXTURES, data)
     cat = compile_catalog(data)
     react = next(t for t in cat["tools"] if t["id"] == "react")
-    for key in ("uses", "scale", "runs_in_app", "needs_web_frontend", "match_name"):
+    for key in ("uses", "scale", "runs_in_app", "needs_web_frontend", "serves_backend",
+                "match_name"):
         assert key not in react, key
     assert react["edges"] and "repo" in react
 

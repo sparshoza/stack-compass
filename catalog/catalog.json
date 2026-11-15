@@ -3538,12 +3538,14 @@
         "oss"
       ],
       "repo": "https://github.com/analogjs/analog",
+      "serves_backend": true,
       "sources": [
         "https://analogjs.org",
         "https://github.com/analogjs/analog",
         "https://analogjs.org/docs",
         "https://analogjs.org/docs/features/api/overview",
-        "https://analogjs.org/docs/features/testing/overview"
+        "https://analogjs.org/docs/features/testing/overview",
+        "https://analogjs.org/docs/features/api/overview"
       ],
       "summary": "A full-stack meta-framework for Angular with file routing, API routes and server rendering.",
       "tags": [
@@ -3554,7 +3556,7 @@
       "uses": [
         "web-apps"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -4137,6 +4139,7 @@
         "oss"
       ],
       "repo": "https://github.com/withastro/astro",
+      "serves_backend": true,
       "sources": [
         "https://astro.build",
         "https://github.com/withastro/astro",
@@ -4149,7 +4152,8 @@
         "https://docs.astro.build/en/guides/authentication/",
         "https://docs.astro.build/en/guides/cms/",
         "https://docs.astro.build/en/guides/backend/firebase/",
-        "https://astro.build/"
+        "https://astro.build/",
+        "https://docs.astro.build/en/guides/endpoints/"
       ],
       "summary": "A web framework for content-driven sites that ships minimal JavaScript and mixes UI libraries.",
       "tags": [
@@ -4162,7 +4166,7 @@
         "content",
         "static-export"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -14425,6 +14429,10 @@
         {
           "target": "tanstack-query",
           "type": "pairs-with"
+        },
+        {
+          "target": "polar",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -14447,6 +14455,7 @@
         "oss"
       ],
       "repo": "https://github.com/vercel/next.js",
+      "serves_backend": true,
       "sources": [
         "https://nextjs.org",
         "https://github.com/vercel/next.js",
@@ -14459,7 +14468,9 @@
         "https://nextjs.org/docs/app/guides/testing/jest",
         "https://nextjs.org/docs/app/guides/testing/vitest",
         "https://nextjs.org/docs/app/guides/testing/playwright",
-        "https://nextjs.org/docs/app/guides/testing/cypress"
+        "https://nextjs.org/docs/app/guides/testing/cypress",
+        "https://nextjs.org/docs/app/getting-started/route-handlers",
+        "https://polar.sh/docs/integrate/sdk/adapters/nextjs"
       ],
       "summary": "A React framework for full-stack web apps with routing, server rendering and server functions.",
       "tags": [
@@ -14473,7 +14484,7 @@
         "web-apps",
         "static-export"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -14652,6 +14663,7 @@
         "oss"
       ],
       "repo": "https://github.com/nuxt/nuxt",
+      "serves_backend": true,
       "sources": [
         "https://nuxt.com",
         "https://github.com/nuxt/nuxt",
@@ -14661,7 +14673,8 @@
         "https://nuxt.com/deploy/vercel",
         "https://nuxt.com/deploy/netlify",
         "https://nuxt.com/docs/getting-started/testing",
-        "https://nuxt.com/docs/getting-started/prerendering"
+        "https://nuxt.com/docs/getting-started/prerendering",
+        "https://nuxt.com/docs/4.x/directory-structure/server"
       ],
       "summary": "A Vue framework for full-stack web apps with server rendering, file routing and modules.",
       "tags": [
@@ -14675,7 +14688,7 @@
         "web-apps",
         "static-export"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -15820,6 +15833,10 @@
         {
           "target": "express",
           "type": "pairs-with"
+        },
+        {
+          "target": "nextjs",
+          "type": "pairs-with"
         }
       ],
       "good_for": [
@@ -15852,7 +15869,8 @@
         "https://github.com/polarsource/polar",
         "https://polar.sh/docs/merchant-of-record/fees",
         "https://github.com/polarsource",
-        "https://docs.polar.sh/integrate/sdk/adapters/express"
+        "https://docs.polar.sh/integrate/sdk/adapters/express",
+        "https://polar.sh/docs/integrate/sdk/adapters/nextjs"
       ],
       "summary": "A merchant-of-record platform for software with subscriptions, licence keys and benefits.",
       "tags": [
@@ -15865,7 +15883,7 @@
         "usage-billing",
         "tax-handled"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -16996,11 +17014,13 @@
         "oss"
       ],
       "repo": "https://github.com/QwikDev/qwik",
+      "serves_backend": true,
       "sources": [
         "https://qwik.dev/docs/qwikcity/",
         "https://github.com/QwikDev/qwik",
         "https://qwik.dev/docs/deployments/",
-        "https://qwik.dev/docs/guides/static-site-generation/"
+        "https://qwik.dev/docs/guides/static-site-generation/",
+        "https://qwik.dev/docs/endpoints/"
       ],
       "summary": "The official Qwik meta-framework with directory routing, endpoints and server rendering.",
       "tags": [
@@ -17012,7 +17032,7 @@
         "web-apps",
         "static-export"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -17666,13 +17686,15 @@
         "oss"
       ],
       "repo": "https://github.com/remix-run/react-router",
+      "serves_backend": true,
       "sources": [
         "https://reactrouter.com",
         "https://github.com/remix-run/react-router",
         "https://reactrouter.com/start/modes",
         "https://reactrouter.com/how-to/pre-rendering",
         "https://reactrouter.com/explanation/type-safety",
-        "https://reactrouter.com/start/framework/deploying"
+        "https://reactrouter.com/start/framework/deploying",
+        "https://reactrouter.com/how-to/resource-routes"
       ],
       "summary": "A routing library for React with a framework mode for data loading, server rendering and actions.",
       "tags": [
@@ -17684,7 +17706,7 @@
       "uses": [
         "web-apps"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [],
@@ -19458,12 +19480,14 @@
         "oss"
       ],
       "repo": "https://github.com/solidjs/solid-start",
+      "serves_backend": true,
       "sources": [
         "https://start.solidjs.com",
         "https://github.com/solidjs/solid-start",
         "https://docs.solidjs.com/solid-start",
         "https://docs.solidjs.com/solid-start/building-your-application/routing",
-        "https://docs.solidjs.com/solid-start/building-your-application/route-prerendering"
+        "https://docs.solidjs.com/solid-start/building-your-application/route-prerendering",
+        "https://docs.solidjs.com/solid-start/building-your-application/api-routes"
       ],
       "summary": "A meta-framework for SolidJS with file routing, server functions and actions, and a Vite and Nitro based build.",
       "tags": [
@@ -19474,7 +19498,7 @@
       "uses": [
         "web-apps"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -20857,6 +20881,7 @@
         "oss"
       ],
       "repo": "https://github.com/sveltejs/kit",
+      "serves_backend": true,
       "sources": [
         "https://svelte.dev/docs/kit",
         "https://github.com/sveltejs/kit",
@@ -20867,7 +20892,8 @@
         "https://svelte.dev/docs/cli/playwright",
         "https://svelte.dev/docs/cli/vitest",
         "https://svelte.dev/docs/cli/tailwind",
-        "https://svelte.dev/docs/kit/adapter-static"
+        "https://svelte.dev/docs/kit/adapter-static",
+        "https://svelte.dev/docs/kit/routing"
       ],
       "summary": "The official Svelte application framework with routing, server rendering and adapters.",
       "tags": [
@@ -20881,7 +20907,7 @@
         "web-apps",
         "static-export"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [
@@ -21323,12 +21349,14 @@
         "oss"
       ],
       "repo": "https://github.com/TanStack/router",
+      "serves_backend": true,
       "sources": [
         "https://tanstack.com/start",
         "https://github.com/TanStack/router",
         "https://tanstack.com/start/latest/docs/framework/react/overview",
         "https://tanstack.com/start/latest/docs/framework/react/guide/hosting",
-        "https://raw.githubusercontent.com/TanStack/router/main/docs/start/framework/react/overview.md"
+        "https://raw.githubusercontent.com/TanStack/router/main/docs/start/framework/react/overview.md",
+        "https://tanstack.com/start/latest/docs/framework/react/guide/server-routes"
       ],
       "summary": "A full-stack framework built on TanStack Router with server rendering and server functions.",
       "tags": [
@@ -21339,7 +21367,7 @@
       "uses": [
         "web-apps"
       ],
-      "verified": "2026-11-14"
+      "verified": "2026-11-15"
     },
     {
       "aliases": [],

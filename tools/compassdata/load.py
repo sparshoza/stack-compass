@@ -286,6 +286,8 @@ def _check_tool(
         errors.append(f"{rel}: layer '{tool.layer}' does not match folder '{folder}'")
     if tool.id != stem:
         errors.append(f"{rel}: id '{tool.id}' does not match filename '{stem}'")
+    if tool.serves_backend and tool.layer != "meta-framework":
+        errors.append(f"{rel}: serves_backend is only for meta-framework tools")
     if tool.url not in tool.sources:
         errors.append(f"{rel}: url '{tool.url}' must appear in sources")
     # Dates are written in the author's local time; no timezone is more than a day ahead of UTC.

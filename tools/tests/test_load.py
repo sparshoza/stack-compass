@@ -262,6 +262,15 @@ def test_runs_in_app_defaults_to_false_and_can_be_true(kb_dir):
     assert load_kb(kb_dir).tools["fastapi"].runs_in_app is True
 
 
+def test_serves_backend_defaults_to_false_and_is_only_for_meta_frameworks(kb_dir):
+    assert load_kb(kb_dir).tools["react"].serves_backend is False
+    edit_tool(kb_dir, "frontend", "react", lambda d: d.update(serves_backend=True))
+    errs = errors_of(kb_dir)
+    assert any(
+        e.startswith("tools/frontend/react.yaml") and "serves_backend" in e for e in errs
+    )
+
+
 def test_needs_web_frontend_defaults_to_false_and_can_be_true(kb_dir):
     assert load_kb(kb_dir).tools["fastapi"].needs_web_frontend is False
     edit_tool(kb_dir, "backend", "fastapi", lambda d: d.update(needs_web_frontend=True))

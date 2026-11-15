@@ -3,6 +3,7 @@ name: Astro
 aliases:
 - astrojs
 layer: meta-framework
+serves_backend: true
 summary: A web framework for content-driven sites that ships minimal JavaScript and mixes UI libraries.
 url: https://astro.build
 repo: https://github.com/withastro/astro
@@ -63,7 +64,7 @@ edges:
 uses:
 - content
 - static-export
-verified: '2026-11-14'
+verified: '2026-11-15'
 sources:
 - https://astro.build
 - https://github.com/withastro/astro
@@ -77,3 +78,4 @@ sources:
 - https://docs.astro.build/en/guides/cms/
 - https://docs.astro.build/en/guides/backend/firebase/
 - https://astro.build/
+- https://docs.astro.build/en/guides/endpoints/

@@ -489,6 +489,24 @@ describe("match", () => {
       });
     }
 
+    it("text messages are named as not covered and never become email", () => {
+      for (const text of [
+        "a tool that sends my customers text message reminders before their appointment",
+        "send sms reminders to patients",
+        "an app that texts my clients when their order is ready",
+        "a booking site that sends texts",
+      ]) {
+        const d = match(text, kb);
+        expect(d.notCovered, text).toEqual(["sms"]);
+        expect(d.capabilities, text).not.toContain("transactional-email");
+      }
+      expect(match("a site that sends email reminders", kb).notCovered).toBeUndefined();
+    });
+
+    it("text message reminders still need a timer", () => {
+      expect(match("text message reminders", kb).capabilities).toContain("scheduled-jobs");
+    });
+
     it("negation still drops the plain words", () => {
       expect(match("a website for my band, we don't take donations", kb).capabilities).not.toContain("payments");
       expect(match("a site for my club, no emails please", kb).capabilities).not.toContain("transactional-email");

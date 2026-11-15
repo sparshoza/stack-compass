@@ -2,12 +2,14 @@ import type { Answers } from '@/engine/answers'
 import type { Detected } from '@/engine/match'
 import { languageName } from '@/lib/display'
 import { kb, toolById } from '@/lib/kb'
-import { capabilityLabel as plainCapability, projectTypeLabel } from './plain'
+import { NOT_COVERED, capabilityLabel as plainCapability, projectTypeLabel } from './plain'
 
 /** One thing picked up from the description, shown as a removable chip. */
 export interface Chip {
   key: string
   label: string
+  /** Why a need is left out of the stack, shown under the chips. */
+  note?: string
 }
 
 export const emptyDetection = (): Detected => ({
@@ -25,15 +27,18 @@ export function isEmpty(d: Detected): boolean {
     !d.capabilities.length &&
     !d.languagesPrefer.length &&
     !d.languagesAvoid.length &&
-    !d.knownTools.length
+    !d.knownTools.length &&
+    !d.notCovered?.length
   )
 }
 
 /** The detection without the chips the person removed. */
 export function withoutDismissed(d: Detected, dismissed: ReadonlySet<string>): Detected {
   const projectType = d.projectType && !dismissed.has(`type:${d.projectType}`) ? d.projectType : null
+  const notCovered = (d.notCovered ?? []).filter((id) => !dismissed.has(`gap:${id}`))
   return {
     ...(projectType && d.guessedType ? { guessedType: true as const } : {}),
+    ...(notCovered.length ? { notCovered } : {}),
     projectType,
     capabilities: d.capabilities.filter((id) => !dismissed.has(`cap:${id}`)),
     languagesPrefer: d.languagesPrefer.filter((id) => !dismissed.has(`prefer:${id}`)),
@@ -46,7 +51,7 @@ export function withoutDismissed(d: Detected, dismissed: ReadonlySet<string>): D
 const projectLabel = (id: string) => projectTypeLabel(id, kb.vocab.project_types.find((p) => p.id === id)?.label ?? id)
 const capabilityLabel = (id: string) => plainCapability(id, kb.vocab.capabilities.find((c) => c.id === id)?.label ?? id)
 
-/** Chips in reading order: what it is, what it needs, languages, tools. */
+/** Chips in reading order: what it is, what it needs, languages, tools, needs the catalog does not cover. */
 export function chipsOf(d: Detected): Chip[] {
   const chips: Chip[] = []
   if (d.projectType) {
@@ -58,6 +63,10 @@ export function chipsOf(d: Detected): Chip[] {
   for (const id of d.languagesPrefer) chips.push({ key: `prefer:${id}`, label: languageName(id) })
   for (const id of d.languagesAvoid) chips.push({ key: `avoid:${id}`, label: `Avoid ${languageName(id)}` })
   for (const id of d.knownTools) chips.push({ key: `tool:${id}`, label: toolById(id)?.name ?? id })
+  for (const id of d.notCovered ?? []) {
+    const gap = NOT_COVERED[id]
+    if (gap) chips.push({ key: `gap:${id}`, label: gap.label, note: gap.note })
+  }
   return chips
 }
 

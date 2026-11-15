@@ -58,6 +58,14 @@ export const CAPABILITY_LABELS: Record<string, string> = {
   'rest-api': 'Let other apps connect',
 }
 
+/** Needs a description can name that no part of the catalog covers: the chip, and why it is left out. */
+export const NOT_COVERED: Record<string, { label: string; note: string }> = {
+  sms: {
+    label: 'Text messages (not covered)',
+    note: 'This catalog has no text message (SMS) services, so the stack leaves them out.',
+  },
+}
+
 export function capabilityLabel(id: string, fallback = id): string {
   return CAPABILITY_LABELS[id] ?? fallback
 }

@@ -34,6 +34,11 @@ export function DetectedChips({ chips, nothingFound, onRemove }: DetectedChipsPr
               </li>
             ))}
           </ul>
+          {chips.flatMap((chip) => (chip.note ? [chip] : [])).map((chip) => (
+            <p key={chip.key} className="text-[0.8125rem] text-text-muted">
+              {chip.note}
+            </p>
+          ))}
         </div>
       ) : (
         nothingFound && (

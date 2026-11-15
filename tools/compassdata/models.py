@@ -186,10 +186,15 @@ class Vocab(Strict):
     facets: dict[str, list[FacetGroup]]
 
 
+# Needs a person may name that no layer in the catalog covers, so the site can say so.
+NOT_COVERED = ("sms",)
+
+
 class KeywordSets(Strict):
     project_type: str | None = None
     capabilities: list[str] = []
     languages: list[str] = []
+    not_covered: list[Literal[NOT_COVERED]] = []
 
 
 class KeywordEntry(Strict):

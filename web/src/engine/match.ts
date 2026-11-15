@@ -18,6 +18,11 @@ export type Detected = {
    * (guessType). Absent otherwise.
    */
   guessedType?: true;
+  /**
+   * Needs the text named that no layer in the catalog covers ("sms"), from
+   * keyword entries with not_covered. Absent when there are none.
+   */
+  notCovered?: string[];
 };
 
 /** A word within this many tokens before a match can negate it. Fillers do not count. */
@@ -302,6 +307,7 @@ export function match(text: string, kb: KnowledgeBase): Detected {
   const droppedCapabilities = new Set<string>();
   const droppedTools = new Set<string>();
   const dropped = new Set<string>();
+  const notCovered = new Set<string>();
   /** GraphQL or an API-style tool was named, so REST is not assumed. */
   let otherApiStyle = false;
 
@@ -363,6 +369,7 @@ export function match(text: string, kb: KnowledgeBase): Detected {
           for (const language of languages) avoid.add(language);
         } else {
           if (project_type && projectType === null) projectType = project_type;
+          for (const need of target.entry.sets.not_covered ?? []) notCovered.add(need);
           for (const cap of caps) capabilities.add(cap);
           for (const language of languages) prefer.add(language);
         }
@@ -394,6 +401,7 @@ export function match(text: string, kb: KnowledgeBase): Detected {
   // Negation wins over a positive mention elsewhere in the text.
   return {
     ...(guessed ? { guessedType: true as const } : {}),
+    ...(notCovered.size > 0 ? { notCovered: [...notCovered] } : {}),
     projectType,
     capabilities: [...capabilities].filter((c) => !droppedCapabilities.has(c)),
     languagesPrefer: [...prefer].filter((l) => !avoid.has(l)),

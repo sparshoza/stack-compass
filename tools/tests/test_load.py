@@ -203,6 +203,22 @@ def test_rejects_keyword_with_unknown_set_values(kb_dir):
     assert any(e.startswith("keywords.yaml") and "nope" in e for e in errs)
 
 
+def test_keyword_may_name_a_need_the_catalog_does_not_cover(kb_dir):
+    edit_yaml(
+        kb_dir / "keywords.yaml",
+        lambda doc: doc.append({"phrases": ["sms"], "sets": {"not_covered": ["sms"]}}),
+    )
+    kb = load_kb(kb_dir)
+    assert kb.keywords[-1].sets.not_covered == ["sms"]
+    assert kb.keywords[0].sets.not_covered == []
+
+
+def test_rejects_unknown_not_covered_need(kb_dir):
+    edit_yaml(kb_dir / "keywords.yaml", lambda doc: doc[0]["sets"].update(not_covered=["fax"]))
+    errs = errors_of(kb_dir)
+    assert any(e.startswith("keywords.yaml") and "not_covered" in e for e in errs)
+
+
 def test_reports_all_errors_at_once(kb_dir):
     edit_tool(kb_dir, "frontend", "react", lambda d: d.update(summary="x" * 200))
     edit_tool(kb_dir, "backend", "fastapi", lambda d: d.update(tags=["telepathy"]))

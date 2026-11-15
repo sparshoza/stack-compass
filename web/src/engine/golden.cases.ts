@@ -17,6 +17,7 @@ import type { Answers } from "./answers";
  *   matcher, not scoring; core layers of a project type are checked here
  *   rather than with layerPresent / layerAbsent.
  * - capabilities: the matched (or overridden) capabilities include these.
+ * - capabilitiesAbsent: the matched (or overridden) capabilities include none of these.
  * - hostingRunsBackend: the hosting pick can run the backend pick: it lists
  *   the backend's language, or lists no languages and runs server code.
  * - noEmptyLayer: every layer in the result has a pick (no "No match").
@@ -32,6 +33,7 @@ export type Check =
   | { pickIs: { layer: Layer; tool: string | null } }
   | { ormPairsWithBackend: true }
   | { capabilities: string[] }
+  | { capabilitiesAbsent: string[] }
   | { hostingRunsBackend: true }
   | { noEmptyLayer: true };
 
@@ -969,6 +971,17 @@ export const GOLDEN_CASES: GoldenCase[] = [
     checks: [
       { projectType: "web-app" },
       { capabilities: ["geospatial"] },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // Text messages are not email: the catalog has no SMS layer, so no email service either.
+    id: "plain-sms-reminders",
+    text: "a tool that sends my customers text message reminders before their appointment",
+    checks: [
+      { capabilitiesAbsent: ["transactional-email"] },
+      { layerAbsent: "email" },
       { hostingRunsBackend: true },
       { noEmptyLayer: true },
     ],

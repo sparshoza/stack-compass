@@ -175,6 +175,19 @@ describe('Help me choose', () => {
     expect(within(sheet()).queryByRole('list', { name: 'Picked up from your description' })).not.toBeInTheDocument()
   })
 
+  it('text messages show as not covered, with a note, and never as email', async () => {
+    const user = userEvent.setup()
+    renderApp()
+    const dialog = await openSheet(user)
+    await describeProject(user, 'a tool that sends my customers text message reminders before their appointment')
+    const chips = within(dialog).getByRole('list', { name: 'Picked up from your description' })
+    expect(within(chips).getByText('Text messages (not covered)')).toBeInTheDocument()
+    expect(within(chips).queryByText('Send emails')).not.toBeInTheDocument()
+    expect(
+      within(dialog).getByText('This catalog has no text message (SMS) services, so the stack leaves them out.'),
+    ).toBeInTheDocument()
+  })
+
   it('a plain description sets a best guess type, shown as a chip that can be removed', async () => {
     const user = userEvent.setup()
     renderApp()

@@ -48,6 +48,11 @@ function failures(
       .filter((cap) => !answers.capabilities.includes(cap))
       .map((cap) => `capability ${cap} not set`);
   }
+  if ("capabilitiesAbsent" in check) {
+    return check.capabilitiesAbsent
+      .filter((cap) => answers.capabilities.includes(cap))
+      .map((cap) => `capability ${cap} set`);
+  }
   if ("hostingRunsBackend" in check) {
     const backend = toolOf(byLayer.get("backend")?.pick ?? null);
     const host = toolOf(byLayer.get("hosting")?.pick ?? null);
@@ -126,9 +131,9 @@ function failures(
 }
 
 describe("golden set", () => {
-  it("has 83 cases with unique ids", () => {
-    expect(GOLDEN_CASES).toHaveLength(83);
-    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(83);
+  it("has 84 cases with unique ids", () => {
+    expect(GOLDEN_CASES).toHaveLength(84);
+    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(84);
   });
 
   it("every case has at least one check that depends on scoring", () => {

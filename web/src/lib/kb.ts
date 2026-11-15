@@ -125,6 +125,8 @@ export interface KeywordEntry {
     project_type: string | null
     capabilities: string[]
     languages: string[]
+    /** Needs no layer covers ("sms"), so the site can say so instead of guessing. */
+    not_covered?: string[]
   }
 }
 

@@ -510,6 +510,13 @@ describe("match", () => {
       expect(match("live scoreboard", k).capabilities).toEqual([]);
     });
 
+    it("one-word phrases get no s form, so coffee shops are not a shop", () => {
+      const d = match("a dashboard showing sales numbers from my three coffee shops", kb);
+      expect(d.capabilities).not.toContain("payments");
+      const k = fixture([entry(["shop"], { capabilities: ["payments"] })], []);
+      expect(match("shops", k).capabilities).toEqual([]);
+    });
+
     it("a listed phrase wins over an s form of another phrase", () => {
       const k = fixture(
         [

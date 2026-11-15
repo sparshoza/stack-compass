@@ -167,11 +167,12 @@ function buildIndex(kb: KnowledgeBase): Index {
     for (const alias of tool.aliases) add(alias, target);
   }
   // "live scores" finds "live score". Listed phrases and tool names come first,
-  // so a plural form never replaces either.
+  // so a plural form never replaces either. One-word phrases get none: "shops"
+  // in "my three coffee shops" is not a shop to sell from.
   for (const entry of kb.keywords) {
     for (const phrase of entry.phrases) {
       const tokens = tokenize(phrase);
-      if (tokens.length === 0) continue;
+      if (tokens.length < 2) continue;
       const key = [...tokens.slice(0, -1), pluralOf(tokens[tokens.length - 1])].join(" ");
       if (!phrases.has(key)) phrases.set(key, [{ kind: "keyword", entry }]);
     }

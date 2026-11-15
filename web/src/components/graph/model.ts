@@ -623,6 +623,33 @@ export function areaFit(
   }
 }
 
+/**
+ * How far to zoom out (relative to the current zoom, never in) so a focused
+ * tool drawn at `centre`, the middle of the free area, keeps every neighbour
+ * (`drawn`, pixels at the current camera) inside that area less the label
+ * margin. Each side is measured on its own, since the tool stays in the
+ * middle. An axis the panels leave no room on is measured across the screen.
+ */
+export function focusFit(
+  drawn: Box,
+  centre: { x: number; y: number },
+  viewport: { width: number; height: number },
+  free: { top: number; right: number; bottom: number; left: number },
+): number {
+  const room = (before: number, after: number) => Math.max(1, after - before)
+  const axis = (size: number, start: number, end: number) =>
+    size - start - end - 2 * PICK_MARGIN > 0 ? { start, end } : { start: 0, end: 0 }
+  const x = axis(viewport.width, free.left, free.right)
+  const y = axis(viewport.height, free.top, free.bottom)
+  return Math.max(
+    1,
+    (centre.x - drawn.x0) / room(x.start + PICK_MARGIN, centre.x),
+    (drawn.x1 - centre.x) / room(centre.x, viewport.width - x.end - PICK_MARGIN),
+    (centre.y - drawn.y0) / room(y.start + PICK_MARGIN, centre.y),
+    (drawn.y1 - centre.y) / room(centre.y, viewport.height - y.end - PICK_MARGIN),
+  )
+}
+
 /** Fit zoom changes inside this band (relative to the current zoom) count as about the same scale. */
 const CALM_RATIO = { min: 0.8, max: 1.25 }
 

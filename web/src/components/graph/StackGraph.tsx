@@ -13,6 +13,7 @@ import {
   buildGraph,
   drawName,
   edgeStyle,
+  focusFit,
   labelBoxes,
   labelOrigin,
   LabelPlacer,
@@ -408,6 +409,10 @@ export function StackGraph({
   const highlightKey = highlight?.join('\n') ?? ''
   const layersKey = setKey(hiddenLayers)
   const edgeTypesKey = setKey(hiddenEdgeTypes)
+  const edgeTypesKeyRef = useRef(edgeTypesKey)
+  useEffect(() => {
+    edgeTypesKeyRef.current = edgeTypesKey
+  }, [edgeTypesKey])
   // A route is drawn as its tools and the edges between them.
   const routeKey = (routes ?? [])
     .flatMap((r) => r.steps.map((step) => routeEdgeKey(step.from, step.to, step.type)))
@@ -706,8 +711,17 @@ export function StackGraph({
         })
         camera.setState({ x: at.x + shifted.x - centre.x, y: at.y + shifted.y - centre.y, ratio })
       }
+      // Zoom out around the tool until every neighbour shown is in the free area too.
+      if (typeof sigma.framedGraphToViewport !== 'function' || typeof sigma.viewportToFramedGraph !== 'function') return
+      const hiddenEdges = new Set(edgeTypesKeyRef.current ? (edgeTypesKeyRef.current.split('\n') as EdgeType[]) : [])
+      const box = drawnBox(sigma, [focus, ...neighboursOf(graph, focus, hiddenEdges)])
+      if (!box) return
+      const point = sigma.framedGraphToViewport(at)
+      const free = { top: inset?.top ?? 0, right: inset?.right ?? 0, bottom: inset?.bottom ?? 0, left: inset?.left ?? 0 }
+      const zoomOut = focusFit(box, point, sigma.getDimensions(), free)
+      if (zoomOut > 1) applyFit(sigma, { ratio: zoomOut, from: point, to: point })
     })
-  }, [focus, focusHidden])
+  }, [focus, focusHidden, graph])
 
   // New lit tools glide into the area the sheet and the bars leave free,
   // again when that area changes. When they all already sit there at about

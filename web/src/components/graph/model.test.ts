@@ -16,6 +16,7 @@ import {
   nodeStyle,
   portraitFit,
   areaFit,
+  focusFit,
   keepsCamera,
   readPalette,
   mix,
@@ -551,6 +552,33 @@ describe('portraitFit', () => {
     const fit = portraitFit(tall, phone, free)!
     expect((tall.y1 - tall.y0) / fit.ratio).toBeCloseTo(844 - 124 - 64 - 2 * 12, 5)
     expect((tall.x1 - tall.x0) / fit.ratio).toBeLessThanOrEqual(390 - 24)
+  })
+})
+
+describe('focusFit', () => {
+  const screen = { width: 1440, height: 900 }
+  // The tool panel on the right, the bar on top: the free area is 0..1016 by 68..900.
+  const free = { top: 68, right: 424, bottom: 0, left: 0 }
+  const centre = { x: 508, y: 484 }
+
+  it('keeps the zoom when every neighbour already sits in the free area', () => {
+    const near = { x0: 300, y0: 300, x1: 700, y1: 650 }
+    expect(focusFit(near, centre, screen, free)).toBe(1)
+  })
+
+  it('zooms out, around the focused tool, until the farthest neighbour is inside', () => {
+    // A neighbour 600 px above the tool: only 416 - 48 px of room above it.
+    const far = { x0: 400, y0: centre.y - 600, x1: 700, y1: 600 }
+    const ratio = focusFit(far, centre, screen, free)
+    expect(ratio).toBeCloseTo(600 / (centre.y - 68 - 48), 5)
+    // At that zoom every neighbour lands inside the free area less the margin.
+    expect(centre.y - (centre.y - far.y0) / ratio).toBeGreaterThanOrEqual(68 + 48 - 1e-9)
+    expect(centre.x + (far.x1 - centre.x) / ratio).toBeLessThanOrEqual(1016 - 48)
+  })
+
+  it('looks at the side the neighbour is on, not the whole width', () => {
+    const right = { x0: centre.x, y0: centre.y, x1: centre.x + 920, y1: centre.y }
+    expect(focusFit(right, centre, screen, free)).toBeCloseTo(920 / (1016 - 48 - centre.x), 5)
   })
 })
 

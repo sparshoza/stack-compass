@@ -2,7 +2,7 @@
 
 import re
 import unicodedata
-from datetime import date
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -275,6 +275,10 @@ def _check_keywords(keywords: list[KeywordEntry], vocab: Vocab | None, errors: l
                 errors.append(f"{rel}: entry {i} sets unknown language '{lang}'")
 
 
+def _utc_today() -> date:
+    return datetime.now(UTC).date()
+
+
 def _check_tool(
     tool: Tool, rel: str, folder: str, stem: str, vocab: Vocab | None, errors: list[str]
 ) -> None:
@@ -284,7 +288,8 @@ def _check_tool(
         errors.append(f"{rel}: id '{tool.id}' does not match filename '{stem}'")
     if tool.url not in tool.sources:
         errors.append(f"{rel}: url '{tool.url}' must appear in sources")
-    if tool.verified > date.today():
+    # Dates are written in the author's local time; no timezone is more than a day ahead of UTC.
+    if tool.verified > _utc_today() + timedelta(days=1):
         errors.append(f"{rel}: verified {tool.verified} is in the future")
     if vocab is not None:
         cap_ids = {c.id for c in vocab.capabilities}

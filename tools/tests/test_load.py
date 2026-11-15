@@ -1,9 +1,11 @@
 import shutil
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
 import pytest
 import yaml
 
+import compassdata.load as load_module
 from compassdata.load import KbError, load_kb
 from compassdata.models import LAYERS, KnowledgeBase
 
@@ -120,6 +122,27 @@ def test_rejects_future_verified_date(kb_dir):
     edit_tool(kb_dir, "frontend", "react", lambda d: d.update(verified="2999-01-01"))
     errs = errors_of(kb_dir)
     assert any(e.startswith("tools/frontend/react.yaml") and "future" in e for e in errs)
+
+
+def test_accepts_verified_one_day_ahead_of_utc(kb_dir):
+    # A date written in local time east of UTC can be one day ahead of a UTC runner.
+    tomorrow = (datetime.now(UTC).date() + timedelta(days=1)).isoformat()
+    edit_tool(kb_dir, "frontend", "react", lambda d: d.update(verified=tomorrow))
+    load_kb(kb_dir)
+
+
+def test_rejects_verified_two_days_ahead_of_utc(kb_dir):
+    later = (datetime.now(UTC).date() + timedelta(days=2)).isoformat()
+    edit_tool(kb_dir, "frontend", "react", lambda d: d.update(verified=later))
+    errs = errors_of(kb_dir)
+    assert any(e.startswith("tools/frontend/react.yaml") and "future" in e for e in errs)
+
+
+def test_utc_runner_behind_local_date_accepts_local_today(kb_dir, monkeypatch):
+    # The runner's UTC clock still says 11-14 while the author wrote 11-15.
+    monkeypatch.setattr(load_module, "_utc_today", lambda: date(2026, 11, 14))
+    edit_tool(kb_dir, "frontend", "react", lambda d: d.update(verified="2026-11-15"))
+    load_kb(kb_dir)
 
 
 def test_rejects_url_missing_from_sources(kb_dir):

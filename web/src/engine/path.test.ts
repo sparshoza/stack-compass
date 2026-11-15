@@ -13,7 +13,7 @@ const middles = (c: Connection) => c.routes.map((r) => r.nodes.slice(1, -1).join
 const none: Connection = { alternatives: false, routes: [], throughAlternatives: false, shared: [] }
 
 describe('connect', () => {
-  it('two tools in the same layer that share partners say so, unless they are listed as alternatives', () => {
+  it('two tools in the same layer that share partners say so, unless they are alternatives or related directly', () => {
     const kb = makeKb(
       [
         tool('django', [pair('postgresql'), pair('mysql')]),
@@ -28,6 +28,8 @@ describe('connect', () => {
     expect(connect('django', 'postgresql', kb).sameLayer).toBeUndefined()
     expect(connect('django', 'flask', kb).sameLayer).toBeUndefined()
     expect(connect('django', 'express', realKb).sameLayer).toBe('backend')
+    // pgvector is built on PostgreSQL: they are used together, not one instead of the other.
+    expect(connect('pgvector', 'postgresql', realKb).sameLayer).toBeUndefined()
   })
 
   it('a direct relation is one step, worded the way the relation points', () => {

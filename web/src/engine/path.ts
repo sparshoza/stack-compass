@@ -31,8 +31,8 @@ export interface Connection {
   shared: string[]
   /**
    * The layer both tools are in, when they share it and some partner but the
-   * catalog does not list them as alternatives (Django and Express): projects
-   * usually pick one of the two. Absent otherwise.
+   * catalog relates them neither as alternatives nor directly (Django and
+   * Express): projects usually pick one of the two. Absent otherwise.
    */
   sameLayer?: Layer
 }
@@ -256,6 +256,9 @@ export function connect(a: string, b: string, kb: KnowledgeBase, max = 3): Conne
     .slice(0, Math.max(0, max))
     .map((nodes) => toRoute(index, graph, nodes))
   const layer = index.layers.get(a)
-  const sameLayer = !alternatives && shared.length > 0 && layer === index.layers.get(b) ? layer : undefined
+  // Tools related directly (pgvector built on PostgreSQL) work together, so they are no choice of one.
+  const related = index.close.links.has(pairKey(a, b))
+  const sameLayer =
+    !alternatives && !related && shared.length > 0 && layer === index.layers.get(b) ? layer : undefined
   return { alternatives, routes, throughAlternatives, shared, ...(sameLayer ? { sameLayer } : {}) }
 }

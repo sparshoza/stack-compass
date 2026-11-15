@@ -16174,13 +16174,15 @@
       "scale": "single",
       "sources": [
         "https://www.postgresql.org",
+        "https://postgis.net/",
         "https://www.postgresql.org/about/license/",
         "https://www.postgresql.org/docs/current/textsearch-intro.html",
         "https://www.postgresql.org/docs/current/textsearch.html"
       ],
       "summary": "An advanced open source relational database with strong SQL support and built-in full-text search.",
       "tags": [
-        "full-text-search"
+        "full-text-search",
+        "geospatial"
       ],
       "url": "https://www.postgresql.org",
       "uses": [

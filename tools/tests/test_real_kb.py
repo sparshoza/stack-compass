@@ -401,3 +401,10 @@ def test_every_facet_option_matches_a_tool_and_every_tool_has_a_need(kb):
             assert need & set(t.uses), f"{t.id} has no need option"
             if any(g.id == "scale" for g in groups) and t.id not in SCALE_UNSET:
                 assert t.scale is not None, f"{t.id} has no scale"
+
+
+def test_postgresql_does_maps_through_postgis(kb):
+    # PostGIS adds geospatial storage, indexing and queries to PostgreSQL (postgis.net).
+    pg = kb.tools["postgresql"]
+    assert "geospatial" in pg.tags
+    assert "https://postgis.net/" in pg.sources

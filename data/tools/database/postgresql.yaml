@@ -6,7 +6,7 @@ summary: An advanced open source relational database with strong SQL support and
 url: https://www.postgresql.org
 license: PostgreSQL
 languages: []
-tags: [full-text-search]
+tags: [full-text-search, geospatial]
 hosting: [self-hosted]
 pricing: [oss]
 maturity: established
@@ -56,4 +56,4 @@ edges:
 uses: [app-data, text-search]
 scale: single
 verified: 2026-11-14
-sources: ['https://www.postgresql.org', 'https://www.postgresql.org/about/license/', 'https://www.postgresql.org/docs/current/textsearch-intro.html', 'https://www.postgresql.org/docs/current/textsearch.html']
+sources: ['https://www.postgresql.org', 'https://postgis.net/', 'https://www.postgresql.org/about/license/', 'https://www.postgresql.org/docs/current/textsearch-intro.html', 'https://www.postgresql.org/docs/current/textsearch.html']

@@ -285,7 +285,8 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { backendLanguage: "kotlin" },
       { pickIs: { layer: "mobile", tool: "kotlin-multiplatform" } },
       { pickIs: { layer: "orm", tool: "exposed" } },
-      { pickIs: { layer: "database", tool: "mysql" } },
+      // PostgreSQL does maps through PostGIS.
+      { pickIs: { layer: "database", tool: "postgresql" } },
       { noToolWithLanguage: "swift" },
     ],
   },
@@ -1030,6 +1031,16 @@ export const GOLDEN_CASES: GoldenCase[] = [
     checks: [
       { capabilities: ["payments"] },
       { pickIs: { layer: "payments", tool: "stripe" } },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // PostgreSQL with PostGIS is the usual pick for maps, not a switch to MySQL.
+    id: "plain-uber-lawn-mowing",
+    text: "an app like Uber but for lawn mowing",
+    checks: [
+      { capabilities: ["geospatial"] },
+      { pickIs: { layer: "database", tool: "postgresql" } },
       { noEmptyLayer: true },
     ],
   },

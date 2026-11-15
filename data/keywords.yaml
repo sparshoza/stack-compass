@@ -348,6 +348,14 @@
   sets: {not_covered: [sms]}
 - phrases: [text message reminders, sms reminders, text reminders, reminder texts]
   sets: {capabilities: [scheduled-jobs], not_covered: [sms]}
+- phrases: [photos, pictures, with photos, with pictures, video lessons, video course]
+  sets: {capabilities: [file-uploads]}
+- phrases: [preorder, pre order, preorders]
+  sets: {capabilities: [payments]}
+- phrases: [rent out, vacation rental, holiday rental, cabins, cabin rental]
+  sets: {project_type: web-app, capabilities: [payments]}
+- phrases: [track which, crew, borrowed, equipment]
+  sets: {project_type: internal-tool}
 - phrases: [newsletter, mailing list]
   sets: {project_type: content-site, capabilities: [transactional-email]}
 - phrases: [booking, bookings, book appointments, book classes, book a table, appointments, appointment, reservations, reservation, site where, website where, app where, platform where, sharing site, sharing app, sharing platform, members area, customer accounts, community, forum, online courses]

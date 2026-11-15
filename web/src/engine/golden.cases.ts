@@ -986,6 +986,53 @@ export const GOLDEN_CASES: GoldenCase[] = [
       { noEmptyLayer: true },
     ],
   },
+  {
+    id: "plain-crew-tool-tracker",
+    text: "something to track which tools my construction crew has borrowed",
+    checks: [
+      { projectType: "internal-tool" },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-maintenance-photos",
+    text: "an app where tenants report maintenance problems to their landlord with photos",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["file-uploads"] },
+      { layerPresent: "storage" },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-fantasy-live-scores",
+    text: "a fantasy football league app for my friends with live scores",
+    checks: [
+      { capabilities: ["realtime"] },
+      { hostingRunsBackend: true },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-cabin-rentals",
+    text: "a site to rent out my two vacation cabins",
+    checks: [
+      { projectType: "web-app" },
+      { capabilities: ["payments"] },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    id: "plain-food-truck-preorder",
+    text: "an app for my food truck so people can see where we are today and preorder",
+    checks: [
+      { capabilities: ["payments"] },
+      { pickIs: { layer: "payments", tool: "stripe" } },
+      { noEmptyLayer: true },
+    ],
+  },
 ];
 
 /**

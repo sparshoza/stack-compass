@@ -166,7 +166,24 @@ function buildIndex(kb: KnowledgeBase): Index {
     if (tool.match_name) add(tool.name, target);
     for (const alias of tool.aliases) add(alias, target);
   }
+  // "live scores" finds "live score". Listed phrases and tool names come first,
+  // so a plural form never replaces either.
+  for (const entry of kb.keywords) {
+    for (const phrase of entry.phrases) {
+      const tokens = tokenize(phrase);
+      if (tokens.length === 0) continue;
+      const key = [...tokens.slice(0, -1), pluralOf(tokens[tokens.length - 1])].join(" ");
+      if (!phrases.has(key)) phrases.set(key, [{ kind: "keyword", entry }]);
+    }
+  }
   return { phrases, maxLength };
+}
+
+/** The plain English plural of a word: box, boxes; city, cities; score, scores. */
+function pluralOf(word: string): string {
+  if (/(s|x|z|ch|sh)$/.test(word)) return `${word}es`;
+  if (/[^aeiou]y$/.test(word)) return `${word.slice(0, -1)}ies`;
+  return `${word}s`;
 }
 
 function indexFor(kb: KnowledgeBase): Index {

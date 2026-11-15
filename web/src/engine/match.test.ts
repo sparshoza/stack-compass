@@ -503,6 +503,50 @@ describe("match", () => {
       expect(match("a site that sends email reminders", kb).notCovered).toBeUndefined();
     });
 
+    it("a phrase also matches with an s on its last word", () => {
+      expect(match("live scores", kb).capabilities).toContain("realtime");
+      const k = fixture([entry(["live score"], { capabilities: ["realtime"] })], []);
+      expect(match("live scores for my league", k).capabilities).toEqual(["realtime"]);
+      expect(match("live scoreboard", k).capabilities).toEqual([]);
+    });
+
+    it("a listed phrase wins over an s form of another phrase", () => {
+      const k = fixture(
+        [
+          entry(["photo"], { capabilities: ["realtime"] }),
+          entry(["photos"], { capabilities: ["file-uploads"] }),
+        ],
+        [],
+      );
+      expect(match("photos", k).capabilities).toEqual(["file-uploads"]);
+    });
+
+    it("an s form never takes over a tool name", () => {
+      const k = fixture([entry(["rail"], { capabilities: ["realtime"] })], [tool("rails", "Rails")]);
+      const d = match("rails", k);
+      expect(d.capabilities).toEqual([]);
+      expect(d.knownTools).toEqual(["rails"]);
+    });
+
+    it("owner words for photos, preorders, rentals, video lessons and crews", () => {
+      const cases: [string, string | null, string[]][] = [
+        ["tenants report maintenance problems to their landlord with photos", null, ["file-uploads"]],
+        ["customers send pictures of their pets", null, ["file-uploads"]],
+        ["people can preorder lunch", null, ["payments"]],
+        ["people can pre-order lunch", null, ["payments"]],
+        ["a site to rent out my two vacation cabins", "web-app", ["payments"]],
+        ["an online course platform where I can sell video lessons on yoga", null, ["file-uploads"]],
+        ["a video course about knitting", null, ["file-uploads"]],
+        ["something to track which tools my construction crew has borrowed", "internal-tool", []],
+        ["keep a list of our equipment", "internal-tool", []],
+      ];
+      for (const [text, type, caps] of cases) {
+        const d = match(text, kb);
+        if (type) expect(d.projectType, text).toBe(type);
+        for (const cap of caps) expect(d.capabilities, text).toContain(cap);
+      }
+    });
+
     it("text message reminders still need a timer", () => {
       expect(match("text message reminders", kb).capabilities).toContain("scheduled-jobs");
     });

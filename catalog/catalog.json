@@ -2787,6 +2787,70 @@
     },
     {
       "phrases": [
+        "photos",
+        "pictures",
+        "with photos",
+        "with pictures",
+        "video lessons",
+        "video course"
+      ],
+      "sets": {
+        "capabilities": [
+          "file-uploads"
+        ],
+        "languages": [],
+        "not_covered": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "preorder",
+        "pre order",
+        "preorders"
+      ],
+      "sets": {
+        "capabilities": [
+          "payments"
+        ],
+        "languages": [],
+        "not_covered": [],
+        "project_type": null
+      }
+    },
+    {
+      "phrases": [
+        "rent out",
+        "vacation rental",
+        "holiday rental",
+        "cabins",
+        "cabin rental"
+      ],
+      "sets": {
+        "capabilities": [
+          "payments"
+        ],
+        "languages": [],
+        "not_covered": [],
+        "project_type": "web-app"
+      }
+    },
+    {
+      "phrases": [
+        "track which",
+        "crew",
+        "borrowed",
+        "equipment"
+      ],
+      "sets": {
+        "capabilities": [],
+        "languages": [],
+        "not_covered": [],
+        "project_type": "internal-tool"
+      }
+    },
+    {
+      "phrases": [
         "newsletter",
         "mailing list"
       ],

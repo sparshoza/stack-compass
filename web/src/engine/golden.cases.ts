@@ -20,6 +20,8 @@ import type { Answers } from "./answers";
  * - capabilitiesAbsent: the matched (or overridden) capabilities include none of these.
  * - hostingRunsBackend: the hosting pick can run the backend pick: it lists
  *   the backend's language, or lists no languages and runs server code.
+ * - hostingRunsServer: when the backend pick is not JavaScript, the hosting
+ *   pick runs long-lived servers (its uses include backends or containers).
  * - noEmptyLayer: every layer in the result has a pick (no "No match").
  */
 export type Check =
@@ -35,6 +37,7 @@ export type Check =
   | { capabilities: string[] }
   | { capabilitiesAbsent: string[] }
   | { hostingRunsBackend: true }
+  | { hostingRunsServer: true }
   | { noEmptyLayer: true };
 
 /** Check kinds whose outcome depends on scoring, not only on matching. */
@@ -45,6 +48,7 @@ export const ENGINE_CHECKS = [
   "pickHosting",
   "ormPairsWithBackend",
   "hostingRunsBackend",
+  "hostingRunsServer",
   "noEmptyLayer",
 ] as const;
 
@@ -1041,6 +1045,17 @@ export const GOLDEN_CASES: GoldenCase[] = [
     checks: [
       { capabilities: ["geospatial"] },
       { pickIs: { layer: "database", tool: "postgresql" } },
+      { noEmptyLayer: true },
+    ],
+  },
+  {
+    // A Rails, Django or Laravel app runs as a long-lived server, which a functions host cannot run.
+    id: "plain-tax-document-portal",
+    text: "a portal where my accounting clients can upload tax documents securely",
+    checks: [
+      { capabilities: ["file-uploads"] },
+      { hostingRunsBackend: true },
+      { hostingRunsServer: true },
       { noEmptyLayer: true },
     ],
   },

@@ -47,7 +47,10 @@ export type LayerResult = {
  *   with the frontend pick when there is no backend pick; a hosted auth
  *   service may match either. Tools with no languages pass.
  * - no-server-runtime: a host that only serves static files (no languages
- *   and no server use in `uses`) cannot run the backend pick.
+ *   and no server use in `uses`) cannot run the backend pick. A backend pick
+ *   outside JavaScript (Rails, Django, Laravel) runs as a long-lived server,
+ *   so its host needs a LONG_RUNNING_HOSTING_USES option: a host that only
+ *   runs functions for that language is not enough.
  *
  * Everywhere languages are compared, typescript and javascript count as one.
  * - not-built-on-pick: a meta-framework must be built-on the frontend pick,
@@ -122,6 +125,9 @@ const LANGUAGE_PICK_LAYERS: Partial<Record<Layer, Layer[]>> = {
 
 /** Hosting `uses` options that mean the host runs server code, not only static files. */
 const SERVER_HOSTING_USES: ReadonlySet<string> = new Set(["backends", "containers", "web-apps"]);
+
+/** Hosting `uses` options that mean the host keeps a server process running. */
+const LONG_RUNNING_HOSTING_USES: ReadonlySet<string> = new Set(["backends", "containers"]);
 
 /**
  * The frontend `uses` option for a library that adds small touches to pages
@@ -322,11 +328,21 @@ function failedCheck(
   ) {
     return "language-mismatch-with-pick";
   }
+  const backendPick = picks.get("backend");
   if (
     layer === "hosting" &&
-    picks.get("backend") &&
+    backendPick &&
     languages.length === 0 &&
     !tool.uses.some((u) => SERVER_HOSTING_USES.has(u))
+  ) {
+    return "no-server-runtime";
+  }
+  if (
+    layer === "hosting" &&
+    backendPick &&
+    backendPick.languages.length > 0 &&
+    !backendPick.languages.some((l) => family(l) === "javascript") &&
+    !tool.uses.some((u) => LONG_RUNNING_HOSTING_USES.has(u))
   ) {
     return "no-server-runtime";
   }

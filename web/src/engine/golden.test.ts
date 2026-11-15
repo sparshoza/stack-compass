@@ -65,6 +65,14 @@ function failures(
         : host.languages.some((l) => backend.languages.map(family).includes(family(l)));
     return runs ? [] : [`hosting pick ${host.id} cannot run backend pick ${backend.id}`];
   }
+  if ("hostingRunsServer" in check) {
+    const backend = toolOf(byLayer.get("backend")?.pick ?? null);
+    const host = toolOf(byLayer.get("hosting")?.pick ?? null);
+    if (!backend || !host) return [];
+    const js = backend.languages.some((l) => l === "javascript" || l === "typescript");
+    const servers = host.uses.some((u) => u === "backends" || u === "containers");
+    return js || servers ? [] : [`hosting pick ${host.id} cannot run the ${backend.id} server`];
+  }
   if ("noEmptyLayer" in check) {
     return results.filter((r) => r.pick === null).map((r) => `layer ${r.layer} has no match`);
   }
@@ -131,9 +139,9 @@ function failures(
 }
 
 describe("golden set", () => {
-  it("has 90 cases with unique ids", () => {
-    expect(GOLDEN_CASES).toHaveLength(90);
-    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(90);
+  it("has 91 cases with unique ids", () => {
+    expect(GOLDEN_CASES).toHaveLength(91);
+    expect(new Set(GOLDEN_CASES.map((c) => c.id)).size).toBe(91);
   });
 
   it("every case has at least one check that depends on scoring", () => {

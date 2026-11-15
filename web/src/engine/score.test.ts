@@ -312,6 +312,26 @@ describe("scoreStack", () => {
     expect(staticSite.pick).toBe("aaa-pages");
   });
 
+  it("a server framework outside JavaScript needs a host that runs backends or containers", () => {
+    const tools = [
+      makeTool("rails", "backend", { languages: ["ruby"] }),
+      makeTool("express", "backend", { languages: ["javascript"] }),
+      makeTool("aaa-functions", "hosting", { languages: ["ruby", "javascript"], uses: ["static-sites", "web-apps"] }),
+      makeTool("zzz-run", "hosting", { uses: ["backends", "containers"] }),
+    ];
+    const ruby = layerOf(
+      scoreStack(answers({ scale: "prototype", languagesPrefer: ["ruby"] }), makeKb(tools, ["backend", "hosting"])),
+      "hosting",
+    );
+    expect(ruby.pick).toBe("zzz-run");
+    expect(ruby.excluded).toEqual([{ toolId: "aaa-functions", reason: "no-server-runtime" }]);
+    const js = layerOf(
+      scoreStack(answers({ scale: "prototype", languagesPrefer: ["javascript"] }), makeKb(tools, ["backend", "hosting"])),
+      "hosting",
+    );
+    expect(js.pick).toBe("aaa-functions");
+  });
+
   it("drops the build tool when a web framework is picked, since it brings its own bundler", () => {
     const tools = [
       makeTool("react", "frontend"),
